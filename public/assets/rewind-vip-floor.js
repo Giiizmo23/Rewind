@@ -2120,7 +2120,7 @@
   function postLocker(locker, keep) {
     if (!lockerReady) return;
     const creds = memberCreds();
-    const handle = activeHandle() || String(creds.username || "").toLowerCase();
+    const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password) || !locker) return;
     try {
       fetch("/api/rewind/locker", {
@@ -2142,7 +2142,7 @@
   }
   function doPushLocker() {
     const creds = memberCreds();
-    const handle = activeHandle() || String(creds.username || "").toLowerCase();
+    const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password)) return;
     loadPic("rewind-banner", function (b) {
       loadPic("rewind-avatar", function (a) {
@@ -2157,7 +2157,7 @@
   function flushLocker(tries) {
     try { clearTimeout(window.__rwLockT); } catch (e) {}
     const creds = memberCreds();
-    const handle = activeHandle() || String(creds.username || "").toLowerCase();
+    const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password)) return;
     if (!lockerReady) {
       const left = tries == null ? 10 : tries;
@@ -2298,7 +2298,7 @@
   }
   function pullLockerOnce() {
     const creds = memberCreds();
-    const handle = activeHandle() || String(creds.username || "").toLowerCase();
+    const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password)) return;
     try {
       fetch("/api/rewind/locker/pull", {
@@ -2960,7 +2960,7 @@
     }).catch(function () { return null; });
   }
   function isClubHandle(handle) {
-    const key = String(handle || "").toLowerCase();
+    const key = String(handle || "").trim();
     return clubBook.people.some(function (p) { return p.handle === key; });
   }
   function loadClubBook() {
@@ -2975,7 +2975,7 @@
       clubBook.shared = data.shared !== false;
       clubBook.people = data.people.map(function (p) {
         return {
-          handle: String(p.handle || "").toLowerCase(),
+          handle: String(p.handle || "").trim(),
           label: p.label || p.handle,
           name: p.name || p.label || p.handle,
           avatar: isPicSrc(p.avatar) ? p.avatar : "",
@@ -3012,7 +3012,7 @@
   function applyClubPreviews(rows) {
     let arrived = null;
     (rows || []).forEach(function (p) {
-      const key = String(p.handle || "").toLowerCase();
+      const key = String(p.handle || "").trim();
       if (!key || !p.text) return;
       const line = {
         who: p.from === "me" ? "me" : "them",
@@ -3806,7 +3806,7 @@
     const askSeen = {};
     const askPeople = [];
     function pushAsk(p, kind) {
-      const handle = String((p && p.handle) || "").toLowerCase();
+      const handle = String((p && p.handle) || "").trim();
       if (!handle || askSeen[handle]) return;
       askSeen[handle] = 1;
       askPeople.push({ handle: handle, name: p.name || p.handle, avatar: p.avatar || "", kind: kind, text: p.text || "" });
@@ -3916,7 +3916,7 @@
       finder.addEventListener("submit", function (e) {
         e.preventDefault();
         const input = finder.querySelector("input");
-        const q = String(input && input.value || "").trim().toLowerCase().replace(/^@/, "");
+        const q = String(input && input.value || "").trim().replace(/^@/, "");
         const miss = box.querySelector("[data-dm-miss]");
         if (q.length < 2) {
           if (miss) {
@@ -3927,7 +3927,8 @@
         }
         clubPost("/api/rewind/club/search", { q: q }).then(function (data) {
           const people = (data && data.people) || [];
-          const exact = people.find(function (p) { return p.handle === q.replace(/[^a-z0-9_]/g, ""); });
+          const needle = q.replace(/[^a-zA-Z0-9_]/g, "");
+          const exact = people.find(function (p) { return String(p.handle || "").toLowerCase() === needle.toLowerCase(); });
           const hit = exact || people[0];
           if (!hit) {
             if (miss) {
@@ -4323,17 +4324,16 @@
       const p = typeof raw === "string" ? JSON.parse(raw || "{}") : raw || {};
       return String((p && (p.username || (p.profile && p.profile.username))) || "")
         .trim()
-        .toLowerCase()
-        .replace(/^@/, "");
+        .replace(/^@+/, "");
     } catch (e) {
       return "";
     }
   }
   function activeHandle() {
-    return handleOf(lsGet("rewind-club-profile")) || String(lsGet("rewind-active-handle") || "").toLowerCase();
+    return handleOf(lsGet("rewind-club-profile")) || String(lsGet("rewind-active-handle") || "").trim().replace(/^@+/, "");
   }
   function snapshotVault(handle) {
-    handle = String(handle || "").toLowerCase();
+    handle = String(handle || "").trim().replace(/^@+/, "");
     if (!handle) return;
     const snap = {};
     VAULT_KEYS.forEach((k) => {
@@ -4348,7 +4348,7 @@
     pushLocker();
   }
   function applyVault(handle) {
-    handle = String(handle || "").toLowerCase();
+    handle = String(handle || "").trim().replace(/^@+/, "");
     if (!handle) return false;
     let snap = null;
     try {
@@ -4373,8 +4373,7 @@
   function switchVault(nextHandle) {
     nextHandle = String(nextHandle || "")
       .trim()
-      .toLowerCase()
-      .replace(/^@/, "");
+      .replace(/^@+/, "");
     if (!nextHandle) return;
     const prev = activeHandle();
     if (prev && prev !== nextHandle) snapshotVault(prev);
@@ -4482,7 +4481,7 @@
       } catch (eDb) {}
     });
     const creds = memberCreds();
-    const handle = activeHandle() || String(creds.username || "").toLowerCase();
+    const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (handle && (creds.token || creds.password)) {
       const locker = lockerNow();
       locker.dropCopied = true;
@@ -4539,8 +4538,7 @@
   function sealCard(name, username, password, token, fresh) {
     const handle = String(username || "")
       .trim()
-      .toLowerCase()
-      .replace(/^@/, "");
+      .replace(/^@+/, "");
     if (fresh) {
       blankInherited();
       try { localStorage.setItem("rewind-blanked-v1", "1"); } catch (eFresh) {}
@@ -4763,7 +4761,7 @@
   }
   function saveVipFace(next) {
     const creds = memberCreds();
-    const key = String(next.handle || creds.username || activeHandle() || "").trim().toLowerCase().replace(/^@/, "");
+    const key = String(next.handle || creds.username || activeHandle() || "").trim().replace(/^@+/, "");
     const shown = String(next.label || key).replace(/^@/, "").trim() || key;
     let raw = {};
     try { raw = JSON.parse(localStorage.getItem("rewind-club-profile") || "null") || {}; } catch (e) {}
@@ -5058,9 +5056,9 @@
         showErr("Username needs at least 2 characters, and it can't use | / \\ < >.");
         return;
       }
-      const key = typed.toLowerCase();
+      const key = typed;
       const creds = memberCreds();
-      const current = String(creds.username || activeHandle() || "").trim().toLowerCase();
+      const current = String(creds.username || activeHandle() || "").trim().replace(/^@+/, "");
       const bm = Number((sheet.querySelector("[data-face='bmonth']") || {}).value || 0);
       const bd = Number((sheet.querySelector("[data-face='bday']") || {}).value || 0);
       const onDec = decadeBox && decadeBox.querySelector("button.is-on");
@@ -5100,10 +5098,10 @@
           return;
         }
         if (!data || !data.ok) {
-          showErr("The counter couldn't lock that username yet. Capitals on the same name still save.");
+          showErr("The counter couldn't lock that username yet.");
           return;
         }
-        const nextKey = String(data.handle || data.username || key).toLowerCase();
+        const nextKey = String(data.handle || data.username || key).trim();
         try {
           const oldKey = current;
           if (oldKey && nextKey && oldKey !== nextKey) {
@@ -6494,7 +6492,7 @@
       (isNew
         ? '<label class="block space-y-1 text-sm"><span class="text-xs uppercase tracking-[0.16em] text-muted">Secret word</span>' +
           '<input name="recovery" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" required placeholder="A word or saying only you know" class="h-12 w-full rounded-2xl border border-black/10 bg-white px-3 text-base" style="font-size:16px"></label>' +
-          '<p class="text-sm text-muted">Used only if you forget the password. Capitals and spaces don’t matter.</p>'
+          '<p class="text-sm text-muted">Used only if you forget the password. Capitals count.</p>'
         : "") +
       '<p data-login-err class="hidden text-sm text-red-800"></p>' +
       '<button type="submit" class="inline-flex h-12 w-full items-center justify-center rounded-2xl bg-primary px-5 text-base font-medium text-primary-fg">' +
@@ -6591,7 +6589,7 @@
         box.setAttribute("data-live-reset", "1");
         box.innerHTML =
           '<p class="text-xs uppercase tracking-[0.22em] text-muted">Forgot password</p>' +
-          '<p class="text-sm text-muted">Type the secret word from when you stamped the card, then pick a new password.</p>' +
+          '<p class="text-sm text-muted">Type the secret word exactly as you stamped it. Capitals count.</p>' +
           '<label class="block space-y-1 text-sm"><span class="text-xs uppercase tracking-[0.16em] text-muted">Username</span>' +
           '<input name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required class="h-12 w-full rounded-2xl border border-black/10 bg-white px-3 text-base" style="font-size:16px"></label>' +
           '<label class="block space-y-1 text-sm"><span class="text-xs uppercase tracking-[0.16em] text-muted">Secret word</span>' +
@@ -6646,7 +6644,7 @@
       const err = form.querySelector("[data-login-err]") || root.querySelector("[data-login-err]");
       const fd = new FormData(form);
       const typed = prettyUser(fd.get("username") || fd.get("rw-handle") || "");
-      const handle = typed.toLowerCase();
+      const handle = typed;
       const stamped = root.getAttribute("data-stamped-name") || "";
       let display = (String(fd.get("name") || "").trim() || stamped).slice(0, 32);
       const password = String(fd.get("password") || fd.get("rw-pin") || "");
@@ -6659,8 +6657,8 @@
         if (err) { err.textContent = "Password needs 8 characters."; err.classList.remove("hidden"); }
         return;
       }
-      if (isNew && secret.toUpperCase().replace(/[^A-Z0-9]/g, "").length < 4) {
-        if (err) { err.textContent = "Secret word needs at least 4 letters or numbers."; err.classList.remove("hidden"); }
+      if (isNew && secret.trim().length < 4) {
+        if (err) { err.textContent = "Secret word needs at least 4 characters."; err.classList.remove("hidden"); }
         return;
       }
       if (!display) {
@@ -6686,7 +6684,7 @@
         data = await r.json();
       } catch (e3) {}
       const saved = memberCreds();
-      const same = String(saved.username || "").toLowerCase() === handle && saved.password === password;
+      const same = String(saved.username || "") === handle && saved.password === password;
       const code = data && data.err;
       if (!data || !data.ok || !(data.stored || data.token)) {
         if (!isNew && same && saved.token && (!reached || code === "counter" || code === "fail")) {
@@ -6707,7 +6705,7 @@
               : code === "short"
                 ? "Password needs 8 characters."
                 : code === "secret"
-                  ? "Secret word needs at least 4 letters or numbers."
+                  ? "Secret word needs at least 4 characters."
                   : code === "user"
                   ? "Username needs at least 2 characters, and it can't use | / \\ < >."
                   : !isNew && (code === "counter" || code === "fail")

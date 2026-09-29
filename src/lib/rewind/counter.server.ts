@@ -50,8 +50,7 @@ function json(body: unknown, status = 200): Response {
 function cleanHandle(value: unknown): string {
   return String(value || "")
     .trim()
-    .replace(/^@/, "")
-    .toLowerCase();
+    .replace(/^@+/, "");
 }
 
 function badHandle(handle: string): boolean {
@@ -90,6 +89,10 @@ function newRecovery(): string {
 }
 
 function normRecovery(value: unknown): string {
+  return String(value || "").trim();
+}
+
+function legacyRecovery(value: unknown): string {
   return String(value || "")
     .toUpperCase()
     .replace(/[^A-Z0-9]/g, "");
@@ -107,6 +110,24 @@ async function ensureClub(sql: Sql): Promise<void> {
       );
       await sql.query("create index if not exists rewind_sessions_handle_idx on rewind_sessions (handle)");
       await sql.query("alter table rewind_members add column if not exists recovery_hash text");
+      await sql.query(
+        `create table if not exists rewind_msg_gates (
+          asker text not null,
+          askee text not null,
+          status text not null,
+          created_at timestamptz not null default now(),
+          primary key (asker, askee)
+        )`,
+      );
+      await sql.query(
+        `create table if not exists rewind_backups (
+          id bigserial primary key,
+          handle text not null,
+          locker jsonb not null,
+          saved_at timestamptz not null default now()
+        )`,
+      );
+      await sql.query("create index if not exists rewind_backups_handle_idx on rewind_backups (handle, id desc)");
     })().catch((err) => {
       clubReady = null;
       throw err;
@@ -371,7 +392,14 @@ async function floorSquare(sql: Sql, handle: string): Promise<Response> {
   const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
     `select m.handle, m.name, m.locker
      from rewind_members m
-     where m.handle in (select followee from rewind_follows where follower = $1)
+     where m.handle in (
+       select f.followee from rewind_follows f
+       where f.follower = $1
+         and exists (
+           select 1 from rewind_follows back
+           where back.follower = f.followee and back.followee = $1
+         )
+     )
      order by m.handle
      limit 200`,
     [handle],
@@ -509,11 +537,52 @@ async function resetPassword(sql: Sql, body: Record<string, unknown>): Promise<R
     [handle],
   );
   const stored = rows[0]?.recovery_hash || "";
-  if (!stored || !(await checkPassword(recovery, stored))) return json({ ok: false, err: "recovery" }, 401);
+  const exact = stored && (await checkPassword(recovery, stored));
+  const legacy = !exact && stored && (await checkPassword(legacyRecovery(recovery), stored));
+  if (!exact && !legacy) return json({ ok: false, err: "recovery" }, 401);
   await sql.query("update rewind_members set password_hash = $1 where handle = $2", [await hashPassword(password), handle]);
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
   const token = await openSession(sql, handle);
   return json({ ok: true, stored: true, token, username: handle, locker: member.locker || {} });
+}
+
+function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
+  let prev: Record<string, unknown> = {};
+  let next: Record<string, unknown> = {};
+  try {
+    const parsed = JSON.parse(prevRaw || "null");
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) prev = parsed as Record<string, unknown>;
+  } catch {
+    prev = {};
+  }
+  try {
+    const parsed = JSON.parse(nextRaw);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) next = parsed as Record<string, unknown>;
+  } catch {
+    return nextRaw;
+  }
+  const prevNotes =
+    prev.diaryNotes && typeof prev.diaryNotes === "object" && !Array.isArray(prev.diaryNotes)
+      ? (prev.diaryNotes as Record<string, Record<string, unknown>>)
+      : {};
+  const nextNotes =
+    next.diaryNotes && typeof next.diaryNotes === "object" && !Array.isArray(next.diaryNotes)
+      ? (next.diaryNotes as Record<string, Record<string, unknown>>)
+      : {};
+  const notes: Record<string, unknown> = { ...prevNotes };
+  for (const [slug, note] of Object.entries(nextNotes)) {
+    const old = prevNotes[slug];
+    if (!old) {
+      notes[slug] = note;
+      continue;
+    }
+    const oldAt = Number(old.at) || 0;
+    const newAt = Number(note?.at) || 0;
+    notes[slug] = newAt >= oldAt ? note : old;
+  }
+  const merged: Record<string, unknown> = { ...prev, ...next, diaryNotes: notes };
+  if (!Array.isArray(next.lists) && Array.isArray(prev.lists)) merged.lists = prev.lists;
+  return JSON.stringify(merged);
 }
 
 function mergeLocker(prev: Locker, next: Locker): Locker {
@@ -523,7 +592,9 @@ function mergeLocker(prev: Locker, next: Locker): Locker {
   }
   for (const [key, value] of Object.entries(next.keys || {})) {
     if (next.dropCopied && COPIED_KEYS.includes(key)) continue;
-    if (typeof value === "string" && value && value !== "idb") keys[key] = value;
+    if (typeof value === "string" && value && value !== "idb") {
+      keys[key] = key === "rewind-club-wall" ? mergeWall(keys[key], value) : value;
+    }
   }
   const profile = { ...(prev.profile || {}) };
   if (next.profile && typeof next.profile === "object") {
@@ -542,14 +613,33 @@ function mergeLocker(prev: Locker, next: Locker): Locker {
   };
 }
 
+async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<void> {
+  const packed = JSON.stringify(locker || {});
+  if (!packed || packed === "{}") return;
+  await sql.query("insert into rewind_backups (handle, locker) values ($1, $2::jsonb)", [handle, packed]);
+  await sql.query(
+    `delete from rewind_backups
+     where handle = $1
+       and id not in (
+         select id from (
+           select id from rewind_backups where handle = $1 order by id desc limit 30
+         ) keep
+       )`,
+    [handle],
+  );
+}
+
 async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
   const locker = body.locker;
   if (!locker || typeof locker !== "object") return json({ ok: false, err: "locker" }, 400);
-  const packed = JSON.stringify(mergeLocker(who.locker || {}, locker as Locker));
+  const merged = mergeLocker(who.locker || {}, locker as Locker);
+  const packed = JSON.stringify(merged);
   if (packed.length > LOCKER_MAX) return json({ ok: false, err: "big" }, 413);
+  if (who.locker && Object.keys(who.locker).length) await backupLocker(sql, who.handle, who.locker);
   await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [packed, who.handle]);
+  await backupLocker(sql, who.handle, merged);
   return json({ ok: true, stored: true });
 }
 
@@ -579,17 +669,15 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     const iFollow = await follows(sql, who.handle, row.handle);
     const theyFollow = await follows(sql, row.handle, who.handle);
     const friend = relation(iFollow, theyFollow);
-    const talked = await sql.query<{ n: number }>(
-      "select count(*)::int as n from rewind_messages where (sender = $1 and recipient = $2) or (sender = $2 and recipient = $1)",
-      [who.handle, row.handle],
-    );
+    const gate = await gateBetween(sql, who.handle, row.handle);
+    const msg = gateLabel(gate, who.handle);
     list.push({
       handle: row.handle,
       name: row.name,
       label: row.handle,
       avatar: row.locker?.avatar || "",
       friend,
-      msg: (talked[0]?.n || 0) > 0 ? "open" : "none",
+      msg,
     });
   }
   const incoming = await sql.query<{ handle: string; name: string; locker: Locker }>(
@@ -612,6 +700,27 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     kind: "friend",
     avatar: row.locker?.avatar || "",
   }));
+  const msgRows = await sql.query<{ handle: string; name: string; locker: Locker; body: string }>(
+    `select m.handle, m.name, m.locker,
+        coalesce((
+          select body from rewind_messages
+          where sender = g.asker and recipient = g.askee
+          order by id asc limit 1
+        ), '') as body
+     from rewind_msg_gates g
+     join rewind_members m on m.handle = g.asker
+     where g.askee = $1 and g.status = 'pending'
+     order by g.created_at desc
+     limit 40`,
+    [who.handle],
+  );
+  const msgIn = msgRows.map((row) => ({
+    handle: row.handle,
+    name: row.name,
+    text: row.body,
+    avatar: row.locker?.avatar || "",
+    msg: "in",
+  }));
   const latest = await sql.query<{ sender: string; recipient: string; body: string; created_at: string }>(
     `select sender, recipient, body, created_at
      from rewind_messages
@@ -625,6 +734,8 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
   for (const row of latest) {
     const other = row.sender === who.handle ? row.recipient : row.sender;
     if (seen.has(other)) continue;
+    const gate = await gateBetween(sql, who.handle, other);
+    if (gateLabel(gate, who.handle) !== "open") continue;
     seen.add(other);
     const whoElse = await memberByHandle(sql, other);
     previews.push({
@@ -637,7 +748,7 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
       avatar: whoElse?.locker?.avatar || "",
     });
   }
-  return json({ ok: true, shared: true, people: list, box: { friendIn, msgIn: [], previews } });
+  return json({ ok: true, shared: true, people: list, box: { friendIn, msgIn, previews } });
 }
 
 async function card(sql: Sql, body: Record<string, unknown>): Promise<Response> {
@@ -654,11 +765,11 @@ async function card(sql: Sql, body: Record<string, unknown>): Promise<Response> 
 async function search(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
-  const q = cleanHandle(body.q).replace(/[^a-z0-9_]/g, "");
+  const q = cleanHandle(body.q).replace(/[^a-zA-Z0-9_]/g, "");
   if (q.length < 2) return json({ ok: true, shared: true, people: [] });
   const rows = await sql.query<{ handle: string; name: string }>(
     `select handle, name from rewind_members
-     where handle <> $1 and (handle like $2 or lower(name) like $2)
+     where handle <> $1 and (handle ilike $2 or name ilike $2)
      order by handle limit 20`,
     [who.handle, `%${q}%`],
   );
@@ -689,10 +800,31 @@ async function follow(sql: Sql, body: Record<string, unknown>): Promise<Response
   return json({ ok: true, friend: relation(iFollow, theyFollow) });
 }
 
+async function gateBetween(sql: Sql, a: string, b: string): Promise<{ asker: string; askee: string; status: string } | null> {
+  const rows = await sql.query<{ asker: string; askee: string; status: string }>(
+    `select asker, askee, status from rewind_msg_gates
+     where (asker = $1 and askee = $2) or (asker = $2 and askee = $1)
+     limit 1`,
+    [a, b],
+  );
+  return rows[0] || null;
+}
+
+function gateLabel(gate: { asker: string; askee: string; status: string } | null, me: string): string {
+  if (!gate) return "none";
+  if (gate.status === "open") return "open";
+  if (gate.status === "closed") return "closed";
+  if (gate.asker === me) return "out";
+  return "in";
+}
+
 async function thread(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
   const handle = cleanHandle(body.handle);
+  const gate = await gateBetween(sql, who.handle, handle);
+  const msg = gateLabel(gate, who.handle);
+  if (msg !== "open") return json({ ok: true, msg, messages: [] });
   const rows = await sql.query<{ sender: string; body: string; created_at: string }>(
     `select sender, body, created_at from rewind_messages
      where (sender = $1 and recipient = $2) or (sender = $2 and recipient = $1)
@@ -701,7 +833,7 @@ async function thread(sql: Sql, body: Record<string, unknown>): Promise<Response
   );
   return json({
     ok: true,
-    msg: rows.length ? "open" : "none",
+    msg: "open",
     messages: rows.map((row) => ({ from: row.sender, text: row.body, at: row.created_at })),
   });
 }
@@ -714,11 +846,52 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
   if (!text) return json({ ok: false, err: "empty" }, 400);
   const other = await memberByHandle(sql, handle);
   if (!other) return json({ ok: false, err: "nocard" }, 404);
-  await sql.query("insert into rewind_messages (sender, recipient, body) values ($1, $2, $3)", [who.handle, other.handle, text]);
+  const gate = await gateBetween(sql, who.handle, other.handle);
+  const msg = gateLabel(gate, who.handle);
+  if (msg === "closed") return json({ ok: false, err: "closed", msg: "closed" });
+  if (msg === "in") return json({ ok: false, err: "wait", msg: "in" });
+  if (msg === "out") return json({ ok: true, msg: "out", messages: [] });
+  if (msg === "none") {
+    await sql.query(
+      "insert into rewind_msg_gates (asker, askee, status) values ($1, $2, 'pending') on conflict (asker, askee) do nothing",
+      [who.handle, other.handle],
+    );
+    await sql.query("insert into rewind_messages (sender, recipient, body) values ($1, $2, $3)", [
+      who.handle,
+      other.handle,
+      text,
+    ]);
+    return json({ ok: true, msg: "out", messages: [] });
+  }
+  await sql.query("insert into rewind_messages (sender, recipient, body) values ($1, $2, $3)", [
+    who.handle,
+    other.handle,
+    text,
+  ]);
   return thread(sql, body);
 }
 
 async function reply(sql: Sql, body: Record<string, unknown>): Promise<Response> {
+  const action = String(body.action || "");
+  if (action !== "accept" && action !== "decline") return thread(sql, body);
+  const who = await authed(sql, body);
+  if (who instanceof Response) return who;
+  const handle = cleanHandle(body.handle);
+  const gate = await gateBetween(sql, who.handle, handle);
+  if (!gate || gate.askee !== who.handle || gate.status !== "pending") {
+    return json({ ok: false, err: "wait", msg: gateLabel(gate, who.handle) }, 400);
+  }
+  if (action === "decline") {
+    await sql.query("update rewind_msg_gates set status = 'closed' where asker = $1 and askee = $2", [
+      gate.asker,
+      gate.askee,
+    ]);
+    return json({ ok: true, msg: "closed", messages: [] });
+  }
+  await sql.query("update rewind_msg_gates set status = 'open' where asker = $1 and askee = $2", [
+    gate.asker,
+    gate.askee,
+  ]);
   return thread(sql, body);
 }
 
