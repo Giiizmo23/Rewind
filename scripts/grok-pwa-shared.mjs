@@ -423,6 +423,7 @@ export function normalizeHeadContext(ctx = {}) {
 }
 
 function wantsGrokBanner(host) {
+  if (process.env.NODE_ENV === "production") return false;
   const name = String(host || "").split(":")[0].trim().toLowerCase();
   if (!name || name === "localhost" || name === "127.0.0.1") return true;
   return name === "grok.me" || name.endsWith(".grok.me");
