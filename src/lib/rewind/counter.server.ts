@@ -92,12 +92,6 @@ function normRecovery(value: unknown): string {
   return String(value || "").trim();
 }
 
-function legacyRecovery(value: unknown): string {
-  return String(value || "")
-    .toUpperCase()
-    .replace(/[^A-Z0-9]/g, "");
-}
-
 async function ensureClub(sql: Sql): Promise<void> {
   if (!clubReady) {
     clubReady = (async () => {
@@ -456,6 +450,8 @@ async function deleteAccount(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
   await sql.query("delete from rewind_follows where follower = $1 or followee = $1", [handle]);
   await sql.query("delete from rewind_messages where sender = $1 or recipient = $1", [handle]);
+  await sql.query("delete from rewind_msg_gates where asker = $1 or askee = $1", [handle]);
+  await sql.query("delete from rewind_backups where handle = $1", [handle]);
   await sql.query("delete from rewind_members where handle = $1", [handle]);
   return json({ ok: true, deleted: true });
 }
@@ -491,8 +487,9 @@ async function stamp(sql: Sql, body: Record<string, unknown>): Promise<Response>
 }
 
 async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response> {
-  const who = await authed(sql, body);
-  if (who instanceof Response) return who;
+  const authedMember = await authed(sql, body);
+  if (authedMember instanceof Response) return authedMember;
+  const who = await restoreLockerIfBlank(sql, authedMember);
   const usedPassword = String(body.password || "").length > 0;
   let token = String(body.token || "");
   let recovery = "";
@@ -537,13 +534,12 @@ async function resetPassword(sql: Sql, body: Record<string, unknown>): Promise<R
     [handle],
   );
   const stored = rows[0]?.recovery_hash || "";
-  const exact = stored && (await checkPassword(recovery, stored));
-  const legacy = !exact && stored && (await checkPassword(legacyRecovery(recovery), stored));
-  if (!exact && !legacy) return json({ ok: false, err: "recovery" }, 401);
+  if (!stored || !(await checkPassword(recovery, stored))) return json({ ok: false, err: "recovery" }, 401);
   await sql.query("update rewind_members set password_hash = $1 where handle = $2", [await hashPassword(password), handle]);
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
   const token = await openSession(sql, handle);
-  return json({ ok: true, stored: true, token, username: handle, locker: member.locker || {} });
+  const restored = await restoreLockerIfBlank(sql, member);
+  return json({ ok: true, stored: true, token, username: handle, locker: restored.locker || {} });
 }
 
 function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
@@ -615,7 +611,7 @@ function mergeLocker(prev: Locker, next: Locker): Locker {
 
 async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<void> {
   const packed = JSON.stringify(locker || {});
-  if (!packed || packed === "{}") return;
+  if (lockerBlank(locker)) return;
   await sql.query("insert into rewind_backups (handle, locker) values ($1, $2::jsonb)", [handle, packed]);
   await sql.query(
     `delete from rewind_backups
@@ -627,6 +623,30 @@ async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<v
        )`,
     [handle],
   );
+}
+
+function lockerBlank(locker: Locker | null | undefined): boolean {
+  if (!locker || typeof locker !== "object") return true;
+  const keys = locker.keys || {};
+  const hasKey = Object.values(keys).some((value) => typeof value === "string" && value.length > 0 && value !== "idb");
+  const hasProfile = !!locker.profile && Object.keys(locker.profile).length > 0;
+  const hasFace = !!locker.cardFace && Object.keys(locker.cardFace).length > 0;
+  return !hasKey && !hasProfile && !hasFace && !locker.banner && !locker.avatar;
+}
+
+async function restoreLockerIfBlank(sql: Sql, member: Member): Promise<Member> {
+  if (!lockerBlank(member.locker)) return member;
+  const rows = await sql.query<{ locker: Locker }>(
+    "select locker from rewind_backups where handle = $1 order by id desc limit 30",
+    [member.handle],
+  );
+  const saved = rows.map((row) => row.locker).find((locker) => !lockerBlank(locker));
+  if (!saved) return member;
+  await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [
+    JSON.stringify(saved),
+    member.handle,
+  ]);
+  return { ...member, locker: saved };
 }
 
 async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
@@ -644,8 +664,9 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
 }
 
 async function pullLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
-  const who = await authed(sql, body);
-  if (who instanceof Response) return who;
+  const authedMember = await authed(sql, body);
+  if (authedMember instanceof Response) return authedMember;
+  const who = await restoreLockerIfBlank(sql, authedMember);
   return json({ ok: true, locker: who.locker || {} });
 }
 
@@ -909,5 +930,8 @@ async function rename(sql: Sql, body: Record<string, unknown>): Promise<Response
   await sql.query("update rewind_follows set followee = $1 where followee = $2", [next, who.handle]);
   await sql.query("update rewind_messages set sender = $1 where sender = $2", [next, who.handle]);
   await sql.query("update rewind_messages set recipient = $1 where recipient = $2", [next, who.handle]);
+  await sql.query("update rewind_msg_gates set asker = $1 where asker = $2", [next, who.handle]);
+  await sql.query("update rewind_msg_gates set askee = $1 where askee = $2", [next, who.handle]);
+  await sql.query("update rewind_backups set handle = $1 where handle = $2", [next, who.handle]);
   return json({ ok: true, handle: next, username: next });
 }
