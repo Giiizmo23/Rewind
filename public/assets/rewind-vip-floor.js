@@ -2742,7 +2742,7 @@
     node.style.setProperty("min-height", onVip ? "calc(100dvh - 10.2rem)" : "calc(100dvh - 11.5rem)", "important");
     node.style.setProperty("overflow", "visible", "important");
     node.style.setProperty("padding-top", onVip ? "1.5rem" : "0px", "important");
-    node.style.setProperty("padding-bottom", "5rem", "important");
+    node.style.setProperty("padding-bottom", "2.5rem", "important");
     node.style.setProperty("display", "flex", "important");
     node.style.setProperty("flex-direction", "column", "important");
     const card = node.querySelector(":scope > .club-card-wrap");
@@ -2752,7 +2752,7 @@
     }
     const actions = node.querySelector(":scope > .desk-actions");
     if (actions) {
-      actions.style.setProperty("margin-top", "0.7rem", "important");
+      actions.style.setProperty("margin-top", "3.2rem", "important");
       actions.style.setProperty("margin-bottom", "0", "important");
     }
   }
