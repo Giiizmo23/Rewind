@@ -5481,7 +5481,14 @@
         cardBufCtx = c;
       } catch (eB) {}
     }
+    function loudPhone() {
+      try {
+        var sess = navigator.audioSession;
+        if (sess && sess.type !== "playback") sess.type = "playback";
+      } catch (e) {}
+    }
     function speakCard() {
+      loudPhone();
       var c = null;
       try { c = ac(); } catch (e0) { c = null; }
       if (c) {
@@ -5496,6 +5503,19 @@
         return;
       }
       playKeptHtml();
+      if (c && c.resume) {
+        try {
+          var waited = c.resume();
+          if (waited && waited.then) waited.then(function () {
+            if (!live || beepPlayed || cardHeard() > 0.08) return;
+            try { parkCard(c); } catch (e3) {}
+            if (playCardBuf(0)) {
+              cardViaHtml = false;
+              if (cardEl) { try { cardEl.pause(); } catch (eH2) {} }
+            }
+          });
+        } catch (e4) {}
+      }
     }
     function armCard() {
       cardArmedAt = performance.now();
@@ -5648,9 +5668,23 @@
       if (cardEl && !cardEl.paused && (cardEl.currentTime || 0) >= CARD_BEEP_AT - 0.08) return;
       if (cardEl && !cardEl.ended && (cardEl.currentTime || 0) > 0.2) return;
       /* CARD-SCAN-LOCK v263 END pass */
+      loudPhone();
       buzz([18, 24, 30]);
       if (holdEl) { try { holdEl.pause(); } catch (eH) {} }
       if (gateEl) { try { gateEl.pause(); } catch (eG) {} }
+      var c = resumeNow();
+      if (c && chirpBuf && c.state === "running") {
+        try {
+          var src = c.createBufferSource();
+          var gn = c.createGain();
+          gn.gain.setValueAtTime(1, c.currentTime);
+          src.buffer = chirpBuf;
+          src.connect(gn);
+          gn.connect(c.destination);
+          src.start(c.currentTime);
+          return;
+        } catch (err) {}
+      }
       var beep = getChirp();
       if (!beep) return;
       try {
