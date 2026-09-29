@@ -3101,7 +3101,7 @@
       tierName: prize.tier.name,
       points: prize.points,
     };
-    const friend = card.friend === "friends" ? "Friends" : card.friend === "out" ? "Requested" : card.friend === "in" ? "Accept" : "Add";
+    const friend = card.friend === "friends" ? "Friends" : card.friend === "out" ? "Requested" : card.friend === "in" ? "Accept" : "Add friend";
     const since = vipSinceLabel(face.createdAt);
     const idBits = ["@" + vipEsc(face.handle), "Rewind member"];
     if (face.decade) idBits.push(vipEsc(face.decade) + " kid");
@@ -3378,10 +3378,10 @@
     }
   }
   function openMemberCard(handle) {
-    const key = String(handle || "").toLowerCase().replace(/^@/, "");
+    const key = String(handle || "").trim().replace(/^@+/, "");
     if (!key) return;
-    const me = String(activeHandle() || "").toLowerCase().replace(/^@/, "");
-    if (me && key === me) {
+    const me = String(activeHandle() || "").trim().replace(/^@+/, "");
+    if (me && key.toLowerCase() === me.toLowerCase()) {
       if (location.pathname !== "/profile") location.href = "/profile";
       return;
     }
@@ -6634,7 +6634,9 @@
               ? "That secret word does not match this card."
               : code === "nocard"
                 ? "No card under that username."
-                : code === "short"
+                : code === "locked"
+                  ? "Too many tries. Wait an hour, then type the secret word exactly."
+                  : code === "short"
                   ? "Password needs 8 characters."
                   : "The counter didn't take it. Nothing was changed.";
             if (err) { err.textContent = msg; err.classList.remove("hidden"); }
@@ -10084,6 +10086,24 @@
       feed.innerHTML = '<p class="cork-empty">' + (lane === "store" ? "Checking the square…" : "Checking the floor…") + "</p>";
       const paintSquare = function (data) {
         if (feed.getAttribute("data-lane") !== lane) return;
+        if (lane === "store") {
+          const cards = ((data && data.feed) || []).filter(function (r) { return r && r.handle && (r.pins || []).length; });
+          if (!cards.length) {
+            feed.innerHTML = '<p class="cork-empty">The square is quiet. Favorites from other members show up here.</p>';
+            return;
+          }
+          feed.innerHTML = '<p class="cork-kicker">The square</p>' + cards.map(function (r) {
+            const sleeves = (r.pins || []).slice(0, 4).map(function (slug) {
+              const id = String(slug || "").replace(/[^a-z0-9-]/gi, "");
+              if (!id) return "";
+              return '<a href="/films/' + boardEsc(id) + '"><img src="/sleeves/' + boardEsc(id) + '.jpg?v=103" alt=""></a>';
+            }).join("");
+            return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(r.name || r.handle) + '</a> favorited</p>' +
+              (r.bio ? '<p class="cork-slip-review">' + boardEsc(r.bio) + "</p>" : "") +
+              '<div class="shelf-strip">' + sleeves + "</div></div></article>";
+          }).join("");
+          return;
+        }
         const me = String(activeHandle() || "").toLowerCase();
         const friendOf = {};
         (clubBook.people || []).forEach(function (p) {
