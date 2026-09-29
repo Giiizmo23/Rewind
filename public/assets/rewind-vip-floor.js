@@ -2742,7 +2742,7 @@
     node.style.setProperty("min-height", onVip ? "calc(100dvh - 10.2rem)" : "calc(100dvh - 11.5rem)", "important");
     node.style.setProperty("overflow", "visible", "important");
     node.style.setProperty("padding-top", onVip ? "1.5rem" : "0px", "important");
-    node.style.setProperty("padding-bottom", "0.15rem", "important");
+    node.style.setProperty("padding-bottom", "5rem", "important");
     node.style.setProperty("display", "flex", "important");
     node.style.setProperty("flex-direction", "column", "important");
     const card = node.querySelector(":scope > .club-card-wrap");
