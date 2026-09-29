@@ -4345,6 +4345,7 @@ html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .
 }
 html[data-theme="night"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
 html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) {
+  background-color: #0a0b0e !important;
   background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
 }
 html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title,
