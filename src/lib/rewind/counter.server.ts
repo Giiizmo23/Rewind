@@ -25,19 +25,6 @@ type Locker = {
   dropCopied?: boolean;
 };
 
-const COPIED_KEYS = [
-  "rewind-club-wall",
-  "rewind-out-tapes",
-  "rewind-kind-films",
-  "rewind-ontime-films",
-  "rewind-logged-slugs",
-  "rewind-local-diary",
-  "rewind-drop-queue-v2",
-  "rewind-drop-seen-v2",
-  "rewind-prize-claims",
-  "rewind-nd-pass",
-];
-
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
@@ -667,19 +654,55 @@ function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
   }
   const merged: Record<string, unknown> = { ...prev, ...next, diaryNotes: notes };
   if (!Array.isArray(next.lists) && Array.isArray(prev.lists)) merged.lists = prev.lists;
+  const prevPins = Array.isArray(prev.pinned) ? prev.pinned : [];
+  const nextPins = Array.isArray(next.pinned) ? next.pinned : [];
+  if (prevPins.length && !nextPins.length) merged.pinned = prevPins;
   return JSON.stringify(merged);
+}
+
+function mergeList(prevRaw: string | undefined, nextRaw: string): string {
+  const read = (raw?: string): unknown[] => {
+    try {
+      const parsed = JSON.parse(raw || "null") as unknown;
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  };
+  const idOf = (item: unknown) => {
+    if (typeof item === "string") return item;
+    if (!item || typeof item !== "object") return "";
+    const row = item as Record<string, unknown>;
+    return String(row.slug || row.filmId || row.id || "");
+  };
+  const byId = new Map<string, unknown>();
+  for (const item of read(prevRaw)) {
+    const id = idOf(item);
+    if (id) byId.set(id, item);
+  }
+  for (const item of read(nextRaw)) {
+    const id = idOf(item);
+    if (id) byId.set(id, item);
+  }
+  return JSON.stringify([...byId.values()]);
 }
 
 function mergeLocker(prev: Locker, next: Locker): Locker {
   const keys = { ...(prev.keys || {}) };
-  if (next.dropCopied) {
-    for (const key of COPIED_KEYS) delete keys[key];
-  }
+  const lists = new Set([
+    "rewind-local-diary",
+    "rewind-logged-slugs",
+    "rewind-kind-films",
+    "rewind-ontime-films",
+  ]);
   for (const [key, value] of Object.entries(next.keys || {})) {
-    if (next.dropCopied && COPIED_KEYS.includes(key)) continue;
-    if (typeof value === "string" && value && value !== "idb") {
-      keys[key] = key === "rewind-club-wall" ? mergeWall(keys[key], value) : value;
-    }
+    if (typeof value !== "string" || !value || value === "idb") continue;
+    if (key === "rewind-club-wall") keys[key] = mergeWall(keys[key], value);
+    else if (lists.has(key)) keys[key] = mergeList(keys[key], value);
+    else if (key === "rewind-out-tapes") {
+      const incoming = mergeList("[]", value);
+      keys[key] = incoming === "[]" && keys[key] ? keys[key] : value;
+    } else keys[key] = value;
   }
   const profile = { ...(prev.profile || {}) };
   if (next.profile && typeof next.profile === "object") {
@@ -688,11 +711,17 @@ function mergeLocker(prev: Locker, next: Locker): Locker {
       profile[key] = value;
     }
   }
-  const nextFace = next.cardFace && typeof next.cardFace === "object" ? next.cardFace : null;
+  const face = { ...(prev.cardFace || {}) };
+  if (next.cardFace && typeof next.cardFace === "object") {
+    for (const [key, value] of Object.entries(next.cardFace)) {
+      if (value == null || value === "") continue;
+      face[key] = value;
+    }
+  }
   return {
     keys,
     profile,
-    cardFace: nextFace && Object.keys(nextFace).length ? nextFace : prev.cardFace,
+    cardFace: Object.keys(face).length ? face : prev.cardFace,
     banner: typeof next.banner === "string" && next.banner.startsWith("data:") ? next.banner : prev.banner || "",
     avatar: typeof next.avatar === "string" && next.avatar.startsWith("data:") ? next.avatar : prev.avatar || "",
   };
@@ -852,11 +881,21 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
   if (who instanceof Response) return who;
   const locker = body.locker;
   if (!locker || typeof locker !== "object") return json({ ok: false, err: "locker" }, 400);
-  const merged = mergeLocker(who.locker || {}, locker as Locker);
-  const packed = JSON.stringify(merged);
+  let merged = mergeLocker(who.locker || {}, locker as Locker);
+  let packed = JSON.stringify(merged);
+  if (packed.length > LOCKER_MAX) {
+    merged = { ...merged, banner: who.locker?.banner || "", avatar: who.locker?.avatar || "" };
+    packed = JSON.stringify(merged);
+  }
+  if (packed.length > LOCKER_MAX) {
+    merged = { ...merged, banner: "", avatar: "" };
+    packed = JSON.stringify(merged);
+  }
   if (packed.length > LOCKER_MAX) return json({ ok: false, err: "big" }, 413);
   if (who.locker && Object.keys(who.locker).length) await backupLocker(sql, who.handle, who.locker);
   await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [packed, who.handle]);
+  const wrote = await sql.query<{ locker: Locker }>("select locker from rewind_members where handle = $1", [who.handle]);
+  if (!wrote[0]) return json({ ok: false, err: "save" }, 500);
   await backupLocker(sql, who.handle, merged);
   return json({ ok: true, stored: true });
 }

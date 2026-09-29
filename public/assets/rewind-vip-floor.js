@@ -2117,11 +2117,12 @@
       avatar: isPicData(picCache["rewind-avatar"]) ? picCache["rewind-avatar"] : "",
     };
   }
-  function postLocker(locker, keep) {
+  function postLocker(locker, keep, attempt) {
     if (!lockerReady) return;
     const creds = memberCreds();
     const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password) || !locker) return;
+    const n = attempt || 0;
     try {
       fetch("/api/rewind/locker", {
         method: "POST",
@@ -2129,11 +2130,13 @@
         body: JSON.stringify({ username: handle, token: creds.token || "", password: creds.token ? "" : creds.password || "", locker: locker }),
         keepalive: !!keep,
       }).then(function (r) {
-        if (!r.ok && !keep) {
-          window.setTimeout(function () { postLocker(locker, true); }, 1200);
+        if (r.status === 413 && (locker.banner || locker.avatar)) {
+          postLocker(Object.assign({}, locker, { banner: "", avatar: "" }), true, 3);
+          return;
         }
+        if (!r.ok && n < 3) window.setTimeout(function () { postLocker(locker, true, n + 1); }, 1200);
       }).catch(function () {
-        if (!keep) window.setTimeout(function () { postLocker(locker, true); }, 1200);
+        if (n < 3) window.setTimeout(function () { postLocker(locker, true, n + 1); }, 1200);
       });
     } catch (e3) {}
   }
@@ -2289,7 +2292,15 @@
         localStorage.setItem("rewind-club-profile", JSON.stringify(mergeProfile(cur, locker.profile)));
       }
       if (locker.cardFace && typeof locker.cardFace === "object") {
-        localStorage.setItem("rewind-card-face", JSON.stringify(locker.cardFace));
+        let curFace = {};
+        try { curFace = JSON.parse(lsGet("rewind-card-face") || "null") || {}; } catch (eFace) {}
+        const face = Object.assign({}, curFace);
+        Object.keys(locker.cardFace).forEach(function (k) {
+          const v = locker.cardFace[k];
+          if (v == null || v === "") return;
+          face[k] = v;
+        });
+        localStorage.setItem("rewind-card-face", JSON.stringify(face));
       }
     } catch (e) {}
     vaultLock = false;
@@ -4435,66 +4446,8 @@
     });
   }
   function stripCopiedShelf() {
-    try {
-      if (localStorage.getItem("rewind-copy-cleared") === "1") return false;
-    } catch (eFlag) {
-      return false;
-    }
-    let wall = {};
-    try { wall = JSON.parse(lsGet("rewind-club-wall") || "null") || {}; } catch (eW) {}
-    const notes = wall.diaryNotes && typeof wall.diaryNotes === "object" ? wall.diaryNotes : {};
-    const real = Object.keys(notes).some(function (slug) {
-      const n = notes[slug] || {};
-      return Number(n.rating) > 0 || !!n.liked || !!(n.review && String(n.review).trim()) || !!n.watched || !!n.owned;
-    });
-    if (real) {
-      try { localStorage.setItem("rewind-copy-cleared", "1"); } catch (eKeep) {}
-      return false;
-    }
-    const points = wall.stats ? Number(wall.stats.points) || 0 : 0;
-    const diary = Array.isArray(wall.diary) ? wall.diary.length : 0;
-    const out = lsGet("rewind-out-tapes") || "";
-    const kind = lsGet("rewind-kind-films") || "";
-    if (!(points > 0 || diary > 0 || out.length > 2 || kind.length > 2)) return false;
-    vaultLock = true;
-    try {
-      [
-        "rewind-club-wall",
-        "rewind-out-tapes",
-        "rewind-kind-films",
-        "rewind-ontime-films",
-        "rewind-logged-slugs",
-        "rewind-local-diary",
-        "rewind-drop-queue-v2",
-        "rewind-drop-seen-v2",
-        "rewind-prize-claims",
-        "rewind-nd-pass",
-      ].forEach(function (k) { localStorage.removeItem(k); });
-      const handle = activeHandle();
-      if (handle) localStorage.removeItem("rewind-vault:" + handle);
-    } catch (eClear) {}
-    vaultLock = false;
-    const creds = memberCreds();
-    const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
-    if (handle && (creds.token || creds.password)) {
-      const locker = lockerNow();
-      locker.dropCopied = true;
-      try {
-        fetch("/api/rewind/locker", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            username: handle,
-            token: creds.token || "",
-            password: creds.token ? "" : creds.password || "",
-            locker: locker,
-          }),
-        }).then(function () {
-          try { localStorage.setItem("rewind-copy-cleared", "1"); } catch (eOk) {}
-        }).catch(function () {});
-      } catch (ePost) {}
-    }
-    return true;
+    try { localStorage.setItem("rewind-copy-cleared", "1"); } catch (eFlag) {}
+    return false;
   }
   function blankInherited() {
     vaultLock = true;
