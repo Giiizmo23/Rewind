@@ -4339,6 +4339,18 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:
   background-position: left top !important;
   background-repeat: no-repeat !important;
 }
+html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
+html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) {
+  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
+}
+html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title,
+html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title {
+  color: #f3efe6 !important;
+}
+html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-meta,
+html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-meta {
+  color: #c8c2b8 !important;
+}
 html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot::before,
 html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot::after,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot::before,
