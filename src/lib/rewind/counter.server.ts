@@ -182,6 +182,23 @@ async function memberByHandle(sql: Sql, handle: string): Promise<Member | null> 
   return rows[0] || null;
 }
 
+async function membersByFold(sql: Sql, handle: string): Promise<Member[]> {
+  return sql.query<Member>(
+    "select handle, name, password_hash, token_hash, locker, created_at from rewind_members where lower(handle) = lower($1) limit 5",
+    [handle],
+  );
+}
+
+function namedLocker(member: Member): Locker {
+  const locker = member.locker && typeof member.locker === "object" ? { ...member.locker } : {};
+  const profile = { ...(locker.profile || {}) };
+  if (!profile.name && member.name) profile.name = member.name;
+  if (!profile.displayName && member.name) profile.displayName = member.name;
+  if (!profile.username) profile.username = member.handle;
+  locker.profile = profile;
+  return locker;
+}
+
 async function authed(sql: Sql, body: Record<string, unknown>): Promise<Member | Response> {
   const handle = cleanHandle(body.username);
   if (badHandle(handle)) return json({ ok: false, err: "user" }, 400);
@@ -494,11 +511,24 @@ async function stamp(sql: Sql, body: Record<string, unknown>): Promise<Response>
     "insert into rewind_members (handle, name, password_hash, token_hash, recovery_hash) values ($1, $2, $3, '', $4)",
     [handle, name, passwordHash, recoveryHash],
   );
+  const starter: Locker = { keys: {}, profile: { username: handle, name, displayName: name }, cardFace: {} };
+  await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [JSON.stringify(starter), handle]);
   const token = await openSession(sql, handle);
-  return json({ ok: true, stored: true, token, username: handle, locker: {} });
+  return json({ ok: true, stored: true, token, username: handle, name, locker: starter });
 }
 
 async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response> {
+  const typed = cleanHandle(body.username);
+  const password = String(body.password || "");
+  if (password && !(await memberByHandle(sql, typed))) {
+    const near = await membersByFold(sql, typed);
+    const hits: Member[] = [];
+    for (const row of near) {
+      if (row.handle !== typed && (await checkPassword(password, row.password_hash))) hits.push(row);
+    }
+    if (hits.length === 1) return json({ ok: false, err: "caps", username: hits[0]!.handle }, 401);
+    if (near.length) return json({ ok: false, err: "caps" }, 401);
+  }
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
   const who = await restoreLockerIfBlank(sql, authedMember);
@@ -527,7 +557,8 @@ async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response
     stored: true,
     token,
     username: who.handle,
-    locker: who.locker || {},
+    name: who.name,
+    locker: namedLocker(who),
     ...(recovery ? { recovery } : {}),
   });
 }

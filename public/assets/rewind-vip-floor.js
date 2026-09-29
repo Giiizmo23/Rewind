@@ -2128,7 +2128,13 @@
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ username: handle, token: creds.token || "", password: creds.token ? "" : creds.password || "", locker: locker }),
         keepalive: !!keep,
-      }).catch(function () {});
+      }).then(function (r) {
+        if (!r.ok && !keep) {
+          window.setTimeout(function () { postLocker(locker, true); }, 1200);
+        }
+      }).catch(function () {
+        if (!keep) window.setTimeout(function () { postLocker(locker, true); }, 1200);
+      });
     } catch (e3) {}
   }
   function pushLocker() {
@@ -6705,7 +6711,11 @@
           : code === "password"
             ? "Wrong password. This card stays with its owner."
             : code === "nocard"
-              ? "No card under that username."
+              ? "No card under that username. Capitals count."
+              : code === "caps"
+                ? (data.username
+                    ? "That card is saved. Capitals count. Sign in as " + data.username + "."
+                    : "That card is saved. Capitals count on the username and the password.")
               : code === "short"
                 ? "Password needs 8 characters."
                 : code === "secret"
@@ -6719,7 +6729,7 @@
         return;
       }
       if (isNew) { try { deskFx.stamp(); } catch (eStamp) {} }
-      sealCard(display, data.username || handle, password, data.token || "", isNew);
+      sealCard(data.name || display, data.username || handle, password, data.token || "", isNew);
       if (data.recovery) {
         try { sessionStorage.setItem("rewind-recovery-show", data.recovery); } catch (eRec) {}
       }
