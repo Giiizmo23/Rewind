@@ -447,38 +447,22 @@ async function storeSquare(sql: Sql): Promise<Response> {
   const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
     "select handle, name, locker from rewind_members order by created_at desc limit 400",
   );
-  const cards: Array<{ handle: string; name: string; bio: string; pins: string[] }> = [];
+  const ranked: Array<{ member: { handle: string; name: string; locker: Locker }; name: string; notes: Record<string, Record<string, unknown>>; count: number; latest: number }> = [];
   for (const member of rows) {
-    const pins = publicPins(member.locker);
-    if (!pins.length) continue;
-    const { name } = memberNotes(member);
-    cards.push({ handle: member.handle, name, bio: publicBio(member.locker), pins });
+    const { name, notes } = memberNotes(member);
+    const slugs = Object.keys(notes);
+    if (!slugs.length) continue;
+    let latest = 0;
+    for (const slug of slugs) latest = Math.max(latest, Number(notes[slug]?.at) || 0);
+    ranked.push({ member, name, notes, count: slugs.length, latest });
   }
-  cards.sort((a, b) => b.pins.length - a.pins.length || a.handle.localeCompare(b.handle));
-  return json({ ok: true, shared: true, lane: "store", feed: cards.slice(0, 24) });
-}
-
-function wallOf(locker: Locker | null | undefined): Record<string, unknown> {
-  try {
-    const parsed = JSON.parse(String(locker?.keys?.["rewind-club-wall"] || "null")) as unknown;
-    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) return parsed as Record<string, unknown>;
-  } catch {
-    return {};
+  ranked.sort((a, b) => b.count - a.count || b.latest - a.latest);
+  const feed: Array<Record<string, unknown>> = [];
+  for (const row of ranked.slice(0, 24)) {
+    feed.push(...noteSlips(row.member, row.name, row.notes, 3));
   }
-  return {};
-}
-
-function publicPins(locker: Locker | null | undefined): string[] {
-  const pinned = wallOf(locker).pinned;
-  if (!Array.isArray(pinned)) return [];
-  return pinned.map((slug) => String(slug || "").trim()).filter(Boolean).slice(0, 4);
-}
-
-function publicBio(locker: Locker | null | undefined): string {
-  const face = locker?.cardFace || {};
-  const profile = locker?.profile || {};
-  const bio = String(face.bio || profile.bio || "").trim();
-  return bio.slice(0, 280);
+  feed.sort((a, b) => Number(b.at) - Number(a.at));
+  return json({ ok: true, shared: true, lane: "store", feed: feed.slice(0, 40) });
 }
 
 async function newRecoveryCode(sql: Sql, body: Record<string, unknown>): Promise<Response> {

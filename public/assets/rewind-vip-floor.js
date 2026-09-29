@@ -10051,11 +10051,12 @@
   let clubHits = null;
   let clubHitsQ = "";
   let clubSeek = 0;
-  function boardSlip(who, handle, verb, film, review) {
+  function boardSlip(who, handle, verb, film, review, rating) {
     const name = handle
       ? '<a class="cork-who" href="/u/' + boardEsc(handle) + '">' + boardEsc(who) + "</a>"
       : '<span class="cork-who">' + boardEsc(who) + "</span>";
-    return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line">' + name + " " + verb + ' <a class="cork-who" href="/films/' + boardEsc(film.slug || "") + '">' + boardEsc(film.title) + "</a>" + (film.year ? ' <span class="cork-year">' + boardEsc(film.year) + "</span>" : "") + "</p>" + (review ? '<p class="cork-slip-review">' + boardEsc(review) + "</p>" : "") + "</div></article>";
+    const stars = guestStars(rating);
+    return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line">' + name + " " + verb + ' <a class="cork-who" href="/films/' + boardEsc(film.slug || "") + '">' + boardEsc(film.title) + "</a>" + (film.year ? ' <span class="cork-year">' + boardEsc(film.year) + "</span>" : "") + (stars ? " " + stars : "") + "</p>" + (review ? '<p class="cork-slip-review">' + boardEsc(review) + "</p>" : "") + "</div></article>";
   }
   function renderBoardLane(lane) {
     const board = document.querySelector(".cork-board");
@@ -10086,24 +10087,6 @@
       feed.innerHTML = '<p class="cork-empty">' + (lane === "store" ? "Checking the square…" : "Checking the floor…") + "</p>";
       const paintSquare = function (data) {
         if (feed.getAttribute("data-lane") !== lane) return;
-        if (lane === "store") {
-          const cards = ((data && data.feed) || []).filter(function (r) { return r && r.handle && (r.pins || []).length; });
-          if (!cards.length) {
-            feed.innerHTML = '<p class="cork-empty">The square is quiet. Favorites from other members show up here.</p>';
-            return;
-          }
-          feed.innerHTML = '<p class="cork-kicker">The square</p>' + cards.map(function (r) {
-            const sleeves = (r.pins || []).slice(0, 4).map(function (slug) {
-              const id = String(slug || "").replace(/[^a-z0-9-]/gi, "");
-              if (!id) return "";
-              return '<a href="/films/' + boardEsc(id) + '"><img src="/sleeves/' + boardEsc(id) + '.jpg?v=103" alt=""></a>';
-            }).join("");
-            return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(r.name || r.handle) + '</a> favorited</p>' +
-              (r.bio ? '<p class="cork-slip-review">' + boardEsc(r.bio) + "</p>" : "") +
-              '<div class="shelf-strip">' + sleeves + "</div></div></article>";
-          }).join("");
-          return;
-        }
         const me = String(activeHandle() || "").toLowerCase();
         const friendOf = {};
         (clubBook.people || []).forEach(function (p) {
@@ -10132,7 +10115,7 @@
             if (r.title && !index[r.slug]) film.title = r.title;
             const verb = r.kind === "out" ? "checked out" : r.kind === "rewatch" ? "watched again" : "filed";
             const who = String(r.handle || "").toLowerCase() === me ? ((typeof cardName === "function" && cardName()) || "You") : (r.name || r.handle);
-            return boardSlip(who, r.handle, verb, { slug: r.slug, title: film.title, year: film.year }, r.review);
+            return boardSlip(who, r.handle, verb, { slug: r.slug, title: film.title, year: film.year }, r.review, r.rating);
           }).join("");
           feed.innerHTML = (lane === "store" ? '<p class="cork-kicker">The square</p>' : '<p class="cork-kicker">Friends</p>') + slips;
         });
