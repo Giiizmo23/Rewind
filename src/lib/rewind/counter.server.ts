@@ -233,7 +233,7 @@ function lockerJson(locker: Locker, key: string): Record<string, unknown> | unkn
   }
 }
 
-function publicCard(member: Member, friend: string) {
+function publicCard(member: Member, friend: string, open: boolean) {
   const face = member.locker.cardFace || {};
   const profile = member.locker.profile || {};
   const str = (value: unknown) => (typeof value === "string" ? value : "");
@@ -264,7 +264,7 @@ function publicCard(member: Member, friend: string) {
   const reviews = films.filter((film) => String(film.review || "").trim()).length;
   const hearts = films.filter((film) => film.liked).length;
   const owned = films.filter((film) => film.owned).length;
-  return {
+  const full = {
     handle: member.handle,
     name: str(face.name) || str(profile.name) || member.name,
     label: str(face.label) || member.handle,
@@ -294,6 +294,18 @@ function publicCard(member: Member, friend: string) {
     pins: pinned,
     films,
     watch,
+  };
+  if (open) return full;
+  return {
+    handle: full.handle,
+    name: full.name,
+    label: full.label,
+    bio: full.bio,
+    avatar: full.avatar,
+    banner: full.banner,
+    friend,
+    pins: pinned,
+    preview: true,
   };
 }
 
@@ -780,7 +792,9 @@ async function card(sql: Sql, body: Record<string, unknown>): Promise<Response> 
   if (!member) return json({ ok: false, err: "nocard" }, 404);
   const iFollow = await follows(sql, who.handle, member.handle);
   const theyFollow = await follows(sql, member.handle, who.handle);
-  return json({ ok: true, card: publicCard(member, relation(iFollow, theyFollow)) });
+  const friend = relation(iFollow, theyFollow);
+  const open = member.handle === who.handle || friend === "friends";
+  return json({ ok: true, card: publicCard(member, friend, open) });
 }
 
 async function search(sql: Sql, body: Record<string, unknown>): Promise<Response> {

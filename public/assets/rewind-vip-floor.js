@@ -3131,7 +3131,10 @@
         ? '<div data-vip-top5 class="flex gap-2 pb-1">' + pins.map(memberSleeve).join("") + "</div>"
         : '<p data-vip-top5-empty class="mt-3 ticket-stub rounded-[var(--radius-md)] p-4 text-sm text-muted">Nothing in Favorites yet.</p>') +
       "</section>" +
-      '<section data-vip-card class="vip-card-sec" data-guest-jump="card"><div class="club-card-wrap" role="button" tabindex="0" aria-label="Flip membership card"><div class="club-stage">' +
+      (card.preview || card.friend !== "friends"
+        ? '<div class="rw-member-acts"><button type="button" data-club-follow="' + vipEsc(card.handle) + '" data-act="' + (card.friend === "in" ? "accept" : "request") + '"' + (card.friend === "friends" || card.friend === "out" ? " disabled" : "") + ">" + friend + "</button>" +
+          '<button type="button" data-club-msg="' + vipEsc(card.handle) + '">Message</button></div>'
+        : '<section data-vip-card class="vip-card-sec" data-guest-jump="card"><div class="club-card-wrap" role="button" tabindex="0" aria-label="Flip membership card"><div class="club-stage">' +
       vipFrontHtml() +
       vipBackHtml(face) +
       "</div></div></section>" +
@@ -3173,7 +3176,8 @@
       (wallTapes.length
         ? '<div data-vip-tapes>' + wallTapes.slice(0, 16).map(memberSleeve).join("") + "</div>"
         : '<p class="ticket-stub rounded-[var(--radius-md)] p-4 text-sm text-muted">Nothing stamped on this wall yet.</p>') +
-      "</section></div>";
+      "</section>") +
+      "</div>";
     const banner = sheet.querySelector("[data-guest-banner] img");
     const avatar = sheet.querySelector("[data-guest-avatar] img");
     if (banner && card.banner) {
