@@ -349,6 +349,7 @@ export async function handleRewind(request: Request): Promise<Response> {
   if (path === "/api/rewind/club/reply") return reply(sql, body);
   if (path === "/api/rewind/club/rename") return rename(sql, body);
   if (path === "/api/rewind/club/feed") return clubFeed(sql, body);
+  if (path === "/api/rewind/club/review") return reviewOne(sql, body);
   if (path === "/api/rewind/club/push") return json({ ok: true });
   return json({ ok: false, err: "missing" }, 404);
 }
@@ -432,22 +433,24 @@ async function storeSquare(sql: Sql): Promise<Response> {
   const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
     "select handle, name, locker from rewind_members order by created_at desc limit 400",
   );
-  const ranked: Array<{ member: { handle: string; name: string; locker: Locker }; name: string; notes: Record<string, Record<string, unknown>>; count: number; latest: number }> = [];
+  const feed: Array<Record<string, unknown>> = [];
   for (const member of rows) {
     const { name, notes } = memberNotes(member);
-    const slugs = Object.keys(notes);
-    if (!slugs.length) continue;
-    let latest = 0;
-    for (const slug of slugs) latest = Math.max(latest, Number(notes[slug]?.at) || 0);
-    ranked.push({ member, name, notes, count: slugs.length, latest });
+    for (const slip of noteSlips(member, name, notes, 0)) {
+      const review = String(slip.review || "").trim();
+      if (!review) continue;
+      feed.push({
+        handle: slip.handle,
+        name,
+        slug: slip.slug,
+        rating: slip.rating,
+        excerpt: review.length > 110 ? review.slice(0, 107).trimEnd() + "…" : review,
+        at: slip.at,
+      });
+    }
   }
-  ranked.sort((a, b) => b.count - a.count || b.latest - a.latest);
-  const feed: Array<Record<string, unknown>> = [];
-  for (const row of ranked.slice(0, 24)) {
-    feed.push(...noteSlips(row.member, row.name, row.notes, 3));
-  }
-  feed.sort((a, b) => Number(b.at) - Number(a.at));
-  return json({ ok: true, shared: true, lane: "store", feed: feed.slice(0, 40) });
+  feed.sort((a, b) => Number(b.at) - Number(a.at) || Number(b.rating) - Number(a.rating));
+  return json({ ok: true, shared: true, lane: "store", feed: feed.slice(0, 24) });
 }
 
 async function newRecoveryCode(sql: Sql, body: Record<string, unknown>): Promise<Response> {
@@ -466,6 +469,8 @@ async function deleteAccount(sql: Sql, body: Record<string, unknown>): Promise<R
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
   const password = String(body.password || "");
+  const confirm = String(body.confirm || "");
+  if (confirm !== "DELETE") return json({ ok: false, err: "confirm" }, 400);
   if (!(await checkPassword(password, who.password_hash))) return json({ ok: false, err: "password" }, 401);
   const handle = who.handle;
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
@@ -473,10 +478,11 @@ async function deleteAccount(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("delete from rewind_messages where sender = $1 or recipient = $1", [handle]);
   await sql.query("delete from rewind_msg_gates where asker = $1 or askee = $1", [handle]);
   await sql.query("delete from rewind_backups where handle = $1", [handle]);
+  await sql.query("delete from rewind_reset_tries where handle = $1", [handle]);
   try {
     await deleteVault(handle);
   } catch {
-    /* the account row is already gone */
+    /* database backups are already erased, including when the vault copy cannot be reached */
   }
   await sql.query("delete from rewind_members where handle = $1", [handle]);
   return json({ ok: true, deleted: true });
@@ -928,7 +934,7 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     const theyFollow = await follows(sql, row.handle, who.handle);
     const friend = relation(iFollow, theyFollow);
     const gate = await gateBetween(sql, who.handle, row.handle);
-    const msg = gateLabel(gate, who.handle);
+    const msg = friend === "friends" ? "open" : gateLabel(gate, who.handle);
     list.push({
       handle: row.handle,
       name: row.name,
@@ -992,8 +998,11 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
   for (const row of latest) {
     const other = row.sender === who.handle ? row.recipient : row.sender;
     if (seen.has(other)) continue;
+    const pals = await follows(sql, who.handle, other);
+    const back = await follows(sql, other, who.handle);
+    const friends = pals && back;
     const gate = await gateBetween(sql, who.handle, other);
-    if (gateLabel(gate, who.handle) !== "open") continue;
+    if (!friends && gateLabel(gate, who.handle) !== "open") continue;
     seen.add(other);
     const whoElse = await memberByHandle(sql, other);
     previews.push({
@@ -1033,10 +1042,42 @@ async function search(sql: Sql, body: Record<string, unknown>): Promise<Response
      order by handle limit 20`,
     [who.handle, `%${q}%`],
   );
+  const people = [];
+  for (const row of rows) {
+    const iFollow = await follows(sql, who.handle, row.handle);
+    const theyFollow = await follows(sql, row.handle, who.handle);
+    const friend = relation(iFollow, theyFollow);
+    const gate = await gateBetween(sql, who.handle, row.handle);
+    people.push({
+      handle: row.handle,
+      name: row.name,
+      label: row.handle,
+      friend,
+      msg: friend === "friends" ? "open" : gateLabel(gate, who.handle),
+    });
+  }
+  return json({ ok: true, shared: true, people });
+}
+
+async function reviewOne(sql: Sql, body: Record<string, unknown>): Promise<Response> {
+  const who = await authed(sql, body);
+  if (who instanceof Response) return who;
+  const handle = cleanHandle(body.handle);
+  const slug = String(body.slug || "").trim();
+  const member = await memberByHandle(sql, handle);
+  if (!member || !slug) return json({ ok: false, err: "nocard" }, 404);
+  const friends = member.handle === who.handle || (await areFriends(sql, who.handle, member.handle));
+  if (!friends) return json({ ok: true, locked: true });
+  const { notes } = memberNotes(member);
+  const note = notes[slug] || {};
+  const review = typeof note.review === "string" ? note.review.trim() : "";
   return json({
     ok: true,
-    shared: true,
-    people: rows.map((row) => ({ handle: row.handle, name: row.name, label: row.handle, friend: "none", msg: "none" })),
+    locked: false,
+    review,
+    rating: Number(note.rating) || 0,
+    slug,
+    handle: member.handle,
   });
 }
 
@@ -1058,6 +1099,11 @@ async function follow(sql: Sql, body: Record<string, unknown>): Promise<Response
   const iFollow = await follows(sql, who.handle, other.handle);
   const theyFollow = await follows(sql, other.handle, who.handle);
   return json({ ok: true, friend: relation(iFollow, theyFollow) });
+}
+
+async function areFriends(sql: Sql, a: string, b: string): Promise<boolean> {
+  if (!a || !b || a === b) return false;
+  return (await follows(sql, a, b)) && (await follows(sql, b, a));
 }
 
 async function gateBetween(sql: Sql, a: string, b: string): Promise<{ asker: string; askee: string; status: string } | null> {
@@ -1083,7 +1129,8 @@ async function thread(sql: Sql, body: Record<string, unknown>): Promise<Response
   if (who instanceof Response) return who;
   const handle = cleanHandle(body.handle);
   const gate = await gateBetween(sql, who.handle, handle);
-  const msg = gateLabel(gate, who.handle);
+  const friends = await areFriends(sql, who.handle, handle);
+  const msg = friends ? "open" : gateLabel(gate, who.handle);
   if (msg !== "open") return json({ ok: true, msg, messages: [] });
   const rows = await sql.query<{ sender: string; body: string; created_at: string }>(
     `select sender, body, created_at from rewind_messages
@@ -1106,6 +1153,14 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
   if (!text) return json({ ok: false, err: "empty" }, 400);
   const other = await memberByHandle(sql, handle);
   if (!other) return json({ ok: false, err: "nocard" }, 404);
+  if (await areFriends(sql, who.handle, other.handle)) {
+    await sql.query("insert into rewind_messages (sender, recipient, body) values ($1, $2, $3)", [
+      who.handle,
+      other.handle,
+      text,
+    ]);
+    return thread(sql, body);
+  }
   const gate = await gateBetween(sql, who.handle, other.handle);
   const msg = gateLabel(gate, who.handle);
   if (msg === "closed") return json({ ok: false, err: "closed", msg: "closed" });

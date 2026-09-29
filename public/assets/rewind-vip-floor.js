@@ -3418,7 +3418,7 @@
     });
   }
   function pullClubThread(handle) {
-    const key = String(handle || "").toLowerCase();
+    const key = String(handle || "").trim().replace(/^@+/, "");
     if (!key || !isClubHandle(key)) return Promise.resolve(null);
     return clubPost("/api/rewind/club/thread", { handle: key }).then(function (data) {
       if (!data || !data.ok || !Array.isArray(data.messages)) return null;
@@ -3462,7 +3462,7 @@
       const linked = p.friend === "friends" || p.friend === "in" || p.friend === "out" || p.msg === "open" || p.msg === "out" || p.msg === "in";
       if (!linked) return;
       if (list.some(function (x) { return x.handle === p.handle; })) return;
-      list.push({ handle: p.handle, name: p.name || p.handle, avatar: p.avatar || "" });
+      list.push({ handle: p.handle, name: p.name || p.handle, avatar: p.avatar || "", friend: p.friend || "none" });
     });
     return list.filter((p) => p.handle && p.handle !== me);
   }
@@ -3797,9 +3797,12 @@
         })
         .join("");
       const gate = isClubHandle(inboxThread) ? (clubGate[inboxThread] || "none") : "open";
+      const friends = pal.friend === "friends";
       let foot = "";
       if (inboxKind === "friend") {
         foot = '<p class="rw-dm-ask">Wants to add you.</p><div class="rw-dm-acts"><button type="button" class="rw-ask-btn" data-friend-act="accept" data-friend-handle="' + String(inboxThread).replace(/"/g, "") + '">Accept</button><button type="button" class="rw-ask-btn is-ghost" data-friend-act="decline" data-friend-handle="' + String(inboxThread).replace(/"/g, "") + '">Not now</button></div>';
+      } else if (friends || gate === "open") {
+        foot = '<form class="rw-dm-compose" data-dm-form="1"><input type="text" maxlength="280" placeholder="Message…" autocomplete="off" /><button type="submit">Send</button></form>';
       } else if (gate === "in") {
         foot = '<p class="rw-dm-ask">Message request. Accept it before you write back.</p><div class="cork-acts"><button type="button" data-msg-act="accept" data-msg-handle="' + String(inboxThread).replace(/"/g, "") + '">Accept</button><button type="button" data-msg-act="decline" data-msg-handle="' + String(inboxThread).replace(/"/g, "") + '">Not now</button></div>';
       } else if (gate === "out") {
@@ -3892,7 +3895,7 @@
       '<button type="submit">Message</button></form>' +
       '<p class="rw-dm-miss" data-dm-miss hidden></p>' +
       '<div class="rw-inbox-list">' +
-      (rows || '<p class="rw-inbox-empty">Nobody on the other end yet. Find a member. They have to accept before it opens.</p>') +
+      (rows || '<p class="rw-inbox-empty">Nobody on the other end yet. Find a member. Friends can message straight through. Everyone else has to accept first.</p>') +
       "</div></div>"
     );
   }
@@ -4808,8 +4811,9 @@
     box.innerHTML =
       '<form style="width:min(420px,100%);background:#f6f1e8;color:#1a1410;border-radius:18px;padding:22px 18px 16px">' +
       '<p style="margin:0 0 6px;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Delete this card</p>' +
-      '<p style="margin:0 0 12px;font-size:15px;line-height:1.4">This deactivates the card and deletes it from the club. Your name, reviews, shelves, friends, and messages go with it. It cannot be undone.</p>' +
+      '<p style="margin:0 0 12px;font-size:15px;line-height:1.4">This permanently deletes the card. Your name, reviews, shelves, friends, messages, and every saved copy are erased. Nothing is kept. It cannot be undone.</p>' +
       '<input name="password" type="password" autocomplete="current-password" placeholder="Password" required style="width:100%;height:48px;border-radius:14px;border:1px solid rgba(0,0,0,.15);padding:0 12px;font-size:16px;margin-bottom:8px">' +
+      '<input name="confirm" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Type DELETE" required style="width:100%;height:48px;border-radius:14px;border:1px solid rgba(0,0,0,.15);padding:0 12px;font-size:16px;margin-bottom:8px">' +
       '<p data-delete-err style="display:none;color:#7f1d1d;font-size:14px;margin:0 0 8px"></p>' +
       '<button type="submit" data-delete-go style="width:100%;height:48px;border:0;border-radius:14px;background:#9f2d2d;color:#fff;font-size:16px;margin-bottom:8px">Delete the card</button>' +
       '<button type="button" data-delete-cancel style="width:100%;height:48px;border:0;border-radius:14px;background:transparent;color:#1a1410;font-size:16px">Keep the card</button></form>';
@@ -4817,21 +4821,31 @@
     box.addEventListener("click", function (e) { if (e.target === box) box.remove(); });
     box.querySelector("form").addEventListener("submit", function (ev) {
       ev.preventDefault();
-      const input = box.querySelector("input");
+      const input = box.querySelector("input[name=password]");
+      const confirm = box.querySelector("input[name=confirm]");
       const password = String(input && input.value || "");
+      const word = String(confirm && confirm.value || "");
       const err = box.querySelector("[data-delete-err]");
       const go = box.querySelector("[data-delete-go]");
+      if (word !== "DELETE") {
+        if (err) { err.style.display = "block"; err.textContent = "Type DELETE in capitals to confirm."; }
+        return;
+      }
       if (password.length < 8) {
         if (err) { err.style.display = "block"; err.textContent = "That password does not match this card."; }
         return;
       }
       if (go) go.disabled = true;
-      clubPost("/api/rewind/delete", { password: password }).then(function (data) {
+      clubPost("/api/rewind/delete", { password: password, confirm: word }).then(function (data) {
         if (!data || !data.ok) {
           if (go) go.disabled = false;
           if (err) {
             err.style.display = "block";
-            err.textContent = data && data.err === "password" ? "That password does not match this card." : "The counter could not delete the card. Nothing was erased.";
+            err.textContent = data && data.err === "password"
+              ? "That password does not match this card."
+              : data && data.err === "confirm"
+                ? "Type DELETE in capitals to confirm."
+                : "The counter could not delete the card. Nothing was erased.";
           }
           return;
         }
@@ -10030,7 +10044,7 @@
         const rows = ((data && data.feed) || []).filter(function (r) {
           const h = String(r.handle || "").toLowerCase();
           if (!h) return false;
-          if (lane === "store") return true;
+          if (lane === "store") return !!r.excerpt;
           if (h === me) return false;
           if (!clubBook.loaded) return true;
           const state = friendOf[h];
@@ -10039,7 +10053,7 @@
         });
         if (!rows.length) {
           feed.innerHTML = lane === "store"
-            ? '<p class="cork-empty">The square is quiet. When members start logging, the busy cards show up here.</p>'
+            ? '<p class="cork-empty">The square is quiet. Reviews show up here.</p>'
             : '<p class="cork-empty">The floor is quiet. Add a friend and their logs show up here.</p>';
           return;
         }
@@ -10048,6 +10062,11 @@
           const slips = rows.map(function (r) {
             const film = boardFilmLabel(r.slug, index);
             if (r.title && !index[r.slug]) film.title = r.title;
+            if (lane === "store") {
+              const whoName = String(r.handle || "").toLowerCase() === me ? ((typeof cardName === "function" && cardName()) || "You") : (r.name || r.handle);
+              const stars = guestStars(r.rating);
+              return '<article class="cork-slip" data-store-review="1" data-review-handle="' + boardEsc(r.handle) + '" data-review-slug="' + boardEsc(r.slug) + '" data-review-name="' + boardEsc(whoName) + '"><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(whoName) + '</a> reviewed <a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (stars ? " " + stars : "") + "</p>" + (r.excerpt ? '<p class="cork-slip-review">' + boardEsc(r.excerpt) + "</p>" : "") + "</div></article>";
+            }
             const verb = r.kind === "out" ? "checked out" : r.kind === "rewatch" ? "watched again" : "filed";
             const who = String(r.handle || "").toLowerCase() === me ? ((typeof cardName === "function" && cardName()) || "You") : (r.name || r.handle);
             return boardSlip(who, r.handle, verb, { slug: r.slug, title: film.title, year: film.year }, r.review, r.rating);
@@ -10202,6 +10221,72 @@
         scroller.scrollTop = Math.max(0, top);
       }
     }, true);
+    function openStoreReview(handle, slug, name) {
+      const prev = document.getElementById("rw-review");
+      if (prev) prev.remove();
+      const box = document.createElement("div");
+      box.id = "rw-review";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("data-review-handle", handle);
+      box.setAttribute("data-review-slug", slug);
+      box.setAttribute("data-review-name", name || handle);
+      box.style.cssText = "position:fixed;inset:0;z-index:96;background:rgba(20,12,10,.62);display:flex;align-items:flex-end;justify-content:center;padding:16px";
+      function paint(inner) {
+        box.innerHTML = '<div style="width:min(420px,100%);background:#f6f1e8;color:#1a1410;border-radius:18px;padding:22px 18px 16px">' + inner + '<button type="button" data-review-close style="width:100%;height:48px;border:0;border-radius:14px;background:transparent;color:#1a1410;font-size:16px">Close</button></div>';
+      }
+      function friendState() {
+        const me = String(activeHandle() || "").trim();
+        if (me && me === handle) return "friends";
+        const hit = (clubBook.people || []).concat(clubHits || []).find(function (p) { return p && p.handle === handle; });
+        return (hit && hit.friend) || "none";
+      }
+      function ask() {
+        const me = String(activeHandle() || "").trim();
+        if (!me) {
+          paint(
+            '<p style="margin:0 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Review</p>' +
+            '<p style="margin:0 0 14px;font-size:15px;line-height:1.45">Sign in to send ' + boardEsc(name || handle) + ' a friend request and read the whole review.</p>' +
+            '<a href="/login" style="display:flex;align-items:center;justify-content:center;width:100%;height:48px;border-radius:14px;background:#9f2d2d;color:#fff;font-size:16px;margin-bottom:8px;text-decoration:none">Sign in</a>'
+          );
+          return;
+        }
+        const state = friendState();
+        const label = state === "out" ? "Request sent" : state === "in" ? "Accept" : "Send a friend request";
+        const act = state === "in" ? "accept" : "request";
+        const locked = state === "out" ? " disabled" : "";
+        paint(
+          '<p style="margin:0 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Review</p>' +
+          '<p style="margin:0 0 14px;font-size:15px;line-height:1.45">You’re not friends with ' + boardEsc(name || handle) + ' yet. Send a friend request to follow them and read the whole review.</p>' +
+          '<button type="button" data-club-follow="' + boardEsc(handle) + '" data-act="' + act + '"' + locked + ' style="width:100%;height:48px;border:0;border-radius:14px;background:#9f2d2d;color:#fff;font-size:16px;margin-bottom:8px">' + label + "</button>"
+        );
+      }
+      function full(data) {
+        const stars = guestStars(data && data.rating);
+        paint(
+          '<p style="margin:0 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Review</p>' +
+          (stars ? '<p style="margin:0 0 8px">' + stars + "</p>" : "") +
+          '<p style="margin:0 0 14px;font-size:16px;line-height:1.45">' + boardEsc((data && data.review) || "") + "</p>"
+        );
+      }
+      box.addEventListener("click", function (e) {
+        if (e.target === box || (e.target.closest && e.target.closest("[data-review-close]"))) box.remove();
+      });
+      paint('<p style="margin:0 0 14px;font-size:15px">Pulling the review…</p>');
+      document.body.appendChild(box);
+      clubPost("/api/rewind/club/review", { handle: handle, slug: slug }).then(function (data) {
+        if (!box.isConnected) return;
+        if (data && data.ok && data.locked === false) full(data);
+        else ask();
+      });
+    }
+    document.addEventListener("click", function (e) {
+      const slip = e.target && e.target.closest && e.target.closest("[data-store-review]");
+      if (!slip) return;
+      if (e.target.closest("a, button, input, textarea, [data-club-follow]")) return;
+      e.preventDefault();
+      e.stopPropagation();
+      openStoreReview(slip.getAttribute("data-review-handle") || "", slip.getAttribute("data-review-slug") || "", slip.getAttribute("data-review-name") || "");
+    }, true);
     document.addEventListener("click", function (e) {
       const member = e.target && e.target.closest && e.target.closest("[data-member-open], a[href^='/u/']");
       if (!member) return;
@@ -10268,6 +10353,10 @@
           (clubBook.people || []).concat(clubHits || []).forEach(function (p) {
             if (p.handle === handle) p.friend = data.friend || "out";
           });
+          const review = document.getElementById("rw-review");
+          if (review && data.friend === "friends" && review.getAttribute("data-review-handle") === handle) {
+            openStoreReview(handle, review.getAttribute("data-review-slug") || "", review.getAttribute("data-review-name") || "");
+          }
           renderBoardLane("friends");
           loadClubBook().then(function () { renderBoardLane("friends"); });
         });
