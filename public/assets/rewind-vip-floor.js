@@ -7922,7 +7922,20 @@
     return "";
   }
   function openDeskHere(isNew) {
-    if (document.querySelector("[data-card-scan]")) return;
+    var host = document.getElementById("rw-desk-host");
+    var page = (host && host.querySelector(".desk-page")) || document.querySelector(".desk-page");
+    var showing = page && page.querySelector("[data-scan-desk]");
+    if (showing) {
+      try { deskFx.stop(); } catch (eS) {}
+      showing.outerHTML = scanDeskHtml(isNew);
+      bindScanHold(page);
+      bindStampName(page);
+      try { dressDeskChrome(); } catch (eD) {}
+      try { history.pushState({ rwDesk: "scan" }, "", isNew ? "/login?desk=new" : "/login?desk=return"); } catch (eH) {}
+      try { window.scrollTo(0, 0); } catch (eS) {}
+      if (host) host.scrollTop = 0;
+      return;
+    }
     var logo = document.querySelector("header a[href='/']");
     var theme = document.querySelector("[data-theme-toggle]");
     var host = document.getElementById("rw-desk-host");
