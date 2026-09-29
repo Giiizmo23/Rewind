@@ -492,6 +492,15 @@ test("renders the manifest with the per-app name", () => {
   assert.equal(manifest.name, "Wild Race");
   assert.equal(manifest.short_name, "Wild Race");
   assert.equal(manifest.icons[0].src, "/__grok/icon-180.png");
+  const named = JSON.parse(
+    renderWebManifest("bekindrewind.vercel.app", {
+      name: "Rewind",
+      icon: "/apple-touch-icon.png",
+    }),
+  );
+  assert.equal(named.name, "Rewind");
+  assert.equal(named.short_name, "Rewind");
+  assert.equal(named.icons[0].src, "/apple-touch-icon.png");
 });
 
 // Tripwires: the deployed-app path only works if Nitro scans server/ — an
