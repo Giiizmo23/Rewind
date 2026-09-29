@@ -422,11 +422,10 @@ export function normalizeHeadContext(ctx = {}) {
   };
 }
 
-function wantsGrokBanner(host) {
-  if (process.env.NODE_ENV === "production") return false;
-  const name = String(host || "").split(":")[0].trim().toLowerCase();
-  if (!name || name === "localhost" || name === "127.0.0.1") return true;
-  return name === "grok.me" || name.endsWith(".grok.me");
+function stripGrokBanner(html) {
+  return String(html)
+    .replace(/<script\b[^>]*\/grok-app-builder\/extensions\.js[^>]*>\s*<\/script>/gi, "")
+    .replace(/<meta\b[^>]*\bname=["']grok-project-id["'][^>]*>/gi, "");
 }
 
 export function injectGrokPwaHead(html, ctx = {}) {
@@ -439,7 +438,7 @@ export function injectGrokPwaHead(html, ctx = {}) {
     host,
     documentTitle,
   );
-  let next = stripShareMetaTags(html);
+  let next = stripGrokBanner(stripShareMetaTags(html));
 
   const missing = grokPwaHeadTags(appName)
     .filter(([key]) => {
@@ -454,11 +453,6 @@ export function injectGrokPwaHead(html, ctx = {}) {
     grokOgHeadTags({ host, appName, site, documentTitle, cwd }).join(""),
   );
 
-  if (wantsGrokBanner(host) && !next.includes("/grok-app-builder/extensions.js")) {
-    missing.push(...grokExtensionsHeadTags(projectId));
-  } else if (wantsGrokBanner(host) && projectId && !next.includes('name="grok-project-id"')) {
-    missing.push(`<meta name="grok-project-id" content="${escapeHtml(projectId)}">`);
-  }
   if (
     projectId &&
     !next.includes('property="grok:app_id"') &&
@@ -475,8 +469,8 @@ export function injectGrokPwaHead(html, ctx = {}) {
     if (!next.includes('property="x:creator:id"')) missing.push(creatorTags[1]);
   }
 
-  if (missing.length === 0) return next;
-  return insertBeforeHeadClose(next, missing.join(""));
+  if (missing.length === 0) return stripGrokBanner(next);
+  return stripGrokBanner(insertBeforeHeadClose(next, missing.join("")));
 }
 
 function findHeadClose(buf) {
