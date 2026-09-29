@@ -1,0 +1,16 @@
+node_modules
+.grok
+.tanstack
+attachments
+artifacts
+backups
+screenshots
+sound-vault
+.node_modules.lock
+.project_id
+.env
+.env.*
+*.log
+dist
+.output
+.vercel
