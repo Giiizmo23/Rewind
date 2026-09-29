@@ -4455,8 +4455,7 @@
     const diary = Array.isArray(wall.diary) ? wall.diary.length : 0;
     const out = lsGet("rewind-out-tapes") || "";
     const kind = lsGet("rewind-kind-films") || "";
-    const banner = lsGet("rewind-banner") || picCache["rewind-banner"] || "";
-    if (!(points > 0 || diary > 0 || out.length > 2 || kind.length > 2 || banner.length > 8)) return false;
+    if (!(points > 0 || diary > 0 || out.length > 2 || kind.length > 2)) return false;
     vaultLock = true;
     try {
       [
@@ -4470,33 +4469,16 @@
         "rewind-drop-seen-v2",
         "rewind-prize-claims",
         "rewind-nd-pass",
-        "rewind-banner",
-        "rewind-avatar",
       ].forEach(function (k) { localStorage.removeItem(k); });
       const handle = activeHandle();
       if (handle) localStorage.removeItem("rewind-vault:" + handle);
     } catch (eClear) {}
     vaultLock = false;
-    window.__rwPicsCleared = 1;
-    clearPicDom();
-    openPicDb(function (db) {
-      if (!db) return;
-      try {
-        const store = db.transaction("pics", "readwrite").objectStore("pics");
-        ["rewind-banner", "rewind-avatar"].forEach(function (k) {
-          store.delete(k);
-          const h = activeHandle();
-          if (h) store.delete(k + ":" + h);
-        });
-      } catch (eDb) {}
-    });
     const creds = memberCreds();
     const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (handle && (creds.token || creds.password)) {
       const locker = lockerNow();
       locker.dropCopied = true;
-      locker.banner = "";
-      locker.avatar = "";
       try {
         fetch("/api/rewind/locker", {
           method: "POST",

@@ -36,8 +36,6 @@ const COPIED_KEYS = [
   "rewind-drop-seen-v2",
   "rewind-prize-claims",
   "rewind-nd-pass",
-  "rewind-banner",
-  "rewind-avatar",
 ];
 
 function json(body: unknown, status = 200): Response {
@@ -543,7 +541,7 @@ async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response
   }
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
-  const who = await restoreLockerIfBlank(sql, authedMember);
+  const who = await restorePicsIfMissing(sql, await restoreLockerIfBlank(sql, authedMember));
   const usedPassword = String(body.password || "").length > 0;
   let token = String(body.token || "");
   let recovery = "";
@@ -629,7 +627,7 @@ async function resetPassword(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("update rewind_members set password_hash = $1 where handle = $2", [await hashPassword(password), handle]);
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
   const token = await openSession(sql, handle);
-  const restored = await restoreLockerIfBlank(sql, member);
+  const restored = await restorePicsIfMissing(sql, await restoreLockerIfBlank(sql, member));
   return json({ ok: true, stored: true, token, username: handle, locker: restored.locker || {} });
 }
 
@@ -695,8 +693,8 @@ function mergeLocker(prev: Locker, next: Locker): Locker {
     keys,
     profile,
     cardFace: nextFace && Object.keys(nextFace).length ? nextFace : prev.cardFace,
-    banner: next.dropCopied ? "" : typeof next.banner === "string" && next.banner.startsWith("data:") ? next.banner : prev.banner || "",
-    avatar: next.dropCopied ? "" : typeof next.avatar === "string" && next.avatar.startsWith("data:") ? next.avatar : prev.avatar || "",
+    banner: typeof next.banner === "string" && next.banner.startsWith("data:") ? next.banner : prev.banner || "",
+    avatar: typeof next.avatar === "string" && next.avatar.startsWith("data:") ? next.avatar : prev.avatar || "",
   };
 }
 
@@ -824,6 +822,31 @@ async function restoreLockerIfBlank(sql: Sql, member: Member): Promise<Member> {
   return { ...member, locker: picked };
 }
 
+async function restorePicsIfMissing(sql: Sql, member: Member): Promise<Member> {
+  const locker = member.locker && typeof member.locker === "object" ? { ...member.locker } : {};
+  const hasPic = (value: unknown) => typeof value === "string" && value.startsWith("data:");
+  if (hasPic(locker.banner) && hasPic(locker.avatar)) return member;
+  const rows = await sql.query<{ locker: Locker }>(
+    "select locker from rewind_backups where handle = $1 order by id desc limit 30",
+    [member.handle],
+  );
+  let banner = typeof locker.banner === "string" ? locker.banner : "";
+  let avatar = typeof locker.avatar === "string" ? locker.avatar : "";
+  for (const row of rows) {
+    const saved = row.locker || {};
+    if (!hasPic(banner) && hasPic(saved.banner)) banner = saved.banner || "";
+    if (!hasPic(avatar) && hasPic(saved.avatar)) avatar = saved.avatar || "";
+    if (hasPic(banner) && hasPic(avatar)) break;
+  }
+  if (banner === (locker.banner || "") && avatar === (locker.avatar || "")) return member;
+  const next = { ...locker, banner, avatar };
+  await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [
+    JSON.stringify(next),
+    member.handle,
+  ]);
+  return { ...member, locker: next };
+}
+
 async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
@@ -841,7 +864,7 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
 async function pullLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
-  const who = await restoreLockerIfBlank(sql, authedMember);
+  const who = await restorePicsIfMissing(sql, await restoreLockerIfBlank(sql, authedMember));
   return json({ ok: true, locker: who.locker || {} });
 }
 
