@@ -7946,7 +7946,7 @@
       host.id = "rw-desk-host";
       document.body.appendChild(host);
     }
-    host.style.cssText = "position:fixed;inset:0;z-index:80;overflow:auto;background:var(--color-bg,#f6f4ef);";
+    host.style.cssText = "position:fixed;inset:0;z-index:80;overflow:auto;background:var(--rw-bg,#f6f4ef);color:var(--rw-fg,#161412);";
     host.innerHTML =
       '<div class="desk-page mx-auto flex max-w-md flex-col px-4 pt-6" style="padding-bottom:calc(24px + env(safe-area-inset-bottom))">' +
       '<div class="mb-6 flex items-center justify-between"><a href="/" class="flex items-center gap-2">' +
@@ -7961,7 +7961,6 @@
     bindStampName(page);
     try { dressDeskChrome(); } catch (eD) {}
     host.querySelectorAll("a.guest-cta").forEach(function (el) { el.remove(); });
-    host.style.background = "#f6f4ef";
     try { history.pushState({ rwDesk: "scan" }, "", isNew ? "/login?desk=new" : "/login?desk=return"); } catch (eH) {}
     try { window.scrollTo(0, 0); } catch (eS) {}
   }

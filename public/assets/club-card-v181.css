@@ -1623,6 +1623,13 @@ html[data-theme="dark"] {
   color-scheme: dark;
   background-color: #0a0b0e;
 }
+html[data-theme="dark"] .store-bg,
+html[data-theme="night"] .store-bg,
+html[data-theme="dark"] #rw-desk-host,
+html[data-theme="night"] #rw-desk-host {
+  background-color: #0a0b0e !important;
+  color: #f3efe6;
+}
 .vhs-face-front,
 .vhs-shell,
 .vhs-case {
