@@ -4290,14 +4290,14 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   border: 0 !important;
   background-color: #f6f4ef !important;
   background-image:
-    linear-gradient(#f6f4ef, #f6f4ef),
     url(/assets/shelf/post-left.jpg?v=16),
     url(/assets/shelf/post-right.jpg?v=16),
+    linear-gradient(#f6f4ef, #f6f4ef),
     url(/assets/shelf/base.jpg?v=16),
     url(/assets/shelf/row.jpg?v=16) !important;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-y !important;
-  background-size: 100% 5.8rem, 22px calc(100% - 5.8rem), 22px calc(100% - 5.8rem), 100% 28px, 100% var(--shelf-row) !important;
-  background-position: left top, left 5.8rem, right 5.8rem, left bottom, left top !important;
+  background-size: 22px calc(100% - 5.8rem + 12px), 22px calc(100% - 5.8rem + 12px), 100% 5.8rem, 100% 28px, 100% var(--shelf-row) !important;
+  background-position: left calc(5.8rem - 12px), right calc(5.8rem - 12px), left top, left bottom, left top !important;
   background-origin: border-box, border-box, border-box, border-box, content-box !important;
   background-clip: border-box, border-box, border-box, border-box, content-box !important;
   box-shadow: 0 16px 22px rgba(26, 20, 16, 0.16) !important;
