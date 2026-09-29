@@ -77,7 +77,7 @@
   ];
 
   const VISUAL = {
-    card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.grok.me</p></div></div></div></div></div>`,
+    card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div></div></div></div></div>`,
     file: `<ul class="tour-visual-list"><li>Diary wall — every tape you logged</li><li>Hearts — the ones that stuck</li><li>Lists — ranked, filed, shared</li><li>Friend notes — the ones you pass at the counter</li></ul>`,
     wall: `<div class="tour-visual-boxes"><span>Flip the box</span><span>Read the spine</span><span>Check out the tape</span></div>`,
     rent: `<div class="tour-visual-boxes"><span>Overnight</span><span>Weekend</span><span>A week</span></div>`,
@@ -2714,7 +2714,7 @@
       '<p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div>' +
       '<svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true">' +
       '<path fill="currentColor" d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z"></path></svg>' +
-      '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.grok.me</p></div>' +
+      '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div>' +
       "</div></div></div></div>" +
       '<div class="desk-actions mt-4 flex flex-col gap-2">' +
       '<a href="/login?desk=return" class="inline-flex h-11 w-full items-center justify-center rounded-2xl bg-primary px-5 text-base font-medium text-primary-fg">Present your card</a>' +
@@ -4589,7 +4589,7 @@
       '<p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div>' +
       '<svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true">' +
       '<path fill="currentColor" d="' + TEAR + '"></path></svg>' +
-      '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.grok.me</p></div>' +
+      '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div>' +
       "</div></div></div></div>"
     );
   }
@@ -4676,7 +4676,7 @@
       '<p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div>' +
       '<svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true">' +
       '<path fill="currentColor" d="' + TEAR + '"></path></svg>' +
-      '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.grok.me</p></div>' +
+      '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div>' +
       "</div></div>"
     );
   }
@@ -5123,7 +5123,7 @@
   try { window.__rwOpenCard = openVipCustomize; } catch (eOpen) {}
   const deskFx = (function () {
     var ctx = null, holdGen = 0, holdSrc = null, holdGain = null, chirpSrc = null, hapTimer = null, live = false;
-    var holdEl = null, chirpEl = null, stampEl = null, gateEl = null;
+    var holdEl = null, chirpEl = null, stampEl = null, stampBuf = null, gateEl = null;
     var holdBuf = null, chirpBuf = null, holdBlob = null, chirpBlob = null;
     var holdRaw = null, chirpRaw = null, gateRaw = null, gateBuf = null, gateBlob = null;
     var gateNode = null, gateStartedAt = 0, gateReady = null, gateClockCtx = null;
@@ -5132,7 +5132,7 @@
     var HOLD_URL = "/sfx/scan-hold.wav?v=114";
     var CHIRP_URL = "/sfx/scan-chirp.wav?v=114";
     var GATE_URL = "/sfx/scan-pass.wav?v=114";
-    var STAMP_URL = "/sfx/stamp.wav?v=95";
+    var STAMP_URL = "/sfx/file-stamp.wav?v=15";
     /* DESK-SFX-LOCK v264 BEGIN rew-urls */
     var REW_URL = "/sfx/cassette-rewind.mp3?v=278";
     var CLICK_URL = "/sfx/rewind-click.mp3?v=278";
@@ -5753,6 +5753,7 @@
           chirpBlob = u;
           if (chirpEl && !live) try { chirpEl.src = u; chirpEl.load(); } catch (e) {}
         }, function (buf) { chirpBuf = buf; });
+        prefetchOne(STAMP_URL, function () {}, function () {}, function (buf) { stampBuf = buf; });
         if (!chirpRaw) {
           fetch(CHIRP_DATA).then(function (r) { return r.arrayBuffer(); }).then(function (b) {
             chirpRaw = b.slice(0);
@@ -6448,10 +6449,24 @@
       holdScan: holdScan,
       pass: passBeep,
       stamp: function () {
-        resumeNow();
-        buzz([28, 30, 50]);
+        loudPhone();
+        var c = resumeNow();
+        buzz([16, 150, 12]);
+        if (c && stampBuf && c.state === "running") {
+          try {
+            var src = c.createBufferSource();
+            src.buffer = stampBuf;
+            src.connect(c.destination);
+            src.start(c.currentTime);
+            return;
+          } catch (eBuf) {}
+        }
         try {
           if (!stampEl) stampEl = makeAudio(STAMP_URL);
+          else {
+            try { stampEl.pause(); } catch (eP) {}
+            try { stampEl.currentTime = 0; } catch (eT) {}
+          }
           playFile(stampEl);
         } catch (err) {}
       },
@@ -6701,6 +6716,7 @@
         if (err) { err.textContent = msg; err.classList.remove("hidden"); }
         return;
       }
+      if (isNew) { try { deskFx.stamp(); } catch (eStamp) {} }
       sealCard(display, data.username || handle, password, data.token || "", isNew);
       if (data.recovery) {
         try { sessionStorage.setItem("rewind-recovery-show", data.recovery); } catch (eRec) {}
@@ -6891,7 +6907,8 @@
       root.setAttribute("data-desk-issued", "1");
       root.innerHTML =
         '<div data-scan-desk="1" data-desk-issued="1" data-live-desk="1" class="space-y-4">' +
-        '<p class="text-xs uppercase tracking-[0.22em] text-muted">Card issued</p>' +
+        '<div class="desk-issued-bar"><p class="text-xs uppercase tracking-[0.22em] text-muted">Card issued</p>' +
+        '<a href="/" class="desk-close" aria-label="Back to the club">×</a></div>' +
         "<h1 class=\"font-display text-3xl tracking-[0.06em]\">You're on the list</h1>" +
         '<div class="desk-ticket-mini">' + kept + "</div>" +
         credsFormHtml(true, false) +
@@ -6922,7 +6939,9 @@
         "html[data-member='1'] a.guest-cta{display:none!important}" +
         ".desk-page h1.font-display{font-size:clamp(1.55rem,6.4vw,2.2rem)!important;line-height:1.05}" +
         ".desk-page [data-scan-desk]{gap:.65rem}" +
-        ".desk-ticket-mini{transform:scale(.72);transform-origin:top center;height:8.9rem;margin:0 auto .15rem;overflow:hidden}" +
+        ".desk-issued-bar{display:flex;align-items:center;justify-content:space-between;gap:.75rem}" +
+        ".desk-close{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;margin:-.2rem 0;border-radius:999px;border:1px solid rgba(0,0,0,.16);font-size:1.85rem;line-height:1;text-decoration:none;color:inherit}" +
+        ".desk-ticket-mini{width:100%;margin:.15rem auto .4rem;overflow:visible;height:auto}" +
         ".desk-ticket-mini .club-card-wrap{margin:0 auto;padding-bottom:0}" +
         "[data-desk-issued] p.text-sm.text-muted:last-of-type{display:none}" +
         ".desk-page [data-live-login]{margin-top:.15rem}" +
