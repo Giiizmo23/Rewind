@@ -624,8 +624,8 @@
         '[data-vip-wall] .top5-section{margin-top:3.75rem!important}' +
         '[data-vip-wall] > [data-vip-card]{margin-top:1.65rem!important}' +
         '@media (max-width:1023px){html.vip-page main>[data-vip-wall]>.vip-open{display:flex;flex-direction:column;min-height:calc(100dvh - 3.5rem - 4.05rem - env(safe-area-inset-bottom,0px))}' +
-        'html.vip-page main>[data-vip-wall] .vip-avatar{bottom:-4.95rem!important}' +
-        'html.vip-page main>[data-vip-wall] .vip-banner-wrap{margin-bottom:5.45rem!important}' +
+        'html.vip-page main>[data-vip-wall] .vip-avatar{bottom:-3.55rem!important}' +
+        'html.vip-page main>[data-vip-wall] .vip-banner-wrap{margin-bottom:4.05rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .vip-bio-slot{margin-top:.85rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:.15rem}}' +
         'a.vip-tab{text-decoration:none;color:inherit;pointer-events:auto}' +
