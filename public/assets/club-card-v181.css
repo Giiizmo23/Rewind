@@ -2353,9 +2353,7 @@ html[data-theme="night"] #rw-desk-host {
   transition: opacity .12s linear .3s, visibility 0s linear .3s;
 }
 .vhs-box.is-back .vhs-face-front{
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+  display: none !important;
 }
 .vhs-box.is-back .vhs-face-back{
   z-index: 8 !important;

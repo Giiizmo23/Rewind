@@ -142,7 +142,7 @@
       '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
       '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
       '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-      '<div class="vhs-back-still" style="background:#0c1a28 url(/sleeves/jaws-still.jpg?v=530) center/cover no-repeat"><img src="/sleeves/jaws-still.jpg?v=530" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+      '<div class="vhs-back-still"><img src="/sleeves/jaws-orca.jpg?v=1" alt="" draggable="false" decoding="async"></div>' +
       '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
       '<p class="vhs-back-tag">“' + film.tagline + '”</p>' +
       '<p class="vhs-back-syn">' + film.overview + "</p>" +
@@ -184,9 +184,11 @@
       ".tour-aisle .tape-slot{width:12rem;max-width:12rem;flex:0 0 12rem;display:block;pointer-events:auto}" +
       ".tour-aisle .vhs-box{width:100%!important;max-width:none!important;pointer-events:auto}" +
       ".tour-aisle .vhs-box[data-slug='jaws'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}" +
-      ".tour-aisle .vhs-box.is-back .vhs-face-front{opacity:0!important;visibility:hidden!important}" +
-      ".tour-aisle .vhs-back-still{flex:1 1 48%!important;min-height:48%!important;background:#0c1a28 url(/sleeves/jaws-still.jpg?v=530) center/cover no-repeat!important}" +
-      ".tour-aisle .vhs-back-still img{object-fit:cover!important;object-position:center center!important;display:block!important}" +
+      ".tour-aisle .vhs-box.is-back .vhs-flip,.tour-aisle .vhs-box.is-back .vhs-flip-card{transform:none!important}" +
+      ".tour-aisle .vhs-box.is-back .vhs-face-front{display:none!important}" +
+      ".tour-aisle .vhs-box.is-back .vhs-face-back{display:block!important;transform:none!important;backface-visibility:visible!important;z-index:20!important;background:#14110e!important}" +
+      ".tour-aisle .vhs-back-still{flex:0 0 52%!important;height:52%!important;min-height:52%!important;max-height:52%!important;position:relative!important;overflow:hidden!important;background:#16324a!important}" +
+      ".tour-aisle .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}" +
       ".tour-aisle-hint{margin:.2rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
       ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
       ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
@@ -249,6 +251,11 @@
       lastTap = { t: now, x: e ? e.clientX : 0, y: e ? e.clientY : 0 };
       if (!isDouble) return;
       d.box.classList.toggle("is-back");
+      var front = d.box.querySelector(".vhs-face-front");
+      if (front) {
+        if (d.box.classList.contains("is-back")) front.style.setProperty("display", "none", "important");
+        else front.style.removeProperty("display");
+      }
       lastTap.t = 0;
       if (e) {
         e.preventDefault();
@@ -11892,16 +11899,15 @@
         img.style.setProperty("object-position", "center top", "important");
       });
       box.querySelectorAll(".vhs-back-still").forEach(function (el) {
-        el.style.setProperty("background-image", "url(/sleeves/jaws-still.jpg?v=530)", "important");
-        el.style.setProperty("background-size", "cover", "important");
-        el.style.setProperty("background-position", "center center", "important");
-        el.style.setProperty("background-color", "#0c1a28", "important");
+        el.style.setProperty("background-image", "none", "important");
+        el.style.setProperty("background-color", "#16324a", "important");
       });
       box.querySelectorAll(".vhs-back-still img").forEach(function (img) {
-        if ((img.getAttribute("src") || "").indexOf("jaws-still.jpg?v=530") < 0) {
+        if ((img.getAttribute("src") || "").indexOf("jaws-orca.jpg") < 0) {
           img.removeAttribute("srcset");
-          img.src = "/sleeves/jaws-still.jpg?v=530";
+          img.src = "/sleeves/jaws-orca.jpg?v=1";
         }
+        img.onerror = null;
         img.style.setProperty("display", "block", "important");
         img.style.setProperty("object-fit", "cover", "important");
         img.style.setProperty("object-position", "center center", "important");
@@ -12077,7 +12083,8 @@
       }
       const stillVer = slug === "halloween-1978" ? "522" : "520";
       const want = "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
-      if ((img.getAttribute("src") || "").indexOf("-still.jpg?v=" + stillVer) < 0) {
+      const cur = img.getAttribute("src") || "";
+      if (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0) {
         img.onerror = function () {
           img.onerror = null;
           img.style.setProperty("display", "none", "important");
