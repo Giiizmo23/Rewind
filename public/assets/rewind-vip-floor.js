@@ -10237,24 +10237,8 @@
         p.classList.add("nd-neon-hide");
       }
     });
-    document.querySelectorAll(".nd-neon-sign").forEach((n) => {
-      if (!overlay.contains(n)) n.remove();
-    });
-    let sign = overlay.querySelector(".nd-neon-sign");
-    if (sign && sign.getAttribute("data-built") === "open3") {
-      placeOpenNeon(sign);
-      ensureOpenNeonCss();
-      return sign;
-    }
-    if (sign) sign.remove();
-    sign = document.createElement("div");
-    sign.className = "nd-neon-sign";
-    sign.setAttribute("data-built", "open3");
-    sign.setAttribute("aria-hidden", "true");
-    sign.innerHTML = neonSignMarkup();
-    placeOpenNeon(sign);
-    ensureOpenNeonCss();
-    return sign;
+    document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());
+    return null;
   }
   function placeOpenNeon(sign) {
     const deck = document.querySelector("#nd-overlay .drop-deck");
