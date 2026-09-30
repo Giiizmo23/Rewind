@@ -215,7 +215,7 @@
     vip: `<div class="tour-vip"><div class="tour-vip-banner"><img src="/sleeves/blade-runner-still.jpg?v=522" alt=""><img class="tour-vip-ava" src="/sleeves/amelie.jpg?v=487" alt=""></div><div class="tour-vip-body"><p class="tour-vip-bio">Be Kind, Rewind</p><p class="tour-vip-kicker">Favorites</p><div class="tour-vip-favs"><img src="/sleeves/alien.jpg?v=487" alt="Alien"><img src="/sleeves/casablanca.jpg?v=487" alt="Casablanca"><img src="/sleeves/clueless.jpg?v=487" alt="Clueless"><img src="/sleeves/back-to-the-future.jpg?v=487" alt="Back to the Future"></div></div></div>`,
     board: tourBoard(),
     club: `<div class="tour-member"><div class="tour-ava">RV</div><div><b>A member</b><span>Their page, their tapes</span></div><div class="tour-add">Add</div></div>`,
-    drop: `<div class="tour-drop"><em>Never seen it</em><i>TAPE</i><em>Seen it</em></div>`,
+    drop: '<div class="tour-drop" data-tour-drop="1"><div class="tour-drop-stage"><p class="is-l"><b>Never seen it</b><span>swipe left</span></p><div class="tour-drop-card" data-tour-swipe="1"><img src="/sleeves/alien.jpg?v=487" alt="Alien" draggable="false"></div><p class="is-r"><b>Seen it</b><span>swipe right</span></p></div></div>',
     locker: '<div class="tour-vcr"><div class="rw-vcr-block"><button type="button" class="rw-vcr" data-scan-hold="1" aria-label="Hold to rewind"><span class="rw-vcr-shell"><span class="rw-vcr-lid" aria-hidden="true"><span class="rw-vcr-power"></span><span></span><span></span></span><span class="rw-vcr-face"><span class="rw-vcr-door"><span class="rw-vcr-mouth"><span class="rw-vcr-doorcopy"><b>Hi-Fi Stereo</b><small>Rewind VHS · Video Cassette</small></span><span class="rw-vcr-slotline" aria-hidden="true"></span></span><span class="rw-blue" aria-hidden="true"></span></span><span class="rw-vcr-mid"><span aria-hidden="true"></span><span class="rw-clock-stack"><span class="rw-vcr-window"><span class="rw-vcr-screen"><span class="rw-cass" aria-hidden="true"><span class="rw-cass-win"><span class="rw-vcr-reel"></span><span class="rw-vcr-reel"></span></span></span><span class="rw-vcr-read" data-scan-hint data-idle="">--:--</span></span></span></span><span class="rw-pod" aria-hidden="true"><span class="rw-key"><s>⏏</s><b>eject</b></span></span></span><span class="rw-vcr-low" aria-hidden="true"><span class="rw-transport"><span class="rw-jacks"><i></i><i></i><i></i></span><span class="rw-key"><s>▶</s><b>play</b></span><span class="rw-key"><s>❚❚</s><b>pause</b></span></span><span class="rw-transport"><span class="rw-key is-rew"><s>◀◀</s><b>rew</b></span><span class="rw-key"><s>▶▶</s><b>fwd</b></span></span></span></span></span></button><p class="rw-vcr-cap">Press and hold the deck</p></div></div>',
   };
 
@@ -265,9 +265,13 @@
       ".tour-aisle .tape-slot{width:11rem;max-width:11rem;flex:0 0 11rem;display:block;pointer-events:auto}" +
       ".tour-aisle .vhs-box{width:100%!important;pointer-events:auto}" +
       ".tour-aisle-hint{margin:.15rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
-      ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
-      ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
-      ".tour-drop i{width:4.4rem;height:6.4rem;border-radius:6px;background:#111;color:#f4efe6;display:flex;align-items:flex-end;justify-content:center;font-style:normal;font-size:.62rem;letter-spacing:.12em;padding-bottom:.4rem;flex:0 0 auto}" +
+      ".tour-drop{margin-top:1.15rem;width:min(100%,22rem)}" +
+      ".tour-drop-stage{display:grid;grid-template-columns:5.6rem minmax(0,1fr) 4.6rem;align-items:center;gap:.3rem;padding:1.05rem .45rem 1.15rem;border-radius:16px;background:#14110e;box-shadow:0 12px 28px rgba(26,20,15,.22)}" +
+      ".tour-drop-stage p{margin:0;text-align:center;color:#f4efe6}" +
+      ".tour-drop-stage b{display:block;font-size:.68rem;font-weight:650;line-height:1.2;white-space:nowrap}" +
+      ".tour-drop-stage span{display:block;margin-top:.28rem;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;opacity:.55}" +
+      ".tour-drop-card{justify-self:center;width:6.6rem;border-radius:3px;overflow:hidden;box-shadow:0 12px 20px rgba(0,0,0,.45);touch-action:none;cursor:grab}" +
+      ".tour-drop-card img{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-drag:none}" +
       ".tour-member{margin-top:1.15rem;max-width:22rem;display:flex;align-items:center;gap:.7rem;background:color-mix(in srgb,currentColor 6%,transparent);border-radius:14px;padding:.8rem .9rem}" +
       ".tour-ava{width:2.2rem;height:2.2rem;border-radius:99px;background:#1a140f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex:0 0 auto}" +
       ".tour-member b{display:block}" +
@@ -428,6 +432,42 @@
       </div>`;
     if (s.visual === "wall") fixHalloweenCover();
     if (s.visual === "locker") wireTourVcr();
+    if (s.visual === "drop") wireTourDrop();
+  }
+
+  function wireTourDrop() {
+    const card = root && root.querySelector("[data-tour-swipe]");
+    if (!card) return;
+    let start = null;
+    let dx = 0;
+    card.addEventListener("pointerdown", function (e) {
+      start = e.clientX;
+      card.style.transition = "none";
+      try { card.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    card.addEventListener("pointermove", function (e) {
+      if (start == null) return;
+      dx = e.clientX - start;
+      const rot = Math.max(-16, Math.min(16, dx / 10));
+      card.style.transform = "translateX(" + dx + "px) rotate(" + rot + "deg)";
+    });
+    function end() {
+      if (start == null) return;
+      start = null;
+      const gone = Math.abs(dx) > 72;
+      const dir = dx < 0 ? -1 : 1;
+      card.style.transition = "transform .28s ease";
+      card.style.transform = gone ? "translateX(" + dir * 260 + "px) rotate(" + dir * 14 + "deg)" : "";
+      dx = 0;
+      if (!gone) return;
+      setTimeout(function () {
+        if (!card.isConnected) return;
+        card.style.transition = "none";
+        card.style.transform = "";
+      }, 280);
+    }
+    card.addEventListener("pointerup", end);
+    card.addEventListener("pointercancel", end);
   }
 
   function wireTourVcr() {
@@ -469,7 +509,7 @@
   window.openClubTour = open;
 
   function onStart(x, target) {
-    if (target && target.closest && target.closest("a,button,.tour-aisle")) {
+    if (target && target.closest && target.closest("a,button,.tour-aisle,.tour-drop")) {
       startX = null;
       return;
     }
