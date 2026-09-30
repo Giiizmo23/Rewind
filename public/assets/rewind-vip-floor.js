@@ -10249,7 +10249,7 @@
     sign.className = "nd-neon-sign";
     sign.setAttribute("data-built", "art");
     sign.setAttribute("aria-hidden", "true");
-    sign.innerHTML = '<img class="nd-neon-art" src="/assets/nd-neon.png?v=11" alt="">';
+    sign.innerHTML = '<img class="nd-neon-art" src="/assets/nd-neon.png?v=12" alt="">';
     if (deck) deck.insertBefore(sign, deck.firstChild);
     else overlay.insertBefore(sign, overlay.firstChild);
     ensureArtNeonCss();
@@ -10263,8 +10263,9 @@
       "html[data-drop='1'],html[data-drop='1'] body,html[data-drop='1'] .store-bg,html[data-drop='1'] #nd-overlay{background:#07060a!important;background-image:none!important;background-color:#07060a!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0 auto .15rem!important;padding:0!important;background:none!important;filter:none!important;pointer-events:none!important;transform:translateY(-2rem)!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign,html[data-drop='1'] .nd-neon-art{background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;filter:none!important;-webkit-filter:none!important;mix-blend-mode:normal!important}" +
-      "html[data-drop='1'] .nd-neon-art{display:block!important;height:min(32svh,15rem)!important;width:auto!important;max-width:96%!important;object-fit:contain!important;animation:nd-neon-hum 5.4s linear infinite}" +
+      "html[data-drop='1'] .nd-neon-art{display:block!important;height:min(32svh,15rem)!important;width:auto!important;max-width:96%!important;object-fit:contain!important;animation:nd-art-glow 4.6s linear infinite}" +
       "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(31svh,14.6rem)!important;min-height:min(31svh,14.6rem)!important;max-height:min(31svh,14.6rem)!important}" +
+      "@keyframes nd-art-glow{0%,100%{opacity:1}44%{opacity:.98}45.2%{opacity:.84}46.4%{opacity:1}76%{opacity:.97}77%{opacity:.78}78.3%{opacity:1}}" +
       "@media (prefers-reduced-motion:reduce){.nd-neon-art{animation:none!important}}";
     document.head.appendChild(s);
   }
