@@ -2113,7 +2113,7 @@
       "<h2>Move it</h2>" +
       '<p class="pic-tray-note">Drag the picture so the part you want sits in the frame. Slide to zoom.</p>' +
       '<div class="pic-frame' + (wide ? " is-banner" : " is-avatar") + '" data-pic-stage></div>' +
-      '<label class="pic-zoom">Zoom<input type="range" min="1" max="3" step="0.01" value="1" data-pic-zoom></label>' +
+      '<label class="pic-zoom">Zoom<input type="range" min="0.3" max="4" step="0.01" value="1" data-pic-zoom></label>' +
       '<div class="vip-sheet-actions">' +
       '<button type="button" class="pic-tray-ghost" data-pic-close>Cancel</button>' +
       '<button type="button" class="pic-tray-own" data-pic-use>Use this</button>' +
@@ -2141,10 +2141,10 @@
       const cover = Math.max(fw / iw, fh / ih);
       const w = iw * cover * zoom;
       const h = ih * cover * zoom;
-      const maxX = Math.max(0, (w - fw) / 2);
-      const maxY = Math.max(0, (h - fh) / 2);
-      ox = Math.max(-maxX, Math.min(maxX, ox));
-      oy = Math.max(-maxY, Math.min(maxY, oy));
+      const limitX = Math.abs(w - fw) / 2;
+      const limitY = Math.abs(h - fh) / 2;
+      ox = Math.max(-limitX, Math.min(limitX, ox));
+      oy = Math.max(-limitY, Math.min(limitY, oy));
       view.style.width = w + "px";
       view.style.height = h + "px";
       view.style.left = (fw - w) / 2 + ox + "px";
@@ -2197,7 +2197,7 @@
         const pts = Array.from(pointers.values());
         const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1;
         if (!pinch) pinch = { dist: dist, zoom: zoom };
-        zoom = Math.max(1, Math.min(3, pinch.zoom * (dist / pinch.dist)));
+        zoom = Math.max(0.3, Math.min(4, pinch.zoom * (dist / pinch.dist)));
         range.value = String(zoom);
         place();
         return;
