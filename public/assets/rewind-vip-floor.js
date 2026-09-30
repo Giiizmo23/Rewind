@@ -10170,28 +10170,50 @@
   }
   function neonSignMarkup() {
     return (
-      '<div class="nd-neon-can">' +
-      '<span class="nd-neon-rivet tl"></span><span class="nd-neon-rivet tr"></span>' +
-      '<span class="nd-neon-rivet bl"></span><span class="nd-neon-rivet br"></span>' +
-      '<svg class="nd-neon-svg" viewBox="0 0 720 142" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<div class="nd-neon-can nd-neon-open">' +
+      '<svg class="nd-neon-svg" viewBox="0 0 680 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Night Drop, after hours">' +
       "<defs>" +
-      '<filter id="rwNdGlow" x="-15%" y="-40%" width="130%" height="180%">' +
-      '<feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="b"/>' +
-      '<feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
-      "</filter>" +
-      '<filter id="rwNdCyan" x="-20%" y="-40%" width="140%" height="180%">' +
-      '<feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>' +
-      '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
-      "</filter>" +
+      '<filter id="rwNdBlue" x="-35%" y="-45%" width="170%" height="190%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<filter id="rwNdPink" x="-35%" y="-45%" width="170%" height="190%"><feGaussianBlur stdDeviation="3.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<filter id="rwNdWhite" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<filter id="rwNdGold" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '<clipPath id="rwNdLeft"><rect x="150" y="360" width="190" height="100"/></clipPath>' +
+      '<clipPath id="rwNdRight"><rect x="340" y="360" width="190" height="100"/></clipPath>' +
       "</defs>" +
-      '<g class="nd-tubes" filter="url(#rwNdGlow)" font-family="Oswald, "Arial Narrow", Impact, sans-serif" font-size="62" font-weight="500" letter-spacing="6" text-anchor="middle">' +
-      '<text x="360" y="62" fill="#ff3eb8" fill-opacity="0.28" stroke="none">NIGHT DROP</text>' +
-      '<text x="360" y="62" fill="none" stroke="#ff2aa8" stroke-width="9" opacity="0.4" stroke-linejoin="round">NIGHT DROP</text>' +
-      '<text x="360" y="62" fill="none" stroke="#ff5ad8" stroke-width="4.2" stroke-linejoin="round">NIGHT DROP</text>' +
-      '<text x="360" y="62" fill="none" stroke="#fff7fb" stroke-width="1.25" stroke-linejoin="round">NIGHT DROP</text>' +
-      '<line x1="108" y1="80" x2="612" y2="80" fill="none" stroke="#ff5ad8" stroke-width="2.6" stroke-linecap="round"/>' +
+      '<g class="nd-moon" filter="url(#rwNdGold)">' +
+      '<path d="M592 18c-22 8-34 30-30 52 18-10 28-28 26-46 2-2 4-4 4-6z" fill="none" stroke="#ffe14a" stroke-width="8" stroke-linecap="round"/>' +
+      '<path d="M590 26c-16 7-24 22-20 38 12-8 18-20 18-32 1-2 2-4 2-6z" fill="none" stroke="#fff6c2" stroke-width="2.2" stroke-linecap="round"/>' +
       "</g>" +
-      '<text class="nd-neon-sub" filter="url(#rwNdCyan)" x="360" y="118" text-anchor="middle" font-family="Oswald, "Arial Narrow", Impact, sans-serif" font-size="17" font-weight="500" letter-spacing="10" fill="#9bffff">AFTER HOURS</text>' +
+      '<g class="nd-word-night" filter="url(#rwNdBlue)">' +
+      '<text x="318" y="132" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="700" fill="none" stroke="#1230c8" stroke-width="18" stroke-linejoin="round" opacity="0.55">NIGHT</text>' +
+      '<text x="318" y="132" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="700" fill="none" stroke="#3aa6ff" stroke-width="8" stroke-linejoin="round">NIGHT</text>' +
+      '<text x="318" y="132" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="700" fill="none" stroke="#f4fbff" stroke-width="2.1" stroke-linejoin="round">NIGHT</text>' +
+      "</g>" +
+      '<g class="nd-word-drop" filter="url(#rwNdPink)">' +
+      '<text x="340" y="278" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="700" fill="none" stroke="#c4126a" stroke-width="20" stroke-linejoin="round" opacity="0.5">DROP</text>' +
+      '<text x="340" y="278" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="700" fill="none" stroke="#ff3d9a" stroke-width="9" stroke-linejoin="round">DROP</text>' +
+      '<text x="340" y="278" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="700" fill="none" stroke="#ffe6f4" stroke-width="2.2" stroke-linejoin="round">DROP</text>' +
+      "</g>" +
+      '<g class="nd-word-script" filter="url(#rwNdWhite)">' +
+      '<text x="340" y="348" text-anchor="middle" font-family="Segoe Script, Brush Script MT, cursive" font-size="58" font-style="italic" fill="#9fd8ff" fill-opacity="0.35" stroke="none">after hours</text>' +
+      '<text x="340" y="348" text-anchor="middle" font-family="Segoe Script, Brush Script MT, cursive" font-size="58" font-style="italic" fill="none" stroke="#f7fbff" stroke-width="2.4">after hours</text>' +
+      "</g>" +
+      '<g class="nd-tape">' +
+      '<g clip-path="url(#rwNdLeft)">' +
+      '<rect x="168" y="368" width="344" height="82" rx="12" fill="none" stroke="#49d4ff" stroke-width="5.5"/>' +
+      '<rect x="186" y="386" width="92" height="48" rx="7" fill="none" stroke="#49d4ff" stroke-width="4"/>' +
+      '<circle cx="232" cy="410" r="14" fill="none" stroke="#49d4ff" stroke-width="3.5"/>' +
+      '<circle cx="232" cy="410" r="4" fill="none" stroke="#bff2ff" stroke-width="2"/>' +
+      '<rect x="292" y="386" width="96" height="48" rx="6" fill="none" stroke="#49d4ff" stroke-width="4"/>' +
+      "</g>" +
+      '<g clip-path="url(#rwNdRight)">' +
+      '<rect x="168" y="368" width="344" height="82" rx="12" fill="none" stroke="#ffe14a" stroke-width="5.5"/>' +
+      '<rect x="292" y="386" width="96" height="48" rx="6" fill="none" stroke="#ffe14a" stroke-width="4"/>' +
+      '<rect x="402" y="386" width="92" height="48" rx="7" fill="none" stroke="#ffe14a" stroke-width="4"/>' +
+      '<circle cx="448" cy="410" r="14" fill="none" stroke="#ffe14a" stroke-width="3.5"/>' +
+      '<circle cx="448" cy="410" r="4" fill="none" stroke="#fff6c2" stroke-width="2"/>' +
+      "</g>" +
+      "</g>" +
       "</svg></div>"
     );
   }
@@ -10219,18 +10241,47 @@
       if (!overlay.contains(n)) n.remove();
     });
     let sign = overlay.querySelector(".nd-neon-sign");
-    if (sign && sign.getAttribute("data-built") === "tube") {
-      if (sign.parentNode !== overlay || sign !== overlay.firstChild) overlay.insertBefore(sign, overlay.firstChild);
+    if (sign && sign.getAttribute("data-built") === "open3") {
+      placeOpenNeon(sign);
+      ensureOpenNeonCss();
       return sign;
     }
     if (sign) sign.remove();
     sign = document.createElement("div");
     sign.className = "nd-neon-sign";
-    sign.setAttribute("data-built", "tube");
+    sign.setAttribute("data-built", "open3");
     sign.setAttribute("aria-hidden", "true");
     sign.innerHTML = neonSignMarkup();
-    overlay.insertBefore(sign, overlay.firstChild);
+    placeOpenNeon(sign);
+    ensureOpenNeonCss();
     return sign;
+  }
+  function placeOpenNeon(sign) {
+    const deck = document.querySelector("#nd-overlay .drop-deck");
+    if (deck) {
+      if (sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
+      return;
+    }
+    const overlay = document.getElementById("nd-overlay");
+    if (overlay && sign.parentNode !== overlay) overlay.insertBefore(sign, overlay.firstChild);
+  }
+  function ensureOpenNeonCss() {
+    if (document.getElementById("nd-open-neon")) return;
+    const s = document.createElement("style");
+    s.id = "nd-open-neon";
+    s.textContent =
+      ".nd-word-night{animation:nd-neon-hum 4.6s linear infinite}" +
+      ".nd-word-drop{animation:nd-neon-hum 6.1s linear infinite}" +
+      ".nd-word-script{animation:nd-neon-hum 5.4s linear infinite}" +
+      ".nd-tape{animation:nd-neon-hum 7s linear infinite}" +
+      ".nd-moon{animation:nd-neon-pop 8.5s steps(1,end) infinite}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:6!important;flex:0 0 auto!important;width:calc(100% - 1.7rem)!important;max-width:22rem!important;margin:0 auto .2rem!important;padding:0!important;filter:none!important;background:none!important;pointer-events:none!important}" +
+      "html[data-drop='1'] .nd-neon-open{width:100%!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}" +
+      "html[data-drop='1'] .nd-neon-open:before,html[data-drop='1'] .nd-neon-sign .nd-neon-rivet{display:none!important}" +
+      "html[data-drop='1'] .nd-neon-open .nd-neon-svg{display:block!important;width:100%!important;height:auto!important;max-height:min(24svh,10.2rem)!important;margin:0 auto!important;overflow:visible!important;filter:drop-shadow(0 0 8px rgba(70,170,255,.45)) drop-shadow(0 0 14px rgba(255,50,150,.35))}" +
+      "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(34svh,16.2rem)!important;min-height:min(34svh,16.2rem)!important;max-height:min(34svh,16.2rem)!important}" +
+      "@media (prefers-reduced-motion:reduce){.nd-word-night,.nd-word-drop,.nd-word-script,.nd-tape,.nd-moon{animation:none!important}}";
+    document.head.appendChild(s);
   }
   function dressBoardHead() {
     const wrap = document.querySelector("main .cork-wrap");
