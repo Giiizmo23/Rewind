@@ -227,7 +227,7 @@
       ".tour-vip-banner>img:not(.tour-vip-ava){display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}" +
       ".tour-vip-ava{position:absolute;z-index:2;left:.85rem;bottom:-1.35rem;width:3.4rem;height:3.4rem;border-radius:999px;object-fit:cover;object-position:center 18%;box-shadow:0 0 0 3px #f6f4ef}" +
       ".tour-vip-body{padding:1.7rem .2rem 0}" +
-      ".tour-vip-bio{margin:0;font-size:1.15rem}" +
+      ".tour-vip-bio{margin:0;font-size:.95rem;font-weight:400;line-height:1.35}" +
       ".tour-vip-kicker{margin:1.15rem 0 .45rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.45}" +
       ".tour-vip-favs{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}" +
       ".tour-vip-favs img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;background:#111}" +
