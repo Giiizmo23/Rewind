@@ -224,8 +224,8 @@
       ".tour-shot.vip{width:min(72%,12.8rem)}" +
       ".tour-vip{width:min(100%,15rem);margin:.85rem auto 0;border-radius:18px;overflow:hidden;background:#f7f4ee;color:#16120e;box-shadow:0 16px 32px rgba(26,20,15,.16)}" +
       ".tour-vip-banner{position:relative;height:5.4rem;background:#1a1410}" +
-      ".tour-vip-banner>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}" +
-      ".tour-vip-ava{position:absolute;left:.7rem;bottom:-1.15rem;width:2.9rem;height:2.9rem;border-radius:999px;object-fit:cover;box-shadow:0 0 0 3px #f7f4ee}" +
+      ".tour-vip-banner>img:not(.tour-vip-ava){display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}" +
+      ".tour-vip-ava{position:absolute;z-index:2;left:.7rem;bottom:-1.15rem;width:2.9rem;height:2.9rem;border-radius:999px;object-fit:cover;object-position:center 18%;box-shadow:0 0 0 3px #f7f4ee}" +
       ".tour-vip-body{padding:1.55rem .85rem .8rem}" +
       ".tour-vip-name{margin:0;font-size:1.05rem;font-weight:650;letter-spacing:-.02em}" +
       ".tour-vip-handle{margin:.08rem 0 0;font-size:.72rem;opacity:.55}" +
