@@ -628,6 +628,8 @@
         'html.vip-page main>[data-vip-wall] .vip-banner-wrap{margin-bottom:4.05rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .vip-bio-slot{margin-top:.85rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:.15rem}}' +
+        '[data-vip-wall] .vip-banner{background:transparent!important}' +
+        '[data-vip-wall] .vip-banner img{-webkit-mask-image:linear-gradient(to bottom,#000 46%,transparent 100%);mask-image:linear-gradient(to bottom,#000 46%,transparent 100%)}' +
         'a.vip-tab{text-decoration:none;color:inherit;pointer-events:auto}' +
         '.vip-tabs,.vip-tab{pointer-events:auto!important;cursor:pointer!important;position:relative;z-index:5}' +
         '[data-vip-card],.top5-section,[data-vip-shelves],[data-vip-tapes-sec],[data-prize-locker],[data-vip-club],[data-vip-onvcr-sec],[data-vip-stats],#rewards{scroll-margin-top:6.4rem}' +
