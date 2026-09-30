@@ -105,39 +105,46 @@
   ];
 
   function tourShelfBox() {
-    const film = {
-      slug: "jaws",
-      title: "Jaws",
-      year: 1975,
-      director: "Steven Spielberg",
-      runtime: "124 MIN",
-      genres: "Thriller · Adventure",
-      catalogNo: "RW-1975-06",
-      tagline: "Don't go in the water.",
-      overview: "A shark closes the beach. The sheriff, a scientist, and a scarred captain go out on a boat that is too small. The score does the rest.",
-    };
-    const sid = "jaws";
+    const slug = "halloween-1978";
+    const sid = "halloween1978";
+    const spineInk =
+      '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
+      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=484" alt="" draggable="false" decoding="async">' +
+      '<span class="vhs-spine-year">1978</span><span class="vhs-spine-no">RW-1978-10</span></div>';
     const sticker =
       '<svg class="vhs-sticker" viewBox="0 0 64 64" aria-hidden="true" data-stk-v="9">' +
       stickerMarkup(sid) +
       "</svg>";
     return (
-      '<div class="tour-aisle" data-tour-aisle="1"><div class="tour-tape" data-tour-tape="1" style="--vhs-yaw:18deg;--vhs-pitch:7deg">' +
-      '<div class="tour-tape-front">' +
-      '<img class="tour-tape-spine" src="/sleeves/spines/jaws.png?v=485" alt="" draggable="false">' +
-      '<img class="tour-tape-cover" src="/sleeves/jaws.jpg?v=488" alt="Jaws" draggable="false">' +
+      '<div class="tour-aisle" data-tour-aisle="1"><article class="tape-slot">' +
+      '<div class="vhs-box is-flip shrink-0" data-tour-tape="1" data-size="md" data-paint="1" data-spine-logo="1" data-back-v="12" data-slug="' + slug + '" data-sticker="tr" data-title="none" data-film="' + slug + '" style="width:100%;--vhs-yaw:18deg;--vhs-pitch:7deg;pointer-events:auto">' +
+      '<div class="vhs-flip"><div class="vhs-flip-card">' +
+      '<span class="vhs-panel vhs-panel-top" aria-hidden="true"></span>' +
+      '<span class="vhs-panel vhs-panel-bot" aria-hidden="true"></span>' +
+      '<span class="vhs-liner vhs-liner-left" aria-hidden="true"></span>' +
+      '<span class="vhs-liner vhs-liner-right" aria-hidden="true"></span>' +
+      '<div class="vhs-spine vhs-spine-left" aria-hidden="true">' + spineInk + "</div>" +
+      '<div class="vhs-spine vhs-spine-right" aria-hidden="true">' + spineInk + "</div>" +
+      '<div class="vhs-face-front"><div class="vhs-case"><div class="vhs-shell"><div class="vhs-sleeve"><div class="vhs-window"><div class="relative size-full">' +
+      '<img src="/sleeves/halloween-1978.jpg?v=487" alt="Halloween" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover">' +
+      "</div></div>" +
       sticker +
-      "</div>" +
-      '<div class="tour-tape-back">' +
-      '<div class="tour-tape-scene" style="background-image:url(/sleeves/jaws-orca.jpg?v=2)"></div>' +
-      '<div class="tour-tape-copy">' +
-      '<p class="tag">“' + film.tagline + '”</p>' +
-      '<p>' + film.overview + "</p>" +
-      '<p class="by">A film by ' + film.director + "</p>" +
-      '<p class="meta">' + film.year + " · " + film.runtime + "</p>" +
-      '<p class="meta">' + film.genres + "</p>" +
-      '<p class="meta">' + film.catalogNo + " · Hi-Fi Stereo</p>" +
-      "</div></div></div></div>" +
+      '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
+      '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
+      '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
+      '<div class="vhs-back-still"><img src="/sleeves/halloween-1978-still.jpg?v=522" alt="" draggable="false" decoding="async"></div>' +
+      '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
+      '<p class="vhs-back-tag">“The night he came home.”</p>' +
+      '<p class="vhs-back-syn">Haddonfield, October 31st. A shape in a mask walks the suburbs like he never left. Laurie is babysitting. The score is two notes.</p>' +
+      '</div><div class="vhs-back-end">' +
+      '<p class="vhs-back-credits">A film by John Carpenter</p>' +
+      '<p class="vhs-back-stock">1978 · 91 MIN</p>' +
+      '<p class="vhs-back-cast">Horror</p>' +
+      '<p class="vhs-back-stock">RW-1978-10 · Hi-Fi Stereo</p>' +
+      '<div class="vhs-back-foot">' + barcodeSvg("RW-1978-10") + '<span class="vhs-back-logo">REWIND</span></div>' +
+      '<p class="vhs-back-kind">Be kind, rewind.</p></div></div>' +
+      '<span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
+      '</div></div><span class="vhs-hit" aria-hidden="true"></span></div></article></div>' +
       '<p class="tour-aisle-hint">Drag to turn. Double-tap to flip.</p>'
     );
   }
@@ -163,22 +170,10 @@
       ".tour-shot.checkout{width:min(100%,15.6rem)}" +
       ".tour-shot.vip{width:min(72%,12.8rem)}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
-      ".tour-aisle{display:flex;justify-content:center;margin:.7rem auto 0;width:100%;overflow:visible}" +
-      ".tour-tape{position:relative;width:12rem;aspect-ratio:4/7;transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg));transform-style:preserve-3d;transition:transform .28s cubic-bezier(.22,1,.36,1)}" +
-      ".tour-tape-front,.tour-tape-back{position:absolute;inset:0;display:flex;overflow:hidden;border-radius:3px;background:#14110e;box-shadow:0 14px 28px rgba(20,16,12,.28)}" +
-      ".tour-tape-back{display:none;flex-direction:column}" +
-      ".tour-tape.is-back .tour-tape-front{display:none}" +
-      ".tour-tape.is-back .tour-tape-back{display:flex}" +
-      ".tour-tape-spine{position:relative;z-index:2;width:1.15rem;flex:0 0 1.15rem;height:100%;object-fit:cover;background:#000}" +
-      ".tour-tape-cover{width:100%;height:100%;object-fit:cover;object-position:center top}" +
-      ".tour-tape .vhs-sticker{position:absolute;z-index:3;right:8px;bottom:8px;width:1.45rem;height:1.45rem}" +
-      ".tour-tape-scene{flex:0 0 54%;background:#16324a center 42%/cover no-repeat}" +
-      ".tour-tape-copy{flex:1;min-height:0;padding:.42rem .5rem .35rem;color:#f0ead8;background:#14110e;font-size:.62rem;line-height:1.28;overflow:hidden}" +
-      ".tour-tape-copy .tag{margin:0 0 .15rem;color:#e7c27a;font-size:.58rem}" +
-      ".tour-tape-copy p{margin:0}" +
-      ".tour-tape-copy .by{margin-top:.28rem;color:#e7c27a;font-size:.5rem;letter-spacing:.04em;text-transform:uppercase}" +
-      ".tour-tape-copy .meta{font-size:.5rem;opacity:.78}" +
-      ".tour-aisle-hint{margin:.2rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
+      ".tour-aisle{display:flex;justify-content:center;margin:.55rem auto 0;width:100%;overflow:visible}" +
+      ".tour-aisle .tape-slot{width:11rem;max-width:11rem;flex:0 0 11rem;display:block;pointer-events:auto}" +
+      ".tour-aisle .vhs-box{width:100%!important;pointer-events:auto}" +
+      ".tour-aisle-hint{margin:.15rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
       ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
       ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
       ".tour-drop i{width:4.4rem;height:6.4rem;border-radius:6px;background:#111;color:#f4efe6;display:flex;align-items:flex-end;justify-content:center;font-style:normal;font-size:.62rem;letter-spacing:.12em;padding-bottom:.4rem;flex:0 0 auto}" +
@@ -297,13 +292,7 @@
           </div>
         </div>
       </div>`;
-    if (s.visual === "wall") {
-      document.querySelectorAll(".tour-tape-scene").forEach(function (el) {
-        el.style.setProperty("background-image", "url(/sleeves/jaws-orca.jpg?v=2)", "important");
-        el.style.setProperty("background-size", "cover", "important");
-        el.style.setProperty("background-position", "center 42%", "important");
-      });
-    }
+    if (s.visual === "wall") fixHalloweenCover();
   }
 
   function open() {
