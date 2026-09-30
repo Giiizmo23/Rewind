@@ -56,20 +56,20 @@
   const SLIDES = [
     {
       kicker: "Front desk",
-      title: "Your card is the club.",
-      body: "Rewind is a video store you join with a card. It’s free. Name, handle, password — stamp it. You can walk the aisles without one. Renting, logging, and the rest of the club need a stamp.",
+      title: "A video store you join.",
+      body: "Rewind is the shop. The card is membership, and it’s free. Stamp your name, handle, and password. You can walk the aisles without one. Renting, logging, and the club need a stamp.",
       visual: "card",
     },
     {
-      kicker: "In the window",
+      kicker: "The aisles",
       title: "Every title is a real box.",
-      body: "Flip it. Read the spine. Every box has its own image and synopsis — check it out like you’re at the counter.",
+      body: "The tapes sit on the shelf, labeled like a neighborhood store. Pull a box and flip it. Each one has its own image, spine, and synopsis.",
       visual: "wall",
     },
     {
       kicker: "Take it home",
       title: "Rent it. Then review it.",
-      body: "Pick one of the three terms — overnight, weekend, or a week. Watch it. Bring it back on time. Leave a review when you return it — that’s how the club knows you sat through the movie.",
+      body: "Pick a term — overnight, weekend, or a week. Watch it. Bring it back on time. When you return it, leave a review. That’s how the club knows you sat through the movie.",
       visual: "rent",
     },
     {
@@ -80,14 +80,14 @@
     },
     {
       kicker: "VIP",
-      title: "Your page.",
-      body: "This is your corner of the store. A header and a photo across the top, a short bio under your name, and the membership card. Four favorites sit over the card. Your Tapes is the wall of movies you’ve logged, under it.",
+      title: "Your page in the store.",
+      body: "This is your corner. Set the header and the photo, write a short bio, and the membership card hangs under them. Favorites are four tapes you put up over the card. Your Tapes is the wall of movies you’ve logged.",
       visual: "vip",
     },
     {
       kicker: "The board",
-      title: "The store.",
-      body: "The board is at the back of the shop, and it has three tabs. Store is the square. Trending tapes, ratings, and reviews from around the club. Tap a member’s name and their page opens.",
+      title: "The store tab.",
+      body: "The board hangs at the back of the shop, and it has five tabs. Store is the square: trending tapes, ratings, and reviews from around the club. Tap a member’s name and their page opens.",
       visual: "store",
     },
     {
@@ -97,10 +97,22 @@
       visual: "floor",
     },
     {
-      kicker: "The club",
-      title: "Friends, messages, reviews.",
-      body: "Club is the membership list. Search a name and add them as a friend. Friends can message, and share the reviews they’ve written.",
+      kicker: "The board",
+      title: "The club.",
+      body: "Club is the membership list. Search a username or a real name and add them. Friends can message, and share the reviews they’ve written.",
       visual: "club",
+    },
+    {
+      kicker: "The board",
+      title: "You.",
+      body: "You is your own filings. Every tape you log shows up on this tab, in one place.",
+      visual: "you",
+    },
+    {
+      kicker: "The board",
+      title: "Incoming.",
+      body: "Incoming is what comes back to you. A heart on a review, or an invite, lands here.",
+      visual: "incoming",
     },
     {
       kicker: "Behind the counter",
@@ -122,6 +134,8 @@
     store: `<ul class="tour-visual-list"><li>Trending tapes</li><li>Ratings and reviews</li><li>Tap a name, open their page</li></ul>`,
     floor: `<ul class="tour-visual-list"><li>A friend logs a tape</li><li>A friend writes a review</li><li>A friend rents one</li></ul>`,
     club: `<ul class="tour-visual-list"><li>Search the membership list</li><li>Add a friend</li><li>Message, and share a review</li></ul>`,
+    you: `<ul class="tour-visual-list"><li>Tapes you logged</li><li>Your filings, in one place</li></ul>`,
+    incoming: `<ul class="tour-visual-list"><li>Hearts on a review</li><li>Invites</li></ul>`,
     locker: `<div class="tour-visual-boxes"><span>Log a tape</span><span>Points on the card</span><span>Take a stub</span></div>`,
     wall: `<div class="tour-visual-boxes"><span>Flip the box</span><span>Read the spine</span><span>Check out the tape</span></div>`,
     rent: `<div class="tour-visual-boxes"><span>Overnight</span><span>Weekend</span><span>A week</span></div>`,
