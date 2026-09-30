@@ -277,7 +277,7 @@
       ".tour-points div{flex:1;border-radius:14px;padding:.85rem;background:color-mix(in srgb,currentColor 6%,transparent)}" +
       ".tour-points strong{display:block;font-size:1.25rem}" +
       ".tour-points span{font-size:.75rem;opacity:.7}" +
-      ".tour-vcr{margin-top:1.15rem;width:min(100%,22rem)}" +
+      ".tour-vcr{margin-top:1.15rem;width:min(100%,22rem);transform:translateX(.7rem)}" +
       ".tour-vcr .rw-vcr-block{margin:0!important;transform:none!important;align-items:stretch}" +
       ".rw-vcr{display:block;width:100%;margin:.2rem 0 .3rem;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;text-align:left;font:inherit;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}" +
       ".rw-vcr *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}" +
@@ -306,7 +306,8 @@
       ".rw-jacks i:nth-child(1){background:#c9a227}.rw-jacks i:nth-child(1)::after{background:#6a5610}" +
       ".rw-jacks i:nth-child(2){background:#ececec}.rw-jacks i:nth-child(2)::after{background:#888}" +
       ".rw-jacks i:nth-child(3){background:#c41230}.rw-jacks i:nth-child(3)::after{background:#6a0a18}" +
-      ".rw-vcr-window{justify-self:center;width:min(10.4rem,100%);height:2.15rem;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#03140c;box-shadow:inset 0 0 0 1px rgba(120,255,180,.55),inset 0 0 14px rgba(70,255,150,.28),0 0 10px rgba(60,255,140,.22)}" +
+      ".rw-vcr-window{justify-self:center;display:flex;align-items:center;justify-content:center;gap:.4rem;background:#03140c;box-shadow:inset 0 0 0 1px rgba(120,255,180,.55),inset 0 0 14px rgba(70,255,150,.28),0 0 10px rgba(60,255,140,.22)}" +
+      ".tour-vcr .rw-vcr-window{width:12.2rem!important;height:2.7rem!important;padding:0 .45rem!important;box-sizing:border-box!important;gap:.55rem!important}" +
       ".rw-vcr-screen{display:flex;align-items:center;gap:.35rem}" +
       ".rw-cass{display:flex;align-items:center;justify-content:center;width:1.7rem;height:1.15rem;border-radius:.1rem;background:linear-gradient(180deg,#243028,#101612);box-shadow:inset 0 0 0 1px rgba(170,255,200,.4),0 0 6px rgba(80,255,160,.28)}" +
       ".rw-cass-win{display:flex;align-items:center;justify-content:center;gap:.1rem;width:1.28rem;height:.7rem;border-radius:.04rem;background:#04140c;box-shadow:inset 0 1px 3px #000,inset 0 0 0 1px rgba(120,255,180,.2)}" +
