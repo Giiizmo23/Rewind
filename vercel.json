@@ -4,6 +4,10 @@
     {
       "source": "/sfx/(.*)\\.wav",
       "headers": [{ "key": "Content-Type", "value": "audio/wav" }]
+    },
+    {
+      "source": "/assets/FLOOR.json",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
     }
   ]
 }

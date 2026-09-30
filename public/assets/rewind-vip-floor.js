@@ -1,6 +1,28 @@
 (() => {
   if (window.__rwVipFloor) return;
   window.__rwVipFloor = 1;
+  document.addEventListener(
+    "click",
+    function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var box = t.closest("[data-vip-top5] .vhs-box, [data-vip-top5] a.rw-member-tape, [data-vip-tapes] .vhs-box, [data-vip-tapes] a.rw-member-tape, [data-vip-wall-tapes] .vhs-box");
+      if (!box) return;
+      var href = (box.getAttribute("href") || "").split("?")[0];
+      if (href.indexOf("/films/") === -1) {
+        var slug = String(box.getAttribute("data-slug") || "").replace(/[^a-z0-9-]/gi, "");
+        if (slug) href = "/films/" + slug;
+      }
+      var cut = href.indexOf("/films/");
+      if (cut > 0) href = href.slice(cut);
+      if (!/^\/films\/[A-Za-z0-9]/.test(href)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+      try { location.assign(href); } catch (errGo) { location.href = href; }
+    },
+    true,
+  );
   try {
     if (!window.__rwArrGuard) {
       window.__rwArrGuard = 1;
