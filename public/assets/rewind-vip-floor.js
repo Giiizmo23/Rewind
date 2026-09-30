@@ -10042,19 +10042,24 @@
           friendOf[String(p.handle || "").toLowerCase()] = p.friend || "none";
         });
         const rows = ((data && data.feed) || []).filter(function (r) {
+          if (lane === "store") {
+            if (r.kind === "tape") return !!r.slug;
+            if (r.kind === "review") return !!r.excerpt;
+            if (r.kind === "comment") return !!(r.handle && r.excerpt);
+            if (r.kind === "like") return !!r.handle;
+            return !!r.excerpt;
+          }
           const h = String(r.handle || "").toLowerCase();
-          if (!h) return false;
-          if (lane === "store") return !!r.excerpt;
-          if (h === me) return false;
+          if (!h || h === me) return false;
           if (!clubBook.loaded) return true;
           const state = friendOf[h];
           if (!state) return true;
-          return state === "friends" || state === "out";
+          return state === "friends";
         });
         if (!rows.length) {
           feed.innerHTML = lane === "store"
-            ? '<p class="cork-empty">The square is quiet. Reviews show up here.</p>'
-            : '<p class="cork-empty">The floor is quiet. Add a friend and their logs show up here.</p>';
+            ? '<p class="cork-empty">The square is quiet. Trending reviews and busy tapes show up here.</p>'
+            : '<p class="cork-empty">The floor is quiet. When a friend logs, reviews, or rents a tape, it shows up here.</p>';
           return;
         }
         loadBoardTitles(function (index) {
@@ -10062,16 +10067,30 @@
           const slips = rows.map(function (r) {
             const film = boardFilmLabel(r.slug, index);
             if (r.title && !index[r.slug]) film.title = r.title;
-            if (lane === "store") {
+            if (lane === "store" && r.kind === "tape") {
+              const bits = [];
+              if (r.rentals) bits.push(Number(r.rentals) === 1 ? "Rented once" : "Rented " + r.rentals + " times");
+              if (r.logs) bits.push(Number(r.logs) === 1 ? "logged once" : "logged " + r.logs + " times");
+              if (r.likes) bits.push(Number(r.likes) === 1 ? "1 like" : r.likes + " likes");
+              if (r.comments) bits.push(Number(r.comments) === 1 ? "1 comment" : r.comments + " comments");
+              const head = r.label === "rented" ? "Most rented" : r.label === "logged" ? "Most logged" : "Trending";
+              return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line">' + head + ' · <a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (film.year ? ' <span class="cork-year">' + boardEsc(film.year) + "</span>" : "") + "</p>" + (bits.length ? '<p class="cork-slip-review">' + boardEsc(bits.join(" · ")) + "</p>" : "") + "</div></article>";
+            }
+            if (lane === "store" && (r.kind === "review" || r.excerpt)) {
               const whoName = String(r.handle || "").toLowerCase() === me ? ((typeof cardName === "function" && cardName()) || "You") : (r.name || r.handle);
               const stars = guestStars(r.rating);
-              return '<article class="cork-slip" data-store-review="1" data-review-handle="' + boardEsc(r.handle) + '" data-review-slug="' + boardEsc(r.slug) + '" data-review-name="' + boardEsc(whoName) + '"><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(whoName) + '</a> reviewed <a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (stars ? " " + stars : "") + "</p>" + (r.excerpt ? '<p class="cork-slip-review">' + boardEsc(r.excerpt) + "</p>" : "") + "</div></article>";
+              const verb = r.kind === "comment" ? "commented on" : r.kind === "like" ? "liked" : "reviewed";
+              const reviewCard = r.kind !== "comment" && r.kind !== "like";
+              const open = reviewCard ? ' data-store-review="1" data-review-handle="' + boardEsc(r.handle) + '" data-review-slug="' + boardEsc(r.slug) + '" data-review-name="' + boardEsc(whoName) + '"' : "";
+              return '<article class="cork-slip"' + open + '><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(whoName) + "</a> " + verb + ' <a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (stars && r.kind !== "comment" ? " " + stars : "") + "</p>" + (r.excerpt && r.kind !== "like" ? '<p class="cork-slip-review">' + boardEsc(r.excerpt) + "</p>" : "") + "</div></article>";
             }
-            const verb = r.kind === "out" ? "checked out" : r.kind === "rewatch" ? "watched again" : "filed";
+            const verbs = { review: "reviewed", like: "liked", comment: "commented on", log: "logged", rent: "rented", rewatch: "watched again", own: "kept a copy of", rewind: "rewound", ontime: "returned on time", out: "checked out", filed: "logged" };
+            const verb = verbs[r.kind] || "logged";
             const who = String(r.handle || "").toLowerCase() === me ? ((typeof cardName === "function" && cardName()) || "You") : (r.name || r.handle);
-            return boardSlip(who, r.handle, verb, { slug: r.slug, title: film.title, year: film.year }, r.review, r.rating);
+            const blurb = r.kind === "review" || r.kind === "comment" ? (r.blurb || r.review || "") : "";
+            return boardSlip(who, r.handle, verb, { slug: r.slug, title: film.title, year: film.year }, blurb, r.kind === "comment" ? 0 : r.rating);
           }).join("");
-          feed.innerHTML = (lane === "store" ? '<p class="cork-kicker">The square</p>' : '<p class="cork-kicker">Friends</p>') + slips;
+          feed.innerHTML = (lane === "store" ? '<p class="cork-kicker">Trending</p>' : '<p class="cork-kicker">Friends</p>') + slips;
         });
       };
       clubPost("/api/rewind/club/feed", { lane: lane }).then(function (data) {
@@ -11074,7 +11093,12 @@
             if (!text) return;
             patchDiaryNote(tape, function (row) {
               row.replies = Array.isArray(row.replies) ? row.replies : [];
-              row.replies.push({ by: memberFaceName(), text: text, at: Date.now() });
+              row.replies.push({
+                by: memberFaceName(),
+                handle: String((typeof activeHandle === "function" && activeHandle()) || "").trim(),
+                text: text,
+                at: Date.now(),
+              });
             });
             location.assign("/diary?view=reviews&tape=" + encodeURIComponent(tape));
           });

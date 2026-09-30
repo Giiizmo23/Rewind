@@ -371,31 +371,6 @@ function memberNotes(member: { handle: string; name: string; locker: Locker }) {
   return { name, notes };
 }
 
-function noteSlips(
-  member: { handle: string; name: string; locker: Locker },
-  name: string,
-  notes: Record<string, Record<string, unknown>>,
-  limit: number,
-) {
-  const slips = Object.keys(notes).map((slug) => {
-    const note = notes[slug] || {};
-    const review = typeof note.review === "string" ? note.review.trim().slice(0, 280) : "";
-    return {
-      handle: member.handle,
-      name,
-      slug,
-      kind: note.rewatch || note.watched ? "rewatch" : "filed",
-      review: /^(review|reviewed)$/i.test(review) ? "" : review,
-      rating: Number(note.rating) || 0,
-      liked: !!note.liked,
-      owned: !!note.owned,
-      at: Number(note.at) || 0,
-    };
-  });
-  slips.sort((a, b) => b.at - a.at);
-  return limit > 0 ? slips.slice(0, limit) : slips;
-}
-
 async function clubFeed(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
@@ -404,53 +379,360 @@ async function clubFeed(sql: Sql, body: Record<string, unknown>): Promise<Respon
   return floorSquare(sql, who.handle);
 }
 
-async function floorSquare(sql: Sql, handle: string): Promise<Response> {
-  const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
-    `select m.handle, m.name, m.locker
-     from rewind_members m
-     where m.handle in (
-       select f.followee from rewind_follows f
-       where f.follower = $1
-         and exists (
-           select 1 from rewind_follows back
-           where back.follower = f.followee and back.followee = $1
-         )
-     )
-     order by m.handle
-     limit 200`,
+const FEED_HALF_MS = 7 * 86400000;
+
+function feedDecay(at: number, now: number): number {
+  if (!at || at <= 0) return 0.2;
+  return 0.5 ** (Math.max(0, now - at) / FEED_HALF_MS);
+}
+
+function feedClip(text: string, max: number): string {
+  const clean = text.trim();
+  if (clean.length <= max) return clean;
+  return clean.slice(0, max - 1).trimEnd() + "…";
+}
+
+function cleanReview(value: unknown): string {
+  const review = typeof value === "string" ? value.trim() : "";
+  if (!review || /^(review|reviewed)$/i.test(review)) return "";
+  return review;
+}
+
+function slugOf(item: unknown): string {
+  if (typeof item === "string") return item.trim().replace(/^\/+|\/+$/g, "");
+  if (!item || typeof item !== "object") return "";
+  const row = item as Record<string, unknown>;
+  return String(row.slug || row.filmId || row.id || "").trim().replace(/^\/+|\/+$/g, "");
+}
+
+function lockerList(locker: Locker, key: string): unknown[] {
+  const raw = lockerJson(locker, key);
+  return Array.isArray(raw) ? raw : [];
+}
+
+function wallOf(locker: Locker): Record<string, unknown> {
+  const wall = lockerJson(locker, "rewind-club-wall");
+  return wall && !Array.isArray(wall) ? wall : {};
+}
+
+type ClubPerson = { handle: string; name: string; locker: Locker };
+
+function personName(member: ClubPerson): string {
+  const face = member.locker?.cardFace || {};
+  const profile = member.locker?.profile || {};
+  return String(face.name || profile.displayName || profile.name || member.name || member.handle);
+}
+
+function personKeys(member: ClubPerson, name: string): string[] {
+  const face = member.locker?.cardFace || {};
+  const profile = member.locker?.profile || {};
+  const raw = [member.handle, member.name, name, face.displayName, face.name, profile.displayName, profile.name, profile.username];
+  const keys: string[] = [];
+  for (const value of raw) {
+    const key = String(value || "").trim().toLowerCase();
+    if (key && !keys.includes(key)) keys.push(key);
+  }
+  return keys;
+}
+
+async function loadClub(sql: Sql): Promise<ClubPerson[]> {
+  return sql.query<ClubPerson>(
+    "select handle, name, coalesce(locker, '{}'::jsonb) - 'banner' - 'avatar' as locker from rewind_members",
+  );
+}
+
+async function mutualHandles(sql: Sql, handle: string): Promise<Set<string>> {
+  const rows = await sql.query<{ handle: string }>(
+    `select f.followee as handle from rewind_follows f
+     where f.follower = $1
+       and exists (
+         select 1 from rewind_follows back
+         where back.follower = f.followee and back.followee = $1
+       )`,
     [handle],
   );
-  const feed: Array<Record<string, unknown>> = [];
-  for (const member of rows) {
-    const { name, notes } = memberNotes(member);
-    feed.push(...noteSlips(member, name, notes, 0));
-  }
-  feed.sort((a, b) => Number(b.at) - Number(a.at));
-  return json({ ok: true, shared: true, lane: "floor", feed: feed.slice(0, 80) });
+  return new Set(rows.map((row) => row.handle));
+}
+
+type TapeHeat = {
+  rentals: number;
+  logs: number;
+  likes: number;
+  comments: number;
+  heat: number;
+  at: number;
+  title: string;
+};
+
+type Scored = { score: number; at: number; item: Record<string, unknown> };
+
+async function floorSquare(sql: Sql, handle: string): Promise<Response> {
+  const club = await loadClub(sql);
+  const friends = await mutualHandles(sql, handle);
+  const { acts } = buildClubFeeds(club, friends, Date.now());
+  acts.sort((a, b) => Number(b.at) - Number(a.at) || String(a.kind).localeCompare(String(b.kind)));
+  return json({ ok: true, shared: true, lane: "floor", feed: acts.slice(0, 80) });
 }
 
 async function storeSquare(sql: Sql): Promise<Response> {
-  const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
-    "select handle, name, locker from rewind_members order by created_at desc limit 400",
-  );
-  const feed: Array<Record<string, unknown>> = [];
-  for (const member of rows) {
-    const { name, notes } = memberNotes(member);
-    for (const slip of noteSlips(member, name, notes, 0)) {
-      const review = String(slip.review || "").trim();
-      if (!review) continue;
-      feed.push({
-        handle: slip.handle,
-        name,
-        slug: slip.slug,
-        rating: slip.rating,
-        excerpt: review.length > 110 ? review.slice(0, 107).trimEnd() + "…" : review,
-        at: slip.at,
-      });
+  const club = await loadClub(sql);
+  const { ranked } = buildClubFeeds(club, null, Date.now());
+  return json({ ok: true, shared: true, lane: "store", feed: ranked.slice(0, 24) });
+}
+
+function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: number) {
+  const byKey = new Map<string, ClubPerson>();
+  for (const member of club) {
+    const name = personName(member);
+    byKey.set(member.handle, member);
+    const folded = member.handle.toLowerCase();
+    if (!byKey.has(folded)) byKey.set(folded, member);
+    for (const key of personKeys(member, name)) {
+      if (!byKey.has(key)) byKey.set(key, member);
     }
   }
-  feed.sort((a, b) => Number(b.at) - Number(a.at) || Number(b.rating) - Number(a.rating));
-  return json({ ok: true, shared: true, lane: "store", feed: feed.slice(0, 24) });
+  const heat = new Map<string, TapeHeat>();
+  const authorPts = new Map<string, number>();
+  const reviews: Array<Record<string, unknown> & { commentPts: number }> = [];
+  const likes: Array<Record<string, unknown>> = [];
+  const comments: Array<Record<string, unknown>> = [];
+  const floor: Array<Record<string, unknown>> = [];
+
+  const bump = (slug: string, field: "rentals" | "logs" | "likes" | "comments" | "", weight: number, at: number, who: string, title = "") => {
+    if (!slug) return 0;
+    const row = heat.get(slug) || { rentals: 0, logs: 0, likes: 0, comments: 0, heat: 0, at: 0, title: "" };
+    if (field) row[field] += 1;
+    const pts = weight * feedDecay(at, now);
+    row.heat += pts;
+    if (at > row.at) row.at = at;
+    if (title && !row.title) row.title = title;
+    heat.set(slug, row);
+    if (who) authorPts.set(who + "\0" + slug, (authorPts.get(who + "\0" + slug) || 0) + pts);
+    return pts;
+  };
+
+  for (const member of club) {
+    const name = personName(member);
+    const locker = member.locker || {};
+    const wall = wallOf(locker);
+    const notes =
+      wall.diaryNotes && typeof wall.diaryNotes === "object" && !Array.isArray(wall.diaryNotes)
+        ? (wall.diaryNotes as Record<string, Record<string, unknown>>)
+        : {};
+    const onFloor = !!friends?.has(member.handle);
+    const logAt = new Map<string, number>();
+    const rewatch = new Set<string>();
+    for (const key of ["rewind-logged-slugs", "rewind-local-diary", "rewind-kind-films"]) {
+      for (const item of lockerList(locker, key)) {
+        const slug = slugOf(item);
+        if (!slug) continue;
+        const at = item && typeof item === "object" ? Number((item as { at?: unknown }).at) || 0 : 0;
+        if (!logAt.has(slug) || at > (logAt.get(slug) || 0)) logAt.set(slug, at);
+      }
+    }
+    for (const [slug, note] of Object.entries(notes)) {
+      if (!slug) continue;
+      const at = Number(note.at) || 0;
+      const review = cleanReview(note.review);
+      const rating = Number(note.rating) || 0;
+      const liked = !!note.liked;
+      if (review || rating > 0 || note.watched || note.rewatch || logAt.has(slug)) {
+        logAt.set(slug, Math.max(logAt.get(slug) || 0, at));
+      }
+      if (note.rewatch) rewatch.add(slug);
+      if (liked) {
+        bump(slug, "likes", 3, at, member.handle);
+        likes.push({ handle: member.handle, name, slug, rating, at });
+        if (onFloor) floor.push({ kind: "like", handle: member.handle, name, slug, rating, at });
+      }
+      if (review) {
+        bump(slug, "", 1, at, member.handle);
+        let commentPts = 0;
+        const replies = Array.isArray(note.replies) ? note.replies : [];
+        for (const reply of replies) {
+          if (!reply || typeof reply !== "object") continue;
+          const row = reply as Record<string, unknown>;
+          const text = typeof row.text === "string" ? row.text.trim() : "";
+          if (!text) continue;
+          const when = Number(row.at) || 0;
+          const hinted = String(row.handle || "").trim();
+          const named = String(row.by || "").trim().toLowerCase();
+          const author = (hinted && (byKey.get(hinted) || byKey.get(hinted.toLowerCase()))) || (named && byKey.get(named)) || null;
+          commentPts += bump(slug, "comments", 4, when, author?.handle || "", "");
+          if (!author) continue;
+          const authorName = personName(author);
+          comments.push({ handle: author.handle, name: authorName, slug, at: when, excerpt: feedClip(text, 110) });
+          if (friends?.has(author.handle)) {
+            floor.push({
+              kind: "comment",
+              handle: author.handle,
+              name: authorName,
+              slug,
+              at: when,
+              blurb: feedClip(text, 600),
+            });
+          }
+        }
+        reviews.push({ handle: member.handle, name, slug, rating, at, excerpt: feedClip(review, 110), blurb: feedClip(review, 2000), commentPts });
+        if (onFloor) floor.push({ kind: "review", handle: member.handle, name, slug, rating, at, blurb: feedClip(review, 2000) });
+      } else if (Array.isArray(note.replies)) {
+        for (const reply of note.replies) {
+          if (!reply || typeof reply !== "object") continue;
+          const row = reply as Record<string, unknown>;
+          const text = typeof row.text === "string" ? row.text.trim() : "";
+          if (!text) continue;
+          const when = Number(row.at) || 0;
+          const hinted = String(row.handle || "").trim();
+          const named = String(row.by || "").trim().toLowerCase();
+          const author = (hinted && (byKey.get(hinted) || byKey.get(hinted.toLowerCase()))) || (named && byKey.get(named)) || null;
+          bump(slug, "comments", 4, when, author?.handle || "");
+          if (!author) continue;
+          const authorName = personName(author);
+          comments.push({ handle: author.handle, name: authorName, slug, at: when, excerpt: feedClip(text, 110) });
+          if (friends?.has(author.handle)) {
+            floor.push({
+              kind: "comment",
+              handle: author.handle,
+              name: authorName,
+              slug,
+              at: when,
+              blurb: feedClip(text, 600),
+            });
+          }
+        }
+      }
+      if (onFloor && note.owned) {
+        bump(slug, "", 1, at, member.handle);
+        floor.push({ kind: "own", handle: member.handle, name, slug, at });
+      } else if (note.owned) bump(slug, "", 1, at, member.handle);
+    }
+    for (const [slug, at] of logAt) {
+      bump(slug, "logs", 2, at, member.handle);
+      if (!onFloor) continue;
+      const note = notes[slug] || {};
+      floor.push({
+        kind: rewatch.has(slug) ? "rewatch" : "log",
+        handle: member.handle,
+        name,
+        slug,
+        rating: Number(note.rating) || 0,
+        at,
+      });
+    }
+    for (const item of lockerList(locker, "rewind-out-tapes")) {
+      const slug = slugOf(item);
+      if (!slug) continue;
+      const row = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
+      const at = Number(row.rentedAt) || 0;
+      const title = typeof row.title === "string" ? row.title : "";
+      bump(slug, "rentals", 5, at, member.handle, title);
+      if (onFloor) floor.push({ kind: "rent", handle: member.handle, name, slug, title, at });
+    }
+    const rewound = wall.rewound && typeof wall.rewound === "object" && !Array.isArray(wall.rewound) ? (wall.rewound as Record<string, unknown>) : {};
+    for (const [slug, when] of Object.entries(rewound)) {
+      const at = Number(when) || 0;
+      bump(slug, "", 2, at, member.handle);
+      if (onFloor) floor.push({ kind: "rewind", handle: member.handle, name, slug, at });
+    }
+    const onTime = wall.onTime && typeof wall.onTime === "object" && !Array.isArray(wall.onTime) ? (wall.onTime as Record<string, unknown>) : {};
+    for (const [slug, flag] of Object.entries(onTime)) {
+      if (!flag) continue;
+      const at = Number(notes[slug]?.at) || 0;
+      bump(slug, "", 2, at, member.handle);
+      if (onFloor) floor.push({ kind: "ontime", handle: member.handle, name, slug, at });
+    }
+  }
+
+  const pool: Scored[] = [];
+  for (const review of reviews) {
+    const slug = String(review.slug);
+    const who = String(review.handle);
+    const tape = heat.get(slug);
+    const mine = authorPts.get(who + "\0" + slug) || 0;
+    const commentPts = review.commentPts || 0;
+    const others = Math.max(0, (tape?.heat || 0) - mine - commentPts);
+    const at = Number(review.at) || 0;
+    const score = 1 * feedDecay(at, now) + commentPts + others * 0.5;
+    pool.push({
+      score,
+      at,
+      item: {
+        kind: "review",
+        handle: who,
+        name: review.name,
+        slug,
+        rating: review.rating,
+        excerpt: review.excerpt,
+        at,
+      },
+    });
+  }
+  for (const [slug, row] of heat) {
+    if (!(row.rentals > 0 || row.logs >= 2 || row.likes >= 2 || row.comments >= 1)) continue;
+    const rentScore = row.rentals * 5;
+    const logScore = row.logs * 2;
+    const label = rentScore > 0 && rentScore >= logScore ? "rented" : row.logs > 0 ? "logged" : row.comments > 0 ? "commented" : "liked";
+    pool.push({
+      score: row.heat,
+      at: row.at,
+      item: {
+        kind: "tape",
+        slug,
+        title: row.title,
+        label,
+        rentals: row.rentals,
+        logs: row.logs,
+        likes: row.likes,
+        comments: row.comments,
+        at: row.at,
+      },
+    });
+  }
+  const bestLike = new Map<string, Scored>();
+  for (const like of likes) {
+    const slug = String(like.slug);
+    const at = Number(like.at) || 0;
+    const score = 3 * feedDecay(at, now) + (heat.get(slug)?.heat || 0) * 0.25;
+    const prev = bestLike.get(slug);
+    if (prev && prev.score >= score) continue;
+    bestLike.set(slug, {
+      score,
+      at,
+      item: { kind: "like", handle: like.handle, name: like.name, slug, rating: like.rating, at },
+    });
+  }
+  const bestComment = new Map<string, Scored>();
+  for (const comment of comments) {
+    const slug = String(comment.slug);
+    const at = Number(comment.at) || 0;
+    const score = 4 * feedDecay(at, now) + (heat.get(slug)?.heat || 0) * 0.25;
+    const prev = bestComment.get(slug);
+    if (prev && prev.score >= score) continue;
+    bestComment.set(slug, {
+      score,
+      at,
+      item: {
+        kind: "comment",
+        handle: comment.handle,
+        name: comment.name,
+        slug,
+        excerpt: comment.excerpt,
+        at,
+      },
+    });
+  }
+  pool.push(...bestLike.values(), ...bestComment.values());
+  pool.sort((a, b) => b.score - a.score || b.at - a.at || String(a.item.kind).localeCompare(String(b.item.kind)));
+  const seen = new Set<string>();
+  const ranked: Array<Record<string, unknown>> = [];
+  for (const row of pool) {
+    const item = row.item;
+    const key = String(item.kind) + "\0" + String(item.handle || "") + "\0" + String(item.slug || "");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    ranked.push(item);
+  }
+  return { ranked, acts: floor };
 }
 
 async function newRecoveryCode(sql: Sql, body: Record<string, unknown>): Promise<Response> {
