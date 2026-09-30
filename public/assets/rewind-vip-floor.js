@@ -11950,7 +11950,15 @@
       if (!el.textContent) el.textContent = "RW-1978-10";
       el.style.setProperty("display", "block", "important");
       el.style.setProperty("color", "#c05312", "important");
-      el.style.setProperty("font-size", "4.8px", "important");
+      el.style.setProperty("font-size", "3.5px", "important");
+      el.style.setProperty("writing-mode", "horizontal-tb", "important");
+      el.style.setProperty("transform", "none", "important");
+      el.style.setProperty("text-align", "center", "important");
+      el.style.setProperty("left", "0", "important");
+      el.style.setProperty("right", "0", "important");
+      el.style.setProperty("width", "100%", "important");
+      el.style.setProperty("bottom", "6px", "important");
+      el.style.setProperty("letter-spacing", "-0.03em", "important");
     });
   }
 

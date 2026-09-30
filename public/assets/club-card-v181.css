@@ -2309,10 +2309,10 @@ html[data-theme="night"] #rw-desk-host {
 .vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-year{display:none!important;}
 .vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-no{
   display:block!important;opacity:1!important;visibility:visible!important;
-  position:absolute!important;left:50%!important;bottom:7px!important;top:auto!important;
-  z-index:5!important;color:#c05312!important;writing-mode:vertical-rl!important;
-  transform:translateX(-50%) rotate(180deg)!important;width:max-content!important;
-  font-size:4.8px!important;
+  position:absolute!important;left:0!important;right:0!important;bottom:6px!important;top:auto!important;
+  z-index:5!important;color:#c05312!important;writing-mode:horizontal-tb!important;
+  transform:none!important;width:100%!important;margin:0!important;text-align:center!important;
+  font-size:3.5px!important;letter-spacing:-0.03em!important;white-space:nowrap!important;
 }
 .vhs-box[data-slug="halloween-1978"] .vhs-sticker{inset:8px 8px auto auto!important;bottom:auto!important}
 .vhs-box[data-slug="the-shining"] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;right:auto!important}
