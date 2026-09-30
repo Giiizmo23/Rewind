@@ -631,7 +631,9 @@
         '[data-vip-wall] .vip-banner{background:transparent!important}' +
         '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 88%)}' +
         'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 88%)}' +
-        'html.vip-page .store-bg,body.vip-page .store-bg{background-image:none!important}' +
+        'html.vip-page,body.vip-page{--rw-linoleum:transparent!important;--rw-grain:0!important}' +
+        'html.vip-page .store-bg,body.vip-page .store-bg,html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{background-image:none!important}' +
+        'html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{content:none!important;display:none!important}' +
         'a.vip-tab{text-decoration:none;color:inherit;pointer-events:auto}' +
         '.vip-tabs,.vip-tab{pointer-events:auto!important;cursor:pointer!important;position:relative;z-index:5}' +
         '[data-vip-card],.top5-section,[data-vip-shelves],[data-vip-tapes-sec],[data-prize-locker],[data-vip-club],[data-vip-onvcr-sec],[data-vip-stats],#rewards{scroll-margin-top:6.4rem}' +
@@ -1216,6 +1218,10 @@
     try {
       document.body.classList.add("vip-page");
       document.documentElement.classList.add("vip-page");
+      document.documentElement.style.setProperty("--rw-linoleum", "transparent", "important");
+      document.documentElement.style.setProperty("--rw-grain", "0", "important");
+      var vipBg = document.querySelector(".store-bg");
+      if (vipBg) vipBg.style.setProperty("background-image", "none", "important");
     } catch (eReady) {}
     hideReactDesk();
     armVipHide();
