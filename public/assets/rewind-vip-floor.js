@@ -216,7 +216,7 @@
     board: tourBoard(),
     club: `<div class="tour-member"><div class="tour-ava">RV</div><div><b>A member</b><span>Their page, their tapes</span></div><div class="tour-add">Add</div></div>`,
     drop: `<div class="tour-drop"><em>Never seen it</em><i>TAPE</i><em>Seen it</em></div>`,
-    locker: `<div class="tour-points"><div><strong>100</strong><span>Points on the card</span></div><div><strong>Stub</strong><span>Spend them in the locker</span></div></div>`,
+    locker: '<div class="tour-vcr"><div class="rw-vcr-block"><button type="button" class="rw-vcr" data-scan-hold="1" aria-label="Hold to rewind"><span class="rw-vcr-shell"><span class="rw-vcr-lid" aria-hidden="true"><span class="rw-vcr-power"></span><span></span><span></span></span><span class="rw-vcr-face"><span class="rw-vcr-door"><span class="rw-vcr-mouth"><span class="rw-vcr-doorcopy"><b>Hi-Fi Stereo</b><small>Rewind VHS · Video Cassette</small></span><span class="rw-vcr-slotline" aria-hidden="true"></span></span><span class="rw-blue" aria-hidden="true"></span></span><span class="rw-vcr-mid"><span aria-hidden="true"></span><span class="rw-clock-stack"><span class="rw-vcr-window"><span class="rw-vcr-screen"><span class="rw-cass" aria-hidden="true"><span class="rw-cass-win"><span class="rw-vcr-reel"></span><span class="rw-vcr-reel"></span></span></span><span class="rw-vcr-read" data-scan-hint data-idle="">--:--</span></span></span></span><span class="rw-pod" aria-hidden="true"><span class="rw-key"><s>⏏</s><b>eject</b></span></span></span><span class="rw-vcr-low" aria-hidden="true"><span class="rw-transport"><span class="rw-jacks"><i></i><i></i><i></i></span><span class="rw-key"><s>▶</s><b>play</b></span><span class="rw-key"><s>❚❚</s><b>pause</b></span></span><span class="rw-transport"><span class="rw-key is-rew"><s>◀◀</s><b>rew</b></span><span class="rw-key"><s>▶▶</s><b>fwd</b></span></span></span></span></span></button><p class="rw-vcr-cap">Press and hold the deck</p></div></div>',
   };
 
   function tourLook() {
@@ -276,7 +276,9 @@
       ".tour-points{margin-top:1.15rem;display:flex;gap:.5rem;max-width:22rem}" +
       ".tour-points div{flex:1;border-radius:14px;padding:.85rem;background:color-mix(in srgb,currentColor 6%,transparent)}" +
       ".tour-points strong{display:block;font-size:1.25rem}" +
-      ".tour-points span{font-size:.75rem;opacity:.7}";
+      ".tour-points span{font-size:.75rem;opacity:.7}" +
+      ".tour-vcr{margin-top:1.15rem;width:min(100%,22rem)}" +
+      ".tour-vcr .rw-vcr-block{margin:0;transform:none}";
     document.head.appendChild(s);
   }
 
@@ -384,6 +386,28 @@
         </div>
       </div>`;
     if (s.visual === "wall") fixHalloweenCover();
+    if (s.visual === "locker") wireTourVcr();
+  }
+
+  function wireTourVcr() {
+    const pad = root && root.querySelector(".tour-vcr [data-scan-hold]");
+    const hint = root && root.querySelector(".tour-vcr [data-scan-hint]");
+    if (!pad || !hint) return;
+    armTapeHold(pad, hint, "REW", "END", function () {}, "rew");
+    function tick() {
+      if (!hint.isConnected) return;
+      const deck = hint.closest(".rw-vcr");
+      if (deck && (deck.classList.contains("is-live") || deck.classList.contains("is-ok"))) return;
+      const d = new Date();
+      const h = d.getHours() % 12 || 12;
+      const m = d.getMinutes();
+      hint.textContent = h + ":" + (m < 10 ? "0" : "") + m;
+    }
+    tick();
+    const id = setInterval(function () {
+      if (!hint.isConnected) { clearInterval(id); return; }
+      tick();
+    }, 1000);
   }
 
   function open() {
