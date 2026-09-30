@@ -4089,12 +4089,11 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   }
   function filmBackHtml(film) {
     const still = "/sleeves/" + film.slug + "-still.jpg?v=103";
-    const cover = "/sleeves/" + film.slug + ".jpg?v=103";
     const tag = film.tagline ? '<p class="vhs-back-tag">\u201c' + esc(film.tagline) + "\u201d</p>" : "";
     const stock = [film.year, film.runtime ? film.runtime + " MIN" : ""].filter(Boolean).join(" · ");
     return (
       '<div class="clerk-back">' +
-      '<div class="vhs-back-still"><img src="' + still + '" alt="" onerror="this.src=\'' + cover + '\'"/></div>' +
+      '<div class="vhs-back-still"><img src="' + still + '" alt="" onerror="this.onerror=null;this.style.display=\'none\'"/></div>' +
       '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
       tag +
       '<p class="vhs-back-syn">' + esc(film.overview || "A tape from the night drop.") + "</p></div>" +

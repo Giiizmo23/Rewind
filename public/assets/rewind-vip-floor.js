@@ -127,7 +127,7 @@
       "</svg>";
     return (
       '<div class="tour-aisle" data-tour-aisle="1"><article class="tape-slot">' +
-      '<div class="vhs-box is-flip shrink-0" data-tour-tape="1" data-size="md" data-paint="1" data-spine-logo="1" data-back-v="12" data-slug="' + film.slug + '" data-sticker="tr" data-title="none" data-film="' + film.slug + '" style="width:100%;--vhs-yaw:18deg;--vhs-pitch:7deg;pointer-events:auto">' +
+      '<div class="vhs-box is-flip shrink-0" data-tour-tape="1" data-size="md" data-paint="1" data-spine-logo="1" data-back-v="12" data-slug="' + film.slug + '" data-sticker="br" data-title="none" data-film="' + film.slug + '" style="width:100%;--vhs-yaw:18deg;--vhs-pitch:7deg;pointer-events:auto">' +
       '<div class="vhs-flip"><div class="vhs-flip-card">' +
       '<span class="vhs-panel vhs-panel-top" aria-hidden="true"></span>' +
       '<span class="vhs-panel vhs-panel-bot" aria-hidden="true"></span>' +
@@ -142,7 +142,7 @@
       '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
       '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
       '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-      '<div class="vhs-back-still"><img src="/sleeves/' + film.slug + '-still.jpg?v=520" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.src=\'/sleeves/' + film.slug + '.jpg?v=520\'"></div>' +
+      '<div class="vhs-back-still"><img src="/sleeves/' + film.slug + '-still.jpg?v=521" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
       '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
       '<p class="vhs-back-tag">“' + film.tagline + '”</p>' +
       '<p class="vhs-back-syn">' + film.overview + "</p>" +
@@ -181,8 +181,9 @@
       ".tour-shot.vip{width:min(72%,12.8rem)}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
       ".tour-aisle{display:flex;justify-content:center;margin:.7rem auto 0;width:100%;overflow:visible}" +
-      ".tour-aisle .tape-slot{width:10rem;max-width:10rem;flex:0 0 10rem;display:block;pointer-events:auto}" +
+      ".tour-aisle .tape-slot{width:12rem;max-width:12rem;flex:0 0 12rem;display:block;pointer-events:auto}" +
       ".tour-aisle .vhs-box{width:100%!important;max-width:none!important;pointer-events:auto}" +
+      ".tour-aisle .vhs-box[data-slug='jaws'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}" +
       ".tour-aisle-hint{margin:.2rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
       ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
       ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
@@ -302,6 +303,10 @@
           </div>
         </div>
       </div>`;
+    if (s.visual === "wall") {
+      fixJawsCover();
+      fixEveryBack();
+    }
   }
 
   function open() {
@@ -7367,11 +7372,10 @@
       }
       if (still) {
         still.setAttribute("loading", "lazy");
-        const painted = stills && stills[slug];
-        still.src = painted ? "/sleeves/" + slug + "-still.jpg?v=520" : "/sleeves/" + slug + ".jpg?v=520";
+        still.src = "/sleeves/" + slug + "-still.jpg?v=520";
         still.onerror = function () {
           this.onerror = null;
-          this.src = "/sleeves/" + slug + ".jpg?v=520";
+          this.style.display = "none";
         };
       }
       const h3 = box.querySelector(".vhs-back-title");
@@ -7830,7 +7834,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=520" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.src=\'/sleeves/' + slug + '.jpg?v=520\'"></div>' +
+        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=520" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -8480,7 +8484,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=520" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.src=\'/sleeves/' + slug + '.jpg?v=520\';this.style.objectPosition=\'center 62%\'"></div>' +
+        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=520" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         (overview ? '<p class="vhs-back-syn">' + overview + "</p>" : "") +
@@ -12058,8 +12062,7 @@
       if ((img.getAttribute("src") || "").indexOf("-still.jpg?v=" + stillVer) < 0) {
         img.onerror = function () {
           img.onerror = null;
-          img.src = "/sleeves/" + slug + ".jpg?v=" + stillVer;
-          img.style.setProperty("object-position", "center top", "important");
+          img.style.setProperty("display", "none", "important");
         };
         img.removeAttribute("srcset");
         img.src = want;
