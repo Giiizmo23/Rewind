@@ -55,94 +55,100 @@
   } catch (eGuard) {}
   const SLIDES = [
     {
-      kicker: "Front desk",
-      title: "A video store you join.",
-      body: "Rewind is the shop. The card is membership, and it’s free. Stamp your name, handle, and password. You can walk the aisles without one. Renting, logging, and the club need a stamp.",
+      kicker: "The store",
+      title: "Rent it. Log it. Keep a page.",
+      body: "Rewind is a video store you join. The card is free. Stamp your name and you can rent tapes, log what you watched, and have a page at the club.",
       visual: "card",
     },
     {
       kicker: "The aisles",
-      title: "Every title is a real box.",
-      body: "The tapes sit on the shelf, labeled like a neighborhood store. Pull a box and flip it. Each one has its own image, spine, and synopsis.",
+      title: "Every title is a tape.",
+      body: "The boxes sit on the shelf. Pull one and flip it. The picture, the spine, and the synopsis are on the tape.",
       visual: "wall",
     },
     {
-      kicker: "Take it home",
-      title: "Rent it. Then review it.",
-      body: "Pick a term — overnight, weekend, or a week. Watch it. Bring it back on time. When you return it, leave a review. That’s how the club knows you sat through the movie.",
+      kicker: "Checkout",
+      title: "Take it home. Bring it back.",
+      body: "Rent it overnight, for the weekend, or for a week. When you return it, rate it and leave a review.",
       visual: "rent",
     },
     {
-      kicker: "Be kind, rewind.",
-      title: "Rewind the tape. Extra points.",
-      body: "Hold it on the deck until the reels stop. Extra points on every title, once. The clerk can tell who rewinds.",
-      visual: "rewind",
-    },
-    {
-      kicker: "VIP",
-      title: "Your page in the store.",
-      body: "This is your corner. Set the header and the photo, write a short bio, and the membership card hangs under them. Favorites are four tapes you put up over the card. Your Tapes is the wall of movies you’ve logged.",
+      kicker: "Your page",
+      title: "The page with your name on it.",
+      body: "A header, a photo, and a short bio. Four favorites sit over the card. The tapes you've logged hang on the wall under it.",
       visual: "vip",
     },
     {
       kicker: "The board",
-      title: "The store tab.",
-      body: "The board hangs at the back of the shop, and it has five tabs. Store is the square: trending tapes, ratings, and reviews from around the club. Tap a member’s name and their page opens.",
-      visual: "store",
+      title: "The back wall of the store.",
+      body: "Five tabs. Store is what's popular. Floor is what your friends are watching. Club is the members. You is your own logs. Incoming is hearts and invites.",
+      visual: "board",
     },
     {
-      kicker: "The board",
-      title: "The floor.",
-      body: "Floor is your friends. When someone you’ve added logs a tape, writes a review, or rents one, it shows up here.",
-      visual: "floor",
-    },
-    {
-      kicker: "The board",
-      title: "The club.",
-      body: "Club is the membership list. Search a username or a real name and add them. Friends can message, and share the reviews they’ve written.",
+      kicker: "Friends",
+      title: "See what they're watching.",
+      body: "Add someone from the club. Their page opens, you see what they're watching, and you can pass them a note.",
       visual: "club",
     },
     {
-      kicker: "The board",
-      title: "You.",
-      body: "You is your own filings. Every tape you log shows up on this tab, in one place.",
-      visual: "you",
-    },
-    {
-      kicker: "The board",
-      title: "Incoming.",
-      body: "Incoming is what comes back to you. A heart on a review, or an invite, lands here.",
-      visual: "incoming",
-    },
-    {
-      kicker: "Behind the counter",
-      title: "The prize locker.",
-      body: "Logging a tape and rewinding it put points on the card. The locker is the rack behind the counter. Every stub has a price in points. Spend them and it comes off the rack.",
-      visual: "locker",
-    },
-    {
       kicker: "Night Drop",
-      title: "After hours. Members only.",
-      body: "Stamp a card and the curtains open onto the Zenith. Swipe left — never seen it. Swipe right — seen it. Pull the drapes before you’re a member and MEMBERS ONLY is waiting behind them.",
+      title: "After hours.",
+      body: "Members only. The curtains open and you swipe. Left if you've never seen it. Right if you have.",
       visual: "drop",
+    },
+    {
+      kicker: "The counter",
+      title: "Rewind it. Spend the points.",
+      body: "Hold the tape until the reels stop and the points land on your card. The prize locker is where you spend them.",
+      visual: "locker",
     },
   ];
 
   const VISUAL = {
     card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div></div></div></div></div>`,
-    vip: `<ul class="tour-visual-list"><li>Header, photo, and bio</li><li>Four favorites over the card</li><li>Your tapes on the wall</li></ul>`,
-    store: `<ul class="tour-visual-list"><li>Trending tapes</li><li>Ratings and reviews</li><li>Tap a name, open their page</li></ul>`,
-    floor: `<ul class="tour-visual-list"><li>A friend logs a tape</li><li>A friend writes a review</li><li>A friend rents one</li></ul>`,
-    club: `<ul class="tour-visual-list"><li>Search the membership list</li><li>Add a friend</li><li>Message, and share a review</li></ul>`,
-    you: `<ul class="tour-visual-list"><li>Tapes you logged</li><li>Your filings, in one place</li></ul>`,
-    incoming: `<ul class="tour-visual-list"><li>Hearts on a review</li><li>Invites</li></ul>`,
-    locker: `<div class="tour-visual-boxes"><span>Log a tape</span><span>Points on the card</span><span>Take a stub</span></div>`,
-    wall: `<div class="tour-visual-boxes"><span>Flip the box</span><span>Read the spine</span><span>Check out the tape</span></div>`,
-    rent: `<div class="tour-visual-boxes"><span>Overnight</span><span>Weekend</span><span>A week</span></div>`,
-    drop: `<div class="tour-visual-drop"><p>Never seen it</p><p>Seen it</p><p>Pull the drapes</p><p>Members only</p></div>`,
-    rewind: `<div class="tour-visual-rewind"><p>Be kind, rewind</p><p>Extra points</p></div>`,
-    aisles: `<div class="tour-visual-boxes"><span>On the shelf</span><span>Pull a tape</span><span>Flip the box</span></div>`,
+    wall: `<div class="tour-vhs"><i>Spine</i><i>Picture</i><i>Synopsis</i></div>`,
+    rent: `<div class="tour-screen"><div class="tour-row"><b>Overnight</b> · back tomorrow</div><div class="tour-row"><b>Weekend</b> · back Monday</div><div class="tour-row"><b>A week</b> · then rate it <span class="tour-stars">★★★★</span></div></div>`,
+    vip: `<div class="tour-page"><div class="tour-banner"></div><div class="tour-page-body"><strong>Your name</strong><span class="tour-note">A short bio under the header.</span><div class="tour-favs"><i></i><i></i><i></i><i></i></div><span class="tour-note">Four favorites over the card. Logged tapes on the wall.</span></div></div>`,
+    board: `<div class="tour-screen"><div class="tour-tabs"><span class="is-on">Store</span><span>Floor</span><span>Club</span><span>You</span><span>Incoming</span></div><div class="tour-row"><b>Store</b> · what's popular tonight</div><div class="tour-row"><b>Floor</b> · a friend logged a tape</div></div>`,
+    club: `<div class="tour-member"><div class="tour-ava">RV</div><div><b>A member</b><span>Their page, their tapes</span></div><div class="tour-add">Add</div></div>`,
+    drop: `<div class="tour-drop"><em>Never seen it</em><i>TAPE</i><em>Seen it</em></div>`,
+    locker: `<div class="tour-points"><div><strong>100</strong><span>Points on the card</span></div><div><strong>Stub</strong><span>Spend them in the locker</span></div></div>`,
   };
+
+  function tourLook() {
+    if (document.getElementById("tour-look")) return;
+    const s = document.createElement("style");
+    s.id = "tour-look";
+    s.textContent =
+      ".tour-screen{margin-top:1.15rem;border-radius:16px;background:#1a140f;color:#f4efe6;padding:.8rem;max-width:22rem;display:grid;gap:.4rem}" +
+      ".tour-tabs{display:flex;gap:.22rem}" +
+      ".tour-tabs span{flex:1;text-align:center;font-size:.58rem;letter-spacing:.04em;text-transform:uppercase;padding:.42rem .05rem;border-radius:8px;background:#f4efe6;color:#1a140f}" +
+      ".tour-tabs span.is-on{background:#c41230;color:#fff}" +
+      ".tour-row{background:#f4efe6;color:#1a140f;border-radius:10px;padding:.62rem .75rem;font-size:.84rem}" +
+      ".tour-stars{letter-spacing:.08em;color:#c41230}" +
+      ".tour-vhs{display:flex;gap:.45rem;margin-top:1.15rem;max-width:22rem}" +
+      ".tour-vhs i{flex:1;height:6.6rem;border-radius:6px;background:linear-gradient(#c41230,#7d1020);display:flex;align-items:flex-end;justify-content:center;color:#fff;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding-bottom:.55rem;font-style:normal}" +
+      ".tour-page{margin-top:1.15rem;border-radius:16px;overflow:hidden;max-width:22rem;background:#f4efe6;color:#1a140f}" +
+      ".tour-banner{height:3.6rem;background:linear-gradient(#3a2a22,#1a140f)}" +
+      ".tour-page-body{padding:.75rem .9rem .9rem}" +
+      ".tour-page-body strong{display:block;font-family:Fraunces,serif;font-size:1.2rem}" +
+      ".tour-favs{display:flex;gap:.35rem;margin-top:.65rem}" +
+      ".tour-favs i{flex:1;height:3.8rem;border-radius:4px;background:#1a140f}" +
+      ".tour-note{display:block;margin-top:.45rem;font-size:.75rem;opacity:.7}" +
+      ".tour-member{margin-top:1.15rem;max-width:22rem;display:flex;align-items:center;gap:.7rem;background:color-mix(in srgb,currentColor 6%,transparent);border-radius:14px;padding:.8rem .9rem}" +
+      ".tour-ava{width:2.2rem;height:2.2rem;border-radius:99px;background:#1a140f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex:0 0 auto}" +
+      ".tour-member b{display:block}" +
+      ".tour-member span{font-size:.8rem;opacity:.7}" +
+      ".tour-add{margin-left:auto;background:#c41230;color:#fff;border-radius:99px;padding:.4rem .75rem;font-size:.75rem}" +
+      ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
+      ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
+      ".tour-drop i{width:4.4rem;height:6.4rem;border-radius:6px;background:#111;color:#f4efe6;display:flex;align-items:flex-end;justify-content:center;font-style:normal;font-size:.62rem;letter-spacing:.12em;padding-bottom:.4rem;flex:0 0 auto}" +
+      ".tour-points{margin-top:1.15rem;display:flex;gap:.5rem;max-width:22rem}" +
+      ".tour-points div{flex:1;border-radius:14px;padding:.85rem;background:color-mix(in srgb,currentColor 6%,transparent)}" +
+      ".tour-points strong{display:block;font-size:1.25rem}" +
+      ".tour-points span{font-size:.75rem;opacity:.7}";
+    document.head.appendChild(s);
+  }
 
   let i = 0;
   let root = null;
@@ -193,6 +199,7 @@
   }
 
   function open() {
+    tourLook();
     if (root) {
       root.remove();
       root = null;
