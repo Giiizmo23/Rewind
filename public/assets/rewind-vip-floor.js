@@ -106,7 +106,25 @@
 
   const VISUAL = {
     card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div></div></div></div></div>`,
-    wall: `<figure class="tour-shot boxes"><img src="/assets/tour/shot-boxes.jpg" alt="Four VHS boxes"></figure>`,
+    wall: `<div class="tour-aisle" data-tour-aisle="1">${[
+      { slug: "hereditary", title: "Hereditary", line: "A miniature house, a family that cannot stop repeating, and a party in the attic you should not attend.", meta: "2018 · Ari Aster" },
+      { slug: "the-crow", title: "The Crow", line: "He comes back for the people who took her. The rain does not stop.", meta: "1994 · Alex Proyas" },
+      { slug: "there-will-be-blood", title: "There Will Be Blood", line: "A prospector, a preacher, and a town that runs on oil.", meta: "2007 · Paul Thomas Anderson" },
+    ].map(function (film) {
+      const spine = '<div class="vhs-spine-ink"><img class="vhs-spine-logo" src="/sleeves/spines/' + film.slug + '.png?v=103" alt="" draggable="false" decoding="async"></div>';
+      return '<div class="vhs-box is-flip" data-tour-tape="1" data-spine-logo="1" data-paint="1" data-slug="' + film.slug + '" style="--vhs-yaw:18deg;--vhs-pitch:7deg">' +
+        '<div class="vhs-flip"><div class="vhs-flip-card">' +
+        '<span class="vhs-panel vhs-panel-top" aria-hidden="true"></span><span class="vhs-panel vhs-panel-bot" aria-hidden="true"></span>' +
+        '<span class="vhs-liner vhs-liner-left" aria-hidden="true"></span><span class="vhs-liner vhs-liner-right" aria-hidden="true"></span>' +
+        '<div class="vhs-spine vhs-spine-left">' + spine + '</div><div class="vhs-spine vhs-spine-right">' + spine + '</div>' +
+        '<div class="vhs-face-front"><div class="vhs-case"><div class="vhs-shell"><div class="vhs-sleeve"><div class="vhs-window"><div class="relative size-full">' +
+        '<img src="/sleeves/' + film.slug + '.jpg?v=103" alt="' + film.title + '" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover">' +
+        '</div></div><div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div></div></div></div></div>' +
+        '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
+        '<div class="vhs-back-still"><img src="/sleeves/' + film.slug + '-still.jpg?v=103" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.src=\'/sleeves/' + film.slug + '.jpg?v=103\'"></div>' +
+        '<div class="vhs-back-copy"><p class="vhs-back-syn">' + film.line + '</p><p class="vhs-back-stock">' + film.meta + '</p></div>' +
+        '</div></div></div></div></div></div>';
+    }).join("")}</div><p class="tour-aisle-hint">Drag to turn. Double-tap to flip.</p>`,
     rent: `<figure class="tour-shot checkout"><img src="/assets/tour/shot-checkout.jpg" alt="Checkout"></figure>`,
     vip: `<figure class="tour-shot vip"><img src="/assets/tour/shot-vip.jpg" alt="A filled member page"></figure>`,
     board: `<figure class="tour-shot board"><img src="/assets/tour/shot-board.jpg" alt="The board"></figure>`,
@@ -125,8 +143,10 @@
       ".tour-shot.checkout{width:min(100%,15.6rem)}" +
       ".tour-shot.vip{width:min(72%,12.8rem)}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
-      ".tour-shot.boxes{width:min(100%,22rem);background:transparent;box-shadow:none}" +
-      ".tour-shot.boxes img{border-radius:12px}" +
+      ".tour-aisle{display:flex;justify-content:center;align-items:flex-start;gap:0;margin:1rem auto 0;width:min(100%,22rem);overflow:visible}" +
+      ".tour-aisle .vhs-box{width:6.7rem;flex:0 0 6.7rem;margin:0;padding:.4rem .62rem .5rem .32rem;--vhs-depth:15px;--vhs-lip:15px}" +
+      ".tour-aisle .vhs-flip{width:100%}" +
+      ".tour-aisle-hint{margin:.35rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
       ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
       ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
       ".tour-drop i{width:4.4rem;height:6.4rem;border-radius:6px;background:#111;color:#f4efe6;display:flex;align-items:flex-end;justify-content:center;font-style:normal;font-size:.62rem;letter-spacing:.12em;padding-bottom:.4rem;flex:0 0 auto}" +
@@ -141,6 +161,63 @@
       ".tour-points span{font-size:.75rem;opacity:.7}";
     document.head.appendChild(s);
   }
+
+  function armTourTapes() {
+    if (window.__rwTourTape) return;
+    window.__rwTourTape = 1;
+    let tilt = null;
+    let lastTap = { t: 0, x: 0, y: 0 };
+    function boxOf(node) {
+      return node && node.closest && node.closest(".club-tour [data-tour-tape]");
+    }
+    document.addEventListener("pointerdown", function (e) {
+      const box = boxOf(e.target);
+      if (!box) return;
+      if (e.pointerType === "mouse" && e.button != null && e.button !== 0) return;
+      tilt = { id: e.pointerId, x: e.clientX, y: e.clientY, box: box, moved: false };
+    }, true);
+    document.addEventListener("pointermove", function (e) {
+      if (!tilt || tilt.id !== e.pointerId) return;
+      const dx = e.clientX - tilt.x;
+      const dy = e.clientY - tilt.y;
+      if (Math.hypot(dx, dy) < 8) return;
+      tilt.moved = true;
+      const yaw = Math.max(-78, Math.min(78, 18 + dx * 0.38));
+      const pitch = Math.max(2, Math.min(16, 7 - dy * 0.14));
+      tilt.box.style.setProperty("--vhs-yaw", yaw + "deg");
+      tilt.box.style.setProperty("--vhs-pitch", pitch + "deg");
+      tilt.box.classList.add("is-orbiting");
+      try { e.preventDefault(); } catch (err) {}
+    }, true);
+    function endTilt(e) {
+      if (!tilt || (e && tilt.id !== e.pointerId)) return;
+      const d = tilt;
+      tilt = null;
+      d.box.classList.remove("is-orbiting");
+      d.box.style.setProperty("--vhs-yaw", "18deg");
+      d.box.style.setProperty("--vhs-pitch", "7deg");
+      if (d.moved) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        return;
+      }
+      const now = Date.now();
+      const isDouble = now - lastTap.t < 480 && Math.hypot((e ? e.clientX : 0) - lastTap.x, (e ? e.clientY : 0) - lastTap.y) < 72;
+      lastTap = { t: now, x: e ? e.clientX : 0, y: e ? e.clientY : 0 };
+      if (!isDouble) return;
+      d.box.classList.toggle("is-back");
+      lastTap.t = 0;
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }
+    document.addEventListener("pointerup", endTilt, true);
+    document.addEventListener("pointercancel", endTilt, true);
+  }
+  armTourTapes();
 
   let i = 0;
   let root = null;
@@ -208,7 +285,7 @@
   window.openClubTour = open;
 
   function onStart(x, target) {
-    if (target && target.closest && target.closest("a,button")) {
+    if (target && target.closest && target.closest("a,button,.tour-aisle")) {
       startX = null;
       return;
     }
