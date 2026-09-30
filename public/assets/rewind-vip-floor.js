@@ -2138,7 +2138,11 @@
       const fh = frame.clientHeight || 1;
       const iw = img.naturalWidth || img.width || 1;
       const ih = img.naturalHeight || img.height || 1;
-      const cover = Math.max(fw / iw, fh / ih);
+      const cover = Math.max(fw / iw, fh / ih) || 1;
+      const contain = Math.min(fw / iw, fh / ih) || cover;
+      const floorZoom = Math.min(1, contain / cover);
+      if (range) range.min = String(floorZoom);
+      if (zoom < floorZoom) zoom = floorZoom;
       const w = iw * cover * zoom;
       const h = ih * cover * zoom;
       const limitX = Math.abs(w - fw) / 2;
@@ -2197,7 +2201,7 @@
         const pts = Array.from(pointers.values());
         const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1;
         if (!pinch) pinch = { dist: dist, zoom: zoom };
-        zoom = Math.max(0.3, Math.min(4, pinch.zoom * (dist / pinch.dist)));
+        zoom = Math.max(Number(range.min) || 0.2, Math.min(4, pinch.zoom * (dist / pinch.dist)));
         range.value = String(zoom);
         place();
         return;
@@ -2259,16 +2263,16 @@
     ["Purple", "#4a2158"],
   ];
   const HEADER_PICS = [
-    ["After Hours", "/sleeves/after-hours-still.jpg"],
-    ["Blade Runner", "/sleeves/blade-runner-still.jpg"],
-    ["The Shining", "/sleeves/the-shining-still.jpg"],
-    ["Jaws", "/sleeves/jaws-still.jpg"],
-    ["The Matrix", "/sleeves/the-matrix-still.jpg"],
-    ["2001", "/sleeves/2001-a-space-odyssey-still.jpg"],
-    ["Alien", "/sleeves/alien-still.jpg"],
-    ["Back to the Future", "/sleeves/back-to-the-future-still.jpg"],
-    ["Amélie", "/sleeves/amelie-still.jpg"],
-    ["Psycho", "/sleeves/psycho-still.jpg"],
+    ["After Hours", "/sleeves/after-hours.jpg"],
+    ["Blade Runner", "/sleeves/blade-runner.jpg"],
+    ["The Shining", "/sleeves/the-shining.jpg"],
+    ["Jaws", "/sleeves/jaws.jpg"],
+    ["The Matrix", "/sleeves/the-matrix.jpg"],
+    ["2001", "/sleeves/2001-a-space-odyssey.jpg"],
+    ["Alien", "/sleeves/alien.jpg"],
+    ["Back to the Future", "/sleeves/back-to-the-future.jpg"],
+    ["Amélie", "/sleeves/amelie.jpg"],
+    ["Psycho", "/sleeves/psycho.jpg"],
   ];
   const AVATAR_PICS = [
     ["The Matrix", "/sleeves/the-matrix.jpg"],
