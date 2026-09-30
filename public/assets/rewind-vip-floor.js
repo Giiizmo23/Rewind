@@ -10249,7 +10249,7 @@
     sign.className = "nd-neon-sign";
     sign.setAttribute("data-built", "art");
     sign.setAttribute("aria-hidden", "true");
-    sign.innerHTML = '<img class="nd-neon-art" src="/assets/nd-neon.png?v=12" alt="">';
+    sign.innerHTML = '<img class="nd-neon-art" src="/assets/nd-neon.png?v=13" alt="">';
     if (deck) deck.insertBefore(sign, deck.firstChild);
     else overlay.insertBefore(sign, overlay.firstChild);
     ensureArtNeonCss();
