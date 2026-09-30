@@ -142,7 +142,7 @@
       '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
       '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
       '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-      '<div class="vhs-back-still"><img src="/sleeves/' + film.slug + '-still.jpg?v=521" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+      '<div class="vhs-back-still" style="background:#0c1a28 url(/sleeves/jaws-still.jpg?v=530) center/cover no-repeat"><img src="/sleeves/jaws-still.jpg?v=530" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
       '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
       '<p class="vhs-back-tag">“' + film.tagline + '”</p>' +
       '<p class="vhs-back-syn">' + film.overview + "</p>" +
@@ -184,6 +184,9 @@
       ".tour-aisle .tape-slot{width:12rem;max-width:12rem;flex:0 0 12rem;display:block;pointer-events:auto}" +
       ".tour-aisle .vhs-box{width:100%!important;max-width:none!important;pointer-events:auto}" +
       ".tour-aisle .vhs-box[data-slug='jaws'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}" +
+      ".tour-aisle .vhs-box.is-back .vhs-face-front{opacity:0!important;visibility:hidden!important}" +
+      ".tour-aisle .vhs-back-still{flex:1 1 48%!important;min-height:48%!important;background:#0c1a28 url(/sleeves/jaws-still.jpg?v=530) center/cover no-repeat!important}" +
+      ".tour-aisle .vhs-back-still img{object-fit:cover!important;object-position:center center!important;display:block!important}" +
       ".tour-aisle-hint{margin:.2rem 0 0;text-align:center;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.45}" +
       ".tour-drop{margin-top:1.15rem;display:flex;align-items:center;justify-content:center;gap:.9rem;max-width:22rem}" +
       ".tour-drop em{font-style:normal;opacity:.55;font-size:.78rem;max-width:4.5rem;text-align:center}" +
@@ -11887,6 +11890,21 @@
         }
         img.style.setProperty("object-fit", "cover", "important");
         img.style.setProperty("object-position", "center top", "important");
+      });
+      box.querySelectorAll(".vhs-back-still").forEach(function (el) {
+        el.style.setProperty("background-image", "url(/sleeves/jaws-still.jpg?v=530)", "important");
+        el.style.setProperty("background-size", "cover", "important");
+        el.style.setProperty("background-position", "center center", "important");
+        el.style.setProperty("background-color", "#0c1a28", "important");
+      });
+      box.querySelectorAll(".vhs-back-still img").forEach(function (img) {
+        if ((img.getAttribute("src") || "").indexOf("jaws-still.jpg?v=530") < 0) {
+          img.removeAttribute("srcset");
+          img.src = "/sleeves/jaws-still.jpg?v=530";
+        }
+        img.style.setProperty("display", "block", "important");
+        img.style.setProperty("object-fit", "cover", "important");
+        img.style.setProperty("object-position", "center center", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var src = img.getAttribute("src") || "";

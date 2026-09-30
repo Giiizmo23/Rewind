@@ -2349,6 +2349,19 @@ html[data-theme="night"] #rw-desk-host {
   bottom: 8px !important;
   left: auto !important;
 }
+.vhs-box .vhs-face-front{
+  transition: opacity .12s linear .3s, visibility 0s linear .3s;
+}
+.vhs-box.is-back .vhs-face-front{
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.vhs-box.is-back .vhs-face-back{
+  z-index: 8 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
 .vhs-box[data-slug="jaws"] .vhs-window img{object-fit:cover!important;object-position:center top!important}
 .vhs-box[data-slug="jaws"] .vhs-spine{background:#000!important;overflow:hidden!important}
 .vhs-box[data-slug="jaws"][data-spine-logo="1"] .vhs-spine-logo,
