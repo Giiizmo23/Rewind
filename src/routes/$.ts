@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { createFileRoute } from "@tanstack/react-router";
 import { shellResponse } from "@/lib/rewind/shell.server";
 
-const FLOOR_FALLBACK = '{"floor":"2026-09-30T19-48-00","tag":"v375"}\n';
+const FLOOR_FALLBACK = '{"floor":"2026-09-30T20-40-00","tag":"v376"}\n';
 
 export const Route = createFileRoute("/$")({
   server: {
