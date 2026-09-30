@@ -10238,7 +10238,7 @@
       }
     });
     const deck = overlay.querySelector(".drop-deck");
-    let sign = overlay.querySelector(".nd-neon-sign[data-built='art']");
+    let sign = overlay.querySelector(".nd-neon-sign[data-built='light']");
     if (sign) {
       if (deck && sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
       ensureArtNeonCss();
@@ -10247,9 +10247,9 @@
     document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());
     sign = document.createElement("div");
     sign.className = "nd-neon-sign";
-    sign.setAttribute("data-built", "art");
+    sign.setAttribute("data-built", "light");
     sign.setAttribute("aria-hidden", "true");
-    sign.innerHTML = '<img class="nd-neon-art" src="/assets/nd-neon.png?v=15" alt="">';
+    sign.innerHTML = '<img class="nd-neon-light nd-neon-far" src="/assets/nd-neon.png?v=16" alt=""><img class="nd-neon-light nd-neon-near" src="/assets/nd-neon.png?v=16" alt=""><img class="nd-neon-art" src="/assets/nd-neon.png?v=16" alt="">';
     if (deck) deck.insertBefore(sign, deck.firstChild);
     else overlay.insertBefore(sign, overlay.firstChild);
     ensureArtNeonCss();
@@ -10261,12 +10261,14 @@
     s.id = "nd-art-neon";
     s.textContent =
       "html[data-drop='1'],html[data-drop='1'] body,html[data-drop='1'] .store-bg,html[data-drop='1'] #nd-overlay{background:#07060a!important;background-image:none!important;background-color:#07060a!important}" +
-      "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0 auto .15rem!important;padding:0!important;background:none!important;filter:none!important;pointer-events:none!important;transform:translateY(-2rem)!important}" +
-      "html[data-drop='1'] .drop-deck>.nd-neon-sign,html[data-drop='1'] .nd-neon-art{background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;filter:none!important;-webkit-filter:none!important;mix-blend-mode:normal!important}" +
-      "html[data-drop='1'] .nd-neon-art{display:block!important;height:min(32svh,15rem)!important;width:auto!important;max-width:96%!important;object-fit:contain!important;animation:nd-art-glow 4.6s linear infinite}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;align-items:center!important;width:100%!important;max-width:none!important;margin:0 auto .15rem!important;padding:0!important;background:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:translateY(-2rem)!important;overflow:visible!important}" +
+      "html[data-drop='1'] .nd-neon-art{position:relative!important;z-index:2!important;display:block!important;height:min(32svh,15rem)!important;width:auto!important;max-width:96%!important;object-fit:contain!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;filter:none!important;-webkit-filter:none!important;mix-blend-mode:normal!important;animation:none!important}" +
+      "html[data-drop='1'] .nd-neon-light{position:absolute!important;left:50%!important;top:50%!important;z-index:1!important;height:min(32svh,15rem)!important;width:auto!important;max-width:none!important;object-fit:contain!important;pointer-events:none!important;background:none!important;border:0!important;box-shadow:none!important;mix-blend-mode:screen!important}" +
+      "html[data-drop='1'] .nd-neon-far{transform:translate(-50%,-50%) scale(1.06)!important;filter:blur(14px)!important;-webkit-filter:blur(14px)!important;opacity:.62!important;animation:nd-light-live 3.4s ease-in-out infinite!important}" +
+      "html[data-drop='1'] .nd-neon-near{transform:translate(-50%,-50%)!important;filter:blur(4px)!important;-webkit-filter:blur(4px)!important;opacity:.9!important}" +
       "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(31svh,14.6rem)!important;min-height:min(31svh,14.6rem)!important;max-height:min(31svh,14.6rem)!important}" +
-      "@keyframes nd-art-glow{0%,100%{opacity:1}44%{opacity:.98}45.2%{opacity:.84}46.4%{opacity:1}76%{opacity:.97}77%{opacity:.78}78.3%{opacity:1}}" +
-      "@media (prefers-reduced-motion:reduce){.nd-neon-art{animation:none!important}}";
+      "@keyframes nd-light-live{0%,100%{opacity:.48}50%{opacity:.78}68%{opacity:.72}69%{opacity:.22}70.4%{opacity:.75}}" +
+      "@media (prefers-reduced-motion:reduce){.nd-neon-far{animation:none!important;opacity:.62!important}}";
     document.head.appendChild(s);
   }
   function placeOpenNeon(sign) {
