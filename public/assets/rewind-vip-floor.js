@@ -624,13 +624,14 @@
         '[data-vip-wall] .top5-section{margin-top:3.75rem!important}' +
         '[data-vip-wall] > [data-vip-card]{margin-top:1.65rem!important}' +
         '@media (max-width:1023px){html.vip-page main>[data-vip-wall]>.vip-open{display:flex;flex-direction:column;min-height:calc(100dvh - 3.5rem - 4.05rem - env(safe-area-inset-bottom,0px))}' +
-        'html.vip-page main>[data-vip-wall] .vip-avatar{bottom:-3.55rem!important}' +
+        'html.vip-page main>[data-vip-wall] .vip-avatar{bottom:-3.55rem!important;z-index:6!important}' +
         'html.vip-page main>[data-vip-wall] .vip-banner-wrap{margin-bottom:4.05rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .vip-bio-slot{margin-top:.85rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:.15rem}}' +
         '[data-vip-wall] .vip-banner{background:transparent!important}' +
-        '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 88%)}' +
-        'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 88%)}' +
+        '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 100%)}' +
+        'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
+        '[data-vip-wall] .vip-avatar{position:absolute;z-index:6!important}' +
         'html.vip-page,body.vip-page{--rw-linoleum:transparent!important;--rw-grain:0!important}' +
         'html.vip-page .store-bg,body.vip-page .store-bg,html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{background-image:none!important}' +
         'html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{content:none!important;display:none!important}' +
