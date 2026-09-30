@@ -628,7 +628,8 @@
         'html.vip-page main>[data-vip-wall] .vip-banner-wrap{margin-bottom:4.05rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .vip-bio-slot{margin-top:1.7rem!important}' +
         'html.vip-page main>[data-vip-wall] [data-vip-bio]{font-size:.9rem!important}' +
-        'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:.15rem}}' +
+        'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:1.45rem}' +
+        'html.vip-page main>[data-vip-wall] [data-vip-top5]{margin-left:-.7rem;margin-right:-.7rem;gap:.32rem!important}}' +
         '[data-vip-wall] .vip-banner{background:transparent!important}' +
         '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0) 0%,#f6f4ef 100%)}' +
         'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{height:40%;background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
