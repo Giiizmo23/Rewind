@@ -81,14 +81,8 @@
     {
       kicker: "The board",
       title: "The back wall of the store.",
-      body: "Five tabs. Store is what's popular. Floor is what your friends are watching. Club is the members. You is your own logs. Incoming is hearts and invites.",
+      body: "Five tabs. Tap one.",
       visual: "board",
-    },
-    {
-      kicker: "Friends",
-      title: "See what they're watching.",
-      body: "Add someone from the club. Their page opens, you see what they're watching, and you can pass them a note.",
-      visual: "club",
     },
     {
       kicker: "Night Drop",
@@ -149,12 +143,56 @@
     );
   }
 
+  function tourBoard() {
+    function slip(title, sub, stars) {
+      return '<article class="tour-slip"><b>' + title + (stars ? ' <i>' + stars + "</i>" : "") + "</b><span>" + sub + "</span></article>";
+    }
+    function person(initials, name, sub) {
+      return '<article class="tour-person"><span class="ava">' + initials + "</span><span><b>" + name + "</b><small>" + sub + '</small></span><button type="button" class="add">Add</button></article>';
+    }
+    const tabs = [
+      ["store", "Store", "What is popular in the store."],
+      ["floor", "Floor", "What your friends are watching."],
+      ["club", "Club", "The members. Add someone to open their page."],
+      ["you", "You", "Your own logs."],
+      ["incoming", "Incoming", "Hearts and invites."],
+    ];
+    const panes = {
+      store:
+        slip("Most rented · Alien 1979", "Rented 12 times · logged 9 times") +
+        slip("June Hart reviewed Casablanca", "Here is looking at you.", "★★★★"),
+      floor:
+        slip("June Hart watched Alien", "2h ago") +
+        slip("Alex Kim rented Clueless", "Due Friday"),
+      club:
+        person("JH", "June Hart", "Their page, their tapes") +
+        person("AK", "Alex Kim", "Their page, their tapes"),
+      you:
+        slip("You logged Back to the Future", "Filed last night") +
+        slip("You reviewed Alien", "The score does the work.", "★★★★★"),
+      incoming:
+        slip("June Hart liked your review", "Casablanca") +
+        slip("Alex Kim sent an invite", "Wants to add you"),
+    };
+    return (
+      '<div class="tour-board" data-tour-board="1"><div class="tour-board-wood"><div class="tour-board-tabs">' +
+      tabs.map(function (t, n) {
+        return '<button type="button" data-tour-lane="' + t[0] + '" data-note="' + t[2] + '"' + (n ? "" : ' class="is-on"') + ">" + t[1] + "</button>";
+      }).join("") +
+      "</div>" +
+      tabs.map(function (t, n) {
+        return '<div class="tour-board-pane' + (n ? "" : " is-on") + '" data-tour-pane="' + t[0] + '">' + panes[t[0]] + "</div>";
+      }).join("") +
+      '</div><p class="tour-board-note" data-tour-note>' + tabs[0][2] + "</p></div>"
+    );
+  }
+
   const VISUAL = {
     card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div></div></div></div></div>`,
     wall: tourShelfBox(),
     rent: `<div class="tour-rent"><div class="rental-terms" role="radiogroup" aria-label="Rental length"><button type="button" class="rental-term is-on"><span class="rental-term-label">1 night</span><span class="rental-term-due">Due Wed</span><span class="rental-term-pts">+12 if on time</span></button><button type="button" class="rental-term"><span class="rental-term-label">3 days</span><span class="rental-term-due">Due Fri</span><span class="rental-term-pts">+6 if on time</span></button><button type="button" class="rental-term"><span class="rental-term-label">1 week</span><span class="rental-term-due">Due Tue</span><span class="rental-term-pts">+3 if on time</span></button></div><div class="scan-reader"><div class="scan-led-row"><span class="scan-led"></span><span class="scan-led-label">Rent</span></div><div class="scan-card"><img src="/sleeves/hereditary.jpg?v=487" alt="Hereditary"></div><span class="scan-slot"><span class="scan-fill"></span></span><p class="scan-hint">Hold to check it out</p></div></div>`,
     vip: `<div class="tour-vip"><div class="tour-vip-banner"><img src="/sleeves/blade-runner-still.jpg?v=522" alt=""><img class="tour-vip-ava" src="/sleeves/amelie.jpg?v=487" alt=""></div><div class="tour-vip-body"><p class="tour-vip-name">June Hart</p><p class="tour-vip-handle">@junehart</p><p class="tour-vip-bio">Be Kind, Rewind</p><p class="tour-vip-kicker">Favorites</p><div class="tour-vip-favs"><img src="/sleeves/alien.jpg?v=487" alt="Alien"><img src="/sleeves/casablanca.jpg?v=487" alt="Casablanca"><img src="/sleeves/clueless.jpg?v=487" alt="Clueless"><img src="/sleeves/back-to-the-future.jpg?v=487" alt="Back to the Future"></div></div></div>`,
-    board: `<figure class="tour-shot board"><img src="/assets/tour/shot-board.jpg" alt="The board"></figure>`,
+    board: tourBoard(),
     club: `<div class="tour-member"><div class="tour-ava">RV</div><div><b>A member</b><span>Their page, their tapes</span></div><div class="tour-add">Add</div></div>`,
     drop: `<div class="tour-drop"><em>Never seen it</em><i>TAPE</i><em>Seen it</em></div>`,
     locker: `<div class="tour-points"><div><strong>100</strong><span>Points on the card</span></div><div><strong>Stub</strong><span>Spend them in the locker</span></div></div>`,
@@ -186,6 +224,23 @@
       ".tour-vip-favs img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:3px;background:#111}" +
       "html[data-theme='night'] .tour-vip,html[data-theme='dark'] .tour-vip{background:#14161c;color:#f4efe6}" +
       "html[data-theme='night'] .tour-vip-ava,html[data-theme='dark'] .tour-vip-ava{box-shadow:0 0 0 3px #14161c}" +
+      ".tour-board{width:min(100%,22rem);margin:.7rem auto 0}" +
+      ".tour-board-wood{border-radius:16px;padding:.55rem .55rem .6rem;background:repeating-linear-gradient(115deg,#c9aa78 0 7px,#b89462 7px 9px);box-shadow:0 14px 28px rgba(26,20,15,.16)}" +
+      ".tour-board-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:.15rem;margin:0 .15rem .45rem}" +
+      ".tour-board-tabs button{border:0;background:transparent;color:#2a1c10;font-size:.68rem;letter-spacing:.02em;padding:.28rem 0 .34rem;cursor:pointer;opacity:.55}" +
+      ".tour-board-tabs button.is-on{opacity:1;box-shadow:inset 0 -2px 0 #9e0e22}" +
+      ".tour-board-pane{display:none;flex-direction:column;gap:.4rem}" +
+      ".tour-board-pane.is-on{display:flex}" +
+      ".tour-slip,.tour-person{background:#f7f1de;color:#1a140f;border-radius:8px;padding:.55rem .65rem;text-align:left}" +
+      ".tour-slip b{display:block;font-size:.82rem;font-weight:650}" +
+      ".tour-slip span{display:block;margin-top:.12rem;font-size:.74rem;opacity:.78}" +
+      ".tour-slip i{color:#c41230;font-style:normal;letter-spacing:.06em}" +
+      ".tour-person{display:flex;align-items:center;gap:.55rem}" +
+      ".tour-person .ava{width:2rem;height:2rem;border-radius:99px;background:#1a140f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;flex:0 0 auto}" +
+      ".tour-person b{display:block;font-size:.84rem}" +
+      ".tour-person small{display:block;font-size:.7rem;opacity:.65}" +
+      ".tour-person .add{margin-left:auto;border:0;border-radius:99px;background:#c41230;color:#fff;padding:.32rem .7rem;font-size:.72rem}" +
+      ".tour-board-note{margin:.45rem .2rem 0;text-align:center;font-size:.78rem;line-height:1.35;opacity:.62}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
       ".tour-aisle{display:flex;justify-content:center;margin:.55rem auto 0;width:100%;overflow:visible}" +
       ".tour-aisle .tape-slot{width:11rem;max-width:11rem;flex:0 0 11rem;display:block;pointer-events:auto}" +
@@ -379,6 +434,19 @@
       } else if (t.closest("[data-tour-dot]")) {
         i = Number(t.closest("[data-tour-dot]").getAttribute("data-tour-dot"));
         render();
+      } else if (t.closest("[data-tour-lane]")) {
+        const btn = t.closest("[data-tour-lane]");
+        const board = btn.closest("[data-tour-board]");
+        if (!board) return;
+        const lane = btn.getAttribute("data-tour-lane");
+        board.querySelectorAll("[data-tour-lane]").forEach(function (el) {
+          el.classList.toggle("is-on", el === btn);
+        });
+        board.querySelectorAll("[data-tour-pane]").forEach(function (el) {
+          el.classList.toggle("is-on", el.getAttribute("data-tour-pane") === lane);
+        });
+        const note = board.querySelector("[data-tour-note]");
+        if (note) note.textContent = btn.getAttribute("data-note") || "";
       }
     },
     true,
