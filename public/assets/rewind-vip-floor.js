@@ -144,11 +144,14 @@
   }
 
   function tourBoard() {
-    function slip(title, sub, stars) {
-      return '<article class="tour-slip"><b>' + title + (stars ? ' <i>' + stars + "</i>" : "") + "</b><span>" + sub + "</span></article>";
+    function note(kind, tilt, pin, inner) {
+      return '<article class="cork-note' + (kind ? " " + kind : "") + '" style="--tilt:' + tilt + '"><span class="cork-pin' + (pin ? " " + pin : "") + '" aria-hidden="true"></span>' + inner + "</article>";
     }
-    function person(initials, name, sub) {
-      return '<article class="tour-person"><span class="ava">' + initials + "</span><span><b>" + name + "</b><small>" + sub + '</small></span><button type="button" class="add">Add</button></article>';
+    function slip(line, review) {
+      return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line">' + line + "</p>" + (review ? '<p class="cork-slip-review">' + review + "</p>" : "") + "</div></article>";
+    }
+    function person(initials, name) {
+      return '<article class="cork-slip cork-person"><button type="button" class="floor-ava">' + initials + '</button><div class="cork-id"><b>' + name + '</b><span>Their page, their tapes</span></div><button type="button" class="tour-add">Add</button></article>';
     }
     const tabs = [
       ["store", "Store", "What is popular in the store."],
@@ -159,27 +162,35 @@
     ];
     const panes = {
       store:
-        slip("Most rented · Alien 1979", "Rented 12 times · logged 9 times") +
-        slip("June Hart reviewed Casablanca", "Here is looking at you.", "★★★★"),
+        '<div class="cork-grid">' +
+        note("is-flyer", "-1.4deg", "is-gold", '<span class="cork-stamp">Tonight</span><h3>Staff picks on the glass</h3><p>Alien is the tape leaving the shelf.</p>') +
+        note("", "1.1deg", "", "<h3>Most rented</h3><p>Alien · 1979. Rented 12 times.</p>") +
+        "</div>" +
+        '<div class="cork-feed">' + slip('<b class="cork-who">June Hart</b> reviewed <b class="cork-who">Casablanca</b> <span class="cork-star">★★★★</span>', "Here is looking at you.") + "</div>",
       floor:
-        slip("June Hart watched Alien", "2h ago") +
-        slip("Alex Kim rented Clueless", "Due Friday"),
+        '<div class="cork-feed">' +
+        slip("<b class=\"cork-who\">June Hart</b> watched <b class=\"cork-who\">Alien</b>", "2h ago") +
+        slip("<b class=\"cork-who\">Alex Kim</b> rented <b class=\"cork-who\">Clueless</b>", "Due Friday") +
+        "</div>",
       club:
-        person("JH", "June Hart", "Their page, their tapes") +
-        person("AK", "Alex Kim", "Their page, their tapes"),
+        '<div class="cork-feed">' + person("JH", "June Hart") + person("AK", "Alex Kim") + "</div>",
       you:
-        slip("You logged Back to the Future", "Filed last night") +
-        slip("You reviewed Alien", "The score does the work.", "★★★★★"),
+        '<div class="cork-feed">' +
+        slip("<b class=\"cork-who\">You</b> filed <b class=\"cork-who\">Back to the Future</b>", "Last night") +
+        slip('<b class="cork-who">You</b> reviewed <b class="cork-who">Alien</b> <span class="cork-star">★★★★★</span>', "The score does the work.") +
+        "</div>",
       incoming:
-        slip("June Hart liked your review", "Casablanca") +
-        slip("Alex Kim sent an invite", "Wants to add you"),
+        '<div class="cork-feed">' +
+        slip("<b class=\"cork-who\">June Hart</b> liked your review", "Casablanca") +
+        slip("<b class=\"cork-who\">Alex Kim</b> sent an invite", "Wants to add you") +
+        "</div>",
     };
     return (
-      '<div class="tour-board" data-tour-board="1"><div class="tour-board-wood"><div class="tour-board-tabs">' +
+      '<div class="tour-board" data-tour-board="1"><div class="cork-tabs">' +
       tabs.map(function (t, n) {
-        return '<button type="button" data-tour-lane="' + t[0] + '" data-note="' + t[2] + '"' + (n ? "" : ' class="is-on"') + ">" + t[1] + "</button>";
+        return '<button type="button" class="cork-tab' + (n ? "" : " is-on") + '" data-tour-lane="' + t[0] + '" data-note="' + t[2] + '">' + t[1] + "</button>";
       }).join("") +
-      "</div>" +
+      '</div><div class="cork-board">' +
       tabs.map(function (t, n) {
         return '<div class="tour-board-pane' + (n ? "" : " is-on") + '" data-tour-pane="' + t[0] + '">' + panes[t[0]] + "</div>";
       }).join("") +
@@ -224,22 +235,22 @@
       ".tour-vip-favs img{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:3px;background:#111}" +
       "html[data-theme='night'] .tour-vip,html[data-theme='dark'] .tour-vip{background:#14161c;color:#f4efe6}" +
       "html[data-theme='night'] .tour-vip-ava,html[data-theme='dark'] .tour-vip-ava{box-shadow:0 0 0 3px #14161c}" +
-      ".tour-board{width:min(100%,22rem);margin:.7rem auto 0}" +
-      ".tour-board-wood{border-radius:16px;padding:.55rem .55rem .6rem;background:repeating-linear-gradient(115deg,#c9aa78 0 7px,#b89462 7px 9px);box-shadow:0 14px 28px rgba(26,20,15,.16)}" +
-      ".tour-board-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:.15rem;margin:0 .15rem .45rem}" +
-      ".tour-board-tabs button{border:0;background:transparent;color:#2a1c10;font-size:.68rem;letter-spacing:.02em;padding:.28rem 0 .34rem;cursor:pointer;opacity:.55}" +
-      ".tour-board-tabs button.is-on{opacity:1;box-shadow:inset 0 -2px 0 #9e0e22}" +
-      ".tour-board-pane{display:none;flex-direction:column;gap:.4rem}" +
-      ".tour-board-pane.is-on{display:flex}" +
-      ".tour-slip,.tour-person{background:#f7f1de;color:#1a140f;border-radius:8px;padding:.55rem .65rem;text-align:left}" +
-      ".tour-slip b{display:block;font-size:.82rem;font-weight:650}" +
-      ".tour-slip span{display:block;margin-top:.12rem;font-size:.74rem;opacity:.78}" +
-      ".tour-slip i{color:#c41230;font-style:normal;letter-spacing:.06em}" +
-      ".tour-person{display:flex;align-items:center;gap:.55rem}" +
-      ".tour-person .ava{width:2rem;height:2rem;border-radius:99px;background:#1a140f;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;flex:0 0 auto}" +
-      ".tour-person b{display:block;font-size:.84rem}" +
-      ".tour-person small{display:block;font-size:.7rem;opacity:.65}" +
-      ".tour-person .add{margin-left:auto;border:0;border-radius:99px;background:#c41230;color:#fff;padding:.32rem .7rem;font-size:.72rem}" +
+      ".tour-board{width:min(100%,22rem);margin:.65rem auto 0}" +
+      ".tour-board .cork-board{min-height:0;padding:.85rem .65rem .95rem}" +
+      ".tour-board .cork-tab{appearance:none;font-family:inherit;cursor:pointer}" +
+      ".tour-board .cork-grid{grid-template-columns:1fr 1fr;gap:.55rem .45rem}" +
+      ".tour-board .cork-note h3{margin:.15rem 0 .2rem;font-size:.88rem;line-height:1.15;font-weight:700}" +
+      ".tour-board .cork-note p,.tour-board .cork-slip-review{margin:.15rem 0 0;font-size:.72rem;line-height:1.35}" +
+      ".tour-board .cork-slip-line{font-size:.78rem;line-height:1.35}" +
+      ".tour-board .cork-feed{margin-top:.55rem;gap:.45rem}" +
+      ".tour-board .tour-board-pane{display:none}" +
+      ".tour-board .tour-board-pane.is-on{display:block}" +
+      ".tour-board .tour-board-pane.is-on > .cork-feed:first-child{margin-top:0}" +
+      ".tour-board .cork-person{align-items:center}" +
+      ".tour-board .cork-person .cork-id{min-width:0}" +
+      ".tour-board .cork-person .cork-id b{display:block;font-size:.84rem}" +
+      ".tour-board .cork-person .cork-id span{display:block;font-size:.68rem;opacity:.7}" +
+      ".tour-board .tour-add{margin-left:auto;border:0;border-radius:99px;background:#c41230;color:#fff8f4;padding:.32rem .7rem;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}" +
       ".tour-board-note{margin:.45rem .2rem 0;text-align:center;font-size:.78rem;line-height:1.35;opacity:.62}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
       ".tour-aisle{display:flex;justify-content:center;margin:.55rem auto 0;width:100%;overflow:visible}" +
