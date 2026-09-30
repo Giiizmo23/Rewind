@@ -475,6 +475,24 @@
         'html[data-member="1"] .store-bg{padding-bottom:calc(5.6rem + env(safe-area-inset-bottom))!important}' +
         '.cork-board{overflow:visible!important;padding-bottom:1.35rem!important}' +
         '.cork-feed{display:flex;flex-direction:column;gap:.75rem;position:relative;z-index:1}' +
+        '.cork-feed[data-lane="floor"]{gap:0}' +
+        '.floor-row{display:flex;gap:.7rem;align-items:flex-start;padding:.8rem .35rem;border-bottom:1px solid rgba(36,24,12,.14);background:#f7f1de;color:#24180c;text-align:left}' +
+        '.floor-row.is-big{background:#efe4cc}' +
+        '.floor-row.is-short{align-items:center}' +
+        '.floor-ava{width:2rem;height:2rem;border-radius:999px;object-fit:cover;flex:0 0 auto;background:#1a140f;color:#fff8f4;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;font-family:Oswald,"Arial Narrow",sans-serif;font-size:.78rem;border:0;padding:0;cursor:pointer}' +
+        '.floor-main{flex:1 1 auto;min-width:0}' +
+        '.floor-top{display:flex;align-items:flex-start;gap:.6rem}' +
+        '.floor-line{flex:1 1 auto;margin:0;font-size:.92rem;line-height:1.35}' +
+        '.floor-line button,.floor-title button,.floor-copy,.floor-note{border:0;background:transparent;color:inherit;font:inherit;padding:0;text-align:left;cursor:pointer}' +
+        '.floor-ago{flex:0 0 auto;font-size:.75rem;letter-spacing:.04em;color:#5c5348;padding-top:.15rem}' +
+        '.floor-title{margin:.35rem 0 0;font-family:Oswald,"Arial Narrow",sans-serif;font-size:1.55rem;letter-spacing:.02em;line-height:1.05;font-weight:500}' +
+        '.floor-year{font-family:inherit;font-size:.95rem;letter-spacing:0;color:#5c5348;margin-left:.35rem}' +
+        '.floor-stars{margin:.2rem 0 0;color:#e0b423;font-size:.95rem;letter-spacing:.04em}' +
+        '.floor-body{display:flex;gap:.7rem;align-items:flex-start;margin-top:.55rem}' +
+        '.floor-sleeve{width:3.15rem;aspect-ratio:2/3;object-fit:cover;border-radius:2px;background:#1a140f;display:block;border:0;padding:0;cursor:pointer}' +
+        '.floor-copy{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;font-size:.9rem;line-height:1.4}' +
+        '.floor-film{font-weight:700}' +
+        '.floor-note{display:block;margin:.45rem 0 0;padding:.55rem .7rem;border-radius:12px;background:rgba(36,24,12,.06);font-size:.88rem;line-height:1.4;white-space:pre-wrap}' +
         '.cork-find{display:block;margin:0 0 .15rem}' +
         '.cork-find input{width:100%;height:2.6rem;border:0;border-radius:999px;padding:0 .9rem;background:#f7f1de;color:#1a1208;font-size:16px}' +
         '.cork-slip{background:#f7f1de;transform:none;position:relative}' +
@@ -2199,12 +2217,23 @@
     if (!Array.isArray(local)) local = [];
     const seen = {};
     const out = [];
+    function atOf(item) {
+      return item && typeof item === "object" ? Number(item.at || item.rentedAt) || 0 : 0;
+    }
     local.concat(next).forEach(function (item) {
       const s = String(typeof item === "string" ? item : (item && (item.slug || item.filmId || item.id)) || "");
-      if (!s || seen[s]) return;
-      seen[s] = 1;
-      out.push(item);
+      if (!s) return;
+      if (!seen[s]) {
+        seen[s] = item;
+        return;
+      }
+      const prev = seen[s];
+      const prevAt = atOf(prev);
+      const nextAt = atOf(item);
+      if (nextAt && nextAt >= prevAt) seen[s] = item;
+      else if (!prevAt && item && typeof item === "object" && typeof prev === "string") seen[s] = item;
     });
+    Object.keys(seen).forEach(function (key) { out.push(seen[key]); });
     return JSON.stringify(out);
   }
   function mergeWallKey(incoming) {
@@ -2250,6 +2279,21 @@
       mergedNotes[slug] = (Number(a.at) || 0) >= (Number(b.at) || 0) ? Object.assign({}, b, a) : Object.assign({}, a, b);
     });
     if (Object.keys(mergedNotes).length) next.diaryNotes = mergedNotes;
+    const reviewLikes = [];
+    const seenLike = {};
+    [local.reviewLikes, next.reviewLikes].forEach(function (arr) {
+      if (!Array.isArray(arr)) return;
+      arr.forEach(function (row) {
+        if (!row || !row.handle || !row.slug || !Number(row.at)) return;
+        const key = row.handle + "\0" + row.slug;
+        const prev = seenLike[key];
+        if (!prev || Number(row.at) < Number(prev.at)) {
+          seenLike[key] = row;
+        }
+      });
+    });
+    Object.keys(seenLike).forEach(function (key) { reviewLikes.push(seenLike[key]); });
+    if (reviewLikes.length) next.reviewLikes = reviewLikes;
     const ls = local.stats && typeof local.stats === "object" ? local.stats : {};
     const ns = next.stats && typeof next.stats === "object" ? next.stats : {};
     next.stats = {
@@ -8520,7 +8564,7 @@
       let arr = [];
       try { arr = JSON.parse(localStorage.getItem(key) || "null") || []; } catch (e2) {}
       if (!Array.isArray(arr)) arr = [];
-      if (!arr.some(function (x) { return String(typeof x === "string" ? x : (x && x.slug) || "") === slug; })) arr.unshift(slug);
+      if (!arr.some(function (x) { return String(typeof x === "string" ? x : (x && x.slug) || "") === slug; })) arr.unshift({ slug: slug, at: Date.now() });
       localStorage.setItem(key, JSON.stringify(arr));
     }
     pushKey("rewind-logged-slugs");
@@ -10008,6 +10052,105 @@
     return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line">' + name + " " + verb + ' <a class="cork-who" href="/films/' + boardEsc(film.slug || "") + '">' + boardEsc(film.title) + "</a>" + (film.year ? ' <span class="cork-year">' + boardEsc(film.year) + "</span>" : "") + (stars ? " " + stars : "") + "</p>" + (review ? '<p class="cork-slip-review">' + boardEsc(review) + "</p>" : "") + "</div></article>";
   }
   function renderBoardLane(lane) {
+    function floorAgo(at) {
+      const t = Number(at) || 0;
+      if (!t) return "";
+      const sec = Math.max(0, Date.now() - t) / 1000;
+      if (sec < 60) return "1m";
+      const min = Math.floor(sec / 60);
+      if (min < 60) return min + "m";
+      const hr = Math.floor(min / 60);
+      if (hr < 24) return hr + "h";
+      const day = Math.floor(hr / 24);
+      if (day < 7) return day + "d";
+      const week = Math.floor(day / 7);
+      if (week < 52) return week + "w";
+      return Math.floor(week / 52) + "y";
+    }
+    function floorLongDate(at) {
+      const t = Number(at) || 0;
+      if (!t) return "";
+      try { return new Date(t).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" }); }
+      catch (e) { return ""; }
+    }
+    function floorAvatar(handle, name) {
+      const hit = (clubBook.people || []).concat(clubHits || []).find(function (p) { return p && p.handle === handle; });
+      const letter = boardEsc(String(name || handle || "?").trim().charAt(0).toUpperCase() || "?");
+      const btn = '<button type="button" class="floor-ava" data-floor-open="card" data-floor-who="' + boardEsc(handle) + '">';
+      if (hit && hit.avatar) return btn + '<img alt="" src="' + boardEsc(hit.avatar) + '" style="width:100%;height:100%;object-fit:cover;border-radius:999px"></button>';
+      return btn + letter + "</button>";
+    }
+    function floorFilm(title) {
+      return '<b class="floor-film">' + boardEsc(title || "Tape") + "</b>";
+    }
+    function floorRow(r, film) {
+      if (!Number(r.at)) return "";
+      const ago = floorAgo(r.at);
+      if (!ago) return "";
+      const name = boardEsc(r.name || r.handle || "");
+      const who = '<button type="button" data-floor-open="card" data-floor-who="' + boardEsc(r.handle) + '">' + name + "</button>";
+      const title = film.title || r.title || "Tape";
+      const filmBtn = '<button type="button" data-floor-open="tape" data-floor-slug="' + boardEsc(r.slug) + '">' + floorFilm(title) + "</button>";
+      let sentence = "";
+      let extra = "";
+      let size = r.size || "short";
+      let open = "tape";
+      let reviewHandle = r.handle || "";
+      let reviewName = r.name || r.handle || "";
+      if (r.kind === "review" || size === "big") {
+        size = "big";
+        open = "review";
+        const verb = r.rewatch ? "rewatched" : "watched";
+        const stars = guestStars(r.rating);
+        const heart = r.liked ? ' <span style="color:#c41230" aria-label="Liked">♥</span>' : "";
+        sentence = who + " " + verb;
+        extra = '<p class="floor-title"><button type="button" data-floor-open="tape" data-floor-slug="' + boardEsc(r.slug) + '">' + boardEsc(title) + "</button>" + (film.year ? '<span class="floor-year">' + boardEsc(film.year) + "</span>" : "") + "</p>" +
+          (stars || heart ? '<p class="floor-stars">' + (stars || "") + heart + "</p>" : "") +
+          '<div class="floor-body"><button type="button" class="floor-sleeve" data-floor-open="tape" data-floor-slug="' + boardEsc(r.slug) + '"><img alt="" src="/sleeves/' + boardEsc(r.slug) + '.jpg?v=520" style="width:100%;height:100%;object-fit:cover" onerror="this.style.visibility=\'hidden\'"></button>' +
+          (r.blurb ? '<button type="button" class="floor-copy" data-floor-open="review">' + boardEsc(r.blurb) + "</button>" : "") + "</div>";
+      } else if (r.kind === "comment") {
+        size = "comment";
+        open = "review";
+        reviewHandle = r.parentHandle || r.handle;
+        reviewName = r.parentName || r.name || "";
+        const own = r.parentHandle && r.parentHandle === r.handle;
+        const whose = own || !r.parentName ? "their" : boardEsc(r.parentName) + "'s";
+        sentence = who + " commented on " + whose + " review of " + filmBtn;
+        extra = r.blurb ? '<button type="button" class="floor-note" data-floor-open="review">' + boardEsc(r.blurb) + "</button>" : "";
+      } else if (r.kind === "review-like") {
+        open = "review";
+        reviewHandle = r.otherHandle || r.handle;
+        reviewName = r.otherName || "";
+        const whoName = r.otherName ? boardEsc(r.otherName) + "'s" : "their";
+        const stars = Number(r.rating) > 0 ? " " + guestStars(r.rating) : "";
+        sentence = who + " liked " + whoName + stars + " review of " + filmBtn;
+      } else if (r.kind === "follow") {
+        open = "card";
+        reviewHandle = r.otherHandle || r.handle;
+        sentence = who + ' followed <button type="button" data-floor-open="card" data-floor-who="' + boardEsc(r.otherHandle || "") + '">' + boardEsc(r.otherName || r.otherHandle || "") + "</button>";
+      } else if (r.kind === "rent") {
+        sentence = who + " rented " + filmBtn;
+      } else if (r.kind === "rewind") {
+        sentence = who + " rewound " + filmBtn;
+      } else if (r.kind === "own") {
+        sentence = who + " kept a copy of " + filmBtn;
+      } else {
+        const bits = [];
+        if (r.rewatch) bits.push("rewatched");
+        else if (r.watched || r.kind === "rate" || r.kind === "log") bits.push("watched");
+        if (r.liked) bits.push("liked");
+        if (Number(r.rating) > 0) bits.push("rated");
+        if (!bits.length) bits.push("logged");
+        const action = bits.length === 1 ? bits[0] : bits.length === 2 ? bits[0] + " and " + bits[1] : bits.slice(0, -1).join(", ") + " and " + bits[bits.length - 1];
+        const stars = Number(r.rating) > 0 ? " " + guestStars(r.rating) : "";
+        const when = (r.rewatch || r.watched || Number(r.rating) > 0) ? floorLongDate(r.at) : "";
+        sentence = who + " " + action + " " + filmBtn + stars + (when ? " on " + boardEsc(when) : "");
+      }
+      const cls = size === "big" ? "floor-row is-big" : size === "comment" ? "floor-row" : "floor-row is-short";
+      return '<article class="' + cls + '" data-floor-row="1" data-floor-open="' + open + '" data-floor-handle="' + boardEsc(reviewHandle) + '" data-floor-slug="' + boardEsc(r.slug || "") + '" data-floor-name="' + boardEsc(reviewName) + '" data-floor-who="' + boardEsc(r.kind === "follow" ? (r.otherHandle || r.handle) : r.handle) + '">' +
+        floorAvatar(r.handle, r.name || r.handle) +
+        '<div class="floor-main"><div class="floor-top"><p class="floor-line">' + sentence + "</p>" + (ago ? '<span class="floor-ago">' + ago + "</span>" : "") + "</div>" + extra + "</div></article>";
+    }
     const board = document.querySelector(".cork-board");
     if (!board) return;
     const grid = board.querySelector(":scope > .cork-grid");
@@ -10050,7 +10193,7 @@
             return !!r.excerpt;
           }
           const h = String(r.handle || "").toLowerCase();
-          if (!h || h === me) return false;
+          if (!h || h === me || !Number(r.at)) return false;
           if (!clubBook.loaded) return true;
           const state = friendOf[h];
           if (!state) return true;
@@ -10067,6 +10210,7 @@
           const slips = rows.map(function (r) {
             const film = boardFilmLabel(r.slug, index);
             if (r.title && !index[r.slug]) film.title = r.title;
+            if (lane === "floor") return floorRow(r, film);
             if (lane === "store" && r.kind === "tape") {
               const bits = [];
               if (r.rentals) bits.push(Number(r.rentals) === 1 ? "Rented once" : "Rented " + r.rentals + " times");
@@ -10090,7 +10234,7 @@
             const blurb = r.kind === "review" || r.kind === "comment" ? (r.blurb || r.review || "") : "";
             return boardSlip(who, r.handle, verb, { slug: r.slug, title: film.title, year: film.year }, blurb, r.kind === "comment" ? 0 : r.rating);
           }).join("");
-          feed.innerHTML = (lane === "store" ? '<p class="cork-kicker">Trending</p>' : '<p class="cork-kicker">Friends</p>') + slips;
+          feed.innerHTML = (lane === "store" ? '<p class="cork-kicker">Trending</p>' : "") + slips;
         });
       };
       clubPost("/api/rewind/club/feed", { lane: lane }).then(function (data) {
@@ -10281,11 +10425,26 @@
       }
       function full(data) {
         const stars = guestStars(data && data.rating);
+        const me = String(activeHandle() || "").trim();
+        const mine = !!(me && me === handle);
+        const already = !mine && reviewAlreadyLiked(handle, slug);
+        const likeBtn = mine ? "" : '<button type="button" data-review-like="1"' + (already ? " disabled" : "") + ' style="width:100%;height:48px;border:0;border-radius:14px;background:#9f2d2d;color:#fff;font-size:16px;margin-bottom:8px">' + (already ? "Liked" : "Like this review") + "</button>";
         paint(
           '<p style="margin:0 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Review</p>' +
           (stars ? '<p style="margin:0 0 8px">' + stars + "</p>" : "") +
-          '<p style="margin:0 0 14px;font-size:16px;line-height:1.45">' + boardEsc((data && data.review) || "") + "</p>"
+          '<p style="margin:0 0 14px;font-size:16px;line-height:1.45">' + boardEsc((data && data.review) || "") + "</p>" +
+          likeBtn
         );
+        const btn = box.querySelector("[data-review-like]");
+        if (btn && !already) {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            saveReviewLike(handle, slug, data && data.rating);
+            btn.textContent = "Liked";
+            btn.disabled = true;
+          });
+        }
       }
       box.addEventListener("click", function (e) {
         if (e.target === box || (e.target.closest && e.target.closest("[data-review-close]"))) box.remove();
@@ -10305,6 +10464,24 @@
       e.preventDefault();
       e.stopPropagation();
       openStoreReview(slip.getAttribute("data-review-handle") || "", slip.getAttribute("data-review-slug") || "", slip.getAttribute("data-review-name") || "");
+    }, true);
+    document.addEventListener("click", function (e) {
+      const row = e.target && e.target.closest && e.target.closest("[data-floor-row]");
+      if (!row) return;
+      const hit = (e.target.closest && e.target.closest("[data-floor-open]")) || row;
+      const open = hit.getAttribute("data-floor-open") || row.getAttribute("data-floor-open") || "";
+      e.preventDefault();
+      e.stopPropagation();
+      if (open === "card") {
+        openMemberCard(hit.getAttribute("data-floor-who") || row.getAttribute("data-floor-who") || "");
+        return;
+      }
+      if (open === "tape") {
+        const slug = hit.getAttribute("data-floor-slug") || row.getAttribute("data-floor-slug") || "";
+        if (slug) location.assign("/films/" + encodeURIComponent(slug));
+        return;
+      }
+      openStoreReview(row.getAttribute("data-floor-handle") || "", row.getAttribute("data-floor-slug") || "", row.getAttribute("data-floor-name") || "");
     }, true);
     document.addEventListener("click", function (e) {
       const member = e.target && e.target.closest && e.target.closest("[data-member-open], a[href^='/u/']");
@@ -10443,6 +10620,23 @@
     } catch (e) {
       return "You";
     }
+  }
+  function reviewAlreadyLiked(handle, slug) {
+    try {
+      const wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null") || {};
+      const rows = Array.isArray(wall.reviewLikes) ? wall.reviewLikes : [];
+      return rows.some(function (row) { return row && row.handle === handle && row.slug === slug && Number(row.at) > 0; });
+    } catch (eLike) { return false; }
+  }
+  function saveReviewLike(handle, slug, rating) {
+    if (!handle || !slug) return;
+    let wall = {};
+    try { wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null") || {}; } catch (eWall) {}
+    wall.reviewLikes = Array.isArray(wall.reviewLikes) ? wall.reviewLikes : [];
+    if (wall.reviewLikes.some(function (row) { return row && row.handle === handle && row.slug === slug; })) return;
+    wall.reviewLikes.push({ handle: handle, slug: slug, rating: Number(rating) || 0, at: Date.now() });
+    localStorage.setItem("rewind-club-wall", JSON.stringify(wall));
+    try { if (typeof flushLocker === "function") flushLocker(); } catch (eFlush) {}
   }
   function patchDiaryNote(slug, mutate) {
     let wall = {};

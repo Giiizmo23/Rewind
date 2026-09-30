@@ -441,6 +441,91 @@ async function loadClub(sql: Sql): Promise<ClubPerson[]> {
   );
 }
 
+async function friendFollows(sql: Sql, handles: string[]): Promise<Array<{ follower: string; followee: string; at: number }>> {
+  if (!handles.length) return [];
+  const slots = handles.map((_, i) => "$" + (i + 1)).join(", ");
+  return sql.query<{ follower: string; followee: string; at: number }>(
+    `select follower, followee, (extract(epoch from created_at) * 1000)::float8 as at
+     from rewind_follows where follower in (${slots})`,
+    handles,
+  );
+}
+
+function consolidateFloor(raw: Array<Record<string, unknown>>): Array<Record<string, unknown>> {
+  const groups = new Map<string, Array<Record<string, unknown>>>();
+  const loose: Array<Record<string, unknown>> = [];
+  for (const item of raw) {
+    const at = Number(item.at) || 0;
+    if (!at) continue;
+    const kind = String(item.kind || "");
+    if (kind === "comment" || kind === "rent" || kind === "review-like" || kind === "rewind" || kind === "follow") {
+      loose.push(item);
+      continue;
+    }
+    if (kind === "ontime") continue;
+    const key = String(item.handle || "") + "\0" + String(item.slug || "");
+    const list = groups.get(key) || [];
+    list.push(item);
+    groups.set(key, list);
+  }
+  const rows: Array<Record<string, unknown>> = [];
+  for (const list of groups.values()) {
+    const review = list.find((item) => item.kind === "review" && String(item.blurb || "").trim());
+    const like = list.find((item) => item.kind === "like");
+    const log = list.find((item) => item.kind === "log" || item.kind === "rewatch");
+    const own = list.find((item) => item.kind === "own");
+    const base = review || log || like || own;
+    if (!base) continue;
+    const at = Number((review || log || like || own)?.at) || 0;
+    if (!at) continue;
+    const rewatch = list.some((item) => item.kind === "rewatch");
+    const rating = Number((review && review.rating) || (log && log.rating) || (like && like.rating) || 0) || 0;
+    if (review) {
+      rows.push({
+        kind: "review",
+        size: "big",
+        handle: review.handle,
+        name: review.name,
+        slug: review.slug,
+        rating,
+        liked: !!like,
+        rewatch,
+        at: Number(review.at) || at,
+        blurb: review.blurb,
+      });
+      continue;
+    }
+    if (log || like || rating) {
+      rows.push({
+        kind: log ? "rate" : "like",
+        size: "short",
+        handle: base.handle,
+        name: base.name,
+        slug: base.slug,
+        rating,
+        liked: !!like,
+        rewatch,
+        watched: !!log || rewatch || rating > 0,
+        at,
+      });
+      continue;
+    }
+    rows.push({ kind: "own", size: "short", handle: own?.handle, name: own?.name, slug: own?.slug, at: Number(own?.at) || at });
+  }
+  for (const item of loose) {
+    if (item.kind === "rewind") {
+      const near = rows.some((row) => row.handle === item.handle && row.slug === item.slug && Math.abs(Number(row.at) - Number(item.at)) < 5000);
+      if (near) continue;
+    }
+    if (item.kind === "rent") rows.push({ ...item, size: "short" });
+    else if (item.kind === "comment") rows.push({ ...item, size: "comment" });
+    else if (item.kind === "review-like") rows.push({ ...item, size: "short" });
+    else if (item.kind === "rewind") rows.push({ ...item, size: "short" });
+    else rows.push(item);
+  }
+  return rows.filter((row) => Number(row.at) > 0);
+}
+
 async function mutualHandles(sql: Sql, handle: string): Promise<Set<string>> {
   const rows = await sql.query<{ handle: string }>(
     `select f.followee as handle from rewind_follows f
@@ -470,8 +555,25 @@ async function floorSquare(sql: Sql, handle: string): Promise<Response> {
   const club = await loadClub(sql);
   const friends = await mutualHandles(sql, handle);
   const { acts } = buildClubFeeds(club, friends, Date.now());
+  const byHandle = new Map(club.map((member) => [member.handle, member]));
+  for (const row of await friendFollows(sql, [...friends])) {
+    const at = Number(row.at) || 0;
+    if (!at || !friends.has(row.follower)) continue;
+    const who = byHandle.get(row.follower);
+    const other = byHandle.get(row.followee);
+    if (!who || row.followee === row.follower) continue;
+    acts.push({
+      kind: "follow",
+      size: "short",
+      handle: who.handle,
+      name: personName(who),
+      otherHandle: other?.handle || row.followee,
+      otherName: other ? personName(other) : row.followee,
+      at,
+    });
+  }
   acts.sort((a, b) => Number(b.at) - Number(a.at) || String(a.kind).localeCompare(String(b.kind)));
-  return json({ ok: true, shared: true, lane: "floor", feed: acts.slice(0, 80) });
+  return json({ ok: true, shared: true, lane: "floor", feed: acts.filter((row) => Number(row.at) > 0).slice(0, 80) });
 }
 
 async function storeSquare(sql: Sql): Promise<Response> {
@@ -562,7 +664,7 @@ function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: nu
           if (!author) continue;
           const authorName = personName(author);
           comments.push({ handle: author.handle, name: authorName, slug, at: when, excerpt: feedClip(text, 110) });
-          if (friends?.has(author.handle)) {
+          if (friends?.has(author.handle) && when) {
             floor.push({
               kind: "comment",
               handle: author.handle,
@@ -570,6 +672,8 @@ function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: nu
               slug,
               at: when,
               blurb: feedClip(text, 600),
+              parentHandle: member.handle,
+              parentName: name,
             });
           }
         }
@@ -589,7 +693,7 @@ function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: nu
           if (!author) continue;
           const authorName = personName(author);
           comments.push({ handle: author.handle, name: authorName, slug, at: when, excerpt: feedClip(text, 110) });
-          if (friends?.has(author.handle)) {
+          if (friends?.has(author.handle) && when) {
             floor.push({
               kind: "comment",
               handle: author.handle,
@@ -597,6 +701,8 @@ function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: nu
               slug,
               at: when,
               blurb: feedClip(text, 600),
+              parentHandle: member.handle,
+              parentName: name,
             });
           }
         }
@@ -616,6 +722,27 @@ function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: nu
         name,
         slug,
         rating: Number(note.rating) || 0,
+        at,
+      });
+    }
+    const reviewLikes = Array.isArray(wall.reviewLikes) ? wall.reviewLikes : [];
+    for (const like of reviewLikes) {
+      if (!like || typeof like !== "object" || !onFloor) continue;
+      const row = like as Record<string, unknown>;
+      const at = Number(row.at) || 0;
+      const slug = slugOf(row);
+      if (!at || !slug) continue;
+      const hinted = String(row.handle || "").trim();
+      const target = (hinted && (byKey.get(hinted) || byKey.get(hinted.toLowerCase()))) || null;
+      if (!target) continue;
+      floor.push({
+        kind: "review-like",
+        handle: member.handle,
+        name,
+        slug,
+        rating: Number(row.rating) || 0,
+        otherHandle: target.handle,
+        otherName: personName(target),
         at,
       });
     }
@@ -732,7 +859,7 @@ function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: nu
     seen.add(key);
     ranked.push(item);
   }
-  return { ranked, acts: floor };
+  return { ranked, acts: consolidateFloor(floor) };
 }
 
 async function newRecoveryCode(sql: Sql, body: Record<string, unknown>): Promise<Response> {
@@ -945,6 +1072,20 @@ function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
   const prevPins = Array.isArray(prev.pinned) ? prev.pinned : [];
   const nextPins = Array.isArray(next.pinned) ? next.pinned : [];
   if (prevPins.length && !nextPins.length) merged.pinned = prevPins;
+  const likeRows = [...(Array.isArray(prev.reviewLikes) ? prev.reviewLikes : []), ...(Array.isArray(next.reviewLikes) ? next.reviewLikes : [])];
+  const likeBest = new Map<string, Record<string, unknown>>();
+  for (const like of likeRows) {
+    if (!like || typeof like !== "object") continue;
+    const row = like as Record<string, unknown>;
+    const at = Number(row.at) || 0;
+    const handle = String(row.handle || "");
+    const slug = String(row.slug || "");
+    if (!at || !handle || !slug) continue;
+    const key = handle + "\0" + slug;
+    const prevLike = likeBest.get(key);
+    if (!prevLike || at < Number(prevLike.at)) likeBest.set(key, row);
+  }
+  if (likeBest.size) merged.reviewLikes = [...likeBest.values()];
   return JSON.stringify(merged);
 }
 
@@ -964,13 +1105,28 @@ function mergeList(prevRaw: string | undefined, nextRaw: string): string {
     return String(row.slug || row.filmId || row.id || "");
   };
   const byId = new Map<string, unknown>();
+  const keep = (prev: unknown, next: unknown) => {
+    const atOf = (item: unknown) => {
+      if (!item || typeof item !== "object") return 0;
+      const row = item as Record<string, unknown>;
+      return Number(row.at || row.rentedAt) || 0;
+    };
+    const prevAt = atOf(prev);
+    const nextAt = atOf(next);
+    if (nextAt && nextAt >= prevAt) return next;
+    if (prevAt) return prev;
+    if (typeof prev === "string" && next && typeof next === "object") return next;
+    return prev ?? next;
+  };
   for (const item of read(prevRaw)) {
     const id = idOf(item);
-    if (id) byId.set(id, item);
+    if (!id) continue;
+    byId.set(id, byId.has(id) ? keep(byId.get(id), item) : item);
   }
   for (const item of read(nextRaw)) {
     const id = idOf(item);
-    if (id) byId.set(id, item);
+    if (!id) continue;
+    byId.set(id, byId.has(id) ? keep(byId.get(id), item) : item);
   }
   return JSON.stringify([...byId.values()]);
 }

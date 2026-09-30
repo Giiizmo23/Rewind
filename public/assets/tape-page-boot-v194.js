@@ -254,7 +254,7 @@
         let arr = JSON.parse(localStorage.getItem(key) || "null");
         if (!Array.isArray(arr)) arr = [];
         if (slugListed(key, slug)) return;
-        arr.unshift(slug);
+        arr.unshift({ slug: slug, at: Date.now() });
         localStorage.setItem(key, JSON.stringify(arr));
       } catch (e) {}
     });
