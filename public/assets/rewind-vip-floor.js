@@ -73,6 +73,12 @@
       visual: "rent",
     },
     {
+      kicker: "The counter",
+      title: "Be Kind, Rewind.",
+      body: "Rewind the tape before you bring it back. Hold the deck until the reels stop. A rewound tape is worth extra points on the return.",
+      visual: "locker",
+    },
+    {
       kicker: "Your page",
       title: "The page with your name on it.",
       body: "A header, a photo, and a short bio. Four favorites sit over the card. The tapes you've logged hang on the wall under it.",
@@ -89,12 +95,6 @@
       title: "After hours.",
       body: "Members only. The curtains open and you swipe. Left if you've never seen it. Right if you have.",
       visual: "drop",
-    },
-    {
-      kicker: "The counter",
-      title: "Rewind it. Spend the points.",
-      body: "Hold the tape until the reels stop and the points land on your card. The prize locker is where you spend them.",
-      visual: "locker",
     },
   ];
 
