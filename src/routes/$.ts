@@ -16,7 +16,9 @@ export const Route = createFileRoute("/$")({
           return new Response(body, {
             headers: {
               "content-type": "application/json; charset=utf-8",
-              "cache-control": "no-store",
+              "cache-control": "no-store, max-age=0",
+              "cdn-cache-control": "no-store",
+              "vercel-cdn-cache-control": "no-store",
             },
           });
         }
