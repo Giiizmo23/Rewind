@@ -54,11 +54,9 @@ html[data-drop="1"], html[data-drop="1"] body {
   --rw-grain: 0 !important;
   --rw-fg: #f3efe6 !important;
   --rw-muted: #c4b4a0 !important;
-  background-color: #141116 !important;
-  background-image: url("/assets/nd-wall.jpg?v=1") !important;
-  background-size: 100% auto !important;
-  background-position: center 1.4rem !important;
-  background-repeat: no-repeat !important;
+  background: #07060a !important;
+  background-color: #07060a !important;
+  background-image: none !important;
   color: #f3efe6 !important;
   color-scheme: dark !important;
   overflow-x: hidden !important;
@@ -78,11 +76,9 @@ html[data-drop="1"] .store-bg,
 html[data-drop="1"] main,
 html[data-drop="1"] #root,
 html[data-drop="1"] #app {
-  background-color: #141116 !important;
-  background-image: url("/assets/nd-wall.jpg?v=1") !important;
-  background-size: 100% auto !important;
-  background-position: center 1.4rem !important;
-  background-repeat: no-repeat !important;
+  background: #07060a !important;
+  background-color: #07060a !important;
+  background-image: none !important;
   color: #f3efe6 !important;
 }
 html[data-drop="1"] .store-bg:before,
@@ -929,11 +925,9 @@ html[data-drop="1"] #nd-overlay {
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
-  background-color: #141116 !important;
-  background-image: url("/assets/nd-wall.jpg?v=1") !important;
-  background-size: 100% auto !important;
-  background-position: center 1.4rem !important;
-  background-repeat: no-repeat !important;
+  background: #07060a !important;
+  background-color: #07060a !important;
+  background-image: none !important;
   overflow: hidden !important;
   padding: 2.75rem 0 calc(3.2rem + env(safe-area-inset-bottom, 0px) * 1.2) !important;
   margin: 0 !important;

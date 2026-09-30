@@ -10237,8 +10237,35 @@
         p.classList.add("nd-neon-hide");
       }
     });
+    const deck = overlay.querySelector(".drop-deck");
+    let sign = overlay.querySelector(".nd-neon-sign[data-built='art']");
+    if (sign) {
+      if (deck && sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
+      ensureArtNeonCss();
+      return sign;
+    }
     document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());
-    return null;
+    sign = document.createElement("div");
+    sign.className = "nd-neon-sign";
+    sign.setAttribute("data-built", "art");
+    sign.setAttribute("aria-hidden", "true");
+    sign.innerHTML = '<img class="nd-neon-art" src="/assets/nd-neon.png?v=2" alt="">';
+    if (deck) deck.insertBefore(sign, deck.firstChild);
+    else overlay.insertBefore(sign, overlay.firstChild);
+    ensureArtNeonCss();
+    return sign;
+  }
+  function ensureArtNeonCss() {
+    if (document.getElementById("nd-art-neon")) return;
+    const s = document.createElement("style");
+    s.id = "nd-art-neon";
+    s.textContent =
+      "html[data-drop='1'],html[data-drop='1'] body,html[data-drop='1'] .store-bg,html[data-drop='1'] #nd-overlay{background:#07060a!important;background-image:none!important;background-color:#07060a!important}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0 auto .15rem!important;padding:0!important;background:none!important;filter:none!important;pointer-events:none!important}" +
+      "html[data-drop='1'] .nd-neon-art{display:block!important;height:min(23svh,10rem)!important;width:auto!important;max-width:94%!important;object-fit:contain!important;background:none!important;filter:drop-shadow(0 0 8px rgba(70,160,255,.4)) drop-shadow(0 0 12px rgba(255,40,150,.32));animation:nd-neon-hum 5.4s linear infinite}" +
+      "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(34svh,15.6rem)!important;min-height:min(34svh,15.6rem)!important;max-height:min(34svh,15.6rem)!important}" +
+      "@media (prefers-reduced-motion:reduce){.nd-neon-art{animation:none!important}}";
+    document.head.appendChild(s);
   }
   function placeOpenNeon(sign) {
     const deck = document.querySelector("#nd-overlay .drop-deck");
