@@ -629,7 +629,9 @@
         'html.vip-page main>[data-vip-wall] .vip-open .vip-bio-slot{margin-top:.85rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:.15rem}}' +
         '[data-vip-wall] .vip-banner{background:transparent!important}' +
-        '[data-vip-wall] .vip-banner img{-webkit-mask-image:linear-gradient(to bottom,#000 46%,transparent 100%);mask-image:linear-gradient(to bottom,#000 46%,transparent 100%)}' +
+        '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:62%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 88%)}' +
+        'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 88%)}' +
+        'html.vip-page .store-bg,body.vip-page .store-bg{background-image:none!important}' +
         'a.vip-tab{text-decoration:none;color:inherit;pointer-events:auto}' +
         '.vip-tabs,.vip-tab{pointer-events:auto!important;cursor:pointer!important;position:relative;z-index:5}' +
         '[data-vip-card],.top5-section,[data-vip-shelves],[data-vip-tapes-sec],[data-prize-locker],[data-vip-club],[data-vip-onvcr-sec],[data-vip-stats],#rewards{scroll-margin-top:6.4rem}' +
