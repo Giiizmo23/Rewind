@@ -633,7 +633,7 @@
         '[data-vip-wall] .vip-banner{background:transparent!important}' +
         '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0) 0%,#f6f4ef 100%)}' +
         'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{height:40%;background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
-        '[data-vip-wall] .vip-avatar{position:absolute;z-index:6!important;background:transparent!important;box-shadow:none!important}' +
+        '[data-vip-wall] .vip-avatar{position:absolute;z-index:6!important;overflow:hidden!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important}' +
         'html.vip-page,body.vip-page{--rw-linoleum:transparent!important;--rw-grain:0!important}' +
         'html.vip-page .store-bg,body.vip-page .store-bg,html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{background-image:none!important}' +
         'html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{content:none!important;display:none!important}' +
@@ -695,7 +695,7 @@
         '[data-vip-wall] .vip-banner-wrap{margin-bottom:2.45rem!important}' +
         '[data-vip-wall] .vip-banner.has-pic img,[data-vip-wall] .vip-avatar.has-pic img{display:block!important;opacity:1!important;visibility:visible!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;z-index:1}' +
         '.vip-polaroid img{width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center center!important}' +
-        '[data-vip-wall] .vip-avatar img{border-radius:999px!important}' +
+        '[data-vip-wall] .vip-avatar img{border-radius:0!important;transform:scale(1.08)!important}' +
         '[data-vip-wall] .vip-banner.has-pic .vip-edit-btn,[data-vip-wall] .vip-avatar.has-pic .vip-edit-btn{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}' +
         '.vip-pic-input{position:fixed!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important}' +
         '.pic-tray-note{margin:.35rem 0 0;font-size:.88rem;opacity:.72}' +
