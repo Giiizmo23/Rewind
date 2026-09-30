@@ -166,23 +166,33 @@
         note("is-flyer", "-1.4deg", "is-gold", '<span class="cork-stamp">Tonight</span><h3>Staff picks on the glass</h3><p>Alien is the tape leaving the shelf.</p>') +
         note("", "1.1deg", "", "<h3>Most rented</h3><p>Alien · 1979. Rented 12 times.</p>") +
         "</div>" +
-        '<div class="cork-feed">' + slip('<b class="cork-who">June Hart</b> reviewed <b class="cork-who">Casablanca</b> <span class="cork-star">★★★★</span>', "Here is looking at you.") + "</div>",
+        '<div class="cork-feed">' +
+        slip("<b class=\"cork-who\">Most logged</b> · <b class=\"cork-who\">The Matrix</b>", "Logged 9 times") +
+        slip('<b class="cork-who">June Hart</b> reviewed <b class="cork-who">Casablanca</b> <span class="cork-star">★★★★</span>', "Here is looking at you.") +
+        slip('<b class="cork-who">Alex Kim</b> reviewed <b class="cork-who">Heat</b> <span class="cork-star">★★★★★</span>', "The coffee shop scene.") +
+        "</div>",
       floor:
         '<div class="cork-feed">' +
         slip("<b class=\"cork-who\">June Hart</b> watched <b class=\"cork-who\">Alien</b>", "2h ago") +
         slip("<b class=\"cork-who\">Alex Kim</b> rented <b class=\"cork-who\">Clueless</b>", "Due Friday") +
+        slip("<b class=\"cork-who\">Mara Lin</b> logged <b class=\"cork-who\">Heat</b>", "Last night") +
+        slip('<b class="cork-who">June Hart</b> reviewed <b class="cork-who">The Shining</b> <span class="cork-star">★★★★★</span>', "All work and no play.") +
         "</div>",
       club:
-        '<div class="cork-feed">' + person("JH", "June Hart") + person("AK", "Alex Kim") + "</div>",
+        '<div class="cork-feed">' + person("JH", "June Hart") + person("AK", "Alex Kim") + person("ML", "Mara Lin") + "</div>",
       you:
         '<div class="cork-feed">' +
         slip("<b class=\"cork-who\">You</b> filed <b class=\"cork-who\">Back to the Future</b>", "Last night") +
         slip('<b class="cork-who">You</b> reviewed <b class="cork-who">Alien</b> <span class="cork-star">★★★★★</span>', "The score does the work.") +
+        slip("<b class=\"cork-who\">You</b> rented <b class=\"cork-who\">Jaws</b>", "Due Sunday") +
+        slip("<b class=\"cork-who\">You</b> logged <b class=\"cork-who\">Heat</b>", "This morning") +
         "</div>",
       incoming:
         '<div class="cork-feed">' +
         slip("<b class=\"cork-who\">June Hart</b> liked your review", "Casablanca") +
         slip("<b class=\"cork-who\">Alex Kim</b> sent an invite", "Wants to add you") +
+        slip("<b class=\"cork-who\">Mara Lin</b> commented on your review", "Alien") +
+        slip("<b class=\"cork-who\">Sam Ortiz</b> liked your log", "Heat") +
         "</div>",
     };
     return (
