@@ -62,26 +62,26 @@
     },
     {
       kicker: "VIP",
-      title: "Your page.",
-      body: "A header, a photo, a bio, and the membership card.",
+      title: "Your page at the club.",
+      body: "Hang a header and a photo, and write a short bio. The membership card sits on the page with them. That’s the page other members open.",
       visual: "vip",
     },
     {
       kicker: "On your page",
-      title: "Favorites. Your tapes.",
-      body: "Four favorites over the card. Your tapes on the wall.",
+      title: "Favorites and your tapes.",
+      body: "Choose four movies and they sit over the card. Rate a tape, log it, or write it up, and it goes on the wall with the rest of yours.",
       visual: "two",
     },
     {
       kicker: "The club",
-      title: "Members, friends, notes.",
-      body: "Every card has a page. Add a friend. Pass a note.",
+      title: "Friends and notes.",
+      body: "The board is other members, each with a page. Add someone as a friend. Friends can pass notes.",
       visual: "club",
     },
     {
       kicker: "Behind the counter",
       title: "The prize locker.",
-      body: "Points on the card. Stubs on the rack.",
+      body: "Every tape you log puts points on the card. The stubs behind the counter are priced in those points. Unlock one and it leaves the rack.",
       visual: "locker",
     },
     {
@@ -112,10 +112,10 @@
 
   const VISUAL = {
     card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div></div></div></div></div>`,
-    vip: `<ul class="tour-visual-list"><li>Header</li><li>Photo and bio</li><li>The card</li></ul>`,
-    two: `<ul class="tour-visual-list"><li>Favorites</li><li>Your tapes</li></ul>`,
-    club: `<ul class="tour-visual-list"><li>Member pages</li><li>Friends</li><li>Notes</li></ul>`,
-    locker: `<div class="tour-visual-boxes"><span>Points</span><span>Stubs</span><span>The rack</span></div>`,
+    vip: `<ul class="tour-visual-list"><li>Header and photo</li><li>A short bio</li><li>The card on the page</li></ul>`,
+    two: `<ul class="tour-visual-list"><li>Four favorites over the card</li><li>Logged tapes on the wall</li></ul>`,
+    club: `<ul class="tour-visual-list"><li>A page for every member</li><li>Add a friend</li><li>Pass a note</li></ul>`,
+    locker: `<div class="tour-visual-boxes"><span>Log a tape</span><span>Points on the card</span><span>Unlock a stub</span></div>`,
     wall: `<div class="tour-visual-boxes"><span>Flip the box</span><span>Read the spine</span><span>Check out the tape</span></div>`,
     rent: `<div class="tour-visual-boxes"><span>Overnight</span><span>Weekend</span><span>A week</span></div>`,
     drop: `<div class="tour-visual-drop"><p>Never seen it</p><p>Seen it</p><p>Pull the drapes</p><p>Members only</p></div>`,
