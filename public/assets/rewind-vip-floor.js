@@ -630,7 +630,7 @@
         'html.vip-page main>[data-vip-wall] [data-vip-bio]{font-size:.9rem!important}' +
         'html.vip-page main>[data-vip-wall] .vip-open .top5-section{margin-top:auto!important;padding-bottom:.15rem}}' +
         '[data-vip-wall] .vip-banner{background:transparent!important}' +
-        '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 100%)}' +
+        '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 100%)}' +
         'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
         '[data-vip-wall] .vip-avatar{position:absolute;z-index:6!important}' +
         'html.vip-page,body.vip-page{--rw-linoleum:transparent!important;--rw-grain:0!important}' +
