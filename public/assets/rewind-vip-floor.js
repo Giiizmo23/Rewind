@@ -2257,7 +2257,6 @@
     ["Teal", "#1f6f6a"],
     ["Orange", "#e85d04"],
     ["Purple", "#4a2158"],
-    ["Forest", "#1c3a2a"],
   ];
   const HEADER_PICS = [
     ["After Hours", "/sleeves/after-hours-still.jpg"],
@@ -2366,8 +2365,13 @@
       }
       const tile = t.closest && t.closest("[data-pic-url]");
       if (tile) {
-        tile.disabled = true;
-        useStorePic(tile.getAttribute("data-pic-url"), key, function () { sheet.remove(); });
+        const url = tile.getAttribute("data-pic-url");
+        const img = new Image();
+        img.onload = function () {
+          sheet.remove();
+          openPicFrame(key, img);
+        };
+        img.src = url;
         return;
       }
       if (t.closest && t.closest("[data-pic-own]")) {
