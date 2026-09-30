@@ -847,7 +847,9 @@
     function handle(e) {
       const t = e.target && e.target.closest && e.target.closest("a[href], [data-film-href], button[data-film-href]");
       if (!t) return;
-      if (t.closest && t.closest("main .vhs-box, .tape-hero-box")) return;
+      const onVipSleeve = t.closest && t.closest("[data-vip-top5], [data-vip-tapes], [data-vip-wall-tapes]");
+      if (onVipSleeve && e.type === "pointerdown") return;
+      if (t.closest && t.closest("main .vhs-box, .tape-hero-box") && !onVipSleeve) return;
       const href = filmHref(t);
       if (!href) return;
       e.preventDefault();

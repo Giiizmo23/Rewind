@@ -690,7 +690,9 @@
         '[data-vip-tapes]:not(:empty) + [data-vip-empty],[data-vip-top5]:not(:empty) + [data-vip-top5-empty],[data-vip-onvcr]:not(:empty) ~ [data-vip-onvcr-empty]{display:none!important}' +
         '.top5-section:has([data-vip-top5]:not(:empty)) [data-vip-top5-empty],[data-vip-top5-empty][hidden]{display:none!important}' +
         '.top5-section .rewind-top5-row{display:none!important}' +
-        '[data-vip-top5]{display:flex;gap:.5rem;overflow:hidden;max-width:100%}' +
+        '[data-vip-top5]{display:flex;gap:.5rem;overflow:visible;max-width:100%;position:relative;z-index:8}' +
+        '[data-vip-top5] a,[data-vip-top5] .vhs-box,[data-vip-top5] .rw-member-tape{pointer-events:auto!important;cursor:pointer;position:relative;z-index:8}' +
+        '[data-vip-wall] .top5-section{position:relative!important;z-index:8!important}' +
         '[data-vip-top5] .vhs-box{flex:1 1 0!important;width:auto!important;min-width:0!important;height:auto!important;aspect-ratio:2/3}' +
         'html[data-theme="dark"] [data-vip-onvcr-empty],html[data-theme="night"] [data-vip-onvcr-empty],html[data-theme="dark"] [data-vip-empty],html[data-theme="night"] [data-vip-empty],html[data-theme="dark"] [data-vip-top5-empty],html[data-theme="night"] [data-vip-top5-empty]{background:var(--rw-surface,#171a21)!important;border-color:color-mix(in oklab,var(--rw-fg,#f3efe6) 28%,transparent)!important;color:var(--rw-muted,#c9c4b8)!important}' +
         'html.vip-page main > .space-y-5:not([data-vip-wall]),html[data-member="1"].vip-page main > .space-y-5:not([data-vip-wall]),html.vip-page [data-members-desk]{display:none!important}' +
@@ -2529,7 +2531,18 @@
           try { openVipCustomize(); } catch (eCard) {}
           return;
         }
-        if (t.closest("[data-edit-top5], [data-vip-top5]")) {
+        const sleeve = t.closest("a[href*='/films/'], a.rw-member-tape");
+        if (sleeve && sleeve.closest("[data-vip-top5], [data-vip-tapes], [data-vip-wall-tapes]")) {
+          const href = (sleeve.getAttribute("href") || "").split("?")[0];
+          if (/^\/films\/[A-Za-z0-9]/.test(href)) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+            try { location.assign(href); } catch (errNav) { location.href = href; }
+            return;
+          }
+        }
+        if (t.closest("[data-edit-top5]")) {
           e.preventDefault();
           e.stopPropagation();
           if (e.stopImmediatePropagation) e.stopImmediatePropagation();

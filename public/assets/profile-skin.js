@@ -850,7 +850,9 @@
   try { window.__rwOpenTop5 = openTop5; } catch (e) {}
   document.addEventListener("click", (e) => {
     const t = e.target;
-    if (t instanceof Element && t.closest("[data-edit-top5], [data-vip-top5]")) {
+    if (!(t instanceof Element)) return;
+    if (t.closest("a[href*='/films/'], a.rw-member-tape")) return;
+    if (t.closest("[data-edit-top5]")) {
       e.preventDefault();
       e.stopPropagation();
       openTop5();
