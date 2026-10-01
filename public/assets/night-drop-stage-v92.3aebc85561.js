@@ -922,9 +922,11 @@ html[data-drop="1"] #nd-overlay {
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
-  background: #07060a !important;
-  background-color: #07060a !important;
-  background-image: none !important;
+  background-color: #1a100c !important;
+  background-image: url("/assets/nd-wood-wall.jpg?v=1") !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
   overflow: hidden !important;
   padding: 2.75rem 0 calc(3.2rem + env(safe-area-inset-bottom, 0px) * 1.2) !important;
   margin: 0 !important;
