@@ -2396,7 +2396,7 @@ html:not([data-drop="1"]) .store-bg::after {
 .vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important}
 .vhs-box[data-slug="coming-to-america"] .vhs-back-still{
   background-color:#14110e!important;
-  background-image:url("/sleeves/coming-to-america-shop.jpg?v=2")!important;
+  background-image:url("/sleeves/coming-to-america-shop.jpg?v=3")!important;
   background-size:cover!important;
   background-position:center center!important;
   background-repeat:no-repeat!important;
@@ -2404,13 +2404,13 @@ html:not([data-drop="1"]) .store-bg::after {
 html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still,
 html body .vhs-box[data-slug="coming-to-america"] .vhs-back-still{
   background-color:#14110e!important;
-  background-image:url("/sleeves/coming-to-america-shop.jpg?v=2")!important;
+  background-image:url("/sleeves/coming-to-america-shop.jpg?v=3")!important;
   background-size:cover!important;
   background-position:center center!important;
 }
 .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{
-  opacity:0!important;
-  visibility:hidden!important;
+  opacity:1!important;
+  visibility:visible!important;
 }
 .vhs-box[data-slug="coming-to-america"] .vhs-window img{
   object-fit:cover!important;
