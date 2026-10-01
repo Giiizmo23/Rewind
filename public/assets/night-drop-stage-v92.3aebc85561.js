@@ -26,7 +26,7 @@
   }
   try { markHomeApp(); } catch (eMark) {}
   const CSS_ID = "nd-stage-css-v92n67";
-  const VER = "92n82";
+  const VER = "92n83";
   let heldTheme = null;
   const FACE = encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" fill="none">' +
@@ -1245,7 +1245,7 @@ html[data-drop="1"] .nd-lights .nd-wire-r { right: .42rem; }
 html[data-drop="1"] .nd-lights i {
   position: absolute;
   top: .18rem;
-  left: calc(8% + (var(--i) * 7.9%));
+  left: calc(10% + (var(--i) * 12.6%));
   width: .56rem;
   height: .76rem;
   border-radius: 50% 50% 42% 42%;
@@ -1276,7 +1276,7 @@ html[data-drop="1"] .nd-lights i:nth-child(3n+1) { animation-duration: 3.9s; }
 html[data-drop="1"] .nd-lights i:nth-child(3n+2) { animation-duration: 4.7s; }
 html[data-drop="1"] .nd-lights i.nd-sl,
 html[data-drop="1"] .nd-lights i.nd-sr {
-  top: calc(1.05rem + (var(--s) / 8) * (100% - 7.4rem));
+  top: calc(1.15rem + (var(--s) / 5) * (100% - 8.1rem));
   left: auto;
   width: .52rem;
   height: .7rem;
@@ -3365,8 +3365,8 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     lights.className = "nd-lights";
     lights.dataset.v = VER;
     lights.setAttribute("aria-hidden", "true");
-    const top = ["#f4b942","#ff7a18","#e23d2f","#3cb371","#f4e27a","#ff7a18","#e23d2f","#f4b942","#3cb371","#ff7a18","#f4e27a"];
-    const side = ["#ff7a18","#f4b942","#e23d2f","#3cb371","#f4e27a","#ff7a18","#e23d2f","#f4b942","#3cb371"];
+    const top = ["#f4b942","#e23d2f","#3cb371","#f4e27a","#ff7a18","#3cb371","#f4b942"];
+    const side = ["#ff7a18","#e23d2f","#f4e27a","#3cb371","#f4b942","#e23d2f"];
     let html = '<b class="nd-wire nd-wire-top"></b><b class="nd-wire nd-wire-l"></b><b class="nd-wire nd-wire-r"></b>';
     html += top.map((c, i) => `<i style="--i:${i};--c:${c}"></i>`).join("");
     html += side.map((c, i) => `<i class="nd-sl" style="--s:${i};--c:${c}"></i>`).join("");
