@@ -774,8 +774,8 @@
         '.vhs-spine-right .vhs-spine-ink{transform:rotate(180deg)!important}' +
         '.lobby-picks .vhs-face-back,.lobby-picks .vhs-case-back,.lobby-picks .vhs-shell-back,.vhs-box .vhs-face-back,.vhs-box .vhs-case-back,.vhs-box .vhs-shell-back{height:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}' +
         'html body .lobby-picks .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
-        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=4")!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}' +
-        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important}' +
+        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=4")!important;background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important}' +
+        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important;object-fit:contain!important;object-position:center center!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:0 0 28%!important;height:28%!important;min-height:0!important;max-height:28%!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
         'html body .lobby-picks .vhs-back-still img,html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}' +
         'html body .vhs-box[data-slug="halloween-1978"] .vhs-back-still img{object-position:center center!important;object-fit:cover!important}' +
@@ -8263,7 +8263,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=4) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=4" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
+        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=4) center center/contain no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=4" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -8913,7 +8913,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=4) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=4" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=4) center center/contain no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=4" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         (overview ? '<p class="vhs-back-syn">' + overview + "</p>" : "") +
@@ -12401,7 +12401,7 @@
       lock(still, "order", "0");
       lock(still, "background-color", "#14110e");
       lock(still, "background-image", "url(/sleeves/coming-to-america-shop.jpg?v=4)");
-      lock(still, "background-size", "cover");
+      lock(still, "background-size", "contain");
       lock(still, "background-position", "center center");
       lock(still, "background-repeat", "no-repeat");
       let img = still.querySelector("img");
@@ -12419,7 +12419,7 @@
       lock(img, "inset", "0");
       lock(img, "width", "100%");
       lock(img, "height", "100%");
-      lock(img, "object-fit", "cover");
+      lock(img, "object-fit", "contain");
       lock(img, "object-position", "center center");
       lock(img, "display", "block");
       lock(img, "opacity", "1");
@@ -12708,9 +12708,15 @@
       img.style.setProperty("inset", "0", "important");
       img.style.setProperty("width", "100%", "important");
       img.style.setProperty("height", "100%", "important");
-      img.style.setProperty("object-fit", "cover", "important");
+      img.style.setProperty("object-fit", slug === "coming-to-america" ? "contain" : "cover", "important");
       img.style.setProperty("object-position", "center center", "important");
       img.style.setProperty("display", "block", "important");
+      if (slug === "coming-to-america") {
+        still.style.setProperty("background-size", "contain", "important");
+        still.style.setProperty("background-repeat", "no-repeat", "important");
+        still.style.setProperty("background-position", "center center", "important");
+        still.style.setProperty("background-color", "#14110e", "important");
+      }
       if (small && onShelf) {
         copy.style.setProperty("flex", "1 1 auto", "important");
         copy.style.setProperty("min-height", "0", "important");
