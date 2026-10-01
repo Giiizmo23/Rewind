@@ -15,6 +15,7 @@
     if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
     if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
     if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
+    if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }

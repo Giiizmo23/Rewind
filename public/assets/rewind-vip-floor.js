@@ -10,6 +10,7 @@
     if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
     if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
     if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
+    if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -12580,9 +12581,9 @@
         el.style.setProperty("background-color", "#16324a", "important");
       });
       box.querySelectorAll(".vhs-back-still img").forEach(function (img) {
-        if ((img.getAttribute("src") || "").indexOf("jaws-orca.jpg") < 0) {
+        if ((img.getAttribute("src") || "").indexOf("jaws-orca.jpg?v=2") < 0) {
           img.removeAttribute("srcset");
-          img.src = "/sleeves/jaws-orca.jpg?v=1";
+          img.src = "/sleeves/jaws-orca.jpg?v=2";
         }
         img.onerror = null;
         img.style.setProperty("display", "block", "important");
