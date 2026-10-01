@@ -2,6 +2,7 @@ import catalogRaw from "../../../public/data/catalog.json?raw";
 import { createHash, randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
 import { getSql, type Sql } from "@/lib/db";
+import { collectActivity, floorActs, rankStore, type Act } from "@/lib/rewind/activity.server";
 
 const scryptAsync = promisify(scrypt);
 const LOCKER_MAX = 3_000_000;
@@ -112,6 +113,45 @@ async function ensureClub(sql: Sql): Promise<void> {
           handle text primary key,
           attempts int not null default 0,
           locked_until timestamptz
+        )`,
+      );
+      await sql.query(
+        `create table if not exists rewind_activity (
+          id bigserial primary key,
+          source text not null,
+          actor text not null default '',
+          name text not null default '',
+          kind text not null,
+          slug text not null default '',
+          rating int not null default 0,
+          at bigint not null default 0,
+          blurb text not null default '',
+          title text not null default '',
+          other_handle text not null default '',
+          other_name text not null default '',
+          parent_handle text not null default '',
+          parent_name text not null default ''
+        )`,
+      );
+      await sql.query("create index if not exists rewind_activity_source_idx on rewind_activity (source)");
+      await sql.query("create index if not exists rewind_activity_actor_idx on rewind_activity (actor, at desc)");
+      await sql.query(
+        `create table if not exists rewind_activity_done (
+          handle text primary key
+        )`,
+      );
+      await sql.query(
+        `create table if not exists rewind_signin_tries (
+          handle text primary key,
+          attempts int not null default 0,
+          locked_until timestamptz
+        )`,
+      );
+      await sql.query(
+        `create table if not exists rewind_feed_cache (
+          lane text primary key,
+          payload jsonb not null,
+          built_at timestamptz not null default now()
         )`,
       );
     })().catch((err) => {
@@ -228,8 +268,44 @@ async function authed(sql: Sql, body: Record<string, unknown>): Promise<Member |
     }
   }
   const password = String(body.password || "");
-  if (password && (await checkPassword(password, member.password_hash))) return member;
+  if (await signinLocked(sql, member.handle)) return json({ ok: false, err: "locked" }, 429);
+  if (password && (await checkPassword(password, member.password_hash))) {
+    await sql.query("delete from rewind_signin_tries where handle = $1", [member.handle]);
+    return member;
+  }
+  if (password) {
+    const tries = await markSigninMiss(sql, member.handle);
+    if (tries >= 10) return json({ ok: false, err: "locked" }, 429);
+  }
   return json({ ok: false, err: "password" }, 401);
+}
+
+async function signinLocked(sql: Sql, handle: string): Promise<boolean> {
+  const rows = await sql.query<{ locked_until: string | null }>(
+    "select locked_until from rewind_signin_tries where handle = $1",
+    [handle],
+  );
+  const until = rows[0]?.locked_until;
+  if (!until) return false;
+  if (new Date(until).getTime() > Date.now()) return true;
+  await sql.query("delete from rewind_signin_tries where handle = $1", [handle]);
+  return false;
+}
+
+async function markSigninMiss(sql: Sql, handle: string): Promise<number> {
+  const rows = await sql.query<{ attempts: number }>(
+    `insert into rewind_signin_tries (handle, attempts, locked_until)
+     values ($1, 1, null)
+     on conflict (handle) do update set
+       attempts = rewind_signin_tries.attempts + 1,
+       locked_until = case
+         when rewind_signin_tries.attempts + 1 >= 10 then now() + interval '30 minutes'
+         else rewind_signin_tries.locked_until
+       end
+     returning attempts`,
+    [handle],
+  );
+  return Number(rows[0]?.attempts) || 1;
 }
 
 function relation(iFollow: boolean, theyFollow: boolean): string {
@@ -346,6 +422,8 @@ export async function handleRewind(request: Request): Promise<Response> {
   const sql = await getSql();
   await ensureClub(sql);
   slimOldBackups(sql);
+  trimBackups(sql);
+  shrinkStoredPics(sql);
   await seedFilms(sql);
 
   if (path === "/api/rewind/stamp") return stamp(sql, body);
@@ -395,67 +473,7 @@ async function clubFeed(sql: Sql, body: Record<string, unknown>): Promise<Respon
   return floorSquare(sql, who.handle);
 }
 
-const FEED_HALF_MS = 7 * 86400000;
 
-function feedDecay(at: number, now: number): number {
-  if (!at || at <= 0) return 0.2;
-  return 0.5 ** (Math.max(0, now - at) / FEED_HALF_MS);
-}
-
-function feedClip(text: string, max: number): string {
-  const clean = text.trim();
-  if (clean.length <= max) return clean;
-  return clean.slice(0, max - 1).trimEnd() + "…";
-}
-
-function cleanReview(value: unknown): string {
-  const review = typeof value === "string" ? value.trim() : "";
-  if (!review || /^(review|reviewed)$/i.test(review)) return "";
-  return review;
-}
-
-function slugOf(item: unknown): string {
-  if (typeof item === "string") return item.trim().replace(/^\/+|\/+$/g, "");
-  if (!item || typeof item !== "object") return "";
-  const row = item as Record<string, unknown>;
-  return String(row.slug || row.filmId || row.id || "").trim().replace(/^\/+|\/+$/g, "");
-}
-
-function lockerList(locker: Locker, key: string): unknown[] {
-  const raw = lockerJson(locker, key);
-  return Array.isArray(raw) ? raw : [];
-}
-
-function wallOf(locker: Locker): Record<string, unknown> {
-  const wall = lockerJson(locker, "rewind-club-wall");
-  return wall && !Array.isArray(wall) ? wall : {};
-}
-
-type ClubPerson = { handle: string; name: string; locker: Locker };
-
-function personName(member: ClubPerson): string {
-  const face = member.locker?.cardFace || {};
-  const profile = member.locker?.profile || {};
-  return String(face.name || profile.displayName || profile.name || member.name || member.handle);
-}
-
-function personKeys(member: ClubPerson, name: string): string[] {
-  const face = member.locker?.cardFace || {};
-  const profile = member.locker?.profile || {};
-  const raw = [member.handle, member.name, name, face.displayName, face.name, profile.displayName, profile.name, profile.username];
-  const keys: string[] = [];
-  for (const value of raw) {
-    const key = String(value || "").trim().toLowerCase();
-    if (key && !keys.includes(key)) keys.push(key);
-  }
-  return keys;
-}
-
-async function loadClub(sql: Sql): Promise<ClubPerson[]> {
-  return sql.query<ClubPerson>(
-    "select handle, name, coalesce(locker, '{}'::jsonb) - 'banner' - 'avatar' as locker from rewind_members",
-  );
-}
 
 async function friendFollows(sql: Sql, handles: string[]): Promise<Array<{ follower: string; followee: string; at: number }>> {
   if (!handles.length) return [];
@@ -567,315 +585,216 @@ type TapeHeat = {
 
 type Scored = { score: number; at: number; item: Record<string, unknown> };
 
-async function floorSquare(sql: Sql, handle: string): Promise<Response> {
-  const club = await loadClub(sql);
-  const friends = await mutualHandles(sql, handle);
-  const { acts } = buildClubFeeds(club, friends, Date.now());
-  const byHandle = new Map(club.map((member) => [member.handle, member]));
-  for (const row of await friendFollows(sql, [...friends])) {
-    const at = Number(row.at) || 0;
-    if (!at || !friends.has(row.follower)) continue;
-    const who = byHandle.get(row.follower);
-    const other = byHandle.get(row.followee);
-    if (!who || row.followee === row.follower) continue;
-    acts.push({
-      kind: "follow",
-      size: "short",
-      handle: who.handle,
-      name: personName(who),
-      otherHandle: other?.handle || row.followee,
-      otherName: other ? personName(other) : row.followee,
-      at,
-    });
+async function replaceActivity(sql: Sql, handle: string, accountName: string, locker: Locker): Promise<void> {
+  const acts = collectActivity(handle, accountName, locker || {});
+  await sql.query("delete from rewind_activity where source = $1", [handle]);
+  if (!acts.length) return;
+  await sql.query(
+    `insert into rewind_activity
+      (source, actor, name, kind, slug, rating, at, blurb, title, other_handle, other_name, parent_handle, parent_name)
+     select source, actor, name, kind, slug, rating, at, blurb, title,
+       "otherHandle", "otherName", "parentHandle", "parentName"
+     from jsonb_to_recordset($1::jsonb) as x(
+       source text, actor text, name text, kind text, slug text, rating int, at bigint,
+       blurb text, title text, "otherHandle" text, "otherName" text, "parentHandle" text, "parentName" text
+     )`,
+    [JSON.stringify(acts)],
+  );
+}
+
+async function refreshStoreCache(sql: Sql): Promise<void> {
+  const since = Date.now() - 120 * 86400000;
+  const rows = await sql.query<Act>(
+    `select source, actor, name, kind, slug, rating, at::float8 as at, blurb, title,
+       other_handle as "otherHandle", other_name as "otherName",
+       parent_handle as "parentHandle", parent_name as "parentName"
+     from rewind_activity
+     where at > $1
+     order by at desc
+     limit 1500`,
+    [since],
+  );
+  const ranked = rankStore(rows, Date.now());
+  await sql.query(
+    `insert into rewind_feed_cache (lane, payload, built_at) values ('store', $1::jsonb, now())
+     on conflict (lane) do update set payload = excluded.payload, built_at = now()`,
+    [JSON.stringify(ranked)],
+  );
+}
+
+async function ensureMemberActivity(sql: Sql, handle: string): Promise<void> {
+  const done = await sql.query<{ handle: string }>("select handle from rewind_activity_done where handle = $1", [handle]);
+  if (done[0]) return;
+  const member = await memberByHandle(sql, handle);
+  if (!member) return;
+  await replaceActivity(sql, member.handle, member.name, member.locker || {});
+  await sql.query("insert into rewind_activity_done (handle) values ($1) on conflict do nothing", [handle]);
+  await refreshStoreCache(sql);
+}
+
+async function catchUpActivity(sql: Sql): Promise<void> {
+  const flag = globalThis as typeof globalThis & { __rwActJob?: Promise<void> };
+  if (flag.__rwActJob) return flag.__rwActJob;
+  flag.__rwActJob = (async () => {
+    try {
+      const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
+        `select m.handle, m.name, coalesce(m.locker, '{}'::jsonb) - 'banner' - 'avatar' as locker
+         from rewind_members m
+         where not exists (select 1 from rewind_activity_done d where d.handle = m.handle)
+         limit 2`,
+      );
+      if (!rows.length) return;
+      for (const row of rows) {
+        await replaceActivity(sql, row.handle, row.name, row.locker || {});
+        await sql.query("insert into rewind_activity_done (handle) values ($1) on conflict do nothing", [row.handle]);
+      }
+      await refreshStoreCache(sql);
+    } catch {
+      /* the next open tries again */
+    }
+  })().finally(() => {
+    flag.__rwActJob = undefined;
+  });
+  return flag.__rwActJob;
+}
+
+async function shrinkPic(dataUrl: string, maxWidth: number): Promise<string> {
+  if (!dataUrl.startsWith("data:image/") || dataUrl.length < 90_000) return dataUrl;
+  try {
+    const sharp = (await import("sharp")).default;
+    const comma = dataUrl.indexOf(",");
+    const buf = Buffer.from(dataUrl.slice(comma + 1), "base64");
+    const out = await sharp(buf, { failOn: "none" })
+      .rotate()
+      .resize({ width: maxWidth, height: maxWidth, fit: "inside", withoutEnlargement: true })
+      .jpeg({ quality: 62 })
+      .toBuffer();
+    const next = "data:image/jpeg;base64," + out.toString("base64");
+    return next.length < dataUrl.length ? next : dataUrl;
+  } catch {
+    return dataUrl;
   }
-  acts.sort((a, b) => Number(b.at) - Number(a.at) || String(a.kind).localeCompare(String(b.kind)));
-  return json({ ok: true, shared: true, lane: "floor", feed: acts.filter((row) => Number(row.at) > 0).slice(0, 80) });
+}
+
+function shrinkStoredPics(sql: Sql): void {
+  const flag = globalThis as typeof globalThis & { __rwPicShrink?: boolean; __rwPicBusy?: boolean; __rwPicTried?: string[] };
+  if (flag.__rwPicShrink || flag.__rwPicBusy) return;
+  flag.__rwPicBusy = true;
+  const tried = flag.__rwPicTried || [];
+  flag.__rwPicTried = tried;
+  void sql
+    .query<{ handle: string; banner: string; avatar: string }>(
+      `select handle,
+         coalesce(locker->>'banner', '') as banner,
+         coalesce(locker->>'avatar', '') as avatar
+       from rewind_members
+       where (length(coalesce(locker->>'banner', '')) > 90000 or length(coalesce(locker->>'avatar', '')) > 90000)
+         and not (handle = any($1::text[]))
+       limit 1`,
+      [tried.length ? tried : [""]],
+    )
+    .then(async (rows) => {
+      const row = rows[0];
+      if (!row) {
+        flag.__rwPicShrink = true;
+        return;
+      }
+      tried.push(row.handle);
+      const banner = row.banner.length > 90_000 ? await shrinkPic(row.banner, 720) : "";
+      const avatar = row.avatar.length > 90_000 ? await shrinkPic(row.avatar, 320) : "";
+      const patch: Locker = {};
+      if (banner && banner !== row.banner) patch.banner = banner;
+      if (avatar && avatar !== row.avatar) patch.avatar = avatar;
+      if (patch.banner || patch.avatar) {
+        await sql.query("update rewind_members set locker = coalesce(locker, '{}'::jsonb) || $1::jsonb where handle = $2", [
+          JSON.stringify(patch),
+          row.handle,
+        ]);
+      }
+    })
+    .catch(() => {})
+    .finally(() => {
+      flag.__rwPicBusy = false;
+    });
+}
+
+function trimBackups(sql: Sql): void {
+  const flag = globalThis as typeof globalThis & { __rwTrimDone?: boolean };
+  if (flag.__rwTrimDone) return;
+  void sql
+    .query<{ id: number }>(
+      `select id from (
+         select id, row_number() over (partition by handle order by id desc) as n
+         from rewind_backups
+       ) ranked
+       where n > 2
+       limit 40`,
+    )
+    .then(async (rows) => {
+      if (!rows.length) {
+        flag.__rwTrimDone = true;
+        return;
+      }
+      await sql.query("delete from rewind_backups where id = any($1::bigint[])", [rows.map((row) => row.id)]);
+    })
+    .catch(() => {});
+}
+
+async function floorSquare(sql: Sql, handle: string): Promise<Response> {
+  await catchUpActivity(sql);
+  await ensureMemberActivity(sql, handle);
+  const friends = await mutualHandles(sql, handle);
+  const ids = [...friends];
+  const since = Date.now() - 120 * 86400000;
+  const acts = ids.length
+    ? await sql.query<Act>(
+        `select source, actor, name, kind, slug, rating, at::float8 as at, blurb, title,
+           other_handle as "otherHandle", other_name as "otherName",
+           parent_handle as "parentHandle", parent_name as "parentName"
+         from rewind_activity
+         where actor = any($1::text[]) and at > $2
+         order by at desc
+         limit 400`,
+        [ids, since],
+      )
+    : [];
+  const raw = floorActs(acts, friends);
+  if (ids.length) {
+    const names = await sql.query<{ handle: string; display: string }>(
+      `select handle,
+         coalesce(nullif(locker->'cardFace'->>'name',''), nullif(locker->'profile'->>'displayName',''), nullif(locker->'profile'->>'name',''), name) as display
+       from rewind_members where handle = any($1::text[])`,
+      [ids],
+    );
+    const byName = new Map(names.map((row) => [row.handle, row.display]));
+    for (const row of await friendFollows(sql, ids)) {
+      const at = Number(row.at) || 0;
+      if (!at || !friends.has(row.follower) || row.followee === row.follower) continue;
+      raw.push({
+        kind: "follow",
+        size: "short",
+        handle: row.follower,
+        name: byName.get(row.follower) || row.follower,
+        otherHandle: row.followee,
+        otherName: byName.get(row.followee) || row.followee,
+        at,
+      });
+    }
+  }
+  const feed = consolidateFloor(raw);
+  feed.sort((a, b) => Number(b.at) - Number(a.at) || String(a.kind).localeCompare(String(b.kind)));
+  return json({ ok: true, shared: true, lane: "floor", feed: feed.filter((row) => Number(row.at) > 0).slice(0, 80) });
 }
 
 async function storeSquare(sql: Sql): Promise<Response> {
-  const club = await loadClub(sql);
-  const { ranked } = buildClubFeeds(club, null, Date.now());
-  return json({ ok: true, shared: true, lane: "store", feed: ranked.slice(0, 24) });
-}
-
-function buildClubFeeds(club: ClubPerson[], friends: Set<string> | null, now: number) {
-  const byKey = new Map<string, ClubPerson>();
-  for (const member of club) {
-    const name = personName(member);
-    byKey.set(member.handle, member);
-    const folded = member.handle.toLowerCase();
-    if (!byKey.has(folded)) byKey.set(folded, member);
-    for (const key of personKeys(member, name)) {
-      if (!byKey.has(key)) byKey.set(key, member);
-    }
+  await catchUpActivity(sql);
+  let cached = await sql.query<{ payload: unknown }>("select payload from rewind_feed_cache where lane = 'store'");
+  if (!cached[0]) {
+    await refreshStoreCache(sql);
+    cached = await sql.query<{ payload: unknown }>("select payload from rewind_feed_cache where lane = 'store'");
   }
-  const heat = new Map<string, TapeHeat>();
-  const authorPts = new Map<string, number>();
-  const reviews: Array<Record<string, unknown> & { commentPts: number }> = [];
-  const likes: Array<Record<string, unknown>> = [];
-  const comments: Array<Record<string, unknown>> = [];
-  const floor: Array<Record<string, unknown>> = [];
-
-  const bump = (slug: string, field: "rentals" | "logs" | "likes" | "comments" | "", weight: number, at: number, who: string, title = "") => {
-    if (!slug) return 0;
-    const row = heat.get(slug) || { rentals: 0, logs: 0, likes: 0, comments: 0, heat: 0, at: 0, title: "" };
-    if (field) row[field] += 1;
-    const pts = weight * feedDecay(at, now);
-    row.heat += pts;
-    if (at > row.at) row.at = at;
-    if (title && !row.title) row.title = title;
-    heat.set(slug, row);
-    if (who) authorPts.set(who + "\0" + slug, (authorPts.get(who + "\0" + slug) || 0) + pts);
-    return pts;
-  };
-
-  for (const member of club) {
-    const name = personName(member);
-    const locker = member.locker || {};
-    const wall = wallOf(locker);
-    const notes =
-      wall.diaryNotes && typeof wall.diaryNotes === "object" && !Array.isArray(wall.diaryNotes)
-        ? (wall.diaryNotes as Record<string, Record<string, unknown>>)
-        : {};
-    const onFloor = !!friends?.has(member.handle);
-    const logAt = new Map<string, number>();
-    const rewatch = new Set<string>();
-    for (const key of ["rewind-logged-slugs", "rewind-local-diary", "rewind-kind-films"]) {
-      for (const item of lockerList(locker, key)) {
-        const slug = slugOf(item);
-        if (!slug) continue;
-        const at = item && typeof item === "object" ? Number((item as { at?: unknown }).at) || 0 : 0;
-        if (!logAt.has(slug) || at > (logAt.get(slug) || 0)) logAt.set(slug, at);
-      }
-    }
-    for (const [slug, note] of Object.entries(notes)) {
-      if (!slug) continue;
-      const at = Number(note.at) || 0;
-      const review = cleanReview(note.review);
-      const rating = Number(note.rating) || 0;
-      const liked = !!note.liked;
-      if (review || rating > 0 || note.watched || note.rewatch || logAt.has(slug)) {
-        logAt.set(slug, Math.max(logAt.get(slug) || 0, at));
-      }
-      if (note.rewatch) rewatch.add(slug);
-      if (liked) {
-        bump(slug, "likes", 3, at, member.handle);
-        likes.push({ handle: member.handle, name, slug, rating, at });
-        if (onFloor) floor.push({ kind: "like", handle: member.handle, name, slug, rating, at });
-      }
-      if (review) {
-        bump(slug, "", 1, at, member.handle);
-        let commentPts = 0;
-        const replies = Array.isArray(note.replies) ? note.replies : [];
-        for (const reply of replies) {
-          if (!reply || typeof reply !== "object") continue;
-          const row = reply as Record<string, unknown>;
-          const text = typeof row.text === "string" ? row.text.trim() : "";
-          if (!text) continue;
-          const when = Number(row.at) || 0;
-          const hinted = String(row.handle || "").trim();
-          const named = String(row.by || "").trim().toLowerCase();
-          const author = (hinted && (byKey.get(hinted) || byKey.get(hinted.toLowerCase()))) || (named && byKey.get(named)) || null;
-          commentPts += bump(slug, "comments", 4, when, author?.handle || "", "");
-          if (!author) continue;
-          const authorName = personName(author);
-          comments.push({ handle: author.handle, name: authorName, slug, at: when, excerpt: feedClip(text, 110) });
-          if (friends?.has(author.handle) && when) {
-            floor.push({
-              kind: "comment",
-              handle: author.handle,
-              name: authorName,
-              slug,
-              at: when,
-              blurb: feedClip(text, 600),
-              parentHandle: member.handle,
-              parentName: name,
-            });
-          }
-        }
-        reviews.push({ handle: member.handle, name, slug, rating, at, excerpt: feedClip(review, 110), blurb: feedClip(review, 2000), commentPts });
-        if (onFloor) floor.push({ kind: "review", handle: member.handle, name, slug, rating, at, blurb: feedClip(review, 2000) });
-      } else if (Array.isArray(note.replies)) {
-        for (const reply of note.replies) {
-          if (!reply || typeof reply !== "object") continue;
-          const row = reply as Record<string, unknown>;
-          const text = typeof row.text === "string" ? row.text.trim() : "";
-          if (!text) continue;
-          const when = Number(row.at) || 0;
-          const hinted = String(row.handle || "").trim();
-          const named = String(row.by || "").trim().toLowerCase();
-          const author = (hinted && (byKey.get(hinted) || byKey.get(hinted.toLowerCase()))) || (named && byKey.get(named)) || null;
-          bump(slug, "comments", 4, when, author?.handle || "");
-          if (!author) continue;
-          const authorName = personName(author);
-          comments.push({ handle: author.handle, name: authorName, slug, at: when, excerpt: feedClip(text, 110) });
-          if (friends?.has(author.handle) && when) {
-            floor.push({
-              kind: "comment",
-              handle: author.handle,
-              name: authorName,
-              slug,
-              at: when,
-              blurb: feedClip(text, 600),
-              parentHandle: member.handle,
-              parentName: name,
-            });
-          }
-        }
-      }
-      if (onFloor && note.owned) {
-        bump(slug, "", 1, at, member.handle);
-        floor.push({ kind: "own", handle: member.handle, name, slug, at });
-      } else if (note.owned) bump(slug, "", 1, at, member.handle);
-    }
-    for (const [slug, at] of logAt) {
-      bump(slug, "logs", 2, at, member.handle);
-      if (!onFloor) continue;
-      const note = notes[slug] || {};
-      floor.push({
-        kind: rewatch.has(slug) ? "rewatch" : "log",
-        handle: member.handle,
-        name,
-        slug,
-        rating: Number(note.rating) || 0,
-        at,
-      });
-    }
-    const reviewLikes = Array.isArray(wall.reviewLikes) ? wall.reviewLikes : [];
-    for (const like of reviewLikes) {
-      if (!like || typeof like !== "object" || !onFloor) continue;
-      const row = like as Record<string, unknown>;
-      const at = Number(row.at) || 0;
-      const slug = slugOf(row);
-      if (!at || !slug) continue;
-      const hinted = String(row.handle || "").trim();
-      const target = (hinted && (byKey.get(hinted) || byKey.get(hinted.toLowerCase()))) || null;
-      if (!target) continue;
-      floor.push({
-        kind: "review-like",
-        handle: member.handle,
-        name,
-        slug,
-        rating: Number(row.rating) || 0,
-        otherHandle: target.handle,
-        otherName: personName(target),
-        at,
-      });
-    }
-    for (const item of lockerList(locker, "rewind-out-tapes")) {
-      const slug = slugOf(item);
-      if (!slug) continue;
-      const row = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
-      const at = Number(row.rentedAt) || 0;
-      const title = typeof row.title === "string" ? row.title : "";
-      bump(slug, "rentals", 5, at, member.handle, title);
-      if (onFloor) floor.push({ kind: "rent", handle: member.handle, name, slug, title, at });
-    }
-    const rewound = wall.rewound && typeof wall.rewound === "object" && !Array.isArray(wall.rewound) ? (wall.rewound as Record<string, unknown>) : {};
-    for (const [slug, when] of Object.entries(rewound)) {
-      const at = Number(when) || 0;
-      bump(slug, "", 2, at, member.handle);
-      if (onFloor) floor.push({ kind: "rewind", handle: member.handle, name, slug, at });
-    }
-    const onTime = wall.onTime && typeof wall.onTime === "object" && !Array.isArray(wall.onTime) ? (wall.onTime as Record<string, unknown>) : {};
-    for (const [slug, flag] of Object.entries(onTime)) {
-      if (!flag) continue;
-      const at = Number(notes[slug]?.at) || 0;
-      bump(slug, "", 2, at, member.handle);
-      if (onFloor) floor.push({ kind: "ontime", handle: member.handle, name, slug, at });
-    }
-  }
-
-  const pool: Scored[] = [];
-  for (const review of reviews) {
-    const slug = String(review.slug);
-    const who = String(review.handle);
-    const tape = heat.get(slug);
-    const mine = authorPts.get(who + "\0" + slug) || 0;
-    const commentPts = review.commentPts || 0;
-    const others = Math.max(0, (tape?.heat || 0) - mine - commentPts);
-    const at = Number(review.at) || 0;
-    const score = 1 * feedDecay(at, now) + commentPts + others * 0.5;
-    pool.push({
-      score,
-      at,
-      item: {
-        kind: "review",
-        handle: who,
-        name: review.name,
-        slug,
-        rating: review.rating,
-        excerpt: review.excerpt,
-        at,
-      },
-    });
-  }
-  for (const [slug, row] of heat) {
-    if (!(row.rentals > 0 || row.logs >= 2 || row.likes >= 2 || row.comments >= 1)) continue;
-    const rentScore = row.rentals * 5;
-    const logScore = row.logs * 2;
-    const label = rentScore > 0 && rentScore >= logScore ? "rented" : row.logs > 0 ? "logged" : row.comments > 0 ? "commented" : "liked";
-    pool.push({
-      score: row.heat,
-      at: row.at,
-      item: {
-        kind: "tape",
-        slug,
-        title: row.title,
-        label,
-        rentals: row.rentals,
-        logs: row.logs,
-        likes: row.likes,
-        comments: row.comments,
-        at: row.at,
-      },
-    });
-  }
-  const bestLike = new Map<string, Scored>();
-  for (const like of likes) {
-    const slug = String(like.slug);
-    const at = Number(like.at) || 0;
-    const score = 3 * feedDecay(at, now) + (heat.get(slug)?.heat || 0) * 0.25;
-    const prev = bestLike.get(slug);
-    if (prev && prev.score >= score) continue;
-    bestLike.set(slug, {
-      score,
-      at,
-      item: { kind: "like", handle: like.handle, name: like.name, slug, rating: like.rating, at },
-    });
-  }
-  const bestComment = new Map<string, Scored>();
-  for (const comment of comments) {
-    const slug = String(comment.slug);
-    const at = Number(comment.at) || 0;
-    const score = 4 * feedDecay(at, now) + (heat.get(slug)?.heat || 0) * 0.25;
-    const prev = bestComment.get(slug);
-    if (prev && prev.score >= score) continue;
-    bestComment.set(slug, {
-      score,
-      at,
-      item: {
-        kind: "comment",
-        handle: comment.handle,
-        name: comment.name,
-        slug,
-        excerpt: comment.excerpt,
-        at,
-      },
-    });
-  }
-  pool.push(...bestLike.values(), ...bestComment.values());
-  pool.sort((a, b) => b.score - a.score || b.at - a.at || String(a.item.kind).localeCompare(String(b.item.kind)));
-  const seen = new Set<string>();
-  const ranked: Array<Record<string, unknown>> = [];
-  for (const row of pool) {
-    const item = row.item;
-    const key = String(item.kind) + "\0" + String(item.handle || "") + "\0" + String(item.slug || "");
-    if (seen.has(key)) continue;
-    seen.add(key);
-    ranked.push(item);
-  }
-  return { ranked, acts: consolidateFloor(floor) };
+  const feed = Array.isArray(cached[0]?.payload) ? cached[0].payload : [];
+  return json({ ok: true, shared: true, lane: "store", feed });
 }
 
 async function newRecoveryCode(sql: Sql, body: Record<string, unknown>): Promise<Response> {
@@ -903,6 +822,8 @@ async function deleteAccount(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("delete from rewind_messages where sender = $1 or recipient = $1", [handle]);
   await sql.query("delete from rewind_msg_gates where asker = $1 or askee = $1", [handle]);
   await sql.query("delete from rewind_backups where handle = $1", [handle]);
+  await sql.query("delete from rewind_activity where source = $1 or actor = $1", [handle]);
+  await sql.query("delete from rewind_activity_done where handle = $1", [handle]);
   await sql.query("delete from rewind_reset_tries where handle = $1", [handle]);
   try {
     await deleteVault(handle);
@@ -931,7 +852,7 @@ async function stamp(sql: Sql, body: Record<string, unknown>): Promise<Response>
   if (password.length < 8) return json({ ok: false, err: "short" }, 400);
   const recovery = normRecovery(body.recovery);
   if (recovery.length < 4 || recovery.length > 80) return json({ ok: false, err: "secret" }, 400);
-  const existing = await memberByHandle(sql, handle);
+  const existing = await memberAuth(sql, handle);
   if (existing) return json({ ok: false, err: "taken" }, 409);
   const passwordHash = await hashPassword(password);
   const recoveryHash = await hashPassword(recovery);
@@ -1306,7 +1227,7 @@ async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<v
      where handle = $1
        and id not in (
          select id from (
-           select id from rewind_backups where handle = $1 order by id desc limit 30
+           select id from rewind_backups where handle = $1 order by id desc limit 2
          ) keep
        )`,
     [handle],
@@ -1380,8 +1301,21 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
   if (!locker || typeof locker !== "object") return json({ ok: false, err: "locker" }, 400);
   const incoming = locker as Locker;
   const merged = mergeLocker(who.locker || {}, incoming);
-  const banner = typeof incoming.banner === "string" && incoming.banner.startsWith("data:") ? incoming.banner : "";
-  const avatar = typeof incoming.avatar === "string" && incoming.avatar.startsWith("data:") ? incoming.avatar : "";
+  const bannerIn = typeof incoming.banner === "string" && incoming.banner.startsWith("data:") ? incoming.banner : "";
+  const avatarIn = typeof incoming.avatar === "string" && incoming.avatar.startsWith("data:") ? incoming.avatar : "";
+  const banner = bannerIn ? await shrinkPic(bannerIn, 720) : "";
+  const avatar = avatarIn ? await shrinkPic(avatarIn, 320) : "";
+  const prevDiary = JSON.stringify({
+    keys: who.locker?.keys || {},
+    profile: who.locker?.profile || {},
+    cardFace: who.locker?.cardFace || {},
+  });
+  const nextDiary = JSON.stringify({
+    keys: merged.keys || {},
+    profile: merged.profile || {},
+    cardFace: merged.cardFace || {},
+  });
+  if (prevDiary === nextDiary && !banner && !avatar) return json({ ok: true, stored: true });
   const stored: Locker = {
     keys: merged.keys,
     profile: merged.profile,
@@ -1396,6 +1330,11 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
     who.handle,
   ]);
   await backupLocker(sql, who.handle, stored);
+  if (prevDiary !== nextDiary) {
+    await replaceActivity(sql, who.handle, who.name, stored);
+    await sql.query("insert into rewind_activity_done (handle) values ($1) on conflict do nothing", [who.handle]);
+    await refreshStoreCache(sql);
+  }
   return json({ ok: true, stored: true });
 }
 
@@ -1734,6 +1673,11 @@ async function rename(sql: Sql, body: Record<string, unknown>): Promise<Response
   await sql.query("update rewind_msg_gates set asker = $1 where asker = $2", [next, who.handle]);
   await sql.query("update rewind_msg_gates set askee = $1 where askee = $2", [next, who.handle]);
   await sql.query("update rewind_backups set handle = $1 where handle = $2", [next, who.handle]);
+  await sql.query("update rewind_activity set source = $1 where source = $2", [next, who.handle]);
+  await sql.query("update rewind_activity set actor = $1 where actor = $2", [next, who.handle]);
+  await sql.query("update rewind_activity set other_handle = $1 where other_handle = $2", [next, who.handle]);
+  await sql.query("update rewind_activity set parent_handle = $1 where parent_handle = $2", [next, who.handle]);
+  await sql.query("update rewind_activity_done set handle = $1 where handle = $2", [next, who.handle]);
   try {
     await mirrorVault(next, named.locker || {});
     await deleteVault(who.handle);

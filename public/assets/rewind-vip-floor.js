@@ -7344,6 +7344,8 @@
           ? "That username is already stamped. It belongs to someone else."
           : code === "password"
             ? "Wrong password. This card stays with its owner."
+            : code === "locked"
+              ? "Too many tries. Wait 30 minutes, then use the password exactly."
             : code === "nocard"
               ? "No card under that username. Capitals count."
               : code === "caps"
