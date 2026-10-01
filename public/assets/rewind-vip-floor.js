@@ -795,6 +795,7 @@
         '.vhs-sticker-type{fill:var(--rw-primary,#c41230);font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:10.4px!important;font-weight:900;letter-spacing:.04em!important}' +
         '.vhs-sticker-rewind{font-size:12px!important;letter-spacing:.07em!important}' +
         '.vhs-box[data-slug="alien"] .vhs-sticker,.vhs-box[data-title="none"][data-sticker="br"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}' +
+        '.vhs-box[data-slug="the-thing-1982"] .vhs-sticker{inset:auto auto 10px 10px!important;top:auto!important;right:auto!important;left:10px!important;bottom:10px!important}' +
         '.lobby-picks .vhs-box,.lobby-picks .vhs-box[data-size],.lobby-picks .vhs-box[data-size="lg"],.lobby-picks .vhs-box[data-size="drop"],.lobby-picks .vhs-box[data-size="md"],.lobby-picks .vhs-box[data-size="sm"]{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;flex:none!important;touch-action:none!important}' +
         '.lobby-picks [data-member-rails="manager"] h2,.lobby-picks [data-member-rails] .mb-3 h2{font-size:1.45rem!important}' +
         'html[data-member="1"] [data-lobby-hid="orig"]{display:none!important}' +
@@ -7801,7 +7802,7 @@
       }
       if (still) {
         still.setAttribute("loading", "lazy");
-        still.src = "/sleeves/" + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug + "-still.jpg?v=520");
+        still.src = "/sleeves/" + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "the-thing-1982-blood.jpg?v=1" : slug + "-still.jpg?v=520");
         still.onerror = function () {
           this.onerror = null;
           this.style.display = "none";
@@ -8263,7 +8264,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=5) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
+        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=5) center center/cover no-repeat" : slug === "the-thing-1982" ? "background:#101820 url(/sleeves/the-thing-1982-blood.jpg?v=1) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "the-thing-1982-blood.jpg?v=1" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -8879,7 +8880,9 @@
           : "/sleeves/spines/" + slug + ".png?v=484";
       const titlePos = "none";
       const sticker =
-        slug === "halloween-1978" || slug === "the-shining"
+        slug === "the-thing-1982"
+          ? "bl"
+          : slug === "halloween-1978" || slug === "the-shining"
           ? "tr"
           : slug === "first-blood" || slug === "alien"
             ? "br"
@@ -8913,7 +8916,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=5) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=5) center center/cover no-repeat" : slug === "the-thing-1982" ? "background:#101820 url(/sleeves/the-thing-1982-blood.jpg?v=1) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "the-thing-1982-blood.jpg?v=1" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         (overview ? '<p class="vhs-back-syn">' + overview + "</p>" : "") +
@@ -12694,9 +12697,9 @@
         still.appendChild(img);
       }
       const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
-      const want = slug === "coming-to-america" ? "/sleeves/coming-to-america-shop.jpg?v=5" : "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+      const want = slug === "coming-to-america" ? "/sleeves/coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "/sleeves/the-thing-1982-blood.jpg?v=1" : "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
       const cur = img.getAttribute("src") || "";
-      if (slug === "coming-to-america" || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
+      if (slug === "coming-to-america" || slug === "the-thing-1982" || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
         img.onerror = function () {
           img.onerror = null;
           img.style.setProperty("display", "none", "important");

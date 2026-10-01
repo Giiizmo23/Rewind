@@ -2331,6 +2331,7 @@ html:not([data-drop="1"]) .store-bg::after {
 .vhs-box[data-slug="ghostbusters"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;left:auto!important}
 .vhs-box[data-slug="first-blood"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important}
 .vhs-box[data-slug="the-shawshank-redemption"] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;right:auto!important;left:8px!important;bottom:8px!important}
+.vhs-box[data-slug="the-thing-1982"] .vhs-sticker{inset:auto auto 10px 10px!important;top:auto!important;right:auto!important;left:10px!important;bottom:10px!important}
 .vhs-box[data-slug="scrooged"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important}
 .vhs-box[data-slug="fight-club"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important}
 
