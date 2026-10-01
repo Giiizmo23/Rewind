@@ -2150,8 +2150,12 @@ html[data-drop="1"] .drop-clerk.is-keys .log-dock {
   margin-top: .35rem !important;
   margin-bottom: 0 !important;
 }
-html[data-drop="1"] .drop-clerk.is-keys .log-review {
-  min-height: 4.8rem !important;
+html[data-drop="1"] .log-blurb[data-nd-parked="1"] .log-review {
+  min-height: 5.4rem !important;
+  max-height: 8.5rem !important;
+  background: #141311 !important;
+  color: #f4efe6 !important;
+  -webkit-text-fill-color: #f4efe6 !important;
 }
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-stars button.is-on {
   color: #e8c14a !important;
@@ -3489,45 +3493,65 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
 
   let reviewKeysLock = false;
   let pinningClerk = false;
+  function parkBlurbBack() {
+    const blurb = document.querySelector(".log-blurb");
+    if (!blurb) return;
+    ["position", "left", "right", "width", "max-width", "margin", "bottom", "top", "z-index", "background", "border-radius"].forEach((p) => {
+      blurb.style.removeProperty(p);
+    });
+    if (blurb.dataset.ndParked === "1") {
+      const dock = document.querySelector('.drop-clerk[data-nd-clerk="1"] .log-dock');
+      if (dock) dock.appendChild(blurb);
+      delete blurb.dataset.ndParked;
+    }
+  }
+  function keyboardCover() {
+    const full = window.innerHeight || 0;
+    const vv = window.visualViewport;
+    let covered = 0;
+    if (vv && full) covered = Math.round(full - vv.offsetTop - vv.height);
+    if (covered > 140) return covered + 18;
+    return Math.round(full * 0.48);
+  }
   function releaseClerkKeys() {
     const el = document.querySelector('.drop-clerk[data-nd-clerk="1"]');
     window.setTimeout(function () {
       reviewKeysLock = false;
+      parkBlurbBack();
       if (!el) return;
       el.classList.remove("is-keys");
       el.style.removeProperty("top");
       el.style.removeProperty("height");
       el.style.removeProperty("bottom");
       try { pinStand(); } catch (ePin) {}
-    }, 420);
+    }, 80);
   }
   function pinClerkKeys() {
     const el = document.querySelector('.drop-clerk[data-nd-clerk="1"]');
-    if (!el) return;
-    const blurb = el.querySelector(".log-blurb");
-    const ta = el.querySelector(".log-review");
-    const reviewing = blurb && !blurb.hasAttribute("hidden") && ta && document.activeElement === ta;
-    if (!reviewing) {
-      el.classList.remove("is-keys");
-      el.style.removeProperty("top");
-      el.style.removeProperty("height");
-      el.style.removeProperty("bottom");
+    const blurb = document.querySelector(".log-blurb");
+    const ta = blurb && blurb.querySelector(".log-review");
+    const open = !!(el && blurb && ta && !blurb.hasAttribute("hidden") && document.activeElement === ta);
+    if (!open) {
+      if (blurb && blurb.dataset.ndParked === "1" && (!ta || document.activeElement !== ta)) parkBlurbBack();
       return;
     }
-    const vv = window.visualViewport;
-    const top = vv ? vv.offsetTop : 0;
-    const height = vv ? vv.height : window.innerHeight;
-    el.classList.add("is-keys");
-    el.style.setProperty("top", Math.max(0, Math.round(top)) + "px", "important");
-    el.style.setProperty("height", Math.max(220, Math.round(height)) + "px", "important");
-    el.style.setProperty("bottom", "auto", "important");
-    const body = el.querySelector(".drop-clerk-body");
-    if (body) {
-      const b = blurb.getBoundingClientRect();
-      const box = body.getBoundingClientRect();
-      const over = b.bottom - box.bottom + 8;
-      if (over > 0) body.scrollTop += over;
+    if (blurb.parentNode !== document.body) {
+      blurb.dataset.ndParked = "1";
+      document.body.appendChild(blurb);
+      try { ta.focus({ preventScroll: true }); } catch (eF) {}
     }
+    const lift = keyboardCover();
+    blurb.style.setProperty("position", "fixed", "important");
+    blurb.style.setProperty("left", "0.75rem", "important");
+    blurb.style.setProperty("right", "0.75rem", "important");
+    blurb.style.setProperty("width", "auto", "important");
+    blurb.style.setProperty("max-width", "22rem", "important");
+    blurb.style.setProperty("margin", "0 auto", "important");
+    blurb.style.setProperty("bottom", lift + "px", "important");
+    blurb.style.setProperty("top", "auto", "important");
+    blurb.style.setProperty("z-index", "10080", "important");
+    blurb.style.setProperty("background", "transparent", "important");
+    el.classList.add("is-keys");
   }
 
   let pinWatch = null;
@@ -5571,7 +5595,10 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       if (window.visualViewport) {
         window.visualViewport.addEventListener("resize", () => { pinStand(); placeLights(); pinClerkKeys(); });
         window.visualViewport.addEventListener("scroll", () => {
-          if (reviewKeysLock) return;
+          if (reviewKeysLock) {
+            pinClerkKeys();
+            return;
+          }
           pinStand();
           placeLights();
         });
