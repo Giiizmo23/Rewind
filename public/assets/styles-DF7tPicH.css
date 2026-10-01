@@ -275,7 +275,7 @@
   top:auto!important;right:auto!important;
 }
 .vhs-box[data-slug="goodfellas"] .vhs-sticker{
-  inset:8px 8px auto auto!important;top:8px!important;right:8px!important;
+  inset:auto auto 17% 4%!important;top:auto!important;right:auto!important;bottom:17%!important;left:4%!important;
 }
 .vhs-box[data-slug="gremlins"] .vhs-sticker,
 .vhs-box[data-slug="forrest-gump"] .vhs-sticker{
