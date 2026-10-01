@@ -12916,6 +12916,13 @@
 
   function fixOneSpine(box) {
     if (!box) return;
+    if (box.getAttribute("data-slug") === "goodfellas") {
+      box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        if ((img.getAttribute("src") || "").indexOf("goodfellas.png?v=521") < 0) {
+          img.src = "/sleeves/spines/goodfellas.png?v=521";
+        }
+      });
+    }
     box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
       el.style.setProperty("display", "none", "important");
     });
