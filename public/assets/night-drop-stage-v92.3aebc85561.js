@@ -1076,7 +1076,7 @@ html[data-drop="1"] .nd-swipe-cue {
   position: absolute;
   left: 1.25rem;
   right: 1.25rem;
-  bottom: 6.95rem;
+  bottom: 8.35rem;
   z-index: 9;
   display: flex;
   justify-content: space-between;
