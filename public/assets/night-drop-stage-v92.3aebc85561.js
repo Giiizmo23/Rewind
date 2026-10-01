@@ -26,7 +26,7 @@
   }
   try { markHomeApp(); } catch (eMark) {}
   const CSS_ID = "nd-stage-css-v92n67";
-  const VER = "92n83";
+  const VER = "92n84";
   let heldTheme = null;
   const FACE = encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" fill="none">' +
@@ -3369,7 +3369,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       placeLights();
       return;
     }
-    if (lights) lights.remove();
+    document.querySelectorAll(".nd-lights").forEach((n) => n.remove());
     lights = document.createElement("div");
     lights.className = "nd-lights";
     lights.dataset.v = VER;
