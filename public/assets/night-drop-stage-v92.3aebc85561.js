@@ -2139,25 +2139,6 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-review {
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-review::placeholder {
   color: rgba(244, 239, 230, .45) !important;
 }
-html[data-drop="1"] .drop-clerk.is-keys {
-  overflow: hidden !important;
-}
-html[data-drop="1"] .drop-clerk.is-keys > .drop-clerk-foot {
-  display: none !important;
-}
-html[data-drop="1"] .drop-clerk.is-keys .log-tape {
-  margin-top: .35rem !important;
-  transform: scale(.78) !important;
-  transform-origin: 50% 0 !important;
-}
-html[data-drop="1"] .drop-clerk.is-keys .log-dock {
-  margin-top: .15rem !important;
-  margin-bottom: .2rem !important;
-}
-html[data-drop="1"] .drop-clerk.is-keys .log-review {
-  min-height: 4.4rem !important;
-  outline: none !important;
-}
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-stars button.is-on {
   color: #e8c14a !important;
   -webkit-text-fill-color: #e8c14a !important;
@@ -3528,19 +3509,18 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       parkBlurbBack();
       if (el) {
         el.classList.remove("is-keys");
+        el.style.removeProperty("top");
+        el.style.removeProperty("height");
         el.style.removeProperty("bottom");
       }
       return;
     }
     parkBlurbBack();
-    el.classList.add("is-keys");
-    el.style.setProperty("bottom", "24rem", "important");
-    const body = el.querySelector(".drop-clerk-body");
-    if (body && blurb) {
-      const b = blurb.getBoundingClientRect();
-      const box = body.getBoundingClientRect();
-      const over = b.bottom - box.bottom + 6;
-      if (over > 0) body.scrollTop += over;
+    if (el) {
+      el.classList.remove("is-keys");
+      el.style.removeProperty("top");
+      el.style.removeProperty("height");
+      el.style.removeProperty("bottom");
     }
   }
 
