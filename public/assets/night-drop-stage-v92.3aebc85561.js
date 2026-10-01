@@ -1138,7 +1138,7 @@ html[data-drop="1"] .nd-stand-shelf { display: none !important; }
 html[data-drop="1"] .nd-stand-body {
   display: block;
   margin: 0;
-  padding: .36rem .42rem .32rem;
+  padding: .22rem .42rem .16rem;
   background:
     linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.18)),
     url("/assets/nd-stand-wood.jpg?v=1") 50% 58% / cover no-repeat;
@@ -1148,17 +1148,7 @@ html[data-drop="1"] .nd-stand-body {
     inset 0 8px 10px #0004;
 }
 html[data-drop="1"] .nd-stand-hints {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: .45rem;
-  margin: 0;
-  padding: .28rem .42rem .22rem;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  touch-action: none;
-  pointer-events: auto;
+  display: none !important;
 }
 html[data-drop="1"] .nd-hint {
   display: flex;
@@ -1408,6 +1398,21 @@ html[data-drop="1"] .drop-tape .vhs-flip-card {
 }
 html[data-drop="1"] .drop-tape .vhs-box.is-flip {
   transform: perspective(900px) rotateY(var(--vhs-yaw, 18deg)) rotateX(var(--vhs-pitch, 7deg)) !important;
+}
+html[data-drop="1"] .drop-tape .vhs-box.is-drag {
+  animation: none !important;
+  transition: none !important;
+  transform: translate3d(var(--nd-x, 0px), 0, 0) rotate(var(--nd-r, 0deg)) !important;
+}
+html[data-drop="1"] .drop-tape .vhs-box.is-fling {
+  animation: none !important;
+  transition: transform .22s cubic-bezier(.32, .04, .2, 1) !important;
+  transform: translate3d(var(--nd-x, 0px), 0, 0) rotate(var(--nd-r, 0deg)) !important;
+}
+html[data-drop="1"] .drop-tape .vhs-box.is-settle {
+  animation: none !important;
+  transition: transform .46s cubic-bezier(.18, .9, .22, 1.08) !important;
+  transform: translate3d(0, 0, 0) rotate(0deg) !important;
 }
 html[data-drop="1"] .drop-tape:not(.is-off) .vhs-box,
 html[data-drop="1"] .drop-tape:not(.is-off) .vhs-box img {
@@ -3147,6 +3152,37 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     let start = null;
     let lastDx = 0;
     let kind = "";
+    let dragX = 0;
+    let wantX = 0;
+    let pulling = false;
+    let raf = 0;
+    const boxEl = () => document.querySelector("#nd-overlay .drop-tape .vhs-box") || document.querySelector(".drop-tape .vhs-box");
+    const leanOf = (x) => Math.max(-7.5, Math.min(7.5, x / 13));
+    const paintBox = (x, mode) => {
+      const box = boxEl();
+      if (!box) return;
+      box.classList.remove("is-drag", "is-fling", "is-settle");
+      if (mode) {
+        box.classList.add(mode);
+        box.style.setProperty("--nd-x", x.toFixed(1) + "px");
+        box.style.setProperty("--nd-r", leanOf(x).toFixed(2) + "deg");
+      } else {
+        box.style.removeProperty("--nd-x");
+        box.style.removeProperty("--nd-r");
+      }
+    };
+    const tick = () => {
+      raf = 0;
+      dragX += (wantX - dragX) * (pulling ? 0.14 : 0.18);
+      if (!pulling && Math.abs(dragX) < 0.4) {
+        dragX = 0;
+        paintBox(0, "");
+        return;
+      }
+      paintBox(dragX, "is-drag");
+      if (pulling || Math.abs(wantX - dragX) > 0.5) raf = requestAnimationFrame(tick);
+    };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
     const blocked = (t) => {
       if (!t || !t.closest) return true;
       if (t.closest(".drop-clerk, .drop-clerk-foot, .drop-clerk-yes, .drop-clerk-no, nav, .rw-inbox, .nd-plaque, .scan-reader, .nd-pwr")) return true;
@@ -3169,12 +3205,22 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       start = { x: x, id: e.pointerId, t: Date.now() };
       lastDx = 0;
       kind = src;
+      pulling = true;
+      wantX = dragX;
+      kick();
     };
     const move = (e) => {
       if (!start) return;
       const x = pointX(e);
-      if (x != null) lastDx = x - start.x;
-      if (Math.abs(lastDx) > 8 && e.cancelable) e.preventDefault();
+      if (x == null) return;
+      lastDx = x - start.x;
+      const mag = Math.abs(lastDx);
+      const sign = lastDx < 0 ? -1 : 1;
+      const slack = 8;
+      wantX = mag < slack ? 0 : sign * Math.min(72, (mag - slack) * 0.32);
+      pulling = true;
+      kick();
+      if (mag > 8 && e.cancelable) e.preventDefault();
     };
     const up = (e) => {
       if (!start) return;
@@ -3182,17 +3228,53 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       const dx = (x != null ? x - start.x : lastDx);
       start = null;
       kind = "";
-      if (Math.abs(dx) < 22) return;
+      pulling = false;
+      if (Math.abs(dx) < 22) {
+        wantX = 0;
+        const box = boxEl();
+        if (box && Math.abs(dragX) > 1) {
+          box.classList.remove("is-drag", "is-fling");
+          box.classList.add("is-settle");
+          box.style.setProperty("--nd-x", "0px");
+          box.style.setProperty("--nd-r", "0deg");
+          dragX = 0;
+          wantX = 0;
+          window.setTimeout(() => paintBox(0, ""), 480);
+        } else {
+          wantX = 0;
+          kick();
+        }
+        return;
+      }
       if (e.cancelable) e.preventDefault();
       if (e.stopImmediatePropagation) e.stopImmediatePropagation();
       else e.stopPropagation();
-      finishSwipe(dx);
+      const dir = dx < 0 ? -1 : 1;
+      const box = boxEl();
+      if (box) {
+        box.classList.remove("is-drag", "is-settle");
+        box.classList.add("is-fling");
+        box.style.setProperty("--nd-x", (dir * 108) + "px");
+        box.style.setProperty("--nd-r", (dir * 8) + "deg");
+      }
+      dragX = 0;
+      wantX = 0;
+      window.setTimeout(() => {
+        paintBox(0, "");
+        finishSwipe(dx);
+      }, 150);
     };
     const opts = { capture: true, passive: false };
     document.addEventListener("pointerdown", (e) => down(e, "pointer"), opts);
     document.addEventListener("pointermove", move, opts);
     document.addEventListener("pointerup", up, true);
-    document.addEventListener("pointercancel", () => { start = null; kind = ""; }, true);
+    document.addEventListener("pointercancel", () => {
+      start = null;
+      kind = "";
+      pulling = false;
+      wantX = 0;
+      kick();
+    }, true);
     document.addEventListener("touchstart", (e) => down(e, "touch"), opts);
     document.addEventListener("touchmove", move, opts);
     document.addEventListener("touchend", up, opts);
