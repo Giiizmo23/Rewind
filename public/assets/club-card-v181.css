@@ -3458,7 +3458,7 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
   overflow:hidden!important;background:#0e1218!important;
 }
 .vhs-box[data-slug="point-break"] .vhs-back-still{
-  flex:0 0 44%!important;height:44%!important;min-height:44%!important;max-height:44%!important;
+  flex:0 0 50%!important;height:50%!important;min-height:50%!important;max-height:50%!important;
   width:100%!important;max-width:none!important;
   margin:0!important;padding:0!important;left:0!important;right:0!important;top:0!important;
   align-self:stretch!important;box-shadow:none!important;
@@ -5413,8 +5413,8 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .drop-clerk-yes {
   box-shadow:none!important;overflow:hidden!important;
 }
 .vhs-box[data-slug="point-break"] .vhs-back-still{
-  position:relative!important;flex:0 0 44%!important;height:44%!important;min-height:44%!important;
-  max-height:44%!important;width:100%!important;max-width:none!important;margin:0!important;
+  position:relative!important;flex:0 0 50%!important;height:50%!important;min-height:50%!important;
+  max-height:50%!important;width:100%!important;max-width:none!important;margin:0!important;
   padding:0!important;left:0!important;right:0!important;top:0!important;align-self:stretch!important;
   box-shadow:none!important;overflow:hidden!important;
 }
