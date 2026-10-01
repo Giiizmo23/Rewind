@@ -12339,11 +12339,18 @@
       lock(img, "opacity", "1");
       lock(img, "visibility", "visible");
       lock(copy, "flex", "1 1 auto");
+      lock(copy, "display", "flex");
+      lock(copy, "flex-direction", "column");
+      lock(copy, "justify-content", "flex-end");
       lock(copy, "width", "100%");
       lock(copy, "align-self", "stretch");
       lock(copy, "order", "1");
       lock(copy, "background", "#0e1218");
       lock(copy, "margin", "0");
+      lock(copy, "padding", "0.32rem 0.5rem 0.22rem");
+      const foot = copy.querySelector(".vhs-back-foot");
+      lock(foot, "margin-top", "0.16rem");
+      lock(foot, "margin-bottom", "0");
       const bar = copy.querySelector(".vhs-barcode");
       if (bar && !bar.querySelector("rect")) bar.outerHTML = barcodeSvg("RW-405");
       const next = copy.querySelector(".vhs-barcode");
