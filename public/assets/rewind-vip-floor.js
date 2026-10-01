@@ -12341,13 +12341,15 @@
       lock(copy, "flex", "1 1 auto");
       lock(copy, "display", "flex");
       lock(copy, "flex-direction", "column");
-      lock(copy, "justify-content", "flex-end");
+      lock(copy, "justify-content", "flex-start");
       lock(copy, "width", "100%");
       lock(copy, "align-self", "stretch");
       lock(copy, "order", "1");
       lock(copy, "background", "#0e1218");
       lock(copy, "margin", "0");
-      lock(copy, "padding", "0.32rem 0.5rem 0.22rem");
+      lock(copy, "padding", "0.16rem 0.5rem 0.22rem");
+      const end = copy.querySelector(".vhs-back-end");
+      lock(end, "margin-top", "auto");
       const foot = copy.querySelector(".vhs-back-foot");
       lock(foot, "margin-top", "0.16rem");
       lock(foot, "margin-bottom", "0");

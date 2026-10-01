@@ -5425,10 +5425,12 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .drop-clerk-yes {
   filter:none!important;box-shadow:none!important;
 }
 .vhs-box[data-slug="point-break"] .vhs-back-copy{
-  display:flex!important;flex-direction:column!important;justify-content:flex-end!important;
+  display:flex!important;flex-direction:column!important;justify-content:flex-start!important;
   flex:1 1 auto!important;height:auto!important;min-height:0!important;align-self:stretch!important;
-  padding:0.32rem 0.5rem 0.22rem!important;
+  padding:0.16rem 0.5rem 0.22rem!important;
 }
+.vhs-box[data-slug="point-break"] .vhs-back-lede{margin:0!important;}
+.vhs-box[data-slug="point-break"] .vhs-back-end{margin-top:auto!important;}
 .vhs-box[data-slug="point-break"] .vhs-back-foot{
   margin-top:0.16rem!important;margin-bottom:0!important;
 }
