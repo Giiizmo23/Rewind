@@ -2,17 +2,17 @@
   if (window.__rwVipFloor) return;
   window.__rwVipFloor = 1;
   function backStill(slug) {
-    if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=5";
-    if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=1";
-    if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=1";
-    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=1";
+    if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=6";
+    if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=2";
+    if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=2";
+    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function backStillBg(slug) {
     var src = backStill(slug);
     if (src.indexOf("-still.jpg?v=") >= 0) return "";
-    return "background:#14110e url(" + src + ") center center/contain no-repeat";
+    return "background:#14110e url(" + src + ") center center/cover no-repeat";
   }
   document.addEventListener(
     "click",
@@ -787,7 +787,7 @@
         '.vhs-spine-right .vhs-spine-ink{transform:rotate(180deg)!important}' +
         '.lobby-picks .vhs-face-back,.lobby-picks .vhs-case-back,.lobby-picks .vhs-shell-back,.vhs-box .vhs-face-back,.vhs-box .vhs-case-back,.vhs-box .vhs-shell-back{height:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}' +
         'html body .lobby-picks .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
-        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=5")!important;background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important}' +
+        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=6")!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}' +
         'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important;object-fit:contain!important;object-position:center center!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:0 0 28%!important;height:28%!important;min-height:0!important;max-height:28%!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
         'html body .lobby-picks .vhs-back-still img,html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}' +
@@ -12435,7 +12435,7 @@
       lock(still, "overflow", "hidden");
       lock(still, "order", "0");
       lock(still, "background-color", "#14110e");
-      lock(still, "background-image", "url(/sleeves/coming-to-america-shop.jpg?v=5)");
+      lock(still, "background-image", "url(/sleeves/coming-to-america-shop.jpg?v=6)");
       lock(still, "background-size", "cover");
       lock(still, "background-position", "center center");
       lock(still, "background-repeat", "no-repeat");
@@ -12449,7 +12449,7 @@
         img.onerror = null;
         img.style.setProperty("opacity", "0", "important");
       };
-      img.src = "/sleeves/coming-to-america-shop.jpg?v=5";
+      img.src = "/sleeves/coming-to-america-shop.jpg?v=6";
       lock(img, "position", "absolute");
       lock(img, "inset", "0");
       lock(img, "width", "100%");
@@ -12749,17 +12749,6 @@
       still.style.setProperty("background-size", "cover", "important");
       still.style.setProperty("background-position", "center center", "important");
       still.style.setProperty("background-repeat", "no-repeat", "important");
-      if (want.indexOf("-still.jpg?v=") < 0 && !onShelf) {
-        still.style.setProperty("flex", "0 0 auto", "important");
-        still.style.setProperty("width", "100%", "important");
-        still.style.setProperty("height", "auto", "important");
-        still.style.setProperty("aspect-ratio", "1 / 1", "important");
-        still.style.setProperty("min-height", "0", "important");
-        still.style.setProperty("max-height", "none", "important");
-        copy.style.setProperty("flex", "1 1 0", "important");
-        copy.style.setProperty("min-height", "0", "important");
-        copy.style.setProperty("overflow", "hidden", "important");
-      }
       if (slug === "coming-to-america") {
         still.style.setProperty("background-color", "#14110e", "important");
       }
