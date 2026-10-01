@@ -2566,12 +2566,22 @@
         body: JSON.stringify({ username: handle, token: creds.token || "", password: creds.token ? "" : creds.password || "", locker: locker }),
         keepalive: !!keep,
       }).then(function (r) {
-        if (r.ok && (locker.banner || locker.avatar)) window.__rwPicDirty = false;
-        if (r.status === 413 && (locker.banner || locker.avatar)) {
-          postLocker(Object.assign({}, locker, { banner: "", avatar: "" }), true, 3);
-          return;
-        }
-        if (!r.ok && n < 3) window.setTimeout(function () { postLocker(locker, true, n + 1); }, 1200);
+        return r.json().catch(function () { return null; }).then(function (data) {
+          if (data && data.kept) {
+            if (!window.__rwKeptPull) {
+              window.__rwKeptPull = true;
+              try { pullLockerOnce(); } catch (eK) {}
+              window.setTimeout(function () { window.__rwKeptPull = false; }, 8000);
+            }
+            return;
+          }
+          if (r.ok && (locker.banner || locker.avatar)) window.__rwPicDirty = false;
+          if (r.status === 413 && (locker.banner || locker.avatar)) {
+            postLocker(Object.assign({}, locker, { banner: "", avatar: "" }), true, 3);
+            return;
+          }
+          if (!r.ok && n < 3) window.setTimeout(function () { postLocker(locker, true, n + 1); }, 1200);
+        });
       }).catch(function () {
         if (n < 3) window.setTimeout(function () { postLocker(locker, true, n + 1); }, 1200);
       });

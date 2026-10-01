@@ -154,6 +154,11 @@ async function ensureClub(sql: Sql): Promise<void> {
           built_at timestamptz not null default now()
         )`,
       );
+      await sql.query(
+        `create table if not exists rewind_vault_done (
+          handle text primary key
+        )`,
+      );
     })().catch((err) => {
       clubReady = null;
       throw err;
@@ -424,6 +429,7 @@ export async function handleRewind(request: Request): Promise<Response> {
   slimOldBackups(sql);
   trimBackups(sql);
   shrinkStoredPics(sql);
+  seedVault(sql);
   await seedFilms(sql);
 
   if (path === "/api/rewind/stamp") return stamp(sql, body);
@@ -718,6 +724,36 @@ function shrinkStoredPics(sql: Sql): void {
     });
 }
 
+function seedVault(sql: Sql): void {
+  const flag = globalThis as typeof globalThis & { __rwVaultSeed?: boolean; __rwVaultBusy?: boolean; __rwVaultFails?: number };
+  if (flag.__rwVaultSeed || flag.__rwVaultBusy || !vaultToken()) return;
+  flag.__rwVaultBusy = true;
+  void sql
+    .query<{ handle: string; locker: Locker }>(
+      `select m.handle, coalesce(m.locker, '{}'::jsonb) - 'banner' - 'avatar' as locker
+       from rewind_members m
+       where not exists (select 1 from rewind_vault_done d where d.handle = m.handle)
+       limit 1`,
+    )
+    .then(async (rows) => {
+      const row = rows[0];
+      if (!row) {
+        flag.__rwVaultSeed = true;
+        return;
+      }
+      if (!lockerBlank(row.locker)) await mirrorVault(row.handle, row.locker);
+      await sql.query("insert into rewind_vault_done (handle) values ($1) on conflict do nothing", [row.handle]);
+      flag.__rwVaultFails = 0;
+    })
+    .catch(() => {
+      flag.__rwVaultFails = (flag.__rwVaultFails || 0) + 1;
+      if ((flag.__rwVaultFails || 0) >= 3) flag.__rwVaultSeed = true;
+    })
+    .finally(() => {
+      flag.__rwVaultBusy = false;
+    });
+}
+
 function trimBackups(sql: Sql): void {
   const flag = globalThis as typeof globalThis & { __rwTrimDone?: boolean };
   if (flag.__rwTrimDone) return;
@@ -824,6 +860,7 @@ async function deleteAccount(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("delete from rewind_backups where handle = $1", [handle]);
   await sql.query("delete from rewind_activity where source = $1 or actor = $1", [handle]);
   await sql.query("delete from rewind_activity_done where handle = $1", [handle]);
+  await sql.query("delete from rewind_vault_done where handle = $1", [handle]);
   await sql.query("delete from rewind_reset_tries where handle = $1", [handle]);
   try {
     await deleteVault(handle);
@@ -1069,6 +1106,33 @@ function mergeList(prevRaw: string | undefined, nextRaw: string): string {
   return JSON.stringify([...byId.values()]);
 }
 
+function diaryWeight(locker: Locker | null | undefined): number {
+  if (!locker || typeof locker !== "object") return 0;
+  const keys = locker.keys || {};
+  const listLen = (raw?: string) => {
+    try {
+      const parsed = JSON.parse(raw || "null") as unknown;
+      return Array.isArray(parsed) ? parsed.length : 0;
+    } catch {
+      return 0;
+    }
+  };
+  let n = listLen(keys["rewind-logged-slugs"]) + listLen(keys["rewind-local-diary"]) + listLen(keys["rewind-kind-films"]);
+  try {
+    const wall = JSON.parse(keys["rewind-club-wall"] || "null") as { diaryNotes?: Record<string, Record<string, unknown>> } | null;
+    const notes = wall?.diaryNotes || {};
+    for (const note of Object.values(notes)) {
+      if (!note || typeof note !== "object") continue;
+      if (typeof note.review === "string" && note.review.trim()) n += 2;
+      if (Number(note.rating) > 0) n += 1;
+      if (note.watched || note.liked || note.rewatch) n += 1;
+    }
+  } catch {
+    /* a broken note does not count as a diary */
+  }
+  return n;
+}
+
 function mergeLocker(prev: Locker, next: Locker): Locker {
   const keys = { ...(prev.keys || {}) };
   const lists = new Set([
@@ -1148,7 +1212,7 @@ async function mirrorVault(handle: string, locker: Locker): Promise<void> {
     const file = (await current.json()) as { sha?: string };
     sha = file.sha || "";
   }
-  await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/" + path, {
+  const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/" + path, {
     method: "PUT",
     headers,
     body: JSON.stringify({
@@ -1157,6 +1221,9 @@ async function mirrorVault(handle: string, locker: Locker): Promise<void> {
       ...(sha ? { sha } : {}),
     }),
   });
+  if (!res.ok) {
+    throw new Error("vault " + res.status);
+  }
 }
 
 async function readVault(handle: string): Promise<Locker | null> {
@@ -1315,7 +1382,12 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
     profile: merged.profile || {},
     cardFace: merged.cardFace || {},
   });
-  if (prevDiary === nextDiary && !banner && !avatar) return json({ ok: true, stored: true });
+  const prevWeight = diaryWeight(who.locker || {});
+  const nextWeight = diaryWeight({ keys: merged.keys, profile: merged.profile, cardFace: merged.cardFace });
+  if (prevWeight >= 8 && nextWeight < prevWeight * 0.5) {
+    return json({ ok: true, stored: true, kept: true });
+  }
+  if (prevDiary === nextDiary && !bannerIn && !avatarIn) return json({ ok: true, stored: true });
   const stored: Locker = {
     keys: merged.keys,
     profile: merged.profile,
@@ -1678,6 +1750,7 @@ async function rename(sql: Sql, body: Record<string, unknown>): Promise<Response
   await sql.query("update rewind_activity set other_handle = $1 where other_handle = $2", [next, who.handle]);
   await sql.query("update rewind_activity set parent_handle = $1 where parent_handle = $2", [next, who.handle]);
   await sql.query("update rewind_activity_done set handle = $1 where handle = $2", [next, who.handle]);
+  await sql.query("update rewind_vault_done set handle = $1 where handle = $2", [next, who.handle]);
   try {
     await mirrorVault(next, named.locker || {});
     await deleteVault(who.handle);
