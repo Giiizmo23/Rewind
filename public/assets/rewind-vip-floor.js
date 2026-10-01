@@ -10242,6 +10242,9 @@
     if (sign) {
       if (deck && sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
       ensureArtNeonCss();
+      const tapeNow = overlay.querySelector(".drop-tape");
+      const dark = !sign.classList.contains("is-lit") && !sign.classList.contains("is-steady");
+      if (dark && (window.__rwNeonPending || (tapeNow && tapeNow.dataset.ndPower === "1"))) strikeNeon();
       return sign;
     }
     document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());

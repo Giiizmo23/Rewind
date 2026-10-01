@@ -3055,7 +3055,16 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       window.setTimeout(powerOn, 60);
       return;
     }
-    if (poweredThisVisit || tape.dataset.ndPower === "1") return;
+    if (poweredThisVisit || tape.dataset.ndPower === "1") {
+      try {
+        const sign = document.querySelector("#nd-overlay .nd-neon-sign");
+        if (!sign || (!sign.classList.contains("is-lit") && !sign.classList.contains("is-steady"))) {
+          if (window.__rwStrikeNeon) window.__rwStrikeNeon();
+          else window.__rwNeonPending = true;
+        }
+      } catch (eAlready) {}
+      return;
+    }
     poweredThisVisit = true;
     tape.dataset.ndPower = "1";
     tape.classList.add("is-off");
@@ -5159,7 +5168,17 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       return;
     }
     const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    shutting = false;
+    leavingDrop = false;
+    poweredThisVisit = false;
     try { sessionStorage.removeItem("nd-opened"); } catch (_) {}
+    const liveTape = document.querySelector(".drop-tape");
+    if (liveTape) {
+      try { delete liveTape.dataset.ndPower; } catch (eP) { liveTape.removeAttribute("data-nd-power"); }
+      liveTape.classList.add("is-off");
+    }
+    const darkSign = document.querySelector("#nd-overlay .nd-neon-sign");
+    if (darkSign) darkSign.classList.remove("is-lit", "is-steady");
     if (reduced) {
       powerOn();
       return;
@@ -5187,7 +5206,11 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   }
 
   function sync() {
-    if (leavingDrop) return;
+    const here = onPage();
+    if (here) {
+      leavingDrop = false;
+      shutting = false;
+    } else if (leavingDrop) return;
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
@@ -5253,6 +5276,18 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       };
     });
     window.addEventListener("popstate", sync);
+    window.addEventListener("pageshow", (ev) => {
+      if (!ev.persisted || !onPage()) return;
+      leavingDrop = false;
+      shutting = false;
+      onDrop = false;
+      poweredThisVisit = false;
+      const tape = document.querySelector(".drop-tape");
+      if (tape) {
+        try { delete tape.dataset.ndPower; } catch (eP) { tape.removeAttribute("data-nd-power"); }
+      }
+      sync();
+    });
   }
 
   const mo = new MutationObserver(() => {
@@ -5333,6 +5368,13 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
         if (box) fillDropMovie(box);
         if (poweredThisVisit || tape.dataset.ndPower === "1") {
           tape.classList.remove("is-off");
+          const sign = document.querySelector("#nd-overlay .nd-neon-sign");
+          if (sign && !sign.classList.contains("is-lit") && !sign.classList.contains("is-steady")) {
+            try {
+              if (window.__rwStrikeNeon) window.__rwStrikeNeon();
+              else window.__rwNeonPending = true;
+            } catch (eSign) {}
+          }
           if (!idleHum) startIdleHum();
           if (idleHum) tape.classList.add("is-hum");
         }
