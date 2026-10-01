@@ -8,6 +8,8 @@
     if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
     if (slug === "dune-part-two") return "/sleeves/dune-part-two-worm.jpg?v=1";
     if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
+    if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
+    if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -12826,6 +12828,14 @@
       img.style.setProperty("display", "block", "important");
       still.style.setProperty("background-size", "cover", "important");
       still.style.setProperty("background-position", "center center", "important");
+      if (slug === "se7en") {
+        img.style.setProperty("object-position", "center 62%", "important");
+        still.style.setProperty("background-position", "center 62%", "important");
+      }
+      if (slug === "goodfellas") {
+        img.style.setProperty("object-position", "center 42%", "important");
+        still.style.setProperty("background-position", "center 42%", "important");
+      }
       still.style.setProperty("background-repeat", "no-repeat", "important");
       if (want.indexOf("-still.jpg?v=") < 0 && !onShelf) {
         still.style.setProperty("flex", "1 1 auto", "important");
