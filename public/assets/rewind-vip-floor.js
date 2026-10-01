@@ -12280,15 +12280,26 @@
       lock(shell, "flex-direction", "column");
       lock(shell, "height", "100%");
       lock(shell, "min-height", "100%");
-      lock(shell, "background", "#14110e");
-      lock(still, "flex", "0 0 28%");
-      lock(still, "height", "28%");
+      lock(shell, "width", "100%");
+      lock(shell, "padding", "0");
+      lock(shell, "overflow", "hidden");
+      lock(shell, "background", "#0e1218");
+      lock(box.querySelector(".vhs-face-back"), "overflow", "hidden");
+      lock(box.querySelector(".vhs-face-back"), "background", "#0e1218");
+      lock(box.querySelector(".vhs-case-back"), "overflow", "hidden");
+      lock(still, "flex", "0 0 38%");
+      lock(still, "height", "38%");
+      lock(still, "width", "100%");
+      lock(still, "max-width", "none");
       lock(still, "min-height", "0");
-      lock(still, "max-height", "28%");
+      lock(still, "max-height", "38%");
       lock(still, "position", "relative");
       lock(still, "overflow", "hidden");
       lock(still, "order", "0");
-      lock(still, "background", "#14110e");
+      lock(still, "margin", "0");
+      lock(still, "align-self", "stretch");
+      lock(still, "box-shadow", "none");
+      lock(still, "background", "#0e1218");
       let img = still.querySelector("img");
       if (!img) {
         img = document.createElement("img");
@@ -12297,21 +12308,33 @@
       }
       img.onerror = function () {
         img.onerror = null;
-        img.src = "/sleeves/point-break.jpg?v=520";
+        img.style.setProperty("display", "none", "important");
       };
-      if (!img.getAttribute("src") || img.style.display === "none" || img.getAttribute("src").indexOf("v=520") < 0) img.src = "/sleeves/point-break-still.jpg?v=520";
+      if (!img.getAttribute("src") || img.getAttribute("src").indexOf("v=531") < 0) img.src = "/sleeves/point-break-still.jpg?v=531";
       lock(img, "position", "absolute");
       lock(img, "inset", "0");
+      lock(img, "left", "0");
+      lock(img, "right", "0");
+      lock(img, "top", "0");
       lock(img, "width", "100%");
       lock(img, "height", "100%");
+      lock(img, "max-width", "none");
+      lock(img, "max-height", "none");
       lock(img, "object-fit", "cover");
+      lock(img, "object-position", "center 42%");
       lock(img, "display", "block");
+      lock(img, "margin", "0");
+      lock(img, "transform", "none");
+      lock(img, "filter", "none");
+      lock(img, "box-shadow", "none");
       lock(img, "opacity", "1");
       lock(img, "visibility", "visible");
       lock(copy, "flex", "1 1 auto");
+      lock(copy, "width", "100%");
+      lock(copy, "align-self", "stretch");
       lock(copy, "order", "1");
-      lock(copy, "background", "#14110e");
-      lock(copy, "margin-top", "0");
+      lock(copy, "background", "#0e1218");
+      lock(copy, "margin", "0");
       const bar = copy.querySelector(".vhs-barcode");
       if (bar && !bar.querySelector("rect")) bar.outerHTML = barcodeSvg("RW-405");
       const next = copy.querySelector(".vhs-barcode");
@@ -12646,7 +12669,7 @@
         img.draggable = false;
         still.appendChild(img);
       }
-      const stillVer = slug === "halloween-1978" ? "522" : "520";
+      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "531" : "520";
       const want = "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
       const cur = img.getAttribute("src") || "";
       if (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0) {

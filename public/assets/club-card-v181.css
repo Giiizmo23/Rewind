@@ -3452,6 +3452,23 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 }
 .vhs-box[data-slug="point-break"] .vhs-spine-year{bottom:24px!important;}
 .vhs-box[data-slug="point-break"] .vhs-spine-no{bottom:7px!important;}
+.vhs-box[data-slug="point-break"] .vhs-face-back,
+.vhs-box[data-slug="point-break"] .vhs-case-back,
+.vhs-box[data-slug="point-break"] .vhs-shell-back{
+  overflow:hidden!important;background:#0e1218!important;
+}
+.vhs-box[data-slug="point-break"] .vhs-back-still{
+  flex:0 0 38%!important;height:38%!important;width:100%!important;max-width:none!important;
+  margin:0!important;padding:0!important;align-self:stretch!important;box-shadow:none!important;
+}
+.vhs-box[data-slug="point-break"] .vhs-back-still img{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  max-width:none!important;object-fit:cover!important;object-position:center 42%!important;
+  margin:0!important;transform:none!important;filter:none!important;box-shadow:none!important;
+}
+.vhs-box[data-slug="point-break"] .vhs-back-copy{
+  width:100%!important;align-self:stretch!important;margin:0!important;background:#0e1218!important;
+}
 
 .vhs-box[data-slug="point-break"] .vhs-spine{
   background-color:#122848!important;background-image:none!important;
