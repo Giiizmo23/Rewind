@@ -1117,8 +1117,8 @@ html[data-drop="1"] .nd-stand-top {
   margin: 0;
   border-radius: .14rem .14rem 0 0;
   background:
-    linear-gradient(180deg, #fff6 0%, #0000 38%, #0003 100%),
-    url("/assets/walnut-stand.jpg?v=24") 50% 18% / cover no-repeat;
+    linear-gradient(180deg, rgba(255,236,210,.08) 0%, rgba(0,0,0,0) 32%, rgba(0,0,0,.28) 100%),
+    url("/assets/nd-stand-wood.jpg?v=1") 50% 18% / cover no-repeat;
   box-shadow:
     inset 0 1px 0 #f3e0c888,
     inset 0 -1px 0 #3a2418,
@@ -1129,7 +1129,7 @@ html[data-drop="1"] .nd-stand-edge {
   height: .32rem;
   background:
     linear-gradient(#0007, #0005),
-    url("/assets/walnut-stand.jpg?v=24") 50% 72% / cover no-repeat;
+    url("/assets/nd-stand-wood.jpg?v=1") 50% 72% / cover no-repeat;
   box-shadow:
     inset 0 2px 4px #0008,
     inset 0 -1px 0 #1a100c;
@@ -1140,8 +1140,8 @@ html[data-drop="1"] .nd-stand-body {
   margin: 0;
   padding: .36rem .42rem .32rem;
   background:
-    linear-gradient(#3a241488, #2a181066),
-    url("/assets/walnut-stand.jpg?v=24") 50% 58% / cover no-repeat;
+    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.18)),
+    url("/assets/nd-stand-wood.jpg?v=1") 50% 58% / cover no-repeat;
   box-shadow:
     inset 10px 0 14px #0005,
     inset -10px 0 14px #0005,
@@ -1211,7 +1211,7 @@ html[data-drop="1"] .nd-stand-plinth {
   border-radius: 0 0 .32rem .32rem;
   background:
     linear-gradient(#0008, #0006),
-    url("/assets/walnut-stand.jpg?v=24") 50% 88% / cover no-repeat;
+    url("/assets/nd-stand-wood.jpg?v=1") 50% 88% / cover no-repeat;
   box-shadow: inset 0 3px 5px #0008;
 }
 html[data-drop="1"] .nd-stand-legs i { display: none !important; }
