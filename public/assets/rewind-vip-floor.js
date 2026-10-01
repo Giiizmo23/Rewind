@@ -12585,6 +12585,42 @@
     });
   }
 
+  function fixDuneSpine() {
+    document.querySelectorAll('.vhs-box[data-slug="dune-part-two"]').forEach(function (box) {
+      box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        if ((img.getAttribute("src") || "").indexOf("dune-part-two.png?v=485") < 0) {
+          img.style.display = "";
+          img.src = "/sleeves/spines/dune-part-two.png?v=485";
+        }
+        img.style.setProperty("object-fit", "cover", "important");
+        img.style.setProperty("object-position", "center center", "important");
+      });
+      box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
+        el.style.setProperty("display", "none", "important");
+      });
+      box.querySelectorAll(".vhs-spine-vhs").forEach(function (el) {
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("color", "#f3ead8", "important");
+        el.style.setProperty("writing-mode", "horizontal-tb", "important");
+        el.style.setProperty("transform", "none", "important");
+      });
+      box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
+        el.textContent = "RW-412";
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("color", "#f3ead8", "important");
+        el.style.setProperty("writing-mode", "horizontal-tb", "important");
+        el.style.setProperty("transform", "none", "important");
+        el.style.setProperty("position", "absolute", "important");
+        el.style.setProperty("left", "0", "important");
+        el.style.setProperty("right", "0", "important");
+        el.style.setProperty("bottom", "6px", "important");
+        el.style.setProperty("top", "auto", "important");
+        el.style.setProperty("width", "100%", "important");
+        el.style.setProperty("text-align", "center", "important");
+      });
+    });
+  }
+
   function fixHalloweenCover() {
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-back-still img').forEach(function (img) {
       var src = img.getAttribute("src") || "";
@@ -12871,6 +12907,7 @@
       fixFirstBloodCover();
       fixShawshankSticker();
       fixHalloweenCover();
+      fixDuneSpine();
       fixJawsCover();
       fixBladeRunner();
       fixEveryBack();
@@ -12880,6 +12917,7 @@
       setTimeout(fixFirstBloodCover, 400);
       setTimeout(fixShawshankSticker, 400);
       setTimeout(fixHalloweenCover, 400);
+      setTimeout(fixDuneSpine, 400);
       setTimeout(fixJawsCover, 400);
       setTimeout(fixBladeRunner, 400);
       setTimeout(fixPointBreakBack, 1400);
@@ -12888,6 +12926,7 @@
       setTimeout(fixFirstBloodCover, 1400);
       setTimeout(fixShawshankSticker, 1400);
       setTimeout(fixHalloweenCover, 1400);
+      setTimeout(fixDuneSpine, 1400);
       setTimeout(fixJawsCover, 1400);
       setTimeout(fixBladeRunner, 1400);
       setTimeout(fixEveryBack, 1600);
@@ -12908,6 +12947,7 @@
     fixFirstBloodCover();
     fixShawshankSticker();
     fixHalloweenCover();
+    fixDuneSpine();
     fixJawsCover();
     fixBladeRunner();
     fixEveryBack();
