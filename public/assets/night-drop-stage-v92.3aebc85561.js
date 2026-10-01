@@ -1074,19 +1074,20 @@ html[data-drop="1"] .drop-tape .touch-none {
 }
 html[data-drop="1"] .nd-swipe-cue {
   position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
+  left: 2.4rem;
+  right: 2.4rem;
   bottom: 8.35rem;
   z-index: 9;
   display: flex;
   justify-content: space-between;
-  gap: .6rem;
+  gap: .4rem;
   pointer-events: none;
   font-family: Oswald, "Arial Narrow", sans-serif;
-  font-size: .64rem;
-  font-weight: 600;
-  letter-spacing: .12em;
+  font-size: .46rem;
+  font-weight: 500;
+  letter-spacing: .08em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: #f3fff1;
   text-shadow:
     0 0 1px #041008,
