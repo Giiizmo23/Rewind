@@ -8315,6 +8315,7 @@
         (tagline ? '<p class="font-display" style="font-size:1.35rem;letter-spacing:.04em;color:var(--color-primary,#c41230);margin:0 0 .8rem">' + tagline + "</p>" : "") +
         '<p style="max-width:36rem;line-height:1.5;opacity:.82">' + overview + "</p></div>";
       try { paintStickers(); } catch (eS) {}
+      try { fixEveryBack(); } catch (eB) {}
       armTapeTaps();
       const back = main.querySelector("[data-tape-back]");
       if (back && back.dataset.wired !== "1") {
@@ -8335,7 +8336,7 @@
     fill(Object.assign({}, stub, known || {}, rich || {}));
     if (rich && rich.overview) return;
     Promise.all([
-      fetch("/data/catalog.json?v=459", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=460", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
       fetch("/store-index.tsv", { cache: "force-cache" }).then(function (r) { return r.ok ? r.text() : ""; }).catch(function () { return ""; }),
     ]).then(function (pair) {
       const catalog = {};
@@ -8966,14 +8967,14 @@
       return a;
     }
     const STOCK = [
-      { slug: "the-lion-king", title: "The Lion King", year: 1994, director: "Allers & Minkoff", runtime: 88, genres: "Animation · Family", catalogNo: "RW-1994-12", tagline: "Remember who you are.", overview: "A cub runs from the Pridelands and grows up between a meerkat and a warthog. Then the ghost of his father tells him to go home." },
-      { slug: "the-shawshank-redemption", title: "The Shawshank Redemption", year: 1994, director: "Frank Darabont", runtime: 142, genres: "Drama", catalogNo: "RW-1994-03", tagline: "Hope can set you free.", overview: "A banker is sentenced to Shawshank and spends two decades with a rock hammer, a library, and a poster. Red tells it like a man who learned to wait." },
+      { slug: "the-lion-king", title: "The Lion King", year: 1994, director: "Allers & Minkoff", runtime: 88, genres: "Animation · Family", catalogNo: "RW-1994-12", tagline: "Remember who you are.", overview: "A cub runs from the Pridelands and grows up between a meerkat and a warthog." },
+      { slug: "the-shawshank-redemption", title: "The Shawshank Redemption", year: 1994, director: "Frank Darabont", runtime: 142, genres: "Drama", catalogNo: "RW-1994-03", tagline: "Hope can set you free.", overview: "A banker is sentenced to Shawshank and spends two decades with a rock hammer, a library, and a poster." },
       { slug: "jaws", title: "Jaws", year: 1975, director: "Steven Spielberg", runtime: 124, genres: "Thriller · Adventure", catalogNo: "RW-1975-06", tagline: "Don't go in the water.", overview: "A shark closes the beach. The sheriff, a scientist, and a scarred captain go out on a boat that is too small. The score does the rest." },
       { slug: "the-shining", title: "The Shining", year: 1980, director: "Stanley Kubrick", runtime: 146, genres: "Horror", catalogNo: "RW-1980-05", tagline: "A master of modern horror.", overview: "A winter caretaker, a maze, and a hotel that has always been here. The boy talks to his finger. The father talks to the bar." },
       { slug: "first-blood", title: "First Blood", year: 1982, director: "Ted Kotcheff", runtime: 93, genres: "Action", catalogNo: "RW-1982-10", tagline: "This time he's fighting for his life.", overview: "A drifter with a Medal of Honor walks into a small-town sheriff and a forest that becomes a war. They should have let him pass." },
       { slug: "halloween-1978", title: "Halloween", year: 1978, director: "John Carpenter", runtime: 91, genres: "Horror", catalogNo: "RW-1978-10", tagline: "The night he came home.", overview: "Haddonfield, October 31st. A shape in a mask walks the suburbs like he never left. Laurie is babysitting. The score is two notes." },
       { slug: "blade-runner", title: "Blade Runner", year: 1982, director: "Ridley Scott", runtime: 117, genres: "Sci-Fi · Neo-Noir", catalogNo: "RW-1982-06", tagline: "Man has made his match... now it's time to play.", overview: "Rain, neon, and a cop who hunts replicants that want more life. The question is whether he is one of them." },
-      { slug: "the-thing-1982", title: "The Thing", year: 1982, director: "John Carpenter", runtime: 109, genres: "Horror · Sci-Fi", catalogNo: "RW-1982-06", tagline: "The warmest place to hide.", overview: "An Antarctic station. A dog that isn't a dog. Blood tests and flamethrowers until nobody trusts a face." },
+      { slug: "the-thing-1982", title: "The Thing", year: 1982, director: "John Carpenter", runtime: 109, genres: "Horror · Sci-Fi", catalogNo: "RW-1982-06", tagline: "The warmest place to hide.", overview: "An Antarctic station. A dog that isn't a dog. Nobody trusts a face." },
       { slug: "back-to-the-future", title: "Back to the Future", year: 1985, director: "Robert Zemeckis", runtime: 116, genres: "Sci-Fi · Comedy", catalogNo: "RW-1985-07", tagline: "He was never in time for his classes... Now he isn't in time for his dad.", overview: "A DeLorean, 1.21 gigawatts, and a kid who has to make his parents fall in love so he can get back to 1985." },
       { slug: "pulp-fiction", title: "Pulp Fiction", year: 1994, director: "Quentin Tarantino", runtime: 154, genres: "Crime · Drama", catalogNo: "RW-1994-10", tagline: "You won't know the facts until you've seen the fiction.", overview: "A briefcase, a dance contest, and a miracle in an apartment. The chapters shuffle. The dialogue does not." },
       { slug: "goodfellas", title: "Goodfellas", year: 1990, director: "Martin Scorsese", runtime: 146, genres: "Crime · Drama", catalogNo: "RW-1990-09", tagline: "Three decades of life in the Mafia.", overview: "Henry Hill wanted to be a somebody. Then the night at the Copa, the Lufthansa job, and a helicopter that will not leave him alone." },
@@ -12763,10 +12764,11 @@
         copy.style.setProperty("flex", "1 1 auto", "important");
         copy.style.setProperty("min-height", "0", "important");
         copy.style.setProperty("overflow", "hidden", "important");
+        copy.style.setProperty("padding-bottom", "0.28rem", "important");
         var foot = copy.querySelector(".vhs-back-foot");
         if (foot) {
           foot.style.setProperty("flex", "0 0 auto", "important");
-          foot.style.setProperty("margin-top", "auto", "important");
+          foot.style.setProperty("margin-top", "0.2rem", "important");
         }
       }
       if (slug === "coming-to-america") {
