@@ -10,6 +10,7 @@
     if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=6";
     if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=2";
     if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=2";
+    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
     if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
