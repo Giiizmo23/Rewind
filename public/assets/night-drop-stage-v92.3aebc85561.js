@@ -1074,20 +1074,24 @@ html[data-drop="1"] .drop-tape .touch-none {
 }
 html[data-drop="1"] .nd-swipe-cue {
   position: absolute;
-  left: .45rem;
-  right: .45rem;
-  bottom: .28rem;
-  z-index: 6;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 6.95rem;
+  z-index: 9;
   display: flex;
   justify-content: space-between;
   gap: .6rem;
   pointer-events: none;
   font-family: Oswald, "Arial Narrow", sans-serif;
-  font-size: .48rem;
-  letter-spacing: .11em;
+  font-size: .64rem;
+  font-weight: 600;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(214, 232, 210, .7);
-  text-shadow: 0 0 8px rgba(170, 255, 196, .35);
+  color: #f3fff1;
+  text-shadow:
+    0 0 1px #041008,
+    0 1px 0 #041008,
+    0 0 10px rgba(186, 255, 210, .95);
 }
 html[data-drop="1"] .nd-swipe-cue span:first-child::before { content: "←  "; }
 html[data-drop="1"] .nd-swipe-cue span:last-child::after { content: "  →"; }
@@ -3096,13 +3100,12 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   }
   function mountSwipeCue(tape) {
     if (!tape || ndTaught()) return;
-    const hold = tape.querySelector(".touch-none") || tape;
-    if (hold.querySelector(".nd-swipe-cue")) return;
+    if (!tape || ndTaught() || tape.querySelector(".nd-swipe-cue")) return;
     const cue = document.createElement("div");
     cue.className = "nd-swipe-cue";
     cue.setAttribute("aria-hidden", "true");
     cue.innerHTML = "<span>Never seen it</span><span>Seen it</span>";
-    hold.appendChild(cue);
+    tape.appendChild(cue);
   }
   function nudgeTape() {
     if (ndTaught() || window.__rwNdHold) return;
