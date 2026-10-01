@@ -13,6 +13,8 @@
     if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
     if (slug === "dune-part-two") return "/sleeves/dune-part-two-worm.jpg?v=1";
     if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
+    if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
+    if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -424,7 +426,9 @@
       '.jpg?v=493" alt="" draggable="false" decoding="async" onerror="this.style.opacity=\'.3\'">' +
       "</div>";
     const still = backStill(slug);
-    const stillFit = still.indexOf("-still.jpg") < 0 ? "object-position:center center;" : "";
+    var stillFit = "object-position:center center;";
+    if (slug === "se7en") stillFit = "object-position:center 62%;";
+    if (slug === "goodfellas") stillFit = "object-position:center 45%;";
     main.innerHTML =
       '<div class="tape-card-page" data-tape-layout="lb">' +
       '<div class="tp-hero">' +
