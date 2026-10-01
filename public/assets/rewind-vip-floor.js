@@ -12910,6 +12910,55 @@
         svg.querySelectorAll("rect").forEach(function (r) { r.setAttribute("fill", "#f0ead8"); });
       }
     });
+    fixAllSpines();
+  }
+
+  function fixAllSpines() {
+    document.querySelectorAll(".vhs-box").forEach(function (box) {
+      box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
+        el.style.setProperty("display", "none", "important");
+      });
+      box.querySelectorAll(".vhs-spine-vhs").forEach(function (el) {
+        var right = !!el.closest(".vhs-spine-right");
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("opacity", "1", "important");
+        el.style.setProperty("visibility", "visible", "important");
+        el.style.setProperty("position", "absolute", "important");
+        el.style.setProperty("left", "0", "important");
+        el.style.setProperty("right", "0", "important");
+        el.style.setProperty("width", "100%", "important");
+        el.style.setProperty("margin", "0", "important");
+        el.style.setProperty("text-align", "center", "important");
+        el.style.setProperty("writing-mode", "horizontal-tb", "important");
+        el.style.setProperty("z-index", "5", "important");
+        el.style.setProperty("font-size", "6px", "important");
+        el.style.setProperty("top", right ? "auto" : "7px", "important");
+        el.style.setProperty("bottom", right ? "7px" : "auto", "important");
+        el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
+      });
+      box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
+        var t = String(el.textContent || "").replace(/\s+/g, "");
+        if (/^RW-\d+(19|20)\d{2}$/.test(t)) el.textContent = t.replace(/(19|20)\d{2}$/, "");
+        var right = !!el.closest(".vhs-spine-right");
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("opacity", "1", "important");
+        el.style.setProperty("visibility", "visible", "important");
+        el.style.setProperty("position", "absolute", "important");
+        el.style.setProperty("left", "0", "important");
+        el.style.setProperty("right", "0", "important");
+        el.style.setProperty("width", "100%", "important");
+        el.style.setProperty("margin", "0", "important");
+        el.style.setProperty("text-align", "center", "important");
+        el.style.setProperty("writing-mode", "horizontal-tb", "important");
+        el.style.setProperty("z-index", "5", "important");
+        el.style.setProperty("font-size", "5.2px", "important");
+        el.style.setProperty("letter-spacing", "-0.02em", "important");
+        el.style.setProperty("white-space", "nowrap", "important");
+        el.style.setProperty("top", right ? "8px" : "auto", "important");
+        el.style.setProperty("bottom", right ? "auto" : "6px", "important");
+        el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
+      });
+    });
   }
 
   if (document.readyState === "loading") {
@@ -12952,6 +13001,7 @@
       setTimeout(fixBladeRunner, 1400);
       setTimeout(fixEveryBack, 1600);
       setTimeout(fixPointBreakBack, 1900);
+      setTimeout(fixAllSpines, 2000);
     });
   } else {
     dressLobby();
@@ -12990,6 +13040,7 @@
     setTimeout(fixBladeRunner, 1400);
     setTimeout(fixEveryBack, 1800);
     setTimeout(fixPointBreakBack, 2100);
+    setTimeout(fixAllSpines, 2200);
   }
   try {
     if (!window.__rwNdNavArm) {
