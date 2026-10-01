@@ -12797,9 +12797,10 @@
         copy.style.setProperty("order", "1", "important");
       }
       const syn = copy.querySelector(".vhs-back-syn");
+      var roomy = want.indexOf("-still.jpg?v=") < 0 && !onShelf && !!box.closest(".tape-hero-box");
       if (syn) {
-        syn.style.setProperty("font-size", "0.5rem", "important");
-        syn.style.setProperty("line-height", "1.22", "important");
+        syn.style.setProperty("font-size", roomy ? "0.74rem" : "0.5rem", "important");
+        syn.style.setProperty("line-height", roomy ? "1.36" : "1.22", "important");
         syn.style.setProperty("display", "block", "important");
         syn.style.setProperty("overflow", "visible", "important");
         syn.style.setProperty("max-height", "none", "important");
@@ -12807,10 +12808,17 @@
       }
       const tag = copy.querySelector(".vhs-back-tag");
       if (tag) {
-        tag.style.setProperty("font-size", "0.42rem", "important");
+        tag.style.setProperty("font-size", roomy ? "0.76rem" : "0.42rem", "important");
+        tag.style.setProperty("line-height", roomy ? "1.28" : "1.2", "important");
         tag.style.setProperty("display", "block", "important");
         tag.style.setProperty("-webkit-line-clamp", "unset", "important");
         tag.style.setProperty("overflow", "visible", "important");
+      }
+      if (roomy) {
+        copy.querySelectorAll(".vhs-back-credits,.vhs-back-stock,.vhs-back-cast").forEach(function (line) {
+          line.style.setProperty("font-size", "0.62rem", "important");
+          line.style.setProperty("line-height", "1.32", "important");
+        });
       }
       const bar = copy.querySelector(".vhs-barcode");
       if (!bar || String(bar.tagName).toLowerCase() !== "svg" || !bar.querySelector("rect")) {

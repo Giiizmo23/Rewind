@@ -3977,6 +3977,35 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 .tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-foot{
   margin-top:auto!important;
 }
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-tag,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-tag,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-tag,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-tag{
+  font-size:0.76rem!important;
+  line-height:1.28!important;
+}
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-syn,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-syn,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-syn,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-syn{
+  font-size:0.74rem!important;
+  line-height:1.36!important;
+}
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-credits,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-credits,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-credits,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-credits,
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-stock,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-stock,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-stock,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-stock,
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-cast,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-cast,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-cast,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-cast{
+  font-size:0.62rem!important;
+  line-height:1.32!important;
+}
 html body .lobby-picks .vhs-box[data-slug="the-lion-king"] .vhs-back-still,
 html body .lobby-picks .vhs-box[data-slug="the-thing-1982"] .vhs-back-still,
 html body .lobby-picks .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-still,
