@@ -5,7 +5,7 @@
     if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=6";
     if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=2";
     if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=2";
-    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
+    if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -12646,7 +12646,7 @@
         var src = img.getAttribute("src") || "";
         if (src.indexOf("v=495") < 0) {
           img.removeAttribute("srcset");
-          img.src = "/sleeves/first-blood-still.jpg?v=495";
+          img.src = "/sleeves/first-blood-woods.jpg?v=1";
         }
         img.style.setProperty("object-fit", "cover", "important");
         img.style.setProperty("object-position", "center center", "important");
