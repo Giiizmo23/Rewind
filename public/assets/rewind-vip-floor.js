@@ -776,9 +776,9 @@
         '[data-vip-card],.top5-section,[data-vip-shelves],[data-vip-tapes-sec],[data-prize-locker],[data-vip-club],[data-vip-onvcr-sec],[data-vip-stats],#rewards{scroll-margin-top:6.4rem}' +
         '.lobby-picks{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;gap:1.35rem!important;width:100%;margin:1.05rem 0 1.2rem}' +
         '.lobby-picks [data-member-rails="manager"],.lobby-picks [data-member-rails="staff"],.lobby-picks [data-member-rails="yesterday"]{width:100%!important;max-width:none!important;display:block!important}' +
-        '.lobby-picks [data-member-rails] .flex{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;overflow-y:visible!important;flex-wrap:nowrap!important;padding:2rem 1.2rem 2rem 1.5rem!important;gap:1.35rem!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-x pan-y!important;scrollbar-width:none;display:flex!important}' +
+        '.lobby-picks [data-member-rails] .flex{width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;overflow:visible!important;flex-wrap:nowrap!important;padding:1.2rem 1.2rem 2rem!important;gap:1.75rem!important;touch-action:pan-y!important;scrollbar-width:none}' +
         '.lobby-picks{min-width:0!important;max-width:100%!important;overflow:visible!important}' +
-        '.lobby-picks article,.lobby-picks a.tape-slot,.lobby-picks a.lobby-tape-link{width:10rem!important;max-width:10rem!important;flex:0 0 10rem!important;pointer-events:auto!important;display:block!important}' +
+        '.lobby-picks article,.lobby-picks a.tape-slot,.lobby-picks a.lobby-tape-link{width:min(17rem,74vw)!important;max-width:17rem!important;flex:0 0 auto!important;pointer-events:auto!important;display:block!important}' +
         '.lobby-picks .tape-slot-open{width:100%!important;max-width:none!important;flex:none!important;pointer-events:auto!important;touch-action:manipulation!important}' +
         '.lobby-picks .vhs-box{--vhs-yaw:18deg;--vhs-pitch:7deg}' +
         '.lobby-picks .vhs-flip{width:100%!important;height:auto!important;aspect-ratio:4/7!important;transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg))!important;transform-style:preserve-3d!important;transform-origin:50% 8%}' +
@@ -819,7 +819,7 @@
         'html[data-member="1"] [data-lobby-hid="tonight"]{display:block!important;visibility:visible!important}' +
         'html[data-member="1"]:not([data-drop="1"]):not(.vip-page) main{padding-bottom:7.4rem!important;overflow:visible!important;overflow-x:visible!important;overflow-y:visible!important}' +
         'html[data-member="1"]:not([data-drop="1"]) .lobby-picks .vhs-box{touch-action:none!important;pointer-events:auto!important}' +
-        'html[data-member="1"]:not([data-drop="1"]) .lobby-picks [data-member-rails] .flex,html[data-member="1"]:not([data-drop="1"]) .lobby-picks [data-member-rails]{overflow-x:auto!important;overflow-y:visible!important;max-width:100%!important;min-width:0!important;touch-action:pan-x pan-y!important}' +
+        'html[data-member="1"]:not([data-drop="1"]) .lobby-picks [data-member-rails] .flex,html[data-member="1"]:not([data-drop="1"]) .lobby-picks [data-member-rails]{overflow:visible!important;max-width:100%!important;min-width:0!important;touch-action:pan-y!important}' +
         '[data-member-rails="yesterday"]{display:block!important;visibility:visible!important;padding-bottom:2.6rem!important;margin-bottom:1.2rem!important}' +
         'html[data-drop="1"] .drop-clerk:not([data-nd-clerk="1"]){display:none!important;visibility:hidden!important;pointer-events:none!important}' +
         'html[data-drop="1"] .drop-clerk[data-nd-clerk="1"]{position:fixed!important;inset:0 0 var(--nd-nav,56px) 0!important;height:auto!important;max-height:none!important;background:#11100e!important;overflow:hidden!important;z-index:10050!important;padding:0!important;pointer-events:auto!important;display:flex!important;flex-direction:column!important;color:#f3efe6!important}' +
@@ -9061,17 +9061,17 @@
         (copy ? '<p class="mt-1 text-sm text-muted">' + copy + "</p>" : "") +
         "</div>";
       const row = document.createElement("div");
-      row.className = "flex gap-6 overflow-x-auto overscroll-x-contain pr-6 pt-8 pb-8";
-      row.style.cssText = "display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:visible;width:100%;max-width:100%;min-width:0;padding:2rem 1.2rem 2rem 1.5rem;gap:1.35rem;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch";
+      row.className = "flex flex-col items-center gap-8 overflow-visible pt-4 pb-8";
+      row.style.cssText = "display:flex;flex-direction:column;align-items:center;flex-wrap:nowrap;overflow:visible;width:100%;max-width:100%;padding:1.2rem 1.2rem 2rem;gap:1.75rem;touch-action:pan-y";
       films.forEach((n) => {
         if (!n || !n.cloneNode) return;
         const slug = slotSlug(n);
         const clone = n.cloneNode(true);
         clone.removeAttribute("hidden");
         clone.style.removeProperty("display");
-        clone.style.setProperty("width", "10rem", "important");
-        clone.style.setProperty("max-width", "10rem", "important");
-        clone.style.setProperty("flex", "0 0 10rem", "important");
+        clone.style.setProperty("width", "min(17rem, 74vw)", "important");
+        clone.style.setProperty("max-width", "17rem", "important");
+        clone.style.setProperty("flex", "0 0 auto", "important");
         clone.style.setProperty("pointer-events", "auto", "important");
         clone.querySelectorAll("[hidden]").forEach((el) => {
           el.removeAttribute("hidden");

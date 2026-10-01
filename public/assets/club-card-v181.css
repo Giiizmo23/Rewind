@@ -5346,20 +5346,38 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .drop-clerk-yes {
   width:100%!important;
   max-width:100%!important;
   min-width:0!important;
-  overflow-x:auto!important;
-  overflow-y:visible!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  overflow:visible!important;
   flex-wrap:nowrap!important;
-  padding:2rem 1.2rem 2rem 1.5rem!important;
-  gap:1.35rem!important;
-  -webkit-overflow-scrolling:touch!important;
-  touch-action:pan-x pan-y!important;
+  padding:1.2rem 1.2rem 2rem!important;
+  gap:1.75rem!important;
+  touch-action:pan-y!important;
+}
+html body main section > .flex:has(> .tape-slot){
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  overflow:visible!important;
+  flex-wrap:nowrap!important;
+  width:100%!important;
+  max-width:100%!important;
+  gap:1.75rem!important;
+  padding:1rem 1.2rem 2rem!important;
+  touch-action:pan-y!important;
+}
+html body main section > .flex:has(> .tape-slot) > .tape-slot{
+  width:min(17rem,74vw)!important;
+  max-width:17rem!important;
+  flex:0 0 auto!important;
 }
 .lobby-picks article,
 .lobby-picks a.tape-slot,
 .lobby-picks a.lobby-tape-link{
-  width:10rem!important;
-  max-width:10rem!important;
-  flex:0 0 10rem!important;
+  width:min(17rem,74vw)!important;
+  max-width:17rem!important;
+  flex:0 0 auto!important;
   pointer-events:auto!important;
 }
 .lobby-picks .tape-slot-open{
