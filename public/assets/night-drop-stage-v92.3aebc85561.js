@@ -29,23 +29,19 @@
   const VER = "92n82";
   let heldTheme = null;
   const FACE = encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 150" fill="none">' +
-      '<rect width="360" height="150" fill="#2a2c31"/>' +
-      '<rect x="14" y="4" width="332" height="82" rx="5" fill="#101214"/>' +
-      '<rect x="20" y="8" width="320" height="72" rx="3" fill="#5a5e64"/>' +
-      '<rect x="20" y="8" width="320" height="12" fill="#7a7e84" opacity=".5"/>' +
-      '<rect x="20" y="8" width="320" height="1.5" fill="#d5d8dc" opacity=".55"/>' +
-      '<rect x="20" y="19" width="320" height="2" fill="#0c0d0f"/>' +
-      '<rect x="140" y="64" width="80" height="8" rx="2" fill="#1a1c20"/>' +
-      '<rect x="140" y="64" width="80" height="2" fill="#9aa0a6" opacity=".4"/>' +
-      '<rect x="20" y="78" width="320" height="2" fill="#0a0b0d"/>' +
-      '<circle cx="34" cy="124" r="7.5" fill="#c9a227"/><circle cx="34" cy="124" r="2.5" fill="#6a5610"/>' +
-      '<circle cx="54" cy="124" r="7.5" fill="#ececec"/><circle cx="54" cy="124" r="2.5" fill="#888"/>' +
-      '<circle cx="74" cy="124" r="7.5" fill="#c41230"/><circle cx="74" cy="124" r="2.5" fill="#6a0a18"/>' +
-      '<circle cx="328" cy="122" r="15" fill="#24262a" stroke="#111"/>' +
-      '<circle cx="328" cy="115" r="3.4" fill="#ff2a2a"/>' +
-      '<circle cx="328" cy="115" r="5.6" fill="#ff2a2a" opacity=".38"/>' +
-      '<text x="328" y="144" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="6" fill="#6a6a70">POWER</text>' +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 158" fill="none">' +
+      '<rect width="360" height="158" fill="#2a2c31"/>' +
+      '<rect x="18" y="4" width="324" height="90" rx="8" fill="#141618"/>' +
+      '<rect x="26" y="10" width="308" height="76" rx="4" fill="#3c3e43"/>' +
+      '<rect x="30" y="13" width="300" height="2" rx="1" fill="#aeb4ba" opacity=".7"/>' +
+      '<rect x="152" y="70" width="56" height="5" rx="2" fill="#2a2c30"/>' +
+      '<circle cx="36" cy="128" r="8" fill="#c9a227"/><circle cx="36" cy="128" r="2.6" fill="#6a5610"/>' +
+      '<circle cx="58" cy="128" r="8" fill="#ececec"/><circle cx="58" cy="128" r="2.6" fill="#888"/>' +
+      '<circle cx="80" cy="128" r="8" fill="#c41230"/><circle cx="80" cy="128" r="2.6" fill="#6a0a18"/>' +
+      '<circle cx="324" cy="126" r="16" fill="#24262a" stroke="#111"/>' +
+      '<circle cx="324" cy="119" r="3.6" fill="#ff2a2a"/>' +
+      '<circle cx="324" cy="119" r="6" fill="#ff2a2a" opacity=".35"/>' +
+      '<text x="324" y="152" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="6.5" fill="#8a8a90">POWER</text>' +
     "</svg>",
   );
   const CSS = `
@@ -1008,7 +1004,7 @@ html[data-drop="1"] .drop-tape {
   padding: 1.1rem 1.1rem .45rem !important;
   border-radius: 1.25rem 1.25rem .28rem .28rem;
   background:
-    linear-gradient(#05060a, #05060a) 1.1rem 1.1rem / calc(100% - 2.2rem) calc(100% - 1.1rem - 7.4rem) no-repeat,
+    linear-gradient(#05060a, #05060a) 1.1rem 1.1rem / calc(100% - 2.2rem) calc(100% - 1.1rem - 8rem) no-repeat,
     linear-gradient(180deg, #55585e 0%, #3a3d42 12%, #2c2e33 42%, #232529 100%);
   box-shadow:
     0 1px 0 #1a1c1e,
@@ -1022,7 +1018,7 @@ html[data-drop="1"] .drop-tape::before {
   content: "";
   position: absolute;
   top: 1.1rem; left: 1.1rem; right: 1.1rem;
-  bottom: 7.45rem;
+  bottom: 8.05rem;
   border-radius: .55rem .55rem .28rem .28rem;
   pointer-events: none;
   z-index: 8;
@@ -1044,15 +1040,15 @@ html[data-drop="1"] .drop-tape::after {
   content: "";
   position: relative;
   display: block;
-  flex: 0 0 6.7rem;
+  flex: 0 0 7.2rem;
   width: 100%;
-  height: 6.7rem;
+  height: 7.2rem;
   margin-top: .28rem;
   pointer-events: none;
   z-index: 4;
-  background-image: url("/assets/zenith-mark.png?v=15"), url("data:image/svg+xml,${FACE}");
-  background-size: auto 0.72rem, 100% 100%;
-  background-position: 50% 4.55rem, 0 0;
+  background-image: url("/assets/zenith-mark.png?v=16"), url("data:image/svg+xml,${FACE}");
+  background-size: auto 1.15rem, 100% 100%;
+  background-position: 50% 78%, 0 0;
   background-repeat: no-repeat;
 }
 html[data-drop="1"] .drop-tape .relative.touch-none,
@@ -1347,7 +1343,7 @@ html[data-drop="1"] .drop-tape.is-hum::before {
 html[data-drop="1"] .nd-scan {
   position: absolute;
   top: 1.1rem; left: 1.1rem; right: 1.1rem;
-  bottom: 7.45rem;
+  bottom: 8.05rem;
   z-index: 9;
   pointer-events: none;
   overflow: hidden;
@@ -1427,7 +1423,7 @@ html[data-drop="1"] .drop-tape .vhs-box[data-size="drop"] {
 html[data-drop="1"] .nd-power {
   position: absolute;
   top: 1.1rem; left: 1.1rem; right: 1.1rem;
-  bottom: 7.45rem;
+  bottom: 8.05rem;
   z-index: 12;
   pointer-events: none;
   overflow: hidden;
@@ -1479,7 +1475,7 @@ html[data-drop="1"] .nd-glass-off {
   top: 1.1rem;
   left: 1.1rem;
   right: 1.1rem;
-  bottom: 7.45rem;
+  bottom: 8.05rem;
   z-index: 14;
   overflow: hidden;
   border-radius: .55rem .55rem .28rem .28rem;
