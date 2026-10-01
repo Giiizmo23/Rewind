@@ -215,7 +215,7 @@
     vip: `<div class="tour-vip"><div class="tour-vip-banner"><img src="/sleeves/blade-runner-still.jpg?v=522" alt=""><img class="tour-vip-ava" src="/sleeves/amelie.jpg?v=487" alt=""></div><div class="tour-vip-body"><p class="tour-vip-bio">Be Kind, Rewind</p><p class="tour-vip-kicker">Favorites</p><div class="tour-vip-favs"><img src="/sleeves/alien.jpg?v=487" alt="Alien"><img src="/sleeves/casablanca.jpg?v=487" alt="Casablanca"><img src="/sleeves/clueless.jpg?v=487" alt="Clueless"><img src="/sleeves/back-to-the-future.jpg?v=487" alt="Back to the Future"></div></div></div>`,
     board: tourBoard(),
     club: `<div class="tour-member"><div class="tour-ava">RV</div><div><b>A member</b><span>Their page, their tapes</span></div><div class="tour-add">Add</div></div>`,
-    drop: '<div class="tour-drop" data-tour-drop="1"><div class="tour-drop-stage"><p class="is-l"><b>Never seen it</b><span>swipe left</span></p><div class="tour-drop-card" data-tour-swipe="1"><img src="/sleeves/alien.jpg?v=487" alt="Alien" draggable="false"></div><p class="is-r"><b>Seen it</b><span>swipe right</span></p></div></div>',
+    drop: '<div class="tour-shot drop"><img src="/assets/tour/night-drop.jpg?v=1" alt="Night Drop"></div>',
     locker: '<div class="tour-vcr"><div class="rw-vcr-block"><button type="button" class="rw-vcr" data-scan-hold="1" aria-label="Hold to rewind"><span class="rw-vcr-shell"><span class="rw-vcr-lid" aria-hidden="true"><span class="rw-vcr-power"></span><span></span><span></span></span><span class="rw-vcr-face"><span class="rw-vcr-door"><span class="rw-vcr-mouth"><span class="rw-vcr-doorcopy"><b>Hi-Fi Stereo</b><small>Rewind VHS · Video Cassette</small></span><span class="rw-vcr-slotline" aria-hidden="true"></span></span><span class="rw-blue" aria-hidden="true"></span></span><span class="rw-vcr-mid"><span aria-hidden="true"></span><span class="rw-clock-stack"><span class="rw-vcr-window"><span class="rw-vcr-screen"><span class="rw-cass" aria-hidden="true"><span class="rw-cass-win"><span class="rw-vcr-reel"></span><span class="rw-vcr-reel"></span></span></span><span class="rw-vcr-read" data-scan-hint data-idle="">--:--</span></span></span></span><span class="rw-pod" aria-hidden="true"><span class="rw-key"><s>⏏</s><b>eject</b></span></span></span><span class="rw-vcr-low" aria-hidden="true"><span class="rw-transport"><span class="rw-jacks"><i></i><i></i><i></i></span><span class="rw-key"><s>▶</s><b>play</b></span><span class="rw-key"><s>❚❚</s><b>pause</b></span></span><span class="rw-transport"><span class="rw-key is-rew"><s>◀◀</s><b>rew</b></span><span class="rw-key"><s>▶▶</s><b>fwd</b></span></span></span></span></span></button><p class="rw-vcr-cap">Press and hold the deck</p></div></div>',
   };
 
@@ -226,6 +226,8 @@
     s.textContent =
       ".tour-shot{margin:1rem auto 0;width:min(100%,22rem);border-radius:16px;overflow:hidden;box-shadow:0 12px 28px rgba(26,20,15,.18);background:#14110e}" +
       ".tour-shot img{display:block;width:100%;height:auto;object-fit:contain}" +
+      ".tour-shot.drop{width:min(78%,15.4rem);margin:.85rem auto 0;background:#120e0c;border-radius:18px}" +
+      ".tour-shot.drop img{max-height:46svh;width:100%;height:auto;object-fit:contain;object-position:center top}" +
       ".tour-shot.checkout{width:min(100%,15.6rem)}" +
       ".tour-rent{width:min(100%,18.4rem);margin:.7rem auto 0;overflow:visible}" +
       ".tour-rent .rental-terms{max-width:none;margin:0 0 .55rem}" +
