@@ -10306,11 +10306,15 @@
       "html[data-drop='1'] #nd-overlay .drop-deck{justify-content:flex-end!important;align-content:flex-end!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:absolute!important;top:0!important;left:0!important;right:0!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:none!important;border:0!important;outline:none!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:none!important;overflow:visible!important}" +
       "html[data-drop='1'] .nd-neon-hang,html[data-drop='1'] .nd-neon-wash,html[data-drop='1'] .nd-neon-glow,html[data-drop='1'] .nd-neon-can,html[data-drop='1'] .nd-neon-rivet{display:none!important}" +
-      "html[data-drop='1'] .nd-neon-stack{position:relative!important;display:block!important;width:min(62vw,13rem)!important;aspect-ratio:1065/1155!important;line-height:0!important;background:transparent!important;border:0!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
+      "html[data-drop='1'] .nd-neon-stack{position:relative!important;display:block!important;width:min(54vw,11.4rem)!important;aspect-ratio:1065/1155!important;line-height:0!important;background:transparent!important;border:0!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
       "html[data-drop='1'] .nd-piece{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;object-fit:fill!important;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important}" +
       "html[data-drop='1'] .nd-glass{opacity:1;filter:none!important;-webkit-filter:none!important}" +
-      "html[data-drop='1'] .nd-lamp{opacity:0;filter:brightness(1.2) saturate(1.28)!important;-webkit-filter:brightness(1.2) saturate(1.28)!important}" +
-      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(4px) brightness(1.45) saturate(1.35)!important;-webkit-filter:blur(4px) brightness(1.45) saturate(1.35)!important}" +
+      "html[data-drop='1'] .nd-lamp{opacity:0;filter:brightness(1.25) saturate(1.3)!important;-webkit-filter:brightness(1.25) saturate(1.3)!important}" +
+      "html[data-drop='1'] .nd-l-night{filter:brightness(1.25) saturate(1.35) drop-shadow(0 0 7px #8fd4ff) drop-shadow(0 0 18px #2f78ff) drop-shadow(0 0 32px rgba(40,110,255,.55))!important;-webkit-filter:brightness(1.25) saturate(1.35) drop-shadow(0 0 7px #8fd4ff) drop-shadow(0 0 18px #2f78ff) drop-shadow(0 0 32px rgba(40,110,255,.55))!important}" +
+      "html[data-drop='1'] .nd-l-drop{filter:brightness(1.25) saturate(1.4) drop-shadow(0 0 7px #ff9ad8) drop-shadow(0 0 18px #ff2f9a) drop-shadow(0 0 32px rgba(255,40,140,.55))!important;-webkit-filter:brightness(1.25) saturate(1.4) drop-shadow(0 0 7px #ff9ad8) drop-shadow(0 0 18px #ff2f9a) drop-shadow(0 0 32px rgba(255,40,140,.55))!important}" +
+      "html[data-drop='1'] .nd-l-script{filter:brightness(1.3) saturate(1.1) drop-shadow(0 0 6px #fff) drop-shadow(0 0 16px rgba(255,255,255,.8)) drop-shadow(0 0 28px rgba(255,250,240,.45))!important;-webkit-filter:brightness(1.3) saturate(1.1) drop-shadow(0 0 6px #fff) drop-shadow(0 0 16px rgba(255,255,255,.8)) drop-shadow(0 0 28px rgba(255,250,240,.45))!important}" +
+      "html[data-drop='1'] .nd-l-tape{filter:brightness(1.25) saturate(1.4) drop-shadow(0 0 7px #7ef6ff) drop-shadow(0 0 16px #ffe14a) drop-shadow(0 0 28px rgba(80,210,255,.5))!important;-webkit-filter:brightness(1.25) saturate(1.4) drop-shadow(0 0 7px #7ef6ff) drop-shadow(0 0 16px #ffe14a) drop-shadow(0 0 28px rgba(80,210,255,.5))!important}" +
+      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(14px) brightness(2.15) saturate(1.65)!important;-webkit-filter:blur(14px) brightness(2.15) saturate(1.65)!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{opacity:1!important;background:transparent!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-night,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-night{animation:nd-strike 1.55s linear forwards}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-night{animation:nd-glass 1.55s linear forwards}" +
@@ -10320,9 +10324,16 @@
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-script{animation:nd-glass 1.45s linear .38s forwards}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-tape,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-tape{animation:nd-strike 1.35s linear .58s forwards}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-tape{animation:nd-glass 1.35s linear .58s forwards}" +
-      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp{opacity:1!important;animation:none!important}" +
-      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:.42!important;animation:none!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp{opacity:1!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-night{animation:nd-hum 4.6s ease-in-out infinite!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-drop{animation:nd-hum 6.4s ease-in-out .4s infinite!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-script{animation:nd-hum 5.2s ease-in-out .8s infinite!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-tape{animation:nd-hum 7.1s ease-in-out 1.1s infinite!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:.78!important;animation:nd-halo 5.8s ease-in-out infinite!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-glass{opacity:0!important;animation:none!important}" +
+      "@keyframes nd-hum{0%,100%{opacity:1}42%{opacity:.96}46%{opacity:.82}49%{opacity:1}73%{opacity:.9}76%{opacity:.7}80%{opacity:1}}" +
+      "@keyframes nd-halo{0%,100%{opacity:.78}38%{opacity:.95}46%{opacity:.42}52%{opacity:.88}74%{opacity:.62}82%{opacity:.92}}" +
+      "@media (prefers-reduced-motion:reduce){html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp,html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{animation:none!important}}" +
       "@keyframes nd-strike{0%,5%{opacity:0}6%,12%{opacity:1}13%,20%{opacity:0}21%,27%{opacity:1}28%,36%{opacity:0}37%,41%{opacity:.4}42%,49%{opacity:0}50%,58%{opacity:1}59%,64%{opacity:0}65%,74%{opacity:1}75%,78%{opacity:.25}79%,100%{opacity:1}}" +
       "@keyframes nd-glass{0%,5%{opacity:1}6%,12%{opacity:0}13%,20%{opacity:1}21%,27%{opacity:0}28%,36%{opacity:1}37%,41%{opacity:.55}42%,49%{opacity:1}50%,58%{opacity:0}59%,64%{opacity:1}65%,74%{opacity:0}75%,78%{opacity:.7}79%,100%{opacity:0}}" +
       "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(42svh,19.6rem)!important;min-height:min(42svh,19.6rem)!important;max-height:min(42svh,19.6rem)!important}";
