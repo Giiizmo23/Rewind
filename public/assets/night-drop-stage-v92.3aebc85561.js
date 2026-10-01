@@ -923,7 +923,7 @@ html[data-drop="1"] #nd-overlay {
   flex-direction: column !important;
   justify-content: flex-start !important;
   background-color: #1a100c !important;
-  background-image: url("/assets/nd-wood-wall.jpg?v=1") !important;
+  background-image: url("/assets/nd-wood-wall.jpg?v=2") !important;
   background-size: cover !important;
   background-position: center top !important;
   background-repeat: no-repeat !important;

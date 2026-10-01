@@ -10305,7 +10305,7 @@
     s.id = "nd-art-neon";
     s.textContent =
       "html[data-drop='1'],html[data-drop='1'] body,html[data-drop='1'] .store-bg{background:#07060a!important;background-image:none!important;background-color:#07060a!important}" +
-      "html[data-drop='1'] #nd-overlay{background-color:#1a100c!important;background-image:url('/assets/nd-wood-wall.jpg?v=1')!important;background-size:cover!important;background-position:center top!important;background-repeat:no-repeat!important}" +
+      "html[data-drop='1'] #nd-overlay{background-color:#1a100c!important;background-image:url('/assets/nd-wood-wall.jpg?v=2')!important;background-size:cover!important;background-position:center top!important;background-repeat:no-repeat!important}" +
       "html[data-drop='1'] #nd-overlay{padding-top:.7rem!important}" +
       "html[data-drop='1'] #nd-overlay .drop-deck{justify-content:flex-end!important;align-content:flex-end!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:absolute!important;top:0!important;left:0!important;right:0!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:none!important;border:0!important;outline:none!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:none!important;overflow:visible!important}" +
