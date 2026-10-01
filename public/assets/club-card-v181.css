@@ -3962,20 +3962,29 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
   aspect-ratio:3 / 2!important;
   max-height:none!important;
 }
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-copy,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-copy,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-copy,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  flex:1 1 auto!important;
+}
 .tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-end,
 .tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-end,
 .tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-end,
 .tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-end{
   display:flex!important;
   flex-direction:column!important;
-  flex:1 1 auto!important;
+  flex:0 0 auto!important;
   min-height:0!important;
 }
 .tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-foot,
 .tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-foot,
 .tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-foot,
 .tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-foot{
-  margin-top:auto!important;
+  margin-top:0.16rem!important;
 }
 .tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-tag,
 .tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-tag,
@@ -4022,6 +4031,7 @@ html body .lobby-picks .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-
 html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-copy{
   display:flex!important;
   flex-direction:column!important;
+  justify-content:flex-end!important;
   flex:1 1 auto!important;
   min-height:0!important;
 }
@@ -4031,14 +4041,14 @@ html body .lobby-picks .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-
 html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-end{
   display:flex!important;
   flex-direction:column!important;
-  flex:1 1 auto!important;
+  flex:0 0 auto!important;
   min-height:0!important;
 }
 html body .lobby-picks .vhs-box[data-slug="the-lion-king"] .vhs-back-foot,
 html body .lobby-picks .vhs-box[data-slug="the-thing-1982"] .vhs-back-foot,
 html body .lobby-picks .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-foot,
 html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-foot{
-  margin-top:auto!important;
+  margin-top:0.16rem!important;
 }
 
 .club-tour{
