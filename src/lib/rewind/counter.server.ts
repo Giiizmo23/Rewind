@@ -179,7 +179,7 @@ async function memberByHandle(sql: Sql, handle: string): Promise<Member | null> 
 
 async function membersByFold(sql: Sql, handle: string): Promise<Member[]> {
   return sql.query<Member>(
-    "select " + MEMBER_SLIM + " from rewind_members where lower(handle) = lower($1) limit 5",
+    "select handle, name, password_hash, token_hash, '{}'::jsonb as locker, created_at from rewind_members where lower(handle) = lower($1) limit 5",
     [handle],
   );
 }
@@ -194,10 +194,22 @@ function namedLocker(member: Member): Locker {
   return locker;
 }
 
+async function memberAuth(sql: Sql, handle: string): Promise<Member | null> {
+  const rows = await sql.query<Member>(
+    "select handle, name, password_hash, token_hash, '{}'::jsonb as locker, created_at from rewind_members where handle = $1",
+    [handle],
+  );
+  return rows[0] || null;
+}
+
+async function fillLocker(sql: Sql, member: Member): Promise<Member> {
+  return (await memberByHandle(sql, member.handle)) || member;
+}
+
 async function authed(sql: Sql, body: Record<string, unknown>): Promise<Member | Response> {
   const handle = cleanHandle(body.username);
   if (badHandle(handle)) return json({ ok: false, err: "user" }, 400);
-  const member = await memberByHandle(sql, handle);
+  const member = await memberAuth(sql, handle);
   if (!member) return json({ ok: false, err: "nocard" }, 401);
   const token = String(body.token || "");
   if (token) {
@@ -936,7 +948,7 @@ async function stamp(sql: Sql, body: Record<string, unknown>): Promise<Response>
 async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const typed = cleanHandle(body.username);
   const password = String(body.password || "");
-  if (password && !(await memberByHandle(sql, typed))) {
+  if (password && !(await memberAuth(sql, typed))) {
     const near = await membersByFold(sql, typed);
     const hits: Member[] = [];
     for (const row of near) {
@@ -947,7 +959,8 @@ async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response
   }
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
-  const who = await restorePicsIfMissing(sql, await attachPics(sql, await restoreLockerIfBlank(sql, authedMember)));
+  const loaded = await fillLocker(sql, authedMember);
+  const who = await restorePicsIfMissing(sql, await attachPics(sql, await restoreLockerIfBlank(sql, loaded)));
   const usedPassword = String(body.password || "").length > 0;
   let token = String(body.token || "");
   let recovery = "";
@@ -1360,8 +1373,9 @@ async function restorePicsIfMissing(sql: Sql, member: Member): Promise<Member> {
 }
 
 async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
-  const who = await authed(sql, body);
-  if (who instanceof Response) return who;
+  const signed = await authed(sql, body);
+  if (signed instanceof Response) return signed;
+  const who = await fillLocker(sql, signed);
   const locker = body.locker;
   if (!locker || typeof locker !== "object") return json({ ok: false, err: "locker" }, 400);
   const incoming = locker as Locker;
@@ -1388,7 +1402,7 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
 async function pullLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
-  const filled = await restoreLockerIfBlank(sql, authedMember);
+  const filled = await restoreLockerIfBlank(sql, await fillLocker(sql, authedMember));
   if (body.havePics === true) return json({ ok: true, locker: filled.locker || {} });
   const withPics = await restorePicsIfMissing(sql, await attachPics(sql, filled));
   return json({ ok: true, locker: withPics.locker || {} });
@@ -1397,8 +1411,10 @@ async function pullLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
 async function people(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
+  const lite = body.lite === true;
+  const avatarExpr = lite ? "''" : "coalesce(m.locker->>'avatar', '')";
   const rows = await sql.query<{ handle: string; name: string; avatar: string }>(
-    `select m.handle, m.name, coalesce(m.locker->>'avatar', '') as avatar
+    `select m.handle, m.name, ${avatarExpr} as avatar
      from rewind_members m
      where m.handle <> $1
        and (
@@ -1426,7 +1442,7 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     });
   }
   const incoming = await sql.query<{ handle: string; name: string; avatar: string }>(
-    `select m.handle, m.name, coalesce(m.locker->>'avatar', '') as avatar
+    `select m.handle, m.name, ${avatarExpr} as avatar
      from rewind_follows f
      join rewind_members m on m.handle = f.follower
      where f.followee = $1
@@ -1446,7 +1462,7 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     avatar: row.avatar || "",
   }));
   const msgRows = await sql.query<{ handle: string; name: string; avatar: string; body: string }>(
-    `select m.handle, m.name, coalesce(m.locker->>'avatar', '') as avatar,
+    `select m.handle, m.name, ${avatarExpr} as avatar,
         coalesce((
           select body from rewind_messages
           where sender = g.asker and recipient = g.askee
@@ -1485,21 +1501,23 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     const gate = await gateBetween(sql, who.handle, other);
     if (!friends && gateLabel(gate, who.handle) !== "open") continue;
     seen.add(other);
-    const whoElse = await memberByHandle(sql, other);
-    const face = whoElse
-      ? await sql.query<{ avatar: string }>(
-          "select coalesce(locker->>'avatar', '') as avatar from rewind_members where handle = $1",
-          [other],
-        )
-      : [];
+    const named = await sql.query<{ name: string }>("select name from rewind_members where handle = $1", [other]);
+    let avatar = "";
+    if (!lite) {
+      const face = await sql.query<{ avatar: string }>(
+        "select coalesce(locker->>'avatar', '') as avatar from rewind_members where handle = $1",
+        [other],
+      );
+      avatar = face[0]?.avatar || "";
+    }
     previews.push({
       handle: other,
-      name: whoElse?.name || other,
+      name: named[0]?.name || other,
       text: row.body,
       from: row.sender === who.handle ? "me" : "them",
       at: new Date(row.created_at).getTime() || Date.now(),
       msg: "open",
-      avatar: face[0]?.avatar || "",
+      avatar,
     });
   }
   return json({ ok: true, shared: true, people: list, box: { friendIn, msgIn, previews } });
@@ -1701,10 +1719,11 @@ async function reply(sql: Sql, body: Record<string, unknown>): Promise<Response>
 async function rename(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
+  const named = await fillLocker(sql, who);
   const next = cleanHandle(body.next);
   if (badHandle(next)) return json({ ok: false, err: "user" }, 400);
   if (next === who.handle) return json({ ok: true, handle: next, username: next });
-  const taken = await memberByHandle(sql, next);
+  const taken = await memberAuth(sql, next);
   if (taken) return json({ ok: false, err: "taken" }, 409);
   await sql.query("update rewind_members set handle = $1 where handle = $2", [next, who.handle]);
   await sql.query("update rewind_sessions set handle = $1 where handle = $2", [next, who.handle]);
@@ -1716,7 +1735,7 @@ async function rename(sql: Sql, body: Record<string, unknown>): Promise<Response
   await sql.query("update rewind_msg_gates set askee = $1 where askee = $2", [next, who.handle]);
   await sql.query("update rewind_backups set handle = $1 where handle = $2", [next, who.handle]);
   try {
-    await mirrorVault(next, who.locker || {});
+    await mirrorVault(next, named.locker || {});
     await deleteVault(who.handle);
   } catch {
     /* the renamed card still has its database copies */

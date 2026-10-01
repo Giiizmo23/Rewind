@@ -3448,9 +3448,9 @@
     const key = String(handle || "").trim();
     return clubBook.people.some(function (p) { return p.handle === key; });
   }
-  function loadClubBook() {
+  function loadClubBook(lite) {
     if (clubPull) return clubPull;
-    clubPull = clubPost("/api/rewind/club/people").then(function (data) {
+    clubPull = clubPost("/api/rewind/club/people", lite ? { lite: true } : {}).then(function (data) {
       clubBook.tried = true;
       if (!data || !data.ok || !Array.isArray(data.people)) {
         clubBook.err = (data && data.err) || "fail";
@@ -3458,12 +3458,15 @@
       }
       clubBook.err = "";
       clubBook.shared = data.shared !== false;
+      const kept = {};
+      (clubBook.people || []).forEach(function (p) { if (p && p.avatar) kept[p.handle] = p.avatar; });
       clubBook.people = data.people.map(function (p) {
+        const handle = String(p.handle || "").trim();
         return {
-          handle: String(p.handle || "").trim(),
+          handle: handle,
           label: p.label || p.handle,
           name: p.name || p.label || p.handle,
-          avatar: isPicSrc(p.avatar) ? p.avatar : "",
+          avatar: isPicSrc(p.avatar) ? p.avatar : (kept[handle] || ""),
           friend: p.friend || "none",
           msg: p.msg || "none",
           following: p.friend === "friends",
@@ -3471,8 +3474,18 @@
         };
       }).filter(function (p) { return p.handle; });
       clubBook.following = clubBook.people.filter(function (p) { return p.friend === "friends"; }).map(function (p) { return p.handle; });
-      clubBook.friendIn = (data.box && data.box.friendIn) || [];
-      clubBook.msgIn = (data.box && data.box.msgIn) || [];
+      const oldIn = {};
+      (clubBook.friendIn || []).forEach(function (p) { if (p && p.avatar) oldIn[p.handle] = p.avatar; });
+      const oldMsg = {};
+      (clubBook.msgIn || []).forEach(function (p) { if (p && p.avatar) oldMsg[p.handle] = p.avatar; });
+      clubBook.friendIn = ((data.box && data.box.friendIn) || []).map(function (p) {
+        if (!isPicSrc(p.avatar) && oldIn[p.handle]) p.avatar = oldIn[p.handle];
+        return p;
+      });
+      clubBook.msgIn = ((data.box && data.box.msgIn) || []).map(function (p) {
+        if (!isPicSrc(p.avatar) && oldMsg[p.handle]) p.avatar = oldMsg[p.handle];
+        return p;
+      });
       clubBook.people.forEach(function (p) { if (p.msg && p.msg !== "none") clubGate[p.handle] = p.msg; });
       const arrived = applyClubPreviews((data.box && data.box.previews) || []);
       clubBook.loaded = true;
@@ -4868,7 +4881,7 @@
     if (!window.__rwDeskRemind) {
       window.__rwDeskRemind = 1;
       window.setInterval(function () {
-        loadClubBook().then(function () {
+        loadClubBook(true).then(function () {
           paintInboxBadge();
           const box = document.getElementById("rw-inbox");
           const typing = box && box.querySelector("input, textarea") === document.activeElement;
