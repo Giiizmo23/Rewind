@@ -3962,6 +3962,21 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
   aspect-ratio:3 / 2!important;
   max-height:none!important;
 }
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-end,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-end,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-end,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-end{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+}
+.tape-hero-box .vhs-box[data-slug="the-lion-king"] .vhs-back-foot,
+.tape-hero-box .vhs-box[data-slug="the-thing-1982"] .vhs-back-foot,
+.tape-hero-box .vhs-box[data-slug="the-shawshank-redemption"] .vhs-back-foot,
+.tape-hero-box .vhs-box[data-slug="coming-to-america"] .vhs-back-foot{
+  margin-top:auto!important;
+}
 
 .club-tour{
   position:fixed;inset:0;z-index:240;overflow:auto;

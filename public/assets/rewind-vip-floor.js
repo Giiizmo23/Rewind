@@ -12761,10 +12761,19 @@
         still.style.setProperty("aspect-ratio", "3 / 2", "important");
         still.style.setProperty("min-height", "0", "important");
         still.style.setProperty("max-height", "none", "important");
+        copy.style.setProperty("display", "flex", "important");
+        copy.style.setProperty("flex-direction", "column", "important");
         copy.style.setProperty("flex", "1 1 auto", "important");
         copy.style.setProperty("min-height", "0", "important");
         copy.style.setProperty("overflow", "hidden", "important");
-        copy.style.setProperty("padding-bottom", "0.28rem", "important");
+        copy.style.setProperty("padding-bottom", "0.2rem", "important");
+        var end = copy.querySelector(".vhs-back-end");
+        if (end) {
+          end.style.setProperty("display", "flex", "important");
+          end.style.setProperty("flex-direction", "column", "important");
+          end.style.setProperty("flex", "1 1 auto", "important");
+          end.style.setProperty("min-height", "0", "important");
+        }
         var foot = copy.querySelector(".vhs-back-foot");
         if (foot) {
           foot.style.setProperty("flex", "0 0 auto", "important");
