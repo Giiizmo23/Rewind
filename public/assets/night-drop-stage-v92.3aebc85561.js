@@ -29,19 +29,19 @@
   const VER = "92n82";
   let heldTheme = null;
   const FACE = encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" fill="none">' +
-      '<rect width="400" height="128" fill="#2a2c31"/>' +
-      '<rect x="14" y="2" width="372" height="74" rx="8" fill="#121416"/>' +
-      '<rect x="22" y="8" width="356" height="60" rx="4" fill="#3d3f44"/>' +
-      '<rect x="26" y="11" width="348" height="1.6" rx="0.8" fill="#b7bcc2" opacity=".75"/>' +
-      '<rect x="170" y="52" width="60" height="5" rx="2" fill="#23262a"/>' +
-      '<circle cx="40" cy="104" r="8" fill="#c9a227"/><circle cx="40" cy="104" r="2.6" fill="#6a5610"/>' +
-      '<circle cx="62" cy="104" r="8" fill="#ececec"/><circle cx="62" cy="104" r="2.6" fill="#888"/>' +
-      '<circle cx="84" cy="104" r="8" fill="#c41230"/><circle cx="84" cy="104" r="2.6" fill="#6a0a18"/>' +
-      '<circle cx="360" cy="102" r="15" fill="#24262a" stroke="#111"/>' +
-      '<circle cx="360" cy="95" r="3.4" fill="#ff2a2a"/>' +
-      '<circle cx="360" cy="95" r="5.8" fill="#ff2a2a" opacity=".35"/>' +
-      '<text x="360" y="124" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="6.5" fill="#8a8a90">POWER</text>' +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 112" fill="none">' +
+      '<rect width="400" height="112" fill="#2a2c31"/>' +
+      '<rect x="14" y="3" width="372" height="34" rx="6" fill="#121416"/>' +
+      '<rect x="20" y="6" width="360" height="26" rx="3" fill="#3d3f44"/>' +
+      '<rect x="24" y="8" width="352" height="1.2" rx="0.6" fill="#b7bcc2" opacity=".75"/>' +
+      '<rect x="176" y="23" width="48" height="3.2" rx="1.6" fill="#23262a"/>' +
+      '<circle cx="40" cy="86" r="8" fill="#c9a227"/><circle cx="40" cy="86" r="2.6" fill="#6a5610"/>' +
+      '<circle cx="62" cy="86" r="8" fill="#ececec"/><circle cx="62" cy="86" r="2.6" fill="#888"/>' +
+      '<circle cx="84" cy="86" r="8" fill="#c41230"/><circle cx="84" cy="86" r="2.6" fill="#6a0a18"/>' +
+      '<circle cx="360" cy="84" r="15" fill="#24262a" stroke="#111"/>' +
+      '<circle cx="360" cy="77" r="3.4" fill="#ff2a2a"/>' +
+      '<circle cx="360" cy="77" r="5.8" fill="#ff2a2a" opacity=".35"/>' +
+      '<text x="360" y="108" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="6.5" fill="#8a8a90">POWER</text>' +
     "</svg>",
   );
   const CSS = `
@@ -1004,7 +1004,7 @@ html[data-drop="1"] .drop-tape {
   padding: 1.1rem 1.1rem .45rem !important;
   border-radius: 1.25rem 1.25rem .28rem .28rem;
   background:
-    linear-gradient(#05060a, #05060a) 1.1rem 1.1rem / calc(100% - 2.2rem) calc(100% - 1.1rem - 6.55rem) no-repeat,
+    linear-gradient(#05060a, #05060a) 1.1rem 1.1rem / calc(100% - 2.2rem) calc(100% - 1.1rem - 5.35rem) no-repeat,
     linear-gradient(180deg, #55585e 0%, #3a3d42 12%, #2c2e33 42%, #232529 100%);
   box-shadow:
     0 1px 0 #1a1c1e,
@@ -1018,7 +1018,7 @@ html[data-drop="1"] .drop-tape::before {
   content: "";
   position: absolute;
   top: 1.1rem; left: 1.1rem; right: 1.1rem;
-  bottom: 6.7rem;
+  bottom: 5.5rem;
   border-radius: .55rem .55rem .28rem .28rem;
   pointer-events: none;
   z-index: 8;
@@ -1040,9 +1040,9 @@ html[data-drop="1"] .drop-tape::after {
   content: "";
   position: relative;
   display: block;
-  flex: 0 0 6.15rem;
+  flex: 0 0 5.05rem;
   width: 100%;
-  height: 6.15rem;
+  height: 5.05rem;
   margin-top: .15rem;
   pointer-events: none;
   z-index: 4;
@@ -1343,7 +1343,7 @@ html[data-drop="1"] .drop-tape.is-hum::before {
 html[data-drop="1"] .nd-scan {
   position: absolute;
   top: 1.1rem; left: 1.1rem; right: 1.1rem;
-  bottom: 6.7rem;
+  bottom: 5.5rem;
   z-index: 9;
   pointer-events: none;
   overflow: hidden;
@@ -1423,7 +1423,7 @@ html[data-drop="1"] .drop-tape .vhs-box[data-size="drop"] {
 html[data-drop="1"] .nd-power {
   position: absolute;
   top: 1.1rem; left: 1.1rem; right: 1.1rem;
-  bottom: 6.7rem;
+  bottom: 5.5rem;
   z-index: 12;
   pointer-events: none;
   overflow: hidden;
@@ -1475,7 +1475,7 @@ html[data-drop="1"] .nd-glass-off {
   top: 1.1rem;
   left: 1.1rem;
   right: 1.1rem;
-  bottom: 6.7rem;
+  bottom: 5.5rem;
   z-index: 14;
   overflow: hidden;
   border-radius: .55rem .55rem .28rem .28rem;
