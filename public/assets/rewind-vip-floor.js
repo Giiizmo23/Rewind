@@ -7799,7 +7799,7 @@
       }
       if (still) {
         still.setAttribute("loading", "lazy");
-        still.src = "/sleeves/" + slug + "-still.jpg?v=" + (slug === "coming-to-america" ? "536" : "520");
+        still.src = "/sleeves/" + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=1" : slug + "-still.jpg?v=520");
         still.onerror = function () {
           this.onerror = null;
           this.style.display = "none";
@@ -8261,7 +8261,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=' + (slug === "coming-to-america" ? "536" : "520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=1" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -12397,7 +12397,11 @@
       lock(still, "position", "relative");
       lock(still, "overflow", "hidden");
       lock(still, "order", "0");
-      lock(still, "background", "#14110e");
+      lock(still, "background-color", "#14110e");
+      lock(still, "background-image", "url(/sleeves/coming-to-america-shop.jpg?v=1)");
+      lock(still, "background-size", "cover");
+      lock(still, "background-position", "center center");
+      lock(still, "background-repeat", "no-repeat");
       let img = still.querySelector("img");
       if (!img) {
         img = document.createElement("img");
@@ -12406,9 +12410,9 @@
       }
       img.onerror = function () {
         img.onerror = null;
-        img.style.setProperty("display", "none", "important");
+        img.style.setProperty("opacity", "0", "important");
       };
-      img.src = "/sleeves/coming-to-america-still.jpg?v=536";
+      img.src = "/sleeves/coming-to-america-shop.jpg?v=1";
       lock(img, "position", "absolute");
       lock(img, "inset", "0");
       lock(img, "width", "100%");
@@ -12687,10 +12691,10 @@
         img.draggable = false;
         still.appendChild(img);
       }
-      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : slug === "coming-to-america" ? "536" : "520";
-      const want = "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+      const want = slug === "coming-to-america" ? "/sleeves/coming-to-america-shop.jpg?v=1" : "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
       const cur = img.getAttribute("src") || "";
-      if (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0) {
+      if (slug === "coming-to-america" || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
         img.onerror = function () {
           img.onerror = null;
           img.style.setProperty("display", "none", "important");
