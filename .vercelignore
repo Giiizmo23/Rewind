@@ -1,0 +1,10 @@
+# Kept in git. Not part of the live site, so they should not sit on every deploy.
+public/saved
+public/assets/neon-ideas
+public/icon-options
+public/assets/nd-neon.png
+public/assets/nd-neon-glass.png
+public/assets/walnut-stand.jpg
+public/assets/night-drop-neon.jpg
+public/assets/nd-brick.jpg
+public/assets/nd-wall.jpg
