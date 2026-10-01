@@ -8948,7 +8948,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img src="' + backStill(slug) + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img src="' + backStill(slug) + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-contain" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         (overview ? '<p class="vhs-back-syn">' + overview + "</p>" : "") +
@@ -12743,12 +12743,13 @@
       img.style.setProperty("inset", "0", "important");
       img.style.setProperty("width", "100%", "important");
       img.style.setProperty("height", "100%", "important");
-      img.style.setProperty("object-fit", "cover", "important");
+      img.style.setProperty("object-fit", "contain", "important");
       img.style.setProperty("object-position", "center center", "important");
       img.style.setProperty("display", "block", "important");
+      still.style.setProperty("background-size", "contain", "important");
+      still.style.setProperty("background-position", "center center", "important");
+      still.style.setProperty("background-repeat", "no-repeat", "important");
       if (slug === "coming-to-america") {
-        still.style.setProperty("background-size", "cover", "important");
-        still.style.setProperty("background-position", "center center", "important");
         still.style.setProperty("background-color", "#14110e", "important");
       }
       if (small && onShelf) {
