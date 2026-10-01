@@ -10238,7 +10238,7 @@
       }
     });
     const deck = overlay.querySelector(".drop-deck");
-    let sign = overlay.querySelector(".nd-neon-sign[data-built='glass']");
+    let sign = overlay.querySelector(".nd-neon-sign[data-built='wire']");
     if (sign) {
       if (deck && sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
       ensureArtNeonCss();
@@ -10247,15 +10247,22 @@
     document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());
     sign = document.createElement("div");
     sign.className = "nd-neon-sign";
-    sign.setAttribute("data-built", "glass");
+    sign.setAttribute("data-built", "wire");
     sign.setAttribute("aria-hidden", "true");
     sign.innerHTML =
       '<span class="nd-neon-stack">' +
-      '<img class="nd-neon-glass" src="/assets/nd-neon-glass.png?v=1" alt="">' +
-      '<img class="nd-neon-lamp nd-lamp-night" src="/assets/nd-neon.png?v=18" alt="">' +
-      '<img class="nd-neon-lamp nd-lamp-drop" src="/assets/nd-neon.png?v=18" alt="">' +
-      '<img class="nd-neon-lamp nd-lamp-script" src="/assets/nd-neon.png?v=18" alt="">' +
-      '<img class="nd-neon-lamp nd-lamp-tape" src="/assets/nd-neon.png?v=18" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-night" src="/assets/nd-glass-night.png?v=1" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-drop" src="/assets/nd-glass-drop.png?v=1" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-script" src="/assets/nd-glass-script.png?v=1" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-tape" src="/assets/nd-glass-tape.png?v=1" alt="">' +
+      '<img class="nd-piece nd-bloom nd-b-night" src="/assets/nd-lit-night.png?v=1" alt="">' +
+      '<img class="nd-piece nd-bloom nd-b-drop" src="/assets/nd-lit-drop.png?v=1" alt="">' +
+      '<img class="nd-piece nd-bloom nd-b-script" src="/assets/nd-lit-script.png?v=1" alt="">' +
+      '<img class="nd-piece nd-bloom nd-b-tape" src="/assets/nd-lit-tape.png?v=1" alt="">' +
+      '<img class="nd-piece nd-lamp nd-l-night" src="/assets/nd-lit-night.png?v=1" alt="">' +
+      '<img class="nd-piece nd-lamp nd-l-drop" src="/assets/nd-lit-drop.png?v=1" alt="">' +
+      '<img class="nd-piece nd-lamp nd-l-script" src="/assets/nd-lit-script.png?v=1" alt="">' +
+      '<img class="nd-piece nd-lamp nd-l-tape" src="/assets/nd-lit-tape.png?v=1" alt="">' +
       "</span>";
     if (deck) deck.insertBefore(sign, deck.firstChild);
     else overlay.insertBefore(sign, overlay.firstChild);
@@ -10299,20 +10306,24 @@
       "html[data-drop='1'] #nd-overlay .drop-deck{justify-content:flex-end!important;align-content:flex-end!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:absolute!important;top:0!important;left:0!important;right:0!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:none!important;border:0!important;outline:none!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:none!important;overflow:visible!important}" +
       "html[data-drop='1'] .nd-neon-hang,html[data-drop='1'] .nd-neon-wash,html[data-drop='1'] .nd-neon-glow,html[data-drop='1'] .nd-neon-can,html[data-drop='1'] .nd-neon-rivet{display:none!important}" +
-      "html[data-drop='1'] .nd-neon-stack{position:relative!important;display:block!important;width:min(62vw,13rem)!important;line-height:0!important}" +
-      "html[data-drop='1'] .nd-neon-glass{display:block!important;width:100%!important;height:auto!important;background:transparent!important;border:0!important;filter:none!important;opacity:1!important}" +
-      "html[data-drop='1'] .nd-neon-lamp{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:auto!important;opacity:0;background:transparent!important;border:0!important;filter:none!important;pointer-events:none!important}" +
-      "html[data-drop='1'] .nd-lamp-night{clip-path:inset(0 0 71.3% 0);-webkit-clip-path:inset(0 0 71.3% 0)}" +
-      "html[data-drop='1'] .nd-lamp-drop{clip-path:inset(28.7% 0 40.8% 0);-webkit-clip-path:inset(28.7% 0 40.8% 0)}" +
-      "html[data-drop='1'] .nd-lamp-script{clip-path:inset(59.2% 0 19.5% 0);-webkit-clip-path:inset(59.2% 0 19.5% 0)}" +
-      "html[data-drop='1'] .nd-lamp-tape{clip-path:inset(80.5% 0 0 0);-webkit-clip-path:inset(80.5% 0 0 0)}" +
-      "html[data-drop='1'] .drop-deck>.nd-neon-sign{opacity:1!important}" +
-      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-lamp-night{animation:nd-strike 1.55s linear forwards}" +
-      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-lamp-drop{animation:nd-strike 1.55s linear .16s forwards}" +
-      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-lamp-script{animation:nd-strike 1.45s linear .38s forwards}" +
-      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-lamp-tape{animation:nd-strike 1.35s linear .58s forwards}" +
-      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-neon-lamp{opacity:1!important;animation:none!important}" +
+      "html[data-drop='1'] .nd-neon-stack{position:relative!important;display:block!important;width:min(62vw,13rem)!important;aspect-ratio:1065/1155!important;line-height:0!important;background:transparent!important;border:0!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
+      "html[data-drop='1'] .nd-piece{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;object-fit:fill!important;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important}" +
+      "html[data-drop='1'] .nd-glass{opacity:1;filter:none!important;-webkit-filter:none!important}" +
+      "html[data-drop='1'] .nd-lamp{opacity:0;filter:brightness(1.2) saturate(1.28)!important;-webkit-filter:brightness(1.2) saturate(1.28)!important}" +
+      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(8px) brightness(2) saturate(1.5)!important;-webkit-filter:blur(8px) brightness(2) saturate(1.5)!important}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign{opacity:1!important;background:transparent!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-night,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-night{animation:nd-strike 1.55s linear forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-night{animation:nd-glass 1.55s linear forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-drop,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-drop{animation:nd-strike 1.55s linear .16s forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-drop{animation:nd-glass 1.55s linear .16s forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-script,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-script{animation:nd-strike 1.45s linear .38s forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-script{animation:nd-glass 1.45s linear .38s forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-tape,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-tape{animation:nd-strike 1.35s linear .58s forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-tape{animation:nd-glass 1.35s linear .58s forwards}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp,html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:1!important;animation:none!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-glass{opacity:0!important;animation:none!important}" +
       "@keyframes nd-strike{0%,5%{opacity:0}6%,12%{opacity:1}13%,20%{opacity:0}21%,27%{opacity:1}28%,36%{opacity:0}37%,41%{opacity:.4}42%,49%{opacity:0}50%,58%{opacity:1}59%,64%{opacity:0}65%,74%{opacity:1}75%,78%{opacity:.25}79%,100%{opacity:1}}" +
+      "@keyframes nd-glass{0%,5%{opacity:1}6%,12%{opacity:0}13%,20%{opacity:1}21%,27%{opacity:0}28%,36%{opacity:1}37%,41%{opacity:.55}42%,49%{opacity:1}50%,58%{opacity:0}59%,64%{opacity:1}65%,74%{opacity:0}75%,78%{opacity:.7}79%,100%{opacity:0}}" +
       "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(31svh,14.6rem)!important;min-height:min(31svh,14.6rem)!important;max-height:min(31svh,14.6rem)!important}";
     document.head.appendChild(s);
   }
