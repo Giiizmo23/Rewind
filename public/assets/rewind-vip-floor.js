@@ -1,6 +1,19 @@
 (() => {
   if (window.__rwVipFloor) return;
   window.__rwVipFloor = 1;
+  function backStill(slug) {
+    if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=5";
+    if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=1";
+    if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=1";
+    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=1";
+    var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+  }
+  function backStillBg(slug) {
+    var src = backStill(slug);
+    if (src.indexOf("-still.jpg?v=") >= 0) return "";
+    return "background:#14110e url(" + src + ") center center/cover no-repeat";
+  }
   document.addEventListener(
     "click",
     function (e) {
@@ -7802,7 +7815,7 @@
       }
       if (still) {
         still.setAttribute("loading", "lazy");
-        still.src = "/sleeves/" + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "the-thing-1982-blood.jpg?v=1" : slug + "-still.jpg?v=520");
+        still.src = backStill(slug);
         still.onerror = function () {
           this.onerror = null;
           this.style.display = "none";
@@ -8264,7 +8277,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=5) center center/cover no-repeat" : slug === "the-thing-1982" ? "background:#101820 url(/sleeves/the-thing-1982-blood.jpg?v=1) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "the-thing-1982-blood.jpg?v=1" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
+        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img src="' + backStill(slug) + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -8916,7 +8929,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + (slug === "coming-to-america" ? "background:#14110e url(/sleeves/coming-to-america-shop.jpg?v=5) center center/cover no-repeat" : slug === "the-thing-1982" ? "background:#101820 url(/sleeves/the-thing-1982-blood.jpg?v=1) center center/cover no-repeat" : "") + '"><img src="/sleeves/' + (slug === "coming-to-america" ? "coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "the-thing-1982-blood.jpg?v=1" : slug + "-still.jpg?v=520") + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img src="' + backStill(slug) + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         (overview ? '<p class="vhs-back-syn">' + overview + "</p>" : "") +
@@ -12697,9 +12710,9 @@
         still.appendChild(img);
       }
       const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
-      const want = slug === "coming-to-america" ? "/sleeves/coming-to-america-shop.jpg?v=5" : slug === "the-thing-1982" ? "/sleeves/the-thing-1982-blood.jpg?v=1" : "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+      const want = backStill(slug);
       const cur = img.getAttribute("src") || "";
-      if (slug === "coming-to-america" || slug === "the-thing-1982" || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
+      if (want.indexOf("-still.jpg?v=") < 0 || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
         img.onerror = function () {
           img.onerror = null;
           img.style.setProperty("display", "none", "important");
