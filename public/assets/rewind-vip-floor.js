@@ -12916,10 +12916,15 @@
 
   function fixOneSpine(box) {
     if (!box) return;
-    if (box.getAttribute("data-slug") === "goodfellas") {
-      box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        if ((img.getAttribute("src") || "").indexOf("goodfellas.png?v=521") < 0) {
-          img.src = "/sleeves/spines/goodfellas.png?v=521";
+    var slug = box.getAttribute("data-slug") || "";
+    if (slug === "goodfellas" || slug === "se7en") {
+      box.querySelectorAll("img").forEach(function (img) {
+        var src = img.getAttribute("src") || "";
+        if (src.indexOf("/sleeves/spines/" + slug + ".png") >= 0 && src.indexOf("v=531") < 0) {
+          img.src = "/sleeves/spines/" + slug + ".png?v=531";
+        }
+        if ((src.indexOf("/sleeves/" + slug + ".jpg") >= 0 || src.indexOf("/sleeves/thumbs/" + slug) >= 0) && src.indexOf("-still") < 0 && src.indexOf("v=531") < 0) {
+          img.src = "/sleeves/" + slug + ".jpg?v=531";
         }
       });
     }
