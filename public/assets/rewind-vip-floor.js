@@ -7799,7 +7799,7 @@
       }
       if (still) {
         still.setAttribute("loading", "lazy");
-        still.src = "/sleeves/" + slug + "-still.jpg?v=520";
+        still.src = "/sleeves/" + slug + "-still.jpg?v=" + (slug === "coming-to-america" ? "536" : "520");
         still.onerror = function () {
           this.onerror = null;
           this.style.display = "none";
@@ -8261,7 +8261,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=520" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still"><img src="/sleeves/' + slug + '-still.jpg?v=' + (slug === "coming-to-america" ? "536" : "520") + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -12406,9 +12406,9 @@
       }
       img.onerror = function () {
         img.onerror = null;
-        img.src = "/sleeves/coming-to-america.jpg?v=520";
+        img.style.setProperty("display", "none", "important");
       };
-      if (!img.getAttribute("src") || img.style.display === "none" || img.getAttribute("src").indexOf("v=520") < 0) img.src = "/sleeves/coming-to-america-still.jpg?v=520";
+      img.src = "/sleeves/coming-to-america-still.jpg?v=536";
       lock(img, "position", "absolute");
       lock(img, "inset", "0");
       lock(img, "width", "100%");
@@ -12687,7 +12687,7 @@
         img.draggable = false;
         still.appendChild(img);
       }
-      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : slug === "coming-to-america" ? "536" : "520";
       const want = "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
       const cur = img.getAttribute("src") || "";
       if (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0) {
