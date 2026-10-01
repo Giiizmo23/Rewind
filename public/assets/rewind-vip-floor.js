@@ -781,7 +781,7 @@
         '.lobby-picks .vhs-box{--vhs-yaw:18deg;--vhs-pitch:7deg}' +
         '.lobby-picks .vhs-flip{width:100%!important;height:auto!important;aspect-ratio:4/7!important;transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg))!important;transform-style:preserve-3d!important;transform-origin:50% 8%}' +
         '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-ink,.vhs-box[data-spine-logo="1"] .vhs-spine-ink{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;overflow:hidden!important}' +
-        '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-vhs,.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-year,.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-no,.vhs-box[data-spine-logo="1"] .vhs-spine-vhs,.vhs-box[data-spine-logo="1"] .vhs-spine-year,.vhs-box[data-spine-logo="1"] .vhs-spine-no{display:none!important}' +
+        '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-year,.vhs-box[data-spine-logo="1"] .vhs-spine-year{display:none!important}' +
         '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-spine-logo="1"] .vhs-spine-logo{display:block!important;position:static!important;inset:auto!important;width:auto!important;height:auto!important;max-width:68%!important;max-height:68%!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important}' +
         '.lobby-picks .vhs-box[data-slug="alien"] .vhs-spine-ink,.vhs-box[data-slug="alien"][data-spine-logo="1"] .vhs-spine-ink,.vhs-box[data-slug="alien"] .vhs-spine-ink{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;overflow:hidden!important}' +
         '.lobby-picks .vhs-box[data-slug="alien"][data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-slug="alien"][data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-slug="alien"] .vhs-spine-logo{display:block!important;position:static!important;inset:auto!important;width:auto!important;height:auto!important;max-width:68%!important;max-height:68%!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important;transform:none!important}' +
@@ -7856,6 +7856,7 @@
       const cast = box.querySelector(".vhs-back-cast");
       if (cast) cast.textContent = String(film.genres || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean).join(" · ");
       if (stocks[1]) stocks[1].textContent = (film.catalogNo ? film.catalogNo + " · " : "") + "Hi-Fi Stereo";
+      if (typeof fixOneSpine === "function") fixOneSpine(box);
     }
     function aisleSize(section, theme) {
       const seen = {};
@@ -12913,52 +12914,67 @@
     fixAllSpines();
   }
 
-  function fixAllSpines() {
-    document.querySelectorAll(".vhs-box").forEach(function (box) {
-      box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
-        el.style.setProperty("display", "none", "important");
-      });
-      box.querySelectorAll(".vhs-spine-vhs").forEach(function (el) {
-        var right = !!el.closest(".vhs-spine-right");
-        el.style.setProperty("display", "block", "important");
-        el.style.setProperty("opacity", "1", "important");
-        el.style.setProperty("visibility", "visible", "important");
-        el.style.setProperty("position", "absolute", "important");
-        el.style.setProperty("left", "0", "important");
-        el.style.setProperty("right", "0", "important");
-        el.style.setProperty("width", "100%", "important");
-        el.style.setProperty("margin", "0", "important");
-        el.style.setProperty("text-align", "center", "important");
-        el.style.setProperty("writing-mode", "horizontal-tb", "important");
-        el.style.setProperty("z-index", "5", "important");
-        el.style.setProperty("font-size", "6px", "important");
-        el.style.setProperty("top", right ? "auto" : "7px", "important");
-        el.style.setProperty("bottom", right ? "7px" : "auto", "important");
-        el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
-      });
-      box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
-        var t = String(el.textContent || "").replace(/\s+/g, "");
-        if (/^RW-\d+(19|20)\d{2}$/.test(t)) el.textContent = t.replace(/(19|20)\d{2}$/, "");
-        var right = !!el.closest(".vhs-spine-right");
-        el.style.setProperty("display", "block", "important");
-        el.style.setProperty("opacity", "1", "important");
-        el.style.setProperty("visibility", "visible", "important");
-        el.style.setProperty("position", "absolute", "important");
-        el.style.setProperty("left", "0", "important");
-        el.style.setProperty("right", "0", "important");
-        el.style.setProperty("width", "100%", "important");
-        el.style.setProperty("margin", "0", "important");
-        el.style.setProperty("text-align", "center", "important");
-        el.style.setProperty("writing-mode", "horizontal-tb", "important");
-        el.style.setProperty("z-index", "5", "important");
-        el.style.setProperty("font-size", "5.2px", "important");
-        el.style.setProperty("letter-spacing", "-0.02em", "important");
-        el.style.setProperty("white-space", "nowrap", "important");
-        el.style.setProperty("top", right ? "8px" : "auto", "important");
-        el.style.setProperty("bottom", right ? "auto" : "6px", "important");
-        el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
-      });
+  function fixOneSpine(box) {
+    if (!box) return;
+    box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
+      el.style.setProperty("display", "none", "important");
     });
+    box.querySelectorAll(".vhs-spine-vhs").forEach(function (el) {
+      var right = !!el.closest(".vhs-spine-right");
+      el.style.setProperty("display", "block", "important");
+      el.style.setProperty("opacity", "1", "important");
+      el.style.setProperty("visibility", "visible", "important");
+      el.style.setProperty("position", "absolute", "important");
+      el.style.setProperty("left", "0", "important");
+      el.style.setProperty("right", "0", "important");
+      el.style.setProperty("width", "100%", "important");
+      el.style.setProperty("margin", "0", "important");
+      el.style.setProperty("text-align", "center", "important");
+      el.style.setProperty("writing-mode", "horizontal-tb", "important");
+      el.style.setProperty("z-index", "8", "important");
+      el.style.setProperty("font-size", "6px", "important");
+      el.style.setProperty("top", right ? "auto" : "7px", "important");
+      el.style.setProperty("bottom", right ? "7px" : "auto", "important");
+      el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
+    });
+    box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
+      var t = String(el.textContent || "").replace(/\s+/g, "");
+      if (!t && box.getAttribute("data-slug")) {
+        var known = {
+          "the-thing-1982": "RW-1982-06",
+          "the-lion-king": "RW-1994-12",
+          "the-shawshank-redemption": "RW-1994-03"
+        };
+        t = known[box.getAttribute("data-slug")] || "";
+        if (t) el.textContent = t;
+      }
+      if (/^RW-\d+(19|20)\d{2}$/.test(t)) {
+        t = t.replace(/(19|20)\d{2}$/, "");
+        el.textContent = t;
+      }
+      var right = !!el.closest(".vhs-spine-right");
+      el.style.setProperty("display", "block", "important");
+      el.style.setProperty("opacity", "1", "important");
+      el.style.setProperty("visibility", "visible", "important");
+      el.style.setProperty("position", "absolute", "important");
+      el.style.setProperty("left", "0", "important");
+      el.style.setProperty("right", "0", "important");
+      el.style.setProperty("width", "100%", "important");
+      el.style.setProperty("margin", "0", "important");
+      el.style.setProperty("text-align", "center", "important");
+      el.style.setProperty("writing-mode", "horizontal-tb", "important");
+      el.style.setProperty("z-index", "8", "important");
+      el.style.setProperty("font-size", "5.2px", "important");
+      el.style.setProperty("letter-spacing", "-0.02em", "important");
+      el.style.setProperty("white-space", "nowrap", "important");
+      el.style.setProperty("top", right ? "8px" : "auto", "important");
+      el.style.setProperty("bottom", right ? "auto" : "6px", "important");
+      el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
+    });
+  }
+
+  function fixAllSpines() {
+    document.querySelectorAll(".vhs-box").forEach(fixOneSpine);
   }
 
   if (document.readyState === "loading") {
