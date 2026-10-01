@@ -2133,6 +2133,8 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-review {
   font-size: 16px !important;
   line-height: 1.35 !important;
   caret-color: #f4efe6 !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
 }
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-review::placeholder {
   color: rgba(244, 239, 230, .45) !important;
@@ -2143,19 +2145,18 @@ html[data-drop="1"] .drop-clerk.is-keys {
 html[data-drop="1"] .drop-clerk.is-keys > .drop-clerk-foot {
   display: none !important;
 }
-html[data-drop="1"] .drop-clerk.is-keys .drop-clerk-body {
-  overflow-y: auto !important;
+html[data-drop="1"] .drop-clerk.is-keys .log-tape {
+  margin-top: .35rem !important;
+  transform: scale(.78) !important;
+  transform-origin: 50% 0 !important;
 }
 html[data-drop="1"] .drop-clerk.is-keys .log-dock {
-  margin-top: .35rem !important;
-  margin-bottom: 0 !important;
+  margin-top: .15rem !important;
+  margin-bottom: .2rem !important;
 }
-html[data-drop="1"] .log-blurb[data-nd-parked="1"] .log-review {
-  min-height: 5.4rem !important;
-  max-height: 8.5rem !important;
-  background: #141311 !important;
-  color: #f4efe6 !important;
-  -webkit-text-fill-color: #f4efe6 !important;
+html[data-drop="1"] .drop-clerk.is-keys .log-review {
+  min-height: 4.4rem !important;
+  outline: none !important;
 }
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-stars button.is-on {
   color: #e8c14a !important;
@@ -3496,7 +3497,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   function parkBlurbBack() {
     const blurb = document.querySelector(".log-blurb");
     if (!blurb) return;
-    ["position", "left", "right", "width", "max-width", "margin", "bottom", "top", "z-index", "background", "border-radius"].forEach((p) => {
+    ["position", "left", "right", "width", "max-width", "margin", "bottom", "top", "z-index", "background", "border-radius", "transform"].forEach((p) => {
       blurb.style.removeProperty(p);
     });
     if (blurb.dataset.ndParked === "1") {
@@ -3504,14 +3505,6 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       if (dock) dock.appendChild(blurb);
       delete blurb.dataset.ndParked;
     }
-  }
-  function keyboardCover() {
-    const full = window.innerHeight || 0;
-    const vv = window.visualViewport;
-    let covered = 0;
-    if (vv && full) covered = Math.round(full - vv.offsetTop - vv.height);
-    if (covered > 140) return covered + 18;
-    return Math.round(full * 0.48);
   }
   function releaseClerkKeys() {
     const el = document.querySelector('.drop-clerk[data-nd-clerk="1"]');
@@ -3532,26 +3525,23 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     const ta = blurb && blurb.querySelector(".log-review");
     const open = !!(el && blurb && ta && !blurb.hasAttribute("hidden") && document.activeElement === ta);
     if (!open) {
-      if (blurb && blurb.dataset.ndParked === "1" && (!ta || document.activeElement !== ta)) parkBlurbBack();
+      parkBlurbBack();
+      if (el) {
+        el.classList.remove("is-keys");
+        el.style.removeProperty("bottom");
+      }
       return;
     }
-    if (blurb.parentNode !== document.body) {
-      blurb.dataset.ndParked = "1";
-      document.body.appendChild(blurb);
-      try { ta.focus({ preventScroll: true }); } catch (eF) {}
-    }
-    const lift = keyboardCover();
-    blurb.style.setProperty("position", "fixed", "important");
-    blurb.style.setProperty("left", "0.75rem", "important");
-    blurb.style.setProperty("right", "0.75rem", "important");
-    blurb.style.setProperty("width", "auto", "important");
-    blurb.style.setProperty("max-width", "22rem", "important");
-    blurb.style.setProperty("margin", "0 auto", "important");
-    blurb.style.setProperty("bottom", lift + "px", "important");
-    blurb.style.setProperty("top", "auto", "important");
-    blurb.style.setProperty("z-index", "10080", "important");
-    blurb.style.setProperty("background", "transparent", "important");
+    parkBlurbBack();
     el.classList.add("is-keys");
+    el.style.setProperty("bottom", "24rem", "important");
+    const body = el.querySelector(".drop-clerk-body");
+    if (body && blurb) {
+      const b = blurb.getBoundingClientRect();
+      const box = body.getBoundingClientRect();
+      const over = b.bottom - box.bottom + 6;
+      if (over > 0) body.scrollTop += over;
+    }
   }
 
   let pinWatch = null;
