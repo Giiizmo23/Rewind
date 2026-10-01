@@ -1282,7 +1282,7 @@ html:not([data-theme="night"]):not([data-theme="dark"]):not([data-drop="1"]) .dr
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
   display: block !important;
   filter: none !important;
@@ -2398,7 +2398,7 @@ html:not([data-drop="1"]) .store-bg::after {
 .vhs-box[data-slug="coming-to-america"] .vhs-back-still{
   background-color:#14110e!important;
   background-image:url("/sleeves/coming-to-america-shop.jpg?v=5")!important;
-  background-size:cover!important;
+  background-size:contain!important;
   background-position:center center!important;
   background-repeat:no-repeat!important;
 }
@@ -2406,13 +2406,13 @@ html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still,
 html body .vhs-box[data-slug="coming-to-america"] .vhs-back-still{
   background-color:#14110e!important;
   background-image:url("/sleeves/coming-to-america-shop.jpg?v=5")!important;
-  background-size:cover!important;
+  background-size:contain!important;
   background-position:center center!important;
 }
 .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{
   opacity:1!important;
   visibility:visible!important;
-  object-fit:cover!important;
+  object-fit:contain!important;
   object-position:center center!important;
 }
 .vhs-box[data-slug="coming-to-america"] .vhs-window img{
@@ -3228,7 +3228,7 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 .vhs-box[data-slug="full-metal-jacket"] .vhs-shell-back,
 .vhs-box[data-slug="full-metal-jacket"] .vhs-back-still,
 .vhs-box[data-slug="full-metal-jacket"] .vhs-back-copy{background:#1a1814!important;}
-.vhs-box[data-slug="full-metal-jacket"] .vhs-back-still img{object-fit:cover!important;}
+.vhs-box[data-slug="full-metal-jacket"] .vhs-back-still img{object-fit:contain!important;}
 
 .vhs-box[data-slug="project-hail-mary"] .vhs-window svg,
 .vhs-box[data-slug="project-hail-mary"] .vhs-title,
@@ -3263,7 +3263,7 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 .vhs-box[data-slug="project-hail-mary"] .vhs-shell-back,
 .vhs-box[data-slug="project-hail-mary"] .vhs-back-still,
 .vhs-box[data-slug="project-hail-mary"] .vhs-back-copy{background:#080e1c!important;}
-.vhs-box[data-slug="project-hail-mary"] .vhs-back-still img{object-fit:cover!important;}
+.vhs-box[data-slug="project-hail-mary"] .vhs-back-still img{object-fit:contain!important;}
 
 .vhs-box[data-slug="home-alone"] .vhs-window svg,
 .vhs-box[data-slug="home-alone"] .vhs-title,
@@ -3298,7 +3298,7 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 .vhs-box[data-slug="home-alone"] .vhs-shell-back,
 .vhs-box[data-slug="home-alone"] .vhs-back-still,
 .vhs-box[data-slug="home-alone"] .vhs-back-copy{background:#164696!important;}
-.vhs-box[data-slug="home-alone"] .vhs-back-still img{object-fit:cover!important;}
+.vhs-box[data-slug="home-alone"] .vhs-back-still img{object-fit:contain!important;}
 
 .vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-window svg,
 .vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-title,
@@ -3327,7 +3327,7 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 .vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-shell-back,
 .vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-back-still,
 .vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-back-copy{background:#483a34!important;}
-.vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-back-still img{object-fit:cover!important;}
+.vhs-box[data-slug="the-grand-budapest-hotel"] .vhs-back-still img{object-fit:contain!important;}
 
 .vhs-box[data-slug="point-break"] .vhs-window svg,
 .vhs-box[data-slug="point-break"] .vhs-title,

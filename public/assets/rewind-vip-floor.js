@@ -12,7 +12,7 @@
   function backStillBg(slug) {
     var src = backStill(slug);
     if (src.indexOf("-still.jpg?v=") >= 0) return "";
-    return "background:#14110e url(" + src + ") center center/cover no-repeat";
+    return "background:#14110e url(" + src + ") center center/contain no-repeat";
   }
   document.addEventListener(
     "click",
@@ -787,11 +787,11 @@
         '.vhs-spine-right .vhs-spine-ink{transform:rotate(180deg)!important}' +
         '.lobby-picks .vhs-face-back,.lobby-picks .vhs-case-back,.lobby-picks .vhs-shell-back,.vhs-box .vhs-face-back,.vhs-box .vhs-case-back,.vhs-box .vhs-shell-back{height:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}' +
         'html body .lobby-picks .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
-        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=5")!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}' +
-        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important;object-fit:cover!important;object-position:center center!important}' +
+        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=5")!important;background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important}' +
+        'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important;object-fit:contain!important;object-position:center center!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:0 0 28%!important;height:28%!important;min-height:0!important;max-height:28%!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
-        'html body .lobby-picks .vhs-back-still img,html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}' +
-        'html body .vhs-box[data-slug="halloween-1978"] .vhs-back-still img{object-position:center center!important;object-fit:cover!important}' +
+        'html body .lobby-picks .vhs-back-still img,html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}' +
+        'html body .vhs-box[data-slug="halloween-1978"] .vhs-back-still img{object-position:center center!important;object-fit:contain!important}' +
         'html body .lobby-picks .vhs-back-copy{flex:0 0 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding:.16rem .36rem .42rem!important;gap:.06rem!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;padding:.28rem .36rem .42rem!important;gap:.06rem!important}' +
         '.lobby-picks .vhs-back-lede,.vhs-box .vhs-back-lede{flex:0 0 auto!important;min-height:0!important;overflow:visible!important}' +
@@ -7719,7 +7719,7 @@
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip,html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip-card{height:100%!important;width:100%!important}" +
         "html body main .tape-slot .vhs-box .vhs-face-back,html body main .tape-slot .vhs-box .vhs-case-back,html body main .tape-slot .vhs-box .vhs-shell-back{display:flex!important;flex-direction:column!important;height:100%!important;overflow:hidden!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-still{flex:0 0 28%!important;height:28%!important;min-height:0!important;max-height:28%!important;position:relative!important;overflow:hidden!important;background:#120e0c!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}" +
+        "html body main .tape-slot .vhs-box .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;justify-content:flex-end!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-syn{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:visible!important;max-height:none!important;font-size:.46rem!important;line-height:1.22!important}";
       document.head.appendChild(style);
