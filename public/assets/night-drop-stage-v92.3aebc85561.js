@@ -1072,6 +1072,27 @@ html[data-drop="1"] .drop-tape .touch-none {
   touch-action: none;
   pointer-events: auto;
 }
+html[data-drop="1"] .nd-swipe-cue {
+  position: absolute;
+  left: .45rem;
+  right: .45rem;
+  bottom: .28rem;
+  z-index: 6;
+  display: flex;
+  justify-content: space-between;
+  gap: .6rem;
+  pointer-events: none;
+  font-family: Oswald, "Arial Narrow", sans-serif;
+  font-size: .48rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(214, 232, 210, .7);
+  text-shadow: 0 0 8px rgba(170, 255, 196, .35);
+}
+html[data-drop="1"] .nd-swipe-cue span:first-child::before { content: "←  "; }
+html[data-drop="1"] .nd-swipe-cue span:last-child::after { content: "  →"; }
+html[data-drop="1"] .drop-tape.is-off .nd-swipe-cue { opacity: 0; }
+html[data-drop="1"] .nd-swipe-cue.is-gone { opacity: 0; transition: opacity .45s ease; }
 html[data-drop="1"] .drop-deck .vhs-box[data-size="drop"],
 html[data-drop="1"] .drop-tape .vhs-box[data-size="drop"] {
   width: min(46vw, 11.4rem) !important;
@@ -3066,6 +3087,53 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     }
   }
 
+  function ndTaught() {
+    try { return localStorage.getItem("rw-nd-swipe") === "1"; } catch (e) { return false; }
+  }
+  function markNdTaught() {
+    try { localStorage.setItem("rw-nd-swipe", "1"); } catch (e) {}
+    document.querySelectorAll(".nd-swipe-cue").forEach((n) => n.classList.add("is-gone"));
+  }
+  function mountSwipeCue(tape) {
+    if (!tape || ndTaught()) return;
+    const hold = tape.querySelector(".touch-none") || tape;
+    if (hold.querySelector(".nd-swipe-cue")) return;
+    const cue = document.createElement("div");
+    cue.className = "nd-swipe-cue";
+    cue.setAttribute("aria-hidden", "true");
+    cue.innerHTML = "<span>Never seen it</span><span>Seen it</span>";
+    hold.appendChild(cue);
+  }
+  function nudgeTape() {
+    if (ndTaught() || window.__rwNdHold) return;
+    let reduce = false;
+    try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (eM) {}
+    if (reduce) return;
+    const box = document.querySelector("#nd-overlay .drop-tape .vhs-box") || document.querySelector(".drop-tape .vhs-box");
+    if (!box) return;
+    const steps = [-24, 0, 24, 0];
+    let i = 0;
+    const step = () => {
+      if (ndTaught() || window.__rwNdHold || box.classList.contains("is-drag")) {
+        box.classList.remove("is-fling");
+        return;
+      }
+      box.classList.remove("is-drag", "is-settle");
+      box.classList.add("is-fling");
+      box.style.setProperty("--nd-x", steps[i] + "px");
+      box.style.setProperty("--nd-r", (steps[i] / 14).toFixed(2) + "deg");
+      i += 1;
+      if (i < steps.length) window.setTimeout(step, 380);
+      else window.setTimeout(() => {
+        if (box.classList.contains("is-drag")) return;
+        box.classList.remove("is-fling");
+        box.style.removeProperty("--nd-x");
+        box.style.removeProperty("--nd-r");
+      }, 420);
+    };
+    step();
+  }
+
   function powerOn() {
     if (shutting || leavingDrop) return;
     const tape = document.querySelector(".drop-tape");
@@ -3109,6 +3177,8 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       schedulePin();
       const box = tape.querySelector(".vhs-box");
       if (box) fillDropMovie(box);
+      mountSwipeCue(tape);
+      window.setTimeout(nudgeTape, 700);
     }, 1100);
     window.setTimeout(() => {
       const live = document.querySelector(".drop-tape");
@@ -3217,6 +3287,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       lastDx = 0;
       kind = src;
       pulling = true;
+      window.__rwNdHold = true;
       wantX = dragX;
       kick();
     };
@@ -3240,6 +3311,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       start = null;
       kind = "";
       pulling = false;
+      window.__rwNdHold = false;
       if (Math.abs(dx) < 22) {
         wantX = 0;
         const box = boxEl();
@@ -3283,6 +3355,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       start = null;
       kind = "";
       pulling = false;
+      window.__rwNdHold = false;
       wantX = 0;
       kick();
     }, true);
@@ -4890,6 +4963,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     lastSwipeDir = dx;
     const film = currentOpenFilm();
     if (!film) return;
+    markNdTaught();
     channelZap();
     document.querySelectorAll(".drop-clerk").forEach((n) => n.remove());
     if (dx < 0) {
@@ -4933,6 +5007,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     hold.innerHTML = '<div class="vhs-box" data-size="clerk" aria-hidden="true"><div class="vhs-case"></div></div>';
     fillDropMovie(hold.querySelector(".vhs-box"));
     tape.appendChild(hold);
+    mountSwipeCue(tape);
     deck.appendChild(tape);
     return tape;
   }
