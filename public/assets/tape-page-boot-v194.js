@@ -16,6 +16,7 @@
     if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
     if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
     if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
+    if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -430,6 +431,7 @@
     var stillFit = "object-position:center center;";
     if (slug === "se7en") stillFit = "object-position:center 62%;";
     if (slug === "goodfellas") stillFit = "object-position:center 45%;";
+    if (slug === "the-shining") stillFit = "object-position:center 70%;";
     main.innerHTML =
       '<div class="tape-card-page" data-tape-layout="lb">' +
       '<div class="tp-hero">' +
