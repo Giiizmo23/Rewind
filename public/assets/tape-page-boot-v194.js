@@ -6,6 +6,14 @@
   function pathNow() {
     return (location.pathname || "/").replace(/\/$/, "") || "/";
   }
+  function backStill(slug) {
+    if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=5";
+    if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=1";
+    if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=1";
+    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=1";
+    var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+  }
   function filmSlug() {
     const m = pathNow().match(/^\/films\/([^/]+)$/);
     return m ? decodeURIComponent(m[1]) : "";
@@ -413,13 +421,17 @@
       slug +
       '.jpg?v=493" alt="" draggable="false" decoding="async" onerror="this.style.opacity=\'.3\'">' +
       "</div>";
+    const still = backStill(slug);
+    const stillFit = still.indexOf("-still.jpg") < 0 ? "object-position:center center;" : "";
     main.innerHTML =
       '<div class="tape-card-page" data-tape-layout="lb">' +
       '<div class="tp-hero">' +
       '<div class="tp-still-clip">' +
-      '<img class="tp-still" src="/sleeves/' +
-      slug +
-      '-still.jpg?v=493" alt="" draggable="false" decoding="async" onerror="this.src=\'/sleeves/' +
+      '<img class="tp-still" src="' +
+      still +
+      '" alt="" draggable="false" decoding="async" style="' +
+      stillFit +
+      '" onerror="this.onerror=null;this.src=\'/sleeves/' +
       slug +
       '.jpg?v=493\'">' +
       '<div class="tp-hero-shade"></div></div>' +
