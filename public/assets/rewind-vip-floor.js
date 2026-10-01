@@ -10310,11 +10310,11 @@
       "html[data-drop='1'] .nd-piece{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;object-fit:fill!important;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important}" +
       "html[data-drop='1'] .nd-glass{opacity:1;filter:none!important;-webkit-filter:none!important}" +
       "html[data-drop='1'] .nd-lamp{opacity:0;filter:brightness(1.05) saturate(1.12)!important;-webkit-filter:brightness(1.05) saturate(1.12)!important}" +
-      "html[data-drop='1'] .nd-l-night{filter:brightness(1.05) saturate(1.15) drop-shadow(0 0 5px rgba(120,190,255,.7)) drop-shadow(0 0 14px rgba(40,110,255,.4))!important;-webkit-filter:brightness(1.05) saturate(1.15) drop-shadow(0 0 5px rgba(120,190,255,.7)) drop-shadow(0 0 14px rgba(40,110,255,.4))!important}" +
-      "html[data-drop='1'] .nd-l-drop{filter:brightness(1.05) saturate(1.2) drop-shadow(0 0 5px rgba(255,140,210,.7)) drop-shadow(0 0 14px rgba(255,40,150,.4))!important;-webkit-filter:brightness(1.05) saturate(1.2) drop-shadow(0 0 5px rgba(255,140,210,.7)) drop-shadow(0 0 14px rgba(255,40,150,.4))!important}" +
-      "html[data-drop='1'] .nd-l-script{filter:brightness(1.08) saturate(1.05) drop-shadow(0 0 4px rgba(255,255,255,.55)) drop-shadow(0 0 12px rgba(255,250,240,.28))!important;-webkit-filter:brightness(1.08) saturate(1.05) drop-shadow(0 0 4px rgba(255,255,255,.55)) drop-shadow(0 0 12px rgba(255,250,240,.28))!important}" +
+      "html[data-drop='1'] .nd-l-night{filter:brightness(1.18) saturate(1.3) drop-shadow(0 0 6px #9ad4ff) drop-shadow(0 0 16px #3b86ff) drop-shadow(0 0 28px rgba(40,120,255,.55))!important;-webkit-filter:brightness(1.18) saturate(1.3) drop-shadow(0 0 6px #9ad4ff) drop-shadow(0 0 16px #3b86ff) drop-shadow(0 0 28px rgba(40,120,255,.55))!important}" +
+      "html[data-drop='1'] .nd-l-drop{filter:brightness(1.18) saturate(1.35) drop-shadow(0 0 6px #ff9ad4) drop-shadow(0 0 16px #ff3aa0) drop-shadow(0 0 28px rgba(255,40,150,.55))!important;-webkit-filter:brightness(1.18) saturate(1.35) drop-shadow(0 0 6px #ff9ad4) drop-shadow(0 0 16px #ff3aa0) drop-shadow(0 0 28px rgba(255,40,150,.55))!important}" +
+      "html[data-drop='1'] .nd-l-script{filter:brightness(1.2) saturate(1.05) drop-shadow(0 0 5px #fff) drop-shadow(0 0 14px rgba(255,255,255,.7)) drop-shadow(0 0 24px rgba(255,250,240,.4))!important;-webkit-filter:brightness(1.2) saturate(1.05) drop-shadow(0 0 5px #fff) drop-shadow(0 0 14px rgba(255,255,255,.7)) drop-shadow(0 0 24px rgba(255,250,240,.4))!important}" +
       "html[data-drop='1'] .nd-l-tape{filter:none!important;-webkit-filter:none!important}" +
-      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(5px) brightness(1.12) saturate(1.15)!important;-webkit-filter:blur(5px) brightness(1.12) saturate(1.15)!important}" +
+      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(10px) brightness(1.7) saturate(1.45)!important;-webkit-filter:blur(10px) brightness(1.7) saturate(1.45)!important}" +
       "html[data-drop='1'] .nd-b-tape{opacity:0!important;filter:none!important;-webkit-filter:none!important;animation:none!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{opacity:1!important;background:transparent!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-night,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-night{animation:nd-strike 1.55s linear forwards}" +
@@ -10330,11 +10330,11 @@
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-drop{animation:nd-hum 6.4s ease-in-out .4s infinite!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-script{animation:nd-hum 5.2s ease-in-out .8s infinite!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-l-tape{animation:nd-hum 7.1s ease-in-out 1.1s infinite!important}" +
-      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:.26!important;animation:nd-halo 5.8s ease-in-out infinite!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:.55!important;animation:nd-halo 5.8s ease-in-out infinite!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-b-tape{opacity:0!important;animation:none!important;filter:none!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-glass{opacity:0!important;animation:none!important}" +
       "@keyframes nd-hum{0%,100%{opacity:1}42%{opacity:.96}46%{opacity:.82}49%{opacity:1}73%{opacity:.9}76%{opacity:.7}80%{opacity:1}}" +
-      "@keyframes nd-halo{0%,100%{opacity:.26}38%{opacity:.34}46%{opacity:.16}52%{opacity:.3}74%{opacity:.22}82%{opacity:.32}}" +
+      "@keyframes nd-halo{0%,100%{opacity:.55}38%{opacity:.72}46%{opacity:.32}52%{opacity:.62}74%{opacity:.4}82%{opacity:.68}}" +
       "@media (prefers-reduced-motion:reduce){html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp,html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{animation:none!important}}" +
       "@keyframes nd-strike{0%,5%{opacity:0}6%,12%{opacity:1}13%,20%{opacity:0}21%,27%{opacity:1}28%,36%{opacity:0}37%,41%{opacity:.4}42%,49%{opacity:0}50%,58%{opacity:1}59%,64%{opacity:0}65%,74%{opacity:1}75%,78%{opacity:.25}79%,100%{opacity:1}}" +
       "@keyframes nd-glass{0%,5%{opacity:1}6%,12%{opacity:0}13%,20%{opacity:1}21%,27%{opacity:0}28%,36%{opacity:1}37%,41%{opacity:.55}42%,49%{opacity:1}50%,58%{opacity:0}59%,64%{opacity:1}65%,74%{opacity:0}75%,78%{opacity:.7}79%,100%{opacity:0}}" +
