@@ -12276,28 +12276,37 @@
       lock(box.querySelector(".vhs-case-back"), "height", "100%");
       lock(box.querySelector(".vhs-case-back"), "display", "flex");
       lock(box.querySelector(".vhs-case-back"), "flex-direction", "column");
+      lock(shell, "position", "absolute");
+      lock(shell, "inset", "0");
       lock(shell, "display", "flex");
       lock(shell, "flex-direction", "column");
       lock(shell, "height", "100%");
-      lock(shell, "min-height", "100%");
       lock(shell, "width", "100%");
       lock(shell, "padding", "0");
+      lock(shell, "margin", "0");
       lock(shell, "overflow", "hidden");
+      lock(shell, "box-shadow", "none");
       lock(shell, "background", "#0e1218");
       lock(box.querySelector(".vhs-face-back"), "overflow", "hidden");
       lock(box.querySelector(".vhs-face-back"), "background", "#0e1218");
       lock(box.querySelector(".vhs-case-back"), "overflow", "hidden");
-      lock(still, "flex", "0 0 38%");
-      lock(still, "height", "38%");
+      lock(box.querySelector(".vhs-case-back"), "padding", "0");
+      lock(box.querySelector(".vhs-case-back"), "inset", "0");
+      lock(still, "position", "relative");
+      lock(still, "flex", "0 0 36%");
+      lock(still, "height", "36%");
+      lock(still, "min-height", "36%");
+      lock(still, "max-height", "36%");
       lock(still, "width", "100%");
       lock(still, "max-width", "none");
-      lock(still, "min-height", "0");
-      lock(still, "max-height", "38%");
-      lock(still, "position", "relative");
-      lock(still, "overflow", "hidden");
-      lock(still, "order", "0");
+      lock(still, "left", "0");
+      lock(still, "right", "0");
+      lock(still, "top", "0");
       lock(still, "margin", "0");
+      lock(still, "padding", "0");
       lock(still, "align-self", "stretch");
+      lock(still, "order", "0");
+      lock(still, "overflow", "hidden");
       lock(still, "box-shadow", "none");
       lock(still, "background", "#0e1218");
       let img = still.querySelector("img");
@@ -12310,7 +12319,7 @@
         img.onerror = null;
         img.style.setProperty("display", "none", "important");
       };
-      if (!img.getAttribute("src") || img.getAttribute("src").indexOf("v=531") < 0) img.src = "/sleeves/point-break-still.jpg?v=531";
+      if (!img.getAttribute("src") || img.getAttribute("src").indexOf("v=532") < 0) img.src = "/sleeves/point-break-still.jpg?v=532";
       lock(img, "position", "absolute");
       lock(img, "inset", "0");
       lock(img, "left", "0");
@@ -12321,7 +12330,7 @@
       lock(img, "max-width", "none");
       lock(img, "max-height", "none");
       lock(img, "object-fit", "cover");
-      lock(img, "object-position", "center 42%");
+      lock(img, "object-position", "center 20%");
       lock(img, "display", "block");
       lock(img, "margin", "0");
       lock(img, "transform", "none");
@@ -12629,7 +12638,7 @@
   function fixEveryBack() {
     document.querySelectorAll(".vhs-box").forEach(function (box) {
       const slug = String(box.getAttribute("data-slug") || box.getAttribute("data-film") || "").replace(/[^a-z0-9-]/g, "");
-      if (!slug) return;
+      if (!slug || slug === "point-break") return;
       const shell = box.querySelector(".vhs-shell-back");
       const copy = box.querySelector(".vhs-back-copy");
       if (!shell || !copy) return;
@@ -12669,7 +12678,7 @@
         img.draggable = false;
         still.appendChild(img);
       }
-      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "531" : "520";
+      const stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
       const want = "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
       const cur = img.getAttribute("src") || "";
       if (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0) {
@@ -12774,6 +12783,7 @@
       setTimeout(fixJawsCover, 1400);
       setTimeout(fixBladeRunner, 1400);
       setTimeout(fixEveryBack, 1600);
+      setTimeout(fixPointBreakBack, 1900);
     });
   } else {
     dressLobby();
@@ -12810,6 +12820,7 @@
     setTimeout(fixJawsCover, 1400);
     setTimeout(fixBladeRunner, 1400);
     setTimeout(fixEveryBack, 1800);
+    setTimeout(fixPointBreakBack, 2100);
   }
   try {
     if (!window.__rwNdNavArm) {
