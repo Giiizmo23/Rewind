@@ -166,9 +166,12 @@ async function seedFilms(sql: Sql): Promise<void> {
   }
 }
 
+const MEMBER_SLIM =
+  "handle, name, password_hash, token_hash, coalesce(locker, '{}'::jsonb) - 'banner' - 'avatar' as locker, created_at";
+
 async function memberByHandle(sql: Sql, handle: string): Promise<Member | null> {
   const rows = await sql.query<Member>(
-    "select handle, name, password_hash, token_hash, locker, created_at from rewind_members where handle = $1",
+    "select " + MEMBER_SLIM + " from rewind_members where handle = $1",
     [handle],
   );
   return rows[0] || null;
@@ -176,7 +179,7 @@ async function memberByHandle(sql: Sql, handle: string): Promise<Member | null> 
 
 async function membersByFold(sql: Sql, handle: string): Promise<Member[]> {
   return sql.query<Member>(
-    "select handle, name, password_hash, token_hash, locker, created_at from rewind_members where lower(handle) = lower($1) limit 5",
+    "select " + MEMBER_SLIM + " from rewind_members where lower(handle) = lower($1) limit 5",
     [handle],
   );
 }
@@ -330,6 +333,7 @@ export async function handleRewind(request: Request): Promise<Response> {
   }
   const sql = await getSql();
   await ensureClub(sql);
+  slimOldBackups(sql);
   await seedFilms(sql);
 
   if (path === "/api/rewind/stamp") return stamp(sql, body);
@@ -943,7 +947,7 @@ async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response
   }
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
-  const who = await restorePicsIfMissing(sql, await restoreLockerIfBlank(sql, authedMember));
+  const who = await restorePicsIfMissing(sql, await attachPics(sql, await restoreLockerIfBlank(sql, authedMember)));
   const usedPassword = String(body.password || "").length > 0;
   let token = String(body.token || "");
   let recovery = "";
@@ -1029,7 +1033,7 @@ async function resetPassword(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("update rewind_members set password_hash = $1 where handle = $2", [await hashPassword(password), handle]);
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
   const token = await openSession(sql, handle);
-  const restored = await restorePicsIfMissing(sql, await restoreLockerIfBlank(sql, member));
+  const restored = await restorePicsIfMissing(sql, await attachPics(sql, await restoreLockerIfBlank(sql, member)));
   return json({ ok: true, stored: true, token, username: handle, locker: restored.locker || {} });
 }
 
@@ -1249,9 +1253,40 @@ async function deleteVault(handle: string): Promise<void> {
   });
 }
 
+function slimOldBackups(sql: Sql): void {
+  const flag = globalThis as typeof globalThis & { __rwBackupsSlim?: boolean };
+  if (flag.__rwBackupsSlim) return;
+  void sql
+    .query<{ id: number }>(
+      "select id from rewind_backups where (locker ? 'banner' or locker ? 'avatar') limit 25",
+    )
+    .then(async (rows) => {
+      if (!rows.length) {
+        flag.__rwBackupsSlim = true;
+        return;
+      }
+      await sql.query("update rewind_backups set locker = locker - 'banner' - 'avatar' where id = any($1::bigint[])", [
+        rows.map((row) => row.id),
+      ]);
+    })
+    .catch(() => {});
+}
+
+async function attachPics(sql: Sql, member: Member): Promise<Member> {
+  const rows = await sql.query<{ banner: string; avatar: string }>(
+    "select coalesce(locker->>'banner', '') as banner, coalesce(locker->>'avatar', '') as avatar from rewind_members where handle = $1",
+    [member.handle],
+  );
+  const locker = member.locker && typeof member.locker === "object" ? { ...member.locker } : {};
+  locker.banner = rows[0]?.banner || "";
+  locker.avatar = rows[0]?.avatar || "";
+  return { ...member, locker };
+}
+
 async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<void> {
-  const packed = JSON.stringify(locker || {});
-  if (lockerBlank(locker)) return;
+  const slim: Locker = { ...locker, banner: "", avatar: "" };
+  const packed = JSON.stringify(slim);
+  if (lockerBlank(slim)) return;
   await sql.query("insert into rewind_backups (handle, locker) values ($1, $2::jsonb)", [handle, packed]);
   await sql.query(
     `delete from rewind_backups
@@ -1264,7 +1299,7 @@ async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<v
     [handle],
   );
   try {
-    await mirrorVault(handle, locker);
+    await mirrorVault(handle, locker.banner || locker.avatar ? locker : slim);
   } catch {
     /* the database copy still stands if the outside vault is busy */
   }
@@ -1282,7 +1317,7 @@ function lockerBlank(locker: Locker | null | undefined): boolean {
 async function restoreLockerIfBlank(sql: Sql, member: Member): Promise<Member> {
   if (!lockerBlank(member.locker)) return member;
   const rows = await sql.query<{ locker: Locker }>(
-    "select locker from rewind_backups where handle = $1 order by id desc limit 30",
+    "select coalesce(locker, '{}'::jsonb) - 'banner' - 'avatar' as locker from rewind_backups where handle = $1 order by id desc limit 5",
     [member.handle],
   );
   const saved = rows.map((row) => row.locker).find((locker) => !lockerBlank(locker));
@@ -1299,16 +1334,20 @@ async function restorePicsIfMissing(sql: Sql, member: Member): Promise<Member> {
   const locker = member.locker && typeof member.locker === "object" ? { ...member.locker } : {};
   const hasPic = (value: unknown) => typeof value === "string" && value.startsWith("data:");
   if (hasPic(locker.banner) && hasPic(locker.avatar)) return member;
-  const rows = await sql.query<{ locker: Locker }>(
-    "select locker from rewind_backups where handle = $1 order by id desc limit 30",
+  const rows = await sql.query<{ banner: string; avatar: string }>(
+    `select coalesce(locker->>'banner', '') as banner, coalesce(locker->>'avatar', '') as avatar
+     from rewind_backups
+     where handle = $1
+       and (locker->>'banner' like 'data:%' or locker->>'avatar' like 'data:%')
+     order by id desc
+     limit 8`,
     [member.handle],
   );
   let banner = typeof locker.banner === "string" ? locker.banner : "";
   let avatar = typeof locker.avatar === "string" ? locker.avatar : "";
   for (const row of rows) {
-    const saved = row.locker || {};
-    if (!hasPic(banner) && hasPic(saved.banner)) banner = saved.banner || "";
-    if (!hasPic(avatar) && hasPic(saved.avatar)) avatar = saved.avatar || "";
+    if (!hasPic(banner) && hasPic(row.banner)) banner = row.banner || "";
+    if (!hasPic(avatar) && hasPic(row.avatar)) avatar = row.avatar || "";
     if (hasPic(banner) && hasPic(avatar)) break;
   }
   if (banner === (locker.banner || "") && avatar === (locker.avatar || "")) return member;
@@ -1325,37 +1364,41 @@ async function saveLocker(sql: Sql, body: Record<string, unknown>): Promise<Resp
   if (who instanceof Response) return who;
   const locker = body.locker;
   if (!locker || typeof locker !== "object") return json({ ok: false, err: "locker" }, 400);
-  let merged = mergeLocker(who.locker || {}, locker as Locker);
-  let packed = JSON.stringify(merged);
-  if (packed.length > LOCKER_MAX) {
-    merged = { ...merged, banner: who.locker?.banner || "", avatar: who.locker?.avatar || "" };
-    packed = JSON.stringify(merged);
-  }
-  if (packed.length > LOCKER_MAX) {
-    merged = { ...merged, banner: "", avatar: "" };
-    packed = JSON.stringify(merged);
-  }
+  const incoming = locker as Locker;
+  const merged = mergeLocker(who.locker || {}, incoming);
+  const banner = typeof incoming.banner === "string" && incoming.banner.startsWith("data:") ? incoming.banner : "";
+  const avatar = typeof incoming.avatar === "string" && incoming.avatar.startsWith("data:") ? incoming.avatar : "";
+  const stored: Locker = {
+    keys: merged.keys,
+    profile: merged.profile,
+    cardFace: merged.cardFace,
+    ...(banner ? { banner } : {}),
+    ...(avatar ? { avatar } : {}),
+  };
+  const packed = JSON.stringify(stored);
   if (packed.length > LOCKER_MAX) return json({ ok: false, err: "big" }, 413);
-  if (who.locker && Object.keys(who.locker).length) await backupLocker(sql, who.handle, who.locker);
-  await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [packed, who.handle]);
-  const wrote = await sql.query<{ locker: Locker }>("select locker from rewind_members where handle = $1", [who.handle]);
-  if (!wrote[0]) return json({ ok: false, err: "save" }, 500);
-  await backupLocker(sql, who.handle, merged);
+  await sql.query("update rewind_members set locker = coalesce(locker, '{}'::jsonb) || $1::jsonb where handle = $2", [
+    packed,
+    who.handle,
+  ]);
+  await backupLocker(sql, who.handle, stored);
   return json({ ok: true, stored: true });
 }
 
 async function pullLocker(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const authedMember = await authed(sql, body);
   if (authedMember instanceof Response) return authedMember;
-  const who = await restorePicsIfMissing(sql, await restoreLockerIfBlank(sql, authedMember));
-  return json({ ok: true, locker: who.locker || {} });
+  const filled = await restoreLockerIfBlank(sql, authedMember);
+  if (body.havePics === true) return json({ ok: true, locker: filled.locker || {} });
+  const withPics = await restorePicsIfMissing(sql, await attachPics(sql, filled));
+  return json({ ok: true, locker: withPics.locker || {} });
 }
 
 async function people(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
-  const rows = await sql.query<{ handle: string; name: string; locker: Locker }>(
-    `select m.handle, m.name, m.locker
+  const rows = await sql.query<{ handle: string; name: string; avatar: string }>(
+    `select m.handle, m.name, coalesce(m.locker->>'avatar', '') as avatar
      from rewind_members m
      where m.handle <> $1
        and (
@@ -1377,13 +1420,13 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
       handle: row.handle,
       name: row.name,
       label: row.handle,
-      avatar: row.locker?.avatar || "",
+      avatar: row.avatar || "",
       friend,
       msg,
     });
   }
-  const incoming = await sql.query<{ handle: string; name: string; locker: Locker }>(
-    `select m.handle, m.name, m.locker
+  const incoming = await sql.query<{ handle: string; name: string; avatar: string }>(
+    `select m.handle, m.name, coalesce(m.locker->>'avatar', '') as avatar
      from rewind_follows f
      join rewind_members m on m.handle = f.follower
      where f.followee = $1
@@ -1400,10 +1443,10 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     name: row.name,
     label: row.handle,
     kind: "friend",
-    avatar: row.locker?.avatar || "",
+    avatar: row.avatar || "",
   }));
-  const msgRows = await sql.query<{ handle: string; name: string; locker: Locker; body: string }>(
-    `select m.handle, m.name, m.locker,
+  const msgRows = await sql.query<{ handle: string; name: string; avatar: string; body: string }>(
+    `select m.handle, m.name, coalesce(m.locker->>'avatar', '') as avatar,
         coalesce((
           select body from rewind_messages
           where sender = g.asker and recipient = g.askee
@@ -1420,7 +1463,7 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     handle: row.handle,
     name: row.name,
     text: row.body,
-    avatar: row.locker?.avatar || "",
+    avatar: row.avatar || "",
     msg: "in",
   }));
   const latest = await sql.query<{ sender: string; recipient: string; body: string; created_at: string }>(
@@ -1443,6 +1486,12 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     if (!friends && gateLabel(gate, who.handle) !== "open") continue;
     seen.add(other);
     const whoElse = await memberByHandle(sql, other);
+    const face = whoElse
+      ? await sql.query<{ avatar: string }>(
+          "select coalesce(locker->>'avatar', '') as avatar from rewind_members where handle = $1",
+          [other],
+        )
+      : [];
     previews.push({
       handle: other,
       name: whoElse?.name || other,
@@ -1450,7 +1499,7 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
       from: row.sender === who.handle ? "me" : "them",
       at: new Date(row.created_at).getTime() || Date.now(),
       msg: "open",
-      avatar: whoElse?.locker?.avatar || "",
+      avatar: face[0]?.avatar || "",
     });
   }
   return json({ ok: true, shared: true, people: list, box: { friendIn, msgIn, previews } });
@@ -1460,8 +1509,9 @@ async function card(sql: Sql, body: Record<string, unknown>): Promise<Response> 
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
   const handle = cleanHandle(body.handle);
-  const member = await memberByHandle(sql, handle);
-  if (!member) return json({ ok: false, err: "nocard" }, 404);
+  const found = await memberByHandle(sql, handle);
+  if (!found) return json({ ok: false, err: "nocard" }, 404);
+  const member = await attachPics(sql, found);
   const iFollow = await follows(sql, who.handle, member.handle);
   const theyFollow = await follows(sql, member.handle, who.handle);
   const friend = relation(iFollow, theyFollow);

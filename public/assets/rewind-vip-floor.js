@@ -2147,6 +2147,7 @@
     putPicIdb(key, data);
     paintPicDom(key, data);
     if (!fromNet) {
+      window.__rwPicDirty = true;
       try { postLocker(lockerNow(), true); } catch (eP) {}
       pushLocker();
     }
@@ -2548,8 +2549,8 @@
       keys: keys,
       profile: profile,
       cardFace: cardFace,
-      banner: isPicData(picCache["rewind-banner"]) ? picCache["rewind-banner"] : "",
-      avatar: isPicData(picCache["rewind-avatar"]) ? picCache["rewind-avatar"] : "",
+      banner: window.__rwPicDirty && isPicData(picCache["rewind-banner"]) ? picCache["rewind-banner"] : "",
+      avatar: window.__rwPicDirty && isPicData(picCache["rewind-avatar"]) ? picCache["rewind-avatar"] : "",
     };
   }
   function postLocker(locker, keep, attempt) {
@@ -2565,6 +2566,7 @@
         body: JSON.stringify({ username: handle, token: creds.token || "", password: creds.token ? "" : creds.password || "", locker: locker }),
         keepalive: !!keep,
       }).then(function (r) {
+        if (r.ok && (locker.banner || locker.avatar)) window.__rwPicDirty = false;
         if (r.status === 413 && (locker.banner || locker.avatar)) {
           postLocker(Object.assign({}, locker, { banner: "", avatar: "" }), true, 3);
           return;
@@ -2588,14 +2590,7 @@
     const creds = memberCreds();
     const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password)) return;
-    loadPic("rewind-banner", function (b) {
-      loadPic("rewind-avatar", function (a) {
-        const locker = lockerNow();
-        if (isPicData(b)) locker.banner = b;
-        if (isPicData(a)) locker.avatar = a;
-        postLocker(locker, false);
-      });
-    });
+    postLocker(lockerNow(), false);
   }
   try { window.__rwPushLocker = pushLocker; } catch (eEx2) {}
   function flushLocker(tries) {
@@ -2611,8 +2606,6 @@
       return;
     }
     const locker = lockerNow();
-    if (isPicData(picCache["rewind-banner"])) locker.banner = picCache["rewind-banner"];
-    if (isPicData(picCache["rewind-avatar"])) locker.avatar = picCache["rewind-avatar"];
     postLocker(locker, true);
   }
   try { window.__rwFlushLocker = flushLocker; } catch (eF) {}
@@ -2782,11 +2775,12 @@
       fetch("/api/rewind/locker/pull", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ username: handle, token: creds.token || "", password: creds.token ? "" : creds.password || "" }),
+        body: JSON.stringify({ username: handle, token: creds.token || "", password: creds.token ? "" : creds.password || "", havePics: isPicData(picCache["rewind-banner"] || lsGet("rewind-banner")) || isPicData(picCache["rewind-avatar"] || lsGet("rewind-avatar")) || lsGet("rewind-pics-known") === "1" }),
       })
         .then(function (r) { return r.json(); })
         .then(function (data) {
           if (!data || !data.ok || !data.locker) return;
+          try { localStorage.setItem("rewind-pics-known", "1"); } catch (eKnown) {}
           applyLocker(data.locker);
           const stripped = stripCopiedShelf();
           lockerReady = true;
