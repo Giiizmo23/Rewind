@@ -1138,7 +1138,7 @@ html[data-drop="1"] .nd-stand-shelf { display: none !important; }
 html[data-drop="1"] .nd-stand-body {
   display: block;
   margin: 0;
-  padding: .22rem .42rem .16rem;
+  padding: .36rem .42rem .32rem;
   background:
     linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.18)),
     url("/assets/nd-stand-wood.jpg?v=1") 50% 58% / cover no-repeat;
@@ -1148,7 +1148,18 @@ html[data-drop="1"] .nd-stand-body {
     inset 0 8px 10px #0004;
 }
 html[data-drop="1"] .nd-stand-hints {
-  display: none !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .45rem;
+  margin: 0;
+  padding: .28rem .42rem .22rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  touch-action: none;
+  pointer-events: none;
+  visibility: hidden;
 }
 html[data-drop="1"] .nd-hint {
   display: flex;
