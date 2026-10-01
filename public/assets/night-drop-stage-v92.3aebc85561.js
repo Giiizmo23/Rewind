@@ -5179,7 +5179,6 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       el.getBoundingClientRect();
       requestAnimationFrame(() => {
         el.classList.add("is-open");
-        try { if (window.__rwStrikeNeon) window.__rwStrikeNeon(); } catch (eN) {}
       });
     });
     window.setTimeout(powerOn, 1080);
