@@ -3508,16 +3508,16 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       try { pinStand(); } catch (ePin) {}
     }, 80);
   }
-  function keyboardInset() {
+  function visibleLimit() {
     const ih = window.innerHeight || 0;
     if (!window.__ndFullH || ih > window.__ndFullH) window.__ndFullH = ih;
     const full = window.__ndFullH || ih;
     const vv = window.visualViewport;
-    let covered = 0;
-    if (vv) covered = Math.round(full - vv.offsetTop - vv.height);
-    if (covered > 120) return covered + 62;
-    if (full - ih > 120) return (full - ih) + 62;
-    return Math.round(full * 0.48) + 16;
+    let bottom = full;
+    if (vv && vv.height) bottom = Math.round(vv.offsetTop + vv.height);
+    if (ih > 0 && ih < bottom) bottom = ih;
+    if (full - bottom < 80) bottom = full - Math.round(full * 0.52);
+    return Math.max(160, bottom - 10);
   }
   function pinClerkKeys() {
     const el = document.querySelector('.drop-clerk[data-nd-clerk="1"]');
@@ -3541,10 +3541,12 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     }
     parkBlurbBack();
     body.style.transform = "none";
-    const bottom = blurb.getBoundingClientRect().bottom;
-    const inset = keyboardInset();
-    const limit = (window.innerHeight || 0) - inset;
-    const need = Math.round(bottom - limit);
+    const rect = blurb.getBoundingClientRect();
+    const head = el.querySelector(".drop-clerk-head");
+    const headBottom = head ? head.getBoundingClientRect().bottom + 6 : 120;
+    let need = Math.round(rect.bottom - visibleLimit());
+    const maxNeed = Math.max(0, Math.round(rect.top - headBottom));
+    if (need > maxNeed) need = maxNeed;
     el.classList.remove("is-keys");
     el.style.removeProperty("top");
     el.style.removeProperty("height");
@@ -4927,6 +4929,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
           }, 60);
           window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 280);
           window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 560);
+          window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 900);
         }
         el.addEventListener("pointerdown", (e) => {
           if (!blurb || blurb.hasAttribute("hidden")) return;
