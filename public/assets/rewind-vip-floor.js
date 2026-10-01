@@ -12415,14 +12415,15 @@
         var t = String(el.textContent || "").replace(/\s+/g, "");
         if (/^RW-\d+(19|20)\d{2}$/.test(t)) t = t.replace(/(19|20)\d{2}$/, "");
         if (t) el.textContent = t;
+        var right = !!el.closest(".vhs-spine-right");
         el.style.setProperty("display", "block", "important");
         el.style.setProperty("writing-mode", "horizontal-tb", "important");
-        el.style.setProperty("transform", "none", "important");
+        el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
         el.style.setProperty("position", "absolute", "important");
         el.style.setProperty("left", "0", "important");
         el.style.setProperty("right", "0", "important");
-        el.style.setProperty("bottom", "6px", "important");
-        el.style.setProperty("top", "auto", "important");
+        el.style.setProperty("top", right ? "8px" : "auto", "important");
+        el.style.setProperty("bottom", right ? "auto" : "6px", "important");
         el.style.setProperty("width", "100%", "important");
         el.style.setProperty("text-align", "center", "important");
         el.style.setProperty("color", "#e8a050", "important");
