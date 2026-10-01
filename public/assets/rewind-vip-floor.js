@@ -4146,6 +4146,206 @@
     window.__rwDueFiling = 0;
     return changed;
   }
+  const STORE_KINDS = ["new", "soon", "board", "drop", "rent", "rewind", "points", "next", "redeem"];
+  function deskLoggedCount() {
+    try {
+      const a = JSON.parse(lsGet("rewind-logged-slugs") || "null");
+      if (Array.isArray(a)) return a.filter(Boolean).length;
+    } catch (e) {}
+    return 0;
+  }
+  function outTapeTitle() {
+    let raw = [];
+    try { raw = JSON.parse(lsGet("rewind-out-tapes") || "null") || []; } catch (e) { raw = []; }
+    if (!raw.length) return "";
+    const x = raw[0];
+    const rawTitle = typeof x === "object" ? String((x && x.title) || "").trim() : "";
+    const slug = typeof x === "string" ? x : String((x && (x.slug || x.filmId || x.id)) || "");
+    const base = rawTitle || slug.replace(/-/g, " ");
+    return base.replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
+  }
+  function deskPick(list) {
+    if (!list || !list.length) return null;
+    const seen = {};
+    try {
+      const a = JSON.parse(lsGet("rewind-logged-slugs") || "null");
+      if (Array.isArray(a)) a.forEach(function (s) { seen[String(s)] = 1; });
+    } catch (e) {}
+    const fresh = list.filter(function (f) { return f && f.title && !seen[f.slug]; });
+    const bag = fresh.length ? fresh : list;
+    return bag[Math.floor(Math.random() * bag.length)];
+  }
+  function deskWallFilms(done) {
+    if (window.__rwDeskBags) { done(window.__rwDeskBags); return; }
+    fetch("/data/catalog.json", { cache: "force-cache" })
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .catch(function () { return []; })
+      .then(function (rows) {
+        rows = Array.isArray(rows) ? rows : [];
+        const neu = [];
+        const soon = [];
+        rows.forEach(function (f) {
+          if (!f || !f.title) return;
+          if (!/(^|,)new(,|$)/.test(String(f.themes || ""))) return;
+          let h = 0;
+          const s = String(f.slug || f.title);
+          for (let i = 0; i < s.length; i++) h = (h + s.charCodeAt(i)) % 2;
+          if (h) soon.push(f);
+          else neu.push(f);
+        });
+        window.__rwDeskBags = { neu: neu.length ? neu : soon, soon: soon.length ? soon : neu };
+        done(window.__rwDeskBags);
+      });
+  }
+  function nextDeskPrize(points, bank) {
+    const owned = (rewardWall().rewards && rewardWall().rewards.owned) || {};
+    const logged = deskLoggedCount();
+    const deeds = deedStats();
+    let best = null;
+    let spend = false;
+    REWARD_LIST.forEach(function (p) {
+      if (!p || owned[p.id] || bank >= p.pts) return;
+      if (!best || p.pts < best.pts) { best = p; spend = true; }
+    });
+    LOCKER_PRIZES.forEach(function (p) {
+      if (!p || !p.pts) return;
+      if (stubEarned(p.id, p.pts, points, logged, deeds)) return;
+      if (!best || p.pts < best.pts) { best = p; spend = false; }
+    });
+    return best ? { prize: best, spend: spend } : null;
+  }
+  function readyDeskPrize(bank) {
+    const owned = (rewardWall().rewards && rewardWall().rewards.owned) || {};
+    let best = null;
+    REWARD_LIST.forEach(function (p) {
+      if (!p || owned[p.id] || bank < p.pts) return;
+      if (!best || p.pts < best.pts) best = p;
+    });
+    return best;
+  }
+  function storeLine(kind, bags) {
+    const points = earnedPoints(deskLoggedCount()).points || 0;
+    const card = prizeOf(points);
+    const bank = spendablePoints();
+    if (kind === "points") {
+      const left = bank !== points ? " " + bank + " still to spend." : "";
+      const climb = card.next ? " " + card.remaining + " to " + card.next.name + "." : " Top of the board.";
+      const lines = [
+        "Point check. " + points + " pts on the card." + climb,
+        "You've got " + points + " pts." + left + climb,
+      ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: String(points) };
+    }
+    if (kind === "next") {
+      const up = nextDeskPrize(points, bank);
+      if (!up) return null;
+      const have = up.spend ? bank : points;
+      const away = Math.max(1, up.prize.pts - have);
+      const lines = [
+        up.prize.title + " is coming up. " + away + " pts away.",
+        "Keep going. " + up.prize.title + " opens at " + up.prize.pts + " pts. You're " + away + " short.",
+      ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: up.prize.id };
+    }
+    if (kind === "redeem") {
+      const ready = readyDeskPrize(bank);
+      if (!ready) return null;
+      const lines = [
+        ready.title + " is at the counter. " + ready.pts + " pts. You can redeem it.",
+        "New one you can pull. " + ready.title + ". " + ready.pts + " pts, and you have them.",
+      ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: ready.id };
+    }
+    if (kind === "rewind") {
+      const title = outTapeTitle();
+      const lines = title
+        ? [
+            "Be kind. Rewind " + title + " before you bring it back. Extra points on the return.",
+            "Reminder. " + title + " still needs a rewind before it hits the desk.",
+          ]
+        : [
+            "Be kind. Rewind the tape before you bring it back. That's extra points.",
+            "Desk reminder. Rewind it on the way in. The return pays more when you do.",
+          ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: title || "general" };
+    }
+    if (kind === "board") {
+      const lines = [
+        "The board is up. Trending tapes, reviews, what people rented. Take a look.",
+        "Check the board when you get a minute. That's the store talking.",
+      ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: "board" };
+    }
+    if (kind === "drop") {
+      const lines = [
+        "Night Drop is open after close. Swipe a tape. Seen it, or you haven't.",
+        "The slot is on. Night Drop. Take one, swipe it, file it.",
+      ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: "drop" };
+    }
+    if (kind === "rent") {
+      const lines = [
+        "Rent a tape if you want a reason to come back. Watch it, log it, before it's due.",
+        "Grab one off the wall. The due date is the game. Log it while it's out.",
+      ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: "rent" };
+    }
+    if (kind === "new" || kind === "soon") {
+      const film = deskPick(kind === "new" ? bags.neu : bags.soon);
+      if (!film || !film.title) return null;
+      const lines = kind === "new"
+        ? [
+            "New on the wall. " + film.title + ". Come get it before the good copy is gone.",
+            film.title + " just landed. It's on the new-release wall.",
+          ]
+        : [
+            "Coming soon. " + film.title + ". Ask the desk and we'll hold a copy.",
+            film.title + " is next up. We'll put it on the wall this week.",
+          ];
+      return { text: lines[Math.floor(Math.random() * lines.length)], key: film.slug || film.title };
+    }
+    return null;
+  }
+  function fileStoreNotes() {
+    if (window.__rwStoreFiling) return;
+    if (document.documentElement.getAttribute("data-member") !== "1" && !syncMemberFlag()) return;
+    const now = Date.now();
+    const last = Number(lsGet("rewind-desk-note-at") || 0) || 0;
+    if (last && now - last < 5 * 3600000) return;
+    window.__rwStoreFiling = 1;
+    deskWallFilms(function (bags) {
+      try {
+        let i = Number(lsGet("rewind-desk-note-i") || 0) || 0;
+        const staff = ["theclerk", "rita", "walt", "dee", "mo", "cal", "ned", "pat", "vic", "luz"];
+        const day = (function () {
+          const d = new Date();
+          return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+        })();
+        let sent = false;
+        for (let n = 0; n < STORE_KINDS.length; n++) {
+          const kind = STORE_KINDS[(i + n) % STORE_KINDS.length];
+          const line = storeLine(kind, bags);
+          if (!line) continue;
+          const tag = "store:" + kind + ":" + day + ":" + line.key;
+          if (deskTagSent(tag)) continue;
+          const who = staff[Math.floor(Math.random() * staff.length)];
+          if (!pushDm(who, "them", line.text, now, tag)) continue;
+          try {
+            localStorage.setItem("rewind-desk-note-at", String(now));
+            localStorage.setItem("rewind-desk-note-i", String((i + n + 1) % STORE_KINDS.length));
+          } catch (eSave) {}
+          const box = document.getElementById("rw-inbox");
+          if (box && box.getAttribute("data-open") === "1" && !inboxThread) paintInbox();
+          sent = true;
+          break;
+        }
+        if (!sent) {
+          try { localStorage.setItem("rewind-desk-note-at", String(now)); } catch (eWait) {}
+        }
+      } catch (eStore) {}
+      window.__rwStoreFiling = 0;
+    });
+  }
   function dmWhen(ms) {
     const d = new Date(ms || Date.now());
     const now = new Date();
@@ -4652,6 +4852,7 @@
     }
     retargetMessagesLinks();
     fileDueReminders();
+    fileStoreNotes();
     loadClubBook();
     paintInboxBadge();
     if (!window.__rwDeskRemind) {
@@ -4663,7 +4864,8 @@
           const typing = box && box.querySelector("input, textarea") === document.activeElement;
           if (box && box.getAttribute("data-open") === "1" && !inboxThread && !typing) paintInbox();
         });
-        if (!fileDueReminders()) return;
+        try { fileDueReminders(); } catch (eDue) {}
+        try { fileStoreNotes(); } catch (eStore) {}
         paintInboxBadge();
       }, 12000);
     }
