@@ -31,10 +31,10 @@
   const FACE = encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" fill="none">' +
       '<rect width="400" height="128" fill="#2a2c31"/>' +
-      '<rect x="46" y="2" width="308" height="52" rx="7" fill="#121416"/>' +
-      '<rect x="54" y="7" width="292" height="40" rx="4" fill="#3d3f44"/>' +
-      '<rect x="60" y="9" width="280" height="1.5" rx="0.7" fill="#b7bcc2" opacity=".75"/>' +
-      '<rect x="174" y="34" width="52" height="4" rx="2" fill="#23262a"/>' +
+      '<rect x="62" y="2" width="276" height="72" rx="7" fill="#121416"/>' +
+      '<rect x="70" y="7" width="260" height="60" rx="4" fill="#3d3f44"/>' +
+      '<rect x="76" y="9" width="248" height="1.5" rx="0.7" fill="#b7bcc2" opacity=".75"/>' +
+      '<rect x="174" y="52" width="52" height="4" rx="2" fill="#23262a"/>' +
       '<circle cx="40" cy="104" r="8" fill="#c9a227"/><circle cx="40" cy="104" r="2.6" fill="#6a5610"/>' +
       '<circle cx="62" cy="104" r="8" fill="#ececec"/><circle cx="62" cy="104" r="2.6" fill="#888"/>' +
       '<circle cx="84" cy="104" r="8" fill="#c41230"/><circle cx="84" cy="104" r="2.6" fill="#6a0a18"/>' +
