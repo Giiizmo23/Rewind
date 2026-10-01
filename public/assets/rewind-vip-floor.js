@@ -12743,10 +12743,24 @@
       img.style.setProperty("inset", "0", "important");
       img.style.setProperty("width", "100%", "important");
       img.style.setProperty("height", "100%", "important");
-      img.style.setProperty("object-fit", "contain", "important");
       img.style.setProperty("object-position", "center center", "important");
       img.style.setProperty("display", "block", "important");
-      still.style.setProperty("background-size", "contain", "important");
+      var squareArt = want.indexOf("-still.jpg?v=") < 0 && !onShelf;
+      if (squareArt) {
+        still.style.setProperty("flex", "0 0 auto", "important");
+        still.style.setProperty("width", "100%", "important");
+        still.style.setProperty("height", "auto", "important");
+        still.style.setProperty("aspect-ratio", "1 / 1", "important");
+        still.style.setProperty("min-height", "0", "important");
+        still.style.setProperty("max-height", "none", "important");
+        img.style.setProperty("object-fit", "cover", "important");
+        still.style.setProperty("background-size", "cover", "important");
+        var flip = box.querySelector(".vhs-flip");
+        if (flip) flip.style.setProperty("aspect-ratio", "4 / 9", "important");
+      } else {
+        img.style.setProperty("object-fit", "cover", "important");
+        still.style.setProperty("background-size", "cover", "important");
+      }
       still.style.setProperty("background-position", "center center", "important");
       still.style.setProperty("background-repeat", "no-repeat", "important");
       if (slug === "coming-to-america") {
