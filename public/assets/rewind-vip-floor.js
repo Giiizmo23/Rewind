@@ -12789,7 +12789,7 @@
         copy.style.setProperty("overflow", "hidden", "important");
         copy.style.setProperty("justify-content", "flex-end", "important");
         copy.style.setProperty("order", "1", "important");
-      } else if (small) {
+      } else if (small && want.indexOf("-still.jpg?v=") >= 0) {
         copy.style.setProperty("flex", "0 0 auto", "important");
         copy.style.setProperty("min-height", "0", "important");
         copy.style.setProperty("overflow", "hidden", "important");
