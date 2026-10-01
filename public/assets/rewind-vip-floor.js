@@ -12753,6 +12753,22 @@
       still.style.setProperty("background-size", "cover", "important");
       still.style.setProperty("background-position", "center center", "important");
       still.style.setProperty("background-repeat", "no-repeat", "important");
+      if (want.indexOf("-still.jpg?v=") < 0 && !onShelf) {
+        still.style.setProperty("flex", "0 0 auto", "important");
+        still.style.setProperty("width", "100%", "important");
+        still.style.setProperty("height", "auto", "important");
+        still.style.setProperty("aspect-ratio", "3 / 2", "important");
+        still.style.setProperty("min-height", "0", "important");
+        still.style.setProperty("max-height", "none", "important");
+        copy.style.setProperty("flex", "1 1 auto", "important");
+        copy.style.setProperty("min-height", "0", "important");
+        copy.style.setProperty("overflow", "hidden", "important");
+        var foot = copy.querySelector(".vhs-back-foot");
+        if (foot) {
+          foot.style.setProperty("flex", "0 0 auto", "important");
+          foot.style.setProperty("margin-top", "auto", "important");
+        }
+      }
       if (slug === "coming-to-america") {
         still.style.setProperty("background-color", "#14110e", "important");
       }
