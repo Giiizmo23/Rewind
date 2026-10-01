@@ -2136,8 +2136,13 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-review {
   outline: none !important;
   -webkit-appearance: none !important;
 }
-html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-review::placeholder {
-  color: rgba(244, 239, 230, .45) !important;
+html[data-drop="1"] .drop-clerk.is-type > .drop-clerk-head {
+  background: #11100e !important;
+  position: relative !important;
+  z-index: 8 !important;
+}
+html[data-drop="1"] .drop-clerk.is-type > .drop-clerk-body {
+  transition: transform .2s ease !important;
 }
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-stars button.is-on {
   color: #e8c14a !important;
@@ -3494,33 +3499,62 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       parkBlurbBack();
       if (!el) return;
       el.classList.remove("is-keys");
+      el.classList.remove("is-type");
       el.style.removeProperty("top");
       el.style.removeProperty("height");
       el.style.removeProperty("bottom");
+      const body = el.querySelector(".drop-clerk-body");
+      if (body) body.style.removeProperty("transform");
       try { pinStand(); } catch (ePin) {}
     }, 80);
   }
+  function keyboardInset() {
+    const ih = window.innerHeight || 0;
+    if (!window.__ndFullH || ih > window.__ndFullH) window.__ndFullH = ih;
+    const full = window.__ndFullH || ih;
+    const vv = window.visualViewport;
+    let covered = 0;
+    if (vv) covered = Math.round(full - vv.offsetTop - vv.height);
+    if (covered > 120) return covered + 62;
+    if (full - ih > 120) return (full - ih) + 62;
+    return Math.round(full * 0.48) + 16;
+  }
   function pinClerkKeys() {
     const el = document.querySelector('.drop-clerk[data-nd-clerk="1"]');
+    const body = el && el.querySelector(".drop-clerk-body");
     const blurb = document.querySelector(".log-blurb");
     const ta = blurb && blurb.querySelector(".log-review");
-    const open = !!(el && blurb && ta && !blurb.hasAttribute("hidden") && document.activeElement === ta);
-    if (!open) {
+    const open = !!(el && body && blurb && ta && !blurb.hasAttribute("hidden") && document.activeElement === ta);
+    const clear = () => {
       parkBlurbBack();
-      if (el) {
-        el.classList.remove("is-keys");
-        el.style.removeProperty("top");
-        el.style.removeProperty("height");
-        el.style.removeProperty("bottom");
-      }
-      return;
-    }
-    parkBlurbBack();
-    if (el) {
+      if (!el) return;
       el.classList.remove("is-keys");
+      el.classList.remove("is-type");
       el.style.removeProperty("top");
       el.style.removeProperty("height");
       el.style.removeProperty("bottom");
+      if (body) body.style.removeProperty("transform");
+    };
+    if (!open) {
+      clear();
+      return;
+    }
+    parkBlurbBack();
+    body.style.transform = "none";
+    const bottom = blurb.getBoundingClientRect().bottom;
+    const inset = keyboardInset();
+    const limit = (window.innerHeight || 0) - inset;
+    const need = Math.round(bottom - limit);
+    el.classList.remove("is-keys");
+    el.style.removeProperty("top");
+    el.style.removeProperty("height");
+    el.style.removeProperty("bottom");
+    if (need > 8) {
+      el.classList.add("is-type");
+      body.style.setProperty("transform", "translateY(-" + need + "px)", "important");
+    } else {
+      el.classList.remove("is-type");
+      body.style.removeProperty("transform");
     }
   }
 
@@ -4912,7 +4946,12 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
             reviewKeysLock = true;
             try { pinClerkKeys(); } catch (eP) {}
           });
-          ta.addEventListener("blur", () => { reviewText = ta.value; });
+          ta.addEventListener("blur", () => {
+            reviewText = ta.value;
+            window.setTimeout(function () {
+              if (document.activeElement !== ta) pinClerkKeys();
+            }, 60);
+          });
         }
         revBtn.addEventListener("pointerdown", () => { strayUntil = Date.now() + 700; });
         revBtn.addEventListener("click", (e) => {
