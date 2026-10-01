@@ -4927,12 +4927,6 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
           reviewKeysLock = true;
           blurb.removeAttribute("hidden");
           paintReview();
-          blurbLiftReady = Date.now() + 280;
-          window.setTimeout(() => {
-            try { ta.focus({ preventScroll: true }); } catch (eF) {}
-            try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (eSel) {}
-          }, 60);
-          window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 300);
         }
         el.addEventListener("pointerdown", (e) => {
           if (!blurb || blurb.hasAttribute("hidden")) return;
