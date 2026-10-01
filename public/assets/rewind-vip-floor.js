@@ -8335,7 +8335,7 @@
     fill(Object.assign({}, stub, known || {}, rich || {}));
     if (rich && rich.overview) return;
     Promise.all([
-      fetch("/data/catalog.json", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=458", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
       fetch("/store-index.tsv", { cache: "force-cache" }).then(function (r) { return r.ok ? r.text() : ""; }).catch(function () { return ""; }),
     ]).then(function (pair) {
       const catalog = {};
@@ -8966,7 +8966,7 @@
       return a;
     }
     const STOCK = [
-      { slug: "the-lion-king", title: "The Lion King", year: 1994, director: "Allers & Minkoff", runtime: 88, genres: "Animation · Family", catalogNo: "RW-1994-12", tagline: "Life's greatest adventure is finding your place in the Circle of Life.", overview: "A cub runs from the Pridelands and grows up between a meerkat and a warthog. Then the ghost of his father tells him to go home." },
+      { slug: "the-lion-king", title: "The Lion King", year: 1994, director: "Allers & Minkoff", runtime: 88, genres: "Animation · Family", catalogNo: "RW-1994-12", tagline: "Remember who you are.", overview: "A cub runs from the Pridelands and grows up between a meerkat and a warthog. Then the ghost of his father tells him to go home." },
       { slug: "the-shawshank-redemption", title: "The Shawshank Redemption", year: 1994, director: "Frank Darabont", runtime: 142, genres: "Drama", catalogNo: "RW-1994-03", tagline: "Fear can hold you prisoner. Hope can set you free.", overview: "A banker is sentenced to Shawshank and spends two decades with a rock hammer, a library, and a poster. Red tells it like a man who learned to wait." },
       { slug: "jaws", title: "Jaws", year: 1975, director: "Steven Spielberg", runtime: 124, genres: "Thriller · Adventure", catalogNo: "RW-1975-06", tagline: "Don't go in the water.", overview: "A shark closes the beach. The sheriff, a scientist, and a scarred captain go out on a boat that is too small. The score does the rest." },
       { slug: "the-shining", title: "The Shining", year: 1980, director: "Stanley Kubrick", runtime: 146, genres: "Horror", catalogNo: "RW-1980-05", tagline: "A master of modern horror.", overview: "A winter caretaker, a maze, and a hotel that has always been here. The boy talks to his finger. The father talks to the bar." },
