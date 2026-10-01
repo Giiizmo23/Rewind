@@ -7805,16 +7805,21 @@
       if (cover) {
         cover.removeAttribute("srcset");
         cover.setAttribute("loading", "lazy");
-        cover.src = "/sleeves/thumbs/" + slug + ".jpg?v=520";
-        cover.onerror = function () {
-          this.onerror = null;
-          this.src = "/sleeves/" + slug + ".jpg?v=520";
-        };
+        if (slug === "goodfellas" || slug === "se7en") {
+          cover.src = "/sleeves/" + slug + ".jpg?v=532";
+        } else {
+          cover.src = "/sleeves/thumbs/" + slug + ".jpg?v=520";
+          cover.onerror = function () {
+            this.onerror = null;
+            this.src = "/sleeves/" + slug + ".jpg?v=520";
+          };
+        }
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         const file = slug === "back-to-the-future" ? "back-to-the-future-b" : slug;
         img.setAttribute("loading", "lazy");
-        img.src = "/sleeves/spines/" + file + ".png?v=520";
+        const spineVer = slug === "goodfellas" ? "532" : "520";
+        img.src = "/sleeves/spines/" + file + ".png?v=" + spineVer;
         img.onerror = function () { this.style.display = "none"; };
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) { el.textContent = film.year ? String(film.year) : ""; });
@@ -12920,11 +12925,11 @@
     if (slug === "goodfellas" || slug === "se7en") {
       box.querySelectorAll("img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("/sleeves/spines/" + slug + ".png") >= 0 && src.indexOf("v=531") < 0) {
-          img.src = "/sleeves/spines/" + slug + ".png?v=531";
+        if (src.indexOf("/sleeves/spines/" + slug + ".png") >= 0 && src.indexOf("v=532") < 0) {
+          img.src = "/sleeves/spines/" + slug + ".png?v=532";
         }
-        if ((src.indexOf("/sleeves/" + slug + ".jpg") >= 0 || src.indexOf("/sleeves/thumbs/" + slug) >= 0) && src.indexOf("-still") < 0 && src.indexOf("v=531") < 0) {
-          img.src = "/sleeves/" + slug + ".jpg?v=531";
+        if ((src.indexOf("/sleeves/" + slug + ".jpg") >= 0 || src.indexOf("/sleeves/thumbs/" + slug) >= 0) && src.indexOf("-still") < 0 && src.indexOf("v=532") < 0) {
+          img.src = "/sleeves/" + slug + ".jpg?v=532";
         }
       });
     }
