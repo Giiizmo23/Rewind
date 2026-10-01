@@ -3324,7 +3324,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       kind = "";
       pulling = false;
       window.__rwNdHold = false;
-      if (Math.abs(dx) < 22) {
+      if (Math.abs(dx) < 72) {
         wantX = 0;
         const box = boxEl();
         if (box && Math.abs(dragX) > 1) {
