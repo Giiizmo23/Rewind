@@ -3074,6 +3074,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       overlay.getBoundingClientRect();
       requestAnimationFrame(() => overlay.classList.add("is-on"));
     });
+    try { if (window.__rwStrikeNeon) window.__rwStrikeNeon(); } catch (eN) {}
     unlockAudio();
     try { if (audioCtx && audioCtx.state !== "running") audioCtx.resume(); } catch (eR) {}
     crtOnSound();

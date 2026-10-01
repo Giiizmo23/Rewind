@@ -10253,8 +10253,33 @@
     if (deck) deck.insertBefore(sign, deck.firstChild);
     else overlay.insertBefore(sign, overlay.firstChild);
     ensureArtNeonCss();
+    const tapeOn = overlay.querySelector(".drop-tape");
+    if (window.__rwNeonStrike) {
+      if (!sign.classList.contains("is-lit") && !sign.classList.contains("is-steady")) sign.classList.add("is-lit");
+    } else if (tapeOn && tapeOn.dataset.ndPower === "1") {
+      sign.classList.add("is-steady");
+    }
     return sign;
   }
+  function strikeNeon() {
+    window.__rwNeonStrike = true;
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sign = document.querySelector("#nd-overlay .nd-neon-sign");
+    if (sign) {
+      sign.classList.remove("is-steady", "is-lit");
+      void sign.offsetWidth;
+      sign.classList.add(reduced ? "is-steady" : "is-lit");
+    }
+    window.setTimeout(() => {
+      window.__rwNeonStrike = false;
+      const live = document.querySelector("#nd-overlay .nd-neon-sign");
+      if (live) {
+        live.classList.add("is-steady");
+        live.classList.remove("is-lit");
+      }
+    }, 2600);
+  }
+  try { window.__rwStrikeNeon = strikeNeon; } catch (eS) {}
   function ensureArtNeonCss() {
     if (document.getElementById("nd-art-neon")) return;
     const s = document.createElement("style");
@@ -10266,6 +10291,10 @@
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:absolute!important;top:0!important;left:0!important;right:0!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:none!important;border:0!important;outline:none!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:none!important;overflow:visible!important}" +
       "html[data-drop='1'] .nd-neon-hang,html[data-drop='1'] .nd-neon-wash,html[data-drop='1'] .nd-neon-glow,html[data-drop='1'] .nd-neon-can,html[data-drop='1'] .nd-neon-rivet{display:none!important}" +
       "html[data-drop='1'] .nd-neon-art{display:block!important;width:min(48vw,10.4rem)!important;height:auto!important;max-height:26svh!important;object-fit:contain!important;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important;mix-blend-mode:normal!important;animation:none!important}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign{opacity:0}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign.is-lit{animation:nd-ignite 2.45s steps(1,end) forwards}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign.is-steady{opacity:1!important;animation:none!important}" +
+      "@keyframes nd-ignite{0%{opacity:0}3%{opacity:1}6%{opacity:0}12%{opacity:1}15%{opacity:0}18%{opacity:.2}21%{opacity:0}27%{opacity:1}31%{opacity:0}34%{opacity:1}37%{opacity:0}40%{opacity:1}44%{opacity:0}48%{opacity:1}51%{opacity:.15}54%{opacity:0}58%{opacity:1}62%{opacity:0}66%{opacity:1}70%{opacity:.25}73%{opacity:0}78%{opacity:1}82%{opacity:0}86%{opacity:1}90%{opacity:.65}93%{opacity:1}100%{opacity:1}}" +
       "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(31svh,14.6rem)!important;min-height:min(31svh,14.6rem)!important;max-height:min(31svh,14.6rem)!important}";
     document.head.appendChild(s);
   }
