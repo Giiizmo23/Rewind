@@ -2141,9 +2141,6 @@ html[data-drop="1"] .drop-clerk.is-type > .drop-clerk-head {
   position: relative !important;
   z-index: 8 !important;
 }
-html[data-drop="1"] .drop-clerk.is-type > .drop-clerk-body {
-  transition: transform .2s ease !important;
-}
 html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .log-stars button.is-on {
   color: #e8c14a !important;
   -webkit-text-fill-color: #e8c14a !important;
@@ -3519,44 +3516,52 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     if (full - bottom < 80) bottom = full - Math.round(full * 0.52);
     return Math.max(160, bottom - 10);
   }
+  let blurbLiftReady = 0;
   function pinClerkKeys() {
     const el = document.querySelector('.drop-clerk[data-nd-clerk="1"]');
     const body = el && el.querySelector(".drop-clerk-body");
     const blurb = document.querySelector(".log-blurb");
     const ta = blurb && blurb.querySelector(".log-review");
     const open = !!(el && body && blurb && ta && !blurb.hasAttribute("hidden") && document.activeElement === ta);
-    const clear = () => {
-      parkBlurbBack();
-      if (!el) return;
+    if (body) body.style.removeProperty("transform");
+    if (el) {
       el.classList.remove("is-keys");
       el.classList.remove("is-type");
       el.style.removeProperty("top");
       el.style.removeProperty("height");
       el.style.removeProperty("bottom");
-      if (body) body.style.removeProperty("transform");
-    };
+    }
     if (!open) {
-      clear();
+      blurbLiftReady = 0;
+      parkBlurbBack();
       return;
     }
-    parkBlurbBack();
-    body.style.transform = "none";
-    const rect = blurb.getBoundingClientRect();
+    if (blurbLiftReady && Date.now() < blurbLiftReady) return;
+    const limit = visibleLimit();
+    const h = Math.max(48, Math.round(blurb.getBoundingClientRect().height || 54));
+    let top = Math.round(limit - h);
     const head = el.querySelector(".drop-clerk-head");
-    const headBottom = head ? head.getBoundingClientRect().bottom + 6 : 120;
-    let need = Math.round(rect.bottom - visibleLimit());
-    const maxNeed = Math.max(0, Math.round(rect.top - headBottom));
-    if (need > maxNeed) need = maxNeed;
-    el.classList.remove("is-keys");
-    el.style.removeProperty("top");
-    el.style.removeProperty("height");
-    el.style.removeProperty("bottom");
-    if (need > 8) {
-      el.classList.add("is-type");
-      body.style.setProperty("transform", "translateY(-" + need + "px)", "important");
-    } else {
-      el.classList.remove("is-type");
-      body.style.removeProperty("transform");
+    const minTop = (head ? head.getBoundingClientRect().bottom : 96) + 10;
+    if (top < minTop) top = Math.round(minTop);
+    const prev = parseFloat(blurb.style.top);
+    if (blurb.dataset.ndParked === "1" && Number.isFinite(prev) && Math.abs(prev - top) < 28) return;
+    const moved = blurb.parentElement !== el;
+    if (moved) {
+      el.appendChild(blurb);
+      blurb.dataset.ndParked = "1";
+    }
+    blurb.style.setProperty("position", "fixed", "important");
+    blurb.style.setProperty("left", "0", "important");
+    blurb.style.setProperty("right", "0", "important");
+    blurb.style.setProperty("width", "min(22rem, calc(100% - 2rem))", "important");
+    blurb.style.setProperty("max-width", "none", "important");
+    blurb.style.setProperty("margin", "0 auto", "important");
+    blurb.style.setProperty("top", top + "px", "important");
+    blurb.style.setProperty("bottom", "auto", "important");
+    blurb.style.setProperty("z-index", "30", "important");
+    blurb.style.setProperty("transform", "none", "important");
+    if (moved && document.activeElement !== ta) {
+      try { ta.focus({ preventScroll: true }); } catch (eF) {}
     }
   }
 
@@ -4922,14 +4927,12 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
           reviewKeysLock = true;
           blurb.removeAttribute("hidden");
           paintReview();
+          blurbLiftReady = Date.now() + 280;
           window.setTimeout(() => {
             try { ta.focus({ preventScroll: true }); } catch (eF) {}
             try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (eSel) {}
-            try { pinClerkKeys(); } catch (eP) {}
           }, 60);
-          window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 280);
-          window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 560);
-          window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 900);
+          window.setTimeout(() => { try { pinClerkKeys(); } catch (eP) {} }, 300);
         }
         el.addEventListener("pointerdown", (e) => {
           if (!blurb || blurb.hasAttribute("hidden")) return;
