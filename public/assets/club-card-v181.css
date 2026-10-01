@@ -5346,38 +5346,38 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"] .drop-clerk-yes {
   width:100%!important;
   max-width:100%!important;
   min-width:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,10rem)!important;
+  justify-content:center!important;
+  align-items:start!important;
   overflow:visible!important;
-  flex-wrap:nowrap!important;
-  padding:1.2rem 1.2rem 2rem!important;
-  gap:1.75rem!important;
+  padding:.4rem .2rem 1.2rem!important;
+  gap:1.45rem .9rem!important;
   touch-action:pan-y!important;
 }
 html body main section > .flex:has(> .tape-slot){
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,10rem)!important;
+  justify-content:center!important;
+  align-items:start!important;
   overflow:visible!important;
-  flex-wrap:nowrap!important;
   width:100%!important;
   max-width:100%!important;
-  gap:1.75rem!important;
-  padding:1rem 1.2rem 2rem!important;
+  gap:1.45rem .9rem!important;
+  padding:.4rem .2rem 1.2rem!important;
   touch-action:pan-y!important;
 }
 html body main section > .flex:has(> .tape-slot) > .tape-slot{
-  width:min(17rem,74vw)!important;
-  max-width:17rem!important;
-  flex:0 0 auto!important;
+  width:10rem!important;
+  max-width:10rem!important;
+  flex:none!important;
 }
 .lobby-picks article,
 .lobby-picks a.tape-slot,
 .lobby-picks a.lobby-tape-link{
-  width:min(17rem,74vw)!important;
-  max-width:17rem!important;
-  flex:0 0 auto!important;
+  width:10rem!important;
+  max-width:10rem!important;
+  flex:none!important;
   pointer-events:auto!important;
 }
 .lobby-picks .tape-slot-open{

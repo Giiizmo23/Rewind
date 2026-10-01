@@ -776,11 +776,11 @@
         '[data-vip-card],.top5-section,[data-vip-shelves],[data-vip-tapes-sec],[data-prize-locker],[data-vip-club],[data-vip-onvcr-sec],[data-vip-stats],#rewards{scroll-margin-top:6.4rem}' +
         '.lobby-picks{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;gap:1.35rem!important;width:100%;margin:1.05rem 0 1.2rem}' +
         '.lobby-picks [data-member-rails="manager"],.lobby-picks [data-member-rails="staff"],.lobby-picks [data-member-rails="yesterday"]{width:100%!important;max-width:none!important;display:block!important}' +
-        '.lobby-picks [data-member-rails] .flex{width:100%!important;max-width:100%!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;overflow:visible!important;flex-wrap:nowrap!important;padding:1.2rem 1.2rem 2rem!important;gap:1.75rem!important;touch-action:pan-y!important;scrollbar-width:none}' +
+        '.lobby-picks [data-member-rails] .flex{width:100%!important;max-width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:repeat(2,10rem)!important;justify-content:center!important;align-items:start!important;overflow:visible!important;flex-wrap:unset!important;padding:.4rem .2rem 1.2rem!important;gap:1.45rem .9rem!important;touch-action:pan-y!important;scrollbar-width:none}' +
         '.lobby-picks{min-width:0!important;max-width:100%!important;overflow:visible!important}' +
         'main section .overflow-x-auto{display:grid!important;grid-template-columns:1fr 1fr!important;overflow:visible!important;gap:2.2rem 0.9rem!important;padding:2rem 0.85rem 1.4rem!important;overscroll-behavior:auto!important;width:100%!important}' +
         'main section .overflow-x-auto>.tape-slot,main section .overflow-x-auto>article{width:100%!important;max-width:none!important;flex:none!important;min-width:0!important}' +
-        '.lobby-picks article,.lobby-picks a.tape-slot,.lobby-picks a.lobby-tape-link{width:min(17rem,74vw)!important;max-width:17rem!important;flex:0 0 auto!important;pointer-events:auto!important;display:block!important}' +
+        '.lobby-picks article,.lobby-picks a.tape-slot,.lobby-picks a.lobby-tape-link{width:10rem!important;max-width:10rem!important;flex:none!important;pointer-events:auto!important;display:block!important}' +
         '.lobby-picks .tape-slot-open{width:100%!important;max-width:none!important;flex:none!important;pointer-events:auto!important;touch-action:manipulation!important}' +
         '.lobby-picks .vhs-box{--vhs-yaw:18deg;--vhs-pitch:7deg}' +
         '.lobby-picks .vhs-flip{width:100%!important;height:auto!important;aspect-ratio:4/7!important;transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg))!important;transform-style:preserve-3d!important;transform-origin:50% 8%}' +
@@ -9063,16 +9063,16 @@
         (copy ? '<p class="mt-1 text-sm text-muted">' + copy + "</p>" : "") +
         "</div>";
       const row = document.createElement("div");
-      row.className = "flex flex-col items-center gap-8 overflow-visible pt-4 pb-8";
-      row.style.cssText = "display:flex;flex-direction:column;align-items:center;flex-wrap:nowrap;overflow:visible;width:100%;max-width:100%;padding:1.2rem 1.2rem 2rem;gap:1.75rem;touch-action:pan-y";
+      row.className = "grid justify-items-center";
+      row.style.cssText = "display:grid;grid-template-columns:repeat(2,10rem);justify-content:center;align-items:start;width:100%;max-width:100%;padding:.4rem .2rem 1.2rem;gap:1.45rem .9rem;touch-action:pan-y";
       films.forEach((n) => {
         if (!n || !n.cloneNode) return;
         const slug = slotSlug(n);
         const clone = n.cloneNode(true);
         clone.removeAttribute("hidden");
         clone.style.removeProperty("display");
-        clone.style.setProperty("width", "min(17rem, 74vw)", "important");
-        clone.style.setProperty("max-width", "17rem", "important");
+        clone.style.setProperty("width", "10rem", "important");
+        clone.style.setProperty("max-width", "10rem", "important");
         clone.style.setProperty("flex", "0 0 auto", "important");
         clone.style.setProperty("pointer-events", "auto", "important");
         clone.querySelectorAll("[hidden]").forEach((el) => {
