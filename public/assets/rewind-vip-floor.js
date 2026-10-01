@@ -12293,10 +12293,10 @@
       lock(box.querySelector(".vhs-case-back"), "padding", "0");
       lock(box.querySelector(".vhs-case-back"), "inset", "0");
       lock(still, "position", "relative");
-      lock(still, "flex", "0 0 36%");
-      lock(still, "height", "36%");
-      lock(still, "min-height", "36%");
-      lock(still, "max-height", "36%");
+      lock(still, "flex", "0 0 44%");
+      lock(still, "height", "44%");
+      lock(still, "min-height", "44%");
+      lock(still, "max-height", "44%");
       lock(still, "width", "100%");
       lock(still, "max-width", "none");
       lock(still, "left", "0");
