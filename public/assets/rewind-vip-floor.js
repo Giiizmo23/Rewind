@@ -10238,7 +10238,7 @@
       }
     });
     const deck = overlay.querySelector(".drop-deck");
-    let sign = overlay.querySelector(".nd-neon-sign[data-built='wire']");
+    let sign = overlay.querySelector(".nd-neon-sign[data-built='clean']");
     if (sign) {
       if (deck && sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
       ensureArtNeonCss();
@@ -10247,14 +10247,14 @@
     document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());
     sign = document.createElement("div");
     sign.className = "nd-neon-sign";
-    sign.setAttribute("data-built", "wire");
+    sign.setAttribute("data-built", "clean");
     sign.setAttribute("aria-hidden", "true");
     sign.innerHTML =
       '<span class="nd-neon-stack">' +
-      '<img class="nd-piece nd-glass nd-g-night" src="/assets/nd-glass-night.png?v=1" alt="">' +
-      '<img class="nd-piece nd-glass nd-g-drop" src="/assets/nd-glass-drop.png?v=1" alt="">' +
-      '<img class="nd-piece nd-glass nd-g-script" src="/assets/nd-glass-script.png?v=1" alt="">' +
-      '<img class="nd-piece nd-glass nd-g-tape" src="/assets/nd-glass-tape.png?v=1" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-night" src="/assets/nd-glass-night.png?v=2" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-drop" src="/assets/nd-glass-drop.png?v=2" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-script" src="/assets/nd-glass-script.png?v=2" alt="">' +
+      '<img class="nd-piece nd-glass nd-g-tape" src="/assets/nd-glass-tape.png?v=2" alt="">' +
       '<img class="nd-piece nd-bloom nd-b-night" src="/assets/nd-lit-night.png?v=1" alt="">' +
       '<img class="nd-piece nd-bloom nd-b-drop" src="/assets/nd-lit-drop.png?v=1" alt="">' +
       '<img class="nd-piece nd-bloom nd-b-script" src="/assets/nd-lit-script.png?v=1" alt="">' +
@@ -10310,7 +10310,7 @@
       "html[data-drop='1'] .nd-piece{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;object-fit:fill!important;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important}" +
       "html[data-drop='1'] .nd-glass{opacity:1;filter:none!important;-webkit-filter:none!important}" +
       "html[data-drop='1'] .nd-lamp{opacity:0;filter:brightness(1.2) saturate(1.28)!important;-webkit-filter:brightness(1.2) saturate(1.28)!important}" +
-      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(8px) brightness(2) saturate(1.5)!important;-webkit-filter:blur(8px) brightness(2) saturate(1.5)!important}" +
+      "html[data-drop='1'] .nd-bloom{opacity:0;filter:blur(4px) brightness(1.45) saturate(1.35)!important;-webkit-filter:blur(4px) brightness(1.45) saturate(1.35)!important}" +
       "html[data-drop='1'] .drop-deck>.nd-neon-sign{opacity:1!important;background:transparent!important;box-shadow:none!important;filter:none!important;-webkit-filter:none!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-night,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-night{animation:nd-strike 1.55s linear forwards}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-night{animation:nd-glass 1.55s linear forwards}" +
@@ -10320,11 +10320,12 @@
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-script{animation:nd-glass 1.45s linear .38s forwards}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-l-tape,html[data-drop='1'] .nd-neon-sign.is-lit .nd-b-tape{animation:nd-strike 1.35s linear .58s forwards}" +
       "html[data-drop='1'] .nd-neon-sign.is-lit .nd-g-tape{animation:nd-glass 1.35s linear .58s forwards}" +
-      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp,html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:1!important;animation:none!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-lamp{opacity:1!important;animation:none!important}" +
+      "html[data-drop='1'] .nd-neon-sign.is-steady .nd-bloom{opacity:.42!important;animation:none!important}" +
       "html[data-drop='1'] .nd-neon-sign.is-steady .nd-glass{opacity:0!important;animation:none!important}" +
       "@keyframes nd-strike{0%,5%{opacity:0}6%,12%{opacity:1}13%,20%{opacity:0}21%,27%{opacity:1}28%,36%{opacity:0}37%,41%{opacity:.4}42%,49%{opacity:0}50%,58%{opacity:1}59%,64%{opacity:0}65%,74%{opacity:1}75%,78%{opacity:.25}79%,100%{opacity:1}}" +
       "@keyframes nd-glass{0%,5%{opacity:1}6%,12%{opacity:0}13%,20%{opacity:1}21%,27%{opacity:0}28%,36%{opacity:1}37%,41%{opacity:.55}42%,49%{opacity:1}50%,58%{opacity:0}59%,64%{opacity:1}65%,74%{opacity:0}75%,78%{opacity:.7}79%,100%{opacity:0}}" +
-      "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(31svh,14.6rem)!important;min-height:min(31svh,14.6rem)!important;max-height:min(31svh,14.6rem)!important}";
+      "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(30svh,14.2rem)!important;min-height:min(30svh,14.2rem)!important;max-height:min(30svh,14.2rem)!important}";
     document.head.appendChild(s);
   }
   function placeOpenNeon(sign) {
@@ -10350,7 +10351,7 @@
       "html[data-drop='1'] .nd-neon-open{width:100%!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}" +
       "html[data-drop='1'] .nd-neon-open:before,html[data-drop='1'] .nd-neon-sign .nd-neon-rivet{display:none!important}" +
       "html[data-drop='1'] .nd-neon-open .nd-neon-svg{display:block!important;width:100%!important;height:auto!important;max-height:min(24svh,10.2rem)!important;margin:0 auto!important;overflow:visible!important;filter:drop-shadow(0 0 8px rgba(70,170,255,.45)) drop-shadow(0 0 14px rgba(255,50,150,.35))}" +
-      "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(34svh,16.2rem)!important;min-height:min(34svh,16.2rem)!important;max-height:min(34svh,16.2rem)!important}" +
+      "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(30svh,14.2rem)!important;min-height:min(30svh,14.2rem)!important;max-height:min(30svh,14.2rem)!important}" +
       "@media (prefers-reduced-motion:reduce){.nd-word-night,.nd-word-drop,.nd-word-script,.nd-tape,.nd-moon{animation:none!important}}";
     document.head.appendChild(s);
   }
