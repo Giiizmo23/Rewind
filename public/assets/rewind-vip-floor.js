@@ -12426,6 +12426,7 @@
         el.style.setProperty("width", "100%", "important");
         el.style.setProperty("text-align", "center", "important");
         el.style.setProperty("color", "#e8a050", "important");
+        el.style.setProperty("font-size", "5.2px", "important");
       });
     });
   }
