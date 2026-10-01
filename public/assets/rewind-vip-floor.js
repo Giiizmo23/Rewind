@@ -10238,7 +10238,7 @@
       }
     });
     const deck = overlay.querySelector(".drop-deck");
-    let sign = overlay.querySelector(".nd-neon-sign[data-built='light']");
+    let sign = overlay.querySelector(".nd-neon-sign[data-built='sign']");
     if (sign) {
       if (deck && sign.parentNode !== deck) deck.insertBefore(sign, deck.firstChild);
       ensureArtNeonCss();
@@ -10247,9 +10247,9 @@
     document.querySelectorAll(".nd-neon-sign").forEach((n) => n.remove());
     sign = document.createElement("div");
     sign.className = "nd-neon-sign";
-    sign.setAttribute("data-built", "light");
+    sign.setAttribute("data-built", "sign");
     sign.setAttribute("aria-hidden", "true");
-    sign.innerHTML = '<img class="nd-neon-light nd-neon-far" src="/assets/nd-neon.png?v=16" alt=""><img class="nd-neon-light nd-neon-near" src="/assets/nd-neon.png?v=16" alt=""><img class="nd-neon-art" src="/assets/nd-neon.png?v=16" alt="">';
+    sign.innerHTML = '<div class="nd-neon-can"><i class="nd-neon-rivet tl"></i><i class="nd-neon-rivet tr"></i><i class="nd-neon-rivet bl"></i><i class="nd-neon-rivet br"></i><img class="nd-neon-glow" src="/assets/nd-neon.png?v=17" alt=""><img class="nd-neon-art" src="/assets/nd-neon.png?v=17" alt=""></div>';
     if (deck) deck.insertBefore(sign, deck.firstChild);
     else overlay.insertBefore(sign, overlay.firstChild);
     ensureArtNeonCss();
@@ -10261,15 +10261,17 @@
     s.id = "nd-art-neon";
     s.textContent =
       "html[data-drop='1'],html[data-drop='1'] body,html[data-drop='1'] .store-bg,html[data-drop='1'] #nd-overlay{background:#07060a!important;background-image:none!important;background-color:#07060a!important}" +
-      "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;align-items:center!important;width:100%!important;max-width:none!important;margin:0 auto .15rem!important;padding:0!important;background:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:translateY(-2rem)!important;overflow:visible!important}" +
-      "html[data-drop='1'] .nd-neon-art{position:relative!important;z-index:2!important;display:block!important;height:min(32svh,15rem)!important;width:auto!important;max-width:96%!important;object-fit:contain!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;mix-blend-mode:normal!important;animation:nd-sign-core 4.4s ease-in-out infinite!important}" +
-      "html[data-drop='1'] .nd-neon-light{position:absolute!important;left:50%!important;top:50%!important;z-index:1!important;height:min(32svh,15rem)!important;width:auto!important;max-width:none!important;object-fit:contain!important;pointer-events:none!important;background:none!important;border:0!important;box-shadow:none!important;mix-blend-mode:screen!important}" +
-      "html[data-drop='1'] .nd-neon-far{transform:translate(-50%,-50%) scale(1.08)!important;opacity:1!important;animation:nd-sign-far 4.4s ease-in-out infinite!important}" +
-      "html[data-drop='1'] .nd-neon-near{transform:translate(-50%,-50%)!important;opacity:1!important;animation:nd-sign-near 4.4s ease-in-out infinite!important}" +
+      "html[data-drop='1'] .drop-deck>.nd-neon-sign{order:0!important;position:relative!important;z-index:8!important;flex:0 0 auto!important;display:flex!important;justify-content:center!important;width:100%!important;max-width:none!important;margin:.2rem auto .35rem!important;padding:0!important;background:none!important;filter:none!important;-webkit-filter:none!important;pointer-events:none!important;transform:none!important;overflow:visible!important}" +
+      "html[data-drop='1'] .nd-neon-can{position:relative!important;width:min(88vw,18.4rem)!important;max-width:88vw!important;padding:.72rem .62rem .66rem!important;border-radius:.9rem!important;background:linear-gradient(180deg,#4a403c 0%,#241c1a 7%,#141110 42%,#0c0a09 100%)!important;border:1px solid #6a5c54!important;box-shadow:inset 0 1px 0 rgba(255,228,206,.35),inset 0 -5px 0 #050403,0 14px 26px rgba(0,0,0,.55)!important;overflow:visible!important}" +
+      "html[data-drop='1'] .nd-neon-can:before{content:''!important;position:absolute!important;inset:8px!important;border-radius:.62rem!important;z-index:0!important;background:radial-gradient(ellipse at 50% 42%,rgba(86,24,48,.5) 0%,#110e12 70%)!important;box-shadow:inset 0 0 22px #000,inset 0 0 36px rgba(255,40,130,.14)!important;pointer-events:none!important}" +
+      "html[data-drop='1'] .nd-neon-rivet{position:absolute!important;width:7px!important;height:7px!important;border-radius:50%!important;z-index:4!important;background:radial-gradient(circle at 35% 30%,#e6d2b4,#6e5a44 55%,#241c14)!important;box-shadow:0 .5px 0 #fff6,0 1px 1px #000!important}" +
+      "html[data-drop='1'] .nd-neon-rivet.tl{top:8px!important;left:9px!important}html[data-drop='1'] .nd-neon-rivet.tr{top:8px!important;right:9px!important}html[data-drop='1'] .nd-neon-rivet.bl{bottom:8px!important;left:9px!important}html[data-drop='1'] .nd-neon-rivet.br{bottom:8px!important;right:9px!important}" +
+      "html[data-drop='1'] .nd-neon-art,html[data-drop='1'] .nd-neon-glow{display:block!important;width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;background:transparent!important;border:0!important;box-shadow:none!important}" +
+      "html[data-drop='1'] .nd-neon-glow{position:absolute!important;left:.62rem!important;right:.62rem!important;top:.72rem!important;width:calc(100% - 1.24rem)!important;z-index:1!important;opacity:.5!important;mix-blend-mode:screen!important;pointer-events:none!important;animation:nd-sign-glow 9s ease-in-out infinite!important}" +
+      "html[data-drop='1'] .nd-neon-art{position:relative!important;z-index:2!important;mix-blend-mode:normal!important;animation:nd-sign-steady 9s ease-in-out infinite!important}" +
       "html[data-drop='1'] .drop-tape .relative.touch-none,html[data-drop='1'] .drop-tape .touch-none{height:min(31svh,14.6rem)!important;min-height:min(31svh,14.6rem)!important;max-height:min(31svh,14.6rem)!important}" +
-      "@keyframes nd-sign-core{0%,100%{filter:brightness(1.05);opacity:1}12%{filter:brightness(1.28);opacity:1}18%{filter:brightness(.38);opacity:.7}26%{filter:brightness(1.1);opacity:1}58%{filter:brightness(.88);opacity:.94}72%{filter:brightness(1.34);opacity:1}88%{filter:brightness(.5);opacity:.78}}" +
-      "@keyframes nd-sign-near{0%,100%{filter:blur(5px) brightness(1.15)}12%{filter:blur(4px) brightness(1.5)}18%{filter:blur(8px) brightness(.4);opacity:.35}26%{filter:blur(5px) brightness(1.2);opacity:1}58%{filter:blur(5px) brightness(.85)}72%{filter:blur(4px) brightness(1.55)}88%{filter:blur(7px) brightness(.55);opacity:.45}}" +
-      "@keyframes nd-sign-far{0%,100%{filter:blur(18px) brightness(1.2);opacity:.9}12%{filter:blur(14px) brightness(1.6);opacity:1}18%{filter:blur(24px) brightness(.45);opacity:.25}26%{filter:blur(18px) brightness(1.25);opacity:.95}58%{filter:blur(18px) brightness(.8);opacity:.7}72%{filter:blur(14px) brightness(1.7);opacity:1}88%{filter:blur(22px) brightness(.55);opacity:.4}}";
+      "@keyframes nd-sign-steady{0%,70%,100%{filter:drop-shadow(0 2px 1px rgba(0,0,0,.75)) brightness(1)}40%{filter:drop-shadow(0 2px 1px rgba(0,0,0,.75)) brightness(1.05)}82%{filter:drop-shadow(0 2px 1px rgba(0,0,0,.75)) brightness(1)}83.1%{filter:drop-shadow(0 2px 1px rgba(0,0,0,.75)) brightness(.72)}84.4%{filter:drop-shadow(0 2px 1px rgba(0,0,0,.75)) brightness(1)}}" +
+      "@keyframes nd-sign-glow{0%,70%,100%{filter:blur(9px) brightness(1);opacity:.48}40%{filter:blur(9px) brightness(1.08);opacity:.58}82%{filter:blur(9px) brightness(1);opacity:.48}83.1%{filter:blur(9px) brightness(.6);opacity:.2}84.4%{filter:blur(9px) brightness(1);opacity:.5}}";
     document.head.appendChild(s);
   }
   function placeOpenNeon(sign) {
