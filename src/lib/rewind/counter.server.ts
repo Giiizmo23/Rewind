@@ -1,3 +1,4 @@
+import { del, get, list, put } from "@vercel/blob";
 import catalogRaw from "../../../public/data/catalog.json?raw";
 import { createHash, randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
@@ -738,7 +739,7 @@ async function sealOutstanding(sql: Sql): Promise<void> {
         `select m.handle, coalesce(m.locker, '{}'::jsonb) as locker
          from rewind_members m
          where not exists (
-           select 1 from rewind_vault_done d where d.handle = m.handle and d.authed and d.rev >= 2
+           select 1 from rewind_vault_done d where d.handle = m.handle and d.authed and d.rev >= 3
          )
          limit 1`,
       );
@@ -749,7 +750,7 @@ async function sealOutstanding(sql: Sql): Promise<void> {
       }
       if (!lockerBlank(row.locker)) await pushVault(sql, row.handle, row.locker);
       await sql.query(
-        "insert into rewind_vault_done (handle, authed, rev) values ($1, true, 2) on conflict (handle) do update set authed = true, rev = 2",
+        "insert into rewind_vault_done (handle, authed, rev) values ($1, true, 3) on conflict (handle) do update set authed = true, rev = 3",
         [row.handle],
       );
     }
@@ -1207,8 +1208,16 @@ function mergeLocker(prev: Locker, next: Locker): Locker {
 
 const VAULT_REPO = "Giiizmo23/rewind-locker-vault";
 
-function vaultToken(): string {
+function blobToken(): string {
+  return String(process.env.BLOB_READ_WRITE_TOKEN || "").trim();
+}
+
+function githubToken(): string {
   return String(process.env.REWIND_BACKUP_TOKEN || "").trim();
+}
+
+function vaultToken(): string {
+  return blobToken() || githubToken();
 }
 
 function vaultPath(handle: string): string {
@@ -1261,12 +1270,12 @@ function vaultBody(handle: string, locker: Locker, auth?: VaultAuth, social?: Va
     got: fullSocial.got.slice(-80),
   };
   let body = vaultPack(handle, locker, auth, fullSocial, false);
-  if (body.length < 900_000) return body;
+  if (body.length < 4_000_000) return body;
   body = vaultPack(handle, locker, auth, trimmed, false);
-  if (body.length < 900_000) return body;
+  if (body.length < 4_000_000) return body;
   const pictures: Locker = { ...locker, banner: "", avatar: "" };
   body = vaultPack(handle, pictures, auth, trimmed, true);
-  if (body.length < 900_000) return body;
+  if (body.length < 4_000_000) return body;
   return vaultPack(
     handle,
     pictures,
@@ -1277,30 +1286,18 @@ function vaultBody(handle: string, locker: Locker, auth?: VaultAuth, social?: Va
 }
 
 async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth, social?: VaultSocial): Promise<void> {
-  const token = vaultToken();
+  const token = blobToken();
   const friends = social || emptySocial();
   const hasSocial = friends.following.length + friends.followers.length + friends.gates.length + friends.sent.length + friends.got.length > 0;
   if (!token || (lockerBlank(locker) && !hasSocial)) return;
-  const path = vaultPath(handle);
-  const headers = vaultHeaders(token);
-  let sha = "";
-  const current = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/" + path, { headers });
-  if (current.ok) {
-    const file = (await current.json()) as { sha?: string };
-    sha = file.sha || "";
-  }
-  const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/" + path, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify({
-      message: "Save " + handle,
-      content: Buffer.from(vaultBody(handle, locker, auth, social)).toString("base64"),
-      ...(sha ? { sha } : {}),
-    }),
+  await put(vaultPath(handle), vaultBody(handle, locker, auth, social), {
+    access: "private",
+    token,
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: "application/json",
+    cacheControlMaxAge: 60,
   });
-  if (!res.ok) {
-    throw new Error("vault " + res.status);
-  }
 }
 
 async function pushVault(sql: Sql, handle: string, locker: Locker): Promise<void> {
@@ -1390,25 +1387,19 @@ async function listVaultNames(): Promise<string[]> {
   const now = Date.now();
   if (vaultListMem.__rwVaultNames && now - vaultListMem.__rwVaultNames.at < 60_000) return vaultListMem.__rwVaultNames.names;
   if (vaultListMem.__rwVaultNamesFlight) return vaultListMem.__rwVaultNamesFlight;
-  const token = vaultToken();
+  const token = blobToken();
   if (!token) return [];
   const flight = (async () => {
-    const headers = vaultHeaders(token);
-    const repoRes = await fetch("https://api.github.com/repos/" + VAULT_REPO, { headers });
-    if (!repoRes.ok) throw new Error("vault repo " + repoRes.status);
-    const repo = (await repoRes.json()) as { default_branch?: string };
-    const branch = repo.default_branch || "main";
-    const refRes = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/git/ref/heads/" + branch, { headers });
-    if (!refRes.ok) throw new Error("vault ref " + refRes.status);
-    const ref = (await refRes.json()) as { object?: { sha?: string } };
-    const sha = ref.object?.sha || "";
-    if (!sha) throw new Error("vault ref");
-    const treeRes = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/git/trees/" + sha + "?recursive=1", { headers });
-    if (!treeRes.ok) throw new Error("vault tree " + treeRes.status);
-    const tree = (await treeRes.json()) as { tree?: Array<{ path?: string; type?: string }> };
-    const names = (tree.tree || [])
-      .filter((row) => row.type === "blob" && typeof row.path === "string" && row.path.startsWith("cards/") && row.path.endsWith(".json"))
-      .map((row) => (row.path as string).slice("cards/".length));
+    const names: string[] = [];
+    let cursor: string | undefined;
+    do {
+      const page = await list({ token, prefix: "cards/", cursor, limit: 1000 });
+      for (const blob of page.blobs) {
+        const path = blob.pathname.startsWith("cards/") ? blob.pathname.slice("cards/".length) : blob.pathname;
+        if (path.endsWith(".json")) names.push(path);
+      }
+      cursor = page.hasMore ? page.cursor : undefined;
+    } while (cursor);
     vaultListMem.__rwVaultNames = { at: Date.now(), names };
     return names;
   })().finally(() => {
@@ -1419,14 +1410,39 @@ async function listVaultNames(): Promise<string[]> {
 }
 
 async function readVaultByName(name: string): Promise<VaultCard | null> {
-  const token = vaultToken();
+  const text = (await readBlobCard(name)) || (await readGithubCard(name));
+  if (!text) return null;
+  try {
+    return parseVaultCard(name, text);
+  } catch {
+    return null;
+  }
+}
+
+async function readBlobCard(name: string): Promise<string | null> {
+  const token = blobToken();
+  if (!token) return null;
+  try {
+    const result = await get("cards/" + name, { access: "private", token, useCache: false });
+    if (!result || result.statusCode !== 200 || !result.stream) return null;
+    return await new Response(result.stream).text();
+  } catch {
+    return null;
+  }
+}
+
+async function readGithubCard(name: string): Promise<string | null> {
+  const token = githubToken();
   if (!token) return null;
   const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/cards/" + encodeURIComponent(name), {
     headers: vaultHeaders(token),
   });
   if (!res.ok) return null;
   const file = (await res.json()) as { content?: string };
-  const text = Buffer.from(String(file.content || "").replace(/\n/g, ""), "base64").toString("utf8");
+  return Buffer.from(String(file.content || "").replace(/\n/g, ""), "base64").toString("utf8");
+}
+
+function parseVaultCard(name: string, text: string): VaultCard | null {
   const parsed = JSON.parse(text) as {
     handle?: string;
     name?: string;
@@ -1591,7 +1607,15 @@ function reviveVault(sql: Sql): void {
 }
 
 async function deleteVault(handle: string): Promise<void> {
-  const token = vaultToken();
+  const blob = blobToken();
+  if (blob) {
+    try {
+      await del(vaultPath(handle), { token: blob });
+    } catch {
+      /* already gone */
+    }
+  }
+  const token = githubToken();
   if (!token) return;
   const headers = vaultHeaders(token);
   const current = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/" + vaultPath(handle), { headers });
