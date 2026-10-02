@@ -799,12 +799,12 @@
         'html body .lobby-picks .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
         'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=6")!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}' +
         'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important;object-fit:contain!important;object-position:center center!important}' +
-        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:1 1 0%!important;height:auto!important;min-height:0!important;max-height:36%!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
+        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:1 1 0%!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
         'html body .lobby-picks .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}' +
         'html body .vhs-box[data-slug="halloween-1978"] .vhs-back-still img{object-position:center center!important;object-fit:contain!important}' +
         'html body .lobby-picks .vhs-back-copy{flex:0 0 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding:.16rem .36rem .42rem!important;gap:.06rem!important}' +
-        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding:.1rem .3rem .16rem!important;gap:.02rem!important}' +
+        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-copy{flex:0 0 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding:.1rem .3rem .14rem!important;gap:.02rem!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-lede{flex:0 1 auto!important;min-height:0!important;overflow:hidden!important}' +
         'html body main .grid.grid-cols-2>.tape-slot .vhs-back-end{flex:0 0 auto!important;margin-top:0!important}' +
         '.lobby-picks .vhs-back-lede,.vhs-box .vhs-back-lede{flex:0 0 auto!important;min-height:0!important;overflow:visible!important}' +
@@ -7733,9 +7733,9 @@
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-box{width:90%!important;max-width:168px!important;height:calc(var(--shelf-row) - 4.8rem)!important;max-height:calc(var(--shelf-row) - 4.8rem)!important;min-height:0!important;margin:0 auto!important;flex:0 1 auto!important;filter:drop-shadow(0 5px 3px rgba(40,32,24,.35))!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip,html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip-card{height:100%!important;max-height:none!important;width:100%!important;aspect-ratio:auto!important}" +
         "html body main .tape-slot .vhs-box .vhs-face-back,html body main .tape-slot .vhs-box .vhs-case-back,html body main .tape-slot .vhs-box .vhs-shell-back{display:flex!important;flex-direction:column!important;height:100%!important;overflow:hidden!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-still{flex:1 1 0%!important;height:auto!important;min-height:0!important;max-height:36%!important;position:relative!important;overflow:hidden!important;background:#120e0c!important}" +
+        "html body main .tape-slot .vhs-box .vhs-back-still{flex:1 1 0%!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#120e0c!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;justify-content:flex-start!important;display:flex!important;flex-direction:column!important;padding:.1rem .3rem .16rem!important}" +
+        "html body main .tape-slot .vhs-box .vhs-back-copy{flex:0 0 auto!important;min-height:0!important;overflow:hidden!important;justify-content:flex-start!important;display:flex!important;flex-direction:column!important;padding:.1rem .3rem .14rem!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-lede{flex:0 1 auto!important;min-height:0!important;overflow:hidden!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-end{flex:0 0 auto!important;margin-top:0!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-syn{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:hidden!important;max-height:none!important;font-size:.4rem!important;line-height:1.2!important}" +
@@ -12819,8 +12819,8 @@
         still.style.setProperty("flex", "1 1 0%", "important");
         still.style.setProperty("height", "auto", "important");
         still.style.setProperty("min-height", "0", "important");
-        still.style.setProperty("max-height", "36%", "important");
-        copy.style.setProperty("flex", "1 1 auto", "important");
+        still.style.setProperty("max-height", "none", "important");
+        copy.style.setProperty("flex", "0 0 auto", "important");
         copy.style.setProperty("min-height", "0", "important");
         copy.style.setProperty("overflow", "hidden", "important");
         copy.style.setProperty("justify-content", "flex-start", "important");
@@ -12943,7 +12943,7 @@
         still.style.setProperty("background-color", "#14110e", "important");
       }
       if (small && onShelf) {
-        copy.style.setProperty("flex", "1 1 auto", "important");
+        copy.style.setProperty("flex", "0 0 auto", "important");
         copy.style.setProperty("min-height", "0", "important");
         copy.style.setProperty("overflow", "hidden", "important");
         copy.style.setProperty("justify-content", "flex-start", "important");
