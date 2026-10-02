@@ -12820,14 +12820,14 @@
         copy.style.setProperty("min-height", "0", "important");
         copy.style.setProperty("overflow", "hidden", "important");
         copy.style.setProperty("justify-content", "flex-start", "important");
-        var syn = copy.querySelector(".vhs-back-syn");
-        if (syn) {
-          syn.style.setProperty("font-size", ".3rem", "important");
-          syn.style.setProperty("line-height", "1.15", "important");
-          syn.style.setProperty("overflow", "hidden", "important");
-          syn.style.setProperty("display", "-webkit-box", "important");
-          syn.style.setProperty("-webkit-box-orient", "vertical", "important");
-          syn.style.setProperty("-webkit-line-clamp", "4", "important");
+        var shelfSyn = copy.querySelector(".vhs-back-syn");
+        if (shelfSyn) {
+          shelfSyn.style.setProperty("font-size", ".3rem", "important");
+          shelfSyn.style.setProperty("line-height", "1.15", "important");
+          shelfSyn.style.setProperty("overflow", "hidden", "important");
+          shelfSyn.style.setProperty("display", "-webkit-box", "important");
+          shelfSyn.style.setProperty("-webkit-box-orient", "vertical", "important");
+          shelfSyn.style.setProperty("-webkit-line-clamp", "4", "important");
         }
         var foot = copy.querySelector(".vhs-back-foot");
         if (foot) {
