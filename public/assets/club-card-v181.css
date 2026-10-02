@@ -4534,8 +4534,8 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   background-color: #f6f4ef !important;
   background-image: url(/assets/shelf/post-left.jpg?v=16), url(/assets/shelf/post-right.jpg?v=16), url(/assets/shelf/lip.png?v=17) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
-  background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
-  background-position: left 6rem, right 6rem, left top !important;
+  background-size: 22px calc(100% - 7.5rem), 22px calc(100% - 7.5rem), 100% var(--shelf-row) !important;
+  background-position: left 7.5rem, right 7.5rem, left top !important;
   background-origin: border-box !important;
   background-clip: border-box !important;
   box-shadow: 0 16px 22px rgba(26, 20, 16, 0.16) !important;
@@ -4580,7 +4580,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
+  background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(8.15rem + 8px), #8f8880 calc(8.15rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
   background-size: 100% 100% !important;
   background-position: left top !important;
   background-repeat: no-repeat !important;
@@ -4594,7 +4594,7 @@ html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .
 html[data-theme="night"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
 html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
+  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(8.15rem + 8px), #8f8880 calc(8.15rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
 }
 html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title,
 html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title {
