@@ -7717,8 +7717,8 @@
         "@media(min-width:640px){html body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:19rem;grid-template-columns:repeat(4,minmax(0,1fr))!important}}" +
         "@media(min-width:1024px){html body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:18rem;grid-template-columns:repeat(5,minmax(0,1fr))!important}}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot{height:var(--shelf-row)!important;min-height:0!important;max-height:var(--shelf-row)!important;margin:0!important;padding:.15rem .4rem 14px!important;background-color:transparent!important;background-image:linear-gradient(to bottom,#8f8880 0,#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-repeat:no-repeat!important;background-size:100% 100%!important;background-position:left top!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:center!important;overflow:hidden!important;position:relative!important}" +
-        "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2){background-color:transparent!important;background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-size:100% 100%!important;background-position:left top!important;background-repeat:no-repeat!important}" +
-        "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2){background-color:transparent!important;background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
+        "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-color:transparent!important;background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-size:100% 100%!important;background-position:left top!important;background-repeat:no-repeat!important}" +
+        "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-color:transparent!important;background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-title,html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-title{color:#f3efe6!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-meta,html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-meta{color:#c8c2b8!important}" +
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot::before,html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot::after{content:none!important;display:none!important;height:0!important;width:0!important;flex:none!important;margin:0!important;background:none!important;box-shadow:none!important}" +
@@ -8867,6 +8867,18 @@
         if (!slug) return;
         if (seen[slug]) hideCard(art);
         else seen[slug] = 1;
+      });
+      document.querySelectorAll("main .grid.grid-cols-2").forEach((grid) => {
+        const shown = [];
+        Array.from(grid.children).forEach((el) => {
+          if (!el.classList || !el.classList.contains("tape-slot")) return;
+          if (el.hasAttribute("hidden") || el.getAttribute("data-dup-hid") === "1" || el.style.display === "none") return;
+          shown.push(el);
+        });
+        shown.forEach((el, i) => {
+          if (i < 2) el.setAttribute("data-shelf-top", "1");
+          else el.removeAttribute("data-shelf-top");
+        });
       });
     }
     revealTonight();

@@ -4575,7 +4575,9 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   position: relative !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
-html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) {
+html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
+html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
+html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
   background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
   background-size: 100% 100% !important;
@@ -4587,7 +4589,9 @@ html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .
   background-color: #0a0b0e !important;
 }
 html[data-theme="night"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
-html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) {
+html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
+html[data-theme="night"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
+html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
   background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
 }
