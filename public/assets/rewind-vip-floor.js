@@ -7816,12 +7816,9 @@
         if (slug === "goodfellas" || slug === "se7en") {
           cover.src = "/sleeves/" + slug + ".jpg?v=532";
         } else {
-          cover.src = "/sleeves/thumbs/" + slug + ".jpg?v=520";
-          cover.onerror = function () {
-            this.onerror = null;
-            this.src = "/sleeves/" + slug + ".jpg?v=520";
-          };
+          cover.src = "/sleeves/" + slug + ".jpg?v=496";
         }
+        cover.removeAttribute("srcset");
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         const file = slug === "back-to-the-future" ? "back-to-the-future" : slug;
@@ -12960,6 +12957,25 @@
   function fixOneSpine(box) {
     if (!box) return;
     var slug = box.getAttribute("data-slug") || "";
+    if (slug) {
+      box.setAttribute("data-paint", "1");
+      box.setAttribute("data-spine-logo", "1");
+      box.setAttribute("data-title", "none");
+      box.querySelectorAll(".vhs-window img").forEach(function (img) {
+        var src = img.getAttribute("src") || "";
+        if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
+        img.removeAttribute("srcset");
+        img.removeAttribute("sizes");
+        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
+        if (src.indexOf(want) < 0) img.src = want;
+      });
+      var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;
+      var spineVer = slug === "the-shining" ? "493" : slug === "goodfellas" || slug === "se7en" ? "532" : "484";
+      box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        var want = "/sleeves/spines/" + spineFile + ".png?v=" + spineVer;
+        if ((img.getAttribute("src") || "").indexOf(want) < 0) img.src = want;
+      });
+    }
     if (slug === "the-shining") {
       box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
         el.textContent = "RW-1980-05";
