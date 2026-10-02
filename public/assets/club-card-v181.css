@@ -3698,16 +3698,18 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
   margin:0!important;translate:none!important;transform:none!important;
   z-index:1!important;padding:0!important;border:0!important;filter:none!important;background:none!important;
 }
-.vhs-box[data-slug="back-to-the-future"] .vhs-spine{background-color:#152038!important;overflow:visible!important;}
+.vhs-box[data-slug="back-to-the-future"] .vhs-spine{background-color:#152038!important;overflow:hidden!important;}
+.lobby-picks .vhs-box[data-slug="back-to-the-future"] .vhs-spine-logo,
 .vhs-box[data-slug="back-to-the-future"][data-spine-logo="1"] .vhs-spine-logo,
 .vhs-box[data-slug="back-to-the-future"] .vhs-spine-logo{
   display:block!important;position:absolute!important;
   inset:auto!important;top:50%!important;left:50%!important;right:auto!important;bottom:auto!important;
   width:auto!important;height:auto!important;
-  max-width:86%!important;max-height:78%!important;
+  max-width:78%!important;max-height:62%!important;
   object-fit:contain!important;object-position:center center!important;
-  margin:0!important;translate:-50% -50%!important;transform:none!important;
-  z-index:1!important;padding:0!important;border:0!important;filter:none!important;background:none!important;
+  margin:0!important;translate:none!important;
+  transform:translate(-50%,-50%)!important;
+  z-index:1!important;padding:0!important;border:0!important;filter:none!important;background:transparent!important;
 }
 
 /* amelie / witch / la-la-land / moonlight — official poster boxes */
