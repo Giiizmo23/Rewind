@@ -4572,7 +4572,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   flex-direction: column !important;
   justify-content: flex-end !important;
   align-items: center !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   position: relative !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
@@ -4635,21 +4635,23 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-me
 }
 html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
-  width: 90% !important;
-  max-width: 168px !important;
-  height: calc(var(--shelf-row) - 4.8rem) !important;
-  max-height: calc(var(--shelf-row) - 4.8rem) !important;
+  width: 88% !important;
+  max-width: 146px !important;
+  height: auto !important;
+  max-height: none !important;
   min-height: 0 !important;
   margin: 0 auto !important;
-  flex: 0 1 auto !important;
+  flex: 0 0 auto !important;
   filter: drop-shadow(0 5px 3px rgba(40, 32, 24, 0.35)) !important;
 }
 html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card {
-  height: 100% !important;
+  height: auto !important;
+  max-height: none !important;
   width: 100% !important;
+  aspect-ratio: 4 / 7 !important;
 }
 
 .guest-cta,
