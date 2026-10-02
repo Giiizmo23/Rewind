@@ -1724,6 +1724,7 @@ html:not([data-drop="1"]) .store-bg::after {
 .vhs-box[data-slug="the-shining"][data-spine-logo="1"] .vhs-spine-logo{
   display:block!important;width:86%!important;max-width:86%!important;max-height:72%!important;
   height:auto!important;transform:none!important;opacity:1!important;filter:none!important;
+  background:transparent!important;background-color:transparent!important;box-shadow:none!important;
 }
 .vhs-box[data-slug="full-metal-jacket"][data-spine-logo="1"] .vhs-spine-logo{
   display:block!important;width:80%!important;max-width:80%!important;max-height:88%!important;
