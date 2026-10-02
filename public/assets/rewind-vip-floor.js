@@ -7824,7 +7824,7 @@
         }
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        const file = slug === "back-to-the-future" ? "back-to-the-future-b" : slug;
+        const file = slug === "back-to-the-future" ? "back-to-the-future" : slug;
         img.setAttribute("loading", "lazy");
         const spineVer = slug === "goodfellas" ? "532" : "520";
         img.src = "/sleeves/spines/" + file + ".png?v=" + spineVer;
@@ -8287,7 +8287,7 @@
       const runtime = film.runtime ? film.runtime + " min" : "";
       const sid = String(slug).replace(/[^a-z0-9]+/g, "");
       const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
-      const spineSrc = slug === "back-to-the-future" ? "/sleeves/spines/back-to-the-future-b.png?v=493" : "/sleeves/spines/" + slug + ".png?v=493";
+      const spineSrc = slug === "back-to-the-future" ? "/sleeves/spines/back-to-the-future.png?v=493" : "/sleeves/spines/" + slug + ".png?v=493";
       const spineInk =
         '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
         '<img class="vhs-spine-logo" src="' + spineSrc + '" alt="" draggable="false" decoding="async" onerror="this.style.display=\'none\'">' +
@@ -8925,7 +8925,7 @@
       const overview = String(film.overview || "").replace(/</g, "");
       const spineSrc =
         slug === "back-to-the-future"
-          ? "/sleeves/spines/back-to-the-future-b.png?v=482"
+          ? "/sleeves/spines/back-to-the-future.png?v=482"
           : "/sleeves/spines/" + slug + ".png?v=484";
       const titlePos = "none";
       const sticker =

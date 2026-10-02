@@ -295,7 +295,7 @@
     const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
     const spineSrc =
       slug === "back-to-the-future"
-        ? "/sleeves/spines/back-to-the-future-b.png?v=493"
+        ? "/sleeves/spines/back-to-the-future.png?v=493"
         : "/sleeves/spines/" + slug + ".png?v=493";
     const spineInk =
       '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
