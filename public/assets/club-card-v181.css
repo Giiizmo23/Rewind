@@ -5732,3 +5732,7 @@ html body .vhs-box[data-slug] .vhs-spine-right .vhs-spine-no{
   writing-mode:horizontal-tb!important;transform:rotate(180deg)!important;
   font-size:5.2px!important;letter-spacing:-0.02em!important;white-space:nowrap!important;color:#f3ead8!important;
 }
+.vhs-box[data-slug="se7en"] .vhs-sticker{
+  inset:8px auto auto 8px!important;top:8px!important;left:8px!important;
+  right:auto!important;bottom:auto!important;
+}

@@ -8931,6 +8931,8 @@
       const sticker =
         slug === "the-thing-1982"
           ? "bl"
+          : slug === "se7en"
+          ? "tl"
           : slug === "halloween-1978" || slug === "the-shining"
           ? "tr"
           : slug === "first-blood" || slug === "alien"
@@ -12838,6 +12840,13 @@
       if (slug === "se7en") {
         img.style.setProperty("object-position", "center 62%", "important");
         still.style.setProperty("background-position", "center 62%", "important");
+        box.querySelectorAll(".vhs-sticker").forEach(function (st) {
+          st.style.setProperty("inset", "8px auto auto 8px", "important");
+          st.style.setProperty("top", "8px", "important");
+          st.style.setProperty("left", "8px", "important");
+          st.style.setProperty("right", "auto", "important");
+          st.style.setProperty("bottom", "auto", "important");
+        });
       }
       if (slug === "goodfellas") {
         img.style.setProperty("object-position", "center 42%", "important");
