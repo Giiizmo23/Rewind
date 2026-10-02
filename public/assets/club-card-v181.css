@@ -4651,15 +4651,6 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   width: 100% !important;
   aspect-ratio: 4 / 7 !important;
 }
-html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-window,
-html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-window {
-  background: #0c0c0c !important;
-}
-html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-window img,
-html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-window img {
-  object-fit: contain !important;
-  object-position: center center !important;
-}
 
 .guest-cta,
 main [data-club-tour],

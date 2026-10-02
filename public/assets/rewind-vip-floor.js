@@ -12684,9 +12684,8 @@
         img.removeAttribute("srcset");
         img.src = "/sleeves/halloween-1978.jpg?v=487";
       }
-      var onShelf = !!img.closest("main .grid.grid-cols-2");
-      img.style.setProperty("object-fit", onShelf ? "contain" : "cover", "important");
-      img.style.setProperty("object-position", onShelf ? "center center" : "center bottom", "important");
+      img.style.setProperty("object-fit", "cover", "important");
+      img.style.setProperty("object-position", "center bottom", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-logo').forEach(function (img) {
       var src = img.getAttribute("src") || "";
@@ -12970,10 +12969,6 @@
         img.removeAttribute("sizes");
         var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
         if (src.indexOf(want) < 0) img.src = want;
-        if (box.closest("main .grid.grid-cols-2")) {
-          img.style.setProperty("object-fit", "contain", "important");
-          img.style.setProperty("object-position", "center center", "important");
-        }
       });
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;
       var spineVer = slug === "the-shining" ? "493" : slug === "goodfellas" || slug === "se7en" ? "532" : "484";
