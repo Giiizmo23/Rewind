@@ -818,6 +818,7 @@
         '.vhs-sticker-type{fill:var(--rw-primary,#c41230);font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:10.4px!important;font-weight:900;letter-spacing:.04em!important}' +
         '.vhs-sticker-rewind{font-size:12px!important;letter-spacing:.07em!important}' +
         '.vhs-box[data-slug="alien"] .vhs-sticker,.vhs-box[data-title="none"][data-sticker="br"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}' +
+        'html body .vhs-box[data-slug="goodfellas"] .vhs-sticker,html body .vhs-box[data-slug="goodfellas"][data-sticker] .vhs-sticker,html body .vhs-box[data-title="none"][data-slug="goodfellas"] .vhs-sticker{inset:auto auto 17% 4%!important;top:auto!important;right:auto!important;bottom:17%!important;left:4%!important}' +
         '.vhs-box[data-slug="the-thing-1982"] .vhs-sticker{inset:auto auto 10px 10px!important;top:auto!important;right:auto!important;left:10px!important;bottom:10px!important}' +
         '.lobby-picks .vhs-box,.lobby-picks .vhs-box[data-size],.lobby-picks .vhs-box[data-size="lg"],.lobby-picks .vhs-box[data-size="drop"],.lobby-picks .vhs-box[data-size="md"],.lobby-picks .vhs-box[data-size="sm"]{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;flex:none!important;touch-action:none!important}' +
         '.lobby-picks [data-member-rails="manager"] h2,.lobby-picks [data-member-rails] .mb-3 h2{font-size:1.45rem!important}' +
@@ -12860,6 +12861,13 @@
       if (slug === "goodfellas") {
         img.style.setProperty("object-position", "center 42%", "important");
         still.style.setProperty("background-position", "center 42%", "important");
+        box.querySelectorAll(".vhs-sticker").forEach(function (st) {
+          st.style.setProperty("inset", "auto auto 17% 4%", "important");
+          st.style.setProperty("top", "auto", "important");
+          st.style.setProperty("right", "auto", "important");
+          st.style.setProperty("bottom", "17%", "important");
+          st.style.setProperty("left", "4%", "important");
+        });
       }
       still.style.setProperty("background-repeat", "no-repeat", "important");
       if (want.indexOf("-still.jpg?v=") < 0 && !onShelf) {
