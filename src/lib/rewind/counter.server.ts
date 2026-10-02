@@ -159,6 +159,7 @@ async function ensureClub(sql: Sql): Promise<void> {
           handle text primary key
         )`,
       );
+      await sql.query("alter table rewind_vault_done add column if not exists authed boolean not null default false");
     })().catch((err) => {
       clubReady = null;
       throw err;
@@ -430,6 +431,7 @@ export async function handleRewind(request: Request): Promise<Response> {
   trimBackups(sql);
   shrinkStoredPics(sql);
   seedVault(sql);
+  reviveVault(sql);
   await seedFilms(sql);
 
   if (path === "/api/rewind/stamp") return stamp(sql, body);
@@ -728,23 +730,27 @@ function seedVault(sql: Sql): void {
   const flag = globalThis as typeof globalThis & { __rwVaultSeed?: boolean; __rwVaultBusy?: boolean; __rwVaultFails?: number };
   if (flag.__rwVaultSeed || flag.__rwVaultBusy || !vaultToken()) return;
   flag.__rwVaultBusy = true;
-  void sql
-    .query<{ handle: string; locker: Locker }>(
-      `select m.handle, coalesce(m.locker, '{}'::jsonb) - 'banner' - 'avatar' as locker
-       from rewind_members m
-       where not exists (select 1 from rewind_vault_done d where d.handle = m.handle)
-       limit 1`,
-    )
-    .then(async (rows) => {
+  void (async () => {
+    for (let n = 0; n < 8; n += 1) {
+      const rows = await sql.query<{ handle: string; locker: Locker }>(
+        `select m.handle, coalesce(m.locker, '{}'::jsonb) as locker
+         from rewind_members m
+         where not exists (select 1 from rewind_vault_done d where d.handle = m.handle and d.authed)
+         limit 1`,
+      );
       const row = rows[0];
       if (!row) {
         flag.__rwVaultSeed = true;
         return;
       }
-      if (!lockerBlank(row.locker)) await mirrorVault(row.handle, row.locker);
-      await sql.query("insert into rewind_vault_done (handle) values ($1) on conflict do nothing", [row.handle]);
-      flag.__rwVaultFails = 0;
-    })
+      if (!lockerBlank(row.locker)) await pushVault(sql, row.handle, row.locker);
+      await sql.query(
+        "insert into rewind_vault_done (handle, authed) values ($1, true) on conflict (handle) do update set authed = true",
+        [row.handle],
+      );
+    }
+    flag.__rwVaultFails = 0;
+  })()
     .catch(() => {
       flag.__rwVaultFails = (flag.__rwVaultFails || 0) + 1;
       if ((flag.__rwVaultFails || 0) >= 3) flag.__rwVaultSeed = true;
@@ -842,6 +848,12 @@ async function newRecoveryCode(sql: Sql, body: Record<string, unknown>): Promise
     await hashPassword(phrase),
     who.handle,
   ]);
+  try {
+    const filled = await fillLocker(sql, who);
+    await pushVault(sql, who.handle, filled.locker || {});
+  } catch {
+    /* the new secret is in the database even if the outside copy is busy */
+  }
   return json({ ok: true, stored: true });
 }
 
@@ -899,6 +911,11 @@ async function stamp(sql: Sql, body: Record<string, unknown>): Promise<Response>
   );
   const starter: Locker = { keys: {}, profile: { username: handle, name, displayName: name }, cardFace: {} };
   await sql.query("update rewind_members set locker = $1::jsonb where handle = $2", [JSON.stringify(starter), handle]);
+  try {
+    await pushVault(sql, handle, starter);
+  } catch {
+    /* the card is in the database even if the outside copy is busy */
+  }
   const token = await openSession(sql, handle);
   return json({ ok: true, stored: true, token, username: handle, name, locker: starter });
 }
@@ -907,6 +924,7 @@ async function signin(sql: Sql, body: Record<string, unknown>): Promise<Response
   const typed = cleanHandle(body.username);
   const password = String(body.password || "");
   if (password && !(await memberAuth(sql, typed))) {
+    await reviveHandle(sql, typed);
     const near = await membersByFold(sql, typed);
     const hits: Member[] = [];
     for (const row of near) {
@@ -986,7 +1004,15 @@ async function resetPassword(sql: Sql, body: Record<string, unknown>): Promise<R
   if (password.length < 8) return json({ ok: false, err: "short" }, 400);
   if (recovery.length < 4) return json({ ok: false, err: "recovery" }, 400);
   if (await resetLocked(sql, handle)) return json({ ok: false, err: "locked" }, 429);
-  const member = await memberByHandle(sql, handle);
+  let member = await memberByHandle(sql, handle);
+  if (!member) {
+    await reviveHandle(sql, handle);
+    member = await memberByHandle(sql, handle);
+    if (!member) {
+      const near = await membersByFold(sql, handle);
+      if (near.length === 1) member = await memberByHandle(sql, near[0]!.handle);
+    }
+  }
   if (!member) {
     const tries = await markResetMiss(sql, handle);
     return json({ ok: false, err: tries >= 5 ? "locked" : "nocard" }, tries >= 5 ? 429 : 404);
@@ -1005,7 +1031,12 @@ async function resetPassword(sql: Sql, body: Record<string, unknown>): Promise<R
   await sql.query("delete from rewind_sessions where handle = $1", [handle]);
   const token = await openSession(sql, handle);
   const restored = await restorePicsIfMissing(sql, await attachPics(sql, await restoreLockerIfBlank(sql, member)));
-  return json({ ok: true, stored: true, token, username: handle, locker: restored.locker || {} });
+  try {
+    await pushVault(sql, member.handle, restored.locker || {});
+  } catch {
+    /* the new password is in the database even if the outside copy is busy */
+  }
+  return json({ ok: true, stored: true, token, username: member.handle, locker: restored.locker || {} });
 }
 
 function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
@@ -1193,15 +1224,24 @@ function vaultHeaders(token: string): Record<string, string> {
   };
 }
 
-function vaultBody(handle: string, locker: Locker): string {
+type VaultAuth = { name?: string; passwordHash?: string; recoveryHash?: string };
+
+function vaultBody(handle: string, locker: Locker, auth?: VaultAuth): string {
   const savedAt = new Date().toISOString();
-  const full = JSON.stringify({ handle, locker, savedAt });
-  if (full.length < 900_000) return full;
+  const base = {
+    handle,
+    name: auth?.name || handle,
+    passwordHash: auth?.passwordHash || "",
+    recoveryHash: auth?.recoveryHash || "",
+    locker,
+    savedAt,
+  };
+  if (JSON.stringify(base).length < 900_000) return JSON.stringify(base);
   const slim: Locker = { ...locker, banner: "", avatar: "" };
-  return JSON.stringify({ handle, locker: slim, savedAt, slim: true });
+  return JSON.stringify({ ...base, locker: slim, slim: true });
 }
 
-async function mirrorVault(handle: string, locker: Locker): Promise<void> {
+async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth): Promise<void> {
   const token = vaultToken();
   if (!token || lockerBlank(locker)) return;
   const path = vaultPath(handle);
@@ -1217,7 +1257,7 @@ async function mirrorVault(handle: string, locker: Locker): Promise<void> {
     headers,
     body: JSON.stringify({
       message: "Save " + handle,
-      content: Buffer.from(vaultBody(handle, locker)).toString("base64"),
+      content: Buffer.from(vaultBody(handle, locker, auth)).toString("base64"),
       ...(sha ? { sha } : {}),
     }),
   });
@@ -1226,17 +1266,140 @@ async function mirrorVault(handle: string, locker: Locker): Promise<void> {
   }
 }
 
+async function pushVault(sql: Sql, handle: string, locker: Locker): Promise<void> {
+  const rows = await sql.query<{ name: string; password_hash: string; recovery_hash: string; locker: Locker }>(
+    "select name, password_hash, coalesce(recovery_hash, '') as recovery_hash, coalesce(locker, '{}'::jsonb) as locker from rewind_members where handle = $1",
+    [handle],
+  );
+  const row = rows[0];
+  const stored = row?.locker && typeof row.locker === "object" && !lockerBlank(row.locker) ? row.locker : locker;
+  await mirrorVault(handle, stored, {
+    name: row?.name || handle,
+    passwordHash: row?.password_hash || "",
+    recoveryHash: row?.recovery_hash || "",
+  });
+}
+
 async function readVault(handle: string): Promise<Locker | null> {
+  const card = await readVaultByName(handle + ".json");
+  return card && !lockerBlank(card.locker) ? card.locker : null;
+}
+
+type VaultCard = {
+  handle: string;
+  name: string;
+  passwordHash: string;
+  recoveryHash: string;
+  locker: Locker;
+  savedAt: string;
+};
+
+function hashLooksReal(value: string): boolean {
+  const [algo, salt, hex] = value.split("$");
+  return algo === "scrypt" && !!salt && !!hex && hex.length >= 16;
+}
+
+const vaultListMem = globalThis as typeof globalThis & {
+  __rwVaultNames?: { at: number; names: string[] };
+  __rwVaultNamesFlight?: Promise<string[]>;
+};
+
+async function listVaultNames(): Promise<string[]> {
+  const now = Date.now();
+  if (vaultListMem.__rwVaultNames && now - vaultListMem.__rwVaultNames.at < 60_000) return vaultListMem.__rwVaultNames.names;
+  if (vaultListMem.__rwVaultNamesFlight) return vaultListMem.__rwVaultNamesFlight;
+  const token = vaultToken();
+  if (!token) return [];
+  const flight = (async () => {
+    const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/cards", {
+      headers: vaultHeaders(token),
+    });
+    if (!res.ok) throw new Error("vault list " + res.status);
+    const rows = (await res.json()) as Array<{ name?: string; type?: string }>;
+    const names = rows
+      .filter((row) => row.type === "file" && typeof row.name === "string" && row.name.endsWith(".json"))
+      .map((row) => row.name as string);
+    vaultListMem.__rwVaultNames = { at: Date.now(), names };
+    return names;
+  })().finally(() => {
+    if (vaultListMem.__rwVaultNamesFlight === flight) vaultListMem.__rwVaultNamesFlight = undefined;
+  });
+  vaultListMem.__rwVaultNamesFlight = flight;
+  return flight;
+}
+
+async function readVaultByName(name: string): Promise<VaultCard | null> {
   const token = vaultToken();
   if (!token) return null;
-  const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/" + vaultPath(handle), {
+  const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/cards/" + encodeURIComponent(name), {
     headers: vaultHeaders(token),
   });
   if (!res.ok) return null;
   const file = (await res.json()) as { content?: string };
   const text = Buffer.from(String(file.content || "").replace(/\n/g, ""), "base64").toString("utf8");
-  const parsed = JSON.parse(text) as { locker?: Locker };
-  return parsed.locker && !lockerBlank(parsed.locker) ? parsed.locker : null;
+  const parsed = JSON.parse(text) as {
+    handle?: string;
+    name?: string;
+    passwordHash?: string;
+    recoveryHash?: string;
+    locker?: Locker;
+    savedAt?: string;
+  };
+  const handle = cleanHandle(parsed.handle || name.replace(/\.json$/i, ""));
+  if (badHandle(handle)) return null;
+  const locker = parsed.locker && typeof parsed.locker === "object" ? parsed.locker : {};
+  return {
+    handle,
+    name: String(parsed.name || handle).slice(0, 32) || handle,
+    passwordHash: String(parsed.passwordHash || ""),
+    recoveryHash: String(parsed.recoveryHash || ""),
+    locker,
+    savedAt: String(parsed.savedAt || ""),
+  };
+}
+
+async function reviveHandle(sql: Sql, handle: string): Promise<void> {
+  if (!vaultToken() || badHandle(handle)) return;
+  const already = await membersByFold(sql, handle);
+  if (already.length) return;
+  const names = await listVaultNames();
+  const hits = names.filter((name) => {
+    const stem = decodeURIComponent(name.replace(/\.json$/i, ""));
+    return stem.toLowerCase() === handle.toLowerCase();
+  });
+  let best: VaultCard | null = null;
+  for (const name of hits) {
+    const card = await readVaultByName(name);
+    if (!card || !hashLooksReal(card.passwordHash) || lockerBlank(card.locker)) continue;
+    if (!best || diaryWeight(card.locker) > diaryWeight(best.locker)) best = card;
+  }
+  if (!best) return;
+  await sql.query(
+    "insert into rewind_members (handle, name, password_hash, token_hash, recovery_hash, locker) values ($1, $2, $3, '', $4, $5::jsonb) on conflict (handle) do nothing",
+    [best.handle, best.name, best.passwordHash, best.recoveryHash || null, JSON.stringify(best.locker)],
+  );
+}
+
+function reviveVault(sql: Sql): void {
+  const flag = globalThis as typeof globalThis & { __rwRevive?: boolean; __rwReviveBusy?: boolean };
+  if (flag.__rwRevive || flag.__rwReviveBusy || !vaultToken()) return;
+  flag.__rwReviveBusy = true;
+  void (async () => {
+    const names = await listVaultNames();
+    const seen: Record<string, boolean> = {};
+    for (const name of names) {
+      const stem = decodeURIComponent(name.replace(/\.json$/i, ""));
+      const fold = stem.toLowerCase();
+      if (!fold || seen[fold]) continue;
+      seen[fold] = true;
+      await reviveHandle(sql, stem);
+    }
+    flag.__rwRevive = true;
+  })()
+    .catch(() => {})
+    .finally(() => {
+      flag.__rwReviveBusy = false;
+    });
 }
 
 async function deleteVault(handle: string): Promise<void> {
@@ -1300,7 +1463,7 @@ async function backupLocker(sql: Sql, handle: string, locker: Locker): Promise<v
     [handle],
   );
   try {
-    await mirrorVault(handle, locker.banner || locker.avatar ? locker : slim);
+    await pushVault(sql, handle, locker.banner || locker.avatar ? locker : slim);
   } catch {
     /* the database copy still stands if the outside vault is busy */
   }
@@ -1752,7 +1915,7 @@ async function rename(sql: Sql, body: Record<string, unknown>): Promise<Response
   await sql.query("update rewind_activity_done set handle = $1 where handle = $2", [next, who.handle]);
   await sql.query("update rewind_vault_done set handle = $1 where handle = $2", [next, who.handle]);
   try {
-    await mirrorVault(next, named.locker || {});
+    await pushVault(sql, next, named.locker || {});
     await deleteVault(who.handle);
   } catch {
     /* the renamed card still has its database copies */
