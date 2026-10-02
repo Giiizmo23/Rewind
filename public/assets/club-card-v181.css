@@ -4637,8 +4637,8 @@ html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
   width: 90% !important;
   max-width: 168px !important;
-  height: calc(var(--shelf-row) - 4.8rem) !important;
-  max-height: calc(var(--shelf-row) - 4.8rem) !important;
+  height: auto !important;
+  max-height: none !important;
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
@@ -4648,10 +4648,10 @@ html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card {
-  height: 100% !important;
+  height: auto !important;
   max-height: none !important;
   width: 100% !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: 4 / 7 !important;
 }
 
 .guest-cta,
