@@ -18,6 +18,7 @@
     if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
+    if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -434,6 +435,7 @@
     if (slug === "goodfellas") stillFit = "object-position:center 45%;";
     if (slug === "the-shining") stillFit = "object-position:center 70%;";
     if (slug === "blade-runner") stillFit = "object-position:center 42%;";
+    if (slug === "back-to-the-future") stillFit = "object-position:center 40%;";
     main.innerHTML =
       '<div class="tape-card-page" data-tape-layout="lb">' +
       '<div class="tp-hero">' +
