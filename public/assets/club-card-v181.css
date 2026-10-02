@@ -4580,7 +4580,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(8.15rem + 8px), #8f8880 calc(8.15rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
+  background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
   background-size: 100% 100% !important;
   background-position: left top !important;
   background-repeat: no-repeat !important;
@@ -4594,7 +4594,7 @@ html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .
 html[data-theme="night"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
 html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(8.15rem + 8px), #8f8880 calc(8.15rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
+  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), #8f8880 calc(6rem + 8px), #8f8880 calc(100% - 40px), transparent calc(100% - 40px)) !important;
 }
 html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title,
 html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title {
@@ -4637,8 +4637,8 @@ html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
   width: 90% !important;
   max-width: 168px !important;
-  height: auto !important;
-  max-height: none !important;
+  height: calc(var(--shelf-row) - 4.8rem) !important;
+  max-height: calc(var(--shelf-row) - 4.8rem) !important;
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
@@ -4648,10 +4648,10 @@ html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card {
-  height: auto !important;
+  height: 100% !important;
   max-height: none !important;
   width: 100% !important;
-  aspect-ratio: 4 / 7 !important;
+  aspect-ratio: auto !important;
 }
 
 .guest-cta,
