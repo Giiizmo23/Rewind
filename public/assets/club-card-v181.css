@@ -4522,7 +4522,7 @@ nav.fixed.bottom-0 a {
 /* XVIII. Aisle shelf backup. Red posts, white ledge, gray wall behind the tapes. */
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot),
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
-  --shelf-row: 23rem !important;
+  --shelf-row: 19.5rem !important;
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   grid-auto-rows: var(--shelf-row) !important;
@@ -4534,8 +4534,8 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   background-color: #f6f4ef !important;
   background-image: url(/assets/shelf/post-left.jpg?v=16), url(/assets/shelf/post-right.jpg?v=16), url(/assets/shelf/lip.png?v=17) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
-  background-size: 22px calc(100% - 7.5rem), 22px calc(100% - 7.5rem), 100% var(--shelf-row) !important;
-  background-position: left 7.5rem, right 7.5rem, left top !important;
+  background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
+  background-position: left 6rem, right 6rem, left top !important;
   background-origin: border-box !important;
   background-clip: border-box !important;
   box-shadow: 0 16px 22px rgba(26, 20, 16, 0.16) !important;
@@ -4635,23 +4635,23 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-me
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
-  width: 100% !important;
-  max-width: none !important;
-  height: auto !important;
-  max-height: none !important;
+  width: 90% !important;
+  max-width: 168px !important;
+  height: calc(var(--shelf-row) - 4.8rem) !important;
+  max-height: calc(var(--shelf-row) - 4.8rem) !important;
   min-height: 0 !important;
   margin: 0 auto !important;
-  flex: 0 0 auto !important;
+  flex: 0 1 auto !important;
   filter: drop-shadow(0 5px 3px rgba(40, 32, 24, 0.35)) !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card {
-  height: auto !important;
+  height: 100% !important;
   max-height: none !important;
   width: 100% !important;
-  aspect-ratio: 4 / 7 !important;
+  aspect-ratio: auto !important;
 }
 
 .guest-cta,
