@@ -4634,8 +4634,8 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-me
 }
 html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
-  width: 86% !important;
-  max-width: 150px !important;
+  width: 100% !important;
+  max-width: none !important;
   height: auto !important;
   max-height: none !important;
   min-height: 0 !important;
