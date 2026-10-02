@@ -1106,6 +1106,11 @@
         '[data-vip-onvcr-sec],[data-vip-tapes-sec]{display:block!important;visibility:visible!important;opacity:1!important;height:auto!important;max-height:none!important;overflow:visible!important;position:relative!important;z-index:auto!important;clear:both!important;margin-top:.55rem!important;padding:.4rem 0 .15rem!important;background:transparent!important;transform:none!important;isolation:auto!important}' +
         '[data-vip-onvcr-empty],[data-vip-empty],[data-vip-top5-empty]{position:static!important;transform:none!important;isolation:auto!important;margin:.7rem 0 0!important;background:var(--rw-surface,#fffcf7)!important;border:1px dashed color-mix(in oklab,var(--rw-fg,#161412) 28%,transparent)!important;box-shadow:none!important;color:var(--rw-muted,#5c5852)!important}' +
         '[data-vip-tapes]:not(:empty) + [data-vip-empty],[data-vip-top5]:not(:empty) + [data-vip-top5-empty],[data-vip-onvcr]:not(:empty) ~ [data-vip-onvcr-empty]{display:none!important}' +
+        'a.vip-tapes-link{display:block;color:inherit;text-decoration:none}' +
+        '[data-vip-tapes-sec] [data-vip-tapes]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1.15rem .9rem!important;overflow:visible!important}' +
+        '[data-vip-tapes-sec] [data-vip-tapes] .vhs-box{width:100%!important;max-width:none!important;height:auto!important;flex:none!important;aspect-ratio:2/3}' +
+        '[data-vip-tapes-sec] [data-vip-tapes] .vhs-case,[data-vip-tapes-sec] [data-vip-tapes] .vhs-shell,[data-vip-tapes-sec] [data-vip-tapes] .vhs-sleeve,[data-vip-tapes-sec] [data-vip-tapes] .vhs-window{width:100%!important;height:100%!important}' +
+        '[data-vip-tapes-sec] [data-vip-tapes] img{width:100%!important;height:100%!important;object-fit:cover!important;display:block}' +
         '.top5-section:has([data-vip-top5]:not(:empty)) [data-vip-top5-empty],[data-vip-top5-empty][hidden]{display:none!important}' +
         '.top5-section .rewind-top5-row{display:none!important}' +
         '[data-vip-top5]{display:flex;gap:.5rem;overflow:visible;max-width:100%;position:relative;z-index:8}' +
@@ -1464,6 +1469,17 @@
     } catch (eV) {}
     const seen = {};
     logged = logged.filter((s) => s && !seen[s] && (seen[s] = 1));
+    let noteAt = {};
+    try {
+      const stamped = JSON.parse(lsGet("rewind-club-wall") || "null");
+      const notes = stamped && stamped.diaryNotes;
+      if (notes && typeof notes === "object") {
+        Object.keys(notes).forEach(function (k) {
+          noteAt[asSlug(k)] = Number(notes[k] && notes[k].at) || 0;
+        });
+      }
+    } catch (eAt) {}
+    logged.sort(function (a, b) { return (noteAt[b] || 0) - (noteAt[a] || 0); });
     const seenOut = {};
     out = out.filter((s) => s && !seenOut[s] && (seenOut[s] = 1));
     function tapeCell(slug) {
@@ -1504,7 +1520,7 @@
     const onvcrEmpty = wrap.querySelector("[data-vip-onvcr-empty]");
     if (tapes) {
       if (logged.length) {
-        tapes.innerHTML = logged.slice(0, 8).map(tapeCell).join("");
+        tapes.innerHTML = logged.slice(0, 4).map(tapeCell).join("");
         tapes.style.display = "flex";
         if (hint) {
           hint.style.setProperty("display", "none", "important");
@@ -1518,7 +1534,7 @@
     }
     if (wallTapes) {
       if (logged.length) {
-        wallTapes.innerHTML = logged.slice(0, 8).map(tapeCell).join("");
+        wallTapes.innerHTML = logged.slice(0, 4).map(tapeCell).join("");
         wallTapes.style.display = "";
         const wallEmpty = wrap.querySelector("[data-vip-wall-empty]");
         if (wallEmpty) wallEmpty.style.display = "none";
@@ -3139,8 +3155,10 @@
       '<p data-vip-onvcr-empty class="ticket-stub rounded-[var(--radius-md)] p-4 text-sm text-muted">Nothing out on the deck.</p>' +
       "</section>" +
       '<section data-vip-tapes-sec class="space-y-2">' +
+      '<a href="/diary?view=wall" class="vip-tapes-link">' +
       '<p class="text-xs uppercase tracking-[0.22em] text-muted">On the wall</p>' +
       '<h2 class="font-display text-3xl tracking-[0.08em]">Your tapes</h2>' +
+      "</a>" +
       '<div data-vip-tapes class="mt-4 flex gap-3 overflow-x-auto pb-2" style="display:none"></div>' +
       '<p data-vip-empty class="ticket-stub rounded-[var(--radius-md)] p-4 text-sm text-muted">Log a movie. The ones you stamp live on this wall.</p>' +
       "</section>" +
@@ -11587,8 +11605,8 @@
     const tape = view === "reviews" ? (params.get("tape") || "") : "";
     const editing = !!(tape && params.get("edit") === "1");
     const fromFilm = params.get("from") === "film";
-    const title = editing ? "Edit" : tape ? "Review" : path === "/lists" ? "Shelves" : view === "hearts" ? "Hearts" : view === "reviews" ? "Reviews" : view === "watched" ? "Watched" : view === "owned" ? "Owned" : view === "club" ? "Club" : "Logged";
-    const kicker = editing ? "Change what you wrote" : tape ? "What you wrote" : path === "/lists" ? "Your shelves" : view === "hearts" ? "Tapes you hearted" : view === "reviews" ? "What you wrote" : view === "watched" ? "Tapes you've seen" : view === "owned" ? "Copies you keep at home" : view === "club" ? "Stubs the clerk already tore" : "Filed on your card";
+    const title = editing ? "Edit" : tape ? "Review" : path === "/lists" ? "Shelves" : view === "wall" ? "Your tapes" : view === "hearts" ? "Hearts" : view === "reviews" ? "Reviews" : view === "watched" ? "Watched" : view === "owned" ? "Owned" : view === "club" ? "Club" : "Logged";
+    const kicker = editing ? "Change what you wrote" : tape ? "What you wrote" : path === "/lists" ? "Your shelves" : view === "wall" ? "On the wall" : view === "hearts" ? "Tapes you hearted" : view === "reviews" ? "What you wrote" : view === "watched" ? "Tapes you've seen" : view === "owned" ? "Copies you keep at home" : view === "club" ? "Stubs the clerk already tore" : "Filed on your card";
     const host = document.createElement("section");
     host.setAttribute("data-stat-page", "1");
     host.className = editing ? "is-edit" : tape ? "is-sheet space-y-4" : "space-y-4";
@@ -11598,6 +11616,7 @@
       css.textContent =
         "[data-stat-page]{padding-bottom:calc(6.4rem + env(safe-area-inset-bottom))}" +
         "[data-stat-list].is-posters{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.78rem .38rem;align-items:start}" +
+        "[data-stat-list].is-posters.is-wall{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem .85rem}" +
         ".stat-poster{display:flex;flex-direction:column;min-width:0;text-decoration:none;color:inherit}" +
         ".stat-poster img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center top;border-radius:3px;display:block;background:#1a1612;box-shadow:0 1px 2px rgba(22,16,12,.18)}" +
         ".stat-meta{display:flex;align-items:center;gap:.12rem;min-height:.95rem;margin-top:.22rem}" +
@@ -12150,7 +12169,9 @@
           return copy;
         }
         let rows = boardFilings().filter(function (r) { return r.kind !== "out"; });
-        if (view === "hearts") rows = rows.filter(function (r) { return notes[r.slug] && notes[r.slug].liked; });
+        rows.forEach(function (r) { r.at = Number(notes[r.slug] && notes[r.slug].at) || 0; });
+        if (view === "wall") rows.sort(function (a, b) { return (b.at || 0) - (a.at || 0); });
+        else if (view === "hearts") rows = rows.filter(function (r) { return notes[r.slug] && notes[r.slug].liked; });
         else if (view === "reviews") rows = rows.filter(function (r) {
           const note = notes[r.slug] || {};
           return !!(writtenReview(note.review) || writtenReview(r.review));
@@ -12177,6 +12198,7 @@
           }).join("");
         } else {
           list.classList.add("is-posters");
+          if (view === "wall") list.classList.add("is-wall");
           html = rows.map(function (r) {
             const note = notes[r.slug] || {};
             if (!note.rating && r.rating) note.rating = r.rating;
