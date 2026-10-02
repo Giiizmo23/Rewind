@@ -12,6 +12,7 @@
     if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
     if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
+    if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
@@ -12828,7 +12829,7 @@
       img.style.setProperty("width", "100%", "important");
       img.style.setProperty("height", "100%", "important");
       img.style.setProperty("object-fit", "cover", "important");
-      var pos = slug === "the-shining" ? "center 70%" : "center center";
+      var pos = slug === "the-shining" ? "center 70%" : slug === "blade-runner" ? "center 42%" : "center center";
       img.style.setProperty("object-position", pos, "important");
       img.style.setProperty("display", "block", "important");
       still.style.setProperty("background-size", "cover", "important");
