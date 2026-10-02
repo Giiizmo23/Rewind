@@ -4522,7 +4522,7 @@ nav.fixed.bottom-0 a {
 /* XVIII. Aisle shelf backup. Red posts, white ledge, gray wall behind the tapes. */
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot),
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
-  --shelf-row: 19.5rem !important;
+  --shelf-row: 23rem !important;
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   grid-auto-rows: var(--shelf-row) !important;
@@ -4633,10 +4633,10 @@ html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .tape-slot-meta,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-meta {
   color: #2c2622 !important;
 }
-html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
+html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
-  width: 88% !important;
-  max-width: 146px !important;
+  width: 100% !important;
+  max-width: none !important;
   height: auto !important;
   max-height: none !important;
   min-height: 0 !important;
@@ -4644,8 +4644,8 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   flex: 0 0 auto !important;
   filter: drop-shadow(0 5px 3px rgba(40, 32, 24, 0.35)) !important;
 }
-html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
-html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
+html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
+html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card {
   height: auto !important;
