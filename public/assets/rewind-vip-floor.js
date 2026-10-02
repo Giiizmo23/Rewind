@@ -2650,6 +2650,36 @@
     postLocker(locker, true);
   }
   try { window.__rwFlushLocker = flushLocker; } catch (eF) {}
+  function returnedMap() {
+    try {
+      const v = JSON.parse(localStorage.getItem("rewind-returned") || "null") || {};
+      return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+    } catch (e) { return {}; }
+  }
+  function markReturned(slug) {
+    const id = String(slug || "").replace(/^\/+|\/+$/g, "").toLowerCase();
+    if (!id) return;
+    const map = returnedMap();
+    map[id] = Date.now();
+    try { localStorage.setItem("rewind-returned", JSON.stringify(map)); } catch (e) {}
+  }
+  function mergeReturned(incoming) {
+    const local = returnedMap();
+    let next = {};
+    try { next = typeof incoming === "string" ? JSON.parse(incoming || "null") || {} : (incoming || {}); } catch (e) { next = {}; }
+    if (!next || typeof next !== "object" || Array.isArray(next)) next = {};
+    return JSON.stringify(Object.assign({}, next, local));
+  }
+  function stripReturned(raw) {
+    const map = returnedMap();
+    let rows = raw;
+    try { rows = typeof raw === "string" ? JSON.parse(raw || "null") : raw; } catch (e) { return typeof raw === "string" ? raw : JSON.stringify(raw || []); }
+    if (!Array.isArray(rows)) return typeof raw === "string" ? raw : JSON.stringify(rows || []);
+    return JSON.stringify(rows.filter(function (x) {
+      const s = String(typeof x === "string" ? x : (x && (x.slug || x.filmId || x.id)) || "").replace(/^\/+|\/+$/g, "").toLowerCase();
+      return s && !map[s];
+    }));
+  }
   function mergeProfile(cur, incoming) {
     const a = cur && cur.profile && typeof cur.profile === "object" ? Object.assign({}, cur, cur.profile) : Object.assign({}, cur || {});
     const b = incoming && incoming.profile && typeof incoming.profile === "object" ? Object.assign({}, incoming, incoming.profile) : Object.assign({}, incoming || {});
@@ -2758,6 +2788,10 @@
       minutes: Math.max(Number(ls.minutes) || 0, Number(ns.minutes) || 0),
       friends: Math.max(Number(ls.friends) || 0, Number(ns.friends) || 0),
     };
+    if (next.currentlyWatching) {
+      const watching = String(next.currentlyWatching.slug || next.currentlyWatching || "").replace(/^\/+|\/+$/g, "").toLowerCase();
+      if (watching && returnedMap()[watching]) delete next.currentlyWatching;
+    }
     return JSON.stringify(next);
   }
   function mergePassKey(incoming) {
@@ -2779,7 +2813,9 @@
         VAULT_KEYS.forEach(function (k) {
           const v = locker.keys[k];
           if (v == null || v === "" || v === "idb") return;
-          localStorage.setItem(k, k === "rewind-club-wall" ? mergeWallKey(v) : k === "rewind-nd-pass" ? mergePassKey(v) : (k === "rewind-local-diary" || k === "rewind-logged-slugs" || k === "rewind-kind-films") ? mergeListKey(k, v) : v);
+          if (k === "rewind-returned") localStorage.setItem(k, mergeReturned(v));
+          else if (k === "rewind-out-tapes") localStorage.setItem(k, stripReturned(v));
+          else localStorage.setItem(k, k === "rewind-club-wall" ? mergeWallKey(v) : k === "rewind-nd-pass" ? mergePassKey(v) : (k === "rewind-local-diary" || k === "rewind-logged-slugs" || k === "rewind-kind-films") ? mergeListKey(k, v) : v);
         });
       }
       if (locker.profile) {
@@ -5043,6 +5079,7 @@
     "rewind-club-wall",
     "rewind-banner",
     "rewind-avatar",
+    "rewind-returned",
     "rewind-out-tapes",
     "rewind-kind-films",
     "rewind-ontime-films",
@@ -7760,7 +7797,15 @@
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-tag{font-size:.38rem!important;line-height:1.18!important;overflow:hidden!important;display:block!important;-webkit-line-clamp:unset!important}" +
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-credits,html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-stock,html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-cast{font-size:.34rem!important;line-height:1.15!important}" +
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-foot{margin-top:.1rem!important;flex:0 0 auto!important}" +
-        "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-barcode{height:.55rem!important;width:46%!important}";
+        "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-barcode{height:.55rem!important;width:46%!important}" +
+        ".aisle-window{--shelf-row:19.5rem;position:relative;background-color:#f6f4ef;background-image:url(/assets/shelf/post-left.jpg?v=16),url(/assets/shelf/post-right.jpg?v=16),url(/assets/shelf/lip.png?v=17);background-repeat:no-repeat,no-repeat,repeat-y;background-size:22px calc(100% - 6rem),22px calc(100% - 6rem),100% var(--shelf-row);background-position:left 6rem,right 6rem,left top;box-shadow:0 16px 22px rgba(26,20,16,.16);margin:0 0 1.5rem}" +
+        "@media(min-width:640px){.aisle-window{--shelf-row:19rem}}" +
+        "@media(min-width:1024px){.aisle-window{--shelf-row:18rem}}" +
+        "html[data-theme='night'] .aisle-window,html[data-theme='dark'] .aisle-window{background-color:#0a0b0e}" +
+        "html body main .grid.grid-cols-2[data-virt='1']{background:none!important;box-shadow:none!important;margin:0!important}" +
+        "html:not([data-drop='1']) body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot:nth-child(-n+5){background-image:linear-gradient(to bottom,#8f8880 0,#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
+        "html:not([data-drop='1']) body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
+        "html[data-theme='night'] body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}";
       document.head.appendChild(style);
     }
     const CHIP_ON = "inline-flex h-10 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.14em] bg-primary text-primary-fg";
@@ -7915,40 +7960,143 @@
       });
       return n;
     }
-    function expand(section, theme) {
-      if (!catalog || section.dataset.aisleFilled === "1") return;
+    function aisleGeom() {
+      const fs = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const wide = window.matchMedia("(min-width:1024px)").matches;
+      const mid = window.matchMedia("(min-width:640px)").matches;
+      return { cols: wide ? 5 : mid ? 4 : 2, row: (wide ? 18 : mid ? 19 : 19.5) * fs };
+    }
+    function armSection(section) {
+      if (section.__virt) return section.__virt;
       const grid = section.querySelector(".grid");
-      const template = grid && grid.querySelector("article.tape-slot");
-      if (!grid || !template) return;
-      const have = {};
-      shelfSlugs(section).forEach(function (slug) { if (slug) have[slug] = 1; });
+      if (!grid) return null;
+      shelfSlugs(section);
+      const slots = Array.prototype.slice.call(grid.querySelectorAll(":scope > article.tape-slot"));
+      if (!slots.length) return null;
+      const template = slots[0].cloneNode(true);
+      const bySlug = {};
+      const seed = [];
+      slots.forEach(function (node) {
+        const box = node.querySelector(".vhs-box");
+        const slug = box && box.getAttribute("data-slug");
+        if (!slug || bySlug[slug]) {
+          node.remove();
+          return;
+        }
+        bySlug[slug] = node;
+        const title = node.querySelector(".tape-slot-title");
+        const meta = node.querySelector(".tape-slot-meta");
+        seed.push({ slug: slug, title: title ? title.textContent : slug, year: meta ? meta.textContent : "" });
+        node.remove();
+      });
+      const wrap = document.createElement("div");
+      wrap.className = "aisle-window";
+      const top = document.createElement("div");
+      const bot = document.createElement("div");
+      top.setAttribute("data-aisle-pad", "top");
+      bot.setAttribute("data-aisle-pad", "bot");
+      grid.parentNode.insertBefore(wrap, grid);
+      wrap.appendChild(top);
+      wrap.appendChild(grid);
+      wrap.appendChild(bot);
+      grid.setAttribute("data-virt", "1");
+      section.__virt = { grid: grid, wrap: wrap, top: top, bot: bot, template: template, bySlug: bySlug, seed: seed, films: seed.slice(), start: -1, end: -1, cols: 0, count: 0 };
+      return section.__virt;
+    }
+    function filmsFor(section, theme) {
+      const v = section.__virt;
+      const films = v.seed.slice();
+      const seen = {};
+      films.forEach(function (f) { if (f && f.slug) seen[f.slug] = 1; });
+      if (!catalog || !theme) return films;
       const extras = [];
       catalog.forEach(function (film) {
-        if (!film || !film.slug || have[film.slug]) return;
+        if (!film || !film.slug || seen[film.slug]) return;
         if (covers && !covers[film.slug]) return;
         if (!inTheme(film, theme)) return;
-        have[film.slug] = 1;
+        seen[film.slug] = 1;
         extras.push(film);
       });
       extras.sort(function (a, b) {
         return (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.title || "").localeCompare(String(b.title || ""));
       });
-      section.dataset.aisleFilled = "1";
-      let i = 0;
-      function step() {
-        if (!grid.isConnected) return;
-        const frag = document.createDocumentFragment();
-        const end = Math.min(i + 18, extras.length);
-        for (; i < end; i += 1) {
-          const node = template.cloneNode(true);
-          paintSlot(node, extras[i]);
-          node.hidden = applied !== theme;
-          frag.appendChild(node);
+      return films.concat(extras);
+    }
+    function clearWindow(v) {
+      while (v.grid.firstChild) v.grid.removeChild(v.grid.firstChild);
+    }
+    function layoutSection(section) {
+      const v = section.__virt;
+      if (!v) return;
+      if (section.hidden) {
+        if (v.start !== -2) {
+          clearWindow(v);
+          v.top.style.height = "0px";
+          v.bot.style.height = "0px";
+          v.start = -2;
         }
-        grid.appendChild(frag);
-        if (i < extras.length) requestAnimationFrame(step);
+        return;
       }
-      step();
+      const g = aisleGeom();
+      const films = v.films || [];
+      const rows = Math.max(1, Math.ceil((films.length || 1) / g.cols));
+      const rect = v.wrap.getBoundingClientRect();
+      const above = rect.bottom < -window.innerHeight * 0.4;
+      const below = rect.top > window.innerHeight * 1.5;
+      if (!films.length || above || below) {
+        if (v.start !== -3 || v.cols !== g.cols || v.count !== films.length) {
+          clearWindow(v);
+          v.top.style.height = ((films.length ? rows : 0) * g.row) + "px";
+          v.bot.style.height = "0px";
+          v.start = -3;
+          v.end = -3;
+          v.cols = g.cols;
+          v.count = films.length;
+        }
+        return;
+      }
+      const scrolled = Math.max(0, -rect.top);
+      let startRow = Math.floor(scrolled / g.row) - 2;
+      if (startRow < 0) startRow = 0;
+      let endRow = startRow + Math.ceil(window.innerHeight / g.row) + 6;
+      if (endRow > rows) endRow = rows;
+      if (v.start === startRow && v.end === endRow && v.cols === g.cols && v.count === films.length) return;
+      v.start = startRow;
+      v.end = endRow;
+      v.cols = g.cols;
+      v.count = films.length;
+      const from = startRow * g.cols;
+      const to = Math.min(films.length, endRow * g.cols);
+      clearWindow(v);
+      const frag = document.createDocumentFragment();
+      for (let i = from; i < to; i += 1) {
+        const film = films[i];
+        let node = v.bySlug[film.slug];
+        if (!node) {
+          node = v.template.cloneNode(true);
+          paintSlot(node, film);
+          v.bySlug[film.slug] = node;
+        }
+        node.hidden = false;
+        if (startRow === 0 && (i - from) < g.cols) node.setAttribute("data-shelf-top", "1");
+        else node.removeAttribute("data-shelf-top");
+        frag.appendChild(node);
+      }
+      v.grid.appendChild(frag);
+      v.top.style.height = (startRow * g.row) + "px";
+      v.bot.style.height = ((rows - endRow) * g.row) + "px";
+    }
+    function layoutAisles() {
+      sections.forEach(layoutSection);
+    }
+    let aisleTick = false;
+    function scheduleAisles() {
+      if (aisleTick) return;
+      aisleTick = true;
+      requestAnimationFrame(function () {
+        aisleTick = false;
+        layoutAisles();
+      });
     }
     function floorEl() {
       let el = document.querySelector("[data-floor-count]");
@@ -7991,7 +8139,17 @@
         shelfSlugs(section);
         const show = !theme || id === theme;
         section.hidden = !show;
-        if (show && theme) expand(section, id);
+        if (show) {
+          const v = armSection(section);
+          if (v) {
+            const key = theme ? id : "";
+            if (v.key !== key) {
+              v.films = filmsFor(section, key);
+              v.start = -1;
+              v.key = key;
+            }
+          }
+        }
         section.querySelectorAll("[data-aisle-extra]").forEach(function (el) { el.hidden = !theme; });
         if (catalog) {
           const link = section.querySelector("a[href]");
@@ -8024,6 +8182,7 @@
       if (scroll || (changed && theme)) {
         try { window.scrollTo(0, 0); } catch (err) {}
       }
+      layoutAisles();
     }
     document.addEventListener("click", function (e) {
       const here = (location.pathname || "").replace(/\/$/, "") || "/";
@@ -8046,6 +8205,8 @@
       if (here !== "/films") return;
       applyAisle(themeOf(location.pathname + location.search) || "", true);
     });
+    window.addEventListener("scroll", scheduleAisles, { passive: true });
+    window.addEventListener("resize", scheduleAisles);
     const initial = themeOf(location.pathname + location.search) || "";
     applyAisle(initial, false);
     Promise.all([
@@ -9261,6 +9422,7 @@
   }
   function fileReturn(row, state) {
     const slug = row.slug;
+    markReturned(slug);
     let out = [];
     try { out = JSON.parse(localStorage.getItem("rewind-out-tapes") || "null") || []; } catch (e) {}
     if (Array.isArray(out)) {

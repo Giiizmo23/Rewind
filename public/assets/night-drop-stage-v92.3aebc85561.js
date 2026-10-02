@@ -4061,7 +4061,17 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     }
     return row;
   }
+  function markReturned(slug) {
+    const id = asSlug(slug);
+    if (!id) return;
+    let map = {};
+    try { map = JSON.parse(localStorage.getItem("rewind-returned") || "null") || {}; } catch (e) {}
+    if (!map || typeof map !== "object" || Array.isArray(map)) map = {};
+    map[id] = Date.now();
+    try { localStorage.setItem("rewind-returned", JSON.stringify(map)); } catch (e2) {}
+  }
   function returnDrop(slug, extraPts) {
+    markReturned(slug);
     const out = readJson("rewind-out-tapes", []);
     if (Array.isArray(out)) writeJson("rewind-out-tapes", out.filter((x) => asSlug(x) !== slug));
     const wall = readJson("rewind-club-wall", {}) || {};
