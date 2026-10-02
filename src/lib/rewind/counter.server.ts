@@ -430,7 +430,7 @@ export async function handleRewind(request: Request): Promise<Response> {
   slimOldBackups(sql);
   trimBackups(sql);
   shrinkStoredPics(sql);
-  seedVault(sql);
+  await sealOutstanding(sql);
   reviveVault(sql);
   await seedFilms(sql);
 
@@ -726,12 +726,13 @@ function shrinkStoredPics(sql: Sql): void {
     });
 }
 
-function seedVault(sql: Sql): void {
+async function sealOutstanding(sql: Sql): Promise<void> {
   const flag = globalThis as typeof globalThis & { __rwVaultSeed?: boolean; __rwVaultBusy?: boolean; __rwVaultFails?: number };
   if (flag.__rwVaultSeed || flag.__rwVaultBusy || !vaultToken()) return;
+  if ((flag.__rwVaultFails || 0) >= 3) return;
   flag.__rwVaultBusy = true;
-  void (async () => {
-    for (let n = 0; n < 8; n += 1) {
+  try {
+    for (let n = 0; n < 4; n += 1) {
       const rows = await sql.query<{ handle: string; locker: Locker }>(
         `select m.handle, coalesce(m.locker, '{}'::jsonb) as locker
          from rewind_members m
@@ -750,14 +751,11 @@ function seedVault(sql: Sql): void {
       );
     }
     flag.__rwVaultFails = 0;
-  })()
-    .catch(() => {
-      flag.__rwVaultFails = (flag.__rwVaultFails || 0) + 1;
-      if ((flag.__rwVaultFails || 0) >= 3) flag.__rwVaultSeed = true;
-    })
-    .finally(() => {
-      flag.__rwVaultBusy = false;
-    });
+  } catch {
+    flag.__rwVaultFails = (flag.__rwVaultFails || 0) + 1;
+  } finally {
+    flag.__rwVaultBusy = false;
+  }
 }
 
 function trimBackups(sql: Sql): void {
