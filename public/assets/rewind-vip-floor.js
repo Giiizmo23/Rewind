@@ -12937,6 +12937,11 @@
   function fixOneSpine(box) {
     if (!box) return;
     var slug = box.getAttribute("data-slug") || "";
+    if (slug === "the-shining") {
+      box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
+        el.textContent = "RW-1980-05";
+      });
+    }
     if (slug === "goodfellas" || slug === "se7en") {
       box.querySelectorAll("img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
