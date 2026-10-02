@@ -4633,6 +4633,18 @@ html body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .tape-slot-meta,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-meta {
   color: #2c2622 !important;
 }
+html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-title,
+html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-title,
+html[data-theme="night"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-title,
+html[data-theme="dark"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-title {
+  color: #f3efe6 !important;
+}
+html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-meta,
+html[data-theme="dark"] body main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-meta,
+html[data-theme="night"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-meta,
+html[data-theme="dark"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) .tape-slot-meta {
+  color: #e4ddd0 !important;
+}
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
   width: 90% !important;
