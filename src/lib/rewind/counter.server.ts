@@ -160,6 +160,7 @@ async function ensureClub(sql: Sql): Promise<void> {
         )`,
       );
       await sql.query("alter table rewind_vault_done add column if not exists authed boolean not null default false");
+      await sql.query("alter table rewind_vault_done add column if not exists rev int not null default 0");
     })().catch((err) => {
       clubReady = null;
       throw err;
@@ -736,7 +737,9 @@ async function sealOutstanding(sql: Sql): Promise<void> {
       const rows = await sql.query<{ handle: string; locker: Locker }>(
         `select m.handle, coalesce(m.locker, '{}'::jsonb) as locker
          from rewind_members m
-         where not exists (select 1 from rewind_vault_done d where d.handle = m.handle and d.authed)
+         where not exists (
+           select 1 from rewind_vault_done d where d.handle = m.handle and d.authed and d.rev >= 2
+         )
          limit 1`,
       );
       const row = rows[0];
@@ -746,7 +749,7 @@ async function sealOutstanding(sql: Sql): Promise<void> {
       }
       if (!lockerBlank(row.locker)) await pushVault(sql, row.handle, row.locker);
       await sql.query(
-        "insert into rewind_vault_done (handle, authed) values ($1, true) on conflict (handle) do update set authed = true",
+        "insert into rewind_vault_done (handle, authed, rev) values ($1, true, 2) on conflict (handle) do update set authed = true, rev = 2",
         [row.handle],
       );
     }
@@ -1224,24 +1227,60 @@ function vaultHeaders(token: string): Record<string, string> {
 
 type VaultAuth = { name?: string; passwordHash?: string; recoveryHash?: string };
 
-function vaultBody(handle: string, locker: Locker, auth?: VaultAuth): string {
+type VaultSocial = {
+  following: string[];
+  followers: string[];
+  gates: { asker: string; askee: string; status: string }[];
+  sent: { to: string; text: string; at: string }[];
+  got: { from: string; text: string; at: string }[];
+};
+
+function emptySocial(): VaultSocial {
+  return { following: [], followers: [], gates: [], sent: [], got: [] };
+}
+
+function vaultPack(handle: string, locker: Locker, auth: VaultAuth | undefined, social: VaultSocial, slim: boolean): string {
   const savedAt = new Date().toISOString();
-  const base = {
+  return JSON.stringify({
     handle,
     name: auth?.name || handle,
     passwordHash: auth?.passwordHash || "",
     recoveryHash: auth?.recoveryHash || "",
     locker,
+    social,
     savedAt,
-  };
-  if (JSON.stringify(base).length < 900_000) return JSON.stringify(base);
-  const slim: Locker = { ...locker, banner: "", avatar: "" };
-  return JSON.stringify({ ...base, locker: slim, slim: true });
+    ...(slim ? { slim: true } : {}),
+  });
 }
 
-async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth): Promise<void> {
+function vaultBody(handle: string, locker: Locker, auth?: VaultAuth, social?: VaultSocial): string {
+  const fullSocial = social || emptySocial();
+  const trimmed: VaultSocial = {
+    ...fullSocial,
+    sent: fullSocial.sent.slice(-80),
+    got: fullSocial.got.slice(-80),
+  };
+  let body = vaultPack(handle, locker, auth, fullSocial, false);
+  if (body.length < 900_000) return body;
+  body = vaultPack(handle, locker, auth, trimmed, false);
+  if (body.length < 900_000) return body;
+  const pictures: Locker = { ...locker, banner: "", avatar: "" };
+  body = vaultPack(handle, pictures, auth, trimmed, true);
+  if (body.length < 900_000) return body;
+  return vaultPack(
+    handle,
+    pictures,
+    auth,
+    { ...trimmed, sent: trimmed.sent.slice(-20), got: trimmed.got.slice(-20) },
+    true,
+  );
+}
+
+async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth, social?: VaultSocial): Promise<void> {
   const token = vaultToken();
-  if (!token || lockerBlank(locker)) return;
+  const friends = social || emptySocial();
+  const hasSocial = friends.following.length + friends.followers.length + friends.gates.length + friends.sent.length + friends.got.length > 0;
+  if (!token || (lockerBlank(locker) && !hasSocial)) return;
   const path = vaultPath(handle);
   const headers = vaultHeaders(token);
   let sha = "";
@@ -1255,7 +1294,7 @@ async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth): Pr
     headers,
     body: JSON.stringify({
       message: "Save " + handle,
-      content: Buffer.from(vaultBody(handle, locker, auth)).toString("base64"),
+      content: Buffer.from(vaultBody(handle, locker, auth, social)).toString("base64"),
       ...(sha ? { sha } : {}),
     }),
   });
@@ -1271,11 +1310,55 @@ async function pushVault(sql: Sql, handle: string, locker: Locker): Promise<void
   );
   const row = rows[0];
   const stored = row?.locker && typeof row.locker === "object" && !lockerBlank(row.locker) ? row.locker : locker;
+  const social = await loadSocial(sql, handle);
   await mirrorVault(handle, stored, {
     name: row?.name || handle,
     passwordHash: row?.password_hash || "",
     recoveryHash: row?.recovery_hash || "",
-  });
+  }, social);
+}
+
+async function loadSocial(sql: Sql, handle: string): Promise<VaultSocial> {
+  const following = await sql.query<{ followee: string }>(
+    "select followee from rewind_follows where follower = $1 order by created_at asc limit 500",
+    [handle],
+  );
+  const followers = await sql.query<{ follower: string }>(
+    "select follower from rewind_follows where followee = $1 order by created_at asc limit 500",
+    [handle],
+  );
+  const gates = await sql.query<{ asker: string; askee: string; status: string }>(
+    "select asker, askee, status from rewind_msg_gates where asker = $1 or askee = $1 limit 500",
+    [handle],
+  );
+  const sent = await sql.query<{ to: string; text: string; at: string }>(
+    "select recipient as to, body as text, created_at as at from rewind_messages where sender = $1 order by id desc limit 200",
+    [handle],
+  );
+  const got = await sql.query<{ from: string; text: string; at: string }>(
+    "select sender as from, body as text, created_at as at from rewind_messages where recipient = $1 order by id desc limit 200",
+    [handle],
+  );
+  return {
+    following: following.map((row) => row.followee),
+    followers: followers.map((row) => row.follower),
+    gates: gates.map((row) => ({ asker: row.asker, askee: row.askee, status: row.status })),
+    sent: sent.map((row) => ({ to: row.to, text: row.text, at: String(row.at) })),
+    got: got.map((row) => ({ from: row.from, text: row.text, at: String(row.at) })),
+  };
+}
+
+async function rememberSocial(sql: Sql, handles: string[]): Promise<void> {
+  const seen: Record<string, boolean> = {};
+  for (const handle of handles) {
+    if (!handle || seen[handle]) continue;
+    seen[handle] = true;
+    try {
+      await pushVault(sql, handle, {});
+    } catch {
+      /* the live rows are already saved if the outside copy is busy */
+    }
+  }
 }
 
 async function readVault(handle: string): Promise<Locker | null> {
@@ -1289,6 +1372,7 @@ type VaultCard = {
   passwordHash: string;
   recoveryHash: string;
   locker: Locker;
+  social: VaultSocial;
   savedAt: string;
 };
 
@@ -1309,14 +1393,22 @@ async function listVaultNames(): Promise<string[]> {
   const token = vaultToken();
   if (!token) return [];
   const flight = (async () => {
-    const res = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/contents/cards", {
-      headers: vaultHeaders(token),
-    });
-    if (!res.ok) throw new Error("vault list " + res.status);
-    const rows = (await res.json()) as Array<{ name?: string; type?: string }>;
-    const names = rows
-      .filter((row) => row.type === "file" && typeof row.name === "string" && row.name.endsWith(".json"))
-      .map((row) => row.name as string);
+    const headers = vaultHeaders(token);
+    const repoRes = await fetch("https://api.github.com/repos/" + VAULT_REPO, { headers });
+    if (!repoRes.ok) throw new Error("vault repo " + repoRes.status);
+    const repo = (await repoRes.json()) as { default_branch?: string };
+    const branch = repo.default_branch || "main";
+    const refRes = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/git/ref/heads/" + branch, { headers });
+    if (!refRes.ok) throw new Error("vault ref " + refRes.status);
+    const ref = (await refRes.json()) as { object?: { sha?: string } };
+    const sha = ref.object?.sha || "";
+    if (!sha) throw new Error("vault ref");
+    const treeRes = await fetch("https://api.github.com/repos/" + VAULT_REPO + "/git/trees/" + sha + "?recursive=1", { headers });
+    if (!treeRes.ok) throw new Error("vault tree " + treeRes.status);
+    const tree = (await treeRes.json()) as { tree?: Array<{ path?: string; type?: string }> };
+    const names = (tree.tree || [])
+      .filter((row) => row.type === "blob" && typeof row.path === "string" && row.path.startsWith("cards/") && row.path.endsWith(".json"))
+      .map((row) => (row.path as string).slice("cards/".length));
     vaultListMem.__rwVaultNames = { at: Date.now(), names };
     return names;
   })().finally(() => {
@@ -1341,6 +1433,7 @@ async function readVaultByName(name: string): Promise<VaultCard | null> {
     passwordHash?: string;
     recoveryHash?: string;
     locker?: Locker;
+    social?: unknown;
     savedAt?: string;
   };
   const handle = cleanHandle(parsed.handle || name.replace(/\.json$/i, ""));
@@ -1352,8 +1445,104 @@ async function readVaultByName(name: string): Promise<VaultCard | null> {
     passwordHash: String(parsed.passwordHash || ""),
     recoveryHash: String(parsed.recoveryHash || ""),
     locker,
+    social: asSocial(parsed.social),
     savedAt: String(parsed.savedAt || ""),
   };
+}
+
+function asNames(list: unknown, cap: number): string[] {
+  if (!Array.isArray(list)) return [];
+  const names: string[] = [];
+  for (const item of list) {
+    const handle = cleanHandle(item);
+    if (badHandle(handle) || names.includes(handle)) continue;
+    names.push(handle);
+    if (names.length >= cap) break;
+  }
+  return names;
+}
+
+function asWhen(value: unknown): string {
+  const at = new Date(String(value || ""));
+  return Number.isNaN(at.getTime()) ? "" : at.toISOString();
+}
+
+function asSocial(value: unknown): VaultSocial {
+  const raw = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+  const notes = (list: unknown, who: "to" | "from", cap: number) => {
+    if (!Array.isArray(list)) return [];
+    const rows: { to?: string; from?: string; text: string; at: string }[] = [];
+    for (const item of list) {
+      if (!item || typeof item !== "object") continue;
+      const row = item as Record<string, unknown>;
+      const handle = cleanHandle(row[who]);
+      const text = String(row.text || "").trim().slice(0, 2000);
+      const at = asWhen(row.at);
+      if (badHandle(handle) || !text || !at) continue;
+      rows.push({ [who]: handle, text, at });
+      if (rows.length >= cap) break;
+    }
+    return rows;
+  };
+  const gates = Array.isArray(raw.gates)
+    ? raw.gates.flatMap((item) => {
+        if (!item || typeof item !== "object") return [];
+        const row = item as Record<string, unknown>;
+        const asker = cleanHandle(row.asker);
+        const askee = cleanHandle(row.askee);
+        const status = String(row.status || "");
+        if (badHandle(asker) || badHandle(askee)) return [];
+        if (status !== "pending" && status !== "open" && status !== "closed") return [];
+        return [{ asker, askee, status }];
+      }).slice(0, 500)
+    : [];
+  return {
+    following: asNames(raw.following, 500),
+    followers: asNames(raw.followers, 500),
+    gates,
+    sent: notes(raw.sent, "to", 200) as VaultSocial["sent"],
+    got: notes(raw.got, "from", 200) as VaultSocial["got"],
+  };
+}
+
+async function applySocial(sql: Sql, card: VaultCard): Promise<void> {
+  const me = card.handle;
+  for (const other of card.social.following) {
+    if (other === me) continue;
+    await sql.query("insert into rewind_follows (follower, followee) values ($1, $2) on conflict do nothing", [me, other]);
+  }
+  for (const other of card.social.followers) {
+    if (other === me) continue;
+    await sql.query("insert into rewind_follows (follower, followee) values ($1, $2) on conflict do nothing", [other, me]);
+  }
+  for (const gate of card.social.gates) {
+    if (gate.asker !== me && gate.askee !== me) continue;
+    await sql.query(
+      `insert into rewind_msg_gates (asker, askee, status) values ($1, $2, $3)
+       on conflict (asker, askee) do update set status = case
+         when rewind_msg_gates.status = 'open' or excluded.status = 'open' then 'open'
+         when excluded.status = 'closed' then 'closed'
+         else rewind_msg_gates.status
+       end`,
+      [gate.asker, gate.askee, gate.status],
+    );
+  }
+  const messages = [
+    ...card.social.sent.map((row) => ({ sender: me, recipient: row.to, text: row.text, at: row.at })),
+    ...card.social.got.map((row) => ({ sender: row.from, recipient: me, text: row.text, at: row.at })),
+  ];
+  for (const row of messages) {
+    if (row.sender === row.recipient) continue;
+    await sql.query(
+      `insert into rewind_messages (sender, recipient, body, created_at)
+       select $1, $2, $3, $4::timestamptz
+       where not exists (
+         select 1 from rewind_messages
+         where sender = $1 and recipient = $2 and body = $3 and created_at = $4::timestamptz
+       )`,
+      [row.sender, row.recipient, row.text, row.at],
+    );
+  }
 }
 
 async function reviveHandle(sql: Sql, handle: string): Promise<void> {
@@ -1376,6 +1565,7 @@ async function reviveHandle(sql: Sql, handle: string): Promise<void> {
     "insert into rewind_members (handle, name, password_hash, token_hash, recovery_hash, locker) values ($1, $2, $3, '', $4, $5::jsonb) on conflict (handle) do nothing",
     [best.handle, best.name, best.passwordHash, best.recoveryHash || null, JSON.stringify(best.locker)],
   );
+  await applySocial(sql, best);
 }
 
 function reviveVault(sql: Sql): void {
@@ -1776,6 +1966,7 @@ async function follow(sql: Sql, body: Record<string, unknown>): Promise<Response
   }
   const iFollow = await follows(sql, who.handle, other.handle);
   const theyFollow = await follows(sql, other.handle, who.handle);
+  await rememberSocial(sql, [who.handle, other.handle]);
   return json({ ok: true, friend: relation(iFollow, theyFollow) });
 }
 
@@ -1837,6 +2028,7 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
       other.handle,
       text,
     ]);
+    await rememberSocial(sql, [who.handle, other.handle]);
     return thread(sql, body);
   }
   const gate = await gateBetween(sql, who.handle, other.handle);
@@ -1854,6 +2046,7 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
       other.handle,
       text,
     ]);
+    await rememberSocial(sql, [who.handle, other.handle]);
     return json({ ok: true, msg: "out", messages: [] });
   }
   await sql.query("insert into rewind_messages (sender, recipient, body) values ($1, $2, $3)", [
@@ -1861,6 +2054,7 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
     other.handle,
     text,
   ]);
+  await rememberSocial(sql, [who.handle, other.handle]);
   return thread(sql, body);
 }
 
@@ -1879,12 +2073,14 @@ async function reply(sql: Sql, body: Record<string, unknown>): Promise<Response>
       gate.asker,
       gate.askee,
     ]);
+    await rememberSocial(sql, [who.handle, handle]);
     return json({ ok: true, msg: "closed", messages: [] });
   }
   await sql.query("update rewind_msg_gates set status = 'open' where asker = $1 and askee = $2", [
     gate.asker,
     gate.askee,
   ]);
+  await rememberSocial(sql, [who.handle, handle]);
   return thread(sql, body);
 }
 
