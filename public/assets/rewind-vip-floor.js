@@ -799,18 +799,20 @@
         'html body .lobby-picks .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
         'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still{background-color:#14110e!important;background-image:url("/sleeves/coming-to-america-shop.jpg?v=6")!important;background-size:cover!important;background-position:center center!important;background-repeat:no-repeat!important}' +
         'html body .lobby-picks .vhs-box[data-slug="coming-to-america"] .vhs-back-still img{opacity:1!important;visibility:visible!important;object-fit:contain!important;object-position:center center!important}' +
-        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
-        'html body .lobby-picks .vhs-back-still img,html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}' +
+        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still{flex:0 0 36%!important;height:36%!important;min-height:0!important;max-height:36%!important;position:relative!important;overflow:hidden!important;background:#14110e!important}' +
+        'html body .lobby-picks .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}' +
+        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}' +
         'html body .vhs-box[data-slug="halloween-1978"] .vhs-back-still img{object-position:center center!important;object-fit:contain!important}' +
         'html body .lobby-picks .vhs-back-copy{flex:0 0 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding:.16rem .36rem .42rem!important;gap:.06rem!important}' +
-        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;padding:.28rem .36rem .42rem!important;gap:.06rem!important}' +
+        'html body main .grid.grid-cols-2>.tape-slot .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;padding:.1rem .28rem .16rem!important;gap:.04rem!important}' +
         '.lobby-picks .vhs-back-lede,.vhs-box .vhs-back-lede{flex:0 0 auto!important;min-height:0!important;overflow:visible!important}' +
         '.lobby-picks .vhs-back-end,.vhs-box .vhs-back-end{flex:0 0 auto!important;margin-top:.08rem!important}' +
         '.vhs-box[data-paint="1"] .vhs-title,.vhs-box[data-paint="1"] .vhs-face-copy,.vhs-box[data-paint="1"] .vhs-spine-title,.vhs-box[data-paint="1"] .vhs-window svg{display:none!important;opacity:0!important}' +
         '.vhs-back-title,.lobby-picks .vhs-back-title{display:none!important}' +
         '.lobby-picks .vhs-back-kind,.vhs-box .vhs-back-kind{display:none!important}' +
         '.lobby-picks .vhs-back-tag,.vhs-box .vhs-back-tag{font-size:.42rem!important;color:#e8c07a!important;margin:0 0 .04rem!important;line-height:1.2!important;display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;max-height:none!important}' +
-        'html body .lobby-picks .vhs-back-syn,html body main .tape-slot .vhs-box .vhs-back-syn{font-size:.5rem!important;line-height:1.22!important;display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:visible!important;max-height:none!important;color:#d9d2c2!important}' +
+        'html body .lobby-picks .vhs-back-syn{font-size:.5rem!important;line-height:1.22!important;display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:visible!important;max-height:none!important;color:#d9d2c2!important}' +
+        'html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-syn{font-size:.3rem!important;line-height:1.15!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:4!important;line-clamp:4!important;overflow:hidden!important;max-height:none!important;color:#d9d2c2!important}' +
         '.lobby-picks .vhs-back-credits,.lobby-picks .vhs-back-stock,.lobby-picks .vhs-back-cast,.vhs-box .vhs-back-credits,.vhs-box .vhs-back-stock,.vhs-box .vhs-back-cast{font-size:.4rem!important;margin:.02rem 0 0!important;line-height:1.2!important}' +
         'html body svg.vhs-barcode{height:.72rem!important;width:52%!important;background:transparent!important;box-shadow:none!important}' +
         'html body span.vhs-barcode{height:.62rem!important;width:46%!important;flex:0 0 auto!important;box-shadow:none!important;background:repeating-linear-gradient(90deg,#f4eee4 0 1px,#14110e 1px 2px,#f4eee4 2px 3px,#14110e 3px 5px,#f4eee4 5px 6px,#14110e 6px 8px,#f4eee4 8px 11px,#14110e 11px 13px)!important}' +
@@ -7729,10 +7731,14 @@
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-box{width:90%!important;max-width:168px!important;height:calc(var(--shelf-row) - 4.8rem)!important;max-height:calc(var(--shelf-row) - 4.8rem)!important;min-height:0!important;margin:0 auto!important;flex:0 1 auto!important;filter:drop-shadow(0 5px 3px rgba(40,32,24,.35))!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip,html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip-card{height:100%!important;max-height:none!important;width:100%!important;aspect-ratio:auto!important}" +
         "html body main .tape-slot .vhs-box .vhs-face-back,html body main .tape-slot .vhs-box .vhs-case-back,html body main .tape-slot .vhs-box .vhs-shell-back{display:flex!important;flex-direction:column!important;height:100%!important;overflow:hidden!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-still{flex:1 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#120e0c!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;display:block!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;justify-content:flex-end!important}" +
-        "html body main .tape-slot .vhs-box .vhs-back-syn{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:visible!important;max-height:none!important;font-size:.46rem!important;line-height:1.22!important}";
+        "html body main .tape-slot .vhs-box .vhs-back-still{flex:0 0 36%!important;height:36%!important;min-height:0!important;max-height:36%!important;position:relative!important;overflow:hidden!important;background:#120e0c!important}" +
+        "html body main .tape-slot .vhs-box .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important}" +
+        "html body main .tape-slot .vhs-box .vhs-back-copy{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;justify-content:flex-start!important;display:flex!important;flex-direction:column!important}" +
+        "html body main .tape-slot .vhs-box .vhs-back-syn{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:4!important;line-clamp:4!important;overflow:hidden!important;max-height:none!important;font-size:.3rem!important;line-height:1.15!important}" +
+        "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-tag{font-size:.32rem!important;-webkit-line-clamp:2!important;overflow:hidden!important}" +
+        "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-credits,html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-stock{font-size:.26rem!important;line-height:1.12!important}" +
+        "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-back-foot{margin-top:auto!important;flex:0 0 auto!important}" +
+        "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-barcode{height:.5rem!important;width:46%!important}";
       document.head.appendChild(style);
     }
     const CHIP_ON = "inline-flex h-10 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.14em] bg-primary text-primary-fg";
@@ -12806,10 +12812,28 @@
         return grid && grid.classList.contains("grid-cols-2");
       })();
       if (small && onShelf) {
-        still.style.setProperty("flex", "0 0 28%", "important");
-        still.style.setProperty("height", "28%", "important");
+        still.style.setProperty("flex", "0 0 36%", "important");
+        still.style.setProperty("height", "36%", "important");
         still.style.setProperty("min-height", "0", "important");
-        still.style.setProperty("max-height", "28%", "important");
+        still.style.setProperty("max-height", "36%", "important");
+        copy.style.setProperty("flex", "1 1 auto", "important");
+        copy.style.setProperty("min-height", "0", "important");
+        copy.style.setProperty("overflow", "hidden", "important");
+        copy.style.setProperty("justify-content", "flex-start", "important");
+        var syn = copy.querySelector(".vhs-back-syn");
+        if (syn) {
+          syn.style.setProperty("font-size", ".3rem", "important");
+          syn.style.setProperty("line-height", "1.15", "important");
+          syn.style.setProperty("overflow", "hidden", "important");
+          syn.style.setProperty("display", "-webkit-box", "important");
+          syn.style.setProperty("-webkit-box-orient", "vertical", "important");
+          syn.style.setProperty("-webkit-line-clamp", "4", "important");
+        }
+        var foot = copy.querySelector(".vhs-back-foot");
+        if (foot) {
+          foot.style.setProperty("margin-top", "auto", "important");
+          foot.style.setProperty("flex", "0 0 auto", "important");
+        }
       } else if (small) {
         still.style.setProperty("flex", "1 1 auto", "important");
         still.style.setProperty("height", "auto", "important");
