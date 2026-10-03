@@ -17,6 +17,34 @@
     var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
+  function tmdbBag() {
+    try {
+      const bag = JSON.parse(localStorage.getItem("rewind-tmdb-films") || "null");
+      return bag && typeof bag === "object" ? bag : {};
+    } catch (e) {
+      return {};
+    }
+  }
+  function rememberTmdb(film) {
+    const slug = String((film && film.slug) || "");
+    if (!/^tmdb-\d+$/.test(slug)) return;
+    const bag = tmdbBag();
+    const prev = bag[slug] || {};
+    bag[slug] = {
+      title: film.title || prev.title || "",
+      year: film.year || prev.year || "",
+      poster: film.poster || prev.poster || "",
+    };
+    try { localStorage.setItem("rewind-tmdb-films", JSON.stringify(bag)); } catch (e) {}
+  }
+  function filmArt(slug, version) {
+    const id = String(slug || "");
+    if (/^tmdb-\d+$/.test(id)) {
+      const row = tmdbBag()[id];
+      if (row && row.poster) return row.poster;
+    }
+    return "/sleeves/" + id + ".jpg?v=" + (version || "520");
+  }
   function backStillBg(slug) {
     var src = backStill(slug);
     if (src.indexOf("-still.jpg?v=") >= 0) return "";
@@ -1483,7 +1511,7 @@
     const seenOut = {};
     out = out.filter((s) => s && !seenOut[s] && (seenOut[s] = 1));
     function tapeCell(slug) {
-      const src = "/sleeves/" + slug + ".jpg?v=103";
+      const src = filmArt(slug, "103");
       return (
         '<a href="/films/' +
         slug +
@@ -3648,7 +3676,7 @@
   function memberSleeve(slug) {
     const id = String(slug || "").replace(/[^a-z0-9-]/gi, "");
     if (!id) return "";
-    return '<a class="rw-member-tape" href="/films/' + id + '"><img alt="" src="/sleeves/' + id + '.jpg?v=103"></a>';
+    return '<a class="rw-member-tape" href="/films/' + id + '"><img alt="" src="' + filmArt(id, "103") + '"></a>';
   }
   let guestCard = null;
   function paintMemberCard(sheet, card) {
@@ -3686,7 +3714,7 @@
     const shelfHtml = shelves.map(function (shelf) {
       const films = (shelf.films || []).map(function (slug) { return String(slug || "").replace(/[^a-z0-9-]/gi, ""); }).filter(Boolean);
       const strip = films.slice(0, 12).map(function (slug) {
-        return '<img src="/sleeves/' + slug + '.jpg?v=103" alt="">';
+        return '<img src="' + filmArt(slug, "103") + '" alt="">';
       }).join("");
       return '<div class="shelf-card"><span class="shelf-top"><b>' + vipEsc(shelf.name) + "</b><span>" + (films.length === 1 ? "1 tape" : films.length + " tapes") + "</span></span>" +
         (strip ? '<span class="shelf-strip">' + strip + "</span>" : "") +
@@ -11055,6 +11083,10 @@
     const hit = index && index[slug];
     if (hit && hit.title) return hit;
     try {
+      const bag = tmdbBag()[slug];
+      if (bag && bag.title) return { title: bag.title, year: bag.year || "" };
+    } catch (eBag) {}
+    try {
       const wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null");
       const note = wall && wall.diaryNotes && wall.diaryNotes[slug];
       if (note && note.title) return { title: note.title, year: note.year || "" };
@@ -11893,7 +11925,7 @@
       } catch (eN) { return {}; }
     })();
     function filmCard(slug, index, extra) {
-      const film = (index && index[slug]) || {};
+      const film = (index && index[slug]) || tmdbBag()[slug] || {};
       const name = film.title || String(slug || "").replace(/-/g, " ");
       const year = film.year ? String(film.year) : "";
       return (
@@ -11917,7 +11949,7 @@
       return html;
     }
     function reviewRow(slug, index, note) {
-      const film = (index && index[slug]) || {};
+      const film = (index && index[slug]) || tmdbBag()[slug] || {};
       const name = film.title || String(slug || "").replace(/-/g, " ");
       const year = film.year ? String(film.year) : "";
       const rating = Math.max(0, Math.min(5, Number((note && note.rating) || 0)));
@@ -11945,7 +11977,7 @@
       }).join("") + "</div>";
     }
     function reviewSheet(slug, index, note, copy) {
-      const film = (index && index[slug]) || {};
+      const film = (index && index[slug]) || tmdbBag()[slug] || {};
       const name = film.title || String(slug || "").replace(/-/g, " ");
       const year = film.year ? String(film.year) : "";
       const n = Math.max(0, Math.min(5, Number((note && note.rating) || 0)));
@@ -11992,7 +12024,7 @@
       );
     }
     function posterCell(slug, index, note) {
-      const film = (index && index[slug]) || {};
+      const film = (index && index[slug]) || tmdbBag()[slug] || {};
       const name = film.title || String(slug || "").replace(/-/g, " ");
       const rating = Math.max(0, Math.min(5, Number((note && note.rating) || 0)));
       const liked = !!(note && note.liked);
@@ -12000,7 +12032,7 @@
       const heart = liked ? '<span class="stat-heart" aria-label="Hearted">♥</span>' : "";
       return (
         '<a href="/films/' + boardEsc(slug) + '" class="stat-poster">' +
-        '<img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="' + boardEsc(name) + '" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/>' +
+        '<img src="' + filmArt(slug, "520") + '" alt="' + boardEsc(name) + '" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/>' +
         '<span class="stat-meta">' + stars + heart + "</span></a>"
       );
     }
@@ -12064,9 +12096,9 @@
         }
         function paintPicks() {
           picks.innerHTML = films.map(function (slug, i) {
-            const film = (index && index[slug]) || {};
+            const film = (index && index[slug]) || tmdbBag()[slug] || {};
             const name = film.title || slug;
-            return '<button type="button" data-drop="' + i + '" aria-label="Remove ' + boardEsc(name) + '"><img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt=""/><i>×</i></button>';
+            return '<button type="button" data-drop="' + i + '" aria-label="Remove ' + boardEsc(name) + '"><img src="' + filmArt(slug, "520") + '" alt=""/><i>×</i></button>';
           }).join("");
         }
         paintFlags();
@@ -12084,8 +12116,17 @@
           films.splice(Number(btn.getAttribute("data-drop")), 1);
           paintPicks();
         });
+        let shelfSeq = 0;
+        let shelfTimer = 0;
+        function shelfButton(film) {
+          const art = film.poster || filmArt(film.slug, "520");
+          return '<button type="button" data-add="' + boardEsc(film.slug) + '" data-title="' + boardEsc(film.title) + '" data-year="' + boardEsc(film.year || "") + '" data-poster="' + boardEsc(film.poster || "") + '"><img src="' + art + '" alt=""/><span><b>' + boardEsc(film.title) + "</b>" + (film.year ? " <i>" + boardEsc(film.year) + "</i>" : "") + "</span></button>";
+        }
         find.addEventListener("input", function () {
           const q = find.value.trim().toLowerCase();
+          shelfSeq += 1;
+          const seq = shelfSeq;
+          clearTimeout(shelfTimer);
           if (q.length < 1) { hits.innerHTML = ""; return; }
           const matches = [];
           Object.keys(index || {}).forEach(function (slug) {
@@ -12096,15 +12137,34 @@
             matches.push({ slug: slug, title: title, year: film.year || "" });
           });
           matches.sort(function (a, b) { return a.title.localeCompare(b.title); });
-          hits.innerHTML = matches.slice(0, 8).map(function (film) {
-            return '<button type="button" data-add="' + boardEsc(film.slug) + '"><img src="/sleeves/' + boardEsc(film.slug) + '.jpg?v=520" alt=""/><span><b>' + boardEsc(film.title) + "</b>" + (film.year ? " <i>" + boardEsc(film.year) + "</i>" : "") + "</span></button>";
-          }).join("");
+          const local = matches.slice(0, 8);
+          hits.innerHTML = local.map(shelfButton).join("");
+          if (q.length < 2) return;
+          shelfTimer = setTimeout(function () {
+            fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(q))
+              .then(function (r) { return r.ok ? r.json() : { results: [] }; })
+              .then(function (data) {
+                if (seq !== shelfSeq) return;
+                const extra = ((data && data.results) || []).filter(function (row) {
+                  const title = String(row.title || "").toLowerCase();
+                  if (!title || films.indexOf(row.slug) >= 0) return false;
+                  return !local.some(function (have) { return String(have.title || "").toLowerCase() === title; });
+                }).map(function (row) {
+                  return { slug: row.slug, title: row.title, year: row.year || "", poster: row.poster || "" };
+                });
+                hits.innerHTML = local.concat(extra).slice(0, 8).map(shelfButton).join("");
+              })
+              .catch(function () {});
+          }, 280);
         });
         hits.addEventListener("click", function (e) {
           const btn = e.target.closest("[data-add]");
           if (!btn) return;
           const slug = btn.getAttribute("data-add");
-          if (slug && films.indexOf(slug) < 0) films.push(slug);
+          if (slug && films.indexOf(slug) < 0) {
+            films.push(slug);
+            rememberTmdb({ slug: slug, title: btn.getAttribute("data-title") || "", year: btn.getAttribute("data-year") || "", poster: btn.getAttribute("data-poster") || "" });
+          }
           find.value = "";
           hits.innerHTML = "";
           paintPicks();
@@ -12155,7 +12215,7 @@
           '<span><button type="button" data-shelf-mode="rows">Rows</button> · <a href="/lists?edit=' + encodeURIComponent(current.id) + '">Edit</a></span></div>' +
           '<div class="shelf-grid" data-shelf-grid>' + films.map(function (slug) { return posterCell(slug, index, notes[slug] || {}); }).join("") + "</div>" +
           '<div class="shelf-rows" data-shelf-rows hidden>' + films.map(function (slug, i) {
-            const film = (index && index[slug]) || {};
+            const film = (index && index[slug]) || tmdbBag()[slug] || {};
             const name = film.title || String(slug).replace(/-/g, " ");
             const year = film.year ? String(film.year) : "";
             const note = notes[slug] || {};

@@ -247,11 +247,42 @@
     const list = Array.isArray(window.__REWIND_FILMS) ? window.__REWIND_FILMS : [];
     return list.filter((f) => f && f.slug && f.title).map(normalizeFilm);
   }
+  function tmdbBag() {
+    try {
+      const bag = JSON.parse(localStorage.getItem("rewind-tmdb-films") || "null");
+      return bag && typeof bag === "object" ? bag : {};
+    } catch {
+      return {};
+    }
+  }
+  function stashTmdb(f) {
+    if (!f || !/^tmdb-\d+$/.test(String(f.slug || ""))) return f;
+    const bag = tmdbBag();
+    const prev = bag[f.slug] || {};
+    bag[f.slug] = {
+      title: f.title || prev.title || "",
+      year: f.year || prev.year || "",
+      poster: f.posterUrl || prev.poster || "",
+    };
+    try {
+      localStorage.setItem("rewind-tmdb-films", JSON.stringify(bag));
+    } catch {
+      /* quota */
+    }
+    return f;
+  }
   function remember(f) {
     if (f && f.slug) extraBySlug[f.slug] = f;
+    stashTmdb(f);
     return f;
   }
   function allKnown() {
+    const bag = tmdbBag();
+    Object.keys(bag).forEach((slug) => {
+      if (extraBySlug[slug]) return;
+      const row = bag[slug] || {};
+      extraBySlug[slug] = normalizeFilm({ slug, title: row.title || slug, year: row.year, posterUrl: row.poster || "" });
+    });
     const seen = new Set();
     const out = [];
     for (const f of floorFilms().concat(wallExtra).concat(Object.values(extraBySlug))) {
@@ -329,63 +360,32 @@
   async function wikiSearch(q, signal) {
     const n = String(q || "").trim();
     if (n.length < 2) return [];
-    const search = new URL("https://en.wikipedia.org/w/api.php");
-    search.searchParams.set("origin", "*");
-    search.searchParams.set("action", "query");
-    search.searchParams.set("list", "search");
-    search.searchParams.set("srsearch", `"${n}" film`);
-    search.searchParams.set("srlimit", "10");
-    search.searchParams.set("format", "json");
-    const sr = await fetch(search, { signal });
-    if (!sr.ok) return [];
-    const titles = ((await sr.json()).query?.search ?? [])
-      .map((e) => e.title)
-      .filter((t) => t && !/\((soundtrack|album|score|song|novel|episode|tv series|television|video game)\)/i.test(t))
-      .slice(0, 8);
-    if (!titles.length) return [];
-    const pages = new URL("https://en.wikipedia.org/w/api.php");
-    pages.searchParams.set("origin", "*");
-    pages.searchParams.set("action", "query");
-    pages.searchParams.set("prop", "pageimages|extracts");
-    pages.searchParams.set("exintro", "1");
-    pages.searchParams.set("explaintext", "1");
-    pages.searchParams.set("piprop", "thumbnail");
-    pages.searchParams.set("pithumbsize", "400");
-    pages.searchParams.set("redirects", "1");
-    pages.searchParams.set("titles", titles.join("|"));
-    pages.searchParams.set("format", "json");
-    const pr = await fetch(pages, { signal });
-    if (!pr.ok) return [];
-    const data = await pr.json();
-    const needle = fold(n);
+    const res = await fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(n), { signal });
+    if (!res.ok) return [];
+    const data = await res.json();
+    if (!data || data.err === "key") return [];
     const known = allKnown();
     const out = [];
-    for (const page of Object.values(data.query?.pages ?? {})) {
-      const extract = page.extract || "";
-      if (!wikiIsFilm(page.title || "", extract)) continue;
-      const title = wikiCleanTitle(page.title);
+    for (const row of data.results || []) {
+      const title = String(row.title || "").trim();
       if (!title) continue;
+      const year = Number(row.year) || 0;
       const folded = fold(title);
-      if (!folded.includes(needle) && !needle.includes(folded) && scoreTitle(title, n) < 20) continue;
-      const yearHit = (page.title || "").match(/\((\d{4})\s*film\)/i) || extract.match(/\b((?:19|20)\d{2})\b/);
-      const year = yearHit ? Number(String(yearHit[1] || yearHit[0]).replace(/\D/g, "")) : 0;
       const local =
-        known.find((f) => fold(f.title) === folded && (!year || !f.year || f.year === year)) ||
+        known.find((f) => fold(f.title) === folded && (!year || !f.year || Number(f.year) === year)) ||
         known.find((f) => fold(f.title) === folded);
       if (local) {
-        if (!local.posterUrl && page.thumbnail && page.thumbnail.source) local.posterUrl = page.thumbnail.source;
+        if (!local.posterUrl && row.poster) local.posterUrl = row.poster;
         out.push(local);
         continue;
       }
-      const dir = (extract.match(/directed by ([A-Z][A-Za-z.'\-]+(?:\s[A-Z][A-Za-z.'\-]+){0,3})/) || [])[1] || "";
       out.push(
         remember(
           normalizeFilm({
-            slug: slugify(title, year),
+            slug: row.slug,
             title,
             year,
-            director: dir.replace(/\.$/, ""),
-            posterUrl: page.thumbnail?.source || "",
+            posterUrl: row.poster || "",
           })
         )
       );
@@ -468,9 +468,22 @@
   }
   function filmOf(id) {
     const f = allKnown().find((x) => x.slug === id || String(x.id) === String(id));
-    return f
-      ? { ...f, id: f.slug, slug: f.slug, palette: f.palette || "#c41230|#1c1410|#f3e6c8", themes: f.themes || "drama" }
-      : { id, slug: id, title: String(id).replace(/-/g, " "), year: 0, palette: "#c41230|#1c1410|#f3e6c8", themes: "drama" };
+    if (f) {
+      return { ...f, id: f.slug, slug: f.slug, palette: f.palette || "#c41230|#1c1410|#f3e6c8", themes: f.themes || "drama" };
+    }
+    const cached = tmdbBag()[id];
+    if (cached && cached.title) {
+      return {
+        id,
+        slug: id,
+        title: cached.title,
+        year: Number(cached.year) || 0,
+        posterUrl: cached.poster || "",
+        palette: "#c41230|#1c1410|#f3e6c8",
+        themes: "drama",
+      };
+    }
+    return { id, slug: id, title: String(id).replace(/-/g, " "), year: 0, palette: "#c41230|#1c1410|#f3e6c8", themes: "drama" };
   }
   function esc(s) {
     return String(s || "")

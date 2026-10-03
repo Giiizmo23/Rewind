@@ -82,6 +82,7 @@ async function search(url: URL): Promise<Response> {
     slug: "tmdb-" + String(row.id || ""),
     title: String(row.title || row.original_title || ""),
     year: yearOf(row.release_date),
+    poster: img(row.poster_path, "w342"),
     tmdb: true,
   })).filter((row) => row.slug !== "tmdb-" && row.title);
   const body = { ok: true, results };
