@@ -134,8 +134,8 @@
       '.tp-copy{padding-right:7.3rem;min-height:8.6rem;margin-top:-1.05rem;position:relative;z-index:4}' +
       '.tp-copy h1{font-family:var(--font-display,inherit);font-size:1.72rem;line-height:.95;letter-spacing:.03em;margin:0 0 .28rem}' +
       '.tp-by{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.62;margin:0 0 .18rem}' +
-      '.tp-by b{display:block;margin-top:.08rem;font-size:1.02rem;letter-spacing:0;text-transform:none;font-weight:700;opacity:1;line-height:1.2}' +
-      '.tp-facts{font-size:.78rem;opacity:.6;margin:.35rem 0 0}' +
+      '.tp-by b{display:block;margin-top:.28rem;font-size:1.15rem;letter-spacing:0;text-transform:none;font-weight:700;opacity:1;line-height:1.15}' +
+      '.tp-facts{font-size:.92rem;opacity:.72;margin:.42rem 0 0}' +
       '.tp-tag{margin:.55rem 0 .35rem;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.55;max-width:100%}' +
       '.tp-syn{margin:0 0 .9rem;line-height:1.48;opacity:.88;font-size:.9rem}' +
       '.tp-sec{margin:.7rem 0 .15rem}' +
@@ -288,21 +288,89 @@
     pushAccount();
   }
 
+  function stubCopy(text) {
+    const t = String(text || "").trim();
+    if (!t) return true;
+    if (/^on the shelf\.?$/i.test(t)) return true;
+    if (/^a tape from the rewind wall\.?$/i.test(t)) return true;
+    if (/^a \d{4}\b.+\bpicture directed by\b/i.test(t)) return true;
+    return false;
+  }
+  function sameTitle(a, b) {
+    return fold(a) && fold(a) === fold(b);
+  }
+  function enrichFromShelf(film) {
+    film = film || {};
+    const crew = film.credits && film.credits.crew;
+    if (!film.director && crew && Array.isArray(crew.director) && crew.director[0]) film.director = crew.director[0];
+    const want = film.title || "";
+    if (!want) return film;
+    const rows = [];
+    const cat = window.__rwCatalog || {};
+    Object.keys(cat).forEach(function (slug) {
+      const row = cat[slug];
+      if (row && sameTitle(row.title, want)) rows.push(row);
+    });
+    (window.__rwIndex || []).forEach(function (row) {
+      if (row && sameTitle(row.title, want)) rows.push(row);
+    });
+    rows.forEach(function (row) {
+      if (!film.director && row.director) film.director = row.director;
+      if (stubCopy(film.overview) && row.overview && !stubCopy(row.overview)) film.overview = row.overview;
+      if (!film.tagline && row.tagline) film.tagline = row.tagline;
+      const rt = Number(row.runtime) || 0;
+      const mine = Number(film.runtime) || 0;
+      if (rt && rt !== 100 && (mine === 0 || (mine === 100 && stubCopy(film.overview)))) film.runtime = rt;
+    });
+    return film;
+  }
+  function pullWarehouseCopy(film) {
+    if (!film || film.tmdb) return;
+    film = enrichFromShelf(film);
+    if (film.director && !stubCopy(film.overview)) return;
+    const slug = film.slug;
+    window.__rwCopyOnce = window.__rwCopyOnce || {};
+    if (window.__rwCopyOnce[slug]) return;
+    window.__rwCopyOnce[slug] = 1;
+    const title = film.title || pretty(slug || "");
+    if (fold(title).length < 2) return;
+    fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(title))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        const rows = (data && data.results) || [];
+        const same = rows.filter(function (row) { return sameTitle(row.title, title); });
+        const hit = same.find(function (row) { return String(row.year || "") === String(film.year || ""); }) || same[0] || rows[0];
+        const id = hit && String(hit.slug || "").replace(/^tmdb-/, "").replace(/\D/g, "");
+        if (!id) return null;
+        return fetch("/api/rewind/tmdb/film?id=" + id).then(function (r) { return r.ok ? r.json() : null; });
+      })
+      .then(function (info) {
+        if (!info || filmSlug() !== slug) return;
+        const live = enrichFromShelf(film);
+        const wasStub = stubCopy(live.overview);
+        let changed = false;
+        if (!live.director && info.director) { live.director = info.director; changed = true; }
+        if (wasStub && info.overview) { live.overview = info.overview; changed = true; }
+        if (!live.tagline && info.tagline) { live.tagline = info.tagline; changed = true; }
+        const rt = Number(info.runtime) || 0;
+        const mine = Number(live.runtime) || 0;
+        if (rt && (mine === 0 || (mine === 100 && wasStub))) { live.runtime = rt; changed = true; }
+        if (changed) fillTape(live);
+      })
+      .catch(function () {});
+  }
+
   function fillTape(film) {
     const slug = filmSlug();
     if (!slug) return false;
     const main = document.querySelector("main");
     if (!main) return false;
-    film = film || {};
+    film = enrichFromShelf(film || {});
     const title = esc(film.title || pretty(slug));
     const year = esc(film.year || "");
     const director = esc(film.director || "");
     const overviewRaw = String(film.overview || "").trim();
-    const overview = esc(
-      !overviewRaw || /^on the shelf\.?$/i.test(overviewRaw) || /^a tape from the rewind wall\.?$/i.test(overviewRaw)
-        ? ""
-        : overviewRaw
-    );
+    const overview = esc(stubCopy(overviewRaw) ? "" : overviewRaw);
     const tagline = esc(film.tagline || "");
     const genres = esc(film.genres || "");
     const runtimeMins = film.runtime ? String(film.runtime) + " mins" : "";
@@ -475,11 +543,10 @@
       "<h1>" +
       title +
       "</h1>" +
-      (director || year
+      (year || director
         ? '<p class="tp-by">' +
           (year ? year : "") +
-          (year && director ? " · " : "") +
-          (director ? "Directed by<b>" + director + "</b>" : "") +
+          (director ? (year ? " · " : "") + "Directed by<b>" + director + "</b>" : "") +
           "</p>"
         : "") +
       (runtimeMins ? '<p class="tp-facts">' + runtimeMins + "</p>" : "") +
@@ -541,6 +608,7 @@
         sheet.classList.add("is-on");
       });
     }
+    pullWarehouseCopy(film);
     const back = main.querySelector("[data-tape-back]");
     if (back && back.dataset.wired !== "1") {
       back.dataset.wired = "1";
