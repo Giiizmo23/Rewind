@@ -117,8 +117,11 @@
       '.tp-hero-shade{position:absolute;inset:0;background:linear-gradient(to top,var(--color-bg,#f6f4ef) 0%,color-mix(in srgb,var(--color-bg,#f6f4ef) 70%,transparent) 10%,transparent 28%,rgba(12,12,14,.28) 100%)}' +
       'html[data-theme="night"] .tp-hero-shade,html[data-theme="dark"] .tp-hero-shade{background:linear-gradient(to top,#0a0b0e 0%,rgba(10,11,14,.65) 10%,transparent 30%,rgba(0,0,0,.4) 100%)}' +
       '.tp-back{position:absolute;top:.7rem;left:.7rem;z-index:6;width:2.05rem;height:2.05rem;border-radius:99px;display:flex;align-items:center;justify-content:center;background:rgba(10,10,12,.5);color:#fff;text-decoration:none;font-size:1.4rem;line-height:1;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}' +
-      '.tp-poster{position:absolute!important;right:1rem!important;bottom:-7.35rem!important;width:6.15rem!important;height:9.2rem!important;z-index:5!important;margin:0!important;left:auto!important;top:auto!important;overflow:visible}' +
+      '.tp-poster{position:absolute!important;right:1rem!important;bottom:-7.35rem!important;width:6.15rem!important;height:9.2rem!important;z-index:5!important;margin:0!important;left:auto!important;top:auto!important;overflow:visible;border:0;padding:0;background:none;cursor:pointer}' +
       '.tp-poster img{width:100%;height:100%;object-fit:cover;border-radius:.14rem;box-shadow:0 .55rem 1.4rem rgba(0,0,0,.38);background:#111;border:1px solid rgba(255,255,255,.35)}' +
+      '[data-tp-zoom-sheet]{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:1.4rem 1rem;background:rgba(0,0,0,.92)}' +
+      '[data-tp-zoom-sheet].is-on{display:flex}' +
+      '[data-tp-zoom-sheet] img{max-width:min(92vw,26rem);max-height:86vh;object-fit:contain;border-radius:.2rem;box-shadow:0 1.2rem 3rem rgba(0,0,0,.55)}' +
       '.tp-file{margin:.85rem 0 1rem}' +
       '.tp-file .tp-chip{margin:0}' +
       '.tp-owned{display:flex;align-items:center;gap:.55rem;margin:.42rem 0 0;padding:.55rem .95rem;border-radius:999px;background:color-mix(in srgb,currentColor 9%,transparent);color:inherit;font-size:.86rem;line-height:1.1;width:fit-content;max-width:100%;align-self:flex-start}' +
@@ -294,11 +297,15 @@
     const title = esc(film.title || pretty(slug));
     const year = esc(film.year || "");
     const director = esc(film.director || "");
-    const overview = esc(film.overview || (film.tmdb ? "" : "A tape from the Rewind wall."));
+    const overviewRaw = String(film.overview || "").trim();
+    const overview = esc(
+      !overviewRaw || /^on the shelf\.?$/i.test(overviewRaw) || /^a tape from the rewind wall\.?$/i.test(overviewRaw)
+        ? ""
+        : overviewRaw
+    );
     const tagline = esc(film.tagline || "");
     const genres = esc(film.genres || "");
-    const catalogNo = esc(film.catalogNo || "");
-    const runtime = film.runtime ? film.runtime + " min" : "";
+    const runtimeMins = film.runtime ? String(film.runtime) + " mins" : "";
     const sid = String(slug).replace(/[^a-z0-9]+/g, "");
     const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
     const spineSrc =
@@ -435,11 +442,11 @@
     const stillSrc = film.still || backStill(slug);
     const stillFallback = film.poster || "/sleeves/" + slug + ".jpg?v=493";
     const poster =
-      '<div class="tp-poster" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
+      '<button type="button" class="tp-poster" data-tp-zoom="1" aria-label="See the picture" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
       '<img src="' +
       posterSrc +
       '" alt="" draggable="false" decoding="async" onerror="this.style.opacity=\'.3\'">' +
-      "</div>";
+      "</button>";
     var stillFit = "object-position:center center;";
     if (slug === "se7en") stillFit = "object-position:center 62%;";
     if (slug === "goodfellas") stillFit = "object-position:center 45%;";
@@ -470,16 +477,15 @@
       "</h1>" +
       (director || year
         ? '<p class="tp-by">' +
-          (year ? year + " · " : "") +
-          (director ? "DIRECTED BY <b>" + director + "</b>" : "") +
+          (year ? year : "") +
+          (year && director ? " · " : "") +
+          (director ? "Directed by<b>" + director + "</b>" : "") +
           "</p>"
         : "") +
-      (runtime || catalogNo ? '<p class="tp-facts">' + [film.runtime ? String(film.runtime) + " mins" : "", catalogNo].filter(Boolean).join(" · ") + "</p>" : "") +
+      (runtimeMins ? '<p class="tp-facts">' + runtimeMins + "</p>" : "") +
       "</div>" +
       (tagline ? '<p class="tp-tag">' + tagline + "</p>" : "") +
-      '<p class="tp-syn">' +
-      overview +
-      "</p>" +
+      (overview ? '<p class="tp-syn">' + overview + "</p>" : "") +
       '<section class="tp-sec"><h2>Ratings</h2>' +
       '<div class="tp-rate"><div class="tp-stars" role="slider" aria-valuemin="0" aria-valuemax="5">' +
       starsHtml(rating) +
@@ -504,8 +510,7 @@
       "</div></div>" +
       '<div class="tp-pane" data-tp-pane="details" hidden><div class="tp-dl">' +
       (year ? "<b>Released</b><p>" + year + "</p>" : "") +
-      (runtime ? "<b>Runtime</b><p>" + runtime + "</p>" : "") +
-      (catalogNo ? "<b>Catalog</b><p>" + catalogNo + " · Hi-Fi Stereo</p>" : "") +
+      (runtimeMins ? "<b>Runtime</b><p>" + runtimeMins + "</p>" : "") +
       "</div></div>" +
       '<div class="tp-pane" data-tp-pane="genres" hidden><div class="tp-dl">' +
       (genreList.length
@@ -516,6 +521,26 @@
         ? '<p class="tp-tmdb">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>'
         : "") +
       "</div></div>";
+    const zoomBtn = main.querySelector("[data-tp-zoom]");
+    if (zoomBtn) {
+      zoomBtn.addEventListener("click", function () {
+        const img = zoomBtn.querySelector("img");
+        const src = (img && (img.currentSrc || img.src)) || posterSrc;
+        let sheet = document.querySelector("[data-tp-zoom-sheet]");
+        if (!sheet) {
+          sheet = document.createElement("div");
+          sheet.setAttribute("data-tp-zoom-sheet", "1");
+          sheet.innerHTML = '<img alt="">';
+          sheet.addEventListener("click", function () {
+            sheet.classList.remove("is-on");
+          });
+          document.body.appendChild(sheet);
+        }
+        const big = sheet.querySelector("img");
+        if (big) big.src = src;
+        sheet.classList.add("is-on");
+      });
+    }
     const back = main.querySelector("[data-tape-back]");
     if (back && back.dataset.wired !== "1") {
       back.dataset.wired = "1";
