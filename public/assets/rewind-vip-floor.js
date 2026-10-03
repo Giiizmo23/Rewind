@@ -8320,8 +8320,11 @@
       });
       const top = rows.slice(0, 8);
       if (!top.length) {
-        list.innerHTML = '<li style="padding:.65rem 1rem;font-size:.85rem;opacity:.7">Nothing on the shelf for that yet.</li>';
-        list.style.display = "block";
+        if (typeof window.__rwAskWarehouse === "function") window.__rwAskWarehouse(q, rows, list);
+        else {
+          list.innerHTML = '<li style="padding:.65rem 1rem;font-size:.85rem;opacity:.7">Nothing on the shelf for that yet.</li>';
+          list.style.display = "block";
+        }
         return;
       }
       list.innerHTML = top.map(function (row) {
@@ -8331,6 +8334,7 @@
           String(row.title).replace(/[<>]/g, "") + '</span><span style="opacity:.55;font-size:.75rem">' + (row.year || "") + "</span></button></li>";
       }).join("");
       list.style.display = "block";
+      if (typeof window.__rwAskWarehouse === "function") window.__rwAskWarehouse(q, rows, list);
     }
     function apply(raw) {
       const query = String(raw || "").trim().toLowerCase();
@@ -11050,6 +11054,11 @@
   function boardFilmLabel(slug, index) {
     const hit = index && index[slug];
     if (hit && hit.title) return hit;
+    try {
+      const wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null");
+      const note = wall && wall.diaryNotes && wall.diaryNotes[slug];
+      if (note && note.title) return { title: note.title, year: note.year || "" };
+    } catch (eNote) {}
     const title = String(slug || "").replace(/-/g, " ").replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
     return { title: title || "Tape", year: "" };
   }

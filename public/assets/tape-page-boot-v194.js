@@ -168,6 +168,7 @@
       '.tp-person span{font-size:.78rem;opacity:.55}' +
       '.tp-more{border:0;background:color-mix(in srgb,currentColor 10%,transparent);color:inherit;border-radius:99px;padding:.42rem .95rem;font-size:.78rem;cursor:pointer;margin:.15rem 0 .5rem}' +
       '.tp-empty{opacity:.55;font-size:.86rem}' +
+      '.tp-tmdb{margin:1.5rem 0 .2rem;font-size:.68rem;line-height:1.35;opacity:.45;text-align:center}' +
       '.tp-logpop{position:fixed;inset:0;z-index:200;background:rgba(12,10,8,.46);display:flex;align-items:flex-end;justify-content:center;padding:0 .7rem calc(5.5rem + env(safe-area-inset-bottom))}' +
       '.tp-logcard{width:min(100%,26rem);background:#fffdf8;color:#161412;border-radius:22px;padding:.95rem .7rem .7rem;box-shadow:0 16px 40px rgba(0,0,0,.28)}' +
       '.tp-logtitle{margin:0;text-align:center;font-size:1.22rem;font-weight:720;letter-spacing:.01em;line-height:1.15}' +
@@ -234,7 +235,14 @@
     try {
       const wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null") || {};
       wall.diaryNotes = wall.diaryNotes || {};
-      wall.diaryNotes[slug] = Object.assign({}, wall.diaryNotes[slug] || {}, patch, { at: Date.now() });
+      const h1 = document.querySelector(".tape-card-page h1");
+      const title = h1 && h1.textContent ? h1.textContent.trim() : "";
+      const by = document.querySelector(".tp-by");
+      const yearMatch = by && String(by.textContent || "").match(/\d{4}/);
+      const extra = {};
+      if (title && title !== "…") extra.title = title;
+      if (yearMatch) extra.year = yearMatch[0];
+      wall.diaryNotes[slug] = Object.assign({}, wall.diaryNotes[slug] || {}, extra, patch, { at: Date.now() });
       localStorage.setItem("rewind-club-wall", JSON.stringify(wall));
       pushAccount();
     } catch (e) {}
@@ -286,7 +294,7 @@
     const title = esc(film.title || pretty(slug));
     const year = esc(film.year || "");
     const director = esc(film.director || "");
-    const overview = esc(film.overview || "A tape from the Rewind wall.");
+    const overview = esc(film.overview || (film.tmdb ? "" : "A tape from the Rewind wall."));
     const tagline = esc(film.tagline || "");
     const genres = esc(film.genres || "");
     const catalogNo = esc(film.catalogNo || "");
@@ -423,13 +431,15 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
+    const posterSrc = film.poster || "/sleeves/" + slug + ".jpg?v=493";
+    const stillSrc = film.still || backStill(slug);
+    const stillFallback = film.poster || "/sleeves/" + slug + ".jpg?v=493";
     const poster =
       '<div class="tp-poster" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
-      '<img src="/sleeves/' +
-      slug +
-      '.jpg?v=493" alt="" draggable="false" decoding="async" onerror="this.style.opacity=\'.3\'">' +
+      '<img src="' +
+      posterSrc +
+      '" alt="" draggable="false" decoding="async" onerror="this.style.opacity=\'.3\'">' +
       "</div>";
-    const still = backStill(slug);
     var stillFit = "object-position:center center;";
     if (slug === "se7en") stillFit = "object-position:center 62%;";
     if (slug === "goodfellas") stillFit = "object-position:center 45%;";
@@ -441,12 +451,12 @@
       '<div class="tp-hero">' +
       '<div class="tp-still-clip">' +
       '<img class="tp-still" src="' +
-      still +
+      stillSrc +
       '" alt="" draggable="false" decoding="async" style="' +
       stillFit +
-      '" onerror="this.onerror=null;this.src=\'/sleeves/' +
-      slug +
-      '.jpg?v=493\'">' +
+      '" onerror="this.onerror=null;this.src=\'' +
+      stillFallback +
+      '\'">' +
       '<div class="tp-hero-shade"></div></div>' +
       '<a href="' +
       fromListPage() +
@@ -502,6 +512,9 @@
         ? "<b>Genres</b><p>" + genreList.join(" · ") + "</p>"
         : '<p class="tp-empty">No aisle sticker on this box.</p>') +
       "</div></div>" +
+      (film.tmdb
+        ? '<p class="tp-tmdb">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>'
+        : "") +
       "</div></div>";
     const back = main.querySelector("[data-tape-back]");
     if (back && back.dataset.wired !== "1") {
@@ -684,6 +697,8 @@
           const wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null") || {};
           wall.diaryNotes = wall.diaryNotes || {};
           const prev = wall.diaryNotes[slug] || {};
+          const h1 = document.querySelector(".tape-card-page h1");
+          const title = h1 && h1.textContent ? h1.textContent.trim() : "";
           wall.diaryNotes[slug] = Object.assign({}, prev, {
             rating: rating,
             liked: sheetLiked,
@@ -691,6 +706,7 @@
             watched: sheetWatch,
             owned: sheetOwned,
             review: prev.review || sheetReview || "",
+            title: title && title !== "…" ? title : prev.title || "",
             at: prev.at || Date.now(),
           });
           localStorage.setItem("rewind-club-wall", JSON.stringify(wall));
@@ -812,9 +828,53 @@
     });
   }
 
+  function paintWarehouseFilm(slug) {
+    const id = slug.slice(5);
+    window.__rwTmdbFilm = window.__rwTmdbFilm || {};
+    const cached = window.__rwTmdbFilm[slug];
+    if (cached && cached.title) {
+      fillTape(cached);
+      return;
+    }
+    fillTape({ slug: slug, title: "…", year: "", director: "", overview: "", tmdb: true });
+    fetch("/api/rewind/tmdb/film?id=" + encodeURIComponent(id))
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (film) {
+        if (filmSlug() !== slug) return;
+        if (!film || !film.title) {
+          fillTape({
+            slug: slug,
+            title: "Not on the shelf",
+            overview: "Couldn't pull this one from the warehouse.",
+            tmdb: true,
+          });
+          return;
+        }
+        film.slug = slug;
+        film.tmdb = true;
+        window.__rwTmdbFilm[slug] = film;
+        fillTape(film);
+      })
+      .catch(function () {
+        if (filmSlug() !== slug) return;
+        fillTape({
+          slug: slug,
+          title: "Not on the shelf",
+          overview: "Couldn't pull this one from the warehouse.",
+          tmdb: true,
+        });
+      });
+  }
+
   function paintTapePage() {
     const slug = filmSlug();
     if (!slug) return;
+    if (/^tmdb-\d+$/.test(slug)) {
+      paintWarehouseFilm(slug);
+      return;
+    }
     const main = document.querySelector("main");
     if (!main) return;
     const known = ((window.__rwIndex || []).find && (window.__rwIndex || []).find(function (r) {
@@ -1105,10 +1165,74 @@
       list.addEventListener("click", pickHit, true);
       return list;
     }
+    function rowButton(row) {
+      const slug = String(row.slug || "").replace(/[^a-z0-9-]/g, "");
+      if (!slug) return "";
+      return (
+        '<li><button type="button" data-film-href="/films/' +
+        slug +
+        '" style="display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 1rem;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer"><span>' +
+        esc(row.title) +
+        '</span><span style="opacity:.55;font-size:.75rem">' +
+        esc(row.year || "") +
+        "</span></button></li>"
+      );
+    }
+    function paintRows(list, rows) {
+      const top = rows.slice(0, 8);
+      if (!top.length) {
+        list.innerHTML = '<li style="padding:.65rem 1rem;font-size:.85rem;opacity:.7">Nothing on the shelf for that yet.</li>';
+        list.style.display = "block";
+        return;
+      }
+      list.innerHTML = top.map(rowButton).join("");
+      list.style.display = "block";
+    }
+    function askWarehouse(q, localRows, list) {
+      if (window.__rwTmdbOff) {
+        if (!localRows.length) paintRows(list, []);
+        return;
+      }
+      if (fold(q).length < 2) return;
+      const seq = (window.__rwTmdbSeq = (window.__rwTmdbSeq || 0) + 1);
+      clearTimeout(window.__rwTmdbTimer);
+      if (!localRows.length) {
+        list.innerHTML = '<li style="padding:.65rem 1rem;font-size:.85rem;opacity:.7">Checking the warehouse…</li>';
+        list.style.display = "block";
+      }
+      window.__rwTmdbTimer = setTimeout(function () {
+        fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(q))
+          .then(function (r) {
+            return r.ok ? r.json() : { results: [] };
+          })
+          .then(function (data) {
+            if (seq !== window.__rwTmdbSeq) return;
+            if (data && data.err === "key") {
+              window.__rwTmdbOff = 1;
+              if (!localRows.length) paintRows(list, []);
+              return;
+            }
+            if (String(input.value || "").trim() !== q) return;
+            const extra = (data && data.results ? data.results : []).filter(function (row) {
+              const title = fold(row.title);
+              if (!title) return false;
+              return !localRows.some(function (local) {
+                return fold(local.title) === title;
+              });
+            });
+            paintRows(list, localRows.concat(extra));
+          })
+          .catch(function () {
+            if (seq !== window.__rwTmdbSeq) return;
+            if (!localRows.length) paintRows(list, []);
+          });
+      }, 280);
+    }
     function paintHits(raw) {
       const q = String(raw || "").trim();
       const list = ensureList();
       if (!q) {
+        window.__rwTmdbSeq = (window.__rwTmdbSeq || 0) + 1;
         list.innerHTML = "";
         list.style.display = "none";
         return;
@@ -1142,29 +1266,10 @@
         const sb = fb === n ? 3 : fb.indexOf(n) === 0 ? 2 : 1;
         return sb - sa;
       });
-      const top = rows.slice(0, 8);
-      if (!top.length) {
-        list.innerHTML = '<li style="padding:.65rem 1rem;font-size:.85rem;opacity:.7">Nothing on the shelf for that yet.</li>';
-        list.style.display = "block";
-        return;
-      }
-      list.innerHTML = top
-        .map(function (row) {
-          const slug = String(row.slug || "").replace(/[^a-z0-9-]/g, "");
-          if (!slug) return "";
-          return (
-            '<li><button type="button" data-film-href="/films/' +
-            slug +
-            '" style="display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 1rem;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer"><span>' +
-            esc(row.title) +
-            '</span><span style="opacity:.55;font-size:.75rem">' +
-            esc(row.year || "") +
-            "</span></button></li>"
-          );
-        })
-        .join("");
-      list.style.display = "block";
+      paintRows(list, rows);
+      askWarehouse(q, rows, list);
     }
+    window.__rwAskWarehouse = askWarehouse;
     function apply(raw) {
       const query = String(raw || "").trim().toLowerCase();
       document.querySelectorAll("article.tape-slot").forEach(function (slot) {
@@ -1199,7 +1304,21 @@
           apply(input.value);
           const q = (input.value || "").trim();
           const first = document.querySelector("[data-rw-hits] [data-film-href]");
-          if (q && first) goFilm(first.getAttribute("data-film-href"));
+          if (q && first && first.getAttribute("data-film-href")) {
+            goFilm(first.getAttribute("data-film-href"));
+            return;
+          }
+          if (!q || fold(q).length < 2) return;
+          fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(q))
+            .then(function (r) {
+              return r.ok ? r.json() : { results: [] };
+            })
+            .then(function (data) {
+              const row = data && data.results && data.results[0];
+              const slug = row && String(row.slug || "").replace(/[^a-z0-9-]/g, "");
+              if (slug) goFilm("/films/" + slug);
+            })
+            .catch(function () {});
         },
         true,
       );

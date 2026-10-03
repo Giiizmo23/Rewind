@@ -4,6 +4,7 @@ import { createHash, randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
 import { getSql, type Sql } from "@/lib/db";
 import { collectActivity, floorActs, rankStore, type Act } from "@/lib/rewind/activity.server";
+import { tmdbRoute } from "@/lib/rewind/tmdb.server";
 
 const scryptAsync = promisify(scrypt);
 const LOCKER_MAX = 3_000_000;
@@ -420,6 +421,7 @@ function publicCard(member: Member, friend: string, open: boolean) {
 export async function handleRewind(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/$/, "");
+  if (request.method === "GET" && path.startsWith("/api/rewind/tmdb")) return tmdbRoute(url);
   if (request.method !== "POST") return json({ ok: false, err: "method" }, 405);
   let body: Record<string, unknown> = {};
   try {
