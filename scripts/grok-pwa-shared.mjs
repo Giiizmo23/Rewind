@@ -231,10 +231,20 @@ export function grokXCreatorHeadTags(creator = readXCreator(), creatorId = readX
   ];
 }
 
-/** Never emit the extensions script or the project meta that loads it. */
+/** Platform "Created with Grok" banner — injected into every HTML document. */
 export function grokExtensionsHeadTags(projectId = readGrokProjectId()) {
-  void projectId;
-  return [];
+  const id = escapeHtml(projectId);
+  const tags = [];
+  if (projectId) {
+    tags.push(`<meta name="grok-project-id" content="${id}">`);
+  }
+  if (!readGrokExtensionsEnabled()) return tags;
+  tags.push(
+    `<script src="${GROK_EXTENSIONS_SCRIPT_SRC}"${
+      projectId ? ` data-project-id="${id}"` : ""
+    } defer></script>`,
+  );
+  return tags;
 }
 
 export function readOgSite(cwd = process.cwd()) {
@@ -376,8 +386,7 @@ function stripGrokExtensionsScript(html) {
       /<script\b[^>]*\bsrc\s*=\s*["'][^"']*\/grok-app-builder\/extensions\.js[^"']*["'][^>]*>\s*<\/script>/gi,
       "",
     )
-    .replace(/<script\b[^>]*\/grok-app-builder\/extensions\.js[^>]*>\s*<\/script>/gi, "")
-    .replace(/<meta\b[^>]*\bname=["']grok-project-id["'][^>]*>/gi, "");
+    .replace(/<meta\b[^>]*\bname\s*=\s*["']grok-project-id["'][^>]*>/gi, "");
 }
 
 export function stripShareMetaTags(html) {
@@ -452,9 +461,6 @@ export function injectGrokPwaHead(html, ctx = {}) {
     grokOgHeadTags({ host, appName, site, documentTitle, cwd }).join(""),
   );
 
-  if (readGrokExtensionsEnabled()) {
-    missing.push(...grokExtensionsHeadTags(projectId));
-  }
   if (
     projectId &&
     !next.includes('property="grok:app_id"') &&
@@ -471,8 +477,8 @@ export function injectGrokPwaHead(html, ctx = {}) {
     if (!next.includes('property="x:creator:id"')) missing.push(creatorTags[1]);
   }
 
-  if (missing.length === 0) return stripGrokExtensionsScript(next);
-  return stripGrokExtensionsScript(insertBeforeHeadClose(next, missing.join("")));
+  if (missing.length === 0) return next;
+  return insertBeforeHeadClose(next, missing.join(""));
 }
 
 function findHeadClose(buf) {
