@@ -328,18 +328,19 @@
     if (!film || film.tmdb) return;
     film = enrichFromShelf(film);
     if (film.director && !stubCopy(film.overview)) return;
+    if (film._shelf) return;
+    film._shelf = 1;
     const slug = film.slug;
-    window.__rwCopyOnce = window.__rwCopyOnce || {};
-    if (window.__rwCopyOnce[slug]) return;
-    window.__rwCopyOnce[slug] = 1;
     const title = film.title || pretty(slug || "");
     if (fold(title).length < 2) return;
+    const stub = stubCopy(film.overview);
     fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(title))
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) {
         const rows = (data && data.results) || [];
         const same = rows.filter(function (row) { return sameTitle(row.title, title); });
-        const hit = same.find(function (row) { return String(row.year || "") === String(film.year || ""); }) || same[0] || rows[0];
+        const yearHit = !stub && same.find(function (row) { return String(row.year || "") === String(film.year || ""); });
+        const hit = yearHit || same[0] || rows[0];
         const id = hit && String(hit.slug || "").replace(/^tmdb-/, "").replace(/\D/g, "");
         if (!id) return null;
         return fetch("/api/rewind/tmdb/film?id=" + id).then(function (r) { return r.ok ? r.json() : null; });
@@ -349,13 +350,16 @@
         const live = enrichFromShelf(film);
         const wasStub = stubCopy(live.overview);
         let changed = false;
-        if (!live.director && info.director) { live.director = info.director; changed = true; }
+        if ((!live.director || wasStub) && info.director) { live.director = info.director; changed = true; }
+        if (wasStub && info.year) { live.year = info.year; changed = true; }
         if (wasStub && info.overview) { live.overview = info.overview; changed = true; }
-        if (!live.tagline && info.tagline) { live.tagline = info.tagline; changed = true; }
+        if ((wasStub || !live.tagline) && info.tagline) { live.tagline = info.tagline; changed = true; }
         const rt = Number(info.runtime) || 0;
         const mine = Number(live.runtime) || 0;
         if (rt && (mine === 0 || (mine === 100 && wasStub))) { live.runtime = rt; changed = true; }
-        if (changed) fillTape(live);
+        const cast = live.credits && live.credits.cast;
+        if ((!cast || !cast.length) && info.credits) { live.credits = info.credits; changed = true; }
+        if (changed && filmSlug() === slug) fillTape(live);
       })
       .catch(function () {});
   }
