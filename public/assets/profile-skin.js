@@ -2,6 +2,7 @@
   const BANNER_KEY = "rewind-banner";
   const AVATAR_KEY = "rewind-avatar";
   const extraBySlug = Object.create(null);
+  const posterOverride = Object.create(null);
   let wallExtra = [];
   let wallLoaded = false;
   let wallPromise = null;
@@ -240,7 +241,7 @@
       genres: f.genres || "",
       themes: f.themes || "drama",
       palette: f.palette || "#c41230|#1c1410|#f3e6c8",
-      posterUrl: f.posterUrl || "",
+      posterUrl: f.posterUrl || posterOverride[f.slug] || "",
     };
   }
   function floorFilms() {
@@ -256,7 +257,9 @@
     }
   }
   function stashTmdb(f) {
-    if (!f || !/^tmdb-\d+$/.test(String(f.slug || ""))) return f;
+    if (!f || !f.slug) return f;
+    const poster = f.posterUrl || "";
+    if (!/^tmdb-\d+$/.test(String(f.slug)) && !poster) return f;
     const bag = tmdbBag();
     const prev = bag[f.slug] || {};
     bag[f.slug] = {
@@ -493,7 +496,7 @@
   }
   function coverHTML(f) {
     const src = f.posterUrl || `/sleeves/${encodeURIComponent(f.slug)}.jpg`;
-    return `<span class="top5-cover"><img src="${esc(src)}" alt="" /><b>${esc(f.title)}</b></span>`;
+    return `<span class="top5-cover"><img src="${esc(src)}" data-title="${esc(f.title)}" data-year="${esc(f.year || "")}" alt="" /><b>${esc(f.title)}</b></span>`;
   }
   function paintTop5Section() {
     document.querySelectorAll(".rewind-top5-row").forEach((n) => {
@@ -652,20 +655,38 @@
       (e) => {
         const img = e.target;
         if (!(img instanceof HTMLImageElement) || !img.closest(".top5-cover")) return;
-        const slug = img.closest("[data-id]")?.getAttribute("data-id") || "";
-        const step = img.dataset.try || "";
-        if (!step) {
-          img.dataset.try = "png";
-          img.src = `/sleeves/${encodeURIComponent(slug)}.png`;
+        const giveUp = () => {
+          img.style.display = "none";
+          img.parentElement?.classList.add("no-art");
+        };
+        if (img.dataset.try === "tmdb" || (img.currentSrc || img.src || "").includes("image.tmdb.org")) {
+          giveUp();
           return;
         }
-        if (step === "png") {
-          img.dataset.try = "thumb";
-          img.src = `/sleeves/thumbs/${encodeURIComponent(slug)}.jpg`;
+        const row = img.closest("[data-id]");
+        const title = (img.parentElement?.querySelector("b")?.textContent || "").trim();
+        const year = (row?.querySelector("small")?.textContent || "").replace(/\D/g, "");
+        const slug = row?.getAttribute("data-id") || "";
+        if (!title) {
+          giveUp();
           return;
         }
-        img.style.display = "none";
-        img.parentElement?.classList.add("no-art");
+        img.dataset.try = "tmdb";
+        fetch("/api/rewind/tmdb/poster?title=" + encodeURIComponent(title) + "&year=" + encodeURIComponent(year))
+          .then((r) => (r.ok ? r.json() : null))
+          .then((data) => {
+            if (!img.isConnected) return;
+            if (!data || !data.poster) {
+              giveUp();
+              return;
+            }
+            if (slug) posterOverride[slug] = data.poster;
+            img.parentElement?.classList.remove("no-art");
+            img.style.display = "";
+            img.style.opacity = "0";
+            img.src = data.poster;
+          })
+          .catch(giveUp);
       },
       true
     );

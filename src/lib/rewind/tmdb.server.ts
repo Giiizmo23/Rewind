@@ -61,6 +61,7 @@ export async function tmdbRoute(url: URL): Promise<Response> {
   try {
     if (path === "/api/rewind/tmdb/search") return await search(url);
     if (path === "/api/rewind/tmdb/film") return await film(url);
+    if (path === "/api/rewind/tmdb/poster") return await poster(url);
   } catch (err) {
     if (err instanceof Error && err.message === "key") return json({ ok: false, err: "key", results: [] }, 200, 30);
     return json({ ok: false, err: "tmdb", results: [] }, 200, 15);
@@ -88,6 +89,29 @@ async function search(url: URL): Promise<Response> {
   const body = { ok: true, results };
   cache.set("q:" + q.toLowerCase(), { at: Date.now(), body });
   return json(body);
+}
+
+async function poster(url: URL): Promise<Response> {
+  const title = String(url.searchParams.get("title") || "").trim().slice(0, 80);
+  const year = String(url.searchParams.get("year") || "").replace(/\D/g, "").slice(0, 4);
+  if (title.length < 1) return json({ ok: true, poster: "" });
+  const cacheKey = "p:" + title.toLowerCase() + ":" + year;
+  const hit = cache.get(cacheKey);
+  if (hit && Date.now() - hit.at < FILM_TTL) return json(hit.body, 200, 3600);
+  const endpoint = new URL(SEARCH);
+  endpoint.searchParams.set("query", title);
+  endpoint.searchParams.set("include_adult", "false");
+  endpoint.searchParams.set("language", "en-US");
+  const data = (await tmdb(endpoint)) as { results?: Array<Record<string, unknown>> };
+  const rows = (Array.isArray(data.results) ? data.results : []).filter((row) => row.poster_path || row.backdrop_path);
+  const wanted = title.toLowerCase();
+  const sameName = rows.filter((row) => String(row.title || row.original_title || "").toLowerCase() === wanted);
+  const pool = sameName.length ? sameName : rows;
+  const picked = pool.find((row) => year && yearOf(row.release_date) === year) || pool[0];
+  const art = picked ? (img(picked.poster_path, "w342") || img(picked.backdrop_path, "w780")) : "";
+  const body = { ok: true, poster: art };
+  cache.set(cacheKey, { at: Date.now(), body });
+  return json(body, 200, 3600);
 }
 
 async function film(url: URL): Promise<Response> {
