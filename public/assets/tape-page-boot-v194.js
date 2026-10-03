@@ -126,7 +126,7 @@
       '.tp-file .tp-chip{margin:0}' +
       '.tp-owned{display:flex;align-items:center;gap:.55rem;margin:.42rem 0 0;padding:.55rem .95rem;border-radius:999px;background:color-mix(in srgb,currentColor 9%,transparent);color:inherit;font-size:.86rem;line-height:1.1;width:fit-content;max-width:100%;align-self:flex-start}' +
       '.tp-owned[hidden]{display:none!important}' +
-      '.tp-owned img,.tp-owned svg{width:1.85rem;height:1.85rem;flex:none;display:block}' +
+      '.tp-owned img,.tp-owned svg{width:1.45rem;height:1.45rem;flex:none;display:block;background:none}' +
       '.tp-owned svg{fill:none;stroke:currentColor}' +
       '.tp-cam-rec{fill:#c41230;stroke:none}' +
       '.tp-owned b{font-weight:400}' +
@@ -155,7 +155,9 @@
       '.tp-avg .tp-heart{color:#c41230;font-size:.95rem;line-height:1;display:block;margin-bottom:.1rem}' +
       '.tp-chip{display:flex;align-items:center;gap:.65rem;padding:.7rem .95rem;border-radius:999px;background:color-mix(in srgb,currentColor 9%,transparent);font-size:.86rem;margin:.85rem 0 1rem;border:0;width:fit-content;max-width:100%;align-self:flex-start;text-align:left;color:inherit;cursor:pointer;position:relative;z-index:6;pointer-events:auto}' +
       '.tp-chip i{display:none}' +
-      '.tp-chip .tp-eye{width:1.72rem;height:1.28rem;object-fit:contain;flex:none;display:block}' +
+      '.tp-chip .tp-eye{width:1.7rem;height:1.15rem;flex:none;display:block;background:none;overflow:visible}' +
+      '.tp-chip svg.tp-eye path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}' +
+      '.tp-chip svg.tp-eye .tp-pupil{fill:currentColor;stroke:none}' +
       '.tp-tabs{display:flex;gap:.4rem;overflow-x:auto;margin:0 0 .7rem}' +
       '.tp-tab{border:0;background:color-mix(in srgb,currentColor 10%,transparent);color:inherit;border-radius:99px;padding:.38rem .82rem;font-size:.76rem;white-space:nowrap;cursor:pointer}' +
       '.tp-tab.is-on{background:var(--color-fg,#161412);color:var(--color-bg,#f6f4ef)}' +
@@ -426,7 +428,7 @@
       return '<div class="tp-avg">' + heart + '<b>' + (val % 1 ? val.toFixed(1) : String(val)) + "</b><span>stars</span></div>";
     }
     function camSvg() {
-      return '<img class="tp-cam" src="/assets/cam-emoji.png" alt="" draggable="false">';
+      return camMark();
     }
     function camMark() {
       return '<svg viewBox="0 0 64 64" aria-hidden="true">' +
@@ -444,7 +446,7 @@
         '</svg>';
     }
     function eyeSvg() {
-      return '<img class="tp-eye" src="/assets/eye-emoji.png" alt="" draggable="false">';
+      return eyeMark();
     }
     function eyeMark() {
       return '<svg class="tp-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.1 12C3.7 7.8 7.4 5 12 5s8.3 2.8 9.9 7c-1.6 4.2-5.3 7-9.9 7S3.7 16.2 2.1 12z"/><circle class="tp-pupil" cx="12" cy="12" r="3"/></svg>';
