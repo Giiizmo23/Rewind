@@ -45,6 +45,60 @@
     }
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
+  const posterQueue = [];
+  let posterBusy = 0;
+  function pumpPosters() {
+    while (posterBusy < 3 && posterQueue.length) {
+      const job = posterQueue.shift();
+      if (!job || !job.img || !job.img.isConnected) continue;
+      posterBusy += 1;
+      const title = job.title;
+      const year = job.year;
+      fetch("/api/rewind/tmdb/poster?title=" + encodeURIComponent(title) + "&year=" + encodeURIComponent(year || ""))
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (!job.img.isConnected) return;
+          if (data && data.poster) {
+            job.img.dataset.try = "tmdb";
+            job.img.style.display = "";
+            job.img.style.opacity = "1";
+            job.img.src = data.poster;
+            const btn = job.img.closest("[data-add]");
+            if (btn) btn.setAttribute("data-poster", data.poster);
+            return;
+          }
+          job.img.style.visibility = "hidden";
+        })
+        .catch(function () {
+          if (job.img && job.img.isConnected) job.img.style.visibility = "hidden";
+        })
+        .then(function () {
+          posterBusy -= 1;
+          pumpPosters();
+        });
+    }
+  }
+  function wantPoster(img) {
+    if (!img || img.dataset.try === "tmdb" || img.dataset.try === "wait") return;
+    if ((img.currentSrc || img.src || "").indexOf("image.tmdb.org") >= 0) return;
+    const holder = img.closest(".shelf-hits, .shelf-picks, [data-rw-hits]");
+    if (!holder) return;
+    const btn = img.closest("button");
+    const title = img.getAttribute("data-title") || (btn && btn.getAttribute("data-title")) || "";
+    const year = (img.getAttribute("data-year") || (btn && btn.getAttribute("data-year")) || "").replace(/\D/g, "");
+    if (!title) {
+      img.style.visibility = "hidden";
+      return;
+    }
+    img.dataset.try = "wait";
+    posterQueue.push({ img: img, title: title, year: year });
+    pumpPosters();
+  }
+  document.addEventListener("error", function (e) {
+    const img = e.target;
+    if (!img || !img.getAttribute) return;
+    wantPoster(img);
+  }, true);
   function backStillBg(slug) {
     var src = backStill(slug);
     if (src.indexOf("-still.jpg?v=") >= 0) return "";
@@ -8358,8 +8412,11 @@
       list.innerHTML = top.map(function (row) {
         const slug = String(row.slug || "").replace(/[^a-z0-9-]/g, "");
         if (!slug) return "";
-        return '<li><button type="button" data-film-href="/films/' + slug + '" style="display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 1rem;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer"><span>' +
-          String(row.title).replace(/[<>]/g, "") + '</span><span style="opacity:.55;font-size:.75rem">' + (row.year || "") + "</span></button></li>";
+        const art = row.poster || ("/sleeves/" + slug + ".jpg?v=520");
+        const title = String(row.title || "").replace(/[<>"]/g, "");
+        const year = String(row.year || "").replace(/\D/g, "");
+        return '<li><button type="button" data-film-href="/films/' + slug + '" data-title="' + title + '" data-year="' + year + '" style="display:flex;align-items:center;gap:.65rem;padding:.4rem .85rem;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer"><img data-title="' + title + '" data-year="' + year + '" src="' + art + '" alt="" style="width:2rem;height:3rem;object-fit:cover;border-radius:3px;background:#1a1410;flex:0 0 auto"/><span style="flex:1">' +
+          title + '</span><span style="opacity:.55;font-size:.75rem">' + (row.year || "") + "</span></button></li>";
       }).join("");
       list.style.display = "block";
       if (typeof window.__rwAskWarehouse === "function") window.__rwAskWarehouse(q, rows, list);
@@ -12098,7 +12155,7 @@
           picks.innerHTML = films.map(function (slug, i) {
             const film = (index && index[slug]) || tmdbBag()[slug] || {};
             const name = film.title || slug;
-            return '<button type="button" data-drop="' + i + '" aria-label="Remove ' + boardEsc(name) + '"><img src="' + filmArt(slug, "520") + '" alt=""/><i>×</i></button>';
+            return '<button type="button" data-drop="' + i + '" aria-label="Remove ' + boardEsc(name) + '"><img data-title="' + boardEsc(name) + '" data-year="' + boardEsc(film.year || "") + '" src="' + filmArt(slug, "520") + '" alt=""/><i>×</i></button>';
           }).join("");
         }
         paintFlags();

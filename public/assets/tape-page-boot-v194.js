@@ -1168,10 +1168,21 @@
     function rowButton(row) {
       const slug = String(row.slug || "").replace(/[^a-z0-9-]/g, "");
       if (!slug) return "";
+      const art = row.poster || ("/sleeves/" + slug + ".jpg?v=520");
       return (
         '<li><button type="button" data-film-href="/films/' +
         slug +
-        '" style="display:flex;justify-content:space-between;gap:.75rem;padding:.55rem 1rem;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer"><span>' +
+        '" data-title="' +
+        esc(row.title) +
+        '" data-year="' +
+        esc(row.year || "") +
+        '" style="display:flex;align-items:center;gap:.65rem;padding:.4rem .85rem;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer"><img data-title="' +
+        esc(row.title) +
+        '" data-year="' +
+        esc(String(row.year || "").replace(/\\D/g, "")) +
+        '" src="' +
+        esc(art) +
+        '" alt="" style="width:2rem;height:3rem;object-fit:cover;border-radius:3px;background:#1a1410;flex:0 0 auto"/><span style="flex:1">' +
         esc(row.title) +
         '</span><span style="opacity:.55;font-size:.75rem">' +
         esc(row.year || "") +
