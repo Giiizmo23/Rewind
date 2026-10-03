@@ -2666,11 +2666,25 @@
       avatar: window.__rwPicDirty && isPicData(picCache["rewind-avatar"]) ? picCache["rewind-avatar"] : "",
     };
   }
+  function lockerStamp(locker) {
+    try {
+      return JSON.stringify({
+        keys: locker.keys || {},
+        profile: locker.profile || {},
+        cardFace: locker.cardFace || {},
+      });
+    } catch (e) {
+      return "";
+    }
+  }
   function postLocker(locker, keep, attempt) {
     if (!lockerReady) return;
     const creds = memberCreds();
     const handle = activeHandle() || String(creds.username || "").trim().replace(/^@+/, "");
     if (!handle || (!creds.token && !creds.password) || !locker) return;
+    const stamp = lockerStamp(locker);
+    const pics = !!(locker.banner || locker.avatar);
+    if (!pics && stamp && stamp === window.__rwLockerStamp) return;
     const n = attempt || 0;
     try {
       fetch("/api/rewind/locker", {
@@ -2688,6 +2702,7 @@
             }
             return;
           }
+          if (r.ok && data && data.stored && !data.kept) window.__rwLockerStamp = stamp;
           if (r.ok && (locker.banner || locker.avatar)) window.__rwPicDirty = false;
           if (r.status === 413 && (locker.banner || locker.avatar)) {
             postLocker(Object.assign({}, locker, { banner: "", avatar: "" }), true, 3);
@@ -3609,9 +3624,18 @@
     const key = String(handle || "").trim();
     return clubBook.people.some(function (p) { return p.handle === key; });
   }
+  function inboxSince() {
+    let max = 0;
+    Object.keys(clubThreads).forEach(function (key) {
+      const rows = clubThreads[key] || [];
+      const last = rows.length ? rows[rows.length - 1] : null;
+      if (last && Number(last.at) > max) max = Number(last.at);
+    });
+    return max;
+  }
   function loadClubBook(lite) {
     if (clubPull) return clubPull;
-    clubPull = clubPost("/api/rewind/club/people", lite ? { lite: true } : {}).then(function (data) {
+    clubPull = clubPost("/api/rewind/club/people", lite ? { lite: true, since: inboxSince() } : {}).then(function (data) {
       clubBook.tried = true;
       if (!data || !data.ok || !Array.isArray(data.people)) {
         clubBook.err = (data && data.err) || "fail";
@@ -5041,7 +5065,11 @@
     paintInboxBadge();
     if (!window.__rwDeskRemind) {
       window.__rwDeskRemind = 1;
-      window.setInterval(function () {
+      const pollDesk = function () {
+        if (document.visibilityState === "hidden") return;
+        const now = Date.now();
+        if (now - (window.__rwDeskAt || 0) < 60000) return;
+        window.__rwDeskAt = now;
         loadClubBook(true).then(function () {
           paintInboxBadge();
           const box = document.getElementById("rw-inbox");
@@ -5051,7 +5079,11 @@
         try { fileDueReminders(); } catch (eDue) {}
         try { fileStoreNotes(); } catch (eStore) {}
         paintInboxBadge();
-      }, 12000);
+      };
+      window.setInterval(pollDesk, 60000);
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "visible") pollDesk();
+      });
     }
     if (!window.__rwInboxAuto && /^\/messages(\/|$)/.test(location.pathname || "")) {
       window.__rwInboxAuto = 1;

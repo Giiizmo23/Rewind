@@ -615,7 +615,11 @@ async function replaceActivity(sql: Sql, handle: string, accountName: string, lo
 }
 
 async function refreshStoreCache(sql: Sql): Promise<void> {
-  const since = Date.now() - 120 * 86400000;
+  const flag = globalThis as typeof globalThis & { __rwFeedAt?: number };
+  const now = Date.now();
+  if (flag.__rwFeedAt && now - flag.__rwFeedAt < 10 * 60 * 1000) return;
+  flag.__rwFeedAt = now;
+  const since = now - 120 * 86400000;
   const rows = await sql.query<Act>(
     `select source, actor, name, kind, slug, rating, at::float8 as at, blurb, title,
        other_handle as "otherHandle", other_name as "otherName",
@@ -732,13 +736,13 @@ function shrinkStoredPics(sql: Sql): void {
 
 async function sealOutstanding(sql: Sql): Promise<void> {
   const flag = globalThis as typeof globalThis & { __rwVaultSeed?: boolean; __rwVaultBusy?: boolean; __rwVaultFails?: number };
-  if (flag.__rwVaultSeed || flag.__rwVaultBusy || !vaultToken()) return;
+  if (flag.__rwVaultSeed || flag.__rwVaultBusy || !blobToken()) return;
   if ((flag.__rwVaultFails || 0) >= 3) return;
   flag.__rwVaultBusy = true;
   try {
     for (let n = 0; n < 4; n += 1) {
       const rows = await sql.query<{ handle: string; locker: Locker }>(
-        `select m.handle, coalesce(m.locker, '{}'::jsonb) as locker
+        `select m.handle, coalesce(m.locker, '{}'::jsonb) - 'banner' - 'avatar' as locker
          from rewind_members m
          where not exists (
            select 1 from rewind_vault_done d where d.handle = m.handle and d.authed and d.rev >= 3
@@ -750,7 +754,10 @@ async function sealOutstanding(sql: Sql): Promise<void> {
         flag.__rwVaultSeed = true;
         return;
       }
-      if (!lockerBlank(row.locker)) await pushVault(sql, row.handle, row.locker);
+      if (!lockerBlank(row.locker)) {
+        const wrote = await pushVault(sql, row.handle, row.locker);
+        if (!wrote) continue;
+      }
       await sql.query(
         "insert into rewind_vault_done (handle, authed, rev) values ($1, true, 3) on conflict (handle) do update set authed = true, rev = 3",
         [row.handle],
@@ -1287,11 +1294,11 @@ function vaultBody(handle: string, locker: Locker, auth?: VaultAuth, social?: Va
   );
 }
 
-async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth, social?: VaultSocial): Promise<void> {
+async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth, social?: VaultSocial): Promise<boolean> {
   const token = blobToken();
   const friends = social || emptySocial();
   const hasSocial = friends.following.length + friends.followers.length + friends.gates.length + friends.sent.length + friends.got.length > 0;
-  if (!token || (lockerBlank(locker) && !hasSocial)) return;
+  if (!token || (lockerBlank(locker) && !hasSocial)) return false;
   await put(vaultPath(handle), vaultBody(handle, locker, auth, social), {
     access: "private",
     token,
@@ -1300,21 +1307,32 @@ async function mirrorVault(handle: string, locker: Locker, auth?: VaultAuth, soc
     contentType: "application/json",
     cacheControlMaxAge: 60,
   });
+  return true;
 }
 
-async function pushVault(sql: Sql, handle: string, locker: Locker): Promise<void> {
+async function pushVault(sql: Sql, handle: string, locker: Locker): Promise<boolean> {
+  if (!blobToken()) return false;
+  const clock = globalThis as typeof globalThis & { __rwVaultAt?: Record<string, number> };
+  const sent = clock.__rwVaultAt || (clock.__rwVaultAt = {});
+  if (sent[handle] && Date.now() - sent[handle] < 10 * 60 * 1000) return false;
   const rows = await sql.query<{ name: string; password_hash: string; recovery_hash: string; locker: Locker }>(
-    "select name, password_hash, coalesce(recovery_hash, '') as recovery_hash, coalesce(locker, '{}'::jsonb) as locker from rewind_members where handle = $1",
+    `select name, password_hash, coalesce(recovery_hash, '') as recovery_hash,
+       coalesce(locker, '{}'::jsonb) - 'banner' - 'avatar' as locker
+     from rewind_members where handle = $1`,
     [handle],
   );
   const row = rows[0];
-  const stored = row?.locker && typeof row.locker === "object" && !lockerBlank(row.locker) ? row.locker : locker;
+  const fromDb = row?.locker && typeof row.locker === "object" && !lockerBlank(row.locker) ? row.locker : locker;
+  const slim: Locker = { ...(fromDb || {}), banner: "", avatar: "" };
   const social = await loadSocial(sql, handle);
-  await mirrorVault(handle, stored, {
+  const wrote = await mirrorVault(handle, slim, {
     name: row?.name || handle,
     passwordHash: row?.password_hash || "",
     recoveryHash: row?.recovery_hash || "",
   }, social);
+  if (!wrote) return false;
+  sent[handle] = Date.now();
+  return true;
 }
 
 async function loadSocial(sql: Sql, handle: string): Promise<VaultSocial> {
@@ -1800,35 +1818,52 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
   const lite = body.lite === true;
+  const since = Number(body.since) || 0;
   const avatarExpr = lite ? "''" : "coalesce(m.locker->>'avatar', '')";
-  const rows = await sql.query<{ handle: string; name: string; avatar: string }>(
-    `select m.handle, m.name, ${avatarExpr} as avatar
+  type Linked = {
+    handle: string;
+    name: string;
+    avatar: string;
+    i_follow: boolean;
+    they_follow: boolean;
+    gate_status: string | null;
+    gate_asker: string | null;
+  };
+  const rows = await sql.query<Linked>(
+    `select m.handle, m.name, ${avatarExpr} as avatar,
+       exists (select 1 from rewind_follows f where f.follower = $1 and f.followee = m.handle) as i_follow,
+       exists (select 1 from rewind_follows f where f.follower = m.handle and f.followee = $1) as they_follow,
+       g.status as gate_status,
+       g.asker as gate_asker
      from rewind_members m
+     left join lateral (
+       select status, asker from rewind_msg_gates
+       where (asker = $1 and askee = m.handle) or (asker = m.handle and askee = $1)
+       order by created_at desc
+       limit 1
+     ) g on true
      where m.handle <> $1
        and (
          exists (select 1 from rewind_follows f where (f.follower = $1 and f.followee = m.handle) or (f.follower = m.handle and f.followee = $1))
-         or exists (select 1 from rewind_messages g where (g.sender = $1 and g.recipient = m.handle) or (g.sender = m.handle and g.recipient = $1))
+         or exists (select 1 from rewind_messages msg where (msg.sender = $1 and msg.recipient = m.handle) or (msg.sender = m.handle and msg.recipient = $1))
        )
      order by m.handle
      limit 500`,
     [who.handle],
   );
-  const list = [];
-  for (const row of rows) {
-    const iFollow = await follows(sql, who.handle, row.handle);
-    const theyFollow = await follows(sql, row.handle, who.handle);
-    const friend = relation(iFollow, theyFollow);
-    const gate = await gateBetween(sql, who.handle, row.handle);
-    const msg = friend === "friends" ? "open" : gateLabel(gate, who.handle);
-    list.push({
+  const gateOf = (row: { gate_status: string | null; gate_asker: string | null }) =>
+    row.gate_status ? { asker: row.gate_asker || "", askee: "", status: row.gate_status } : null;
+  const list = rows.map((row) => {
+    const friend = relation(!!row.i_follow, !!row.they_follow);
+    return {
       handle: row.handle,
       name: row.name,
       label: row.handle,
       avatar: row.avatar || "",
       friend,
-      msg,
-    });
-  }
+      msg: friend === "friends" ? "open" : gateLabel(gateOf(row), who.handle),
+    };
+  });
   const incoming = await sql.query<{ handle: string; name: string; avatar: string }>(
     `select m.handle, m.name, ${avatarExpr} as avatar
      from rewind_follows f
@@ -1870,42 +1905,44 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
     avatar: row.avatar || "",
     msg: "in",
   }));
-  const latest = await sql.query<{ sender: string; recipient: string; body: string; created_at: string }>(
-    `select sender, recipient, body, created_at
-     from rewind_messages
-     where sender = $1 or recipient = $1
-     order by id desc
-     limit 80`,
-    [who.handle],
+  const latest = await sql.query<Linked & { body: string; sender: string; created_at: string }>(
+    `select distinct on (recent.other)
+       recent.other as handle, m.name, ${avatarExpr} as avatar, recent.body, recent.sender, recent.created_at,
+       exists (select 1 from rewind_follows f where f.follower = $1 and f.followee = recent.other) as i_follow,
+       exists (select 1 from rewind_follows f where f.follower = recent.other and f.followee = $1) as they_follow,
+       g.status as gate_status,
+       g.asker as gate_asker
+     from (
+       select id, body, sender, created_at,
+         case when sender = $1 then recipient else sender end as other
+       from rewind_messages
+       where (sender = $1 or recipient = $1)
+         and ($2::float8 <= 0 or created_at > to_timestamp($2 / 1000.0))
+       order by id desc
+       limit 80
+     ) recent
+     join rewind_members m on m.handle = recent.other
+     left join lateral (
+       select status, asker from rewind_msg_gates
+       where (asker = $1 and askee = recent.other) or (asker = recent.other and askee = $1)
+       order by created_at desc
+       limit 1
+     ) g on true
+     order by recent.other, recent.id desc`,
+    [who.handle, since],
   );
-  const seen = new Set<string>();
   const previews = [];
   for (const row of latest) {
-    const other = row.sender === who.handle ? row.recipient : row.sender;
-    if (seen.has(other)) continue;
-    const pals = await follows(sql, who.handle, other);
-    const back = await follows(sql, other, who.handle);
-    const friends = pals && back;
-    const gate = await gateBetween(sql, who.handle, other);
-    if (!friends && gateLabel(gate, who.handle) !== "open") continue;
-    seen.add(other);
-    const named = await sql.query<{ name: string }>("select name from rewind_members where handle = $1", [other]);
-    let avatar = "";
-    if (!lite) {
-      const face = await sql.query<{ avatar: string }>(
-        "select coalesce(locker->>'avatar', '') as avatar from rewind_members where handle = $1",
-        [other],
-      );
-      avatar = face[0]?.avatar || "";
-    }
+    const friend = relation(!!row.i_follow, !!row.they_follow);
+    if (friend !== "friends" && gateLabel(gateOf(row), who.handle) !== "open") continue;
     previews.push({
-      handle: other,
-      name: named[0]?.name || other,
+      handle: row.handle,
+      name: row.name || row.handle,
       text: row.body,
       from: row.sender === who.handle ? "me" : "them",
       at: new Date(row.created_at).getTime() || Date.now(),
       msg: "open",
-      avatar,
+      avatar: row.avatar || "",
     });
   }
   return json({ ok: true, shared: true, people: list, box: { friendIn, msgIn, previews } });

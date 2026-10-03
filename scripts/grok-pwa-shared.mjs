@@ -208,7 +208,8 @@ export function readGrokProjectId() {
 }
 
 export function readGrokExtensionsEnabled() {
-  return false;
+  const fromProcess = typeof process !== "undefined" ? process.env?.VITE_GROK_EXTENSIONS : "";
+  return String(fromProcess ?? "").trim() !== "0";
 }
 
 export function readXCreator() {
@@ -446,7 +447,8 @@ export function injectGrokPwaHead(html, ctx = {}) {
     host,
     documentTitle,
   );
-  let next = stripGrokExtensionsScript(stripShareMetaTags(html));
+  let next = stripShareMetaTags(html);
+  next = stripGrokExtensionsScript(next);
 
   const missing = grokPwaHeadTags(appName)
     .filter(([key]) => {
