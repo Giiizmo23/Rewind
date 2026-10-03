@@ -31,7 +31,16 @@
   border:0;border-radius:.6rem;background:var(--color-elevated,#ece8e1);
   padding:0 .9rem;font-size:16px;color:inherit;caret-color:#c41230;
 }
-.top5-picked{display:flex;gap:.45rem;margin-top:.65rem;min-height:3.4rem;overflow-x:auto;flex:0 0 auto}
+.top5-slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem;margin-top:.7rem;flex:0 0 auto}
+.top5-slot{position:relative;display:flex;flex-direction:column;gap:.22rem;align-items:stretch;min-width:0;border:0;background:none;color:inherit;padding:0;cursor:pointer}
+.top5-slot .top5-cover{width:100%;height:auto;aspect-ratio:2/3;border-radius:.28rem}
+.top5-name{font-size:.6rem;line-height:1.15;text-align:center;min-height:1.85rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.top5-slot.is-on .top5-cover{box-shadow:0 0 0 2px #c41230}
+.top5-slot.is-empty .top5-cover{background:transparent;border:1.5px dashed color-mix(in srgb,currentColor 38%,transparent)}
+.top5-slot.is-empty.is-on .top5-cover{border-style:solid;border-color:#c41230}
+.top5-slot.is-empty .top5-cover::after{content:"+";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.35rem;opacity:.4}
+.top5-x{position:absolute;top:-.3rem;right:-.15rem;z-index:3;width:1.15rem;height:1.15rem;border-radius:99px;border:0;padding:0;background:#16120e;color:#f3e6c8;font-size:.85rem;line-height:1;display:flex;align-items:center;justify-content:center}
+html[data-theme="dark"] .top5-x,html[data-theme="night"] .top5-x{background:#f3e6c8;color:#16120e}
 .top5-list{
   flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
   display:flex;flex-direction:column;gap:.35rem;margin-top:.55rem;
@@ -564,7 +573,10 @@
 
   function openTop5() {
     if (document.querySelector(".top5-sheet:not(.vip-card-sheet)")) return;
-    let picked = currentPins().slice();
+    let picked = currentPins().slice(0, 4);
+    while (picked.length < 4) picked.push("");
+    let active = picked.findIndex((id) => !id);
+    if (active < 0) active = 0;
     let catalog = allKnown();
     const sheet = document.createElement("div");
     sheet.className = "top5-sheet";
@@ -573,10 +585,10 @@
         <div class="top5-head">
           <p class="text-xs uppercase tracking-[0.18em] text-muted">On the counter</p>
           <h2 class="font-display text-3xl tracking-[0.08em]">Favorites</h2>
-          <p class="mt-1 text-sm text-muted">Four tapes. Tap a box again to pull it.</p>
+          <p class="mt-1 text-sm text-muted">The red slot is the one you’re filling. Tap a tape to put it there.</p>
         </div>
         <input class="top5-search" type="text" inputmode="search" enterkeyhint="search" placeholder="Search the aisles" autocomplete="off" autocorrect="off" spellcheck="false" />
-        <div class="top5-picked"></div>
+        <div class="top5-slots"></div>
         <div class="top5-list"></div>
         <div class="top5-actions">
           <button type="button" class="club-tour-btn ghost" data-top5-cancel>Cancel</button>
@@ -585,7 +597,7 @@
       </div>`;
     document.body.appendChild(sheet);
     const list = sheet.querySelector(".top5-list");
-    const pickedEl = sheet.querySelector(".top5-picked");
+    const pickedEl = sheet.querySelector(".top5-slots");
     const search = sheet.querySelector(".top5-search");
     const pinSheet = () => {
       const vv = window.visualViewport;
@@ -608,11 +620,15 @@
         else if (img.complete) img.dispatchEvent(new Event("error"));
       });
     }
-    function paintPicked() {
+    function paintSlots() {
       pickedEl.innerHTML = picked
-        .map((id) => {
+        .map((id, i) => {
+          const on = i === active ? " is-on" : "";
+          if (!id) {
+            return `<button type="button" class="top5-slot is-empty${on}" data-slot="${i}"><span class="top5-cover"></span><span class="top5-name">Empty</span></button>`;
+          }
           const f = filmOf(id);
-          return `<button type="button" class="top5-chip" data-id="${esc(f.slug)}">${coverHTML(f)}<span>${esc(f.title)}</span></button>`;
+          return `<button type="button" class="top5-slot${on}" data-slot="${i}"><span class="top5-x" data-slot-x="${i}" role="button" aria-label="Remove">×</span>${coverHTML(f)}<span class="top5-name">${esc(f.title)}</span></button>`;
         })
         .join("");
       revealCovers(pickedEl);
@@ -633,13 +649,21 @@
         : `<p class="text-sm text-muted" style="padding:.6rem .2rem">${q ? "No tape by that name. Check the spelling, or try the year too." : "Pulling the wall…"}</p>`;
       revealCovers(list);
     }
-    function toggle(id) {
+    function place(id) {
       if (!id) return;
-      const i = picked.indexOf(id);
-      if (i >= 0) picked.splice(i, 1);
-      else if (picked.length >= 4) return;
-      else picked.push(id);
-      paintPicked();
+      const existing = picked.indexOf(id);
+      if (existing >= 0) {
+        active = existing;
+        paintSlots();
+        return;
+      }
+      const wasEmpty = !picked[active];
+      picked[active] = id;
+      if (wasEmpty) {
+        const next = picked.findIndex((slot) => !slot);
+        if (next >= 0) active = next;
+      }
+      paintSlots();
       paintList();
     }
     sheet.addEventListener(
@@ -698,8 +722,19 @@
         sheet.remove();
       } else if (t.closest("[data-top5-save]")) {
         stopPin();
-        savePins(picked);
-      } else if (t.closest(".top5-row, .top5-chip")) toggle(t.closest("[data-id]")?.getAttribute("data-id"));
+        savePins(picked.filter(Boolean));
+      } else if (t.closest("[data-slot-x]")) {
+        const i = Number(t.closest("[data-slot-x]").getAttribute("data-slot-x"));
+        if (i >= 0) {
+          picked[i] = "";
+          active = i;
+          paintSlots();
+          paintList();
+        }
+      } else if (t.closest("[data-slot]")) {
+        active = Number(t.closest("[data-slot]").getAttribute("data-slot")) || 0;
+        paintSlots();
+      } else if (t.closest(".top5-row")) place(t.closest("[data-id]")?.getAttribute("data-id"));
     });
     let wikiTimer = 0;
     let wikiAbort = null;
@@ -737,13 +772,12 @@
       setTimeout(() => search.scrollIntoView({ block: "nearest", inline: "nearest" }), 40);
     });
     search.addEventListener("blur", () => sheet.classList.remove("kb-open"));
-    paintPicked();
+    paintSlots();
     paintList();
     loadWall().then(() => {
       catalog = allKnown();
       paintList();
     });
-    setTimeout(() => search.focus(), 80);
   }
 
   function paintWrap(wrap) {
