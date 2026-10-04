@@ -209,7 +209,7 @@
     const sid = "halloween1978";
     const spineInk =
       '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
-      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=484" alt="" draggable="false" decoding="async">' +
+      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=572" alt="" draggable="false" decoding="async">' +
       '<span class="vhs-spine-year">1978</span><span class="vhs-spine-no">RW-1978-10</span></div>';
     const sticker =
       '<svg class="vhs-sticker" viewBox="0 0 64 64" aria-hidden="true" data-stk-v="9">' +
@@ -239,7 +239,6 @@
       '</div><div class="vhs-back-end">' +
       '<p class="vhs-back-credits">A film by John Carpenter</p>' +
       '<p class="vhs-back-stock">1978 · 91 MIN</p>' +
-      '<p class="vhs-back-cast">Horror</p>' +
       '<p class="vhs-back-stock">RW-1978-10 · Hi-Fi Stereo</p>' +
       '<div class="vhs-back-foot">' + barcodeSvg("RW-1978-10") + '<span class="vhs-back-logo">REWIND</span></div>' +
       '<p class="vhs-back-kind">Be kind, rewind.</p></div></div>' +
@@ -867,14 +866,14 @@
         '[data-vip-card],.top5-section,[data-vip-shelves],[data-vip-tapes-sec],[data-prize-locker],[data-vip-club],[data-vip-onvcr-sec],[data-vip-stats],#rewards{scroll-margin-top:6.4rem}' +
         '.lobby-picks{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;gap:1.35rem!important;width:100%;margin:1.05rem 0 1.2rem}' +
         '.lobby-picks [data-member-rails="manager"],.lobby-picks [data-member-rails="staff"],.lobby-picks [data-member-rails="yesterday"]{width:100%!important;max-width:none!important;display:block!important}' +
-        '.lobby-picks [data-member-rails] .flex{width:100%!important;max-width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:repeat(2,10rem)!important;justify-content:center!important;align-items:start!important;overflow:visible!important;flex-wrap:unset!important;padding:.4rem .2rem 1.2rem!important;gap:1.45rem .9rem!important;touch-action:pan-y!important;scrollbar-width:none}' +
+        '.lobby-picks [data-member-rails] .flex{width:100%!important;max-width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:repeat(2,calc(10rem * 7 / 6))!important;justify-content:center!important;align-items:start!important;overflow:visible!important;flex-wrap:unset!important;padding:.4rem .2rem 1.2rem!important;gap:1.45rem .9rem!important;touch-action:pan-y!important;scrollbar-width:none}' +
         '.lobby-picks{min-width:0!important;max-width:100%!important;overflow:visible!important}' +
         'main section .overflow-x-auto{display:grid!important;grid-template-columns:1fr 1fr!important;overflow:visible!important;gap:2.2rem 0.9rem!important;padding:2rem 0.85rem 1.4rem!important;overscroll-behavior:auto!important;width:100%!important}' +
         'main section .overflow-x-auto>.tape-slot,main section .overflow-x-auto>article{width:100%!important;max-width:none!important;flex:none!important;min-width:0!important}' +
-        '.lobby-picks article,.lobby-picks a.tape-slot,.lobby-picks a.lobby-tape-link{width:10rem!important;max-width:10rem!important;flex:none!important;pointer-events:auto!important;display:block!important}' +
+        '.lobby-picks article,.lobby-picks a.tape-slot,.lobby-picks a.lobby-tape-link{width:calc(10rem * 7 / 6)!important;max-width:calc(10rem * 7 / 6)!important;flex:none!important;pointer-events:auto!important;display:block!important}' +
         '.lobby-picks .tape-slot-open{width:100%!important;max-width:none!important;flex:none!important;pointer-events:auto!important;touch-action:manipulation!important}' +
         '.lobby-picks .vhs-box{--vhs-yaw:18deg;--vhs-pitch:7deg}' +
-        '.lobby-picks .vhs-flip{width:100%!important;height:auto!important;aspect-ratio:4/7!important;transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg))!important;transform-style:preserve-3d!important;transform-origin:50% 8%}' +
+        '.lobby-picks .vhs-flip{width:100%!important;height:auto!important;aspect-ratio:2/3!important;transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg))!important;transform-style:preserve-3d!important;transform-origin:50% 8%}' +
         '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-ink,.vhs-box[data-spine-logo="1"] .vhs-spine-ink{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;overflow:hidden!important}' +
         '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-year,.vhs-box[data-spine-logo="1"] .vhs-spine-year{display:none!important}' +
         '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-spine-logo="1"] .vhs-spine-logo{display:block!important;position:static!important;inset:auto!important;width:auto!important;height:auto!important;max-width:68%!important;max-height:68%!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important}' +
@@ -8091,7 +8090,7 @@
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .tape-slot-meta{color:#2c2622!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot) .tape-slot-title,html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot) .tape-slot-title{color:#f3efe6!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot) .tape-slot-meta,html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot) .tape-slot-meta{color:#e4ddd0!important}" +
-        "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-box{width:90%!important;max-width:168px!important;height:calc(var(--shelf-row) - 4.8rem)!important;max-height:calc(var(--shelf-row) - 4.8rem)!important;min-height:0!important;margin:0 auto!important;flex:0 1 auto!important;filter:drop-shadow(0 5px 3px rgba(40,32,24,.35))!important}" +
+        "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-box{box-sizing:border-box!important;padding:0.9rem 0.7rem 1.2rem 0.85rem!important;width:calc((var(--shelf-row) - 6.9rem) * 2 / 3 + 1.55rem)!important;max-width:100%!important;height:calc(var(--shelf-row) - 4.8rem)!important;max-height:calc(var(--shelf-row) - 4.8rem)!important;min-height:0!important;margin:0 auto!important;flex:0 1 auto!important;filter:drop-shadow(0 5px 3px rgba(40,32,24,.35))!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip,html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot .vhs-flip-card{height:100%!important;max-height:none!important;width:100%!important;aspect-ratio:auto!important}" +
         "html body main .tape-slot .vhs-box .vhs-face-back,html body main .tape-slot .vhs-box .vhs-case-back,html body main .tape-slot .vhs-box .vhs-shell-back{display:flex!important;flex-direction:column!important;height:100%!important;overflow:hidden!important}" +
         "html body main .tape-slot .vhs-box .vhs-back-still{flex:1 1 0%!important;height:auto!important;min-height:0!important;max-height:none!important;position:relative!important;overflow:hidden!important;background:#120e0c!important}" +
@@ -8202,15 +8201,15 @@
         } else if (slug === "goodfellas" || slug === "se7en") {
           cover.src = "/sleeves/" + slug + ".jpg?v=532";
         } else {
-          cover.src = "/sleeves/" + slug + ".jpg?v=496";
+          cover.src = "/sleeves/" + slug + ".jpg?v=572";
         }
         cover.removeAttribute("srcset");
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         const file = slug === "back-to-the-future" ? "back-to-the-future" : slug;
         img.setAttribute("loading", "lazy");
-        const spineVer = slug === "goodfellas" ? "532" : "520";
-        img.src = "/sleeves/spines/" + file + ".png?v=" + spineVer;
+        img.removeAttribute("srcset");
+        img.src = "/sleeves/spines/" + file + ".png?v=572";
         img.onerror = function () { this.style.display = "none"; };
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) { el.textContent = film.year ? String(film.year) : ""; });
@@ -8250,7 +8249,7 @@
       const rt = runtimeLabel(film.runtime);
       if (stocks[0]) stocks[0].textContent = [film.year, rt].filter(Boolean).join(" · ");
       const cast = box.querySelector(".vhs-back-cast");
-      if (cast) cast.textContent = String(film.genres || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean).join(" · ");
+      if (cast) cast.remove();
       if (stocks[1]) stocks[1].textContent = (film.catalogNo ? film.catalogNo + " · " : "") + "Hi-Fi Stereo";
       if (typeof fixOneSpine === "function") fixOneSpine(box);
     }
@@ -8265,7 +8264,6 @@
       if (!catalog) return n;
       catalog.forEach(function (film) {
         if (!film || !film.slug || seen[film.slug]) return;
-        if (covers && !covers[film.slug]) return;
         if (!inTheme(film, theme)) return;
         seen[film.slug] = 1;
         n += 1;
@@ -8324,7 +8322,6 @@
       const extras = [];
       catalog.forEach(function (film) {
         if (!film || !film.slug || seen[film.slug]) return;
-        if (covers && !covers[film.slug]) return;
         if (!inTheme(film, theme)) return;
         seen[film.slug] = 1;
         extras.push(film);
@@ -8435,7 +8432,6 @@
         if (!catalog) return;
         catalog.forEach(function (film) {
           if (!film || !film.slug || seen[film.slug]) return;
-          if (covers && !covers[film.slug]) return;
           if (!inTheme(film, theme)) return;
           seen[film.slug] = 1;
           n += 1;
@@ -8454,12 +8450,9 @@
         if (show) {
           const v = armSection(section);
           if (v) {
-            const key = theme ? id : "";
-            if (v.key !== key) {
-              v.films = filmsFor(section, key);
-              v.start = -1;
-              v.key = key;
-            }
+            v.films = filmsFor(section, theme ? id : "");
+            v.start = -1;
+            v.key = theme ? id : "";
           }
         }
         section.querySelectorAll("[data-aisle-extra]").forEach(function (el) { el.hidden = !theme; });
@@ -8793,7 +8786,7 @@
       const runtime = film.runtime ? film.runtime + " min" : "";
       const sid = String(slug).replace(/[^a-z0-9]+/g, "");
       const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
-      const spineSrc = slug === "back-to-the-future" ? "/sleeves/spines/back-to-the-future.png?v=493" : "/sleeves/spines/" + slug + ".png?v=493";
+      const spineSrc = "/sleeves/spines/" + slug + ".png?v=572";
       const spineInk =
         '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
         '<img class="vhs-spine-logo" src="' + spineSrc + '" alt="" draggable="false" decoding="async" onerror="this.style.display=\'none\'">' +
@@ -8825,7 +8818,6 @@
         '<div class="vhs-back-end">' +
         (director ? '<p class="vhs-back-credits">A film by ' + director + "</p>" : "") +
         '<p class="vhs-back-stock">' + [year, runtime].filter(Boolean).join(" · ") + "</p>" +
-        (genres ? '<p class="vhs-back-cast">' + genres.replace(/,/g, " · ") + "</p>" : "") +
         '<p class="vhs-back-stock">' + (catalogNo ? catalogNo + " · " : "") + "Hi-Fi Stereo</p>" +
         '<div class="vhs-back-foot"><span class="vhs-barcode"></span><span class="vhs-back-logo">REWIND</span></div>' +
         '<p class="vhs-back-kind">Be kind, rewind.</p></div></div></div></div></div></div></div>' +
@@ -9465,10 +9457,7 @@
       const catalogNo = String(film.catalogNo || "").replace(/</g, "");
       const tagline = String(film.tagline || "").replace(/</g, "").replace(/"/g, "");
       const overview = String(film.overview || "").replace(/</g, "");
-      const spineSrc =
-        slug === "back-to-the-future"
-          ? "/sleeves/spines/back-to-the-future.png?v=482"
-          : "/sleeves/spines/" + slug + ".png?v=484";
+      const spineSrc = "/sleeves/spines/" + slug + ".png?v=572";
       const titlePos = "none";
       const sticker =
         slug === "the-thing-1982"
@@ -9516,7 +9505,6 @@
         "</div><div class=\"vhs-back-end\">" +
         (director ? '<p class="vhs-back-credits">A film by ' + director + "</p>" : "") +
         '<p class="vhs-back-stock">' + [year, runtime].filter(Boolean).join(" · ") + "</p>" +
-        (genres ? '<p class="vhs-back-cast">' + genres + "</p>" : "") +
         '<p class="vhs-back-stock">' + (catalogNo ? catalogNo + " · " : "") + "Hi-Fi Stereo</p>" +
         '<div class="vhs-back-foot">' + barcodeSvg(catalogNo) + '<span class="vhs-back-logo">REWIND</span></div>' +
         '<p class="vhs-back-kind">Be kind, rewind.</p></div></div>' +
@@ -9623,7 +9611,7 @@
         "</div>";
       const row = document.createElement("div");
       row.className = "grid justify-items-center";
-      row.style.cssText = "display:grid;grid-template-columns:repeat(2,10rem);justify-content:center;align-items:start;width:100%;max-width:100%;padding:.4rem .2rem 1.2rem;gap:1.45rem .9rem;touch-action:pan-y";
+      row.style.cssText = "display:grid;grid-template-columns:repeat(2,calc(10rem * 7 / 6));justify-content:center;align-items:start;width:100%;max-width:100%;padding:.4rem .2rem 1.2rem;gap:1.45rem .9rem;touch-action:pan-y";
       films.forEach((n) => {
         if (!n || !n.cloneNode) return;
         const slug = slotSlug(n);
@@ -13178,7 +13166,7 @@
     document.querySelectorAll('.vhs-box[data-slug="blade-runner"]').forEach(function (box) {
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("v=500") < 0) img.src = "/sleeves/spines/blade-runner.png?v=503";
+        if (src.indexOf("/sleeves/spines/blade-runner.png") < 0) img.src = "/sleeves/spines/blade-runner.png?v=572";
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
       });
@@ -13214,7 +13202,7 @@
           img.removeAttribute("srcset");
           img.src = "/sleeves/jaws.jpg?v=488";
         }
-        img.style.setProperty("object-fit", "contain", "important");
+        img.style.setProperty("object-fit", "cover", "important");
         img.style.setProperty("object-position", "center center", "important");
       });
       box.querySelectorAll(".vhs-back-still").forEach(function (el) {
@@ -13233,7 +13221,7 @@
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("v=485") < 0) img.src = "/sleeves/spines/jaws.png?v=485";
+        if (src.indexOf("/sleeves/spines/jaws.png") < 0) img.src = "/sleeves/spines/jaws.png?v=572";
         img.style.setProperty("object-fit", "contain", "important");
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
@@ -13261,11 +13249,11 @@
   function fixDuneSpine() {
     document.querySelectorAll('.vhs-box[data-slug="dune-part-two"]').forEach(function (box) {
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        if ((img.getAttribute("src") || "").indexOf("dune-part-two.png?v=485") < 0) {
+        if ((img.getAttribute("src") || "").indexOf("/sleeves/spines/dune-part-two.png") < 0) {
           img.style.display = "";
-          img.src = "/sleeves/spines/dune-part-two.png?v=485";
+          img.src = "/sleeves/spines/dune-part-two.png?v=572";
         }
-        img.style.setProperty("object-fit", "cover", "important");
+        img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) {
@@ -13310,25 +13298,25 @@
         img.removeAttribute("srcset");
         img.src = "/sleeves/halloween-1978.jpg?v=544";
       }
-      img.style.setProperty("object-fit", "contain", "important");
+      img.style.setProperty("object-fit", "cover", "important");
       img.style.setProperty("object-position", "center center", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-logo').forEach(function (img) {
       var src = img.getAttribute("src") || "";
-      if (src.indexOf("v=484") < 0) img.src = "/sleeves/spines/halloween-1978.png?v=484";
+      if (src.indexOf("/sleeves/spines/halloween-1978.png") < 0) img.src = "/sleeves/spines/halloween-1978.png?v=572";
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-year').forEach(function (el) {
       el.style.setProperty("display", "none", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-vhs').forEach(function (el) {
       el.style.setProperty("display", "block", "important");
-      el.style.setProperty("color", "#c05312", "important");
+      el.style.setProperty("color", "#e8c56a", "important");
       el.style.setProperty("font-size", "6px", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-no').forEach(function (el) {
       if (!el.textContent) el.textContent = "RW-1978-10";
       el.style.setProperty("display", "block", "important");
-      el.style.setProperty("color", "#c05312", "important");
+      el.style.setProperty("color", "#e8c56a", "important");
       el.style.setProperty("font-size", "3.5px", "important");
       el.style.setProperty("writing-mode", "horizontal-tb", "important");
       el.style.setProperty("transform", "none", "important");
@@ -13378,7 +13366,7 @@
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("first-blood") >= 0 && src.indexOf("v=263") < 0) img.src = "/sleeves/spines/first-blood.png?v=263";
+        if (src.indexOf("first-blood") >= 0 && src.indexOf("/sleeves/spines/first-blood.png") < 0) img.src = "/sleeves/spines/first-blood.png?v=572";
         img.style.removeProperty("max-width");
         img.style.removeProperty("max-height");
         img.style.removeProperty("width");
@@ -13625,18 +13613,69 @@
       box.setAttribute("data-paint", "1");
       box.setAttribute("data-spine-logo", "1");
       box.setAttribute("data-title", "none");
+      var spineTitle = (function () {
+        var slot = box.closest && box.closest("article");
+        var heading = slot && slot.querySelector(".tape-slot-title");
+        if (heading && heading.textContent.trim()) return heading.textContent.trim();
+        var label = box.getAttribute("aria-label") || "";
+        if (label) return label.split(".")[0].trim();
+        var coverAlt = box.querySelector(".vhs-window img");
+        if (coverAlt && coverAlt.alt && coverAlt.alt.length < 80 && coverAlt.alt.trim()) return coverAlt.alt.trim();
+        return slug.replace(/-/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      })();
+      box.querySelectorAll(".vhs-back-cast").forEach(function (el) { el.remove(); });
       box.querySelectorAll(".vhs-window img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
         if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
         img.removeAttribute("srcset");
         img.removeAttribute("sizes");
-        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
+        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-godfather" ? "554" : slug === "lethal-weapon" ? "553" : slug === "star-wars" ? "551" : slug === "the-big-lebowski" ? "550" : slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : slug === "jaws" ? "488" : "572");
         if (src.indexOf(want) < 0) img.src = want;
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
+        img.style.setProperty("position", "absolute", "important");
+        img.style.setProperty("inset", "0", "important");
+        img.style.setProperty("width", "100%", "important");
+        img.style.setProperty("height", "100%", "important");
+        img.style.setProperty("background", "#07080a", "important");
+        if (!img.__rwCoverArm) {
+          img.__rwCoverArm = 1;
+          img.addEventListener("error", function () {
+            img.style.setProperty("display", "none", "important");
+            var win = img.closest(".vhs-window");
+            if (!win || win.querySelector(".vhs-cover-word")) return;
+            var tag = document.createElement("span");
+            tag.className = "vhs-cover-word";
+            tag.textContent = spineTitle;
+            tag.style.cssText = "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12%;color:#f3e6c8;font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:15px;line-height:1.15;letter-spacing:.02em;z-index:4;pointer-events:none";
+            win.appendChild(tag);
+          });
+        }
+        if (img.complete && !img.naturalWidth && (img.getAttribute("src") || "").indexOf("/sleeves/") >= 0) {
+          img.style.setProperty("display", "none", "important");
+          var winNow = img.closest(".vhs-window");
+          if (winNow && !winNow.querySelector(".vhs-cover-word")) {
+            var tagNow = document.createElement("span");
+            tagNow.className = "vhs-cover-word";
+            tagNow.textContent = spineTitle;
+            tagNow.style.cssText = "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12%;color:#f3e6c8;font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:15px;line-height:1.15;letter-spacing:.02em;z-index:4;pointer-events:none";
+            winNow.appendChild(tagNow);
+          }
+        }
       });
       box.querySelectorAll(".vhs-window").forEach(function (win) {
         win.style.setProperty("background", "#07080a", "important");
+        win.style.setProperty("position", "absolute", "important");
+        win.style.setProperty("inset", "0", "important");
+        win.style.setProperty("width", "100%", "important");
+        win.style.setProperty("height", "100%", "important");
+        var inner = win.firstElementChild;
+        if (inner && inner.tagName !== "IMG") {
+          inner.style.setProperty("position", "absolute", "important");
+          inner.style.setProperty("inset", "0", "important");
+          inner.style.setProperty("width", "100%", "important");
+          inner.style.setProperty("height", "100%", "important");
+        }
       });
       var spot =
         slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "nightmare-on-elm-street" || slug === "there-will-be-blood"
@@ -13651,7 +13690,9 @@
                   ? ["auto 6px auto auto", "64%", "6px", "auto", "auto"]
                   : slug === "the-crow"
                     ? ["auto auto auto 8px", "38%", "auto", "auto", "8px"]
-                    : null;
+                    : slug === "the-big-lebowski"
+                      ? ["auto auto 8px 8px", "auto", "auto", "8px", "8px"]
+                      : null;
       if (spot) {
         box.querySelectorAll(".vhs-sticker").forEach(function (st) {
           st.style.setProperty("inset", spot[0], "important");
@@ -13662,11 +13703,97 @@
         });
       }
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;
-      var spineVer = slug === "the-shining" ? "493" : slug === "goodfellas" || slug === "se7en" ? "532" : "484";
+      var spineVer = "572";
+      function showSpineWord(ink) {
+        var word = ink.querySelector(".vhs-spine-word");
+        if (!word) {
+          word = document.createElement("span");
+          word.className = "vhs-spine-word";
+          ink.appendChild(word);
+        }
+        word.textContent = spineTitle;
+        word.style.setProperty("display", "flex", "important");
+      }
+      function hideSpineWord(ink) {
+        var word = ink && ink.querySelector(".vhs-spine-word");
+        if (word) word.style.setProperty("display", "none", "important");
+      }
+      function fitSpineLogo(img) {
+        img.style.setProperty("display", "block", "important");
+        img.style.setProperty("position", "absolute", "important");
+        img.style.setProperty("top", "18%", "important");
+        img.style.setProperty("bottom", "18%", "important");
+        img.style.setProperty("left", "8%", "important");
+        img.style.setProperty("right", "8%", "important");
+        img.style.setProperty("width", "84%", "important");
+        img.style.setProperty("height", "64%", "important");
+        img.style.setProperty("max-width", "84%", "important");
+        img.style.setProperty("max-height", "64%", "important");
+        img.style.setProperty("margin", "auto", "important");
+        img.style.setProperty("object-fit", "contain", "important");
+        img.style.setProperty("object-position", "center center", "important");
+        img.style.setProperty("z-index", "2", "important");
+        img.style.setProperty("transform", "none", "important");
+      }
+      box.querySelectorAll(".vhs-spine-ink").forEach(function (ink) {
+        ink.style.setProperty("position", "absolute", "important");
+        ink.style.setProperty("inset", "0", "important");
+        ink.style.setProperty("overflow", "hidden", "important");
+        ink.style.setProperty("width", "100%", "important");
+        ink.style.setProperty("height", "100%", "important");
+        ink.style.setProperty("min-height", "0", "important");
+        ink.style.setProperty("max-width", "100%", "important");
+        ink.style.setProperty("box-sizing", "border-box", "important");
+        showSpineWord(ink);
+        if (ink.querySelector(".vhs-spine-logo")) return;
+        var img = document.createElement("img");
+        img.className = "vhs-spine-logo";
+        img.alt = "";
+        img.draggable = false;
+        img.decoding = "async";
+        ink.appendChild(img);
+      });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var want = "/sleeves/spines/" + spineFile + ".png?v=" + spineVer;
-        if ((img.getAttribute("src") || "").indexOf(want) < 0) img.src = want;
+        var cur = img.getAttribute("src") || "";
+        if (cur.indexOf("/sleeves/spines/" + spineFile + ".png?v=" + spineVer) < 0) img.src = want;
+        fitSpineLogo(img);
+        if (!img.__rwArm) {
+          img.__rwArm = 1;
+          img.addEventListener("error", function () {
+            img.style.setProperty("display", "none", "important");
+            var ink = img.closest(".vhs-spine-ink");
+            if (ink) showSpineWord(ink);
+          });
+          img.addEventListener("load", function () {
+            var ink = img.closest(".vhs-spine-ink");
+            if (!img.naturalWidth) {
+              img.style.setProperty("display", "none", "important");
+              if (ink) showSpineWord(ink);
+              return;
+            }
+            fitSpineLogo(img);
+            hideSpineWord(ink);
+          });
+        }
+        if (img.complete && img.naturalWidth) {
+          fitSpineLogo(img);
+          hideSpineWord(img.closest(".vhs-spine-ink"));
+        } else if (img.complete && !img.naturalWidth) {
+          img.style.setProperty("display", "none", "important");
+          var inkNow = img.closest(".vhs-spine-ink");
+          if (inkNow) showSpineWord(inkNow);
+        }
       });
+      var still = box.querySelector(".vhs-back-still img");
+      if (still) {
+        var back = backStill(slug);
+        if ((still.getAttribute("src") || "").indexOf(back) < 0) still.src = back;
+        still.style.setProperty("object-fit", "contain", "important");
+        still.style.setProperty("object-position", "center center", "important");
+        still.style.setProperty("width", "100%", "important");
+        still.style.setProperty("height", "100%", "important");
+      }
     }
     if (slug === "the-shining") {
       box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
@@ -13676,8 +13803,8 @@
     if (slug === "goodfellas" || slug === "se7en") {
       box.querySelectorAll("img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("/sleeves/spines/" + slug + ".png") >= 0 && src.indexOf("v=532") < 0) {
-          img.src = "/sleeves/spines/" + slug + ".png?v=532";
+        if (src.indexOf("/sleeves/spines/" + slug + ".png") >= 0 && src.indexOf("v=572") < 0) {
+          img.src = "/sleeves/spines/" + slug + ".png?v=572";
         }
         if ((src.indexOf("/sleeves/" + slug + ".jpg") >= 0 || src.indexOf("/sleeves/thumbs/" + slug) >= 0) && src.indexOf("-still") < 0 && src.indexOf("v=532") < 0) {
           img.src = "/sleeves/" + slug + ".jpg?v=532";
@@ -13908,6 +14035,7 @@
       setTimeout(() => {
         dressLiveUiQueued = 0;
         dressLiveUi();
+        fixAllSpines();
       }, 280);
     });
     mo.observe(document.documentElement, { childList: true, subtree: true });
