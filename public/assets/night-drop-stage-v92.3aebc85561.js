@@ -442,7 +442,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="ask"] .vhs-box {
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center center !important;
   display: block !important;
   opacity: 1 !important;
@@ -3757,15 +3757,13 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     if (loadDropCatalog.inflight) return loadDropCatalog.inflight;
     loadDropCatalog.inflight = Promise.all([
       fetch("/data/catalog.json", { cache: "no-store" }).then((r) => (r && r.ok ? r.json() : [])).catch(function () { return []; }),
-      fetch("/data/nd-covers.json", { cache: "no-store" }).then((r) => (r && r.ok ? r.json() : [])).catch(function () { return []; }),
     ]).then(function (pair) {
       loadDropCatalog.inflight = null;
       const rows = Array.isArray(pair[0]) ? pair[0] : [];
-      const covers = Array.isArray(pair[1]) ? pair[1] : [];
+      const boxes = window.__rwBoxes || {};
       const ok = {};
-      covers.forEach(function (s) {
-        if (typeof s === "string" && s) ok[s] = 1;
-        else if (s && s.slug) ok[String(s.slug)] = 1;
+      Object.keys(boxes).forEach(function (slug) {
+        if (boxes[slug] && boxes[slug].cover && boxes[slug].spine && boxes[slug].back) ok[slug] = 1;
       });
       if (rows.length && Object.keys(ok).length) {
         var next = rows.map(asDropFilm).filter(function (f) { return f && ok[f.slug]; });
@@ -3814,12 +3812,17 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   }
   function dropTapeMarkup(film, backHtml) {
     const slug = film.slug;
-    const src = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : "103");
+    const row = window.boxAssets && window.boxAssets(slug);
+    const src = (row && row.cover) || ("/sleeves/" + slug + ".jpg");
+    const fit = (row && row.fit) || "contain";
+    const spineSrc = (row && row.spine) || ("/sleeves/spines/" + slug + ".png");
     const title = String(film.title || "").replace(/"/g, "");
     const year = film.year || "";
+    const spineWord = title || slug;
     const spineInk =
       '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
-      '<img class="vhs-spine-logo" src="/sleeves/spines/' + slug + '.png?v=103" alt="" draggable="false" decoding="async" onerror="this.style.display=\'none\'">' +
+      '<img class="vhs-spine-logo" src="' + spineSrc + '" alt="" draggable="false" decoding="async" onerror="this.style.display=\'none\';var w=this.parentNode&&this.parentNode.querySelector(\'.vhs-spine-word\');if(w)w.style.display=\'flex\'">' +
+      '<span class="vhs-spine-word" style="display:flex">' + spineWord.replace(/</g, "") + "</span>" +
       '<span class="vhs-spine-year">' + year + "</span></div>";
     return (
       '<div class="vhs-flip"><div class="vhs-flip-card">' +
@@ -3831,7 +3834,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       '<div class="vhs-spine vhs-spine-right">' + spineInk + "</div>" +
       '<div class="vhs-face-front"><div class="vhs-case"><div class="vhs-shell"><div class="vhs-sleeve">' +
       '<div class="vhs-window"><div class="relative size-full">' +
-      '<img src="' + src + '" alt="' + title + '" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" style="width:100%;height:100%;object-fit:contain;display:block" onerror="this.style.display=\'none\'"/>' +
+      '<img src="' + src + '" alt="' + title + '" draggable="false" decoding="async" class="absolute inset-0 size-full" style="width:100%;height:100%;object-fit:' + fit + ';display:block" onerror="this.style.display=\'none\'"/>' +
       (backHtml || filmBackHtml(film)) +
       "</div></div>" +
       '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
@@ -4359,7 +4362,8 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     return '<svg class="vhs-barcode" viewBox="0 0 120 22" width="80" height="12" preserveAspectRatio="none" aria-hidden="true">' + d + "</svg>";
   }
   function filmBackHtml(film) {
-    const still = "/sleeves/" + film.slug + "-still.jpg?v=" + (film.slug === "the-crow" ? "540" : "541");
+    const row = window.boxAssets && window.boxAssets(film.slug);
+    const still = (row && row.back) || ("/sleeves/" + film.slug + "-still.jpg");
     const tag = film.tagline ? '<p class="vhs-back-tag">\u201c' + esc(film.tagline) + "\u201d</p>" : "";
     const stock = [film.year, film.runtime ? film.runtime + " MIN" : ""].filter(Boolean).join(" · ");
     return (
@@ -4371,7 +4375,6 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       '<div class="vhs-back-end">' +
       (film.director ? '<p class="vhs-back-credits">A film by ' + esc(film.director) + "</p>" : "") +
       (stock ? '<p class="vhs-back-stock">' + esc(stock) + "</p>" : "") +
-      (film.genres ? '<p class="vhs-back-cast">' + esc(film.genres) + "</p>" : "") +
       '<p class="vhs-back-stock">' + esc((film.catalogNo ? film.catalogNo + " · " : "") + "Hi-Fi Stereo") + "</p></div>" +
       '<div class="vhs-back-foot">' + barcodeSvg(film.catalogNo) + '<span class="vhs-back-logo">REWIND</span></div>' +
       "</div></div>"

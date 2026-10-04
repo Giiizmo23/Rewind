@@ -2,20 +2,9 @@
   if (window.__rwVipFloor) return;
   window.__rwVipFloor = 1;
   function backStill(slug) {
-    if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=6";
-    if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=2";
-    if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=2";
-    if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
-    if (slug === "dune-part-two") return "/sleeves/dune-part-two-worm.jpg?v=1";
-    if (slug === "first-blood") return "/sleeves/first-blood-woods.jpg?v=1";
-    if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
-    if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
-    if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
-    if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
-    if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
-    if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "541";
-    return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+    var row = window.boxAssets && window.boxAssets(slug);
+    if (row && row.back) return row.back;
+    return "/sleeves/" + slug + "-still.jpg?v=541";
   }
   function tmdbBag() {
     try {
@@ -43,9 +32,8 @@
       const row = tmdbBag()[id];
       if (row && row.poster) return row.poster;
     }
-    if (id === "the-crow" || id === "nightmare-on-elm-street" || id === "a-clockwork-orange" || id === "there-will-be-blood") return "/sleeves/" + id + ".jpg?v=542";
-    if (id === "halloween-1978") return "/sleeves/" + id + ".jpg?v=544";
-    if (id === "longlegs" || id === "i-saw-the-tv-glow" || id === "anora" || id === "the-substance" || id === "clayface" || id === "psycho" || id === "back-to-the-future") return "/sleeves/" + id + ".jpg?v=543";
+    var boxed = window.boxAssets && window.boxAssets(id);
+    if (boxed && boxed.cover) return boxed.cover;
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
   const posterQueue = [];
@@ -8192,24 +8180,17 @@
       if (cover) {
         cover.removeAttribute("srcset");
         cover.setAttribute("loading", "lazy");
-        if (slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") {
-          cover.src = "/sleeves/" + slug + ".jpg?v=542";
-        } else if (slug === "halloween-1978") {
-          cover.src = "/sleeves/" + slug + ".jpg?v=544";
-        } else if (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") {
-          cover.src = "/sleeves/" + slug + ".jpg?v=543";
-        } else if (slug === "goodfellas" || slug === "se7en") {
-          cover.src = "/sleeves/" + slug + ".jpg?v=532";
-        } else {
-          cover.src = "/sleeves/" + slug + ".jpg?v=572";
-        }
+        cover.src = filmArt(slug);
         cover.removeAttribute("srcset");
+        var fit = (window.boxAssets && window.boxAssets(slug) && window.boxAssets(slug).fit) || "contain";
+        cover.style.setProperty("object-fit", fit, "important");
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         const file = slug === "back-to-the-future" ? "back-to-the-future" : slug;
+        const boxed = window.boxAssets && window.boxAssets(slug);
         img.setAttribute("loading", "lazy");
         img.removeAttribute("srcset");
-        img.src = "/sleeves/spines/" + file + ".png?v=572";
+        img.src = (boxed && boxed.spine) || ("/sleeves/spines/" + file + ".png");
         img.onerror = function () { this.style.display = "none"; };
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) { el.textContent = film.year ? String(film.year) : ""; });
@@ -8516,17 +8497,15 @@
     applyAisle(initial, false);
     Promise.all([
       fetch("/data/catalog.json?v=1100", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
-      fetch("/data/sleeve-slugs.json?v=1100", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
       covers = {};
       stills = {};
-      const list = pair[1] && pair[1].covers;
-      if (Array.isArray(list)) list.forEach(function (slug) { covers[slug] = 1; });
-      else covers = null;
-      const stillList = pair[1] && pair[1].stills;
-      if (Array.isArray(stillList)) stillList.forEach(function (slug) { stills[slug] = 1; });
-      else stills = null;
+      var boxes = window.__rwBoxes || {};
+      Object.keys(boxes).forEach(function (slug) {
+        if (boxes[slug] && boxes[slug].cover) covers[slug] = 1;
+        if (boxes[slug] && boxes[slug].back) stills[slug] = 1;
+      });
       applyAisle(applied || "", false);
     }).catch(function () {});
   }
@@ -13629,9 +13608,11 @@
         if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
         img.removeAttribute("srcset");
         img.removeAttribute("sizes");
-        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-godfather" ? "554" : slug === "lethal-weapon" ? "553" : slug === "star-wars" ? "551" : slug === "the-big-lebowski" ? "550" : slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : slug === "jaws" ? "488" : "572");
-        if (src.indexOf(want) < 0) img.src = want;
-        img.style.setProperty("object-fit", "contain", "important");
+        var boxed = window.boxAssets && window.boxAssets(slug);
+        var want = (boxed && boxed.cover) || ("/sleeves/" + slug + ".jpg");
+        var fit = (boxed && boxed.fit) || "contain";
+        if (src.split("?")[0] !== want.split("?")[0] || src.indexOf(want) < 0) img.src = want;
+        img.style.setProperty("object-fit", fit, "important");
         img.style.setProperty("object-position", "center center", "important");
         img.style.setProperty("position", "absolute", "important");
         img.style.setProperty("inset", "0", "important");
@@ -13754,9 +13735,10 @@
         ink.appendChild(img);
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        var want = "/sleeves/spines/" + spineFile + ".png?v=" + spineVer;
+        var boxedSpine = window.boxAssets && window.boxAssets(slug);
+        var want = (boxedSpine && boxedSpine.spine) || ("/sleeves/spines/" + spineFile + ".png");
         var cur = img.getAttribute("src") || "";
-        if (cur.indexOf("/sleeves/spines/" + spineFile + ".png?v=" + spineVer) < 0) img.src = want;
+        if (cur.indexOf(want) < 0) img.src = want;
         fitSpineLogo(img);
         if (!img.__rwArm) {
           img.__rwArm = 1;
@@ -13798,17 +13780,6 @@
     if (slug === "the-shining") {
       box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
         el.textContent = "RW-1980-05";
-      });
-    }
-    if (slug === "goodfellas" || slug === "se7en") {
-      box.querySelectorAll("img").forEach(function (img) {
-        var src = img.getAttribute("src") || "";
-        if (src.indexOf("/sleeves/spines/" + slug + ".png") >= 0 && src.indexOf("v=572") < 0) {
-          img.src = "/sleeves/spines/" + slug + ".png?v=572";
-        }
-        if ((src.indexOf("/sleeves/" + slug + ".jpg") >= 0 || src.indexOf("/sleeves/thumbs/" + slug) >= 0) && src.indexOf("-still") < 0 && src.indexOf("v=532") < 0) {
-          img.src = "/sleeves/" + slug + ".jpg?v=532";
-        }
       });
     }
     box.querySelectorAll(".vhs-spine-year").forEach(function (el) {

@@ -37,12 +37,16 @@
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function backStill(slug) {
-    return namedScene(slug) || localStill(slug);
+    var row = window.boxAssets && window.boxAssets(slug);
+    if (row && row.back) return row.back;
+    return localStill(slug);
   }
   function headerScene(slug, film) {
     if (film && (film.tmdb || /^tmdb-\d+$/.test(String(slug || "")))) {
       return distinctArt(film.still, film.poster);
     }
+    var row = window.boxAssets && window.boxAssets(slug);
+    if (row && row.back) return distinctArt(row.back, row.cover);
     var named = namedScene(slug);
     if (named) return named;
     var pack = window.__rwHeaders;
@@ -184,6 +188,7 @@
       '.tp-avg.is-empty b{opacity:.28;font-weight:600}' +
       '.tp-avg .tp-heart{color:#c41230;font-size:.95rem;line-height:1;display:block;margin-bottom:.1rem}' +
       '.tp-chip{display:flex;align-items:center;gap:.65rem;padding:.7rem .95rem;border-radius:999px;background:color-mix(in srgb,currentColor 9%,transparent);font-size:.86rem;margin:.85rem 0 1rem;border:0;width:fit-content;max-width:100%;align-self:flex-start;text-align:left;color:inherit;cursor:pointer;position:relative;z-index:6;pointer-events:auto}' +
+      '.tp-chip img.tp-emoji,.tp-owned img.tp-emoji{width:1.55rem;height:1.55rem;object-fit:contain;flex:none;display:block;background:none}' +
       '.tp-chip i{display:none}' +
       '.tp-chip .tp-eye{width:1.7rem;height:1.15rem;flex:none;display:block;background:none;overflow:visible}' +
       '.tp-chip svg.tp-eye path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}' +
@@ -420,15 +425,16 @@
     const runtimeMins = film.runtime ? String(film.runtime) + " mins" : "";
     const sid = String(slug).replace(/[^a-z0-9]+/g, "");
     const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
-    const spineSrc =
-      slug === "back-to-the-future"
-        ? "/sleeves/spines/back-to-the-future.png?v=493"
-        : "/sleeves/spines/" + slug + ".png?v=493";
+    const row = window.boxAssets && window.boxAssets(slug);
+    const spineSrc = (row && row.spine) || ("/sleeves/spines/" + slug + ".png");
     const spineInk =
       '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
       '<img class="vhs-spine-logo" src="' +
       spineSrc +
-      '" alt="" draggable="false" decoding="async" onerror="this.style.display=\'none\'">' +
+      '" alt="" draggable="false" decoding="async" onerror="this.style.display=\'none\';var w=this.parentNode&&this.parentNode.querySelector(\'.vhs-spine-word\');if(w)w.style.display=\'flex\'">' +
+      '<span class="vhs-spine-word" style="display:flex">' +
+      title +
+      "</span>" +
       '<span class="vhs-spine-year">' +
       year +
       "</span></div>";
@@ -466,7 +472,7 @@
       return '<div class="tp-avg">' + heart + '<b>' + (val % 1 ? val.toFixed(1) : String(val)) + "</b><span>stars</span></div>";
     }
     function camSvg() {
-      return camMark();
+      return '<img class="tp-emoji" src="/assets/cam-emoji.png" alt="" draggable="false">';
     }
     function camMark() {
       return '<svg viewBox="0 0 64 64" aria-hidden="true">' +
@@ -484,7 +490,7 @@
         '</svg>';
     }
     function eyeSvg() {
-      return eyeMark();
+      return '<img class="tp-emoji" src="/assets/eye-emoji.png" alt="" draggable="false">';
     }
     function eyeMark() {
       return '<svg class="tp-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.1 12C3.7 7.8 7.4 5 12 5s8.3 2.8 9.9 7c-1.6 4.2-5.3 7-9.9 7S3.7 16.2 2.1 12z"/><circle class="tp-pupil" cx="12" cy="12" r="3"/></svg>';
@@ -550,7 +556,7 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
-    const posterSrc = film.poster || ((slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") ? "/sleeves/" + slug + ".jpg?v=542" : slug === "halloween-1978" ? "/sleeves/" + slug + ".jpg?v=544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "/sleeves/" + slug + ".jpg?v=543" : "/sleeves/" + slug + ".jpg?v=493");
+    const posterSrc = (row && row.cover) || film.poster || "/sleeves/" + slug + ".jpg";
     const stillSrc = headerScene(slug, film);
     const poster =
       '<button type="button" class="tp-poster" data-tp-zoom="1" aria-label="See the picture" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
