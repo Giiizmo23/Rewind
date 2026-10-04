@@ -26,22 +26,18 @@
   }
   try { markHomeApp(); } catch (eMark) {}
   const CSS_ID = "nd-stage-css-v92n86";
-  const VER = "92n86";
+  const VER = "92n87";
   let heldTheme = null;
   const FACE = encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" fill="none">' +
       '<rect width="400" height="128" fill="#2a2c31"/>' +
-      '<rect x="36" y="4" width="328" height="58" rx="5" fill="#14161a"/>' +
-      '<rect x="44" y="10" width="312" height="46" rx="3" fill="#07080b"/>' +
-      '<rect x="44" y="10" width="312" height="7" rx="2" fill="#000" opacity=".55"/>' +
-      '<rect x="48" y="50" width="304" height="2" rx="1" fill="#2c2e33" opacity=".7"/>' +
+      '<rect x="62" y="2" width="276" height="72" rx="7" fill="#121416"/>' +
+      '<rect x="70" y="7" width="260" height="60" rx="4" fill="#3d3f44"/>' +
+      '<rect x="76" y="9" width="248" height="1.5" rx="0.7" fill="#b7bcc2" opacity=".75"/>' +
+      '<rect x="174" y="52" width="52" height="4" rx="2" fill="#23262a"/>' +
       '<circle cx="40" cy="104" r="8" fill="#c9a227"/><circle cx="40" cy="104" r="2.6" fill="#6a5610"/>' +
       '<circle cx="62" cy="104" r="8" fill="#ececec"/><circle cx="62" cy="104" r="2.6" fill="#888"/>' +
       '<circle cx="84" cy="104" r="8" fill="#c41230"/><circle cx="84" cy="104" r="2.6" fill="#6a0a18"/>' +
-      '<g transform="translate(158,88)" fill="#f4f4f4">' +
-        '<path d="M1.2 1.6h15.2L7.6 12.2h9.6L2.4 29.2l8.6-13.4H1.2z"/>' +
-        '<text x="23" y="23.5" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-style="italic" font-size="16.5" letter-spacing="0.4">ENITH</text>' +
-      "</g>" +
       '<circle cx="360" cy="102" r="15" fill="#24262a" stroke="#111"/>' +
       '<circle cx="360" cy="95" r="3.4" fill="#ff2a2a"/>' +
       '<circle cx="360" cy="95" r="5.8" fill="#ff2a2a" opacity=".35"/>' +
@@ -1052,9 +1048,9 @@ html[data-drop="1"] .drop-tape::after {
   margin-top: .15rem;
   pointer-events: none;
   z-index: 4;
-  background-image: url("data:image/svg+xml,${FACE}");
-  background-size: 100% 100%;
-  background-position: 0 0;
+  background-image: url("/assets/zenith-mark.png?v=16"), url("data:image/svg+xml,${FACE}");
+  background-size: auto 1.05rem, 100% 100%;
+  background-position: 50% 79%, 0 0;
   background-repeat: no-repeat;
 }
 html[data-drop="1"] .drop-tape .relative.touch-none,
