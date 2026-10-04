@@ -9352,7 +9352,26 @@
         art.setAttribute("hidden", "");
         art.setAttribute("data-dup-hid", "1");
       }
-      document.querySelectorAll(".lobby-picks .vhs-box, [data-member-rails] .vhs-box").forEach(mark);
+      function showCard(n) {
+        n.style.removeProperty("display");
+        n.removeAttribute("hidden");
+        n.removeAttribute("data-dup-hid");
+      }
+      main.querySelectorAll("section").forEach((sec) => {
+        const h2 = sec.querySelector("h2");
+        if (!h2 || !/Tonight'?s tapes/i.test(h2.textContent || "")) return;
+        if (sec.closest && sec.closest(".lobby-picks")) return;
+        sec.querySelectorAll("article.tape-slot, a.tape-slot").forEach((el) => {
+          showCard(el);
+          mark(el);
+        });
+      });
+      document.querySelectorAll(".lobby-picks .vhs-box, [data-member-rails] .vhs-box").forEach((n) => {
+        const slug = slotSlug(n);
+        if (!slug) return;
+        if (seen[slug]) hideCard(n);
+        else seen[slug] = 1;
+      });
       const rest = [];
       const seenEl = [];
       main.querySelectorAll("article.tape-slot, a.tape-slot, a.lobby-tape-link, article, .vhs-box").forEach((n) => {
@@ -9365,6 +9384,11 @@
       rest.forEach((art) => {
         const slug = slotSlug(art);
         if (!slug) return;
+        const inWindow = art.closest && art.closest("section") && /Tonight'?s tapes/i.test(((art.closest("section").querySelector("h2") || {}).textContent) || "");
+        if (inWindow) {
+          seen[slug] = 1;
+          return;
+        }
         if (seen[slug]) hideCard(art);
         else seen[slug] = 1;
       });
@@ -9512,11 +9536,22 @@
       { slug: "heat-1995", title: "Heat", year: 1995, director: "Michael Mann", runtime: 170, genres: "Crime · Drama", catalogNo: "RW-1995-12", tagline: "A Los Angeles crime saga.", overview: "A thief who will not get attached and a detective who already has. Downtown L.A. rifles, a diner, and two men who recognize each other." },
       { slug: "die-hard", title: "Die Hard", year: 1988, director: "John McTiernan", runtime: 132, genres: "Action", catalogNo: "RW-1988-07", tagline: "Twelve terrorists. One cop. The odds are against John McClane.", overview: "Nakatomi Plaza on Christmas Eve. A New York cop in bare feet, a German with a suit, and the LAPD parked outside." },
     ];
+    const inWindow = {};
+    main.querySelectorAll("section").forEach((sec) => {
+      const h2 = sec.querySelector("h2");
+      if (!h2 || !/Tonight'?s tapes/i.test(h2.textContent || "")) return;
+      sec.querySelectorAll(".vhs-box[data-slug]").forEach((box) => {
+        const slug = box.getAttribute("data-slug");
+        if (slug) inWindow[slug] = 1;
+      });
+    });
+    const pool = STOCK.filter((film) => !inWindow[film.slug]);
     const day = Math.floor(Date.now() / 86400000);
-    const managerFilm = STOCK[day % STOCK.length];
+    const source = pool.length ? pool : STOCK;
+    const managerFilm = source[day % source.length];
     const staffFilms = [];
     const yestFilms = [];
-    STOCK.forEach((film) => {
+    source.forEach((film) => {
       if (film.slug === managerFilm.slug) return;
       if (staffFilms.length < 4) staffFilms.push(film);
       else if (yestFilms.length < 4) yestFilms.push(film);
