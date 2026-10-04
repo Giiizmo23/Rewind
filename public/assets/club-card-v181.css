@@ -1824,8 +1824,7 @@ html:not([data-drop="1"]) .store-bg::after {
   inset:8px 8px auto auto!important;top:8px!important;right:8px!important;
   bottom:auto!important;left:auto!important;
 }
-.vhs-box[data-slug="alien"] .vhs-sticker,
-.vhs-box[data-title="none"][data-sticker="br"] .vhs-sticker{
+.vhs-box[data-slug="alien"] .vhs-sticker{
   inset:auto 8px 8px auto!important;
   top:auto!important;right:8px!important;bottom:8px!important;left:auto!important;
 }
@@ -5621,8 +5620,7 @@ html body main section > .flex:has(> .tape-slot) > .tape-slot{
   font-size:12px!important;
   letter-spacing:.07em!important;
 }
-.vhs-box[data-slug="alien"] .vhs-sticker,
-.vhs-box[data-title="none"][data-sticker="br"] .vhs-sticker{
+.vhs-box[data-slug="alien"] .vhs-sticker{
   inset:auto 8px 8px auto!important;
   top:auto!important;right:8px!important;bottom:8px!important;left:auto!important;
 }
@@ -5756,4 +5754,41 @@ html body .vhs-box[data-slug] .vhs-spine-right .vhs-spine-no{
 .vhs-box[data-slug="se7en"] .vhs-sticker{
   inset:8px auto auto 8px!important;top:8px!important;left:8px!important;
   right:auto!important;bottom:auto!important;
+}
+
+/* Full sleeve in the window. 4/7 case is taller than 2/3 art, so cover was slicing edge type. */
+html body .vhs-box[data-slug] .vhs-window{
+  background:#07080a!important;
+}
+html body .vhs-box[data-slug] .vhs-window img{
+  object-fit:contain!important;
+  object-position:center center!important;
+}
+html body .vhs-box[data-slug] .vhs-back-still img{
+  object-fit:cover!important;
+}
+/* Painted sleeves: sticker sits in empty paint, not on the title. */
+html body .vhs-box[data-slug="longlegs"].vhs-box .vhs-sticker,
+html body .vhs-box[data-slug="i-saw-the-tv-glow"].vhs-box .vhs-sticker,
+html body .vhs-box[data-slug="anora"].vhs-box .vhs-sticker,
+html body .vhs-box[data-slug="the-substance"].vhs-box .vhs-sticker,
+html body .vhs-box[data-slug="nightmare-on-elm-street"].vhs-box .vhs-sticker,
+html body .vhs-box[data-slug="there-will-be-blood"].vhs-box .vhs-sticker{
+  inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important;
+}
+html body .vhs-box[data-slug="psycho"].vhs-box .vhs-sticker,
+html body .vhs-box[data-slug="a-clockwork-orange"].vhs-box .vhs-sticker{
+  inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important;
+}
+html body .vhs-box[data-slug="clayface"].vhs-box .vhs-sticker{
+  inset:auto auto 10px 8px!important;top:auto!important;right:auto!important;bottom:10px!important;left:8px!important;
+}
+html body .vhs-box[data-slug="halloween-1978"].vhs-box .vhs-sticker{
+  inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important;
+}
+html body .vhs-box[data-slug="back-to-the-future"].vhs-box .vhs-sticker{
+  inset:auto 6px auto auto!important;top:64%!important;right:6px!important;bottom:auto!important;left:auto!important;
+}
+html body .vhs-box[data-slug="the-crow"].vhs-box .vhs-sticker{
+  inset:auto auto auto 8px!important;top:38%!important;left:8px!important;right:auto!important;bottom:auto!important;
 }

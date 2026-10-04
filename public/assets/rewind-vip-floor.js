@@ -908,7 +908,7 @@
         'html body .vhs-barcode rect{fill:#f0ead8!important}' +
         '.vhs-sticker-type{fill:var(--rw-primary,#c41230);font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:10.4px!important;font-weight:900;letter-spacing:.04em!important}' +
         '.vhs-sticker-rewind{font-size:12px!important;letter-spacing:.07em!important}' +
-        '.vhs-box[data-slug="alien"] .vhs-sticker,.vhs-box[data-title="none"][data-sticker="br"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}' +
+        '.vhs-box[data-slug="alien"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}' +
         'html body .vhs-box[data-slug="goodfellas"] .vhs-sticker,html body .vhs-box[data-slug="goodfellas"][data-sticker] .vhs-sticker,html body .vhs-box[data-title="none"][data-slug="goodfellas"] .vhs-sticker{inset:auto auto 17% 4%!important;top:auto!important;right:auto!important;bottom:17%!important;left:4%!important}' +
         '.vhs-box[data-slug="the-thing-1982"] .vhs-sticker{inset:auto auto 10px 10px!important;top:auto!important;right:auto!important;left:10px!important;bottom:10px!important}' +
         '.lobby-picks .vhs-box,.lobby-picks .vhs-box[data-size],.lobby-picks .vhs-box[data-size="lg"],.lobby-picks .vhs-box[data-size="drop"],.lobby-picks .vhs-box[data-size="md"],.lobby-picks .vhs-box[data-size="sm"]{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;flex:none!important;touch-action:none!important}' +
@@ -13214,7 +13214,7 @@
           img.removeAttribute("srcset");
           img.src = "/sleeves/jaws.jpg?v=488";
         }
-        img.style.setProperty("object-fit", "cover", "important");
+        img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center top", "important");
       });
       box.querySelectorAll(".vhs-back-still").forEach(function (el) {
@@ -13310,7 +13310,7 @@
         img.removeAttribute("srcset");
         img.src = "/sleeves/halloween-1978.jpg?v=544";
       }
-      img.style.setProperty("object-fit", "cover", "important");
+      img.style.setProperty("object-fit", "contain", "important");
       img.style.setProperty("object-position", "center center", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-logo').forEach(function (img) {
@@ -13632,7 +13632,35 @@
         img.removeAttribute("sizes");
         var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
         if (src.indexOf(want) < 0) img.src = want;
+        img.style.setProperty("object-fit", "contain", "important");
+        img.style.setProperty("object-position", "center center", "important");
       });
+      box.querySelectorAll(".vhs-window").forEach(function (win) {
+        win.style.setProperty("background", "#07080a", "important");
+      });
+      var spot =
+        slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "nightmare-on-elm-street" || slug === "there-will-be-blood"
+          ? ["8px auto auto 8px", "8px", "auto", "auto", "8px"]
+          : slug === "psycho" || slug === "a-clockwork-orange"
+            ? ["8px 8px auto auto", "8px", "8px", "auto", "auto"]
+            : slug === "clayface"
+              ? ["auto auto 10px 8px", "auto", "auto", "10px", "8px"]
+              : slug === "halloween-1978"
+                ? ["auto 8px 8px auto", "auto", "8px", "8px", "auto"]
+                : slug === "back-to-the-future"
+                  ? ["auto 6px auto auto", "64%", "6px", "auto", "auto"]
+                  : slug === "the-crow"
+                    ? ["auto auto auto 8px", "38%", "auto", "auto", "8px"]
+                    : null;
+      if (spot) {
+        box.querySelectorAll(".vhs-sticker").forEach(function (st) {
+          st.style.setProperty("inset", spot[0], "important");
+          st.style.setProperty("top", spot[1], "important");
+          st.style.setProperty("right", spot[2], "important");
+          st.style.setProperty("bottom", spot[3], "important");
+          st.style.setProperty("left", spot[4], "important");
+        });
+      }
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;
       var spineVer = slug === "the-shining" ? "493" : slug === "goodfellas" || slug === "se7en" ? "532" : "484";
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
