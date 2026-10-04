@@ -6,7 +6,18 @@
   function pathNow() {
     return (location.pathname || "/").replace(/\/$/, "") || "/";
   }
-  function backStill(slug) {
+  function artFile(url) {
+    var bits = String(url || "").split("?")[0].split("/");
+    return bits[bits.length - 1] || "";
+  }
+  function distinctArt(still, poster) {
+    still = String(still || "");
+    if (!still) return "";
+    var same = artFile(still) && artFile(still) === artFile(poster);
+    if (same) return "";
+    return still;
+  }
+  function namedScene(slug) {
     if (slug === "coming-to-america") return "/sleeves/coming-to-america-shop.jpg?v=6";
     if (slug === "the-thing-1982") return "/sleeves/the-thing-1982-blood.jpg?v=2";
     if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=2";
@@ -19,8 +30,27 @@
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    return "";
+  }
+  function localStill(slug) {
+    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "541";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
+  }
+  function backStill(slug) {
+    return namedScene(slug) || localStill(slug);
+  }
+  function headerScene(slug, film) {
+    if (film && (film.tmdb || /^tmdb-\d+$/.test(String(slug || "")))) {
+      return distinctArt(film.still, film.poster);
+    }
+    var named = namedScene(slug);
+    if (named) return named;
+    var pack = window.__rwHeaders;
+    if (!pack) return "";
+    if (pack.src && pack.src[slug]) return distinctArt(pack.src[slug], film && film.poster);
+    if (pack.box && pack.box[slug]) return localStill(slug);
+    if (pack.none && pack.none[slug]) return "";
+    return localStill(slug);
   }
   function filmSlug() {
     const m = pathNow().match(/^\/films\/([^/]+)$/);
@@ -522,8 +552,7 @@
     }
     const crowPoster = "/sleeves/the-crow.jpg?v=540";
     const posterSrc = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
-    const stillSrc = film.still || backStill(slug);
-    const stillFallback = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
+    const stillSrc = headerScene(slug, film);
     const poster =
       '<button type="button" class="tp-poster" data-tp-zoom="1" aria-label="See the picture" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
       '<img src="' +
@@ -541,13 +570,13 @@
       '<div class="tape-card-page" data-tape-layout="lb">' +
       '<div class="tp-hero">' +
       '<div class="tp-still-clip">' +
-      '<img class="tp-still" src="' +
-      stillSrc +
-      '" alt="" draggable="false" decoding="async" style="' +
-      stillFit +
-      '" onerror="this.onerror=null;this.src=\'' +
-      stillFallback +
-      '\'">' +
+      (stillSrc
+        ? '<img class="tp-still" src="' +
+          stillSrc +
+          '" alt="" draggable="false" decoding="async" style="' +
+          stillFit +
+          '" onerror="this.onerror=null;this.style.display=\'none\'">'
+        : "") +
       '<div class="tp-hero-shade"></div></div>' +
       '<a href="' +
       fromListPage() +
@@ -903,9 +932,16 @@
     return out;
   }
   function loadMeta(cb) {
-    if (window.__rwCatalog && window.__rwIndex && window.__rwCredits) {
+    if (window.__rwCatalog && window.__rwIndex && window.__rwCredits && window.__rwHeaders) {
       cb(window.__rwCatalog, window.__rwIndex, window.__rwCredits);
       return;
+    }
+    function asSet(list) {
+      const out = {};
+      (Array.isArray(list) ? list : []).forEach(function (slug) {
+        if (slug) out[slug] = 1;
+      });
+      return out;
     }
     Promise.all([
       fetch("/data/catalog.json?v=1200", { cache: "no-cache" })
@@ -929,10 +965,23 @@
         .catch(function () {
           return {};
         }),
-    ]).then(function (triple) {
-      window.__rwCatalog = catalogMap(triple[0]);
-      window.__rwIndex = parseIndex(triple[1]);
-      window.__rwCredits = triple[2] && typeof triple[2] === "object" ? triple[2] : {};
+      fetch("/data/header-scenes.json?v=541", { cache: "no-cache" })
+        .then(function (r) {
+          return r.ok ? r.json() : {};
+        })
+        .catch(function () {
+          return {};
+        }),
+    ]).then(function (parts) {
+      window.__rwCatalog = catalogMap(parts[0]);
+      window.__rwIndex = parseIndex(parts[1]);
+      window.__rwCredits = parts[2] && typeof parts[2] === "object" ? parts[2] : {};
+      const pack = parts[3] && typeof parts[3] === "object" ? parts[3] : {};
+      window.__rwHeaders = {
+        src: pack.src && typeof pack.src === "object" ? pack.src : {},
+        box: asSet(pack.box),
+        none: asSet(pack.none),
+      };
       cb(window.__rwCatalog, window.__rwIndex, window.__rwCredits);
     });
   }

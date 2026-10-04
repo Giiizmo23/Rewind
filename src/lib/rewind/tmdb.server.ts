@@ -143,7 +143,7 @@ async function film(url: URL): Promise<Response> {
       .filter(Boolean)
       .join(", "),
     poster: img(row.poster_path, "w342"),
-    still: img(row.backdrop_path, "w780") || img(row.poster_path, "w780"),
+    still: img(row.backdrop_path, "w780"),
     tmdb: true,
     credits: {
       cast: (Array.isArray(credits.cast) ? credits.cast : []).slice(0, 20).map((person) => ({

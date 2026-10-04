@@ -14,7 +14,7 @@
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "541";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function tmdbBag() {
@@ -316,7 +316,7 @@
     card: `<div class="club-card-wrap tour-real-card"><div class="club-stage"><div class="club-pouch"><div class="club-paper"><div class="club-rail"></div><div class="club-red"><div class="club-frame"><p class="club-word">REWIND VHS</p><p class="club-kind">Membership card</p></div><svg class="club-tear" viewBox="0 0 48 440" preserveAspectRatio="none" aria-hidden="true"><path d="M48 0H16.56C16.66 2.13 16.72 5.37 17.03 9.68C17.34 13.99 18.23 15.7 17.95 19.59C17.67 23.48 16.04 23.26 15.75 27.35C15.46 31.44 16.73 33.96 16.63 38.2C16.53 42.44 14.82 42.72 15.28 46.64C15.74 50.56 18.11 51.89 18.71 56.02C19.31 60.15 18.55 61.58 18.0 65.43C17.45 69.28 17.84 69.33 16.23 73.53C14.62 77.73 12.64 79.78 10.69 84.5C8.74 89.22 8.43 90.96 7.35 94.97C6.27 98.98 6.54 98.84 5.8 102.72C5.06 106.6 3.99 108.74 4 112.59C4.01 116.44 5.11 116.47 5.86 120.21C6.61 123.95 6.17 125.11 7.4 129.6C8.63 134.09 9.64 135.74 11.43 140.62C13.22 145.5 14.24 146.98 15.53 151.8C16.82 156.62 15.62 157.68 17.3 162.51C18.98 167.34 21.81 169.54 23.18 173.75C24.55 177.96 22.43 178.06 23.51 181.64C24.59 185.22 27.47 186.14 28.08 190.01C28.69 193.88 27.35 195.3 26.29 199.25C25.23 203.2 24.95 204.06 23.24 207.96C21.53 211.87 19.7 212.85 18.5 217.0C17.3 221.15 17.87 222.23 17.8 226.84C17.73 231.45 17.94 233.05 18.16 237.96C18.38 242.87 19.79 244.18 18.78 249.17C17.77 254.16 15.22 256.32 13.59 260.64C11.96 264.96 12.38 264.5 11.36 268.79C10.34 273.08 9.73 275.5 8.95 280.15C8.17 284.8 7.76 285.93 7.82 289.92C7.88 293.91 8.78 294.28 9.24 298.27C9.7 302.26 8.66 304.2 9.89 308.06C11.12 311.92 13.48 311.59 14.83 315.82C16.18 320.05 15.5 322.4 16.02 327.28C16.54 332.16 17.02 333.84 17.18 337.98C17.34 342.12 16.39 341.97 16.76 346.08C17.13 350.19 18.59 352.65 18.84 356.66C19.09 360.68 18.03 360.95 17.91 364.33C17.79 367.71 18.13 368.38 18.29 372.01C18.45 375.64 19.48 376.38 18.65 380.84C17.82 385.29 15.98 387.22 14.53 392.26C13.08 397.3 12.44 399.5 12.08 403.75C11.72 408.0 12.9 408.16 12.88 411.56C12.86 414.96 11.51 415.5 11.98 419.19C12.45 422.88 14.38 423.74 15.03 428.32C15.68 432.9 14.95 437.43 14.93 440.0L0 440H48Z" fill="currentColor"/></svg></div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div></div></div></div></div>`,
     wall: tourShelfBox(),
     rent: `<div class="tour-rent"><div class="rental-terms" role="radiogroup" aria-label="Rental length"><button type="button" class="rental-term is-on"><span class="rental-term-label">1 night</span><span class="rental-term-due">Due Wed</span><span class="rental-term-pts">+12 if on time</span></button><button type="button" class="rental-term"><span class="rental-term-label">3 days</span><span class="rental-term-due">Due Fri</span><span class="rental-term-pts">+6 if on time</span></button><button type="button" class="rental-term"><span class="rental-term-label">1 week</span><span class="rental-term-due">Due Tue</span><span class="rental-term-pts">+3 if on time</span></button></div><div class="scan-reader"><div class="scan-led-row"><span class="scan-led"></span><span class="scan-led-label">Rent</span></div><div class="scan-card"><img src="/sleeves/hereditary.jpg?v=487" alt="Hereditary"></div><span class="scan-slot"><span class="scan-fill"></span></span><p class="scan-hint">Hold to check it out</p></div></div>`,
-    vip: `<div class="tour-vip"><div class="tour-vip-banner"><img src="/sleeves/blade-runner-still.jpg?v=522" alt=""><img class="tour-vip-ava" src="/sleeves/amelie.jpg?v=487" alt=""></div><div class="tour-vip-body"><p class="tour-vip-bio">Be Kind, Rewind</p><p class="tour-vip-kicker">Favorites</p><div class="tour-vip-favs"><img src="/sleeves/alien.jpg?v=487" alt="Alien"><img src="/sleeves/casablanca.jpg?v=487" alt="Casablanca"><img src="/sleeves/clueless.jpg?v=487" alt="Clueless"><img src="/sleeves/back-to-the-future.jpg?v=487" alt="Back to the Future"></div></div></div>`,
+    vip: `<div class="tour-vip"><div class="tour-vip-banner"><img src="/sleeves/blade-runner-still.jpg?v=541" alt=""><img class="tour-vip-ava" src="/sleeves/amelie.jpg?v=487" alt=""></div><div class="tour-vip-body"><p class="tour-vip-bio">Be Kind, Rewind</p><p class="tour-vip-kicker">Favorites</p><div class="tour-vip-favs"><img src="/sleeves/alien.jpg?v=487" alt="Alien"><img src="/sleeves/casablanca.jpg?v=487" alt="Casablanca"><img src="/sleeves/clueless.jpg?v=487" alt="Clueless"><img src="/sleeves/back-to-the-future.jpg?v=487" alt="Back to the Future"></div></div></div>`,
     board: tourBoard(),
     club: `<div class="tour-member"><div class="tour-ava">RV</div><div><b>A member</b><span>Their page, their tapes</span></div><div class="tour-add">Add</div></div>`,
     drop: '<div class="tour-shot drop"><img src="/assets/tour/night-drop.jpg?v=6" alt="Night Drop"></div>',
@@ -11256,7 +11256,7 @@
         }
         if (cur.indexOf("/sleeves/") >= 0 && cur.indexOf("-still.jpg") < 0 && img.getAttribute("data-rw-still2") !== "1") {
           img.setAttribute("data-rw-still2", "1");
-          img.setAttribute("src", "/sleeves/" + slug + "-still.jpg?v=520");
+          img.setAttribute("src", "/sleeves/" + slug + "-still.jpg?v=541");
         }
       });
     });
@@ -12041,7 +12041,7 @@
   function shelfCardHtml(shelf) {
     const films = Array.isArray(shelf.films) ? shelf.films.filter(Boolean) : [];
     const strip = films.slice(0, 12).map(function (slug) {
-      return '<img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/>';
+      return '<img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=541\'"/>';
     }).join("");
     const desc = String(shelf.description || "").trim();
     return (
@@ -12282,7 +12282,7 @@
         '<a href="/diary?view=reviews&tape=' + encodeURIComponent(slug) + '" class="rev-row">' +
         '<span class="rev-name">' + boardEsc(name) + (year ? " <i>" + boardEsc(year) + "</i>" : "") + "</span>" +
         '<span class="rev-mark">' + stars + heart + "</span>" +
-        '<img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/>' +
+        '<img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=541\'"/>' +
         (copy ? '<span class="rev-copy">' + boardEsc(copy) + "</span>" : '<span class="rev-copy"></span>') +
         "</a>"
       );
@@ -12326,7 +12326,7 @@
         '<p class="rev-mark">' + stars + heart + "</p>" +
         (when ? '<p class="rev-when">Filed ' + boardEsc(when) + "</p>" : "") +
         "</div>" +
-        '<a href="/films/' + boardEsc(slug) + '"><img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/></a>' +
+        '<a href="/films/' + boardEsc(slug) + '"><img src="/sleeves/' + boardEsc(slug) + '.jpg?v=520" alt="" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=541\'"/></a>' +
         "</div>" +
         '<p class="rev-sheet-copy">' + boardEsc(copy) +
         '<a class="rev-pencil" href="/diary?view=reviews&tape=' + encodeURIComponent(slug) + '&edit=1" aria-label="Edit review">' +
@@ -12352,7 +12352,7 @@
       const heart = liked ? '<span class="stat-heart" aria-label="Hearted">♥</span>' : "";
       return (
         '<a href="/films/' + boardEsc(slug) + '" class="stat-poster">' +
-        '<img src="' + filmArt(slug, "520") + '" alt="' + boardEsc(name) + '" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/>' +
+        '<img src="' + filmArt(slug, "520") + '" alt="' + boardEsc(name) + '" data-slug="' + boardEsc(slug) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=541\'"/>' +
         '<span class="stat-meta">' + stars + heart + "</span></a>"
       );
     }
@@ -12524,7 +12524,7 @@
           return;
         }
         const films = (current.films || []).filter(Boolean);
-        const hero = films[0] ? '<div class="shelf-hero"><img src="/sleeves/' + boardEsc(films[0]) + '-still.jpg?v=520" alt="" data-slug="' + boardEsc(films[0]) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'.jpg?v=520\'"/></div>' : "";
+        const hero = films[0] ? '<div class="shelf-hero"><img src="/sleeves/' + boardEsc(films[0]) + '-still.jpg?v=541" alt="" data-slug="' + boardEsc(films[0]) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'.jpg?v=520\'"/></div>' : "";
         const desc = String(current.description || "").trim();
         listEl.innerHTML =
           '<a href="/lists" data-stat-back class="stat-back is-arrow" aria-label="Back to shelves">‹</a>' +
@@ -12610,7 +12610,7 @@
             '<button type="submit">Save</button>' +
             "</div>" +
             '<div class="rev-edit-film">' +
-            '<img src="/sleeves/' + boardEsc(tape) + '.jpg?v=520" alt="" data-slug="' + boardEsc(tape) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=520\'"/>' +
+            '<img src="/sleeves/' + boardEsc(tape) + '.jpg?v=520" alt="" data-slug="' + boardEsc(tape) + '" onerror="this.onerror=null;this.src=\'/sleeves/\'+this.dataset.slug+\'-still.jpg?v=541\'"/>' +
             "<div><strong>" + boardEsc(name) + "</strong>" + (year ? "<em>" + boardEsc(year) + "</em>" : "") + "</div>" +
             "</div>" +
             '<label class="rev-edit-row">' +
@@ -13127,7 +13127,7 @@
       });
       const img = box.querySelector(".vhs-back-still img");
       if (!img) return;
-      if ((img.getAttribute("src") || "").indexOf("v=520") < 0) img.src = "/sleeves/die-hard-still.jpg?v=520";
+      if ((img.getAttribute("src") || "").indexOf("die-hard-still.jpg?v=541") < 0) img.src = "/sleeves/die-hard-still.jpg?v=541";
       img.style.setProperty("object-fit", "cover", "important");
       img.style.setProperty("object-position", "center center", "important");
     });
