@@ -44,6 +44,7 @@
       if (row && row.poster) return row.poster;
     }
     if (id === "the-crow" || id === "nightmare-on-elm-street" || id === "a-clockwork-orange" || id === "there-will-be-blood") return "/sleeves/" + id + ".jpg?v=542";
+    if (id === "longlegs" || id === "i-saw-the-tv-glow" || id === "anora" || id === "the-substance" || id === "clayface" || id === "psycho" || id === "back-to-the-future") return "/sleeves/" + id + ".jpg?v=543";
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
   const posterQueue = [];
@@ -8193,6 +8194,8 @@
         cover.setAttribute("loading", "lazy");
         if (slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") {
           cover.src = "/sleeves/" + slug + ".jpg?v=542";
+        } else if (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") {
+          cover.src = "/sleeves/" + slug + ".jpg?v=543";
         } else if (slug === "goodfellas" || slug === "se7en") {
           cover.src = "/sleeves/" + slug + ".jpg?v=532";
         } else {
@@ -13624,7 +13627,7 @@
         if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
         img.removeAttribute("srcset");
         img.removeAttribute("sizes");
-        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
+        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
         if (src.indexOf(want) < 0) img.src = want;
       });
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;

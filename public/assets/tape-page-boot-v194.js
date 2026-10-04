@@ -550,7 +550,7 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
-    const posterSrc = film.poster || ((slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") ? "/sleeves/" + slug + ".jpg?v=542" : "/sleeves/" + slug + ".jpg?v=493");
+    const posterSrc = film.poster || ((slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") ? "/sleeves/" + slug + ".jpg?v=542" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "/sleeves/" + slug + ".jpg?v=543" : "/sleeves/" + slug + ".jpg?v=493");
     const stillSrc = headerScene(slug, film);
     const poster =
       '<button type="button" class="tp-poster" data-tp-zoom="1" aria-label="See the picture" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
