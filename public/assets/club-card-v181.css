@@ -5756,12 +5756,12 @@ html body .vhs-box[data-slug] .vhs-spine-right .vhs-spine-no{
   right:auto!important;bottom:auto!important;
 }
 
-/* Full sleeve in the window. 4/7 case is taller than 2/3 art, so cover was slicing edge type. */
+/* Front art fills the taller case. Back stills stay their own scene. */
 html body .vhs-box[data-slug] .vhs-window{
   background:#07080a!important;
 }
 html body .vhs-box[data-slug] .vhs-window img{
-  object-fit:contain!important;
+  object-fit:cover!important;
   object-position:center center!important;
 }
 html body .vhs-box[data-slug] .vhs-back-still img{

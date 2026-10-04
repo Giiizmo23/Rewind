@@ -442,7 +442,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="ask"] .vhs-box {
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center center !important;
   display: block !important;
   opacity: 1 !important;
@@ -3831,7 +3831,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       '<div class="vhs-spine vhs-spine-right">' + spineInk + "</div>" +
       '<div class="vhs-face-front"><div class="vhs-case"><div class="vhs-shell"><div class="vhs-sleeve">' +
       '<div class="vhs-window"><div class="relative size-full">' +
-      '<img src="' + src + '" alt="' + title + '" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" style="width:100%;height:100%;object-fit:contain;display:block" onerror="this.style.display=\'none\'"/>' +
+      '<img src="' + src + '" alt="' + title + '" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display=\'none\'"/>' +
       (backHtml || filmBackHtml(film)) +
       "</div></div>" +
       '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
