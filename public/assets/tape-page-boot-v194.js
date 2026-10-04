@@ -19,7 +19,7 @@
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    var stillVer = slug === "the-crow" ? "534" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function filmSlug() {
@@ -512,9 +512,10 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
-    const posterSrc = film.poster || "/sleeves/" + slug + ".jpg?v=493";
+    const crowPoster = "/sleeves/the-crow.jpg?v=534";
+    const posterSrc = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
     const stillSrc = film.still || backStill(slug);
-    const stillFallback = film.poster || "/sleeves/" + slug + ".jpg?v=493";
+    const stillFallback = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
     const poster =
       '<button type="button" class="tp-poster" data-tp-zoom="1" aria-label="See the picture" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
       '<img src="' +
