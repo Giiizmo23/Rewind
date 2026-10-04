@@ -44,6 +44,7 @@
       if (row && row.poster) return row.poster;
     }
     if (id === "the-crow" || id === "nightmare-on-elm-street" || id === "a-clockwork-orange" || id === "there-will-be-blood") return "/sleeves/" + id + ".jpg?v=542";
+    if (id === "halloween-1978") return "/sleeves/" + id + ".jpg?v=544";
     if (id === "longlegs" || id === "i-saw-the-tv-glow" || id === "anora" || id === "the-substance" || id === "clayface" || id === "psycho" || id === "back-to-the-future") return "/sleeves/" + id + ".jpg?v=543";
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
@@ -225,7 +226,7 @@
       '<div class="vhs-spine vhs-spine-left" aria-hidden="true">' + spineInk + "</div>" +
       '<div class="vhs-spine vhs-spine-right" aria-hidden="true">' + spineInk + "</div>" +
       '<div class="vhs-face-front"><div class="vhs-case"><div class="vhs-shell"><div class="vhs-sleeve"><div class="vhs-window"><div class="relative size-full">' +
-      '<img src="/sleeves/halloween-1978.jpg?v=487" alt="Halloween" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover">' +
+      '<img src="/sleeves/halloween-1978.jpg?v=544" alt="Halloween" draggable="false" decoding="async" class="absolute inset-0 size-full object-cover">' +
       "</div></div>" +
       sticker +
       '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
@@ -8194,6 +8195,8 @@
         cover.setAttribute("loading", "lazy");
         if (slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") {
           cover.src = "/sleeves/" + slug + ".jpg?v=542";
+        } else if (slug === "halloween-1978") {
+          cover.src = "/sleeves/" + slug + ".jpg?v=544";
         } else if (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") {
           cover.src = "/sleeves/" + slug + ".jpg?v=543";
         } else if (slug === "goodfellas" || slug === "se7en") {
@@ -10216,7 +10219,7 @@
     { id: "post-getout", kind: "poster", title: "Get Out", pts: 95, art: "get-out.jpg", blurb: "The teacup one." },
     { id: "post-hered", kind: "poster", title: "Hereditary", pts: 115, art: "hereditary.jpg", blurb: "Not for the front window." },
     { id: "post-witch", kind: "poster", title: "The Witch", pts: 105, art: "the-witch-2015.jpg", blurb: "Live deliciously. On the wall." },
-    { id: "post-hallo", kind: "poster", title: "Halloween", pts: 80, art: "halloween-1978.jpg", blurb: "The pumpkin poster." },
+    { id: "post-hallo", kind: "poster", title: "Halloween", pts: 80, art: "halloween-1978.jpg?v=544", blurb: "The pumpkin poster." },
     { id: "post-exor", kind: "poster", title: "The Exorcist", pts: 120, art: "the-exorcist.jpg", blurb: "The steps." },
     { id: "post-thing", kind: "poster", title: "The Thing", pts: 110, art: "the-thing-1982.jpg", blurb: "Outpost, framed." },
     { id: "post-scream", kind: "poster", title: "Scream", pts: 85, art: "scream-1996.jpg", blurb: "The phone one." },
@@ -10458,7 +10461,7 @@
     { id: "face-hunt", kind: "face", title: "Good Will", pts: 60, art: "good-will-hunting-still.jpg", blurb: "Profile picture." },
     { id: "face-rain", kind: "face", title: "Rain Man", pts: 55, art: "rain-man-still.jpg", blurb: "The still, cut round." },
     { id: "face-gump", kind: "face", title: "Forrest", pts: 50, art: "forrest-gump-still.jpg", blurb: "The bench, as a photo." },
-    { id: "pin-halloween", kind: "pin", title: "Halloween", pts: 25, art: "halloween-1978.jpg", blurb: "A pinback button. Wear up to three." },
+    { id: "pin-halloween", kind: "pin", title: "Halloween", pts: 25, art: "halloween-1978.jpg?v=544", blurb: "A pinback button. Wear up to three." },
     { id: "pin-psycho", kind: "pin", title: "Psycho", pts: 30, art: "psycho.jpg", blurb: "The poster, shrunk to a button." },
     { id: "pin-shining", kind: "pin", title: "The Shining", pts: 35, art: "the-shining.jpg", blurb: "Gloss on the face. Pin on the back." },
     { id: "pin-jaws", kind: "pin", title: "Jaws", pts: 40, art: "jaws.jpg", blurb: "The one they sold at the counter." },
@@ -13303,12 +13306,12 @@
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-window img').forEach(function (img) {
       var src = img.getAttribute("src") || "";
-      if (src.indexOf("v=487") < 0) {
+      if (src.indexOf("v=544") < 0) {
         img.removeAttribute("srcset");
-        img.src = "/sleeves/halloween-1978.jpg?v=487";
+        img.src = "/sleeves/halloween-1978.jpg?v=544";
       }
       img.style.setProperty("object-fit", "cover", "important");
-      img.style.setProperty("object-position", "center bottom", "important");
+      img.style.setProperty("object-position", "center center", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-logo').forEach(function (img) {
       var src = img.getAttribute("src") || "";
@@ -13627,7 +13630,7 @@
         if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
         img.removeAttribute("srcset");
         img.removeAttribute("sizes");
-        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
+        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
         if (src.indexOf(want) < 0) img.src = want;
       });
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;

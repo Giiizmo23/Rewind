@@ -3814,7 +3814,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   }
   function dropTapeMarkup(film, backHtml) {
     const slug = film.slug;
-    const src = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : "103");
+    const src = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : "103");
     const title = String(film.title || "").replace(/"/g, "");
     const year = film.year || "";
     const spineInk =
@@ -3931,7 +3931,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       return;
     }
     const token = ++cycleToken;
-    const src = "/sleeves/" + film.slug + ".jpg?v=" + ((film.slug === "the-crow" || film.slug === "nightmare-on-elm-street" || film.slug === "a-clockwork-orange" || film.slug === "there-will-be-blood") ? "542" : (film.slug === "longlegs" || film.slug === "i-saw-the-tv-glow" || film.slug === "anora" || film.slug === "the-substance" || film.slug === "clayface" || film.slug === "psycho" || film.slug === "back-to-the-future") ? "543" : "103");
+    const src = "/sleeves/" + film.slug + ".jpg?v=" + ((film.slug === "the-crow" || film.slug === "nightmare-on-elm-street" || film.slug === "a-clockwork-orange" || film.slug === "there-will-be-blood") ? "542" : film.slug === "halloween-1978" ? "544" : (film.slug === "longlegs" || film.slug === "i-saw-the-tv-glow" || film.slug === "anora" || film.slug === "the-substance" || film.slug === "clayface" || film.slug === "psycho" || film.slug === "back-to-the-future") ? "543" : "103");
     const apply = () => {
       if (token !== cycleToken || !box.isConnected) return;
       box.removeAttribute("data-quiet");
