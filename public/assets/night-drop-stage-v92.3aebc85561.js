@@ -3931,7 +3931,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       return;
     }
     const token = ++cycleToken;
-    const src = "/sleeves/" + film.slug + ".jpg?v=" + (film.slug === "the-crow" ? "540" : "103");
+    const src = "/sleeves/" + film.slug + ".jpg?v=" + ((film.slug === "the-crow" || film.slug === "nightmare-on-elm-street" || film.slug === "a-clockwork-orange" || film.slug === "there-will-be-blood") ? "542" : "103");
     const apply = () => {
       if (token !== cycleToken || !box.isConnected) return;
       box.removeAttribute("data-quiet");

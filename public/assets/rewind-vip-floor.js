@@ -43,7 +43,7 @@
       const row = tmdbBag()[id];
       if (row && row.poster) return row.poster;
     }
-    if (id === "the-crow") return "/sleeves/the-crow.jpg?v=540";
+    if (id === "the-crow" || id === "nightmare-on-elm-street" || id === "a-clockwork-orange" || id === "there-will-be-blood") return "/sleeves/" + id + ".jpg?v=542";
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
   const posterQueue = [];
@@ -8191,8 +8191,8 @@
       if (cover) {
         cover.removeAttribute("srcset");
         cover.setAttribute("loading", "lazy");
-        if (slug === "the-crow") {
-          cover.src = "/sleeves/the-crow.jpg?v=540";
+        if (slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") {
+          cover.src = "/sleeves/" + slug + ".jpg?v=542";
         } else if (slug === "goodfellas" || slug === "se7en") {
           cover.src = "/sleeves/" + slug + ".jpg?v=532";
         } else {
@@ -10227,7 +10227,7 @@
     { id: "post-knives", kind: "poster", title: "Knives Out", pts: 80, art: "knives-out.jpg", blurb: "The sweater one." },
     { id: "post-wick", kind: "poster", title: "John Wick", pts: 90, art: "john-wick.jpg", blurb: "The dog stays on the poster." },
     { id: "post-warriors", kind: "poster", title: "The Warriors", pts: 75, art: "the-warriors.jpg", blurb: "Can you dig it. On the wall." },
-    { id: "post-crow", kind: "poster", title: "The Crow", pts: 80, art: "the-crow.jpg?v=540", blurb: "The rain poster." },
+    { id: "post-crow", kind: "poster", title: "The Crow", pts: 80, art: "the-crow.jpg?v=542", blurb: "The rain poster." },
     { id: "post-donnie", kind: "poster", title: "Donnie Darko", pts: 85, art: "donnie-darko.jpg", blurb: "The bunny one." },
     { id: "post-drive", kind: "poster", title: "Drive", pts: 90, art: "drive-2011.jpg", blurb: "The scorpion jacket." },
     { id: "post-comet", kind: "poster", title: "Night of the Comet", pts: 60, art: "night-of-the-comet.jpg", blurb: "The mall, empty, framed." },

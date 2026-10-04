@@ -550,8 +550,7 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
-    const crowPoster = "/sleeves/the-crow.jpg?v=540";
-    const posterSrc = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
+    const posterSrc = film.poster || ((slug === "the-crow" || slug === "nightmare-on-elm-street" || slug === "a-clockwork-orange" || slug === "there-will-be-blood") ? "/sleeves/" + slug + ".jpg?v=542" : "/sleeves/" + slug + ".jpg?v=493");
     const stillSrc = headerScene(slug, film);
     const poster =
       '<button type="button" class="tp-poster" data-tp-zoom="1" aria-label="See the picture" style="position:absolute;right:16px;bottom:-118px;width:98px;height:147px;z-index:5">' +
