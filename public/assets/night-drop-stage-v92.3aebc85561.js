@@ -3818,7 +3818,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   }
   function dropTapeMarkup(film, backHtml) {
     const slug = film.slug;
-    const src = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "539" : "103");
+    const src = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : "103");
     const title = String(film.title || "").replace(/"/g, "");
     const year = film.year || "";
     const spineInk =
@@ -3935,7 +3935,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       return;
     }
     const token = ++cycleToken;
-    const src = "/sleeves/" + film.slug + ".jpg?v=" + (film.slug === "the-crow" ? "539" : "103");
+    const src = "/sleeves/" + film.slug + ".jpg?v=" + (film.slug === "the-crow" ? "540" : "103");
     const apply = () => {
       if (token !== cycleToken || !box.isConnected) return;
       box.removeAttribute("data-quiet");
@@ -3957,7 +3957,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     img.src = src;
     try {
       const still = new Image();
-      still.src = "/sleeves/" + film.slug + "-still.jpg?v=" + (film.slug === "the-crow" ? "539" : "103");
+      still.src = "/sleeves/" + film.slug + "-still.jpg?v=" + (film.slug === "the-crow" ? "540" : "103");
     } catch (eStill) {}
     if (img.complete && img.naturalWidth) go();
     else window.setTimeout(go, 900);
@@ -4363,7 +4363,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     return '<svg class="vhs-barcode" viewBox="0 0 120 22" width="80" height="12" preserveAspectRatio="none" aria-hidden="true">' + d + "</svg>";
   }
   function filmBackHtml(film) {
-    const still = "/sleeves/" + film.slug + "-still.jpg?v=" + (film.slug === "the-crow" ? "539" : "103");
+    const still = "/sleeves/" + film.slug + "-still.jpg?v=" + (film.slug === "the-crow" ? "540" : "103");
     const tag = film.tagline ? '<p class="vhs-back-tag">\u201c' + esc(film.tagline) + "\u201d</p>" : "";
     const stock = [film.year, film.runtime ? film.runtime + " MIN" : ""].filter(Boolean).join(" · ");
     return (

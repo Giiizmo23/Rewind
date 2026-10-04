@@ -14,7 +14,7 @@
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "the-crow" ? "539" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function tmdbBag() {
@@ -43,7 +43,7 @@
       const row = tmdbBag()[id];
       if (row && row.poster) return row.poster;
     }
-    if (id === "the-crow") return "/sleeves/the-crow.jpg?v=539";
+    if (id === "the-crow") return "/sleeves/the-crow.jpg?v=540";
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
   const posterQueue = [];
@@ -8192,7 +8192,7 @@
         cover.removeAttribute("srcset");
         cover.setAttribute("loading", "lazy");
         if (slug === "the-crow") {
-          cover.src = "/sleeves/the-crow.jpg?v=539";
+          cover.src = "/sleeves/the-crow.jpg?v=540";
         } else if (slug === "goodfellas" || slug === "se7en") {
           cover.src = "/sleeves/" + slug + ".jpg?v=532";
         } else {
@@ -10227,7 +10227,7 @@
     { id: "post-knives", kind: "poster", title: "Knives Out", pts: 80, art: "knives-out.jpg", blurb: "The sweater one." },
     { id: "post-wick", kind: "poster", title: "John Wick", pts: 90, art: "john-wick.jpg", blurb: "The dog stays on the poster." },
     { id: "post-warriors", kind: "poster", title: "The Warriors", pts: 75, art: "the-warriors.jpg", blurb: "Can you dig it. On the wall." },
-    { id: "post-crow", kind: "poster", title: "The Crow", pts: 80, art: "the-crow.jpg?v=539", blurb: "The rain poster." },
+    { id: "post-crow", kind: "poster", title: "The Crow", pts: 80, art: "the-crow.jpg?v=540", blurb: "The rain poster." },
     { id: "post-donnie", kind: "poster", title: "Donnie Darko", pts: 85, art: "donnie-darko.jpg", blurb: "The bunny one." },
     { id: "post-drive", kind: "poster", title: "Drive", pts: 90, art: "drive-2011.jpg", blurb: "The scorpion jacket." },
     { id: "post-comet", kind: "poster", title: "Night of the Comet", pts: 60, art: "night-of-the-comet.jpg", blurb: "The mall, empty, framed." },
@@ -13441,7 +13441,7 @@
         img.draggable = false;
         still.appendChild(img);
       }
-      const stillVer = slug === "the-crow" ? "539" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+      const stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
       const want = backStill(slug);
       const cur = img.getAttribute("src") || "";
       if (want.indexOf("-still.jpg?v=") < 0 || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
@@ -13589,7 +13589,7 @@
         if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
         img.removeAttribute("srcset");
         img.removeAttribute("sizes");
-        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "539" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
+        var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
         if (src.indexOf(want) < 0) img.src = want;
       });
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;

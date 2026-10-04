@@ -19,7 +19,7 @@
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "the-crow" ? "539" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    var stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function filmSlug() {
@@ -520,7 +520,7 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
-    const crowPoster = "/sleeves/the-crow.jpg?v=539";
+    const crowPoster = "/sleeves/the-crow.jpg?v=540";
     const posterSrc = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
     const stillSrc = film.still || backStill(slug);
     const stillFallback = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
@@ -536,7 +536,7 @@
     if (slug === "the-shining") stillFit = "object-position:center 70%;";
     if (slug === "blade-runner") stillFit = "object-position:center 42%;";
     if (slug === "back-to-the-future") stillFit = "object-position:center 40%;";
-    if (slug === "the-crow") stillFit = "object-position:center 32%;";
+    if (slug === "the-crow") stillFit = "object-position:center center;";
     main.innerHTML =
       '<div class="tape-card-page" data-tape-layout="lb">' +
       '<div class="tp-hero">' +
