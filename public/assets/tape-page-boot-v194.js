@@ -19,7 +19,7 @@
     if (slug === "the-shining") return "/sleeves/the-shining-maze.jpg?v=1";
     if (slug === "blade-runner") return "/sleeves/blade-runner-roof.jpg?v=1";
     if (slug === "back-to-the-future") return "/sleeves/back-to-the-future-clock.jpg?v=1";
-    var stillVer = slug === "the-crow" ? "534" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
+    var stillVer = slug === "the-crow" ? "535" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
     return "/sleeves/" + slug + "-still.jpg?v=" + stillVer;
   }
   function filmSlug() {
@@ -336,14 +336,22 @@
     const title = film.title || pretty(slug || "");
     if (fold(title).length < 2) return;
     const stub = stubCopy(film.overview);
-    fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(title))
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        const rows = (data && data.results) || [];
-        const same = rows.filter(function (row) { return sameTitle(row.title, title); });
-        const yearHit = !stub && same.find(function (row) { return String(row.year || "") === String(film.year || ""); });
-        const hit = yearHit || same[0] || rows[0];
-        const id = hit && String(hit.slug || "").replace(/^tmdb-/, "").replace(/\D/g, "");
+    const pinned = slug === "the-crow" ? "9495" : "";
+    const looked = pinned
+      ? Promise.resolve(pinned)
+      : fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(title))
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (data) {
+            const rows = (data && data.results) || [];
+            const same = rows.filter(function (row) { return sameTitle(row.title, title); });
+            const year = String(film.year || "");
+            const trustYear = year && !(stub && year === "1990");
+            const yearHit = trustYear && same.find(function (row) { return String(row.year || "") === year; });
+            const hit = yearHit || same[0] || rows[0];
+            return hit && String(hit.slug || "").replace(/^tmdb-/, "").replace(/\D/g, "");
+          });
+    looked
+      .then(function (id) {
         if (!id) return null;
         return fetch("/api/rewind/tmdb/film?id=" + id).then(function (r) { return r.ok ? r.json() : null; });
       })
@@ -512,7 +520,7 @@
       });
       return blocks || '<p class="tp-empty">Credits still in the sleeve.</p>';
     }
-    const crowPoster = "/sleeves/the-crow.jpg?v=534";
+    const crowPoster = "/sleeves/the-crow.jpg?v=535";
     const posterSrc = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
     const stillSrc = film.still || backStill(slug);
     const stillFallback = film.poster || (slug === "the-crow" ? crowPoster : "/sleeves/" + slug + ".jpg?v=493");
