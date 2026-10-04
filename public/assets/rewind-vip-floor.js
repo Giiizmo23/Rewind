@@ -13214,8 +13214,8 @@
           img.removeAttribute("srcset");
           img.src = "/sleeves/jaws.jpg?v=488";
         }
-        img.style.setProperty("object-fit", "cover", "important");
-        img.style.setProperty("object-position", "center top", "important");
+        img.style.setProperty("object-fit", "contain", "important");
+        img.style.setProperty("object-position", "center center", "important");
       });
       box.querySelectorAll(".vhs-back-still").forEach(function (el) {
         el.style.setProperty("background-image", "none", "important");
@@ -13310,7 +13310,7 @@
         img.removeAttribute("srcset");
         img.src = "/sleeves/halloween-1978.jpg?v=544";
       }
-      img.style.setProperty("object-fit", "cover", "important");
+      img.style.setProperty("object-fit", "contain", "important");
       img.style.setProperty("object-position", "center center", "important");
     });
     document.querySelectorAll('.vhs-box[data-slug="halloween-1978"] .vhs-spine-logo').forEach(function (img) {
@@ -13632,7 +13632,7 @@
         img.removeAttribute("sizes");
         var want = "/sleeves/" + slug + ".jpg?v=" + (slug === "the-crow" ? "540" : slug === "halloween-1978" ? "544" : (slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "clayface" || slug === "psycho" || slug === "back-to-the-future") ? "543" : slug === "goodfellas" || slug === "se7en" ? "532" : slug === "the-shining" ? "491" : "496");
         if (src.indexOf(want) < 0) img.src = want;
-        img.style.setProperty("object-fit", "cover", "important");
+        img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
       });
       box.querySelectorAll(".vhs-window").forEach(function (win) {

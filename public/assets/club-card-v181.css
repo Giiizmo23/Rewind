@@ -4646,13 +4646,14 @@ html[data-theme="dark"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box,
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
-  width: 90% !important;
-  max-width: 168px !important;
+  width: auto !important;
+  max-width: 100% !important;
   height: calc(var(--shelf-row) - 4.8rem) !important;
   max-height: calc(var(--shelf-row) - 4.8rem) !important;
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
+  aspect-ratio: 2 / 3 !important;
   filter: drop-shadow(0 5px 3px rgba(40, 32, 24, 0.35)) !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
@@ -4662,7 +4663,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   height: 100% !important;
   max-height: none !important;
   width: 100% !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: 2 / 3 !important;
 }
 
 .guest-cta,
@@ -5447,7 +5448,7 @@ html body main section > .flex:has(> .tape-slot) > .tape-slot{
 .lobby-picks .vhs-flip{
   width:100%!important;
   height:auto!important;
-  aspect-ratio:4/7!important;
+  aspect-ratio:2/3!important;
   transform:rotateY(var(--vhs-yaw,18deg)) rotateX(var(--vhs-pitch,7deg))!important;
   transform-style:preserve-3d!important;
   transform-origin:50% 8%;
@@ -5756,12 +5757,15 @@ html body .vhs-box[data-slug] .vhs-spine-right .vhs-spine-no{
   right:auto!important;bottom:auto!important;
 }
 
-/* Front art fills the taller case. Back stills stay their own scene. */
+/* Sleeve is 2:3. The window matches it, so the painting is not sliced. */
+html body .vhs-box[data-slug] .vhs-flip{
+  aspect-ratio:2/3!important;
+}
 html body .vhs-box[data-slug] .vhs-window{
   background:#07080a!important;
 }
 html body .vhs-box[data-slug] .vhs-window img{
-  object-fit:cover!important;
+  object-fit:contain!important;
   object-position:center center!important;
 }
 html body .vhs-box[data-slug] .vhs-back-still img{
