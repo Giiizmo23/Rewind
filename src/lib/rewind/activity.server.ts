@@ -283,6 +283,8 @@ export function rankStore(acts: Act[], now = Date.now()): Array<Record<string, u
         slug: comment.slug,
         excerpt: clip(comment.blurb, 110),
         at: comment.at,
+        parentHandle: comment.parentHandle,
+        parentName: comment.parentName,
       },
     });
   }

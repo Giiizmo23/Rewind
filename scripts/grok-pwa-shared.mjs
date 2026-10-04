@@ -157,8 +157,10 @@ export function renderInstallPageHtml(template, { host, url } = {}) {
     .replaceAll("{{APP_URL}}", escapeHtml(stripInstallParams(url)));
 }
 
-export function renderWebManifest(hostHeader) {
-  const name = appNameFromHost(hostHeader);
+export function renderWebManifest(hostHeader, options = {}) {
+  const named = String(options?.name ?? "").trim();
+  const name = named || appNameFromHost(hostHeader);
+  const icon = String(options?.icon ?? "").trim() || "/__grok/icon-180.png";
   return JSON.stringify(
     {
       name,
@@ -171,7 +173,7 @@ export function renderWebManifest(hostHeader) {
       theme_color: "#000000",
       icons: [
         {
-          src: "/__grok/icon-180.png",
+          src: icon,
           sizes: "180x180",
           type: "image/png",
         },
@@ -187,7 +189,7 @@ export function grokPwaHeadTags(appName = DEFAULT_APP_NAME) {
     // Standalone display comes from the manifest ("display": "standalone");
     // the legacy *-web-app-capable metas it replaces are deliberately absent.
     ["manifest", '<link rel="manifest" href="/__grok/manifest.webmanifest">'],
-    ["apple-touch-icon", '<link rel="apple-touch-icon" href="/__grok/icon-180.png">'],
+    ["apple-touch-icon", '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'],
     [
       "apple-mobile-web-app-title",
       `<meta name="apple-mobile-web-app-title" content="${escapeHtml(appName)}">`,
@@ -208,8 +210,7 @@ export function readGrokProjectId() {
 }
 
 export function readGrokExtensionsEnabled() {
-  const fromProcess = typeof process !== "undefined" ? process.env?.VITE_GROK_EXTENSIONS : "";
-  return String(fromProcess ?? "").trim() !== "0";
+  return false;
 }
 
 export function readXCreator() {
@@ -232,20 +233,9 @@ export function grokXCreatorHeadTags(creator = readXCreator(), creatorId = readX
   ];
 }
 
-/** Platform "Created with Grok" banner — injected into every HTML document. */
-export function grokExtensionsHeadTags(projectId = readGrokProjectId()) {
-  const id = escapeHtml(projectId);
-  const tags = [];
-  if (projectId) {
-    tags.push(`<meta name="grok-project-id" content="${id}">`);
-  }
-  if (!readGrokExtensionsEnabled()) return tags;
-  tags.push(
-    `<script src="${GROK_EXTENSIONS_SCRIPT_SRC}"${
-      projectId ? ` data-project-id="${id}"` : ""
-    } defer></script>`,
-  );
-  return tags;
+/** Platform banner script is off. Never inject extensions.js. */
+export function grokExtensionsHeadTags(_projectId = readGrokProjectId()) {
+  return [];
 }
 
 export function readOgSite(cwd = process.cwd()) {
@@ -453,7 +443,7 @@ export function injectGrokPwaHead(html, ctx = {}) {
   const missing = grokPwaHeadTags(appName)
     .filter(([key]) => {
       if (key === "manifest") return !next.includes('href="/__grok/manifest.webmanifest"');
-      if (key === "apple-touch-icon") return !next.includes('href="/__grok/icon-180.png"');
+      if (key === "apple-touch-icon") return !/rel=["']apple-touch-icon["']/i.test(next);
       return !next.includes(`name="${key}"`);
     })
     .map(([, tag]) => tag);

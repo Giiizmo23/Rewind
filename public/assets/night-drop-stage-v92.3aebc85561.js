@@ -4012,6 +4012,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       writeJson("rewind-drop-seen-v2", obj);
     }
     bumpWall(slug, 10);
+    try { if (window.__rwTouchStreak) window.__rwTouchStreak("log"); } catch (eStreak) {}
   }
   const RENT_TERMS = [
     { id: "night", label: "1 night", short: "Overnight", nights: 1, onTime: 12 },
@@ -4040,6 +4041,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   function rentDrop(film, termId) {
     const slug = film && film.slug;
     if (!slug) return null;
+    const gift = window.__rwBirthdayRent ? window.__rwBirthdayRent() : null;
     const term = termById(termId);
     const now = Date.now();
     const due = dueDate(term, now);
@@ -4055,14 +4057,20 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
       dueAt: due,
       due: due,
     };
+    if (gift && gift.free) {
+      row.free = true;
+      row.birthday = true;
+    }
     rows.unshift(row);
     writeJson("rewind-out-tapes", rows);
     const wall = readJson("rewind-club-wall", {}) || {};
     if (typeof wall === "object") {
       wall.stats = wall.stats || {};
       wall.currentlyWatching = { slug: slug, title: film.title, year: film.year };
+      if (gift && gift.free) wall.stats.bdayStamp = slug;
       writeJson("rewind-club-wall", wall);
     }
+    try { if (window.__rwTouchStreak) window.__rwTouchStreak("rent"); } catch (eStreak) {}
     return row;
   }
   function markReturned(slug) {

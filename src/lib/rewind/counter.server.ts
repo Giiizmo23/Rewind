@@ -163,6 +163,22 @@ async function ensureClub(sql: Sql): Promise<void> {
       );
       await sql.query("alter table rewind_vault_done add column if not exists authed boolean not null default false");
       await sql.query("alter table rewind_vault_done add column if not exists rev int not null default 0");
+      await sql.query(
+        `create table if not exists rewind_push (
+          endpoint text primary key,
+          handle text not null,
+          p256dh text not null,
+          auth text not null,
+          updated_at timestamptz not null default now()
+        )`,
+      );
+      await sql.query("create index if not exists rewind_push_handle_idx on rewind_push (handle)");
+      await sql.query(
+        `create table if not exists rewind_kv (
+          k text primary key,
+          v text not null
+        )`,
+      );
     })().catch((err) => {
       clubReady = null;
       throw err;
@@ -456,7 +472,8 @@ export async function handleRewind(request: Request): Promise<Response> {
   if (path === "/api/rewind/club/rename") return rename(sql, body);
   if (path === "/api/rewind/club/feed") return clubFeed(sql, body);
   if (path === "/api/rewind/club/review") return reviewOne(sql, body);
-  if (path === "/api/rewind/club/push") return json({ ok: true });
+  if (path === "/api/rewind/club/comment") return reviewComment(sql, body);
+  if (path === "/api/rewind/club/push") return clubPush(sql, body);
   return json({ ok: false, err: "missing" }, 404);
 }
 
@@ -735,10 +752,34 @@ function shrinkStoredPics(sql: Sql): void {
 }
 
 async function sealOutstanding(sql: Sql): Promise<void> {
-  const flag = globalThis as typeof globalThis & { __rwVaultSeed?: boolean; __rwVaultBusy?: boolean; __rwVaultFails?: number };
+  const flag = globalThis as typeof globalThis & {
+    __rwVaultSeed?: boolean;
+    __rwVaultBusy?: boolean;
+    __rwVaultFails?: number;
+    __rwVaultSkip?: string[];
+    __rwUnsealBlank?: boolean;
+  };
+  if (!flag.__rwUnsealBlank) {
+    flag.__rwUnsealBlank = true;
+    void sql
+      .query(
+        `delete from rewind_vault_done d
+         where exists (
+           select 1 from rewind_members m
+           where m.handle = d.handle
+             and coalesce(m.locker->'keys', '{}'::jsonb) = '{}'::jsonb
+             and coalesce(m.locker->'profile', '{}'::jsonb) = '{}'::jsonb
+             and coalesce(m.locker->'cardFace', '{}'::jsonb) = '{}'::jsonb
+             and coalesce(m.locker->>'banner', '') = ''
+             and coalesce(m.locker->>'avatar', '') = ''
+         )`,
+      )
+      .catch(() => {});
+  }
   if (flag.__rwVaultSeed || flag.__rwVaultBusy || !blobToken()) return;
   if ((flag.__rwVaultFails || 0) >= 3) return;
   flag.__rwVaultBusy = true;
+  const skipped = flag.__rwVaultSkip || (flag.__rwVaultSkip = []);
   try {
     for (let n = 0; n < 4; n += 1) {
       const rows = await sql.query<{ handle: string; locker: Locker }>(
@@ -747,17 +788,21 @@ async function sealOutstanding(sql: Sql): Promise<void> {
          where not exists (
            select 1 from rewind_vault_done d where d.handle = m.handle and d.authed and d.rev >= 3
          )
+           and not (m.handle = any($1::text[]))
          limit 1`,
+        [skipped.length ? skipped : [""]],
       );
       const row = rows[0];
       if (!row) {
         flag.__rwVaultSeed = true;
         return;
       }
-      if (!lockerBlank(row.locker)) {
-        const wrote = await pushVault(sql, row.handle, row.locker);
-        if (!wrote) continue;
+      if (lockerBlank(row.locker)) {
+        skipped.push(row.handle);
+        continue;
       }
+      const wrote = await pushVault(sql, row.handle, row.locker);
+      if (!wrote) break;
       await sql.query(
         "insert into rewind_vault_done (handle, authed, rev) values ($1, true, 3) on conflict (handle) do update set authed = true, rev = 3",
         [row.handle],
@@ -1082,7 +1127,10 @@ function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
     }
     const oldAt = Number(old.at) || 0;
     const newAt = Number(note?.at) || 0;
-    notes[slug] = newAt >= oldAt ? note : old;
+    const chosen = { ...(newAt >= oldAt ? note : old) };
+    const replies = mergeReplies(old.replies, note?.replies);
+    if (replies.length) chosen.replies = replies;
+    notes[slug] = chosen;
   }
   const merged: Record<string, unknown> = { ...prev, ...next, diaryNotes: notes };
   if (!Array.isArray(next.lists) && Array.isArray(prev.lists)) merged.lists = prev.lists;
@@ -1104,6 +1152,25 @@ function mergeWall(prevRaw: string | undefined, nextRaw: string): string {
   }
   if (likeBest.size) merged.reviewLikes = [...likeBest.values()];
   return JSON.stringify(merged);
+}
+
+function mergeReplies(prev: unknown, next: unknown): Record<string, unknown>[] {
+  const rows = [...(Array.isArray(prev) ? prev : []), ...(Array.isArray(next) ? next : [])];
+  const seen = new Set<string>();
+  const out: Record<string, unknown>[] = [];
+  for (const row of rows) {
+    if (!row || typeof row !== "object") continue;
+    const item = row as Record<string, unknown>;
+    const text = String(item.text || "").trim();
+    const at = Number(item.at) || 0;
+    if (!text || !at) continue;
+    const key = String(item.handle || "") + "\0" + at + "\0" + text;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  out.sort((a, b) => Number(a.at) - Number(b.at));
+  return out.slice(-40);
 }
 
 function mergeList(prevRaw: string | undefined, nextRaw: string): string {
@@ -1990,6 +2057,237 @@ async function search(sql: Sql, body: Record<string, unknown>): Promise<Response
   return json({ ok: true, shared: true, people });
 }
 
+function wallFrom(locker: Locker | null | undefined): Record<string, unknown> {
+  const raw = locker?.keys?.["rewind-club-wall"];
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? (parsed as Record<string, unknown>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function repliesAllowed(wall: Record<string, unknown>, note: Record<string, unknown>, slug: string): boolean {
+  if (note.replies === false) return false;
+  const holding: Record<string, unknown>[] = [];
+  for (const bag of [wall.shelves, wall.lists]) {
+    if (!Array.isArray(bag)) continue;
+    for (const item of bag) {
+      if (!item || typeof item !== "object") continue;
+      const shelf = item as Record<string, unknown>;
+      const films = Array.isArray(shelf.films) ? shelf.films : Array.isArray(shelf.slugs) ? shelf.slugs : [];
+      if (films.map((film) => String(film)).includes(slug)) holding.push(shelf);
+    }
+  }
+  if (!holding.length) return true;
+  return holding.some((shelf) => shelf.pub !== false && shelf.replies !== false);
+}
+
+type WebPushLib = {
+  setVapidDetails: (subject: string, publicKey: string, privateKey: string) => void;
+  generateVAPIDKeys: () => { publicKey: string; privateKey: string };
+  sendNotification: (
+    sub: { endpoint: string; keys: { p256dh: string; auth: string } },
+    payload: string,
+    options?: { TTL?: number },
+  ) => Promise<unknown>;
+};
+
+async function pushLib(): Promise<WebPushLib> {
+  const mod = (await import("web-push")) as { default?: WebPushLib } & WebPushLib;
+  return mod.default || mod;
+}
+
+async function vapidKeys(sql: Sql): Promise<{ publicKey: string; privateKey: string }> {
+  const envPub = String(process.env.VAPID_PUBLIC_KEY || "").trim();
+  const envPriv = String(process.env.VAPID_PRIVATE_KEY || "").trim();
+  if (envPub && envPriv) return { publicKey: envPub, privateKey: envPriv };
+  const rows = await sql.query<{ k: string; v: string }>(
+    "select k, v from rewind_kv where k in ('vapid_public', 'vapid_private')",
+  );
+  const have: Record<string, string> = {};
+  for (const row of rows) have[row.k] = row.v;
+  if (have.vapid_public && have.vapid_private) return { publicKey: have.vapid_public, privateKey: have.vapid_private };
+  const made = (await pushLib()).generateVAPIDKeys();
+  await sql.query(
+    "insert into rewind_kv (k, v) values ('vapid_public', $1), ('vapid_private', $2) on conflict (k) do nothing",
+    [made.publicKey, made.privateKey],
+  );
+  const again = await sql.query<{ k: string; v: string }>(
+    "select k, v from rewind_kv where k in ('vapid_public', 'vapid_private')",
+  );
+  const saved: Record<string, string> = {};
+  for (const row of again) saved[row.k] = row.v;
+  return {
+    publicKey: saved.vapid_public || made.publicKey,
+    privateKey: saved.vapid_private || made.privateKey,
+  };
+}
+
+async function notifyHandle(
+  sql: Sql,
+  handle: string,
+  note: { title: string; body: string; tag: string; url?: string },
+): Promise<void> {
+  const subs = await sql.query<{ endpoint: string; p256dh: string; auth: string }>(
+    "select endpoint, p256dh, auth from rewind_push where handle = $1",
+    [handle],
+  );
+  if (!subs.length) return;
+  const keys = await vapidKeys(sql);
+  const lib = await pushLib();
+  lib.setVapidDetails("mailto:desk@bekindrewind.app", keys.publicKey, keys.privateKey);
+  const payload = JSON.stringify({
+    title: note.title.slice(0, 80) || "Rewind",
+    body: note.body.slice(0, 180),
+    tag: note.tag.slice(0, 120) || "rewind",
+    url: note.url || "/",
+  });
+  for (const sub of subs) {
+    try {
+      await lib.sendNotification(
+        { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
+        payload,
+        { TTL: 60 * 60 * 12 },
+      );
+    } catch (err) {
+      const status = Number((err as { statusCode?: number }).statusCode || 0);
+      if (status === 404 || status === 410) {
+        await sql.query("delete from rewind_push where endpoint = $1", [sub.endpoint]).catch(() => {});
+      }
+    }
+  }
+}
+
+async function clubPush(sql: Sql, body: Record<string, unknown>): Promise<Response> {
+  const who = await authed(sql, body);
+  if (who instanceof Response) return who;
+  const action = String(body.action || "");
+  if (action === "key") {
+    const keys = await vapidKeys(sql);
+    return json({ ok: true, publicKey: keys.publicKey });
+  }
+  if (action === "off") {
+    await sql.query("delete from rewind_push where handle = $1", [who.handle]);
+    return json({ ok: true });
+  }
+  if (action === "on") {
+    const sub = (body.sub && typeof body.sub === "object" ? body.sub : {}) as {
+      endpoint?: string;
+      keys?: { p256dh?: string; auth?: string };
+    };
+    const endpoint = String(sub.endpoint || "");
+    const p256dh = String(sub.keys?.p256dh || "");
+    const authKey = String(sub.keys?.auth || "");
+    if (!endpoint || !p256dh || !authKey || endpoint.length > 2000) return json({ ok: false, err: "sub" }, 400);
+    await sql.query(
+      `insert into rewind_push (endpoint, handle, p256dh, auth, updated_at)
+       values ($1, $2, $3, $4, now())
+       on conflict (endpoint) do update set handle = excluded.handle, p256dh = excluded.p256dh, auth = excluded.auth, updated_at = now()`,
+      [endpoint, who.handle, p256dh, authKey],
+    );
+    await notifyHandle(sql, who.handle, { title: "Rewind", body: "Phone alerts are on.", tag: "rewind-on", url: "/" });
+    return json({ ok: true });
+  }
+  if (action === "note") {
+    const text = String(body.body || "").trim().slice(0, 180);
+    if (!text) return json({ ok: false, err: "empty" }, 400);
+    await notifyHandle(sql, who.handle, {
+      title: String(body.title || "Rewind").slice(0, 80),
+      body: text,
+      tag: String(body.tag || "desk").slice(0, 120),
+      url: "/",
+    });
+    return json({ ok: true });
+  }
+  return json({ ok: false, err: "action" }, 400);
+}
+
+async function spliceStoreComment(sql: Sql, item: Record<string, unknown>): Promise<void> {
+  const rows = await sql.query<{ payload: unknown }>("select payload from rewind_feed_cache where lane = 'store'");
+  const payload = rows[0]?.payload;
+  if (!Array.isArray(payload)) return;
+  const next = [
+    item,
+    ...payload.filter((row) => {
+      const hit = row as Record<string, unknown>;
+      return !(hit.kind === "comment" && hit.slug === item.slug && hit.handle === item.handle && hit.at === item.at);
+    }),
+  ].slice(0, 24);
+  await sql.query("update rewind_feed_cache set payload = $1::jsonb where lane = 'store'", [JSON.stringify(next)]);
+}
+
+async function reviewComment(sql: Sql, body: Record<string, unknown>): Promise<Response> {
+  const who = await authed(sql, body);
+  if (who instanceof Response) return who;
+  const handle = cleanHandle(body.handle);
+  const slug = String(body.slug || "").trim().slice(0, 160);
+  const text = String(body.text || "").trim().slice(0, 600);
+  if (!slug || !text) return json({ ok: false, err: "empty" }, 400);
+  const owner = await memberByHandle(sql, handle);
+  if (!owner) return json({ ok: false, err: "nocard" }, 404);
+  const self = owner.handle === who.handle;
+  if (!self && !(await areFriends(sql, who.handle, owner.handle))) return json({ ok: false, err: "friends" }, 403);
+  const wall = wallFrom(owner.locker);
+  const notes =
+    wall.diaryNotes && typeof wall.diaryNotes === "object" && !Array.isArray(wall.diaryNotes)
+      ? (wall.diaryNotes as Record<string, Record<string, unknown>>)
+      : {};
+  const note = notes[slug] || {};
+  const review = typeof note.review === "string" ? note.review.trim() : "";
+  if (!review && !(Number(note.rating) > 0)) return json({ ok: false, err: "noreview" }, 404);
+  if (!repliesAllowed(wall, note, slug)) return json({ ok: false, err: "closed" }, 403);
+  const talker = await fillLocker(sql, who);
+  const by = String(
+    (talker.locker.cardFace && talker.locker.cardFace.name) ||
+      (talker.locker.profile && (talker.locker.profile.displayName || talker.locker.profile.name)) ||
+      talker.name ||
+      talker.handle,
+  ).slice(0, 80);
+  const replies = Array.isArray(note.replies) ? note.replies.slice(-39) : [];
+  const at = Date.now();
+  replies.push({ by, handle: who.handle, text, at });
+  note.replies = replies;
+  notes[slug] = note;
+  wall.diaryNotes = notes;
+  const packed = JSON.stringify(wall);
+  await sql.query(
+    `update rewind_members
+     set locker = jsonb_set(coalesce(locker, '{}'::jsonb), '{keys,rewind-club-wall}', to_jsonb($1::text), true)
+     where handle = $2`,
+    [packed, owner.handle],
+  );
+  const locker: Locker = {
+    ...(owner.locker || {}),
+    keys: { ...(owner.locker?.keys || {}), "rewind-club-wall": packed },
+  };
+  await replaceActivity(sql, owner.handle, owner.name, locker);
+  await sql.query("insert into rewind_activity_done (handle) values ($1) on conflict do nothing", [owner.handle]);
+  const ownerName = String(
+    (owner.locker.cardFace && owner.locker.cardFace.name) || owner.name || owner.handle,
+  );
+  await spliceStoreComment(sql, {
+    kind: "comment",
+    handle: who.handle,
+    name: by,
+    slug,
+    excerpt: text.slice(0, 110),
+    at,
+    parentHandle: owner.handle,
+    parentName: ownerName,
+  });
+  if (!self) {
+    await notifyHandle(sql, owner.handle, {
+      title: "Rewind",
+      body: by + " commented on your review.",
+      tag: "comment:" + slug + ":" + who.handle + ":" + at,
+      url: "/diary",
+    });
+  }
+  return json({ ok: true, replies });
+}
+
 async function reviewOne(sql: Sql, body: Record<string, unknown>): Promise<Response> {
   const who = await authed(sql, body);
   if (who instanceof Response) return who;
@@ -2002,6 +2300,7 @@ async function reviewOne(sql: Sql, body: Record<string, unknown>): Promise<Respo
   const { notes } = memberNotes(member);
   const note = notes[slug] || {};
   const review = typeof note.review === "string" ? note.review.trim() : "";
+  const replies = Array.isArray(note.replies) ? note.replies : [];
   return json({
     ok: true,
     locked: false,
@@ -2009,6 +2308,20 @@ async function reviewOne(sql: Sql, body: Record<string, unknown>): Promise<Respo
     rating: Number(note.rating) || 0,
     slug,
     handle: member.handle,
+    repliesOn: repliesAllowed(wallFrom(member.locker), note, slug),
+    replies: replies
+      .filter((row) => row && typeof row === "object")
+      .slice(-40)
+      .map((row) => {
+        const item = row as Record<string, unknown>;
+        return {
+          by: String(item.by || item.handle || "Member").slice(0, 80),
+          handle: String(item.handle || "").slice(0, 40),
+          text: String(item.text || "").slice(0, 600),
+          at: Number(item.at) || 0,
+        };
+      })
+      .filter((row) => row.text && row.at),
   });
 }
 
@@ -2022,10 +2335,24 @@ async function follow(sql: Sql, body: Record<string, unknown>): Promise<Response
   if (action === "decline") {
     await sql.query("delete from rewind_follows where follower = $1 and followee = $2", [other.handle, who.handle]);
   } else {
+    const already = await follows(sql, who.handle, other.handle);
     await sql.query(
       "insert into rewind_follows (follower, followee) values ($1, $2) on conflict do nothing",
       [who.handle, other.handle],
     );
+    if (!already) {
+      const talker = await fillLocker(sql, who);
+      const by = String(
+        (talker.locker.cardFace && talker.locker.cardFace.name) || talker.name || who.handle,
+      );
+      const theyFollow = await follows(sql, other.handle, who.handle);
+      await notifyHandle(sql, other.handle, {
+        title: "Rewind",
+        body: theyFollow ? by + " accepted your friend request." : by + " sent a friend request.",
+        tag: "follow:" + who.handle,
+        url: "/messages",
+      });
+    }
   }
   const iFollow = await follows(sql, who.handle, other.handle);
   const theyFollow = await follows(sql, other.handle, who.handle);
@@ -2092,6 +2419,14 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
       text,
     ]);
     await rememberSocial(sql, [who.handle, other.handle]);
+    const talker = await fillLocker(sql, who);
+    const by = String((talker.locker.cardFace && talker.locker.cardFace.name) || talker.name || who.handle);
+    await notifyHandle(sql, other.handle, {
+      title: by,
+      body: text,
+      tag: "msg:" + who.handle + ":" + Date.now(),
+      url: "/messages",
+    });
     return thread(sql, body);
   }
   const gate = await gateBetween(sql, who.handle, other.handle);
@@ -2110,6 +2445,12 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
       text,
     ]);
     await rememberSocial(sql, [who.handle, other.handle]);
+    await notifyHandle(sql, other.handle, {
+      title: who.name || who.handle,
+      body: text,
+      tag: "msg:" + who.handle + ":" + Date.now(),
+      url: "/messages",
+    });
     return json({ ok: true, msg: "out", messages: [] });
   }
   await sql.query("insert into rewind_messages (sender, recipient, body) values ($1, $2, $3)", [
@@ -2118,6 +2459,12 @@ async function send(sql: Sql, body: Record<string, unknown>): Promise<Response> 
     text,
   ]);
   await rememberSocial(sql, [who.handle, other.handle]);
+  await notifyHandle(sql, other.handle, {
+    title: who.name || who.handle,
+    body: text,
+    tag: "msg:" + who.handle + ":" + Date.now(),
+    url: "/messages",
+  });
   return thread(sql, body);
 }
 

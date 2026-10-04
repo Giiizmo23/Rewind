@@ -9,7 +9,10 @@ import diary from "../../../store-shell/diary.html?raw";
 import lists from "../../../store-shell/lists.html?raw";
 import swipe from "../../../store-shell/swipe.html?raw";
 
-const SKIP = /^\/(api|assets|data|sleeves|__grok|@|src|node_modules)(\/|$)/;
+const SKIP = /^\/(api|assets|data|sleeves|sfx|__grok|@|src|node_modules)(\/|$)/;
+const APP = /^\/(?:films|login|profile|board|diary|lists|swipe|messages)(?:\/.*)?$/;
+const MEMBER = /^\/u\/[^/]+\/?$/;
+const NOT_FOUND_HTML = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found · Rewind</title><style>html,body{margin:0;min-height:100%;background:#f3e6c8;color:#1c1410}body{display:grid;place-items:center;font-family:Georgia,serif}main{padding:2rem;text-align:center}p{margin:.4rem 0}a{color:#c41230}</style></head><body><main><p>Not found</p><p>That page isn’t on the shelf.</p><p><a href="/">Back to the store</a></p></main></body></html>`;
 const LIVE = process.env.NODE_ENV !== "production";
 
 function page(name: string, bundled: string): string {
@@ -24,7 +27,14 @@ function page(name: string, bundled: string): string {
 }
 
 export function shellResponse(pathname: string): Response | null {
-  if (SKIP.test(pathname)) return null;
+  if (SKIP.test(pathname) || pathname === "/notify-sw.js" || pathname === "/favicon.svg" || pathname === "/apple-touch-icon.png") return null;
+  const known = pathname === "/" || APP.test(pathname) || MEMBER.test(pathname);
+  if (!known) {
+    return new Response(NOT_FOUND_HTML, {
+      status: 404,
+      headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+    });
+  }
   let html = page("index.html", home);
   if (pathname === "/films" || pathname.startsWith("/films/")) html = page("films.html", films);
   else if (pathname === "/login" || pathname.startsWith("/login/")) html = page("login.html", login);

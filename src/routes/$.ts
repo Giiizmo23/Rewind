@@ -22,7 +22,20 @@ export const Route = createFileRoute("/$")({
             },
           });
         }
-        return shellResponse(path) ?? new Response("Not found", { status: 404 });
+        if (path === "/notify-sw.js") {
+          const file = join(process.cwd(), "public/notify-sw.js");
+          const body = existsSync(file)
+            ? readFileSync(file, "utf8")
+            : "self.addEventListener('push',function(e){e.waitUntil(self.registration.showNotification('Rewind',{body:e.data?e.data.text():''}))});";
+          return new Response(body, {
+            headers: {
+              "content-type": "application/javascript; charset=utf-8",
+              "service-worker-allowed": "/",
+              "cache-control": "no-cache",
+            },
+          });
+        }
+        return shellResponse(path) ?? new Response("Not found", { status: 404, headers: { "content-type": "text/plain; charset=utf-8" } });
       },
     },
   },

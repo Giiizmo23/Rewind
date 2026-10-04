@@ -743,7 +743,9 @@
     }
     document.documentElement.dataset.member = "1";
     try {
-      if (localStorage.getItem("rewind-card-sealed") !== "1") localStorage.setItem("rewind-card-sealed", "1");
+      const creds = JSON.parse(localStorage.getItem("rewind-member-creds") || "null");
+      const stamped = creds && String(creds.username || creds.handle || "").trim() && String(creds.token || creds.password || "").trim();
+      if (!stamped) localStorage.removeItem("rewind-card-sealed");
       if (localStorage.getItem("rewind-member") !== "1") localStorage.setItem("rewind-member", "1");
       document.cookie = "rewind-member=1;path=/;max-age=31536000;SameSite=Lax";
     } catch (e) {}
@@ -1581,6 +1583,13 @@
     function polaroid(slug) {
       const src = "/sleeves/" + slug + ".jpg?v=103";
       const title = slug.replace(/-/g, " ");
+      let birthday = false;
+      try {
+        const rows = JSON.parse(lsGet("rewind-out-tapes") || "null") || [];
+        birthday = Array.isArray(rows) && rows.some(function (x) {
+          return x && x.birthday && (x.slug === slug || x.filmId === slug);
+        });
+      } catch (eB) {}
       return (
         '<a href="/swipe?return=' +
         slug +
@@ -1592,7 +1601,9 @@
         '" alt="" style="width:100%;height:auto;object-fit:contain;display:block"/>' +
         '<p style="margin:.45rem .1rem 0;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase">' +
         title.replace(/</g, "") +
-        "</p></a>"
+        "</p>" +
+        (birthday ? '<p style="margin:.15rem .1rem 0;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#c41230">Birthday</p>' : "") +
+        "</a>"
       );
     }
     const tapes = wrap.querySelector("[data-vip-tapes]");
@@ -1718,8 +1729,9 @@
         Hearts: "/diary?view=hearts",
         Owned: "/diary?view=owned",
         Reviews: "/diary?view=reviews",
-        "Club": "/board?lane=friends",
+        Club: "/board?lane=friends",
         Stubs: "/diary?view=club",
+        Streak: "/profile",
       };
       const row = function (label, value) {
         return (
@@ -1741,6 +1753,7 @@
         row("Owned", marks.owned) +
         row("Reviews", marks.reviews) +
         row("Club", friends) +
+        row("Streak", streakCount()) +
         row("Stubs", collectStubs(points, logged.length, deedStats()).club.length);
       const prize = prizeOf(points);
       const nameEl = wrap.querySelector("[data-vip-tier-name]");
@@ -1871,7 +1884,7 @@
     });
     let rewinds = Object.keys(rewound).length;
     if (wall.stats && Number(wall.stats.rewinds) > rewinds) rewinds = Number(wall.stats.rewinds) || rewinds;
-    return { rewinds: rewinds, onTime: onTime };
+    return { rewinds: rewinds, onTime: onTime, streak: streakCount() };
   }
   function stubEarned(id, need, points, loggedCount, deeds) {
     if (id === "pin-vcr-motor") return deeds.rewinds >= 5;
@@ -1879,6 +1892,7 @@
     if (id === "sticker-due-slip") return deeds.onTime >= 1;
     if (id === "sticker-be-kind") return loggedCount >= 1;
     if (id === "perk-card") return true;
+    if (id === "pin-night-drop") return (deeds.streak || 0) >= 7;
     return (points || 0) >= need;
   }
   function setRipped(ids) {
@@ -1903,7 +1917,7 @@
     { id: "sticker-yellow", title: "Previously Viewed", kind: "sticker", pts: 25, how: "Keep logging. Three tapes, or two tapes plus a review, gets you over 25.", reward: "A pack of those yellow Previously Viewed stickers they slapped on every return." },
     { id: "pin-plastic-vhs", title: "Home Video", kind: "pin", pts: 50, how: "Hit 50 pts — about five tapes, or mix in hearts, rewinds, and reviews.", reward: "A cheap plastic VHS pin from the bowl next to the register. Clips on a denim jacket." },
     { id: "poster-new-release", title: "Coming Attractions", kind: "poster", pts: 80, how: "Eight tapes, or fewer if you write reviews (8 pts) and log rewinds (5 pts).", reward: "A rolled new-release one-sheet from the stockroom. Still smells like the tube." },
-    { id: "pin-night-drop", title: "After Hours", kind: "pin", pts: 120, how: "Use the night drop. Swipe seen, file the tape, keep the streak going to 120 pts.", reward: "A little slot-in-the-door enamel pin. Glow paint. Chips if you actually wear it." },
+    { id: "pin-night-drop", title: "After Hours", kind: "pin", pts: 120, how: "Keep a 7-day streak. Log or rent a tape every day.", reward: "A little slot-in-the-door enamel pin. Glow paint. Chips if you actually wear it." },
     { id: "art-window-neon", title: "Open All Night", kind: "art", pts: 150, how: "Reach Director's Club — 150 pts. That's a full wall of tapes plus a few reviews.", reward: "OPEN LATE print in club red. Hallway art. Fits next to the payphone." },
     { id: "poster-horror-aisle", title: "Don't Go In", kind: "poster", pts: 200, how: "Twenty tapes, or 200 pts any way you earn them. Horror aisle optional. Encouraged.", reward: "The poster that used to scare kids by the beaded curtain. Now it's yours." },
     { id: "pin-gold-card", title: "The Gold Card", kind: "pin", pts: 250, how: "Stack 250 pts. Gold Card territory — keep logging, heart the ones that stuck, write it up.", reward: "A tiny laminated-ticket pin. Same punch hole as the real card." },
@@ -4162,7 +4176,28 @@
     writeDms(all);
     if (who === "them" && inboxThread === key) markThreadSeen(key);
     else paintInboxBadge();
+    if (who === "them") pingPhone(key, text, tag);
     return true;
+  }
+  const DESK_HANDLES = { theclerk: 1, rita: 1, walt: 1, dee: 1, mo: 1, cal: 1, ned: 1, pat: 1, vic: 1, luz: 1, themanager: 1 };
+  function pingPhone(handle, text, tag) {
+    const key = String(handle || "").toLowerCase();
+    if (!DESK_HANDLES[key]) return;
+    try {
+      if (localStorage.getItem("rewind-phone-notes") !== "1") return;
+    } catch (e) { return; }
+    const mark = String(tag || text || "").slice(0, 180);
+    if (!mark) return;
+    let sent = {};
+    try { sent = JSON.parse(localStorage.getItem("rewind-phone-sent") || "null") || {}; } catch (e2) { sent = {}; }
+    if (sent[mark]) return;
+    sent[mark] = Date.now();
+    const keys = Object.keys(sent);
+    if (keys.length > 80) {
+      keys.sort(function (a, b) { return (sent[a] || 0) - (sent[b] || 0); }).slice(0, keys.length - 60).forEach(function (k) { delete sent[k]; });
+    }
+    try { localStorage.setItem("rewind-phone-sent", JSON.stringify(sent)); } catch (e3) {}
+    clubPost("/api/rewind/club/push", { action: "note", title: "Rewind", body: String(text || "").slice(0, 180), tag: mark });
   }
   function readDmSeen() {
     try {
@@ -4262,6 +4297,134 @@
     }
     return 0;
   }
+  function dayKey(d) {
+    const x = d || new Date();
+    return x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0") + "-" + String(x.getDate()).padStart(2, "0");
+  }
+  function readWall() {
+    try {
+      const wall = JSON.parse(localStorage.getItem("rewind-club-wall") || "null");
+      return wall && typeof wall === "object" ? wall : {};
+    } catch (e) { return {}; }
+  }
+  function writeWall(wall) {
+    try { localStorage.setItem("rewind-club-wall", JSON.stringify(wall)); } catch (e) {}
+  }
+  function streakState() {
+    const wall = readWall();
+    const raw = wall.stats && wall.stats.streak && typeof wall.stats.streak === "object" ? wall.stats.streak : {};
+    const today = dayKey();
+    const yesterday = dayKey(new Date(Date.now() - 86400000));
+    const last = String(raw.last || "");
+    const alive = last === today || last === yesterday;
+    return { count: alive ? Number(raw.count) || 0 : 0, last: last, paid: raw.paid && typeof raw.paid === "object" ? raw.paid : {}, reasons: raw.reasons && typeof raw.reasons === "object" ? raw.reasons : {} };
+  }
+  function streakCount() {
+    return streakState().count;
+  }
+  function touchStreak(reason) {
+    const wall = readWall();
+    wall.stats = wall.stats || {};
+    const prev = wall.stats.streak && typeof wall.stats.streak === "object" ? wall.stats.streak : {};
+    const today = dayKey();
+    const yesterday = dayKey(new Date(Date.now() - 86400000));
+    const streak = {
+      count: Number(prev.count) || 0,
+      last: String(prev.last || ""),
+      paid: prev.paid && typeof prev.paid === "object" ? prev.paid : {},
+      reasons: prev.reasons && typeof prev.reasons === "object" ? prev.reasons : {},
+    };
+    const why = String(reason || "log").slice(0, 40);
+    if (streak.last === today) {
+      streak.reasons[why] = today;
+      wall.stats.streak = streak;
+      writeWall(wall);
+      return streak;
+    }
+    if (streak.last === yesterday) streak.count += 1;
+    else {
+      streak.count = 1;
+      streak.paid = {};
+    }
+    streak.last = today;
+    streak.reasons[why] = today;
+    const bonus = { 7: 15, 30: 40, 100: 100 };
+    let add = 0;
+    [7, 30, 100].forEach(function (n) {
+      if (streak.count >= n && !streak.paid[String(n)]) {
+        streak.paid[String(n)] = today;
+        add += bonus[n];
+      }
+    });
+    if (add) wall.stats.points = Number(wall.stats.points || 0) + add;
+    wall.stats.streak = streak;
+    writeWall(wall);
+    return streak;
+  }
+  function birthdayMMDD() {
+    const face = readVipFace();
+    const b = String(face.birthday || "").trim();
+    return /^\d{2}-\d{2}$/.test(b) ? b : "";
+  }
+  function birthdayYearOpen(now) {
+    const b = birthdayMMDD();
+    if (!b) return 0;
+    const wall = readWall();
+    const used = Number(wall.stats && wall.stats.bdayUsed) || 0;
+    const year = now.getFullYear();
+    const month = Number(b.slice(0, 2));
+    const day = Number(b.slice(3, 5));
+    const starts = [new Date(year, month - 1, day), new Date(year - 1, month - 1, day)];
+    for (let i = 0; i < starts.length; i++) {
+      const start = starts[i];
+      start.setHours(0, 0, 0, 0);
+      if (Number.isNaN(start.getTime())) continue;
+      const end = start.getTime() + 7 * 86400000;
+      if (now.getTime() >= start.getTime() && now.getTime() < end) {
+        if (used === start.getFullYear()) return 0;
+        return start.getFullYear();
+      }
+    }
+    return 0;
+  }
+  function takeBirthdayRent() {
+    const now = new Date();
+    const year = birthdayYearOpen(now);
+    if (!year) return null;
+    const wall = readWall();
+    wall.stats = wall.stats || {};
+    wall.stats.bdayUsed = year;
+    wall.stats.points = Number(wall.stats.points || 0) + 25;
+    writeWall(wall);
+    return { free: true, year: year };
+  }
+  function fileBirthdayNote() {
+    if (document.documentElement.getAttribute("data-member") !== "1" && !syncMemberFlag()) return;
+    const b = birthdayMMDD();
+    if (!b) return;
+    const now = new Date();
+    const today = String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0");
+    if (b !== today) return;
+    const tag = "bday:" + now.getFullYear();
+    if (deskTagSent(tag)) return;
+    pushDm("theclerk", "them", "Happy birthday, your free tape is on the house.", Date.now(), tag);
+  }
+  function fileStreakNudge() {
+    if (document.documentElement.getAttribute("data-member") !== "1" && !syncMemberFlag()) return;
+    const streak = streakState();
+    if (!streak.count) return;
+    const today = dayKey();
+    const yesterday = dayKey(new Date(Date.now() - 86400000));
+    if (streak.last !== yesterday) return;
+    if (new Date().getHours() < 18) return;
+    const tag = "streak:" + today;
+    if (deskTagSent(tag)) return;
+    pushDm("theclerk", "them", "Your streak is " + streak.count + " days. Log or rent a tape tonight or it breaks.", Date.now(), tag);
+  }
+  try {
+    window.__rwTouchStreak = touchStreak;
+    window.__rwBirthdayRent = takeBirthdayRent;
+  } catch (eStreak) {}
   function morningBeforeDue(dueAt) {
     const d = new Date(dueAt);
     d.setHours(9, 0, 0, 0);
@@ -5061,6 +5224,8 @@
     retargetMessagesLinks();
     fileDueReminders();
     fileStoreNotes();
+    try { fileBirthdayNote(); } catch (eBday) {}
+    try { fileStreakNudge(); } catch (eStreak) {}
     loadClubBook();
     paintInboxBadge();
     if (!window.__rwDeskRemind) {
@@ -5078,6 +5243,8 @@
         });
         try { fileDueReminders(); } catch (eDue) {}
         try { fileStoreNotes(); } catch (eStore) {}
+        try { fileBirthdayNote(); } catch (eBday) {}
+        try { fileStreakNudge(); } catch (eStreak) {}
         paintInboxBadge();
       };
       window.setInterval(pollDesk, 60000);
@@ -5789,7 +5956,6 @@
           bellToast("The phone said no. Allow notifications in settings, then tap the bell again.");
           return;
         }
-        try { new Notification("Rewind", { body: "Phone alerts are on.", tag: "rewind-note" }); } catch (eLocal) {}
         bellToast("Alerts on.");
         navigator.serviceWorker.register("/notify-sw.js").then(function (reg) {
           return clubPost("/api/rewind/club/push", { action: "key" }).then(function (data) {
@@ -5802,11 +5968,32 @@
               return clubPost("/api/rewind/club/push", { action: "on", sub: sub.toJSON() });
             });
           });
-        }).catch(function () {});
+        }).catch(function () {
+          bellToast("Alerts on for this phone. iPhone only buzzes after you add Rewind to your Home Screen.");
+        });
       }).catch(function () {
         bellToast("Alerts on for this phone. iPhone only buzzes after you add Rewind to your Home Screen.");
       });
     }, true);
+    try {
+      if (localStorage.getItem("rewind-phone-notes") === "1" && navigator.serviceWorker && window.PushManager && typeof Notification !== "undefined" && Notification.permission === "granted") {
+        navigator.serviceWorker.register("/notify-sw.js").then(function (reg) {
+          return reg.pushManager.getSubscription().then(function (existing) {
+            if (existing) return null;
+            return clubPost("/api/rewind/club/push", { action: "key" }).then(function (data) {
+              if (!data || !data.publicKey) return null;
+              const pad = "=".repeat((4 - (data.publicKey.length % 4)) % 4);
+              const raw = atob(String(data.publicKey).replace(/-/g, "+").replace(/_/g, "/") + pad);
+              const key = new Uint8Array(raw.length);
+              for (let i = 0; i < raw.length; i++) key[i] = raw.charCodeAt(i);
+              return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key }).then(function (sub) {
+                return clubPost("/api/rewind/club/push", { action: "on", sub: sub.toJSON() });
+              });
+            });
+          });
+        }).catch(function () {});
+      }
+    } catch (eResume) {}
   }
   function openVipCustomize() {
     if (document.querySelector(".vip-card-sheet")) return;
@@ -9602,6 +9789,7 @@
     }
     if (wall.currentlyWatching && wall.currentlyWatching.slug === slug) delete wall.currentlyWatching;
     localStorage.setItem("rewind-club-wall", JSON.stringify(wall));
+    try { touchStreak("log"); } catch (eStreak) {}
     try { if (typeof flushLocker === "function") flushLocker(); } catch (eFlush) {}
     return { pts: pts, onTime: onTime };
   }
@@ -11364,12 +11552,16 @@
               return '<article class="cork-slip"><div class="cork-slip-body"><p class="cork-slip-line">' + head + ' · <a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (film.year ? ' <span class="cork-year">' + boardEsc(film.year) + "</span>" : "") + "</p>" + (bits.length ? '<p class="cork-slip-review">' + boardEsc(bits.join(" · ")) + "</p>" : "") + "</div></article>";
             }
             if (lane === "store" && (r.kind === "review" || r.excerpt)) {
+              const ownerHandle = r.kind === "comment" ? (r.parentHandle || r.handle) : r.handle;
+              const ownerName = r.kind === "comment" ? (r.parentName || "") : "";
               const whoName = String(r.handle || "").toLowerCase() === me ? ((typeof cardName === "function" && cardName()) || "You") : (r.name || r.handle);
               const stars = guestStars(r.rating);
               const verb = r.kind === "comment" ? "commented on" : r.kind === "like" ? "liked" : "reviewed";
-              const reviewCard = r.kind !== "comment" && r.kind !== "like";
-              const open = reviewCard ? ' data-store-review="1" data-review-handle="' + boardEsc(r.handle) + '" data-review-slug="' + boardEsc(r.slug) + '" data-review-name="' + boardEsc(whoName) + '"' : "";
-              return '<article class="cork-slip"' + open + '><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(whoName) + "</a> " + verb + ' <a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (stars && r.kind !== "comment" ? " " + stars : "") + "</p>" + (r.excerpt && r.kind !== "like" ? '<p class="cork-slip-review">' + boardEsc(r.excerpt) + "</p>" : "") + "</div></article>";
+              const target = r.kind === "comment" && ownerName && String(ownerHandle || "").toLowerCase() !== String(r.handle || "").toLowerCase()
+                ? boardEsc(ownerName) + "'s review of "
+                : "";
+              const open = ' data-store-review="1" data-review-handle="' + boardEsc(ownerHandle) + '" data-review-slug="' + boardEsc(r.slug) + '" data-review-name="' + boardEsc(ownerName || whoName) + '"';
+              return '<article class="cork-slip"' + open + '><div class="cork-slip-body"><p class="cork-slip-line"><a class="cork-who" href="/u/' + boardEsc(r.handle) + '">' + boardEsc(whoName) + "</a> " + verb + " " + target + '<a class="cork-who" href="/films/' + boardEsc(r.slug || "") + '">' + boardEsc(film.title) + "</a>" + (stars && r.kind !== "comment" ? " " + stars : "") + "</p>" + (r.excerpt && r.kind !== "like" ? '<p class="cork-slip-review">' + boardEsc(r.excerpt) + "</p>" : "") + "</div></article>";
             }
             const verbs = { review: "reviewed", like: "liked", comment: "commented on", log: "logged", rent: "rented", rewatch: "watched again", own: "kept a copy of", rewind: "rewound", ontime: "returned on time", out: "checked out", filed: "logged" };
             const verb = verbs[r.kind] || "logged";
@@ -11572,10 +11764,22 @@
         const mine = !!(me && me === handle);
         const already = !mine && reviewAlreadyLiked(handle, slug);
         const likeBtn = mine ? "" : '<button type="button" data-review-like="1"' + (already ? " disabled" : "") + ' style="width:100%;height:48px;border:0;border-radius:14px;background:#9f2d2d;color:#fff;font-size:16px;margin-bottom:8px">' + (already ? "Liked" : "Like this review") + "</button>";
+        const rows = data && Array.isArray(data.replies) ? data.replies : [];
+        const replies = rows.length
+          ? '<div style="display:flex;flex-direction:column;gap:8px;margin:0 0 12px">' + rows.map(function (row) {
+              return '<div style="background:#fff;border-radius:12px;padding:10px 12px"><b style="display:block;font-size:13px">' + boardEsc(row.by || row.handle || "Member") + '</b><p style="margin:4px 0 0;font-size:15px;line-height:1.4">' + boardEsc(row.text || "") + "</p></div>";
+            }).join("") + "</div>"
+          : "";
+        const canReply = !mine && data && data.repliesOn !== false && friendState() === "friends";
+        const replyBox = canReply
+          ? '<form data-review-reply style="margin:0 0 8px"><textarea name="reply" maxlength="600" placeholder="Write a comment" style="width:100%;min-height:72px;border:0;border-radius:12px;padding:10px 12px;font:inherit;box-sizing:border-box"></textarea><button type="submit" style="width:100%;height:44px;border:0;border-radius:12px;background:#1a1410;color:#fff;font-size:15px;margin-top:8px">Comment</button></form>'
+          : "";
         paint(
           '<p style="margin:0 0 8px;font-size:12px;letter-spacing:.18em;text-transform:uppercase">Review</p>' +
           (stars ? '<p style="margin:0 0 8px">' + stars + "</p>" : "") +
           '<p style="margin:0 0 14px;font-size:16px;line-height:1.45">' + boardEsc((data && data.review) || "") + "</p>" +
+          replies +
+          replyBox +
           likeBtn
         );
         const btn = box.querySelector("[data-review-like]");
@@ -11586,6 +11790,30 @@
             saveReviewLike(handle, slug, data && data.rating);
             btn.textContent = "Liked";
             btn.disabled = true;
+          });
+        }
+        const form = box.querySelector("[data-review-reply]");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const field = form.querySelector("textarea");
+            const text = String(field && field.value || "").trim();
+            if (!text) return;
+            const send = form.querySelector("button");
+            if (send) send.disabled = true;
+            clubPost("/api/rewind/club/comment", { handle: handle, slug: slug, text: text }).then(function (res) {
+              if (!res || !res.ok) {
+                if (send) send.disabled = false;
+                return;
+              }
+              full({
+                review: data && data.review,
+                rating: data && data.rating,
+                repliesOn: true,
+                replies: (rows || []).concat([{ by: (typeof cardName === "function" && cardName()) || "You", handle: me, text: text, at: Date.now() }]),
+              });
+            });
           });
         }
       }
