@@ -8257,14 +8257,21 @@
       const mid = window.matchMedia("(min-width:640px)").matches;
       return { cols: wide ? 5 : mid ? 4 : 2, row: (wide ? 18 : mid ? 19 : 19.5) * fs };
     }
+    function aisleTemplate() {
+      if (aisleTemplate._node) return aisleTemplate._node.cloneNode(true);
+      const found = document.querySelector("main .space-y-10 > section article.tape-slot");
+      if (!found) return null;
+      aisleTemplate._node = found.cloneNode(true);
+      return aisleTemplate._node.cloneNode(true);
+    }
     function armSection(section) {
       if (section.__virt) return section.__virt;
       const grid = section.querySelector(".grid");
       if (!grid) return null;
       shelfSlugs(section);
       const slots = Array.prototype.slice.call(grid.querySelectorAll(":scope > article.tape-slot"));
-      if (!slots.length) return null;
-      const template = slots[0].cloneNode(true);
+      let template = slots.length ? slots[0].cloneNode(true) : aisleTemplate();
+      if (!template) return null;
       const bySlug = {};
       const seed = [];
       slots.forEach(function (node) {
@@ -8299,11 +8306,14 @@
       const films = v.seed.slice();
       const seen = {};
       films.forEach(function (f) { if (f && f.slug) seen[f.slug] = 1; });
-      if (!catalog || !theme) return films;
+      // All-aisles walk keeps curated HTML seeds. Empty new walls hydrate from
+      // catalog by their section theme so Phase 0 remaps are not orphans.
+      const fill = theme || (!films.length ? sectionTheme(section) : "");
+      if (!catalog || !fill) return films;
       const extras = [];
       catalog.forEach(function (film) {
         if (!film || !film.slug || seen[film.slug]) return;
-        if (!inTheme(film, theme)) return;
+        if (!inTheme(film, fill)) return;
         seen[film.slug] = 1;
         extras.push(film);
       });

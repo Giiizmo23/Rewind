@@ -1,1438 +1,1352 @@
 parasite	Parasite	2019	Bong Joon-ho	Thriller,Drama,Comedy	thriller,drama,new
-everything-everywhere-all-at-once	Everything Everywhere All at Once	2022	Daniels	Sci-Fi,Comedy,Action	scifi,comedy,action,new
+everything-everywhere-all-at-once	Everything Everywhere All at Once	2022	Daniels	Sci-Fi,Comedy,Action	indie,scifi,comedy
 oppenheimer	Oppenheimer	2023	Christopher Nolan	Drama,History,Biography	drama,new
-moonlight	Moonlight	2016	Barry Jenkins	Drama,Romance	drama,romance
+moonlight	Moonlight	2016	Barry Jenkins	Drama,Romance	indie,drama,romance
 12-years-a-slave	12 Years a Slave	2013	Steve McQueen	Drama,History,Biography	drama
-the-godfather-part-ii	The Godfather Part II	1974	Francis Ford Coppola	Crime,Drama	crime,drama
+the-godfather-part-ii	The Godfather Part II	1974	Francis Ford Coppola	Drama,Crime	crime,classics,drama
 the-departed	The Departed	2006	Martin Scorsese	Crime,Thriller	crime,thriller
-the-lord-of-the-rings-the-return-of-the-king	The Lord of the Rings: The Return of the King	2003	Peter Jackson	Adventure,Fantasy,Action	action,scifi
-get-out	Get Out	2017	Jordan Peele	Horror,Thriller,Mystery	horror,thriller
-mad-max-fury-road	Mad Max: Fury Road	2015	George Miller	Action,Sci-Fi	action,scifi,new
+the-lord-of-the-rings-the-return-of-the-king	The Lord of the Rings: The Return of the King	2003	Peter Jackson	Adventure,Fantasy	fantasy
+get-out	Get Out	2017	Jordan Peele	Horror,Thriller,Mystery	horror
+mad-max-fury-road	Mad Max: Fury Road	2015	George Miller	Action,Sci-Fi	action,scifi,cult
 dune-2021	Dune	2021	Denis Villeneuve	Sci-Fi,Adventure	scifi,action,new
 dune-part-two	Dune: Part Two	2024	Denis Villeneuve	Sci-Fi,Adventure	scifi,action,new
-spider-man-into-the-spider-verse	Spider-Man: Into the Spider-Verse	2018	Bob Persichetti, Peter Ramsey, Rodney Rothman	Animation,Action,Comedy	animation,action,scifi
-spider-man-across-the-spider-verse	Spider-Man: Across the Spider-Verse	2023	Joaquim Dos Santos, Kemp Powers, Justin K. Thompson	Animation,Action	animation,action,scifi,new
-the-grand-budapest-hotel	The Grand Budapest Hotel	2014	Wes Anderson	Comedy,Drama,Crime	comedy,drama,crime
+spider-man-into-the-spider-verse	Spider-Man: Into the Spider-Verse	2018	Bob Persichetti, Peter Ramsey, Rodney Rothman	Animation,Action,Comedy	animation,action,family
+spider-man-across-the-spider-verse	Spider-Man: Across the Spider-Verse	2023	Joaquim Dos Santos, Kemp Powers, Justin K. Thompson	Animation,Action	animation,action,family
+the-grand-budapest-hotel	The Grand Budapest Hotel	2014	Wes Anderson	Comedy,Drama,Crime	indie,comedy
 the-social-network	The Social Network	2010	David Fincher	Drama,Biography	drama
-inglourious-basterds	Inglourious Basterds	2009	Quentin Tarantino	War,Action,Drama	action,drama,crime
+inglourious-basterds	Inglourious Basterds	2009	Quentin Tarantino	War,Action,Drama	war,action
 kill-bill-vol-1	Kill Bill: Vol. 1	2003	Quentin Tarantino	Action,Crime	action,crime
-django-unchained	Django Unchained	2012	Quentin Tarantino	Western,Drama,Action	action,drama,crime
-lady-bird	Lady Bird	2017	Greta Gerwig	Comedy,Drama	comedy,drama,romance
-la-la-land	La La Land	2016	Damien Chazelle	Romance,Musical,Comedy	romance,comedy,drama
-hereditary	Hereditary	2018	Ari Aster	Horror,Drama	horror,drama
-midsommar	Midsommar	2019	Ari Aster	Horror,Drama	horror,drama
-the-lighthouse	The Lighthouse	2019	Robert Eggers	Horror,Drama,Fantasy	horror,drama
+django-unchained	Django Unchained	2012	Quentin Tarantino	Western,Drama,Action	western,action
+lady-bird	Lady Bird	2017	Greta Gerwig	Comedy,Drama	indie,comedy,drama
+la-la-land	La La Land	2016	Damien Chazelle	Romance,Musical,Comedy	musical,romance
+hereditary	Hereditary	2018	Ari Aster	Horror,Drama	horror
+midsommar	Midsommar	2019	Ari Aster	Horror,Drama	horror,indie
+the-lighthouse	The Lighthouse	2019	Robert Eggers	Horror,Drama,Fantasy	fantasy,thriller
 uncut-gems	Uncut Gems	2019	Josh Safdie, Benny Safdie	Crime,Thriller,Drama	crime,thriller,drama
 portrait-of-a-lady-on-fire	Portrait of a Lady on Fire	2019	Céline Sciamma	Romance,Drama	romance,drama
 in-the-mood-for-love	In the Mood for Love	2000	Wong Kar-wai	Romance,Drama	romance,drama
-mulholland-drive	Mulholland Drive	2001	David Lynch	Mystery,Thriller,Drama	thriller,drama,horror
+mulholland-drive	Mulholland Drive	2001	David Lynch	Mystery,Thriller,Drama	cult,thriller
 shaun-of-the-dead	Shaun of the Dead	2004	Edgar Wright	Comedy,Horror	comedy,horror
 hot-fuzz	Hot Fuzz	2007	Edgar Wright	Comedy,Action	comedy,action,crime
-paddington-2	Paddington 2	2017	Paul King	Comedy,Family,Crime	comedy,animation,crime
-coco-2017	Coco	2017	Lee Unkrich, Adrian Molina	Animation,Adventure,Family	animation,holiday
-wall-e	WALL-E	2008	Andrew Stanton	Animation,Sci-Fi,Romance	animation,scifi,romance
+paddington-2	Paddington 2	2017	Paul King	Comedy,Family	family,comedy
+coco-2017	Coco	2017	Lee Unkrich, Adrian Molina	Animation,Adventure,Family	animation,holiday,family
+wall-e	WALL-E	2008	Andrew Stanton	Animation,Sci-Fi,Romance	animation,family,scifi
 the-handmaiden	The Handmaiden	2016	Park Chan-wook	Thriller,Romance,Crime	thriller,romance,crime
 memories-of-murder	Memories of Murder	2003	Bong Joon-ho	Crime,Thriller,Drama	crime,thriller,drama
-drive-2011	Drive	2011	Nicolas Winding Refn	Crime,Drama,Action	crime,drama,action
+drive-2011	Drive	2011	Nicolas Winding Refn	Crime,Drama,Action	cult,crime
 john-wick	John Wick	2014	Chad Stahelski	Action,Thriller,Crime	action,thriller,crime
 knives-out	Knives Out	2019	Rian Johnson	Mystery,Comedy,Crime	crime,comedy,thriller
-barbie	Barbie	2023	Greta Gerwig	Comedy,Adventure,Fantasy	comedy,animation,new
+barbie	Barbie	2023	Greta Gerwig	Comedy,Adventure,Fantasy	comedy,fantasy,new
 top-gun-maverick	Top Gun: Maverick	2022	Joseph Kosinski	Action,Drama	action,drama,new
 a-quiet-place	A Quiet Place	2018	John Krasinski	Horror,Sci-Fi,Thriller	horror,scifi,thriller
 arrival-2016	Arrival	2016	Denis Villeneuve	Sci-Fi,Drama	scifi,drama
 the-witch-2015	The Witch	2015	Robert Eggers	Horror,Drama	horror,drama
-a-christmas-story	A Christmas Story	1983	Bob Clark	Comedy,Family,Holiday	holiday,comedy
+a-christmas-story	A Christmas Story	1983	Bob Clark	Comedy,Family,Holiday	holiday,family,comedy
 the-notebook	The Notebook	2004	Nick Cassavetes	Romance,Drama	romance,drama
 10-things-i-hate-about-you	10 Things I Hate About You	1999	Gil Junger	Comedy,Romance	comedy,romance
-the-fellowship-of-the-ring	The Lord of the Rings: The Fellowship of the Ring	2001	Peter Jackson	Adventure,Fantasy,Action	action,scifi
-harry-potter-and-the-sorcerers-stone	Harry Potter and the Sorcerer's Stone	2001	Chris Columbus	Adventure,Fantasy,Family	scifi,holiday,animation
-shrek	Shrek	2001	Andrew Adamson, Vicky Jenson	Animation,Comedy,Fantasy	animation,comedy
-finding-nemo	Finding Nemo	2003	Andrew Stanton	Animation,Adventure,Comedy	animation,comedy
+the-fellowship-of-the-ring	The Lord of the Rings: The Fellowship of the Ring	2001	Peter Jackson	Adventure,Fantasy	fantasy
+harry-potter-and-the-sorcerers-stone	Harry Potter and the Sorcerer's Stone	2001	Chris Columbus	Adventure,Fantasy,Family	fantasy,family
+shrek	Shrek	2001	Andrew Adamson, Vicky Jenson	Animation,Comedy,Fantasy	family,fantasy,animation
+finding-nemo	Finding Nemo	2003	Andrew Stanton	Animation,Adventure,Comedy	animation,family,comedy
 pirates-of-the-caribbean	Pirates of the Caribbean: The Curse of the Black Pearl	2003	Gore Verbinski	Adventure,Action,Comedy	action,comedy
-batman-1989	Batman	1989	Tim Burton	Action,Crime,Fantasy	action,crime
+batman-1989	Batman	1989	Tim Burton	Action,Fantasy,Crime	fantasy,action
 the-lost-boys	The Lost Boys	1987	Joel Schumacher	Horror,Comedy	horror,comedy
-heathers	Heathers	1988	Michael Lehmann	Comedy,Crime,Drama	comedy,crime,drama
+heathers	Heathers	1988	Michael Lehmann	Comedy,Crime,Drama	cult,comedy
 indiana-jones-and-the-last-crusade	Indiana Jones and the Last Crusade	1989	Steven Spielberg	Adventure,Action	action
-beauty-and-the-beast-1991	Beauty and the Beast	1991	Gary Trousdale, Kirk Wise	Animation,Romance,Family	animation,romance,holiday
-the-little-mermaid	The Little Mermaid	1989	Ron Clements, John Musker	Animation,Romance,Family	animation,romance,holiday
+beauty-and-the-beast-1991	Beauty and the Beast	1991	Gary Trousdale, Kirk Wise	Animation,Romance,Family	family,fantasy,animation
+the-little-mermaid	The Little Mermaid	1989	Ron Clements, John Musker	Animation,Romance,Family	family,fantasy,animation
 sleepless-in-seattle	Sleepless in Seattle	1993	Nora Ephron	Romance,Comedy	romance,comedy
-ghost-1990	Ghost	1990	Jerry Zucker	Romance,Drama,Fantasy	romance,drama,thriller
-amadeus	Amadeus	1984	Miloš Forman	Drama,Music,Biography	drama
-annie-hall	Annie Hall	1977	Woody Allen	Comedy,Romance,Drama	comedy,romance,drama
+ghost-1990	Ghost	1990	Jerry Zucker	Romance,Drama,Fantasy	fantasy,romance
+amadeus	Amadeus	1984	Miloš Forman	Drama,Music,Biography	drama,classics
+annie-hall	Annie Hall	1977	Woody Allen	Comedy,Romance,Drama	classics,comedy,romance
 rain-man	Rain Man	1988	Barry Levinson	Drama	drama
-the-hurt-locker	The Hurt Locker	2008	Kathryn Bigelow	War,Thriller,Drama	action,thriller,drama
+the-hurt-locker	The Hurt Locker	2008	Kathryn Bigelow	War,Thriller,Drama	war
 slumdog-millionaire	Slumdog Millionaire	2008	Danny Boyle	Drama,Romance,Crime	drama,romance,crime
-the-shape-of-water	The Shape of Water	2017	Guillermo del Toro	Romance,Fantasy,Drama	romance,scifi,drama
-nomadland	Nomadland	2020	Chloé Zhao	Drama	drama,new
-poor-things	Poor Things	2023	Yorgos Lanthimos	Comedy,Romance,Sci-Fi	comedy,romance,scifi,new
-the-zone-of-interest	The Zone of Interest	2023	Jonathan Glazer	Drama,History,War	drama,horror,new
-past-lives	Past Lives	2023	Celine Song	Romance,Drama	romance,drama,new
-aftersun	Aftersun	2022	Charlotte Wells	Drama	drama,new
+the-shape-of-water	The Shape of Water	2017	Guillermo del Toro	Romance,Fantasy,Drama	fantasy,romance
+nomadland	Nomadland	2020	Chloé Zhao	Drama	indie,drama
+poor-things	Poor Things	2023	Yorgos Lanthimos	Comedy,Romance,Sci-Fi	indie,comedy,scifi
+the-zone-of-interest	The Zone of Interest	2023	Jonathan Glazer	Drama,History,War	war,drama
+past-lives	Past Lives	2023	Celine Song	Romance,Drama	indie,romance
+aftersun	Aftersun	2022	Charlotte Wells	Drama	indie,drama
 perfect-days	Perfect Days	2023	Wim Wenders	Drama	drama,new
-drive-my-car	Drive My Car	2021	Ryusuke Hamaguchi	Drama	drama,new
+drive-my-car	Drive My Car	2021	Ryusuke Hamaguchi	Drama	indie,drama
 decision-to-leave	Decision to Leave	2022	Park Chan-wook	Romance,Thriller,Crime	romance,thriller,crime,new
-nope	Nope	2022	Jordan Peele	Horror,Sci-Fi,Western	horror,scifi,new
+nope	Nope	2022	Jordan Peele	Horror,Sci-Fi,Western	horror,scifi
 the-menu	The Menu	2022	Mark Mylod	Horror,Comedy,Thriller	horror,comedy,thriller,new
 godzilla-minus-one	Godzilla Minus One	2023	Takashi Yamazaki	Action,Sci-Fi,Drama	action,scifi,drama,new
 talk-to-me-2022	Talk to Me	2022	Danny Philippou, Michael Philippou	Horror	horror,new
-longlegs	Longlegs	2024	Osgood Perkins	Horror,Thriller,Crime	horror,thriller,crime,new
-i-saw-the-tv-glow	I Saw the TV Glow	2024	Jane Schoenbrun	Horror,Drama,Fantasy	horror,drama,new
-anora	Anora	2024	Sean Baker	Comedy,Drama,Romance	comedy,drama,romance,new
-the-substance	The Substance	2024	Coralie Fargeat	Horror,Sci-Fi,Comedy	horror,scifi,comedy,new
-nosferatu-2024	Nosferatu	2024	Robert Eggers	Horror,Fantasy	horror,new
-challengers	Challengers	2024	Luca Guadagnino	Drama,Romance,Sport	drama,romance,new
-wicked-2024	Wicked	2024	Jon M. Chu	Musical,Fantasy,Romance	romance,animation,holiday,new
-sinners-2025	Sinners	2025	Ryan Coogler	Horror,Drama,Musical	horror,drama,new
+longlegs	Longlegs	2024	Osgood Perkins	Horror,Thriller,Crime	horror,thriller,indie
+i-saw-the-tv-glow	I Saw the TV Glow	2024	Jane Schoenbrun	Horror,Drama,Fantasy	horror,new
+anora	Anora	2024	Sean Baker	Comedy,Drama,Romance	indie,comedy,drama
+the-substance	The Substance	2024	Coralie Fargeat	Horror,Sci-Fi,Comedy	horror,scifi,indie
+nosferatu-2024	Nosferatu	2024	Robert Eggers	Horror,Fantasy	horror,fantasy,new
+challengers	Challengers	2024	Luca Guadagnino	Drama,Romance,Sport	sports,romance,new
+wicked-2024	Wicked	2024	Jon M. Chu	Musical,Fantasy,Romance	musical,fantasy,new
+sinners-2025	Sinners	2025	Ryan Coogler	Horror,Drama,Musical	horror,thriller,new
 superman-2025	Superman	2025	James Gunn	Action,Sci-Fi,Adventure	action,scifi,new
-wicked-for-good	Wicked: For Good	2025	Jon M. Chu	Musical,Fantasy,Romance	romance,animation,holiday,new
-zootopia-2	Zootopia 2	2025	Byron Howard, Jared Bush	Animation,Comedy,Adventure	animation,comedy,new
+wicked-for-good	Wicked: For Good	2025	Jon M. Chu	Musical,Fantasy,Romance	musical,fantasy,new
+zootopia-2	Zootopia 2	2025	Byron Howard, Jared Bush	Animation,Comedy,Family	animation,family,new
 avatar-fire-and-ash	Avatar: Fire and Ash	2025	James Cameron	Sci-Fi,Adventure,Action	scifi,action,new
 mickey-17	Mickey 17	2025	Bong Joon-ho	Sci-Fi,Comedy,Adventure	scifi,comedy,new
 mission-impossible-the-final-reckoning	Mission: Impossible – The Final Reckoning	2025	Christopher McQuarrie	Action,Thriller	action,thriller,new
 the-fantastic-four-first-steps	The Fantastic Four: First Steps	2025	Matt Shakman	Action,Sci-Fi,Adventure	action,scifi,new
-jurassic-world-rebirth	Jurassic World Rebirth	2025	Gareth Edwards	Action,Sci-Fi,Adventure	action,scifi,horror,new
-how-to-train-your-dragon-2025	How to Train Your Dragon	2025	Dean DeBlois	Adventure,Fantasy,Family	action,animation,new
+jurassic-world-rebirth	Jurassic World Rebirth	2025	Gareth Edwards	Action,Sci-Fi,Adventure	scifi,action,new
+how-to-train-your-dragon-2025	How to Train Your Dragon	2025	Dean DeBlois	Adventure,Fantasy,Family	fantasy,family,new
 the-naked-gun-2025	The Naked Gun	2025	Akiva Schaffer	Comedy,Crime,Action	comedy,crime,action,new
-predator-badlands	Predator: Badlands	2025	Dan Trachtenberg	Action,Sci-Fi,Horror	action,scifi,horror,new
-a-minecraft-movie	A Minecraft Movie	2025	Jared Hess	Adventure,Comedy,Family	comedy,animation,scifi,new
-28-years-later	28 Years Later	2025	Danny Boyle	Horror,Sci-Fi,Thriller	horror,scifi,thriller,new
-weapons-2025	Weapons	2025	Zach Cregger	Horror,Mystery,Thriller	horror,thriller,new
-f1-2025	F1	2025	Joseph Kosinski	Action,Drama,Sport	action,drama,new
-the-odyssey-2026	The Odyssey	2026	Christopher Nolan	Adventure,Drama,Epic	action,drama,scifi,new
+predator-badlands	Predator: Badlands	2025	Dan Trachtenberg	Action,Sci-Fi,Horror	scifi,action,new
+a-minecraft-movie	A Minecraft Movie	2025	Jared Hess	Adventure,Comedy,Family	family,fantasy,new
+28-years-later	28 Years Later	2025	Danny Boyle	Horror,Sci-Fi,Thriller	horror,scifi,thriller
+weapons-2025	Weapons	2025	Zach Cregger	Horror,Mystery,Thriller	horror,new
+f1-2025	F1	2025	Joseph Kosinski	Action,Drama,Sport	sports,action,new
+the-odyssey-2026	The Odyssey	2026	Christopher Nolan	Adventure,Action,Fantasy	fantasy,action,new
 spider-man-brand-new-day	Spider-Man: Brand New Day	2026	Destin Daniel Cretton	Action,Adventure,Sci-Fi	action,scifi,new
-toy-story-5	Toy Story 5	2026	Andrew Stanton	Animation,Comedy,Family	animation,comedy,new
+toy-story-5	Toy Story 5	2026	Andrew Stanton	Animation,Comedy,Family	animation,family,new
 project-hail-mary	Project Hail Mary	2026	Phil Lord, Christopher Miller	Sci-Fi,Adventure,Comedy	scifi,comedy,new
-moana-2026	Moana	2026	Thomas Kail	Adventure,Fantasy,Family	animation,holiday,new
-the-super-mario-galaxy-movie	The Super Mario Galaxy Movie	2026	Aaron Horvath, Michael Jelenic	Animation,Adventure,Comedy	animation,scifi,comedy,new
-dune-part-three	Dune: Part Three	2026	Denis Villeneuve	Sci-Fi,Adventure	scifi,action,coming
-sunrise-on-the-reaping	The Hunger Games: Sunrise on the Reaping	2026	Francis Lawrence	Action,Sci-Fi,Drama	action,scifi,drama,coming
-the-social-reckoning	The Social Reckoning	2026	Aaron Sorkin	Drama,Biography	drama,coming
-clayface	Clayface	2026	James Watkins	Horror,Crime,Fantasy	horror,crime,coming
-violent-night-2	Violent Night 2	2026	Tommy Wirkola	Action,Comedy,Holiday	holiday,action,comedy,coming
-focker-in-law	Focker-in-Law	2026	John Hamburg	Comedy	comedy,holiday,coming
-remain-2027	Remain	2027	M. Night Shyamalan	Thriller,Drama	thriller,drama,coming
-the-magicians-nephew	The Chronicles of Narnia: The Magician's Nephew	2027	Greta Gerwig	Fantasy,Adventure,Family	scifi,animation,coming
-star-wars-starfighter	Star Wars: Starfighter	2027	Shawn Levy	Sci-Fi,Action,Adventure	scifi,action,coming
-beyond-the-spider-verse	Spider-Man: Beyond the Spider-Verse	2027	Bob Persichetti, Justin K. Thompson	Animation,Action	animation,action,scifi,coming
-shrek-5	Shrek 5	2027	Walt Dohrn, Conrad Vernon	Animation,Comedy,Fantasy	animation,comedy,coming
-man-of-tomorrow	Man of Tomorrow	2027	James Gunn	Action,Sci-Fi,Adventure	action,scifi,coming
-avengers-secret-wars	Avengers: Secret Wars	2027	Anthony Russo, Joe Russo	Action,Sci-Fi,Adventure	action,scifi,coming
-hunt-for-gollum	The Lord of the Rings: The Hunt for Gollum	2027	Andy Serkis	Adventure,Fantasy,Action	action,scifi,coming
-gremlins-3	Gremlins 3	2027	Chris Columbus	Comedy,Horror,Holiday	holiday,horror,comedy,coming
-frozen-3	Frozen 3	2027	Jennifer Lee	Animation,Family,Fantasy	animation,holiday,coming
-godzilla-x-kong-supernova	Godzilla x Kong: Supernova	2027	Grant Sputore	Action,Sci-Fi,Adventure	action,scifi,coming
-the-legend-of-zelda-2027	The Legend of Zelda	2027	Wes Ball	Adventure,Fantasy,Action	action,scifi,coming
-inside-out-2	Inside Out 2	2024	Kelsey Mann	Animation,Comedy,Family	animation,comedy,new
+moana-2026	Moana	2026	Thomas Kail	Adventure,Fantasy,Family	family,fantasy,new
+the-super-mario-galaxy-movie	The Super Mario Galaxy Movie	2026	Aaron Horvath, Michael Jelenic	Animation,Adventure,Comedy	family,fantasy,animation
+dune-part-three	Dune: Part Three	2026	Denis Villeneuve	Sci-Fi,Adventure	coming
+sunrise-on-the-reaping	The Hunger Games: Sunrise on the Reaping	2026	Francis Lawrence	Sci-Fi,Action,Adventure	coming
+the-social-reckoning	The Social Reckoning	2026	Aaron Sorkin	Drama,Thriller	coming
+clayface	Clayface	2026	James Watkins	Horror,Crime,Fantasy	coming
+violent-night-2	Violent Night 2	2026	Tommy Wirkola	Action,Comedy,Fantasy	coming
+focker-in-law	Focker-in-Law	2026	John Hamburg	Comedy,Romance	coming
+remain-2027	Remain	2027	M. Night Shyamalan	Romance,Horror,Mystery,Thriller	coming
+the-magicians-nephew	The Chronicles of Narnia: The Magician's Nephew	2027	Greta Gerwig	Fantasy,Adventure,Family	coming
+star-wars-starfighter	Star Wars: Starfighter	2027	Shawn Levy	Sci-Fi,Adventure,Action	coming
+beyond-the-spider-verse	Spider-Man: Beyond the Spider-Verse	2027	Bob Persichetti, Justin K. Thompson	Animation,Action,Adventure,Sci-Fi	coming
+shrek-5	Shrek 5	2027	Walt Dohrn, Conrad Vernon	Animation,Comedy,Fantasy	coming
+man-of-tomorrow	Man of Tomorrow	2027	James Gunn	Action,Sci-Fi,Adventure	coming
+avengers-secret-wars	Avengers: Secret Wars	2027	Anthony Russo, Joe Russo	Sci-Fi,Action,Adventure	coming
+hunt-for-gollum	The Lord of the Rings: The Hunt for Gollum	2027	Andy Serkis	Adventure,Fantasy	coming
+gremlins-3	Gremlins 3	2027	Chris Columbus	Comedy,Horror,Fantasy	coming
+frozen-3	Frozen 3	2027	Jennifer Lee	Animation,Family,Fantasy	coming
+godzilla-x-kong-supernova	Godzilla x Kong: Supernova	2027	Grant Sputore	Sci-Fi,Action,Adventure	coming
+the-legend-of-zelda-2027	The Legend of Zelda	2027	Wes Ball	Adventure,Fantasy,Action	coming
+inside-out-2	Inside Out 2	2024	Kelsey Mann	Animation,Comedy,Family	animation,family,new
 deadpool-and-wolverine	Deadpool & Wolverine	2024	Shawn Levy	Action,Comedy,Sci-Fi	action,comedy,scifi,new
-moana-2	Moana 2	2024	David G. Derrick Jr.	Animation,Adventure,Comedy	animation,comedy,new
+moana-2	Moana 2	2024	David G. Derrick Jr.	Animation,Adventure,Family	family,fantasy,animation
 twisters-2024	Twisters	2024	Lee Isaac Chung	Action,Adventure,Thriller	action,thriller,new
-beetlejuice-beetlejuice	Beetlejuice Beetlejuice	2024	Tim Burton	Comedy,Fantasy,Horror	comedy,horror,new
-alien-romulus	Alien: Romulus	2024	Fede Álvarez	Horror,Sci-Fi,Thriller	horror,scifi,thriller,new
-the-wild-robot	The Wild Robot	2024	Chris Sanders	Animation,Sci-Fi,Family	animation,scifi,new
-civil-war-2024	Civil War	2024	Alex Garland	Action,Drama,Thriller	action,drama,thriller,new
+beetlejuice-beetlejuice	Beetlejuice Beetlejuice	2024	Tim Burton	Comedy,Fantasy,Horror	comedy,fantasy,new
+alien-romulus	Alien: Romulus	2024	Fede Álvarez	Horror,Sci-Fi,Thriller	horror,scifi,new
+the-wild-robot	The Wild Robot	2024	Chris Sanders	Animation,Sci-Fi,Family	animation,family,new
+civil-war-2024	Civil War	2024	Alex Garland	Action,Drama,Thriller	war,thriller,new
 furiosa	Furiosa: A Mad Max Saga	2024	George Miller	Action,Sci-Fi,Adventure	action,scifi,new
 conclave-2024	Conclave	2024	Edward Berger	Drama,Thriller	drama,thriller,new
-the-lion-king	The Lion King	1994	Allers & Minkoff	Animation,Family	animation
-the-shawshank-redemption	The Shawshank Redemption	1994	Frank Darabont	Drama	drama
-jaws	Jaws	1975	Steven Spielberg	Thriller,Adventure	thriller
-the-shining	The Shining	1980	Stanley Kubrick	Horror	horror
-first-blood	First Blood	1982	Ted Kotcheff	Action	action
-halloween-1978	Halloween	1978	John Carpenter	Horror	horror
-blade-runner	Blade Runner	1982	Ridley Scott	Sci-Fi	scifi
+the-lion-king	The Lion King	1994	Allers & Minkoff	Animation,Family	animation,family
+the-shawshank-redemption	The Shawshank Redemption	1994	Frank Darabont	Drama,Crime	crime,drama
+jaws	Jaws	1975	Steven Spielberg	Horror,Thriller,Adventure	horror,thriller
+the-shining	The Shining	1980	Stanley Kubrick	Horror	horror,classics
+first-blood	First Blood	1982	Ted Kotcheff	Action,Thriller,War	action
+halloween-1978	Halloween	1978	John Carpenter	Horror	horror,classics
+blade-runner	Blade Runner	1982	Ridley Scott	Sci-Fi	scifi,classics
 the-thing-1982	The Thing	1982	John Carpenter	Horror,Sci-Fi	horror,scifi
-back-to-the-future	Back to the Future	1985	Robert Zemeckis	Sci-Fi,Comedy	scifi,comedy
+back-to-the-future	Back to the Future	1985	Robert Zemeckis	Sci-Fi,Comedy	scifi,comedy,family
 pulp-fiction	Pulp Fiction	1994	Quentin Tarantino	Crime,Drama	crime,drama
 goodfellas	Goodfellas	1990	Martin Scorsese	Crime,Drama	crime,drama
-alien	Alien	1979	Ridley Scott	Sci-Fi,Horror	scifi,horror
+alien	Alien	1979	Ridley Scott	Sci-Fi,Horror	scifi,horror,classics
 heat-1995	Heat	1995	Michael Mann	Crime,Drama	crime,drama
-die-hard	Die Hard	1988	John McTiernan	Action	action
-2001-a-space-odyssey	2001 a Space Odyssey	1990		Drama	drama
-a-clockwork-orange	A Clockwork Orange	1990		Drama	drama
-after-hours	After Hours	1990		Drama	drama
-airplane	Airplane	1990		Drama	drama
-akira	Akira	1990		Drama	drama
-aliens	Aliens	1990		Drama	drama
-amelie	Amélie	1990		Drama	drama
-anchorman	Anchorman	1990		Drama	drama
-apocalypse-now	Apocalypse Now	1990		Drama	drama
-basket-case	Basket Case	1990		Drama	drama
-beetlejuice	Beetlejuice	1990		Drama	drama
-big-fish	Big Fish	1990		Drama	drama
-big-fish-film	Big Fish	1990		Drama	drama
-carrie-1976	Carrie	1976		Drama	drama
-casablanca	Casablanca	1990		Drama	drama
-children-of-men	Children of Men	1990		Drama	drama
-chinatown	Chinatown	1990		Drama	drama
-christmas-vacation	Christmas Vacation	1990		Drama	drama
-clerks	Clerks	1990		Drama	drama
-clueless	Clueless	1990		Drama	drama
-coming-to-america	Coming to America	1990		Drama	drama
-dark-city	Dark City	1990		Drama	drama
-dawn-of-the-dead-1978	Dawn of the Dead	1978		Drama	drama
-dazed-and-confused	Dazed and Confused	1990		Drama	drama
-dead-poets-society	Dead Poets Society	1990		Drama	drama
-dirty-dancing	Dirty Dancing	1990		Drama	drama
-doctor-sleep	Doctor Sleep	1990		Drama	drama
-doctor-sleep-2019-film	Doctor Sleep 2019	1990		Drama	drama
-donnie-darko	Donnie Darko	1990		Drama	drama
-dumb-and-dumber	Dumb and Dumber	1990		Drama	drama
-ed-wood	Ed Wood	1990		Drama	drama
-ed-wood-1994-film	Ed Wood 1994	1990		Drama	drama
-ed-wood-film	Ed Wood	1990		Drama	drama
-edward-scissorhands	Edward Scissorhands	1990		Drama	drama
-elf	Elf	1990		Drama	drama
-et	E.T. the Extra-Terrestrial	1990		Drama	drama
-eternal-sunshine-of-the-spotless-mind	Eternal Sunshine of the Spotless Mind	1990		Drama	drama
-evil-dead-2	Evil Dead 2	1990		Drama	drama
-ex-machina	Ex Machina	1990		Drama	drama
-fargo	Fargo	1990		Drama	drama
-ferris-buellers-day-off	Ferris Buellers Day Off	1990		Drama	drama
-fight-club	Fight Club	1990		Drama	drama
-forrest-gump	Forrest Gump	1990		Drama	drama
-four-rooms	Four Rooms	1990		Drama	drama
-full-metal-jacket	Full Metal Jacket	1990		Drama	drama
-ghostbusters	Ghostbusters	1990		Drama	drama
-good-will-hunting	Good Will Hunting	1990		Drama	drama
-grease	Grease	1990		Drama	drama
-gremlins	Gremlins	1990		Drama	drama
-groundhog-day	Groundhog Day	1990		Drama	drama
-hard-boiled	Hard Boiled	1990		Drama	drama
-her	Her	1990		Drama	drama
-home-alone	Home Alone	1990		Drama	drama
-inception	Inception	1990		Drama	drama
-interstellar	Interstellar	1990		Drama	drama
-its-a-wonderful-life	Its a Wonderful Life	1990		Drama	drama
-jurassic-park	Jurassic Park	1990		Drama	drama
-labyrinth	Labyrinth	1990		Drama	drama
-lethal-weapon	Lethal Weapon	1990		Drama	drama
-lost-in-translation	Lost in Translation	1990		Drama	drama
-love-actually	Love Actually	1990		Drama	drama
-mad-max-2	Mad Max 2	1990		Drama	drama
-manhunter	Manhunter	1990		Drama	drama
-mean-girls	Mean Girls	1990		Drama	drama
-moonstruck	Moonstruck	1990		Drama	drama
-near-dark	Near Dark	1990		Drama	drama
-night-of-the-comet	Night of the Comet	1990		Drama	drama
-nightmare-before-christmas	Nightmare Before Christmas	1990		Drama	drama
-nightmare-on-elm-street	Nightmare on Elm Street	1990		Drama	drama
-no-country-for-old-men	No Country for Old Men	1990		Drama	drama
-office-space	Office Space	1990		Drama	drama
-oldboy-2003	Oldboy	2003		Drama	drama
-one-flew-over-the-cuckoos-nest	One Flew Over the Cuckoos Nest	1990		Drama	drama
-pans-labyrinth	Pans Labyrinth	1990		Drama	drama
-point-break	Point Break	1990		Drama	drama
-poltergeist	Poltergeist	1990		Drama	drama
-predator	Predator	1990		Drama	drama
-pretty-woman	Pretty Woman	1990		Drama	drama
-princess-mononoke	Princess Mononoke	1990		Drama	drama
-psycho	Psycho	1990		Drama	drama
-raiders-of-the-lost-ark	Raiders of the Lost Ark	1990		Drama	drama
-rear-window	Rear Window	1990		Drama	drama
-repo-man	Repo Man	1990		Drama	drama
-reservoir-dogs	Reservoir Dogs	1990		Drama	drama
-return-of-the-living-dead	Return of the Living Dead	1990		Drama	drama
-robocop	Robocop	1990		Drama	drama
-rocky	Rocky	1990		Drama	drama
-rosemarys-baby	Rosemarys Baby	1990		Drama	drama
-saving-private-ryan	Saving Private Ryan	1990		Drama	drama
-say-anything	Say Anything	1990		Drama	drama
-scarface-1983	Scarface	1983		Drama	drama
-scream-1996	Scream	1996		Drama	drama
-scrooged	Scrooged	1990		Drama	drama
-se7en	Se7en	1990		Drama	drama
-silence-of-the-lambs	Silence of the Lambs	1990		Drama	drama
+die-hard	Die Hard	1988	John McTiernan	Action,Thriller,Holiday	holiday,action
+a-clockwork-orange	A Clockwork Orange	1971		Crime,Drama,Sci-Fi	cult,classics,scifi
+after-hours	After Hours	1985		Comedy,Thriller	cult,comedy,thriller
+akira	Akira	1988		Animation,Sci-Fi,Action	scifi,cult,animation
+basket-case	Basket Case	1982		Horror,Comedy	horror,cult,comedy
+beetlejuice	Beetlejuice	1988		Comedy,Fantasy,Horror	comedy,fantasy,holiday
+big-fish	Big Fish	2003		Adventure,Drama,Fantasy	fantasy,drama
+carrie-1976	Carrie	1976		Horror	horror
+dawn-of-the-dead-1978	Dawn of the Dead	1978		Horror,Sci-Fi	horror,scifi
+dazed-and-confused	Dazed and Confused	1993		Comedy,Drama	comedy,cult
+doctor-sleep	Doctor Sleep	2019		Horror,Drama	horror,thriller
+donnie-darko	Donnie Darko	2001		Fantasy,Drama,Mystery	fantasy,cult,drama
+ed-wood	Ed Wood	1994		Comedy,Drama,Biography	comedy,cult,drama
+edward-scissorhands	Edward Scissorhands	1990		Drama,Fantasy,Romance	fantasy,romance,drama
+et	E.T. the Extra-Terrestrial	1982		Family,Sci-Fi,Adventure	family,scifi
+evil-dead-2	Evil Dead 2	1987		Horror,Comedy	horror,comedy,cult
+four-rooms	Four Rooms	1995		Comedy	comedy,cult
+grease	Grease	1978		Musical,Romance,Comedy	musical,romance,comedy
+hard-boiled	Hard Boiled	1992		Action,Crime,Thriller	action,crime,thriller
+home-alone	Home Alone	1990		Comedy,Family,Holiday	holiday,family,comedy
+labyrinth	Labyrinth	1986		Adventure,Family,Fantasy	fantasy,family
+mad-max-2	Mad Max 2	1981		Action,Adventure,Sci-Fi	action,scifi,cult
+manhunter	Manhunter	1986		Crime,Horror,Thriller	thriller,crime,horror
+near-dark	Near Dark	1987		Horror,Action,Drama	horror,cult
+night-of-the-comet	Night of the Comet	1984		Horror,Comedy,Sci-Fi	horror,scifi,cult
+nightmare-on-elm-street	Nightmare on Elm Street	1984		Horror	horror
+oldboy-2003	Oldboy	2003		Thriller,Action,Drama	cult,thriller
+poltergeist	Poltergeist	1982		Horror,Thriller	horror
+pretty-woman	Pretty Woman	1990		Comedy,Romance	romance,comedy
+princess-mononoke	Princess Mononoke	1997		Animation,Adventure,Fantasy	animation,fantasy
+psycho	Psycho	1960		Horror,Thriller,Mystery	horror,thriller,classics
+rear-window	Rear Window	1954		Mystery,Thriller	thriller,classics,drama
+repo-man	Repo Man	1984		Comedy,Sci-Fi	cult,scifi,comedy
+rocky	Rocky	1976		Drama,Sport	sports,drama,classics
+rosemarys-baby	Rosemarys Baby	1968		Horror,Drama	horror,thriller,classics
+scarface-1983	Scarface	1983		Crime,Drama	crime
+scream-1996	Scream	1996		Horror,Mystery	horror
 society-1989	Society	1989		Drama	drama
-speed-1994	Speed	1994		Drama	drama
-spirited-away	Spirited Away	1990		Drama	drama
-stand-by-me	Stand By Me	1990		Drama	drama
-star-wars	Star Wars	1990		Drama	drama
-superbad	Superbad	1990		Drama	drama
-suspiria-1977	Suspiria	1977		Drama	drama
-taxi-driver	Taxi Driver	1990		Drama	drama
-terminator-2	Terminator 2	1990		Drama	drama
-the-big-lebowski	The Big Lebowski	1990		Drama	drama
-the-breakfast-club	The Breakfast Club	1990		Drama	drama
-the-crow	The Crow	1990		Drama	drama
-the-dark-knight	The Dark Knight	1990		Drama	drama
-the-devil-27s-advocate-1997-film	The Devil 27s Advocate 1997	1990		Drama	drama
-the-devils-advocate	The Devils Advocate	1990		Drama	drama
-the-door-in-the-floor	The Door in the Floor	1990		Drama	drama
-the-exorcist	The Exorcist	1990		Drama	drama
-the-fifth-element	The Fifth Element	1990		Drama	drama
-the-fly-1986	The Fly	1986		Drama	drama
-the-godfather	The Godfather	1990		Drama	drama
-the-goonies	The Goonies	1990		Drama	drama
-the-hurricane	The Hurricane	1990		Drama	drama
-the-iron-giant	The Iron Giant	1990		Drama	drama
-the-karate-kid	The Karate Kid	1990		Drama	drama
-the-matrix	The Matrix	1990		Drama	drama
-the-princess-bride	The Princess Bride	1990		Drama	drama
-the-rocky-horror-picture-show	The Rocky Horror Picture Show	1990		Drama	drama
-the-sixth-sense	The Sixth Sense	1990		Drama	drama
-the-terminator	The Terminator	1990		Drama	drama
-the-texas-chain-saw-massacre	The Texas Chain Saw Massacre	1990		Drama	drama
-the-usual-suspects	The Usual Suspects	1990		Drama	drama
-the-warriors	The Warriors	1990		Drama	drama
-there-will-be-blood	There Will Be Blood	1990		Drama	drama
-they-live	They Live	1990		Drama	drama
-titanic	Titanic	1990		Drama	drama
-to-live-and-die-in-la	To Live and Die in LA	1990		Drama	drama
-top-gun	Top Gun	1990		Drama	drama
-total-recall	Total Recall	1990		Drama	drama
-toy-story	Toy Story	1990		Drama	drama
-tremors	Tremors	1990		Drama	drama
-vertigo	Vertigo	1990		Drama	drama
-when-harry-met-sally	When Harry Met Sally	1990		Drama	drama
-whiplash	Whiplash	1990		Drama	drama
-zodiac	Zodiac	1990		Drama	drama
-
-dracula	Dracula	1931	Tod Browning	Horror	horror
-frankenstein	Frankenstein	1931	James Whale	Horror	horror
-the-invisible-man	The Invisible Man	1933	James Whale	Horror	horror
-bride-of-frankenstein	Bride of Frankenstein	1935	James Whale	Horror	horror
-the-wolf-man	The Wolf Man	1941	George Waggner	Horror	horror
-cat-people	Cat People	1942	Jacques Tourneur	Horror	horror
-the-thing-from-another-world	The Thing from Another World	1951	Christian Nyby	Horror	horror
-creature-from-the-black-lagoon	Creature from the Black Lagoon	1954	Jack Arnold	Horror	horror
-invasion-of-the-body-snatchers	Invasion of the Body Snatchers	1956	Don Siegel	Horror	horror
-the-blob	The Blob	1958	Irvin Yeaworth	Horror	horror
-black-sunday	Black Sunday	1960	Mario Bava	Horror	horror
-night-of-the-living-dead	Night of the Living Dead	1968	George A. Romero	Horror	horror
-blacula	Blacula	1972	William Crain	Horror	horror
-the-last-house-on-the-left	The Last House on the Left	1972	Wes Craven	Horror	horror
-the-wicker-man	The Wicker Man	1973	Robin Hardy	Horror	horror
-dont-look-now	Don't Look Now	1973	Nicolas Roeg	Horror	horror
-black-christmas	Black Christmas	1974	Bob Clark	Horror	horror
-its-alive	It's Alive	1974	Larry Cohen	Horror	horror
-the-texas-chainsaw-massacre-2	The Texas Chainsaw Massacre 2	1986	Tobe Hooper	Horror	horror
-deep-red	Deep Red	1975	Dario Argento	Horror	horror
-the-omen	The Omen	1976	Richard Donner	Horror	horror
+speed-1994	Speed	1994		Action,Thriller	action,thriller
+suspiria-1977	Suspiria	1977		Horror	horror
+the-big-lebowski	The Big Lebowski	1998		Comedy,Crime	comedy,cult,crime
+the-crow	The Crow	1994		Fantasy,Action,Thriller	fantasy,action,thriller
+the-devils-advocate	The Devils Advocate	1997		Horror,Thriller,Drama	horror,thriller,drama
+the-door-in-the-floor	The Door in the Floor	2004		Drama	drama
+the-exorcist	The Exorcist	1973		Horror	horror,classics
+the-fly-1986	The Fly	1986		Horror,Sci-Fi,Drama	horror,scifi
+the-goonies	The Goonies	1985		Adventure,Comedy,Family	family,comedy
+the-hurricane	The Hurricane	1999		Biography,Drama,Sport	drama,sports
+the-karate-kid	The Karate Kid	1984		Action,Drama,Family,Sport	family,sports,action
+the-rocky-horror-picture-show	The Rocky Horror Picture Show	1975		Comedy,Sci-Fi,Horror	horror,musical,cult
+the-texas-chain-saw-massacre	The Texas Chain Saw Massacre	1974		Horror	horror,cult,classics
+the-warriors	The Warriors	1979		Action,Thriller	action,cult,thriller
+total-recall	Total Recall	1990		Action,Sci-Fi	scifi,action
+tremors	Tremors	1990		Horror,Comedy,Sci-Fi	horror,comedy,scifi
+vertigo	Vertigo	1958		Mystery,Romance,Thriller	thriller,romance,classics
+dracula	Dracula	1931	Tod Browning	Horror	horror,classics
+frankenstein	Frankenstein	1931	James Whale	Drama,Horror,Sci-Fi	horror,scifi,classics
+the-invisible-man	The Invisible Man	1933	James Whale	Horror,Sci-Fi	horror,scifi,classics
+bride-of-frankenstein	Bride of Frankenstein	1935	James Whale	Horror,Sci-Fi	horror,scifi,classics
+the-wolf-man	The Wolf Man	1941	George Waggner	Horror,Drama	horror,classics,drama
+cat-people	Cat People	1942	Jacques Tourneur	Mystery,Horror,Romance	horror,romance,classics
+the-thing-from-another-world	The Thing from Another World	1951	Christian Nyby	Drama,Horror,Sci-Fi	horror,scifi,classics
+creature-from-the-black-lagoon	Creature from the Black Lagoon	1954	Jack Arnold	Adventure,Horror,Sci-Fi	horror,scifi,classics
+invasion-of-the-body-snatchers	Invasion of the Body Snatchers	1956	Don Siegel	Sci-Fi,Horror,Thriller	horror,scifi,thriller
+the-blob	The Blob	1958	Irvin Yeaworth	Horror,Sci-Fi	horror,scifi,classics
+black-sunday	Black Sunday	1960	Mario Bava	Horror	horror,classics
+night-of-the-living-dead	Night of the Living Dead	1968	George A. Romero	Horror,Thriller,Sci-Fi	horror,scifi,thriller
+blacula	Blacula	1972	William Crain	Horror,Fantasy	fantasy,horror,classics
+the-last-house-on-the-left	The Last House on the Left	1972	Wes Craven	Horror,Crime	horror,crime,classics
+the-wicker-man	The Wicker Man	1973	Robin Hardy	Horror	horror,classics
+dont-look-now	Don't Look Now	1973	Nicolas Roeg	Thriller,Drama,Horror	horror,thriller,classics
+black-christmas	Black Christmas	1974	Bob Clark	Horror,Holiday	holiday,horror
+its-alive	It's Alive	1974	Larry Cohen	Horror,Sci-Fi	horror,scifi,classics
+the-texas-chainsaw-massacre-2	The Texas Chainsaw Massacre 2	1986	Tobe Hooper	Horror,Comedy	horror,cult,comedy
+deep-red	Deep Red	1975	Dario Argento	Horror	horror,cult
+the-omen	The Omen	1976	Richard Donner	Horror	horror,thriller
 the-hills-have-eyes	The Hills Have Eyes	1977	Wes Craven	Horror	horror
-house	House	1977	Nobuhiko Obayashi	Horror	horror
-invasion-of-the-body-snatchers-1978	Invasion of the Body Snatchers	1978	Philip Kaufman	Horror	horror
-piranha	Piranha	1978	Joe Dante	Horror	horror
+house	House	1977	Nobuhiko Obayashi	Comedy,Fantasy,Horror	fantasy,horror,comedy
+invasion-of-the-body-snatchers-1978	Invasion of the Body Snatchers	1978	Philip Kaufman	Sci-Fi,Horror	horror,scifi
+piranha	Piranha	1978	Joe Dante	Horror,Sci-Fi,Comedy	horror,scifi,comedy
 the-amityville-horror	The Amityville Horror	1979	Stuart Rosenberg	Horror	horror
-phantasm	Phantasm	1979	Don Coscarelli	Horror	horror
-nosferatu-the-vampyre	Nosferatu the Vampyre	1979	Werner Herzog	Horror	horror
+phantasm	Phantasm	1979	Don Coscarelli	Horror,Sci-Fi	horror,scifi
+nosferatu-the-vampyre	Nosferatu the Vampyre	1979	Werner Herzog	Horror	horror,drama
 zombi-2	Zombi 2	1979	Lucio Fulci	Horror	horror
 friday-the-13th	Friday the 13th	1980	Sean S. Cunningham	Horror	horror
 the-fog	The Fog	1980	John Carpenter	Horror	horror
 prom-night	Prom Night	1980	Paul Lynch	Horror	horror
-an-american-werewolf-in-london	An American Werewolf in London	1981	John Landis	Horror	horror
+an-american-werewolf-in-london	An American Werewolf in London	1981	John Landis	Comedy,Horror,Fantasy	fantasy,horror,comedy
 the-howling	The Howling	1981	Joe Dante	Horror	horror
 the-evil-dead	The Evil Dead	1981	Sam Raimi	Horror	horror
-halloween-ii	Halloween II	1981	Rick Rosenthal	Horror	horror
+halloween-ii	Halloween II	1981	Rick Rosenthal	Horror	horror,thriller
 friday-the-13th-part-2	Friday the 13th Part 2	1981	Steve Miner	Horror	horror
-scanners	Scanners	1981	David Cronenberg	Horror	horror
-halloween-iii-season-of-the-witch	Halloween III Season of the Witch	1982	Tommy Lee Wallace	Horror	horror
-creepshow	Creepshow	1982	George A. Romero	Horror	horror
-cat-people-1982	Cat People	1982	Paul Schrader	Horror	horror
-videodrome	Videodrome	1983	David Cronenberg	Horror	horror
-the-dead-zone	The Dead Zone	1983	David Cronenberg	Horror	horror
+scanners	Scanners	1981	David Cronenberg	Horror	horror,scifi,cult
+halloween-iii-season-of-the-witch	Halloween III Season of the Witch	1982	Tommy Lee Wallace	Horror,Sci-Fi,Mystery,Thriller	horror,scifi,thriller
+creepshow	Creepshow	1982	George A. Romero	Horror	horror,comedy
+cat-people-1982	Cat People	1982	Paul Schrader	Fantasy,Horror	fantasy,horror
+videodrome	Videodrome	1983	David Cronenberg	Horror	horror,scifi,cult
+the-dead-zone	The Dead Zone	1983	David Cronenberg	Thriller,Horror,Sci-Fi	horror,scifi,thriller
 christine	Christine	1983	John Carpenter	Horror	horror
-cujo	Cujo	1983	Lewis Teague	Horror	horror
-psycho-ii	Psycho II	1983	Richard Franklin	Horror	horror
+cujo	Cujo	1983	Lewis Teague	Horror	horror,drama
+psycho-ii	Psycho II	1983	Richard Franklin	Horror	horror,thriller
 sleepaway-camp	Sleepaway Camp	1983	Robert Hiltzik	Horror	horror
-gremlins-1984	Gremlins	1984	Joe Dante	Horror	horror
-fright-night	Fright Night	1985	Tom Holland	Horror	horror
-re-animator	Re-Animator	1985	Stuart Gordon	Horror	horror
-day-of-the-dead	Day of the Dead	1985	George A. Romero	Horror	horror
-the-return-of-the-living-dead	The Return of the Living Dead	1985	Dan O'Bannon	Horror	horror
-aliens-1986	Aliens	1986	James Cameron	Horror	horror
-hellraiser	Hellraiser	1987	Clive Barker	Horror	horror
+gremlins-1984	Gremlins	1984	Joe Dante	Comedy,Horror,Holiday	holiday,horror,comedy
+fright-night	Fright Night	1985	Tom Holland	Horror	horror,comedy
+re-animator	Re-Animator	1985	Stuart Gordon	Sci-Fi,Comedy,Horror	horror,scifi,comedy
+day-of-the-dead	Day of the Dead	1985	George A. Romero	Horror	horror,drama
+the-return-of-the-living-dead	The Return of the Living Dead	1985	Dan O'Bannon	Comedy,Horror,Sci-Fi	horror,scifi,comedy
+aliens-1986	Aliens	1986	James Cameron	Horror,Sci-Fi,Action	scifi,action,thriller
+hellraiser	Hellraiser	1987	Clive Barker	Horror	horror,thriller
 prince-of-darkness	Prince of Darkness	1987	John Carpenter	Horror	horror
-the-monster-squad	The Monster Squad	1987	Fred Dekker	Horror	horror
+the-monster-squad	The Monster Squad	1987	Fred Dekker	Comedy,Action,Fantasy	fantasy,action,comedy
 childs-play	Child's Play	1988	Tom Holland	Horror	horror
-hellbound-hellraiser-ii	Hellbound Hellraiser II	1988	Tony Randel	Horror	horror
+hellbound-hellraiser-ii	Hellbound Hellraiser II	1988	Tony Randel	Horror	horror,thriller
 pet-sematary	Pet Sematary	1989	Mary Lambert	Horror	horror
-a-nightmare-on-elm-street-5-the-dream-child	A Nightmare on Elm Street 5 The Dream Child	1989	Stephen Hopkins	Horror	horror
-misery	Misery	1990	Rob Reiner	Horror	horror
+a-nightmare-on-elm-street-5-the-dream-child	A Nightmare on Elm Street 5 The Dream Child	1989	Stephen Hopkins	Horror	horror,thriller
+misery	Misery	1990	Rob Reiner	Drama,Thriller	thriller,drama
 the-exorcist-iii	The Exorcist III	1990	William Peter Blatty	Horror	horror
 night-of-the-living-dead-1990	Night of the Living Dead	1990	Tom Savini	Horror	horror
-the-people-under-the-stairs	The People Under the Stairs	1991	Wes Craven	Horror	horror
-candyman	Candyman	1992	Bernard Rose	Horror	horror
-army-of-darkness	Army of Darkness	1992	Sam Raimi	Horror	horror
-bram-stokers-dracula	Bram Stoker's Dracula	1992	Francis Ford Coppola	Horror	horror
-wes-cravens-new-nightmare	Wes Craven's New Nightmare	1994	Wes Craven	Horror	horror
-in-the-mouth-of-madness	In the Mouth of Madness	1994	John Carpenter	Horror	horror
-from-dusk-till-dawn	From Dusk Till Dawn	1996	Robert Rodriguez	Horror	horror
+the-people-under-the-stairs	The People Under the Stairs	1991	Wes Craven	Horror	horror,comedy
+candyman	Candyman	1992	Bernard Rose	Horror	horror,cult
+army-of-darkness	Army of Darkness	1992	Sam Raimi	Fantasy,Horror,Comedy	fantasy,horror,comedy
+bram-stokers-dracula	Bram Stoker's Dracula	1992	Francis Ford Coppola	Horror	horror,romance
+wes-cravens-new-nightmare	Wes Craven's New Nightmare	1994	Wes Craven	Horror,Mystery,Fantasy	fantasy,horror
+in-the-mouth-of-madness	In the Mouth of Madness	1994	John Carpenter	Horror,Mystery,Drama,Thriller,Fantasy	fantasy,horror,thriller
+from-dusk-till-dawn	From Dusk Till Dawn	1996	Robert Rodriguez	Horror	horror,cult
 scream-2	Scream 2	1997	Wes Craven	Horror	horror
 ringu	Ringu	1998	Hideo Nakata	Horror	horror
-bride-of-chucky	Bride of Chucky	1998	Ronny Yu	Horror	horror
+bride-of-chucky	Bride of Chucky	1998	Ronny Yu	Horror	horror,comedy
 the-blair-witch-project	The Blair Witch Project	1999	Daniel Myrick	Horror	horror
-the-sixth-sense-1999	The Sixth Sense	1999	M. Night Shyamalan	Horror	horror
-audition	Audition	1999	Takashi Miike	Horror	horror
+the-sixth-sense-1999	The Sixth Sense	1999	M. Night Shyamalan	Mystery,Thriller,Drama	thriller,drama
+audition	Audition	1999	Takashi Miike	Horror	horror,cult
 final-destination	Final Destination	2000	James Wong	Horror	horror
-the-others	The Others	2001	Alejandro Amenabar	Horror	horror
-pulse	Pulse	2001	Kiyoshi Kurosawa	Horror	horror
+the-others	The Others	2001	Alejandro Amenabar	Horror	horror,thriller
+pulse	Pulse	2001	Kiyoshi Kurosawa	Horror	horror,thriller
 the-ring	The Ring	2002	Gore Verbinski	Horror	horror
-28-days-later	28 Days Later	2002	Danny Boyle	Horror	horror
-signs	Signs	2002	M. Night Shyamalan	Horror	horror
-dawn-of-the-dead	Dawn of the Dead	2004	Zack Snyder	Horror	horror
-saw	Saw	2004	James Wan	Horror	horror
-the-grudge	The Grudge	2004	Takashi Shimizu	Horror	horror
+28-days-later	28 Days Later	2002	Danny Boyle	Horror,Sci-Fi,Thriller	horror,scifi
+signs	Signs	2002	M. Night Shyamalan	Thriller,Sci-Fi,Horror	horror,scifi,thriller
+dawn-of-the-dead	Dawn of the Dead	2004	Zack Snyder	Horror,Sci-Fi,Action	horror,scifi,action
+saw	Saw	2004	James Wan	Horror	horror,crime
+the-grudge	The Grudge	2004	Takashi Shimizu	Horror	horror,thriller
 the-descent	The Descent	2005	Neil Marshall	Horror	horror
 saw-ii	Saw II	2005	James Wan	Horror	horror
-28-weeks-later	28 Weeks Later	2007	Juan Carlos Fresnadillo	Horror	horror
-the-orphanage	The Orphanage	2007	J.A. Bayona	Horror	horror
+28-weeks-later	28 Weeks Later	2007	Juan Carlos Fresnadillo	Horror,Thriller,Sci-Fi	horror,scifi,thriller
+the-orphanage	The Orphanage	2007	J.A. Bayona	Horror,Drama,Thriller	horror,thriller,drama
 rec	REC	2007	Jaume Balaguero	Horror	horror
-the-mist	The Mist	2007	Frank Darabont	Horror	horror
-let-the-right-one-in	Let the Right One In	2008	Tomas Alfredson	Horror	horror
+the-mist	The Mist	2007	Frank Darabont	Horror,Sci-Fi,Thriller	horror,scifi,thriller
+let-the-right-one-in	Let the Right One In	2008	Tomas Alfredson	Horror	horror,drama
 the-strangers	The Strangers	2008	Bryan Bertino	Horror	horror
-drag-me-to-hell	Drag Me to Hell	2009	Sam Raimi	Horror	horror
+drag-me-to-hell	Drag Me to Hell	2009	Sam Raimi	Horror	horror,thriller
 paranormal-activity	Paranormal Activity	2009	Oren Peli	Horror	horror
-insidious	Insidious	2010	James Wan	Horror	horror
-let-me-in	Let Me In	2010	Matt Reeves	Horror	horror
-the-cabin-in-the-woods	The Cabin in the Woods	2011	Drew Goddard	Horror	horror
-sinister	Sinister	2012	Scott Derrickson	Horror	horror
-the-conjuring	The Conjuring	2013	James Wan	Horror	horror
+insidious	Insidious	2010	James Wan	Horror	horror,thriller
+let-me-in	Let Me In	2010	Matt Reeves	Horror	horror,drama
+the-cabin-in-the-woods	The Cabin in the Woods	2011	Drew Goddard	Horror	horror,comedy
+sinister	Sinister	2012	Scott Derrickson	Horror	horror,thriller
+the-conjuring	The Conjuring	2013	James Wan	Horror	horror,thriller
 evil-dead	Evil Dead	2013	Fede Alvarez	Horror	horror
 mama	Mama	2013	Andy Muschietti	Horror	horror
 it-follows	It Follows	2014	David Robert Mitchell	Horror	horror
-the-babadook	The Babadook	2014	Jennifer Kent	Horror	horror
-the-guest	The Guest	2014	Adam Wingard	Horror	horror
+the-babadook	The Babadook	2014	Jennifer Kent	Horror	horror,drama
+the-guest	The Guest	2014	Adam Wingard	Mystery,Thriller,Action	action,thriller
 the-conjuring-2	The Conjuring 2	2016	James Wan	Horror	horror
-train-to-busan	Train to Busan	2016	Yeon Sang-ho	Horror	horror
+train-to-busan	Train to Busan	2016	Yeon Sang-ho	Action,Horror,Thriller,Adventure	horror,action,thriller
 the-wailing	The Wailing	2016	Na Hong-jin	Horror	horror
-raw	Raw	2016	Julia Ducournau	Horror	horror
-the-witch	The Witch	2016	Robert Eggers	Horror	horror
-it	It	2017	Andy Muschietti	Horror	horror
+raw	Raw	2016	Julia Ducournau	Horror	horror,drama
+the-witch	The Witch	2016	Robert Eggers	Horror,Fantasy,Mystery	fantasy,horror
+it	It	2017	Andy Muschietti	Horror,Thriller,Drama	horror,thriller,drama
 annabelle-creation	Annabelle Creation	2017	David F. Sandberg	Horror	horror
-suspiria	Suspiria	2018	Luca Guadagnino	Horror	horror
+suspiria	Suspiria	2018	Luca Guadagnino	Horror	horror,drama
 the-nun	The Nun	2018	Corin Hardy	Horror	horror
 us	Us	2019	Jordan Peele	Horror	horror
-it-chapter-two	It Chapter Two	2019	Andy Muschietti	Horror	horror
-ready-or-not	Ready or Not	2019	Matt Bettinelli-Olpin	Horror	horror
-the-invisible-man-2020	The Invisible Man	2020	Leigh Whannell	Horror	horror
-saint-maud	Saint Maud	2020	Rose Glass	Horror	horror
+it-chapter-two	It Chapter Two	2019	Andy Muschietti	Horror,Thriller,Drama	horror,thriller,drama
+ready-or-not	Ready or Not	2019	Matt Bettinelli-Olpin	Horror	horror,comedy
+the-invisible-man-2020	The Invisible Man	2020	Leigh Whannell	Thriller,Sci-Fi,Horror	horror,scifi,thriller
+saint-maud	Saint Maud	2020	Rose Glass	Horror	horror,thriller
 malignant	Malignant	2021	James Wan	Horror	horror
-the-black-phone	The Black Phone	2021	Scott Derrickson	Horror	horror
-candyman-2021	Candyman	2021	Nia DaCosta	Horror	horror
+the-black-phone	The Black Phone	2021	Scott Derrickson	Horror	horror,thriller
+candyman-2021	Candyman	2021	Nia DaCosta	Horror	horror,thriller
 the-night-house	The Night House	2021	David Bruckner	Horror	horror
-barbarian	Barbarian	2022	Zach Cregger	Horror	horror
+barbarian	Barbarian	2022	Zach Cregger	Horror	horror,indie
 smile	Smile	2022	Parker Finn	Horror	horror
 x	X	2022	Ti West	Horror	horror
-pearl	Pearl	2022	Ti West	Horror	horror
-m3gan	M3GAN	2022	Gerard Johnstone	Horror	horror
+pearl	Pearl	2022	Ti West	Horror	horror,drama
+m3gan	M3GAN	2022	Gerard Johnstone	Sci-Fi,Horror	horror,scifi
 scream	Scream	2022	Matt Bettinelli-Olpin	Horror	horror
-evil-dead-rise	Evil Dead Rise	2023	Lee Cronin	Horror	horror
+evil-dead-rise	Evil Dead Rise	2023	Lee Cronin	Horror	horror,thriller
 talk-to-me	Talk to Me	2023	Danny Philippou	Horror	horror
 the-nun-ii	The Nun II	2023	Michael Chaves	Horror	horror
-maxxxine	MaXXXine	2024	Ti West	Horror	horror
-smile-2	Smile 2	2024	Parker Finn	Horror	horror
-terrifier-3	Terrifier 3	2024	Damien Leone	Horror	horror
-the-first-omen	The First Omen	2024	Arkasha Stevenson	Horror	horror
-immaculate	Immaculate	2024	Michael Mohan	Horror	horror
-abigail	Abigail	2024	Matt Bettinelli-Olpin	Horror	horror
-oddity	Oddity	2024	Damian McCarthy	Horror	horror
-late-night-with-the-devil	Late Night with the Devil	2024	Colin Cairnes	Horror	horror
-heretic	Heretic	2024	Scott Beck	Horror	horror
-a-quiet-place-day-one	A Quiet Place Day One	2024	Michael Sarnoski	Horror	horror
-speak-no-evil	Speak No Evil	2024	James Watkins	Horror	horror
-strange-darling	Strange Darling	2024	JT Mollner	Horror	horror
-cuckoo	Cuckoo	2024	Tilman Singer	Horror	horror
-in-a-violent-nature	In a Violent Nature	2024	Chris Nash	Horror	horror
-trap	Trap	2024	M. Night Shyamalan	Horror	horror
-wolf-man	Wolf Man	2025	Leigh Whannell	Horror	horror
-the-monkey	The Monkey	2025	Osgood Perkins	Horror	horror
-companion	Companion	2025	Drew Hancock	Horror	horror
-final-destination-bloodlines	Final Destination Bloodlines	2025	Zach Lipovsky	Horror	horror
-bring-her-back	Bring Her Back	2025	Danny Philippou	Horror	horror
-heart-eyes	Heart Eyes	2025	Josh Ruben	Horror	horror
-m3gan-2-0	M3GAN 2.0	2025	Gerard Johnstone	Horror	horror
-until-dawn	Until Dawn	2025	David F. Sandberg	Horror	horror
-shadow-of-a-doubt	Shadow of a Doubt	1943	Alfred Hitchcock	Thriller	thriller
-double-indemnity	Double Indemnity	1944	Billy Wilder	Thriller	thriller
-laura	Laura	1944	Otto Preminger	Thriller	thriller
-notorious	Notorious	1946	Alfred Hitchcock	Thriller	thriller
-strangers-on-a-train	Strangers on a Train	1951	Alfred Hitchcock	Thriller	thriller
-the-night-of-the-hunter	The Night of the Hunter	1955	Charles Laughton	Thriller	thriller
-kiss-me-deadly	Kiss Me Deadly	1955	Robert Aldrich	Thriller	thriller
-touch-of-evil	Touch of Evil	1958	Orson Welles	Thriller	thriller
-the-manchurian-candidate	The Manchurian Candidate	1962	John Frankenheimer	Thriller	thriller
-bonnie-and-clyde	Bonnie and Clyde	1967	Arthur Penn	Thriller	thriller
-klute	Klute	1971	Alan J. Pakula	Thriller	thriller
-dirty-harry	Dirty Harry	1971	Don Siegel	Thriller	thriller
-the-french-connection	The French Connection	1971	William Friedkin	Thriller	thriller
-frenzy	Frenzy	1972	Alfred Hitchcock	Thriller	thriller
-the-conversation	The Conversation	1974	Francis Ford Coppola	Thriller	thriller
-the-parallax-view	The Parallax View	1974	Alan J. Pakula	Thriller	thriller
-the-taking-of-pelham-one-two-three	The Taking of Pelham One Two Three	1974	Joseph Sargent	Thriller	thriller
+maxxxine	MaXXXine	2024	Ti West	Horror	horror,new
+smile-2	Smile 2	2024	Parker Finn	Horror	horror,new
+terrifier-3	Terrifier 3	2024	Damien Leone	Horror	horror,new
+the-first-omen	The First Omen	2024	Arkasha Stevenson	Horror	horror,new
+immaculate	Immaculate	2024	Michael Mohan	Horror,Mystery,Thriller	horror,thriller,new
+abigail	Abigail	2024	Matt Bettinelli-Olpin	Horror,Thriller,Comedy	horror,comedy,thriller
+oddity	Oddity	2024	Damian McCarthy	Horror	horror,new
+late-night-with-the-devil	Late Night with the Devil	2024	Colin Cairnes	Horror	horror,new
+heretic	Heretic	2024	Scott Beck	Thriller,Horror	horror,thriller,new
+a-quiet-place-day-one	A Quiet Place Day One	2024	Michael Sarnoski	Horror,Sci-Fi,Thriller	horror,scifi,thriller
+speak-no-evil	Speak No Evil	2024	James Watkins	Horror,Thriller	horror,thriller,new
+strange-darling	Strange Darling	2024	JT Mollner	Crime,Thriller,Horror	horror,crime,thriller
+cuckoo	Cuckoo	2024	Tilman Singer	Horror,Mystery,Thriller	horror,thriller,new
+in-a-violent-nature	In a Violent Nature	2024	Chris Nash	Horror,Thriller	horror,thriller,new
+trap	Trap	2024	M. Night Shyamalan	Crime,Horror,Thriller,Music	horror,crime,thriller
+wolf-man	Wolf Man	2025	Leigh Whannell	Horror,Thriller	horror,thriller,new
+the-monkey	The Monkey	2025	Osgood Perkins	Horror,Comedy	horror,comedy,new
+companion	Companion	2025	Drew Hancock	Horror,Sci-Fi,Thriller	horror,scifi,thriller
+final-destination-bloodlines	Final Destination Bloodlines	2025	Zach Lipovsky	Horror	horror,new
+bring-her-back	Bring Her Back	2025	Danny Philippou	Horror	horror,new
+heart-eyes	Heart Eyes	2025	Josh Ruben	Horror,Romance,Comedy	horror,comedy,romance
+m3gan-2-0	M3GAN 2.0	2025	Gerard Johnstone	Action,Sci-Fi,Thriller	scifi,action,thriller
+until-dawn	Until Dawn	2025	David F. Sandberg	Horror	horror,new
+shadow-of-a-doubt	Shadow of a Doubt	1943	Alfred Hitchcock	Thriller,Mystery,Crime	crime,thriller,classics
+double-indemnity	Double Indemnity	1944	Billy Wilder	Crime,Thriller,Film-Noir	classics,crime
+laura	Laura	1944	Otto Preminger	Thriller	classics,thriller
+notorious	Notorious	1946	Alfred Hitchcock	Thriller	classics,thriller
+strangers-on-a-train	Strangers on a Train	1951	Alfred Hitchcock	Crime,Thriller,Drama	crime,thriller,classics
+the-night-of-the-hunter	The Night of the Hunter	1955	Charles Laughton	Crime,Drama,Thriller	crime,thriller,classics
+kiss-me-deadly	Kiss Me Deadly	1955	Robert Aldrich	Mystery,Thriller,Crime	crime,thriller,classics
+touch-of-evil	Touch of Evil	1958	Orson Welles	Crime,Thriller,Film-Noir	classics,crime
+the-manchurian-candidate	The Manchurian Candidate	1962	John Frankenheimer	Thriller,Drama	thriller,classics,drama
+bonnie-and-clyde	Bonnie and Clyde	1967	Arthur Penn	Crime,Drama,Action	classics,crime
+klute	Klute	1971	Alan J. Pakula	Thriller,Crime,Drama	crime,thriller,classics
+dirty-harry	Dirty Harry	1971	Don Siegel	Action,Crime,Thriller	action,crime,thriller
+the-french-connection	The French Connection	1971	William Friedkin	Action,Crime,Thriller	action,crime,thriller
+frenzy	Frenzy	1972	Alfred Hitchcock	Crime,Thriller,Horror	horror,crime,thriller
+the-conversation	The Conversation	1974	Francis Ford Coppola	Crime,Drama,Mystery	crime,classics,drama
+the-parallax-view	The Parallax View	1974	Alan J. Pakula	Crime,Drama,Thriller	crime,thriller,classics
+the-taking-of-pelham-one-two-three	The Taking of Pelham One Two Three	1974	Joseph Sargent	Crime,Thriller,Action,Comedy	action,comedy,crime
 three-days-of-the-condor	Three Days of the Condor	1975	Sydney Pollack	Thriller	thriller
-network	Network	1976	Sidney Lumet	Thriller	thriller
-all-the-presidents-men	All the President's Men	1976	Alan J. Pakula	Thriller	thriller
-marathon-man	Marathon Man	1976	John Schlesinger	Thriller	thriller
-taxi-driver-1976	Taxi Driver	1976	Martin Scorsese	Thriller	thriller
-dressed-to-kill	Dressed to Kill	1980	Brian De Palma	Thriller	thriller
-blow-out	Blow Out	1981	Brian De Palma	Thriller	thriller
-body-heat	Body Heat	1981	Lawrence Kasdan	Thriller	thriller
-lethal-weapon-1985	Lethal Weapon	1985	Richard Donner	Thriller	thriller
-fatal-attraction	Fatal Attraction	1987	Adrian Lyne	Thriller	thriller
-full-metal-jacket-1987	Full Metal Jacket	1987	Stanley Kubrick	Thriller	thriller
-midnight-run	Midnight Run	1988	Martin Brest	Thriller	thriller
-the-silence-of-the-lambs	The Silence of the Lambs	1991	Jonathan Demme	Thriller	thriller
+network	Network	1976	Sidney Lumet	Drama,Comedy	classics,drama
+all-the-presidents-men	All the President's Men	1976	Alan J. Pakula	Thriller	thriller,drama
+marathon-man	Marathon Man	1976	John Schlesinger	Thriller,Crime,Drama	crime,thriller,drama
+taxi-driver-1976	Taxi Driver	1976	Martin Scorsese	Thriller	classics,thriller
+dressed-to-kill	Dressed to Kill	1980	Brian De Palma	Thriller,Mystery,Horror	horror,thriller
+blow-out	Blow Out	1981	Brian De Palma	Thriller	crime,thriller
+body-heat	Body Heat	1981	Lawrence Kasdan	Crime,Thriller,Romance	crime,thriller
+lethal-weapon-1985	Lethal Weapon	1985	Richard Donner	Action,Comedy,Crime	action
+fatal-attraction	Fatal Attraction	1987	Adrian Lyne	Thriller,Drama,Romance	romance,thriller,drama
+full-metal-jacket-1987	Full Metal Jacket	1987	Stanley Kubrick	War,Drama	war
+midnight-run	Midnight Run	1988	Martin Brest	Comedy,Crime,Thriller	comedy,crime,thriller
+the-silence-of-the-lambs	The Silence of the Lambs	1991	Jonathan Demme	Crime,Thriller,Drama	crime,thriller,drama
 basic-instinct	Basic Instinct	1992	Paul Verhoeven	Thriller	thriller
-se7en-1995	Se7en	1995	David Fincher	Thriller	thriller
-the-usual-suspects-1995	The Usual Suspects	1995	Bryan Singer	Thriller	thriller
-fargo-1996	Fargo	1996	Joel Coen	Thriller	thriller
-l-a-confidential	L.A. Confidential	1997	Curtis Hanson	Thriller	thriller
-the-game	The Game	1997	David Fincher	Thriller	thriller
-out-of-sight	Out of Sight	1998	Steven Soderbergh	Thriller	thriller
-lock-stock-and-two-smoking-barrels	Lock Stock and Two Smoking Barrels	1998	Guy Ritchie	Thriller	thriller
-fight-club-1999	Fight Club	1999	David Fincher	Thriller	thriller
-the-matrix-1999	The Matrix	1999	Andy Wachowski	Thriller	thriller
+se7en-1995	Se7en	1995	David Fincher	Thriller	crime,thriller
+the-usual-suspects-1995	The Usual Suspects	1995	Bryan Singer	Drama,Crime,Thriller	crime,thriller,drama
+fargo-1996	Fargo	1996	Joel Coen	Crime,Drama,Thriller	crime,thriller,drama
+l-a-confidential	L.A. Confidential	1997	Curtis Hanson	Crime,Drama,Mystery	crime,thriller
+the-game	The Game	1997	David Fincher	Thriller	thriller,drama
+out-of-sight	Out of Sight	1998	Steven Soderbergh	Romance,Comedy,Crime	comedy,crime,romance
+lock-stock-and-two-smoking-barrels	Lock Stock and Two Smoking Barrels	1998	Guy Ritchie	Comedy,Crime	comedy,crime
+fight-club-1999	Fight Club	1999	David Fincher	Thriller	thriller,drama
+the-matrix-1999	The Matrix	1999	Andy Wachowski	Sci-Fi,Action	scifi,action
 memento	Memento	2000	Christopher Nolan	Thriller	thriller
-american-psycho	American Psycho	2000	Mary Harron	Thriller	thriller
-snatch	Snatch	2000	Guy Ritchie	Thriller	thriller
-requiem-for-a-dream	Requiem for a Dream	2000	Darren Aronofsky	Thriller	thriller
-oceans-eleven	Ocean's Eleven	2001	Steven Soderbergh	Thriller	thriller
-minority-report	Minority Report	2002	Steven Spielberg	Thriller	thriller
-insomnia	Insomnia	2002	Christopher Nolan	Thriller	thriller
-collateral	Collateral	2004	Michael Mann	Thriller	thriller
-the-machinist	The Machinist	2004	Brad Anderson	Thriller	thriller
-a-history-of-violence	A History of Violence	2005	David Cronenberg	Thriller	thriller
-the-prestige	The Prestige	2006	Christopher Nolan	Thriller	thriller
-inside-man	Inside Man	2006	Spike Lee	Thriller	thriller
-children-of-men-2006	Children of Men	2006	Alfonso Cuaron	Thriller	thriller
-zodiac-2007	Zodiac	2007	David Fincher	Thriller	thriller
-the-bourne-ultimatum	The Bourne Ultimatum	2007	Paul Greengrass	Thriller	thriller
-michael-clayton	Michael Clayton	2007	Tony Gilroy	Thriller	thriller
-eastern-promises	Eastern Promises	2007	David Cronenberg	Thriller	thriller
-the-dark-knight-2008	The Dark Knight	2008	Christopher Nolan	Thriller	thriller
-district-9	District 9	2009	Neill Blomkamp	Thriller	thriller
-shutter-island	Shutter Island	2010	Martin Scorsese	Thriller	thriller
-inception-2010	Inception	2010	Christopher Nolan	Thriller	thriller
-the-girl-with-the-dragon-tattoo	The Girl with the Dragon Tattoo	2011	David Fincher	Thriller	thriller
-looper	Looper	2012	Rian Johnson	Thriller	thriller
-prisoners	Prisoners	2013	Denis Villeneuve	Thriller	thriller
+american-psycho	American Psycho	2000	Mary Harron	Horror,Thriller	crime,thriller
+snatch	Snatch	2000	Guy Ritchie	Crime,Comedy	comedy,crime
+requiem-for-a-dream	Requiem for a Dream	2000	Darren Aronofsky	Crime,Drama	crime,drama
+oceans-eleven	Ocean's Eleven	2001	Steven Soderbergh	Thriller	crime,thriller
+minority-report	Minority Report	2002	Steven Spielberg	Sci-Fi,Thriller,Action	scifi,thriller
+insomnia	Insomnia	2002	Christopher Nolan	Thriller,Crime,Drama	crime,thriller,drama
+collateral	Collateral	2004	Michael Mann	Drama,Crime,Thriller	crime,thriller,drama
+the-machinist	The Machinist	2004	Brad Anderson	Thriller	thriller,drama
+a-history-of-violence	A History of Violence	2005	David Cronenberg	Drama,Thriller,Crime	crime,thriller,drama
+the-prestige	The Prestige	2006	Christopher Nolan	Drama,Mystery,Sci-Fi	scifi,drama
+inside-man	Inside Man	2006	Spike Lee	Crime,Drama,Thriller	crime,thriller,drama
+children-of-men-2006	Children of Men	2006	Alfonso Cuaron	Sci-Fi,Thriller,Drama	scifi,thriller
+zodiac-2007	Zodiac	2007	David Fincher	Thriller	crime,thriller
+the-bourne-ultimatum	The Bourne Ultimatum	2007	Paul Greengrass	Action,Thriller	action,thriller
+michael-clayton	Michael Clayton	2007	Tony Gilroy	Drama,Thriller,Crime	crime,thriller,drama
+eastern-promises	Eastern Promises	2007	David Cronenberg	Thriller	crime,thriller
+the-dark-knight-2008	The Dark Knight	2008	Christopher Nolan	Action,Thriller,Crime	action,crime,thriller
+district-9	District 9	2009	Neill Blomkamp	Sci-Fi,Action,Thriller	scifi,action
+shutter-island	Shutter Island	2010	Martin Scorsese	Thriller	thriller,drama
+inception-2010	Inception	2010	Christopher Nolan	Sci-Fi,Thriller,Action	scifi,thriller
+the-girl-with-the-dragon-tattoo	The Girl with the Dragon Tattoo	2011	David Fincher	Thriller	crime,thriller
+looper	Looper	2012	Rian Johnson	Sci-Fi,Thriller,Action	scifi,thriller
+prisoners	Prisoners	2013	Denis Villeneuve	Drama,Thriller,Crime	crime,thriller,drama
 enemy	Enemy	2013	Denis Villeneuve	Thriller	thriller
-gone-girl	Gone Girl	2014	David Fincher	Thriller	thriller
-nightcrawler	Nightcrawler	2014	Dan Gilroy	Thriller	thriller
-birdman	Birdman	2014	Alejandro G. Inarritu	Thriller	thriller
-hell-or-high-water	Hell or High Water	2014	David Mackenzie	Thriller	thriller
-sicario	Sicario	2015	Denis Villeneuve	Thriller	thriller
-baby-driver	Baby Driver	2017	Edgar Wright	Thriller	thriller
-widows	Widows	2018	Steve McQueen	Thriller	thriller
-tenet	Tenet	2020	Christopher Nolan	Thriller	thriller
-love-lies-bleeding	Love Lies Bleeding	2024	Rose Glass	Thriller	thriller
-the-gorge	The Gorge	2025	Scott Derrickson	Thriller	thriller
-drop	Drop	2025	Christopher Landon	Thriller	thriller
-metropolis	Metropolis	1927	Fritz Lang	Sci-Fi	scifi
-the-day-the-earth-stood-still	The Day the Earth Stood Still	1951	Robert Wise	Sci-Fi	scifi
-the-war-of-the-worlds	The War of the Worlds	1953	Byron Haskin	Sci-Fi	scifi
-them	Them!	1954	Gordon Douglas	Sci-Fi	scifi
-forbidden-planet	Forbidden Planet	1956	Fred M. Wilcox	Sci-Fi	scifi
-2001-a-space-odyssey-1968	2001 A Space Odyssey	1968	Stanley Kubrick	Sci-Fi	scifi
-planet-of-the-apes	Planet of the Apes	1968	Franklin J. Schaffner	Sci-Fi	scifi
-solaris	Solaris	1972	Andrei Tarkovsky	Sci-Fi	scifi
-westworld	Westworld	1973	Michael Crichton	Sci-Fi	scifi
-soylent-green	Soylent Green	1973	Richard Fleischer	Sci-Fi	scifi
-star-wars-1977	Star Wars	1977	George Lucas	Sci-Fi	scifi
-close-encounters-of-the-third-kind	Close Encounters of the Third Kind	1977	Steven Spielberg	Sci-Fi	scifi
-the-empire-strikes-back	The Empire Strikes Back	1980	Irvin Kershner	Sci-Fi	scifi
-tron	Tron	1982	Steven Lisberger	Sci-Fi	scifi
-return-of-the-jedi	Return of the Jedi	1983	Richard Marquand	Sci-Fi	scifi
-the-terminator-1984	The Terminator	1984	James Cameron	Sci-Fi	scifi
-the-last-starfighter	The Last Starfighter	1984	Nick Castle	Sci-Fi	scifi
-starman	Starman	1984	John Carpenter	Sci-Fi	scifi
-dune	Dune	1984	David Lynch	Sci-Fi	scifi
-robocop-1987	RoboCop	1987	Paul Verhoeven	Sci-Fi	scifi
-the-abyss	The Abyss	1989	James Cameron	Sci-Fi	scifi
-terminator-2-judgment-day	Terminator 2 Judgment Day	1991	James Cameron	Sci-Fi	scifi
+gone-girl	Gone Girl	2014	David Fincher	Thriller	thriller,drama
+nightcrawler	Nightcrawler	2014	Dan Gilroy	Crime,Drama,Thriller	crime,thriller,drama
+birdman	Birdman	2014	Alejandro G. Inarritu	Drama,Comedy	comedy,drama
+hell-or-high-water	Hell or High Water	2014	David Mackenzie	Crime,Drama,Western	western,crime
+sicario	Sicario	2015	Denis Villeneuve	Action,Crime,Thriller	action,crime,thriller
+baby-driver	Baby Driver	2017	Edgar Wright	Action,Crime	action,crime
+widows	Widows	2018	Steve McQueen	Drama,Crime,Thriller	crime,thriller,drama
+tenet	Tenet	2020	Christopher Nolan	Action,Thriller,Sci-Fi	scifi,action,thriller
+love-lies-bleeding	Love Lies Bleeding	2024	Rose Glass	Crime,Romance,Thriller	crime,romance,thriller
+the-gorge	The Gorge	2025	Scott Derrickson	Romance,Sci-Fi,Thriller	scifi,romance,thriller
+drop	Drop	2025	Christopher Landon	Thriller	thriller,new
+metropolis	Metropolis	1927	Fritz Lang	Sci-Fi	classics,scifi
+the-day-the-earth-stood-still	The Day the Earth Stood Still	1951	Robert Wise	Sci-Fi,Thriller,Drama	scifi,thriller,classics
+the-war-of-the-worlds	The War of the Worlds	1953	Byron Haskin	Sci-Fi,Action	scifi,action,classics
+them	Them!	1954	Gordon Douglas	Sci-Fi,Horror	horror,scifi,classics
+forbidden-planet	Forbidden Planet	1956	Fred M. Wilcox	Sci-Fi	scifi,classics
+2001-a-space-odyssey-1968	2001 A Space Odyssey	1968	Stanley Kubrick	Sci-Fi	classics,scifi
+planet-of-the-apes	Planet of the Apes	1968	Franklin J. Schaffner	Sci-Fi,Adventure,Drama,Action	scifi,action,classics
+solaris	Solaris	1972	Andrei Tarkovsky	Drama,Sci-Fi,Mystery	scifi,classics,drama
+westworld	Westworld	1973	Michael Crichton	Adventure,Sci-Fi,Western	scifi,western,classics
+soylent-green	Soylent Green	1973	Richard Fleischer	Sci-Fi,Crime,Mystery	scifi,crime,classics
+star-wars-1977	Star Wars	1977	George Lucas	Sci-Fi,Adventure,Action	scifi,action
+close-encounters-of-the-third-kind	Close Encounters of the Third Kind	1977	Steven Spielberg	Sci-Fi	scifi,drama
+the-empire-strikes-back	The Empire Strikes Back	1980	Irvin Kershner	Sci-Fi,Adventure,Action	scifi,action
+tron	Tron	1982	Steven Lisberger	Sci-Fi	scifi,action
+return-of-the-jedi	Return of the Jedi	1983	Richard Marquand	Sci-Fi,Adventure,Action	scifi,action
+the-terminator-1984	The Terminator	1984	James Cameron	Action,Thriller,Sci-Fi	scifi,action,thriller
+the-last-starfighter	The Last Starfighter	1984	Nick Castle	Sci-Fi	scifi,action
+starman	Starman	1984	John Carpenter	Sci-Fi,Drama,Romance	scifi,romance,drama
+dune	Dune	1984	David Lynch	Sci-Fi	scifi,action
+robocop-1987	RoboCop	1987	Paul Verhoeven	Sci-Fi,Action	scifi,action
+the-abyss	The Abyss	1989	James Cameron	Sci-Fi	scifi,thriller
+terminator-2-judgment-day	Terminator 2 Judgment Day	1991	James Cameron	Sci-Fi,Action	scifi,action
 jurassic-park-1993	Jurassic Park	1993	Steven Spielberg	Sci-Fi	scifi
-12-monkeys	12 Monkeys	1995	Terry Gilliam	Sci-Fi	scifi
-independence-day	Independence Day	1996	Roland Emmerich	Sci-Fi	scifi
-starship-troopers	Starship Troopers	1997	Paul Verhoeven	Sci-Fi	scifi
-gattaca	Gattaca	1997	Andrew Niccol	Sci-Fi	scifi
-the-fifth-element-1997	The Fifth Element	1997	Luc Besson	Sci-Fi	scifi
-contact	Contact	1997	Robert Zemeckis	Sci-Fi	scifi
-galaxy-quest	Galaxy Quest	1999	Dean Parisot	Sci-Fi	scifi
-a-i-artificial-intelligence	A.I. Artificial Intelligence	2001	Steven Spielberg	Sci-Fi	scifi
-eternal-sunshine-of-the-spotless-mind-2004	Eternal Sunshine of the Spotless Mind	2004	Michael Gondry	Sci-Fi	scifi
-star-wars-episode-iii-revenge-of-the-sith	Star Wars Episode III Revenge of the Sith	2005	George Lucas	Sci-Fi	scifi
-avatar	Avatar	2009	James Cameron	Sci-Fi	scifi
-star-trek	Star Trek	2009	J.J. Abrams	Sci-Fi	scifi
-prometheus	Prometheus	2012	Ridley Scott	Sci-Fi	scifi
-pacific-rim	Pacific Rim	2013	Guillermo del Toro	Sci-Fi	scifi
-gravity	Gravity	2013	Alfonso Cuaron	Sci-Fi	scifi
-interstellar-2014	Interstellar	2014	Christopher Nolan	Sci-Fi	scifi
-edge-of-tomorrow	Edge of Tomorrow	2014	Doug Liman	Sci-Fi	scifi
-godzilla	Godzilla	2014	Gareth Edwards	Sci-Fi	scifi
-the-martian	The Martian	2015	Ridley Scott	Sci-Fi	scifi
-star-wars-the-force-awakens	Star Wars The Force Awakens	2015	J.J. Abrams	Sci-Fi	scifi
-ex-machina-2015	Ex Machina	2015	Alex Garland	Sci-Fi	scifi
-rogue-one	Rogue One	2016	Gareth Edwards	Sci-Fi	scifi
-blade-runner-2049	Blade Runner 2049	2017	Denis Villeneuve	Sci-Fi	scifi
-war-for-the-planet-of-the-apes	War for the Planet of the Apes	2017	Matt Reeves	Sci-Fi	scifi
-annihilation	Annihilation	2018	Alex Garland	Sci-Fi	scifi
-upgrade	Upgrade	2018	Leigh Whannell	Sci-Fi	scifi
-the-batman	The Batman	2022	Matt Reeves	Sci-Fi	scifi
-prey	Prey	2022	Dan Trachtenberg	Sci-Fi	scifi
-avatar-the-way-of-water	Avatar The Way of Water	2022	James Cameron	Sci-Fi	scifi
-kingdom-of-the-planet-of-the-apes	Kingdom of the Planet of the Apes	2024	Wes Ball	Sci-Fi	scifi
-godzilla-x-kong-the-new-empire	Godzilla x Kong The New Empire	2024	Adam Wingard	Sci-Fi	scifi
-the-getaway	The Getaway	1972	Sam Peckinpah	Action	action
-enter-the-dragon	Enter the Dragon	1973	Robert Clouse	Action	action
-death-wish	Death Wish	1974	Michael Winner	Action	action
-the-towering-inferno	The Towering Inferno	1974	John Guillermin	Action	action
-the-outlaw-josey-wales	The Outlaw Josey Wales	1976	Clint Eastwood	Action	action
-king-kong	King Kong	1976	John Guillermin	Action	action
-smokey-and-the-bandit	Smokey and the Bandit	1977	Hal Needham	Action	action
-superman	Superman	1978	Richard Donner	Action	action
-mad-max	Mad Max	1979	George Miller	Action	action
+12-monkeys	12 Monkeys	1995	Terry Gilliam	Sci-Fi	scifi,thriller
+independence-day	Independence Day	1996	Roland Emmerich	Sci-Fi	scifi,action
+starship-troopers	Starship Troopers	1997	Paul Verhoeven	Adventure,Action,Thriller,Sci-Fi	scifi,action,thriller
+gattaca	Gattaca	1997	Andrew Niccol	Sci-Fi	scifi,drama
+the-fifth-element-1997	The Fifth Element	1997	Luc Besson	Sci-Fi	scifi,action
+contact	Contact	1997	Robert Zemeckis	Sci-Fi	scifi,drama
+galaxy-quest	Galaxy Quest	1999	Dean Parisot	Sci-Fi	scifi,comedy
+a-i-artificial-intelligence	A.I. Artificial Intelligence	2001	Steven Spielberg	Sci-Fi	scifi,drama
+eternal-sunshine-of-the-spotless-mind-2004	Eternal Sunshine of the Spotless Mind	2004	Michael Gondry	Sci-Fi,Romance,Drama	scifi,romance
+star-wars-episode-iii-revenge-of-the-sith	Star Wars Episode III Revenge of the Sith	2005	George Lucas	Sci-Fi	scifi,action
+avatar	Avatar	2009	James Cameron	Sci-Fi	scifi,action
+star-trek	Star Trek	2009	J.J. Abrams	Sci-Fi	scifi,action
+prometheus	Prometheus	2012	Ridley Scott	Sci-Fi,Horror,Adventure	scifi,horror
+pacific-rim	Pacific Rim	2013	Guillermo del Toro	Sci-Fi	scifi,action
+gravity	Gravity	2013	Alfonso Cuaron	Sci-Fi,Thriller,Drama	scifi,thriller,drama
+interstellar-2014	Interstellar	2014	Christopher Nolan	Sci-Fi	scifi,drama
+edge-of-tomorrow	Edge of Tomorrow	2014	Doug Liman	Sci-Fi	scifi,action
+godzilla	Godzilla	2014	Gareth Edwards	Action,Drama,Sci-Fi	scifi,action,drama
+the-martian	The Martian	2015	Ridley Scott	Sci-Fi	scifi,drama
+star-wars-the-force-awakens	Star Wars The Force Awakens	2015	J.J. Abrams	Sci-Fi	scifi,action
+ex-machina-2015	Ex Machina	2015	Alex Garland	Sci-Fi,Thriller	scifi,thriller
+rogue-one	Rogue One	2016	Gareth Edwards	Sci-Fi	scifi,action
+blade-runner-2049	Blade Runner 2049	2017	Denis Villeneuve	Sci-Fi	scifi,drama
+war-for-the-planet-of-the-apes	War for the Planet of the Apes	2017	Matt Reeves	Drama,Sci-Fi,War	scifi,war,drama
+annihilation	Annihilation	2018	Alex Garland	Sci-Fi,Horror,Adventure	scifi,horror
+upgrade	Upgrade	2018	Leigh Whannell	Action,Thriller,Sci-Fi	scifi,action,thriller
+the-batman	The Batman	2022	Matt Reeves	Crime,Mystery,Thriller	crime,thriller
+prey	Prey	2022	Dan Trachtenberg	Thriller,Action,Sci-Fi	scifi,action,thriller
+avatar-the-way-of-water	Avatar The Way of Water	2022	James Cameron	Sci-Fi	scifi,action
+kingdom-of-the-planet-of-the-apes	Kingdom of the Planet of the Apes	2024	Wes Ball	Sci-Fi,Adventure,Action	scifi,action,new
+godzilla-x-kong-the-new-empire	Godzilla x Kong The New Empire	2024	Adam Wingard	Action,Adventure,Sci-Fi	scifi,action,new
+the-getaway	The Getaway	1972	Sam Peckinpah	Action,Crime,Drama,Thriller	action,crime,thriller
+enter-the-dragon	Enter the Dragon	1973	Robert Clouse	Action	action,classics
+death-wish	Death Wish	1974	Michael Winner	Crime,Drama,Action	action,crime,classics
+the-towering-inferno	The Towering Inferno	1974	John Guillermin	Action,Drama,Thriller	action,thriller,classics
+the-outlaw-josey-wales	The Outlaw Josey Wales	1976	Clint Eastwood	Western	western
+king-kong	King Kong	1976	John Guillermin	Adventure,Horror	horror
+smokey-and-the-bandit	Smokey and the Bandit	1977	Hal Needham	Action	action,comedy
+superman	Superman	1978	Richard Donner	Sci-Fi,Action,Adventure	scifi,action
+mad-max	Mad Max	1979	George Miller	Action,Thriller,Sci-Fi	scifi,action,thriller
 raiders-of-the-lost-ark-1981	Raiders of the Lost Ark	1981	Steven Spielberg	Action	action
-escape-from-new-york	Escape from New York	1981	John Carpenter	Action	action
-conan-the-barbarian	Conan the Barbarian	1982	John Milius	Action	action
-star-trek-ii-the-wrath-of-khan	Star Trek II The Wrath of Khan	1982	Nicholas Meyer	Action	action
-blue-thunder	Blue Thunder	1983	John Badham	Action	action
+escape-from-new-york	Escape from New York	1981	John Carpenter	Action,Thriller,Sci-Fi	scifi,action,thriller
+conan-the-barbarian	Conan the Barbarian	1982	John Milius	Action,Adventure,Fantasy	fantasy,action
+star-trek-ii-the-wrath-of-khan	Star Trek II The Wrath of Khan	1982	Nicholas Meyer	Sci-Fi,Action,Adventure	scifi,action
+blue-thunder	Blue Thunder	1983	John Badham	Drama,Action,Thriller	action,thriller,drama
 indiana-jones-and-the-temple-of-doom	Indiana Jones and the Temple of Doom	1984	Steven Spielberg	Action	action
-red-dawn	Red Dawn	1984	John Milius	Action	action
-rambo-first-blood-part-ii	Rambo First Blood Part II	1985	George P. Cosmatos	Action	action
-commando	Commando	1985	Mark L. Lester	Action	action
-rocky-iv	Rocky IV	1985	Sylvester Stallone	Action	action
-top-gun-1986	Top Gun	1986	Tony Scott	Action	action
-big-trouble-in-little-china	Big Trouble in Little China	1986	John Carpenter	Action	action
-highlander	Highlander	1986	Russell Mulcahy	Action	action
-predator-1987	Predator	1987	John McTiernan	Action	action
-lethal-weapon-1987	Lethal Weapon	1987	Richard Donner	Action	action
-lethal-weapon-2	Lethal Weapon 2	1989	Richard Donner	Action	action
-road-house	Road House	1989	Rowdy Herrington	Action	action
+red-dawn	Red Dawn	1984	John Milius	Thriller,War,Drama	war,thriller,drama
+rambo-first-blood-part-ii	Rambo First Blood Part II	1985	George P. Cosmatos	Action,Adventure,Thriller,War	war,action,thriller
+commando	Commando	1985	Mark L. Lester	Action	action,thriller
+rocky-iv	Rocky IV	1985	Sylvester Stallone	Drama,Sport,Action	sports,action
+top-gun-1986	Top Gun	1986	Tony Scott	Action,Drama,Romance	action,romance,drama
+big-trouble-in-little-china	Big Trouble in Little China	1986	John Carpenter	Action,Comedy,Fantasy	cult,action,fantasy
+highlander	Highlander	1986	Russell Mulcahy	Adventure,Action,Fantasy	fantasy,action
+predator-1987	Predator	1987	John McTiernan	Action,Sci-Fi,Horror	scifi,action
+lethal-weapon-1987	Lethal Weapon	1987	Richard Donner	Action,Thriller,Crime	action,crime,thriller
+lethal-weapon-2	Lethal Weapon 2	1989	Richard Donner	Action,Thriller,Crime	action,crime,thriller
+road-house	Road House	1989	Rowdy Herrington	Action	action,thriller
 die-hard-2	Die Hard 2	1990	Renny Harlin	Action,Holiday	action,holiday
-the-hunt-for-red-october	The Hunt for Red October	1990	John McTiernan	Action	action
-robin-hood-prince-of-thieves	Robin Hood Prince of Thieves	1991	Kevin Reynolds	Action	action
-point-break-1991	Point Break	1991	Kathryn Bigelow	Action	action
-lethal-weapon-3	Lethal Weapon 3	1992	Richard Donner	Action	action
-the-fugitive	The Fugitive	1993	Andrew Davis	Action	action
-hard-target	Hard Target	1993	John Woo	Action	action
-true-lies	True Lies	1994	James Cameron	Action	action
-leon-the-professional	Leon The Professional	1994	Luc Besson	Action	action
-die-hard-with-a-vengeance	Die Hard with a Vengeance	1995	John McTiernan	Action	action
-goldeneye	GoldenEye	1995	Martin Campbell	Action	action
-the-rock	The Rock	1996	Michael Bay	Action	action
-broken-arrow	Broken Arrow	1996	John Woo	Action	action
-mission-impossible	Mission Impossible	1996	Brian De Palma	Action	action
-face-off	Face Off	1997	John Woo	Action	action
-con-air	Con Air	1997	Simon West	Action	action
-air-force-one	Air Force One	1997	Wolfgang Petersen	Action	action
-the-lost-world-jurassic-park	The Lost World Jurassic Park	1997	Steven Spielberg	Action	action
-armageddon	Armageddon	1998	Michael Bay	Action	action
-the-thomas-crown-affair	The Thomas Crown Affair	1999	John McTiernan	Action	action
-mission-impossible-2	Mission Impossible 2	2000	John Woo	Action	action
-gladiator	Gladiator	2000	Ridley Scott	Action	action
-x-men	X-Men	2000	Bryan Singer	Action	action
-training-day	Training Day	2001	Antoine Fuqua	Action	action
-black-hawk-down	Black Hawk Down	2001	Ridley Scott	Action	action
-the-fast-and-the-furious	The Fast and the Furious	2001	Rob Cohen	Action	action
-spider-man	Spider-Man	2002	Sam Raimi	Action	action
-the-lord-of-the-rings-the-two-towers	The Lord of the Rings The Two Towers	2002	Peter Jackson	Action	action
-the-bourne-identity	The Bourne Identity	2002	Doug Liman	Action	action
-x2	X2	2003	Bryan Singer	Action	action
-the-matrix-reloaded	The Matrix Reloaded	2003	Lana Wachowski	Action	action
-terminator-3-rise-of-the-machines	Terminator 3 Rise of the Machines	2003	Jonathan Mostow	Action	action
-spider-man-2	Spider-Man 2	2004	Sam Raimi	Action	action
-the-bourne-supremacy	The Bourne Supremacy	2004	Paul Greengrass	Action	action
-kill-bill-volume-2	Kill Bill Volume 2	2004	Quentin Tarantino	Action	action
-batman-begins	Batman Begins	2005	Christopher Nolan	Action	action
-king-kong-2005	King Kong	2005	Peter Jackson	Action	action
-war-of-the-worlds	War of the Worlds	2005	Steven Spielberg	Action	action
-constantine	Constantine	2005	Francis Lawrence	Action	action
-casino-royale	Casino Royale	2006	Martin Campbell	Action	action
-pans-labyrinth-2006	Pan's Labyrinth	2006	Guillermo del Toro	Action	action
-live-free-or-die-hard	Live Free or Die Hard	2007	Len Wiseman	Action	action
-300	300	2007	Zack Snyder	Action	action
-iron-man	Iron Man	2008	Jon Favreau	Action	action
-the-incredible-hulk	The Incredible Hulk	2008	Louis Leterrier	Action	action
-hellboy-ii-the-golden-army	Hellboy II The Golden Army	2008	Guillermo del Toro	Action	action
-taken	Taken	2008	Pierre Morel	Action	action
+the-hunt-for-red-october	The Hunt for Red October	1990	John McTiernan	Action	action,thriller
+robin-hood-prince-of-thieves	Robin Hood Prince of Thieves	1991	Kevin Reynolds	Action	action,drama
+point-break-1991	Point Break	1991	Kathryn Bigelow	Action,Thriller,Crime	action,crime,thriller
+lethal-weapon-3	Lethal Weapon 3	1992	Richard Donner	Action,Thriller,Crime	action,crime,thriller
+the-fugitive	The Fugitive	1993	Andrew Davis	Action,Thriller,Drama	action,thriller,drama
+hard-target	Hard Target	1993	John Woo	Action,Thriller,Crime	action,crime,thriller
+true-lies	True Lies	1994	James Cameron	Action	action,thriller
+leon-the-professional	Leon The Professional	1994	Luc Besson	Crime,Drama,Action	action,crime,drama
+die-hard-with-a-vengeance	Die Hard with a Vengeance	1995	John McTiernan	Action	action,thriller
+goldeneye	GoldenEye	1995	Martin Campbell	Action	action,thriller
+the-rock	The Rock	1996	Michael Bay	Action	action,thriller
+broken-arrow	Broken Arrow	1996	John Woo	Action	action,thriller
+mission-impossible	Mission Impossible	1996	Brian De Palma	Action	action,thriller
+face-off	Face Off	1997	John Woo	Action,Crime,Sci-Fi	scifi,action,crime
+con-air	Con Air	1997	Simon West	Action,Thriller,Crime	action,crime,thriller
+air-force-one	Air Force One	1997	Wolfgang Petersen	Action	action,thriller
+the-lost-world-jurassic-park	The Lost World Jurassic Park	1997	Steven Spielberg	Adventure,Action,Sci-Fi	scifi,action
+armageddon	Armageddon	1998	Michael Bay	Action,Sci-Fi,Adventure	scifi,action
+the-thomas-crown-affair	The Thomas Crown Affair	1999	John McTiernan	Drama,Crime,Romance	crime,romance,drama
+mission-impossible-2	Mission Impossible 2	2000	John Woo	Action	action,thriller
+gladiator	Gladiator	2000	Ridley Scott	Action,Drama,War	action
+x-men	X-Men	2000	Bryan Singer	Adventure,Action,Sci-Fi	scifi,action
+training-day	Training Day	2001	Antoine Fuqua	Action,Crime,Drama	action,crime,drama
+black-hawk-down	Black Hawk Down	2001	Ridley Scott	War,Action,Drama	war,action
+the-fast-and-the-furious	The Fast and the Furious	2001	Rob Cohen	Action,Crime,Thriller	action,crime,thriller
+spider-man	Spider-Man	2002	Sam Raimi	Action,Sci-Fi	scifi,action
+the-lord-of-the-rings-the-two-towers	The Lord of the Rings The Two Towers	2002	Peter Jackson	Adventure,Fantasy,Action	fantasy
+the-bourne-identity	The Bourne Identity	2002	Doug Liman	Action	action,thriller
+x2	X2	2003	Bryan Singer	Adventure,Action,Sci-Fi	scifi,action
+the-matrix-reloaded	The Matrix Reloaded	2003	Lana Wachowski	Sci-Fi,Action	scifi,action
+terminator-3-rise-of-the-machines	Terminator 3 Rise of the Machines	2003	Jonathan Mostow	Sci-Fi,Action	scifi,action
+spider-man-2	Spider-Man 2	2004	Sam Raimi	Action,Adventure,Sci-Fi	scifi,action
+the-bourne-supremacy	The Bourne Supremacy	2004	Paul Greengrass	Action,Drama,Thriller	action,thriller,drama
+kill-bill-volume-2	Kill Bill Volume 2	2004	Quentin Tarantino	Action,Crime,Thriller	action,crime,thriller
+batman-begins	Batman Begins	2005	Christopher Nolan	Drama,Crime,Action	action,crime,drama
+king-kong-2005	King Kong	2005	Peter Jackson	Action	action,drama
+war-of-the-worlds	War of the Worlds	2005	Steven Spielberg	Sci-Fi,Action,Adventure	scifi,action
+constantine	Constantine	2005	Francis Lawrence	Fantasy,Action,Horror	fantasy,horror,action
+casino-royale	Casino Royale	2006	Martin Campbell	Action	action,thriller
+pans-labyrinth-2006	Pan's Labyrinth	2006	Guillermo del Toro	Fantasy,War,Drama	fantasy,war
+live-free-or-die-hard	Live Free or Die Hard	2007	Len Wiseman	Action	action,thriller
+300	300	2007	Zack Snyder	Action,War,Fantasy	action,war
+iron-man	Iron Man	2008	Jon Favreau	Action,Sci-Fi,Adventure	scifi,action
+the-incredible-hulk	The Incredible Hulk	2008	Louis Leterrier	Sci-Fi,Action,Adventure	scifi,action
+hellboy-ii-the-golden-army	Hellboy II The Golden Army	2008	Guillermo del Toro	Fantasy,Action	fantasy,action
+taken	Taken	2008	Pierre Morel	Action	action,thriller
 sherlock-holmes	Sherlock Holmes	2009	Guy Ritchie	Action	action
-kick-ass	Kick-Ass	2010	Matthew Vaughn	Action	action
-captain-america-the-first-avenger	Captain America The First Avenger	2010	Joe Johnston	Action	action
-mission-impossible-ghost-protocol	Mission Impossible Ghost Protocol	2011	Brad Bird	Action	action
-rise-of-the-planet-of-the-apes	Rise of the Planet of the Apes	2011	Rupert Wyatt	Action	action
-the-raid	The Raid	2011	Gareth Evans	Action	action
-the-avengers	The Avengers	2012	Joss Whedon	Action	action
-the-dark-knight-rises	The Dark Knight Rises	2012	Christopher Nolan	Action	action
-skyfall	Skyfall	2012	Sam Mendes	Action	action
-the-hunger-games	The Hunger Games	2012	Gary Ross	Action	action
-dredd	Dredd	2012	Pete Travis	Action	action
+kick-ass	Kick-Ass	2010	Matthew Vaughn	Action	action,crime
+captain-america-the-first-avenger	Captain America The First Avenger	2010	Joe Johnston	Action,Adventure,Sci-Fi	scifi,action
+mission-impossible-ghost-protocol	Mission Impossible Ghost Protocol	2011	Brad Bird	Action	action,thriller
+rise-of-the-planet-of-the-apes	Rise of the Planet of the Apes	2011	Rupert Wyatt	Thriller,Action,Drama,Sci-Fi	scifi,action,thriller
+the-raid	The Raid	2011	Gareth Evans	Action,Thriller,Crime	action,crime,thriller
+the-avengers	The Avengers	2012	Joss Whedon	Sci-Fi,Action,Adventure	scifi,action
+the-dark-knight-rises	The Dark Knight Rises	2012	Christopher Nolan	Action,Crime,Drama,Thriller	action,crime,thriller
+skyfall	Skyfall	2012	Sam Mendes	Action	action,thriller
+the-hunger-games	The Hunger Games	2012	Gary Ross	Sci-Fi,Adventure,Action,Thriller	scifi,action,thriller
+dredd	Dredd	2012	Pete Travis	Action,Sci-Fi	scifi,action
 iron-man-3	Iron Man 3	2013	Shane Black	Action,Holiday	action,holiday
-the-hunger-games-catching-fire	The Hunger Games Catching Fire	2013	Francis Lawrence	Action	action
-the-raid-2	The Raid 2	2013	Gareth Evans	Action	action
-captain-america-the-winter-soldier	Captain America The Winter Soldier	2014	Anthony Russo	Action	action
-dawn-of-the-planet-of-the-apes	Dawn of the Planet of the Apes	2014	Matt Reeves	Action	action
-guardians-of-the-galaxy	Guardians of the Galaxy	2014	James Gunn	Action	action
-jurassic-world	Jurassic World	2015	Colin Trevorrow	Action	action
-creed	Creed	2015	Ryan Coogler	Action	action
-captain-america-civil-war	Captain America Civil War	2016	Anthony Russo	Action	action
-deadpool	Deadpool	2016	Tim Miller	Action	action
-wonder-woman	Wonder Woman	2017	Patty Jenkins	Action	action
-thor-ragnarok	Thor Ragnarok	2017	Taika Waititi	Action	action
-logan	Logan	2017	James Mangold	Action	action
-john-wick-chapter-2	John Wick Chapter 2	2017	Chad Stahelski	Action	action
-avengers-infinity-war	Avengers Infinity War	2018	Anthony Russo	Action	action
-black-panther	Black Panther	2018	Ryan Coogler	Action	action
+the-hunger-games-catching-fire	The Hunger Games Catching Fire	2013	Francis Lawrence	Adventure,Action,Sci-Fi	scifi,action
+the-raid-2	The Raid 2	2013	Gareth Evans	Action,Crime,Thriller	action,crime,thriller
+captain-america-the-winter-soldier	Captain America The Winter Soldier	2014	Anthony Russo	Action,Adventure,Sci-Fi	scifi,action
+dawn-of-the-planet-of-the-apes	Dawn of the Planet of the Apes	2014	Matt Reeves	Sci-Fi,Action,Drama,Thriller	scifi,action,thriller
+guardians-of-the-galaxy	Guardians of the Galaxy	2014	James Gunn	Action,Sci-Fi,Adventure	scifi,action
+jurassic-world	Jurassic World	2015	Colin Trevorrow	Sci-Fi,Action,Adventure	scifi,action
+creed	Creed	2015	Ryan Coogler	Drama,Sport	sports,drama
+captain-america-civil-war	Captain America Civil War	2016	Anthony Russo	Adventure,Action,Sci-Fi	scifi,action
+deadpool	Deadpool	2016	Tim Miller	Action	action,comedy
+wonder-woman	Wonder Woman	2017	Patty Jenkins	Action,Adventure,Fantasy	fantasy,action
+thor-ragnarok	Thor Ragnarok	2017	Taika Waititi	Action,Adventure,Comedy,Sci-Fi	scifi,action,comedy
+logan	Logan	2017	James Mangold	Action,Drama,Sci-Fi	scifi,action,drama
+john-wick-chapter-2	John Wick Chapter 2	2017	Chad Stahelski	Action,Thriller,Crime	action,crime,thriller
+avengers-infinity-war	Avengers Infinity War	2018	Anthony Russo	Adventure,Action,Sci-Fi	scifi,action
+black-panther	Black Panther	2018	Ryan Coogler	Action,Adventure,Sci-Fi	scifi,action
 mission-impossible-fallout	Mission Impossible Fallout	2018	Christopher McQuarrie	Action	action
-deadpool-2	Deadpool 2	2018	David Leitch	Action	action
-avengers-endgame	Avengers Endgame	2019	Anthony Russo	Action	action
-john-wick-chapter-3-parabellum	John Wick Chapter 3 Parabellum	2019	Chad Stahelski	Action	action
-joker	Joker	2019	Todd Phillips	Action	action
-extraction	Extraction	2020	Sam Hargrave	Action	action
-no-time-to-die	No Time to Die	2021	Cary Joji Fukunaga	Action	action
-eternals	Eternals	2021	Chloe Zhao	Action	action
-john-wick-chapter-4	John Wick Chapter 4	2022	Chad Stahelski	Action	action
-mission-impossible-dead-reckoning	Mission Impossible Dead Reckoning	2023	Christopher McQuarrie	Action	action
-guardians-of-the-galaxy-vol-3	Guardians of the Galaxy Vol 3	2023	James Gunn	Action	action
-the-fall-guy	The Fall Guy	2024	David Leitch	Action	action
-monkey-man	Monkey Man	2024	Dev Patel	Action	action
-deadpool-and-wolverine-2024	Deadpool and Wolverine	2024	Shawn Levy	Action	action
-gladiator-ii	Gladiator II	2024	Ridley Scott	Action	action
-bad-boys-ride-or-die	Bad Boys Ride or Die	2024	Adil El Arbi	Action	action
-the-godfather-1972	The Godfather	1972	Francis Ford Coppola	Crime	crime
-mean-streets	Mean Streets	1973	Martin Scorsese	Crime	crime
-serpico	Serpico	1973	Sidney Lumet	Crime	crime
-chinatown-1974	Chinatown	1974	Roman Polanski	Crime	crime
-dog-day-afternoon	Dog Day Afternoon	1975	Sidney Lumet	Crime	crime
-once-upon-a-time-in-america	Once Upon a Time in America	1984	Sergio Leone	Crime	crime
-stand-by-me-1986	Stand by Me	1986	Rob Reiner	Crime	crime
-the-untouchables	The Untouchables	1987	Brian De Palma	Crime	crime
-millers-crossing	Miller's Crossing	1990	Joel Coen	Crime	crime
-reservoir-dogs-1992	Reservoir Dogs	1992	Quentin Tarantino	Crime	crime
-jackie-brown	Jackie Brown	1997	Quentin Tarantino	Crime	crime
-traffic	Traffic	2000	Steven Soderbergh	Crime	crime
-road-to-perdition	Road to Perdition	2002	Sam Mendes	Crime	crime
-city-of-god	City of God	2002	Fernando Meirelles	Crime	crime
-catch-me-if-you-can	Catch Me If You Can	2002	Steven Spielberg	Crime	crime
+deadpool-2	Deadpool 2	2018	David Leitch	Action	action,comedy
+avengers-endgame	Avengers Endgame	2019	Anthony Russo	Adventure,Sci-Fi,Action	scifi,action
+john-wick-chapter-3-parabellum	John Wick Chapter 3 Parabellum	2019	Chad Stahelski	Action,Thriller,Crime	action,crime,thriller
+joker	Joker	2019	Todd Phillips	Crime,Thriller,Drama	crime,thriller,drama
+extraction	Extraction	2020	Sam Hargrave	Action	action,thriller
+no-time-to-die	No Time to Die	2021	Cary Joji Fukunaga	Action	action,thriller
+eternals	Eternals	2021	Chloe Zhao	Sci-Fi,Action,Adventure	scifi,action
+john-wick-chapter-4	John Wick Chapter 4	2022	Chad Stahelski	Action,Thriller,Crime	action,crime,thriller
+mission-impossible-dead-reckoning	Mission Impossible Dead Reckoning	2023	Christopher McQuarrie	Action	action,thriller
+guardians-of-the-galaxy-vol-3	Guardians of the Galaxy Vol 3	2023	James Gunn	Sci-Fi,Adventure,Action	scifi,action
+the-fall-guy	The Fall Guy	2024	David Leitch	Action,Comedy,Romance	action,comedy,romance
+monkey-man	Monkey Man	2024	Dev Patel	Thriller,Crime,Action	action,crime,thriller
+deadpool-and-wolverine-2024	Deadpool and Wolverine	2024	Shawn Levy	Action,Comedy,Sci-Fi	scifi,action,comedy
+gladiator-ii	Gladiator II	2024	Ridley Scott	Action,Drama,War	action
+bad-boys-ride-or-die	Bad Boys Ride or Die	2024	Adil El Arbi	Action,Comedy,Crime	action,comedy,crime
+the-godfather-1972	The Godfather	1972	Francis Ford Coppola	Crime	classics,crime
+mean-streets	Mean Streets	1973	Martin Scorsese	Drama,Crime	crime,classics,drama
+serpico	Serpico	1973	Sidney Lumet	Crime,Drama,History	crime,classics,drama
+chinatown-1974	Chinatown	1974	Roman Polanski	Crime	classics,crime
+dog-day-afternoon	Dog Day Afternoon	1975	Sidney Lumet	Crime,Drama,Thriller	crime,thriller,drama
+once-upon-a-time-in-america	Once Upon a Time in America	1984	Sergio Leone	Crime	crime,drama
+stand-by-me-1986	Stand by Me	1986	Rob Reiner	Drama,Adventure,Family	family,drama
+the-untouchables	The Untouchables	1987	Brian De Palma	Crime	crime,thriller
+millers-crossing	Miller's Crossing	1990	Joel Coen	Drama,Thriller,Crime	crime,thriller,drama
+reservoir-dogs-1992	Reservoir Dogs	1992	Quentin Tarantino	Crime	crime,thriller
+jackie-brown	Jackie Brown	1997	Quentin Tarantino	Crime,Drama,Thriller	crime,thriller,drama
+traffic	Traffic	2000	Steven Soderbergh	Thriller,Drama,Crime	crime,thriller,drama
+road-to-perdition	Road to Perdition	2002	Sam Mendes	Crime,Drama,Thriller	crime,thriller,drama
+city-of-god	City of God	2002	Fernando Meirelles	Crime	crime,drama
+catch-me-if-you-can	Catch Me If You Can	2002	Steven Spielberg	Crime	crime,drama
 kiss-kiss-bang-bang	Kiss Kiss Bang Bang	2005	Shane Black	Crime,Holiday	crime,holiday
-no-country-for-old-men-2007	No Country for Old Men	2007	Joel Coen	Crime	crime
-in-bruges	In Bruges	2008	Martin McDonagh	Crime	crime
-the-town	The Town	2010	Ben Affleck	Crime	crime
-argo	Argo	2012	Ben Affleck	Crime	crime
-the-wolf-of-wall-street	The Wolf of Wall Street	2013	Martin Scorsese	Crime	crime
-american-hustle	American Hustle	2013	David O. Russell	Crime	crime
-the-big-short	The Big Short	2015	Adam McKay	Crime	crime
-carol	Carol	2015	Todd Haynes	Crime	crime
-hell-or-high-water-2016	Hell or High Water	2016	David Mackenzie	Crime	crime
-three-billboards-outside-ebbing-missouri	Three Billboards Outside Ebbing Missouri	2017	Martin McDonagh	Crime	crime
-the-irishman	The Irishman	2019	Martin Scorsese	Crime	crime
-nightmare-alley	Nightmare Alley	2021	Guillermo del Toro	Crime	crime
-killers-of-the-flower-moon	Killers of the Flower Moon	2023	Martin Scorsese	Crime	crime
-duck-soup	Duck Soup	1933	Leo McCarey	Comedy	comedy
-it-happened-one-night	It Happened One Night	1934	Frank Capra	Comedy	comedy
-the-thin-man	The Thin Man	1934	W.S. Van Dyke	Comedy	comedy
-bringing-up-baby	Bringing Up Baby	1938	Howard Hawks	Comedy	comedy
-his-girl-friday	His Girl Friday	1940	Howard Hawks	Comedy	comedy
-sullivans-travels	Sullivan's Travels	1941	Preston Sturges	Comedy	comedy
-the-lady-eve	The Lady Eve	1941	Preston Sturges	Comedy	comedy
-the-palm-beach-story	The Palm Beach Story	1942	Preston Sturges	Comedy	comedy
-arsenic-and-old-lace	Arsenic and Old Lace	1944	Frank Capra	Comedy	comedy
-singin-in-the-rain	Singin in the Rain	1952	Stanley Donen	Comedy	comedy
-some-like-it-hot	Some Like It Hot	1959	Billy Wilder	Comedy	comedy
-the-apartment	The Apartment	1960	Billy Wilder	Comedy,Holiday	comedy,holiday
-its-a-mad-mad-mad-mad-world	It's a Mad Mad Mad Mad World	1963	Stanley Kramer	Comedy	comedy
-dr-strangelove	Dr Strangelove	1964	Stanley Kubrick	Comedy	comedy
-the-graduate	The Graduate	1967	Mike Nichols	Comedy	comedy
-blazing-saddles	Blazing Saddles	1974	Mel Brooks	Comedy	comedy
-young-frankenstein	Young Frankenstein	1974	Mel Brooks	Comedy	comedy
-monty-python-and-the-holy-grail	Monty Python and the Holy Grail	1975	Terry Gilliam	Comedy	comedy
+no-country-for-old-men-2007	No Country for Old Men	2007	Joel Coen	Crime,Drama,Thriller	western,crime
+in-bruges	In Bruges	2008	Martin McDonagh	Comedy,Drama,Crime	comedy,crime,drama
+the-town	The Town	2010	Ben Affleck	Crime,Drama,Thriller	crime,thriller,drama
+argo	Argo	2012	Ben Affleck	Drama,Thriller	thriller,drama
+the-wolf-of-wall-street	The Wolf of Wall Street	2013	Martin Scorsese	Crime,Drama,Comedy	comedy,crime,drama
+american-hustle	American Hustle	2013	David O. Russell	Crime	crime,drama
+the-big-short	The Big Short	2015	Adam McKay	Comedy,Drama	comedy,drama
+carol	Carol	2015	Todd Haynes	Romance,Drama	indie,romance
+hell-or-high-water-2016	Hell or High Water	2016	David Mackenzie	Western,Crime,Drama	western,crime,drama
+three-billboards-outside-ebbing-missouri	Three Billboards Outside Ebbing Missouri	2017	Martin McDonagh	Crime	crime,drama
+the-irishman	The Irishman	2019	Martin Scorsese	Crime	crime,drama
+nightmare-alley	Nightmare Alley	2021	Guillermo del Toro	Crime,Drama,Thriller	crime,thriller,drama
+killers-of-the-flower-moon	Killers of the Flower Moon	2023	Martin Scorsese	Crime	crime,drama
+duck-soup	Duck Soup	1933	Leo McCarey	Comedy	classics,comedy
+it-happened-one-night	It Happened One Night	1934	Frank Capra	Comedy	classics,comedy,romance
+the-thin-man	The Thin Man	1934	W.S. Van Dyke	Comedy,Mystery,Crime	comedy,crime,classics
+bringing-up-baby	Bringing Up Baby	1938	Howard Hawks	Comedy	classics,comedy
+his-girl-friday	His Girl Friday	1940	Howard Hawks	Comedy	classics,comedy
+sullivans-travels	Sullivan's Travels	1941	Preston Sturges	Comedy,Romance,Adventure	comedy,romance,classics
+the-lady-eve	The Lady Eve	1941	Preston Sturges	Comedy,Romance	comedy,romance,classics
+the-palm-beach-story	The Palm Beach Story	1942	Preston Sturges	Comedy,Romance	comedy,romance,classics
+arsenic-and-old-lace	Arsenic and Old Lace	1944	Frank Capra	Comedy,Crime	comedy,crime,classics
+singin-in-the-rain	Singin in the Rain	1952	Stanley Donen	Musical,Comedy,Romance	musical,comedy,classics
+some-like-it-hot	Some Like It Hot	1959	Billy Wilder	Comedy	classics,comedy
+the-apartment	The Apartment	1960	Billy Wilder	Comedy,Holiday	classics,comedy,holiday
+its-a-mad-mad-mad-mad-world	It's a Mad Mad Mad Mad World	1963	Stanley Kramer	Adventure,Comedy,Crime	comedy,crime,classics
+dr-strangelove	Dr Strangelove	1964	Stanley Kubrick	Comedy	war,comedy,classics
+the-graduate	The Graduate	1967	Mike Nichols	Drama,Romance,Comedy	comedy,romance,classics
+blazing-saddles	Blazing Saddles	1974	Mel Brooks	Western,Comedy	western,comedy,classics
+young-frankenstein	Young Frankenstein	1974	Mel Brooks	Comedy	comedy,classics
+monty-python-and-the-holy-grail	Monty Python and the Holy Grail	1975	Terry Gilliam	Adventure,Comedy,Fantasy	fantasy,comedy
 the-kentucky-fried-movie	The Kentucky Fried Movie	1977	John Landis	Comedy	comedy
-high-anxiety	High Anxiety	1977	Mel Brooks	Comedy	comedy
-oh-god	Oh God	1977	Carl Reiner	Comedy	comedy
+high-anxiety	High Anxiety	1977	Mel Brooks	Comedy,Mystery,Thriller,Crime	comedy,crime,thriller
+oh-god	Oh God	1977	Carl Reiner	Fantasy,Comedy	fantasy,comedy
 animal-house	Animal House	1978	John Landis	Comedy	comedy
 up-in-smoke	Up in Smoke	1978	Lou Adler	Comedy	comedy
-foul-play	Foul Play	1978	Colin Higgins	Comedy	comedy
-being-there	Being There	1979	Hal Ashby	Comedy	comedy
+foul-play	Foul Play	1978	Colin Higgins	Comedy	comedy,thriller
+being-there	Being There	1979	Hal Ashby	Comedy	comedy,drama
 life-of-brian	Life of Brian	1979	Terry Jones	Comedy	comedy
 the-jerk	The Jerk	1979	Carl Reiner	Comedy	comedy
 meatballs	Meatballs	1979	Ivan Reitman	Comedy	comedy
-the-muppet-movie	The Muppet Movie	1979	James Frawley	Comedy	comedy
+the-muppet-movie	The Muppet Movie	1979	James Frawley	Comedy,Family,Adventure	family,comedy
 airplane-1980	Airplane	1980	Jim Abrahams	Comedy	comedy
-the-blues-brothers	The Blues Brothers	1980	John Landis	Comedy	comedy
+the-blues-brothers	The Blues Brothers	1980	John Landis	Comedy	comedy,crime
 caddyshack	Caddyshack	1980	Harold Ramis	Comedy	comedy
-stir-crazy	Stir Crazy	1980	Sidney Poitier	Comedy	comedy
+stir-crazy	Stir Crazy	1980	Sidney Poitier	Comedy	comedy,crime
 9-to-5	9 to 5	1980	Colin Higgins	Comedy	comedy
 private-benjamin	Private Benjamin	1980	Howard Zieff	Comedy	comedy
-stripes	Stripes	1981	Ivan Reitman	Comedy	comedy
-arthur	Arthur	1981	Steve Gordon	Comedy	comedy
-fast-times-at-ridgemont-high	Fast Times at Ridgemont High	1982	Amy Heckerling	Comedy	comedy
-diner	Diner	1982	Barry Levinson	Comedy	comedy
+stripes	Stripes	1981	Ivan Reitman	Comedy	action,comedy
+arthur	Arthur	1981	Steve Gordon	Comedy,Drama,Romance	comedy,romance,drama
+fast-times-at-ridgemont-high	Fast Times at Ridgemont High	1982	Amy Heckerling	Comedy,Romance,Drama	comedy,romance,drama
+diner	Diner	1982	Barry Levinson	Comedy	comedy,drama
 trading-places	Trading Places	1982	John Landis	Comedy	comedy
 national-lampoons-vacation	National Lampoon's Vacation	1983	Harold Ramis	Comedy	comedy
-risky-business	Risky Business	1983	Paul Brickman	Comedy	comedy
-ghostbusters-1984	Ghostbusters	1984	Ivan Reitman	Comedy	comedy
+risky-business	Risky Business	1983	Paul Brickman	Romance,Comedy,Drama	comedy,romance,drama
+ghostbusters-1984	Ghostbusters	1984	Ivan Reitman	Comedy,Sci-Fi,Fantasy	fantasy,comedy
 this-is-spinal-tap	This Is Spinal Tap	1984	Rob Reiner	Comedy	comedy
-police-academy	Police Academy	1984	Hugh Wilson	Comedy	comedy
-beverly-hills-cop	Beverly Hills Cop	1984	Martin Brest	Comedy	comedy
-sixteen-candles	Sixteen Candles	1984	John Hughes	Comedy	comedy
+police-academy	Police Academy	1984	Hugh Wilson	Comedy	comedy,crime
+beverly-hills-cop	Beverly Hills Cop	1984	Martin Brest	Comedy,Crime,Action	action,comedy,crime
+sixteen-candles	Sixteen Candles	1984	John Hughes	Comedy	comedy,romance
 revenge-of-the-nerds	Revenge of the Nerds	1984	Jeff Kanew	Comedy	comedy
-splash	Splash	1984	Ron Howard	Comedy	comedy
-the-breakfast-club-1985	The Breakfast Club	1985	John Hughes	Comedy	comedy
-weird-science	Weird Science	1985	John Hughes	Comedy	comedy
-fletch	Fletch	1985	Michael Ritchie	Comedy	comedy
+splash	Splash	1984	Ron Howard	Comedy,Romance,Fantasy	fantasy,comedy,romance
+the-breakfast-club-1985	The Breakfast Club	1985	John Hughes	Comedy	comedy,drama
+weird-science	Weird Science	1985	John Hughes	Comedy,Fantasy,Sci-Fi,Romance	fantasy,scifi,comedy
+fletch	Fletch	1985	Michael Ritchie	Comedy	comedy,crime
 spies-like-us	Spies Like Us	1985	John Landis	Comedy	comedy
-clue	Clue	1985	Jonathan Lynn	Comedy	comedy
-better-off-dead	Better Off Dead	1985	Savage Steve Holland	Comedy	comedy
-the-sure-thing	The Sure Thing	1985	Rob Reiner	Comedy	comedy
+clue	Clue	1985	Jonathan Lynn	Comedy	comedy,crime
+better-off-dead	Better Off Dead	1985	Savage Steve Holland	Comedy	comedy,romance
+the-sure-thing	The Sure Thing	1985	Rob Reiner	Comedy,Drama,Romance	comedy,romance,drama
 ferris-buellers-day-off-1986	Ferris Bueller's Day Off	1986	John Hughes	Comedy	comedy
-pretty-in-pink	Pretty in Pink	1986	Howard Deutch	Comedy	comedy
-three-amigos	Three Amigos	1986	John Landis	Comedy	comedy
-lucas	Lucas	1986	David Seltzer	Comedy	comedy
-spaceballs	Spaceballs	1987	Mel Brooks	Comedy	comedy
+pretty-in-pink	Pretty in Pink	1986	Howard Deutch	Romance,Drama	romance,drama
+three-amigos	Three Amigos	1986	John Landis	Comedy,Western	western,comedy
+lucas	Lucas	1986	David Seltzer	Comedy,Drama,Romance	comedy,romance,drama
+spaceballs	Spaceballs	1987	Mel Brooks	Comedy,Sci-Fi	scifi,comedy
 planes-trains-and-automobiles	Planes Trains and Automobiles	1987	John Hughes	Comedy,Holiday	comedy,holiday
-the-princess-bride-1987	The Princess Bride	1987	Rob Reiner	Comedy	comedy
-a-fish-called-wanda	A Fish Called Wanda	1988	Charles Crichton	Comedy	comedy
-coming-to-america-1988	Coming to America	1988	John Landis	Comedy	comedy
-big	Big	1988	Penny Marshall	Comedy	comedy
-dirty-rotten-scoundrels	Dirty Rotten Scoundrels	1988	Frank Oz	Comedy	comedy
-parenthood	Parenthood	1989	Ron Howard	Comedy	comedy
-uncle-buck	Uncle Buck	1989	John Hughes	Comedy	comedy
-bill-and-teds-excellent-adventure	Bill and Ted's Excellent Adventure	1989	Stephen Herek	Comedy	comedy
-look-whos-talking	Look Who's Talking	1989	Amy Heckerling	Comedy	comedy
+the-princess-bride-1987	The Princess Bride	1987	Rob Reiner	Adventure,Comedy,Fantasy	fantasy,comedy,family
+a-fish-called-wanda	A Fish Called Wanda	1988	Charles Crichton	Comedy	comedy,crime
+coming-to-america-1988	Coming to America	1988	John Landis	Comedy	comedy,romance
+big	Big	1988	Penny Marshall	Fantasy,Drama,Comedy	fantasy,comedy,drama
+dirty-rotten-scoundrels	Dirty Rotten Scoundrels	1988	Frank Oz	Comedy	comedy,crime
+parenthood	Parenthood	1989	Ron Howard	Comedy	comedy,drama
+uncle-buck	Uncle Buck	1989	John Hughes	Comedy,Drama,Family	family,comedy,drama
+bill-and-teds-excellent-adventure	Bill and Ted's Excellent Adventure	1989	Stephen Herek	Adventure,Comedy,Sci-Fi	scifi,comedy
+look-whos-talking	Look Who's Talking	1989	Amy Heckerling	Comedy	comedy,romance
 what-about-bob	What About Bob	1991	Frank Oz	Comedy	comedy
-hot-shots	Hot Shots	1991	Jim Abrahams	Comedy	comedy
+hot-shots	Hot Shots	1991	Jim Abrahams	Action,Comedy,War	war,action,comedy
 waynes-world	Wayne's World	1992	Penelope Spheeris	Comedy	comedy
-my-cousin-vinny	My Cousin Vinny	1992	Jonathan Lynn	Comedy	comedy
+my-cousin-vinny	My Cousin Vinny	1992	Jonathan Lynn	Comedy	comedy,drama
 sister-act	Sister Act	1992	Emile Ardolino	Comedy	comedy
-a-league-of-their-own	A League of Their Own	1992	Penny Marshall	Comedy	comedy
-mrs-doubtfire	Mrs Doubtfire	1993	Chris Columbus	Comedy	comedy
-groundhog-day-1993	Groundhog Day	1993	Harold Ramis	Comedy	comedy
-the-mask	The Mask	1994	Chuck Russell	Comedy	comedy
+a-league-of-their-own	A League of Their Own	1992	Penny Marshall	Comedy,Drama,Sport	sports,comedy,family
+mrs-doubtfire	Mrs Doubtfire	1993	Chris Columbus	Comedy,Family	family,comedy
+groundhog-day-1993	Groundhog Day	1993	Harold Ramis	Romance,Fantasy,Comedy	fantasy,comedy,romance
+the-mask	The Mask	1994	Chuck Russell	Comedy,Fantasy,Crime,Romance	fantasy,comedy,crime
 dumb-and-dumber-1994	Dumb and Dumber	1994	Peter Farrelly	Comedy	comedy
-ace-ventura-pet-detective	Ace Ventura Pet Detective	1994	Tom Shadyac	Comedy	comedy
-reality-bites	Reality Bites	1994	Ben Stiller	Comedy	comedy
+ace-ventura-pet-detective	Ace Ventura Pet Detective	1994	Tom Shadyac	Comedy	comedy,crime
+reality-bites	Reality Bites	1994	Ben Stiller	Drama,Romance,Comedy	comedy,romance,drama
 clerks-1994	Clerks	1994	Kevin Smith	Comedy	comedy
-clueless-1995	Clueless	1995	Amy Heckerling	Comedy	comedy
-dracula-dead-and-loving-it	Dracula Dead and Loving It	1995	Mel Brooks	Comedy	comedy
+clueless-1995	Clueless	1995	Amy Heckerling	Comedy	comedy,romance
+dracula-dead-and-loving-it	Dracula Dead and Loving It	1995	Mel Brooks	Comedy,Horror,Fantasy	fantasy,horror,comedy
 billy-madison	Billy Madison	1995	Tamra Davis	Comedy	comedy
 happy-gilmore	Happy Gilmore	1996	Dennis Dugan	Comedy	comedy
 kingpin	Kingpin	1996	Bobby Farrelly	Comedy	comedy
-the-cable-guy	The Cable Guy	1996	Ben Stiller	Comedy	comedy
-bottle-rocket	Bottle Rocket	1996	Wes Anderson	Comedy	comedy
-swingers	Swingers	1996	Doug Liman	Comedy	comedy
-austin-powers-international-man-of-mystery	Austin Powers International Man of Mystery	1997	Jay Roach	Comedy	comedy
-as-good-as-it-gets	As Good as It Gets	1997	James L. Brooks	Comedy	comedy
-grosse-pointe-blank	Grosse Pointe Blank	1997	George Armitage	Comedy	comedy
-theres-something-about-mary	There's Something About Mary	1997	Bobby Farrelly	Comedy	comedy
-the-truman-show	The Truman Show	1998	Peter Weir	Comedy	comedy
-rushmore	Rushmore	1998	Wes Anderson	Comedy	comedy
-office-space-1999	Office Space	1999	Mike Judge	Comedy	comedy
-american-pie	American Pie	1999	Paul Weitz	Comedy	comedy
-austin-powers-the-spy-who-shagged-me	Austin Powers The Spy Who Shagged Me	1999	Jay Roach	Comedy	comedy
-election	Election	1999	Alexander Payne	Comedy	comedy
-being-john-malkovich	Being John Malkovich	1999	Spike Jonze	Comedy	comedy
-meet-the-parents	Meet the Parents	2000	Jay Roach	Comedy	comedy
+the-cable-guy	The Cable Guy	1996	Ben Stiller	Comedy,Drama,Thriller	comedy,thriller,drama
+bottle-rocket	Bottle Rocket	1996	Wes Anderson	Comedy	indie,comedy
+swingers	Swingers	1996	Doug Liman	Comedy	comedy,drama
+austin-powers-international-man-of-mystery	Austin Powers International Man of Mystery	1997	Jay Roach	Comedy	comedy,crime
+as-good-as-it-gets	As Good as It Gets	1997	James L. Brooks	Drama,Comedy,Romance	comedy,romance,drama
+grosse-pointe-blank	Grosse Pointe Blank	1997	George Armitage	Action,Comedy,Thriller,Romance	action,comedy,romance
+theres-something-about-mary	There's Something About Mary	1997	Bobby Farrelly	Comedy	comedy,romance
+the-truman-show	The Truman Show	1998	Peter Weir	Comedy,Drama,Sci-Fi	comedy,drama
+rushmore	Rushmore	1998	Wes Anderson	Comedy	indie,comedy
+office-space-1999	Office Space	1999	Mike Judge	Comedy	comedy,cult
+american-pie	American Pie	1999	Paul Weitz	Comedy	comedy,romance
+austin-powers-the-spy-who-shagged-me	Austin Powers The Spy Who Shagged Me	1999	Jay Roach	Comedy	comedy,crime
+election	Election	1999	Alexander Payne	Comedy	comedy,drama
+being-john-malkovich	Being John Malkovich	1999	Spike Jonze	Comedy,Fantasy,Drama	fantasy,cult,comedy
+meet-the-parents	Meet the Parents	2000	Jay Roach	Comedy	comedy,romance
 best-in-show	Best in Show	2000	Christopher Guest	Comedy	comedy
-o-brother-where-art-thou	O Brother Where Art Thou	2000	Joel Coen	Comedy	comedy
-high-fidelity	High Fidelity	2000	Stephen Frears	Comedy	comedy
-how-the-grinch-stole-christmas	How the Grinch Stole Christmas	2000	Ron Howard	Comedy	comedy
+o-brother-where-art-thou	O Brother Where Art Thou	2000	Joel Coen	Comedy	comedy,crime
+high-fidelity	High Fidelity	2000	Stephen Frears	Drama,Comedy,Romance,Music	comedy,romance,drama
+how-the-grinch-stole-christmas	How the Grinch Stole Christmas	2000	Ron Howard	Comedy,Family,Holiday	holiday,comedy,family
 zoolander	Zoolander	2001	Ben Stiller	Comedy	comedy
-super-troopers	Super Troopers	2001	Jay Chandrasekhar	Comedy	comedy
+super-troopers	Super Troopers	2001	Jay Chandrasekhar	Comedy	comedy,crime
 wet-hot-american-summer	Wet Hot American Summer	2001	David Wain	Comedy	comedy
-jay-and-silent-bob-strike-back	Jay and Silent Bob Strike Back	2001	Kevin Smith	Comedy	comedy
-my-big-fat-greek-wedding	My Big Fat Greek Wedding	2001	Joel Zwick	Comedy	comedy
-bridget-joness-diary	Bridget Jones's Diary	2001	Sharon Maguire	Comedy	comedy
-austin-powers-in-goldmember	Austin Powers in Goldmember	2002	Jay Roach	Comedy	comedy
+jay-and-silent-bob-strike-back	Jay and Silent Bob Strike Back	2001	Kevin Smith	Comedy	action,comedy
+my-big-fat-greek-wedding	My Big Fat Greek Wedding	2001	Joel Zwick	Comedy,Drama,Romance	comedy,romance,drama
+bridget-joness-diary	Bridget Jones's Diary	2001	Sharon Maguire	Comedy,Romance,Drama	comedy,romance,drama
+austin-powers-in-goldmember	Austin Powers in Goldmember	2002	Jay Roach	Comedy	comedy,crime
 old-school	Old School	2003	Todd Phillips	Comedy	comedy
-bruce-almighty	Bruce Almighty	2003	Tom Shadyac	Comedy	comedy
-freaky-friday	Freaky Friday	2003	Mark Waters	Comedy	comedy
-school-of-rock	School of Rock	2003	Richard Linklater	Comedy	comedy
+bruce-almighty	Bruce Almighty	2003	Tom Shadyac	Fantasy,Comedy	fantasy,comedy
+freaky-friday	Freaky Friday	2003	Mark Waters	Comedy,Family,Fantasy	family,fantasy,comedy
+school-of-rock	School of Rock	2003	Richard Linklater	Comedy,Family,Music	family,comedy
 anchorman-2004	Anchorman	2004	Adam McKay	Comedy	comedy
 dodgeball	Dodgeball	2004	Rawson Marshall Thurber	Comedy	comedy
-50-first-dates	50 First Dates	2004	Peter Segal	Comedy	comedy
-13-going-on-30	13 Going on 30	2004	Gary Winick	Comedy	comedy
-napoleon-dynamite	Napoleon Dynamite	2004	Jared Hess	Comedy	comedy
-mean-girls-2004	Mean Girls	2004	Mark Waters	Comedy	comedy
+50-first-dates	50 First Dates	2004	Peter Segal	Comedy	comedy,romance
+13-going-on-30	13 Going on 30	2004	Gary Winick	Comedy,Fantasy,Romance	fantasy,comedy,romance
+napoleon-dynamite	Napoleon Dynamite	2004	Jared Hess	Comedy	comedy,cult
+mean-girls-2004	Mean Girls	2004	Mark Waters	Comedy	comedy,drama
 the-perks-of-being-a-wallflower	The Perks of Being a Wallflower	2004	Stephen Chbosky	Comedy	comedy
-the-40-year-old-virgin	The 40-Year-Old Virgin	2005	Judd Apatow	Comedy	comedy
-wedding-crashers	Wedding Crashers	2005	David Dobkin	Comedy	comedy
+the-40-year-old-virgin	The 40-Year-Old Virgin	2005	Judd Apatow	Comedy	comedy,romance
+wedding-crashers	Wedding Crashers	2005	David Dobkin	Comedy	comedy,romance
 talladega-nights-the-ballad-of-ricky-bobby	Talladega Nights The Ballad of Ricky Bobby	2006	Adam McKay	Comedy	comedy
 borat	Borat	2006	Larry Charles	Comedy	comedy
-nacho-libre	Nacho Libre	2006	Jared Hess	Comedy	comedy
-knocked-up	Knocked Up	2007	Judd Apatow	Comedy	comedy
+nacho-libre	Nacho Libre	2006	Jared Hess	Comedy,Action,Family	family,action,comedy
+knocked-up	Knocked Up	2007	Judd Apatow	Comedy,Romance,Drama	comedy,romance,drama
 superbad-2007	Superbad	2007	Greg Mottola	Comedy	comedy
-juno	Juno	2007	Jason Reitman	Comedy	comedy
+juno	Juno	2007	Jason Reitman	Comedy	indie,comedy
 step-brothers	Step Brothers	2008	Adam McKay	Comedy	comedy
-tropic-thunder	Tropic Thunder	2008	Ben Stiller	Comedy	comedy
-pineapple-express	Pineapple Express	2008	David Gordon Green	Comedy	comedy
-forgetting-sarah-marshall	Forgetting Sarah Marshall	2008	Nicholas Stoller	Comedy	comedy
+tropic-thunder	Tropic Thunder	2008	Ben Stiller	Action,Comedy,War	war,action,comedy
+pineapple-express	Pineapple Express	2008	David Gordon Green	Action,Comedy,Crime	action,comedy,crime
+forgetting-sarah-marshall	Forgetting Sarah Marshall	2008	Nicholas Stoller	Comedy,Romance,Drama	comedy,romance,drama
 role-models	Role Models	2008	David Wain	Comedy	comedy
 the-hangover	The Hangover	2009	Todd Phillips	Comedy	comedy
-zombieland	Zombieland	2009	Ruben Fleischer	Comedy	comedy
-500-days-of-summer	500 Days of Summer	2009	Marc Webb	Comedy	comedy
-the-proposal	The Proposal	2009	Anne Fletcher	Comedy	comedy
-the-other-guys	The Other Guys	2010	Adam McKay	Comedy	comedy
+zombieland	Zombieland	2009	Ruben Fleischer	Comedy,Horror	horror,comedy
+500-days-of-summer	500 Days of Summer	2009	Marc Webb	Comedy,Drama,Romance	comedy,romance,drama
+the-proposal	The Proposal	2009	Anne Fletcher	Comedy,Romance,Drama	comedy,romance,drama
+the-other-guys	The Other Guys	2010	Adam McKay	Comedy,Action,Crime	action,comedy,crime
 easy-a	Easy A	2010	Will Gluck	Comedy	comedy
-scott-pilgrim-vs-the-world	Scott Pilgrim vs the World	2010	Edgar Wright	Comedy	comedy
-bridesmaids	Bridesmaids	2011	Paul Feig	Comedy	comedy
-crazy-stupid-love	Crazy Stupid Love	2011	Glenn Ficarra	Comedy	comedy
-50-50	50/50	2011	Jonathan Levine	Comedy	comedy
-horrible-bosses	Horrible Bosses	2011	Seth Gordon	Comedy	comedy
-21-jump-street	21 Jump Street	2012	Phil Lord	Comedy	comedy
-ted	Ted	2012	Seth MacFarlane	Comedy	comedy
-pitch-perfect	Pitch Perfect	2012	Jason Moore	Comedy	comedy
-this-is-the-end	This Is the End	2013	Evan Goldberg	Comedy	comedy
-the-worlds-end	The World's End	2013	Edgar Wright	Comedy	comedy
-the-heat	The Heat	2013	Paul Feig	Comedy	comedy
-were-the-millers	We're the Millers	2013	Rawson Marshall Thurber	Comedy	comedy
-about-time	About Time	2013	Richard Curtis	Comedy	comedy
-22-jump-street	22 Jump Street	2014	Phil Lord	Comedy	comedy
-the-lego-movie	The Lego Movie	2014	Phil Lord	Comedy	comedy
-what-we-do-in-the-shadows	What We Do in the Shadows	2014	Taika Waititi	Comedy	comedy
+scott-pilgrim-vs-the-world	Scott Pilgrim vs the World	2010	Edgar Wright	Action,Comedy,Romance	action,comedy,romance
+bridesmaids	Bridesmaids	2011	Paul Feig	Comedy	comedy,romance
+crazy-stupid-love	Crazy Stupid Love	2011	Glenn Ficarra	Comedy,Drama,Romance	comedy,romance,drama
+50-50	50/50	2011	Jonathan Levine	Comedy	comedy,drama
+horrible-bosses	Horrible Bosses	2011	Seth Gordon	Comedy	comedy,crime
+21-jump-street	21 Jump Street	2012	Phil Lord	Action,Comedy,Crime	action,comedy,crime
+ted	Ted	2012	Seth MacFarlane	Comedy,Fantasy	fantasy,comedy
+pitch-perfect	Pitch Perfect	2012	Jason Moore	Comedy	comedy,romance
+this-is-the-end	This Is the End	2013	Evan Goldberg	Comedy	action,comedy
+the-worlds-end	The World's End	2013	Edgar Wright	Comedy,Action,Sci-Fi	scifi,action,comedy
+the-heat	The Heat	2013	Paul Feig	Action,Comedy,Crime	action,comedy,crime
+were-the-millers	We're the Millers	2013	Rawson Marshall Thurber	Comedy	comedy,crime
+about-time	About Time	2013	Richard Curtis	Drama,Romance,Fantasy	fantasy,romance,drama
+22-jump-street	22 Jump Street	2014	Phil Lord	Crime,Comedy,Action	action,comedy,crime
+the-lego-movie	The Lego Movie	2014	Phil Lord	Animation,Family,Adventure,Comedy,Fantasy	family,fantasy,animation
+what-we-do-in-the-shadows	What We Do in the Shadows	2014	Taika Waititi	Comedy,Horror	horror,comedy
 neighbors	Neighbors	2014	Nicholas Stoller	Comedy	comedy
-spy	Spy	2015	Paul Feig	Comedy	comedy
-trainwreck	Trainwreck	2015	Judd Apatow	Comedy	comedy
-ant-man	Ant-Man	2015	Peyton Reed	Comedy	comedy
-the-nice-guys	The Nice Guys	2016	Shane Black	Comedy	comedy
-hunt-for-the-wilderpeople	Hunt for the Wilderpeople	2016	Taika Waititi	Comedy	comedy
-the-big-sick	The Big Sick	2017	Michael Showalter	Comedy	comedy
-game-night	Game Night	2018	John Francis Daley	Comedy	comedy
+spy	Spy	2015	Paul Feig	Action,Comedy,Crime	action,comedy,crime
+trainwreck	Trainwreck	2015	Judd Apatow	Comedy	comedy,romance
+ant-man	Ant-Man	2015	Peyton Reed	Sci-Fi,Adventure,Action	scifi,action
+the-nice-guys	The Nice Guys	2016	Shane Black	Comedy,Crime,Action	action,comedy,crime
+hunt-for-the-wilderpeople	Hunt for the Wilderpeople	2016	Taika Waititi	Comedy	comedy,drama
+the-big-sick	The Big Sick	2017	Michael Showalter	Comedy,Drama,Romance	comedy,romance,drama
+game-night	Game Night	2018	John Francis Daley	Comedy	comedy,crime
 blockers	Blockers	2018	Kay Cannon	Comedy	comedy
-eighth-grade	Eighth Grade	2018	Bo Burnham	Comedy	comedy
+eighth-grade	Eighth Grade	2018	Bo Burnham	Comedy,Drama	indie,comedy
 booksmart	Booksmart	2018	Olivia Wilde	Comedy	comedy
-crazy-rich-asians	Crazy Rich Asians	2018	Jon M. Chu	Comedy	comedy
-jojo-rabbit	Jojo Rabbit	2019	Taika Waititi	Comedy	comedy
-palm-springs	Palm Springs	2020	Max Barbakow	Comedy	comedy
-shiva-baby	Shiva Baby	2021	Emma Seligman	Comedy	comedy
-glass-onion	Glass Onion	2022	Rian Johnson	Comedy	comedy
-the-unbearable-weight-of-massive-talent	The Unbearable Weight of Massive Talent	2022	Tom Gormican	Comedy	comedy
+crazy-rich-asians	Crazy Rich Asians	2018	Jon M. Chu	Comedy	comedy,romance
+jojo-rabbit	Jojo Rabbit	2019	Taika Waititi	Comedy,War,Drama	war,comedy,drama
+palm-springs	Palm Springs	2020	Max Barbakow	Comedy,Romance,Sci-Fi	scifi,comedy,romance
+shiva-baby	Shiva Baby	2021	Emma Seligman	Comedy	comedy,drama
+glass-onion	Glass Onion	2022	Rian Johnson	Comedy	comedy,crime
+the-unbearable-weight-of-massive-talent	The Unbearable Weight of Massive Talent	2022	Tom Gormican	Action,Comedy,Crime	action,comedy,crime
 bottoms	Bottoms	2023	Emma Seligman	Comedy	comedy
-the-holdovers	The Holdovers	2023	Alexander Payne	Comedy	comedy
-hit-man	Hit Man	2024	Richard Linklater	Comedy	comedy
-drive-away-dolls	Drive-Away Dolls	2024	Ethan Coen	Comedy	comedy
-beverly-hills-cop-axel-f	Beverly Hills Cop Axel F	2024	Mark Molloy	Comedy	comedy
-ghostbusters-frozen-empire	Ghostbusters Frozen Empire	2024	Gil Kenan	Comedy	comedy
-anyone-but-you	Anyone But You	2024	Will Gluck	Comedy	comedy
-another-simple-favor	Another Simple Favor	2025	Jake Kasdan	Comedy	comedy
-gone-with-the-wind	Gone with the Wind	1939	Victor Fleming	Romance	romance
-the-wizard-of-oz	The Wizard of Oz	1939	Victor Fleming	Romance	romance
-the-shop-around-the-corner	The Shop Around the Corner	1940	Ernst Lubitsch	Romance	romance
-casablanca-1942	Casablanca	1942	Michael Curtiz	Romance	romance
-brief-encounter	Brief Encounter	1945	David Lean	Romance	romance
-the-best-years-of-our-lives	The Best Years of Our Lives	1946	William Wyler	Romance	romance
-roman-holiday	Roman Holiday	1953	William Wyler	Romance	romance
-sabrina	Sabrina	1954	Billy Wilder	Romance	romance
-an-affair-to-remember	An Affair to Remember	1957	Leo McCarey	Romance	romance
-funny-face	Funny Face	1957	Stanley Donen	Romance	romance
-west-side-story	West Side Story	1961	Robert Wise	Romance	romance
-the-goodbye-girl	The Goodbye Girl	1977	Herbert Ross	Romance	romance
-moonstruck-1987	Moonstruck	1987	Norman Jewison	Romance	romance
-dirty-dancing-1987	Dirty Dancing	1987	Emile Ardolino	Romance	romance
-say-anything-1989	Say Anything	1989	Cameron Crowe	Romance	romance
-when-harry-met-sally-1989	When Harry Met Sally	1989	Rob Reiner	Romance	romance
-sense-and-sensibility	Sense and Sensibility	1995	Ang Lee	Romance	romance
-before-sunrise	Before Sunrise	1995	Richard Linklater	Romance	romance
-the-english-patient	The English Patient	1996	Anthony Minghella	Romance	romance
-titanic-1997	Titanic	1997	James Cameron	Romance	romance
-sliding-doors	Sliding Doors	1998	Peter Howitt	Romance	romance
-notting-hill	Notting Hill	1999	Roger Michell	Romance	romance
-almost-famous	Almost Famous	2000	Cameron Crowe	Romance	romance
-moulin-rouge	Moulin Rouge	2001	Baz Luhrmann	Romance	romance
-amelie-2001	Amelie	2001	Jean-Pierre Jeunet	Romance	romance
-bend-it-like-beckham	Bend It Like Beckham	2002	Gurinder Chadha	Romance	romance
-sweet-home-alabama	Sweet Home Alabama	2002	Andy Tennant	Romance	romance
-about-a-boy	About a Boy	2002	Chris Weitz	Romance	romance
-love-actually-2003	Love Actually	2003	Richard Curtis	Romance	romance
-somethings-gotta-give	Something's Gotta Give	2003	Nancy Meyers	Romance	romance
-before-sunset	Before Sunset	2004	Richard Linklater	Romance	romance
-closer	Closer	2004	Mike Nichols	Romance	romance
-pride-and-prejudice	Pride and Prejudice	2005	Joe Wright	Romance	romance
-brokeback-mountain	Brokeback Mountain	2005	Ang Lee	Romance	romance
-the-devil-wears-prada	The Devil Wears Prada	2006	David Frankel	Romance	romance
-500-days-of-summer-2007	500 Days of Summer	2007	Marc Webb	Romance	romance
-the-curious-case-of-benjamin-button	The Curious Case of Benjamin Button	2008	David Fincher	Romance	romance
-its-complicated	It's Complicated	2009	Nancy Meyers	Romance	romance
-blue-valentine	Blue Valentine	2010	Derek Cianfrance	Romance	romance
-friends-with-benefits	Friends with Benefits	2011	Will Gluck	Romance	romance
-before-midnight	Before Midnight	2013	Richard Linklater	Romance	romance
-her-2013	Her	2013	Spike Jonze	Romance	romance
-call-me-by-your-name	Call Me by Your Name	2017	Luca Guadagnino	Romance	romance
-love-simon	Love Simon	2018	Greg Berlanti	Romance	romance
-to-all-the-boys-ive-loved-before	To All the Boys I've Loved Before	2018	Susan Johnson	Romance	romance
-set-it-up	Set It Up	2018	Claire Scanlon	Romance	romance
-the-farewell	The Farewell	2019	Lulu Wang	Romance	romance
-promising-young-woman	Promising Young Woman	2020	Emerald Fennell	Romance	romance
-past-lives-2021	Past Lives	2021	Celine Song	Romance	romance
-anatomy-of-a-fall	Anatomy of a Fall	2023	Justine Triet	Romance	romance
-queer	Queer	2024	Luca Guadagnino	Romance	romance
-babygirl	Babygirl	2024	Halina Reijn	Romance	romance
-citizen-kane	Citizen Kane	1941	Orson Welles	Drama	drama
-the-maltese-falcon	The Maltese Falcon	1941	John Huston	Drama	drama
-the-treasure-of-the-sierra-madre	The Treasure of the Sierra Madre	1948	John Huston	Drama	drama
-sunset-boulevard	Sunset Boulevard	1950	Billy Wilder	Drama	drama
-all-about-eve	All About Eve	1950	Joseph L. Mankiewicz	Drama	drama
-rashomon	Rashomon	1950	Akira Kurosawa	Drama	drama
-a-streetcar-named-desire	A Streetcar Named Desire	1951	Elia Kazan	Drama	drama
-high-noon	High Noon	1952	Fred Zinnemann	Drama	drama
-ikiru	Ikiru	1952	Akira Kurosawa	Drama	drama
-tokyo-story	Tokyo Story	1953	Yasujiro Ozu	Drama	drama
-on-the-waterfront	On the Waterfront	1954	Elia Kazan	Drama	drama
-seven-samurai	Seven Samurai	1954	Akira Kurosawa	Drama	drama
-12-angry-men	12 Angry Men	1957	Sidney Lumet	Drama	drama
-the-bridge-on-the-river-kwai	The Bridge on the River Kwai	1957	David Lean	Drama	drama
-paths-of-glory	Paths of Glory	1957	Stanley Kubrick	Drama	drama
-the-seventh-seal	The Seventh Seal	1957	Ingmar Bergman	Drama	drama
-ben-hur	Ben-Hur	1959	William Wyler	Drama	drama
-lawrence-of-arabia	Lawrence of Arabia	1962	David Lean	Drama	drama
-whos-afraid-of-virginia-woolf	Who's Afraid of Virginia Woolf	1966	Mike Nichols	Drama	drama
-in-the-heat-of-the-night	In the Heat of the Night	1967	Norman Jewison	Drama	drama
-midnight-cowboy	Midnight Cowboy	1969	John Schlesinger	Drama	drama
-mash	MASH	1970	Robert Altman	Drama	drama
-patton	Patton	1970	Franklin J. Schaffner	Drama	drama
-five-easy-pieces	Five Easy Pieces	1970	Bob Rafelson	Drama	drama
-the-last-picture-show	The Last Picture Show	1971	Peter Bogdanovich	Drama	drama
-the-sting	The Sting	1973	George Roy Hill	Drama	drama
-american-graffiti	American Graffiti	1973	George Lucas	Drama	drama
-badlands	Badlands	1973	Terrence Malick	Drama	drama
-one-flew-over-the-cuckoos-nest-1975	One Flew Over the Cuckoo's Nest	1975	Milos Forman	Drama	drama
+the-holdovers	The Holdovers	2023	Alexander Payne	Comedy	comedy,drama
+hit-man	Hit Man	2024	Richard Linklater	Comedy,Romance,Crime	comedy,crime,romance
+drive-away-dolls	Drive-Away Dolls	2024	Ethan Coen	Comedy,Crime	comedy,crime,new
+beverly-hills-cop-axel-f	Beverly Hills Cop Axel F	2024	Mark Molloy	Action,Comedy,Crime	action,comedy,crime
+ghostbusters-frozen-empire	Ghostbusters Frozen Empire	2024	Gil Kenan	Fantasy,Adventure,Comedy	fantasy,comedy,new
+anyone-but-you	Anyone But You	2024	Will Gluck	Comedy	comedy,romance
+another-simple-favor	Another Simple Favor	2025	Jake Kasdan	Comedy,Thriller,Mystery	comedy,thriller,new
+gone-with-the-wind	Gone with the Wind	1939	Victor Fleming	Romance	classics,romance
+the-wizard-of-oz	The Wizard of Oz	1939	Victor Fleming	Adventure,Family,Fantasy	fantasy,family,classics
+the-shop-around-the-corner	The Shop Around the Corner	1940	Ernst Lubitsch	Comedy,Drama,Romance	comedy,romance,classics
+casablanca-1942	Casablanca	1942	Michael Curtiz	Romance	classics,romance
+brief-encounter	Brief Encounter	1945	David Lean	Drama,Romance	romance,classics,drama
+the-best-years-of-our-lives	The Best Years of Our Lives	1946	William Wyler	Drama,Romance,War	war,romance,classics
+roman-holiday	Roman Holiday	1953	William Wyler	Romance,Comedy,Drama	comedy,romance,classics
+sabrina	Sabrina	1954	Billy Wilder	Comedy,Romance,Drama	comedy,romance,classics
+an-affair-to-remember	An Affair to Remember	1957	Leo McCarey	Drama,Romance	romance,classics,drama
+funny-face	Funny Face	1957	Stanley Donen	Music,Comedy,Romance	comedy,romance,classics
+west-side-story	West Side Story	1961	Robert Wise	Musical,Romance,Crime	musical,romance,classics
+the-goodbye-girl	The Goodbye Girl	1977	Herbert Ross	Comedy,Drama,Romance	comedy,romance,drama
+moonstruck-1987	Moonstruck	1987	Norman Jewison	Comedy,Drama,Romance	comedy,romance,drama
+dirty-dancing-1987	Dirty Dancing	1987	Emile Ardolino	Romance	romance,drama
+say-anything-1989	Say Anything	1989	Cameron Crowe	Romance,Comedy,Drama	comedy,romance,drama
+when-harry-met-sally-1989	When Harry Met Sally	1989	Rob Reiner	Comedy,Romance,Drama	comedy,romance,drama
+sense-and-sensibility	Sense and Sensibility	1995	Ang Lee	Romance	romance,drama
+before-sunrise	Before Sunrise	1995	Richard Linklater	Romance	indie,romance
+the-english-patient	The English Patient	1996	Anthony Minghella	Drama,Romance,War	war,romance,drama
+titanic-1997	Titanic	1997	James Cameron	Romance	romance,drama
+sliding-doors	Sliding Doors	1998	Peter Howitt	Comedy,Drama,Fantasy,Romance	fantasy,comedy,romance
+notting-hill	Notting Hill	1999	Roger Michell	Romance	comedy,romance
+almost-famous	Almost Famous	2000	Cameron Crowe	Drama,Music	drama
+moulin-rouge	Moulin Rouge	2001	Baz Luhrmann	Musical,Romance,Drama	musical,romance
+amelie-2001	Amelie	2001	Jean-Pierre Jeunet	Romance	comedy,romance
+bend-it-like-beckham	Bend It Like Beckham	2002	Gurinder Chadha	Comedy,Drama,Sport	sports,comedy,family
+sweet-home-alabama	Sweet Home Alabama	2002	Andy Tennant	Romance	comedy,romance
+about-a-boy	About a Boy	2002	Chris Weitz	Drama,Comedy,Romance	comedy,romance,drama
+love-actually-2003	Love Actually	2003	Richard Curtis	Comedy,Romance,Holiday	holiday,romance,comedy
+somethings-gotta-give	Something's Gotta Give	2003	Nancy Meyers	Drama,Comedy,Romance	comedy,romance,drama
+before-sunset	Before Sunset	2004	Richard Linklater	Romance	indie,romance
+closer	Closer	2004	Mike Nichols	Romance	romance,drama
+pride-and-prejudice	Pride and Prejudice	2005	Joe Wright	Romance	romance,drama
+brokeback-mountain	Brokeback Mountain	2005	Ang Lee	Drama,Romance,Western	romance,drama
+the-devil-wears-prada	The Devil Wears Prada	2006	David Frankel	Drama,Comedy	comedy,drama
+500-days-of-summer-2007	500 Days of Summer	2007	Marc Webb	Comedy,Drama,Romance	comedy,romance,drama
+the-curious-case-of-benjamin-button	The Curious Case of Benjamin Button	2008	David Fincher	Drama,Fantasy,Romance	fantasy,romance,drama
+its-complicated	It's Complicated	2009	Nancy Meyers	Romance	comedy,romance
+blue-valentine	Blue Valentine	2010	Derek Cianfrance	Romance	romance,drama
+friends-with-benefits	Friends with Benefits	2011	Will Gluck	Romance	comedy,romance
+before-midnight	Before Midnight	2013	Richard Linklater	Romance	indie,romance
+her-2013	Her	2013	Spike Jonze	Romance,Sci-Fi,Drama	indie,romance,scifi
+call-me-by-your-name	Call Me by Your Name	2017	Luca Guadagnino	Romance	romance,drama
+love-simon	Love Simon	2018	Greg Berlanti	Comedy,Drama,Romance	comedy,romance,drama
+to-all-the-boys-ive-loved-before	To All the Boys I've Loved Before	2018	Susan Johnson	Romance	comedy,romance
+set-it-up	Set It Up	2018	Claire Scanlon	Romance	comedy,romance
+the-farewell	The Farewell	2019	Lulu Wang	Comedy,Drama	comedy,drama
+promising-young-woman	Promising Young Woman	2020	Emerald Fennell	Thriller,Crime,Drama	crime,thriller,drama
+past-lives-2021	Past Lives	2021	Celine Song	Romance	romance,drama
+anatomy-of-a-fall	Anatomy of a Fall	2023	Justine Triet	Thriller,Drama,Crime	indie,thriller
+queer	Queer	2024	Luca Guadagnino	Drama,Romance	romance,drama,new
+babygirl	Babygirl	2024	Halina Reijn	Romance,Thriller	romance,thriller,new
+citizen-kane	Citizen Kane	1941	Orson Welles	Drama	classics,drama
+the-maltese-falcon	The Maltese Falcon	1941	John Huston	Mystery,Crime,Thriller	crime,thriller,classics
+the-treasure-of-the-sierra-madre	The Treasure of the Sierra Madre	1948	John Huston	Adventure,Drama,Western	western,classics,drama
+sunset-boulevard	Sunset Boulevard	1950	Billy Wilder	Drama	classics,drama
+all-about-eve	All About Eve	1950	Joseph L. Mankiewicz	Drama	classics,drama
+rashomon	Rashomon	1950	Akira Kurosawa	Drama	classics,drama
+a-streetcar-named-desire	A Streetcar Named Desire	1951	Elia Kazan	Drama	classics,drama
+high-noon	High Noon	1952	Fred Zinnemann	Western,Drama	western,classics
+ikiru	Ikiru	1952	Akira Kurosawa	Drama	classics,drama
+tokyo-story	Tokyo Story	1953	Yasujiro Ozu	Drama	classics,drama
+on-the-waterfront	On the Waterfront	1954	Elia Kazan	Crime,Drama,Romance	crime,romance,classics
+seven-samurai	Seven Samurai	1954	Akira Kurosawa	Action,Drama	action,classics,drama
+12-angry-men	12 Angry Men	1957	Sidney Lumet	Drama	classics,drama
+the-bridge-on-the-river-kwai	The Bridge on the River Kwai	1957	David Lean	Drama,History,War	war,classics,drama
+paths-of-glory	Paths of Glory	1957	Stanley Kubrick	War,Drama	war,classics
+the-seventh-seal	The Seventh Seal	1957	Ingmar Bergman	Fantasy,Drama	fantasy,classics,drama
+ben-hur	Ben-Hur	1959	William Wyler	Adventure,Drama,Action	classics,action
+lawrence-of-arabia	Lawrence of Arabia	1962	David Lean	War,Adventure,Drama	war,classics
+whos-afraid-of-virginia-woolf	Who's Afraid of Virginia Woolf	1966	Mike Nichols	Drama	classics,drama
+in-the-heat-of-the-night	In the Heat of the Night	1967	Norman Jewison	Crime,Drama,Mystery,Thriller	crime,thriller,classics
+midnight-cowboy	Midnight Cowboy	1969	John Schlesinger	Drama	classics,drama
+mash	MASH	1970	Robert Altman	Comedy,Drama,War	war,comedy,classics
+patton	Patton	1970	Franklin J. Schaffner	War,Drama,Biography	war,classics
+five-easy-pieces	Five Easy Pieces	1970	Bob Rafelson	Drama	classics,drama
+the-last-picture-show	The Last Picture Show	1971	Peter Bogdanovich	Drama,Romance	romance,classics,drama
+the-sting	The Sting	1973	George Roy Hill	Comedy,Crime,Drama	comedy,crime,classics
+american-graffiti	American Graffiti	1973	George Lucas	Comedy,Drama	comedy,classics,drama
+badlands	Badlands	1973	Terrence Malick	Drama,Romance,Crime	crime,romance,classics
+one-flew-over-the-cuckoos-nest-1975	One Flew Over the Cuckoo's Nest	1975	Milos Forman	Drama	classics,drama
 barry-lyndon	Barry Lyndon	1975	Stanley Kubrick	Drama	drama
-nashville	Nashville	1975	Robert Altman	Drama	drama
-the-deer-hunter	The Deer Hunter	1978	Michael Cimino	Drama	drama
-apocalypse-now-1979	Apocalypse Now	1979	Francis Ford Coppola	Drama	drama
+nashville	Nashville	1975	Robert Altman	Drama,Comedy,Music	comedy,drama
+the-deer-hunter	The Deer Hunter	1978	Michael Cimino	War,Drama	war
+apocalypse-now-1979	Apocalypse Now	1979	Francis Ford Coppola	War,Drama	war
 kramer-vs-kramer	Kramer vs Kramer	1979	Robert Benton	Drama	drama
-raging-bull	Raging Bull	1980	Martin Scorsese	Drama	drama
+raging-bull	Raging Bull	1980	Martin Scorsese	Drama,Sport,Biography	sports,drama,classics
 ordinary-people	Ordinary People	1980	Robert Redford	Drama	drama
 gandhi	Gandhi	1982	Richard Attenborough	Drama	drama
 the-verdict	The Verdict	1982	Sidney Lumet	Drama	drama
-tootsie	Tootsie	1982	Sydney Pollack	Drama	drama
-terms-of-endearment	Terms of Endearment	1983	James L. Brooks	Drama	drama
+tootsie	Tootsie	1982	Sydney Pollack	Comedy,Romance	comedy,romance
+terms-of-endearment	Terms of Endearment	1983	James L. Brooks	Drama,Comedy	comedy,drama
 the-right-stuff	The Right Stuff	1983	Philip Kaufman	Drama	drama
-the-killing-fields	The Killing Fields	1984	Roland Joffe	Drama	drama
-out-of-africa	Out of Africa	1985	Sydney Pollack	Drama	drama
+the-killing-fields	The Killing Fields	1984	Roland Joffe	Drama,History,War	war,drama
+out-of-africa	Out of Africa	1985	Sydney Pollack	History,Romance,Drama	romance,drama
 the-color-purple	The Color Purple	1985	Steven Spielberg	Drama	drama
-ran	Ran	1985	Akira Kurosawa	Drama	drama
-platoon	Platoon	1986	Oliver Stone	Drama	drama
-blue-velvet	Blue Velvet	1986	David Lynch	Drama	drama
-hannah-and-her-sisters	Hannah and Her Sisters	1986	Woody Allen	Drama	drama
+ran	Ran	1985	Akira Kurosawa	Action,Drama,History	action,drama
+platoon	Platoon	1986	Oliver Stone	War,Drama	war
+blue-velvet	Blue Velvet	1986	David Lynch	Mystery,Thriller,Drama	cult,thriller
+hannah-and-her-sisters	Hannah and Her Sisters	1986	Woody Allen	Comedy,Drama	comedy,drama
 the-last-emperor	The Last Emperor	1987	Bernardo Bertolucci	Drama	drama
-working-girl	Working Girl	1988	Mike Nichols	Drama	drama
+working-girl	Working Girl	1988	Mike Nichols	Comedy,Romance,Drama	comedy,romance,drama
 do-the-right-thing	Do the Right Thing	1989	Spike Lee	Drama	drama
-born-on-the-fourth-of-july	Born on the Fourth of July	1989	Oliver Stone	Drama	drama
+born-on-the-fourth-of-july	Born on the Fourth of July	1989	Oliver Stone	War,Drama,Biography	war,drama
 dead-poets-society-1989	Dead Poets Society	1989	Peter Weir	Drama	drama
-field-of-dreams	Field of Dreams	1989	Phil Alden Robinson	Drama	drama
+field-of-dreams	Field of Dreams	1989	Phil Alden Robinson	Drama,Family,Sport	sports,drama,family
 driving-miss-daisy	Driving Miss Daisy	1989	Bruce Beresford	Drama	drama
-dances-with-wolves	Dances with Wolves	1990	Kevin Costner	Drama	drama
-thelma-and-louise	Thelma and Louise	1991	Ridley Scott	Drama	drama
-boyz-n-the-hood	Boyz n the Hood	1991	John Singleton	Drama	drama
-bugsy	Bugsy	1991	Barry Levinson	Drama	drama
-unforgiven	Unforgiven	1992	Clint Eastwood	Drama	drama
+dances-with-wolves	Dances with Wolves	1990	Kevin Costner	Adventure,Drama,Western	western,drama,classics
+thelma-and-louise	Thelma and Louise	1991	Ridley Scott	Drama,Crime,Adventure	crime,drama
+boyz-n-the-hood	Boyz n the Hood	1991	John Singleton	Drama,Crime	crime,drama
+bugsy	Bugsy	1991	Barry Levinson	Crime,Drama,Mystery	crime,drama
+unforgiven	Unforgiven	1992	Clint Eastwood	Western,Drama	western
 malcolm-x	Malcolm X	1992	Spike Lee	Drama	drama
-the-player	The Player	1992	Robert Altman	Drama	drama
-schindlers-list	Schindler's List	1993	Steven Spielberg	Drama	drama
-the-piano	The Piano	1993	Jane Campion	Drama	drama
+the-player	The Player	1992	Robert Altman	Mystery,Drama,Thriller,Comedy,Crime	comedy,crime,thriller
+schindlers-list	Schindler's List	1993	Steven Spielberg	Drama,History,War	war,drama
+the-piano	The Piano	1993	Jane Campion	Drama,Romance	romance,drama
 philadelphia	Philadelphia	1993	Jonathan Demme	Drama	drama
 in-the-name-of-the-father	In the Name of the Father	1993	Jim Sheridan	Drama	drama
-forrest-gump-1994	Forrest Gump	1994	Robert Zemeckis	Drama	drama
-three-colors-red	Three Colors Red	1994	Krzysztof Kieslowski	Drama	drama
-chungking-express	Chungking Express	1994	Wong Kar-wai	Drama	drama
-braveheart	Braveheart	1995	Mel Gibson	Drama	drama
+forrest-gump-1994	Forrest Gump	1994	Robert Zemeckis	Comedy,Drama,Romance	comedy,romance,drama
+three-colors-red	Three Colors Red	1994	Krzysztof Kieslowski	Drama,Mystery,Romance	romance,drama
+chungking-express	Chungking Express	1994	Wong Kar-wai	Drama,Comedy,Romance	comedy,romance,drama
+braveheart	Braveheart	1995	Mel Gibson	War,Drama,Biography	war,drama
 apollo-13	Apollo 13	1995	Ron Howard	Drama	drama
-babe	Babe	1995	Chris Noonan	Drama	drama
-il-postino	Il Postino	1995	Michael Radford	Drama	drama
+babe	Babe	1995	Chris Noonan	Comedy,Drama,Family	family,fantasy,comedy
+il-postino	Il Postino	1995	Michael Radford	Comedy,Drama,Romance	comedy,romance,drama
 shine	Shine	1996	Scott Hicks	Drama	drama
 secrets-and-lies	Secrets and Lies	1996	Mike Leigh	Drama	drama
 good-will-hunting-1997	Good Will Hunting	1997	Gus Van Sant	Drama	drama
-boogie-nights	Boogie Nights	1997	Paul Thomas Anderson	Drama	drama
-saving-private-ryan-1998	Saving Private Ryan	1998	Steven Spielberg	Drama	drama
-life-is-beautiful	Life Is Beautiful	1998	Roberto Benigni	Drama	drama
-the-thin-red-line	The Thin Red Line	1998	Terrence Malick	Drama	drama
+boogie-nights	Boogie Nights	1997	Paul Thomas Anderson	Drama	indie,drama
+saving-private-ryan-1998	Saving Private Ryan	1998	Steven Spielberg	War,Drama,Action	war
+life-is-beautiful	Life Is Beautiful	1998	Roberto Benigni	Comedy,Drama	comedy,drama
+the-thin-red-line	The Thin Red Line	1998	Terrence Malick	War,Drama	war
 american-beauty	American Beauty	1999	Sam Mendes	Drama	drama
-the-green-mile	The Green Mile	1999	Frank Darabont	Drama	drama
-magnolia	Magnolia	1999	Paul Thomas Anderson	Drama	drama
+the-green-mile	The Green Mile	1999	Frank Darabont	Fantasy,Drama,Crime	fantasy,crime,drama
+magnolia	Magnolia	1999	Paul Thomas Anderson	Drama	indie,drama
 erin-brockovich	Erin Brockovich	2000	Steven Soderbergh	Drama	drama
-crouching-tiger-hidden-dragon	Crouching Tiger Hidden Dragon	2000	Ang Lee	Drama	drama
-a-beautiful-mind	A Beautiful Mind	2001	Ron Howard	Drama	drama
-gosford-park	Gosford Park	2001	Robert Altman	Drama	drama
-in-the-bedroom	In the Bedroom	2001	Todd Field	Drama	drama
-the-pianist	The Pianist	2002	Roman Polanski	Drama	drama
-gangs-of-new-york	Gangs of New York	2002	Martin Scorsese	Drama	drama
-adaptation	Adaptation	2002	Spike Jonze	Drama	drama
-about-schmidt	About Schmidt	2002	Alexander Payne	Drama	drama
+crouching-tiger-hidden-dragon	Crouching Tiger Hidden Dragon	2000	Ang Lee	Action,Adventure,Fantasy	action,drama
+a-beautiful-mind	A Beautiful Mind	2001	Ron Howard	Drama,Romance	romance,drama
+gosford-park	Gosford Park	2001	Robert Altman	Drama,Mystery,Thriller	thriller,drama
+in-the-bedroom	In the Bedroom	2001	Todd Field	Drama,Thriller	thriller,drama
+the-pianist	The Pianist	2002	Roman Polanski	Drama,War	war,drama
+gangs-of-new-york	Gangs of New York	2002	Martin Scorsese	Drama,History,Crime	crime,drama
+adaptation	Adaptation	2002	Spike Jonze	Comedy,Drama	indie,comedy
+about-schmidt	About Schmidt	2002	Alexander Payne	Drama,Comedy	comedy,drama
 the-hours	The Hours	2002	Stephen Daldry	Drama	drama
-talk-to-her	Talk to Her	2002	Pedro Almodovar	Drama	drama
-mystic-river	Mystic River	2003	Clint Eastwood	Drama	drama
-master-and-commander	Master and Commander	2003	Peter Weir	Drama	drama
-lost-in-translation-2003	Lost in Translation	2003	Sofia Coppola	Drama	drama
-million-dollar-baby	Million Dollar Baby	2004	Clint Eastwood	Drama	drama
-sideways	Sideways	2004	Alexander Payne	Drama	drama
+talk-to-her	Talk to Her	2002	Pedro Almodovar	Drama,Romance	romance,drama
+mystic-river	Mystic River	2003	Clint Eastwood	Thriller,Drama,Mystery,Crime	crime,thriller,drama
+master-and-commander	Master and Commander	2003	Peter Weir	War,Adventure,Drama	war,action
+lost-in-translation-2003	Lost in Translation	2003	Sofia Coppola	Drama,Romance	indie,romance
+million-dollar-baby	Million Dollar Baby	2004	Clint Eastwood	Drama,Sport	sports,drama
+sideways	Sideways	2004	Alexander Payne	Comedy,Drama,Romance	indie,comedy
 ray	Ray	2004	Taylor Hackford	Drama	drama
-hotel-rwanda	Hotel Rwanda	2004	Terry George	Drama	drama
+hotel-rwanda	Hotel Rwanda	2004	Terry George	Drama,History,War	war,drama
 the-motorcycle-diaries	The Motorcycle Diaries	2004	Walter Salles	Drama	drama
 crash	Crash	2005	Paul Haggis	Drama	drama
-capote	Capote	2005	Bennett Miller	Drama	drama
+capote	Capote	2005	Bennett Miller	Crime,Drama	crime,drama
 good-night-and-good-luck	Good Night and Good Luck	2005	George Clooney	Drama	drama
 babel	Babel	2006	Alejandro G. Inarritu	Drama	drama
-little-miss-sunshine	Little Miss Sunshine	2006	Jonathan Dayton	Drama	drama
-letters-from-iwo-jima	Letters from Iwo Jima	2006	Clint Eastwood	Drama	drama
+little-miss-sunshine	Little Miss Sunshine	2006	Jonathan Dayton	Comedy,Drama	indie,comedy
+letters-from-iwo-jima	Letters from Iwo Jima	2006	Clint Eastwood	War,Drama	war
 there-will-be-blood-2007	There Will Be Blood	2007	Paul Thomas Anderson	Drama	drama
 the-diving-bell-and-the-butterfly	The Diving Bell and the Butterfly	2007	Julian Schnabel	Drama	drama
-atonement	Atonement	2007	Joe Wright	Drama	drama
+atonement	Atonement	2007	Joe Wright	Drama,Romance	romance,drama
 milk	Milk	2008	Gus Van Sant	Drama	drama
-the-wrestler	The Wrestler	2008	Darren Aronofsky	Drama	drama
+the-wrestler	The Wrestler	2008	Darren Aronofsky	Drama,Romance	romance,drama
 gran-torino	Gran Torino	2008	Clint Eastwood	Drama	drama
-the-hurt-locker-2009	The Hurt Locker	2009	Kathryn Bigelow	Drama	drama
+the-hurt-locker-2009	The Hurt Locker	2009	Kathryn Bigelow	Drama,Thriller,War	war,thriller,drama
 precious	Precious	2009	Lee Daniels	Drama	drama
-up-in-the-air	Up in the Air	2009	Jason Reitman	Drama	drama
-an-education	An Education	2009	Lone Scherfig	Drama	drama
+up-in-the-air	Up in the Air	2009	Jason Reitman	Drama,Romance	romance,drama
+an-education	An Education	2009	Lone Scherfig	Drama,Romance	romance,drama
 the-kings-speech	The King's Speech	2010	Tom Hooper	Drama	drama
-black-swan	Black Swan	2010	Darren Aronofsky	Drama	drama
-the-fighter	The Fighter	2010	David O. Russell	Drama	drama
-true-grit	True Grit	2010	Joel Coen	Drama	drama
+black-swan	Black Swan	2010	Darren Aronofsky	Drama,Thriller,Horror	horror,thriller,drama
+the-fighter	The Fighter	2010	David O. Russell	Drama,Sport,Biography	sports,drama
+true-grit	True Grit	2010	Joel Coen	Western,Drama,Adventure	western
 winters-bone	Winter's Bone	2010	Debra Granik	Drama	drama
-the-artist	The Artist	2011	Michel Hazanavicius	Drama	drama
-the-descendants	The Descendants	2011	Alexander Payne	Drama	drama
-moneyball	Moneyball	2011	Bennett Miller	Drama	drama
-the-tree-of-life	The Tree of Life	2011	Terrence Malick	Drama	drama
+the-artist	The Artist	2011	Michel Hazanavicius	Drama,Comedy,Romance	comedy,romance,drama
+the-descendants	The Descendants	2011	Alexander Payne	Comedy,Drama	comedy,drama
+moneyball	Moneyball	2011	Bennett Miller	Drama,Sport,Biography	sports,drama
+the-tree-of-life	The Tree of Life	2011	Terrence Malick	Drama,Fantasy	fantasy,drama
 a-separation	A Separation	2011	Asghar Farhadi	Drama	drama
-midnight-in-paris	Midnight in Paris	2011	Woody Allen	Drama	drama
+midnight-in-paris	Midnight in Paris	2011	Woody Allen	Fantasy,Comedy,Romance	fantasy,comedy,romance
 lincoln	Lincoln	2012	Steven Spielberg	Drama	drama
 life-of-pi	Life of Pi	2012	Ang Lee	Drama	drama
-silver-linings-playbook	Silver Linings Playbook	2012	David O. Russell	Drama	drama
-zero-dark-thirty	Zero Dark Thirty	2012	Kathryn Bigelow	Drama	drama
+silver-linings-playbook	Silver Linings Playbook	2012	David O. Russell	Drama,Comedy,Romance	comedy,romance,drama
+zero-dark-thirty	Zero Dark Thirty	2012	Kathryn Bigelow	War,Thriller,Drama	thriller,drama
 the-master	The Master	2012	Paul Thomas Anderson	Drama	drama
-amour	Amour	2012	Michael Haneke	Drama	drama
+amour	Amour	2012	Michael Haneke	Drama,Romance	romance,drama
 nebraska	Nebraska	2013	Alexander Payne	Drama	drama
 dallas-buyers-club	Dallas Buyers Club	2013	Jean-Marc Vallee	Drama	drama
-boyhood	Boyhood	2014	Richard Linklater	Drama	drama
-whiplash-2014	Whiplash	2014	Damien Chazelle	Drama	drama
+boyhood	Boyhood	2014	Richard Linklater	Drama	indie,drama
+whiplash-2014	Whiplash	2014	Damien Chazelle	Drama	indie,drama
 spotlight	Spotlight	2015	Tom McCarthy	Drama	drama
-the-revenant	The Revenant	2015	Alejandro G. Inarritu	Drama	drama
-room	Room	2015	Lenny Abrahamson	Drama	drama
-manchester-by-the-sea	Manchester by the Sea	2016	Kenneth Lonergan	Drama	drama
+the-revenant	The Revenant	2015	Alejandro G. Inarritu	Western,Drama,Adventure	western,drama
+room	Room	2015	Lenny Abrahamson	Drama,Thriller	thriller,drama
+manchester-by-the-sea	Manchester by the Sea	2016	Kenneth Lonergan	Drama	indie,drama
 fences	Fences	2016	Denzel Washington	Drama	drama
 hidden-figures	Hidden Figures	2016	Theodore Melfi	Drama	drama
-dunkirk	Dunkirk	2017	Christopher Nolan	Drama	drama
-phantom-thread	Phantom Thread	2017	Paul Thomas Anderson	Drama	drama
-green-book	Green Book	2018	Peter Farrelly	Drama	drama
-blackkklansman	BlacKkKlansman	2018	Spike Lee	Drama	drama
-the-favourite	The Favourite	2018	Yorgos Lanthimos	Drama	drama
+dunkirk	Dunkirk	2017	Christopher Nolan	War,Drama,Action	war
+phantom-thread	Phantom Thread	2017	Paul Thomas Anderson	Drama,Romance	romance,drama
+green-book	Green Book	2018	Peter Farrelly	Drama,Comedy,History	comedy,drama
+blackkklansman	BlacKkKlansman	2018	Spike Lee	Crime,Comedy,Drama,History	comedy,crime,drama
+the-favourite	The Favourite	2018	Yorgos Lanthimos	History,Comedy,Drama	comedy,drama
 roma	Roma	2018	Alfonso Cuaron	Drama	drama
-a-star-is-born	A Star Is Born	2018	Bradley Cooper	Drama	drama
-if-beale-street-could-talk	If Beale Street Could Talk	2018	Barry Jenkins	Drama	drama
-1917	1917	2019	Sam Mendes	Drama	drama
+a-star-is-born	A Star Is Born	2018	Bradley Cooper	Drama,Music,Romance	musical,romance
+if-beale-street-could-talk	If Beale Street Could Talk	2018	Barry Jenkins	Romance,Drama	romance,drama
+1917	1917	2019	Sam Mendes	War,Drama,Action	war
 marriage-story	Marriage Story	2019	Noah Baumbach	Drama	drama
-little-women	Little Women	2019	Greta Gerwig	Drama	drama
-once-upon-a-time-in-hollywood	Once Upon a Time in Hollywood	2019	Quentin Tarantino	Drama	drama
-minari	Minari	2020	Lee Isaac Chung	Drama	drama
+little-women	Little Women	2019	Greta Gerwig	Drama,Romance	romance,drama
+once-upon-a-time-in-hollywood	Once Upon a Time in Hollywood	2019	Quentin Tarantino	Comedy,Drama,Thriller	comedy,thriller,drama
+minari	Minari	2020	Lee Isaac Chung	Drama	indie,drama
 the-father	The Father	2020	Florian Zeller	Drama	drama
-the-power-of-the-dog	The Power of the Dog	2021	Jane Campion	Drama	drama
-licorice-pizza	Licorice Pizza	2021	Paul Thomas Anderson	Drama	drama
+the-power-of-the-dog	The Power of the Dog	2021	Jane Campion	Western,Drama	western,drama
+licorice-pizza	Licorice Pizza	2021	Paul Thomas Anderson	Drama,Comedy,Romance	comedy,romance,drama
 belfast	Belfast	2021	Kenneth Branagh	Drama	drama
-west-side-story-2021	West Side Story	2021	Steven Spielberg	Drama	drama
-the-banshees-of-inisherin	The Banshees of Inisherin	2022	Martin McDonagh	Drama	drama
+west-side-story-2021	West Side Story	2021	Steven Spielberg	Musical,Romance,Drama	musical,romance
+the-banshees-of-inisherin	The Banshees of Inisherin	2022	Martin McDonagh	Drama,Comedy	comedy,drama
 tar	Tar	2022	Todd Field	Drama	drama
-all-quiet-on-the-western-front	All Quiet on the Western Front	2022	Edward Berger	Drama	drama
+all-quiet-on-the-western-front	All Quiet on the Western Front	2022	Edward Berger	War,Drama	war
 the-fabelmans	The Fabelmans	2022	Steven Spielberg	Drama	drama
 women-talking	Women Talking	2022	Sarah Polley	Drama	drama
 the-whale	The Whale	2022	Darren Aronofsky	Drama	drama
-the-brutalist	The Brutalist	2024	Brady Corbet	Drama	drama
-a-real-pain	A Real Pain	2024	Jesse Eisenberg	Drama	drama
-a-complete-unknown	A Complete Unknown	2024	James Mangold	Drama	drama
-nickel-boys	Nickel Boys	2024	RaMell Ross	Drama	drama
-the-room-next-door	The Room Next Door	2024	Pedro Almodovar	Drama	drama
-emilia-perez	Emilia Perez	2024	Jacques Audiard	Drama	drama
-sing-sing	Sing Sing	2024	Greg Kwedar	Drama	drama
-snow-white-and-the-seven-dwarfs	Snow White and the Seven Dwarfs	1937	David Hand	Animation	animation
-pinocchio	Pinocchio	1940	Ben Sharpsteen	Animation	animation
-fantasia	Fantasia	1940	Ben Sharpsteen	Animation	animation
-dumbo	Dumbo	1941	Ben Sharpsteen	Animation	animation
-bambi	Bambi	1942	Ben Sharpsteen	Animation	animation
-cinderella	Cinderella	1950	Clyde Geronimi	Animation	animation
-alice-in-wonderland	Alice in Wonderland	1951	Clyde Geronimi	Animation	animation
-peter-pan	Peter Pan	1953	Clyde Geronimi	Animation	animation
-lady-and-the-tramp	Lady and the Tramp	1955	Clyde Geronimi	Animation	animation
-sleeping-beauty	Sleeping Beauty	1959	Clyde Geronimi	Animation	animation
-one-hundred-and-one-dalmatians	One Hundred and One Dalmatians	1961	Wolfgang Reitherman	Animation	animation
-the-jungle-book	The Jungle Book	1967	Wolfgang Reitherman	Animation	animation
-the-aristocats	The Aristocats	1970	Wolfgang Reitherman	Animation	animation
-robin-hood	Robin Hood	1973	Wolfgang Reitherman	Animation	animation
-the-rescuers	The Rescuers	1977	Wolfgang Reitherman	Animation	animation
-the-secret-of-nimh	The Secret of NIMH	1982	Don Bluth	Animation	animation
-the-dark-crystal	The Dark Crystal	1982	Jim Henson	Animation	animation
-nausicaa-of-the-valley-of-the-wind	Nausicaa of the Valley of the Wind	1984	Hayao Miyazaki	Animation	animation
-castle-in-the-sky	Castle in the Sky	1986	Hayao Miyazaki	Animation	animation
-my-neighbor-totoro	My Neighbor Totoro	1988	Hayao Miyazaki	Animation	animation
-grave-of-the-fireflies	Grave of the Fireflies	1988	Isao Takahata	Animation	animation
-all-dogs-go-to-heaven	All Dogs Go to Heaven	1989	Don Bluth	Animation	animation
-aladdin	Aladdin	1992	Ron Clements	Animation	animation
-porco-rosso	Porco Rosso	1992	Hayao Miyazaki	Animation	animation
-the-nightmare-before-christmas	The Nightmare Before Christmas	1993	Henry Selick	Animation	animation
-toy-story-1995	Toy Story	1995	John Lasseter	Animation	animation
-whisper-of-the-heart	Whisper of the Heart	1995	Hayao Miyazaki	Animation	animation
-perfect-blue	Perfect Blue	1997	Satoshi Kon	Animation	animation
-hercules	Hercules	1997	Ron Clements	Animation	animation
-anastasia	Anastasia	1997	Don Bluth	Animation	animation
-mulan	Mulan	1998	Barry Cook	Animation	animation
-the-iron-giant-1998	The Iron Giant	1998	Brad Bird	Animation	animation
-toy-story-2	Toy Story 2	1999	John Lasseter	Animation	animation
-south-park-bigger-longer-and-uncut	South Park Bigger Longer and Uncut	1999	Trey Parker	Animation	animation
-chicken-run	Chicken Run	2000	Peter Lord	Animation	animation
-the-emperors-new-groove	The Emperor's New Groove	2000	Mark Dindal	Animation	animation
-monsters-inc	Monsters Inc	2001	Pete Docter	Animation	animation
-spirited-away-2001	Spirited Away	2001	Hayao Miyazaki	Animation	animation
-spirited-away-2002	Spirited Away	2002	Hayao Miyazaki	Animation	animation
-the-incredibles	The Incredibles	2004	Brad Bird	Animation	animation
-howls-moving-castle	Howl's Moving Castle	2004	Hayao Miyazaki	Animation	animation
-wallace-and-gromit-the-curse-of-the-were-rabbit	Wallace and Gromit The Curse of the Were-Rabbit	2005	Nick Park	Animation	animation
-madagascar	Madagascar	2005	Eric Darnell	Animation	animation
-corpse-bride	Corpse Bride	2005	Tim Burton	Animation	animation
-cars	Cars	2006	John Lasseter	Animation	animation
-happy-feet	Happy Feet	2006	George Miller	Animation	animation
-ratatouille	Ratatouille	2007	Brad Bird	Animation	animation
-kung-fu-panda	Kung Fu Panda	2008	John Stevenson	Animation	animation
-fantastic-mr-fox	Fantastic Mr Fox	2008	Wes Anderson	Animation	animation
-up	Up	2009	Pete Docter	Animation	animation
-coraline	Coraline	2009	Henry Selick	Animation	animation
-the-secret-of-kells	The Secret of Kells	2009	Tomm Moore	Animation	animation
-toy-story-3	Toy Story 3	2010	Lee Unkrich	Animation	animation
-how-to-train-your-dragon	How to Train Your Dragon	2010	Dean DeBlois	Animation	animation
-tangled	Tangled	2010	Nathan Greno	Animation	animation
-despicable-me	Despicable Me	2010	Pierre Coffin	Animation	animation
-kung-fu-panda-2	Kung Fu Panda 2	2011	Jennifer Yuh Nelson	Animation	animation
-rango	Rango	2011	Gore Verbinski	Animation	animation
-brave	Brave	2012	Mark Andrews	Animation	animation
-wreck-it-ralph	Wreck-It Ralph	2012	Rich Moore	Animation	animation
-paranorman	ParaNorman	2012	Sam Fell	Animation	animation
-frozen	Frozen	2013	Chris Buck	Animation	animation
-the-wind-rises	The Wind Rises	2013	Hayao Miyazaki	Animation	animation
-big-hero-6	Big Hero 6	2014	Don Hall	Animation	animation
-how-to-train-your-dragon-2	How to Train Your Dragon 2	2014	Dean DeBlois	Animation	animation
+the-brutalist	The Brutalist	2024	Brady Corbet	Drama	drama,new
+a-real-pain	A Real Pain	2024	Jesse Eisenberg	Comedy,Drama	comedy,drama,new
+a-complete-unknown	A Complete Unknown	2024	James Mangold	Drama,Music	drama,new
+nickel-boys	Nickel Boys	2024	RaMell Ross	Drama,History	drama,new
+the-room-next-door	The Room Next Door	2024	Pedro Almodovar	Drama	drama,new
+emilia-perez	Emilia Perez	2024	Jacques Audiard	Drama,Thriller	thriller,drama,new
+sing-sing	Sing Sing	2024	Greg Kwedar	Drama	drama,new
+snow-white-and-the-seven-dwarfs	Snow White and the Seven Dwarfs	1937	David Hand	Animation,Family,Fantasy	family,fantasy,animation
+pinocchio	Pinocchio	1940	Ben Sharpsteen	Animation,Family,Fantasy	family,fantasy,animation
+fantasia	Fantasia	1940	Ben Sharpsteen	Animation,Music,Fantasy	fantasy,musical,animation
+dumbo	Dumbo	1941	Ben Sharpsteen	Animation,Family	family,animation,classics
+bambi	Bambi	1942	Ben Sharpsteen	Animation,Drama,Family	family,animation,classics
+cinderella	Cinderella	1950	Clyde Geronimi	Animation,Family,Fantasy	family,fantasy,animation
+alice-in-wonderland	Alice in Wonderland	1951	Clyde Geronimi	Animation,Family,Fantasy	animation,fantasy,family
+peter-pan	Peter Pan	1953	Clyde Geronimi	Animation,Family,Adventure,Fantasy	family,fantasy,animation
+lady-and-the-tramp	Lady and the Tramp	1955	Clyde Geronimi	Animation,Family,Romance,Adventure,Comedy	family,animation,comedy
+sleeping-beauty	Sleeping Beauty	1959	Clyde Geronimi	Fantasy,Animation,Romance,Family	family,fantasy,animation
+one-hundred-and-one-dalmatians	One Hundred and One Dalmatians	1961	Wolfgang Reitherman	Adventure,Animation,Comedy,Family	family,animation,comedy
+the-jungle-book	The Jungle Book	1967	Wolfgang Reitherman	Family,Animation,Adventure	family,animation,classics
+the-aristocats	The Aristocats	1970	Wolfgang Reitherman	Animation,Comedy,Family,Adventure	family,animation,comedy
+robin-hood	Robin Hood	1973	Wolfgang Reitherman	Animation,Family,Adventure	family,animation,classics
+the-rescuers	The Rescuers	1977	Wolfgang Reitherman	Fantasy,Family,Animation,Adventure	family,fantasy,animation
+the-secret-of-nimh	The Secret of NIMH	1982	Don Bluth	Adventure,Animation,Drama,Family,Fantasy,Mystery,Sci-Fi	family,fantasy,animation
+the-dark-crystal	The Dark Crystal	1982	Jim Henson	Adventure,Family,Fantasy	fantasy,family
+nausicaa-of-the-valley-of-the-wind	Nausicaa of the Valley of the Wind	1984	Hayao Miyazaki	Adventure,Animation,Fantasy	fantasy,animation
+castle-in-the-sky	Castle in the Sky	1986	Hayao Miyazaki	Adventure,Fantasy,Animation,Action,Family	family,fantasy,animation
+my-neighbor-totoro	My Neighbor Totoro	1988	Hayao Miyazaki	Animation,Family,Fantasy	animation,family,fantasy
+grave-of-the-fireflies	Grave of the Fireflies	1988	Isao Takahata	Animation,Drama,War	war,animation,drama
+all-dogs-go-to-heaven	All Dogs Go to Heaven	1989	Don Bluth	Drama,Animation,Family,Comedy,Fantasy	family,fantasy,animation
+aladdin	Aladdin	1992	Ron Clements	Animation,Family,Fantasy	animation,family,fantasy
+porco-rosso	Porco Rosso	1992	Hayao Miyazaki	Animation,Adventure,Fantasy	fantasy,animation
+the-nightmare-before-christmas	The Nightmare Before Christmas	1993	Henry Selick	Animation,Fantasy,Holiday	family,holiday,animation
+toy-story-1995	Toy Story	1995	John Lasseter	Family,Comedy,Animation,Adventure	family,animation,comedy
+whisper-of-the-heart	Whisper of the Heart	1995	Hayao Miyazaki	Animation,Drama,Family	family,animation,drama
+perfect-blue	Perfect Blue	1997	Satoshi Kon	Animation,Thriller	animation,thriller
+hercules	Hercules	1997	Ron Clements	Animation,Family,Fantasy	animation,family,fantasy
+anastasia	Anastasia	1997	Don Bluth	Animation,Family,Fantasy,Adventure	family,fantasy,animation
+mulan	Mulan	1998	Barry Cook	Animation,Action,Family	animation,family,action
+the-iron-giant-1998	The Iron Giant	1998	Brad Bird	Animation,Drama,Family,Sci-Fi,Adventure	family,scifi,animation
+toy-story-2	Toy Story 2	1999	John Lasseter	Animation,Comedy,Family	animation,family,comedy
+south-park-bigger-longer-and-uncut	South Park Bigger Longer and Uncut	1999	Trey Parker	Animation,Comedy	animation,comedy
+chicken-run	Chicken Run	2000	Peter Lord	Animation,Comedy,Family	family,animation,comedy
+the-emperors-new-groove	The Emperor's New Groove	2000	Mark Dindal	Adventure,Animation,Comedy,Family,Fantasy	family,fantasy,animation
+monsters-inc	Monsters Inc	2001	Pete Docter	Animation,Comedy,Family	family,fantasy,animation
+spirited-away-2001	Spirited Away	2001	Hayao Miyazaki	Animation,Adventure,Fantasy	animation,fantasy,family
+spirited-away-2002	Spirited Away	2002	Hayao Miyazaki	Animation,Adventure,Fantasy	animation,fantasy,family
+the-incredibles	The Incredibles	2004	Brad Bird	Animation,Action,Family	animation,family,action
+howls-moving-castle	Howl's Moving Castle	2004	Hayao Miyazaki	Animation,Adventure,Fantasy	animation,fantasy
+wallace-and-gromit-the-curse-of-the-were-rabbit	Wallace and Gromit The Curse of the Were-Rabbit	2005	Nick Park	Adventure,Animation,Comedy,Family	family,animation,comedy
+madagascar	Madagascar	2005	Eric Darnell	Adventure,Animation,Comedy,Family	family,animation,comedy
+corpse-bride	Corpse Bride	2005	Tim Burton	Romance,Fantasy,Animation	fantasy,animation,romance
+cars	Cars	2006	John Lasseter	Animation,Comedy,Family	animation,family,comedy
+happy-feet	Happy Feet	2006	George Miller	Animation,Family,Musical	animation,family,musical
+ratatouille	Ratatouille	2007	Brad Bird	Animation,Comedy,Family	family,fantasy,animation
+kung-fu-panda	Kung Fu Panda	2008	John Stevenson	Action,Animation,Comedy,Family	family,animation,action
+fantastic-mr-fox	Fantastic Mr Fox	2008	Wes Anderson	Animation,Comedy,Family	animation,family,comedy
+up	Up	2009	Pete Docter	Animation,Adventure,Family	animation,family,comedy
+coraline	Coraline	2009	Henry Selick	Animation,Fantasy,Family	fantasy,horror,animation
+the-secret-of-kells	The Secret of Kells	2009	Tomm Moore	Animation,Family,Fantasy	family,fantasy,animation
+toy-story-3	Toy Story 3	2010	Lee Unkrich	Animation,Comedy,Family	animation,family,comedy
+how-to-train-your-dragon	How to Train Your Dragon	2010	Dean DeBlois	Animation,Adventure,Family	animation,fantasy,family
+tangled	Tangled	2010	Nathan Greno	Animation,Family,Fantasy	animation,family,fantasy
+despicable-me	Despicable Me	2010	Pierre Coffin	Animation,Comedy,Crime,Sci-Fi,Family	family,scifi,animation
+kung-fu-panda-2	Kung Fu Panda 2	2011	Jennifer Yuh Nelson	Animation,Family,Comedy,Action	family,animation,action
+rango	Rango	2011	Gore Verbinski	Animation,Comedy,Family,Western,Adventure	family,western,animation
+brave	Brave	2012	Mark Andrews	Animation,Adventure,Fantasy	animation,fantasy,family
+wreck-it-ralph	Wreck-It Ralph	2012	Rich Moore	Family,Animation,Comedy,Adventure	family,animation,comedy
+paranorman	ParaNorman	2012	Sam Fell	Animation,Fantasy,Family	animation,fantasy,family
+frozen	Frozen	2013	Chris Buck	Animation,Family,Fantasy	animation,family,fantasy
+the-wind-rises	The Wind Rises	2013	Hayao Miyazaki	Animation,Drama,History,Romance	animation,romance,drama
+big-hero-6	Big Hero 6	2014	Don Hall	Adventure,Family,Animation,Action,Comedy	family,animation,action
+how-to-train-your-dragon-2	How to Train Your Dragon 2	2014	Dean DeBlois	Animation,Adventure,Family	animation,fantasy,family
 the-tale-of-the-princess-kaguya	The Tale of the Princess Kaguya	2014	Isao Takahata	Animation	animation
-inside-out	Inside Out	2015	Pete Docter	Animation	animation
-zootopia	Zootopia	2016	Byron Howard	Animation	animation
-finding-dory	Finding Dory	2016	Andrew Stanton	Animation	animation
-your-name	Your Name	2016	Makoto Shinkai	Animation	animation
-kubo-and-the-two-strings	Kubo and the Two Strings	2016	Travis Knight	Animation	animation
-moana	Moana	2016	Ron Clements	Animation	animation
-the-breadwinner	The Breadwinner	2017	Nora Twomey	Animation	animation
-incredibles-2	Incredibles 2	2018	Brad Bird	Animation	animation
-isle-of-dogs	Isle of Dogs	2018	Wes Anderson	Animation	animation
-toy-story-4	Toy Story 4	2019	Josh Cooley	Animation	animation
-how-to-train-your-dragon-the-hidden-world	How to Train Your Dragon The Hidden World	2019	Dean DeBlois	Animation	animation
-klaus	Klaus	2019	Sergio Pablos	Animation	animation
-soul	Soul	2020	Pete Docter	Animation	animation
-wolfwalkers	Wolfwalkers	2020	Tomm Moore	Animation	animation
-encanto	Encanto	2021	Jared Bush	Animation	animation
-belle	Belle	2021	Mamoru Hosoda	Animation	animation
-turning-red	Turning Red	2022	Domee Shi	Animation	animation
-puss-in-boots-the-last-wish	Puss in Boots The Last Wish	2022	Joel Crawford	Animation	animation
-guillermo-del-toros-pinocchio	Guillermo del Toro's Pinocchio	2022	Guillermo del Toro	Animation	animation
-marcel-the-shell-with-shoes-on	Marcel the Shell with Shoes On	2022	Dean Fleischer Camp	Animation	animation
-the-boy-and-the-heron	The Boy and the Heron	2023	Hayao Miyazaki	Animation	animation
-wish	Wish	2023	Chris Buck	Animation	animation
-transformers-one	Transformers One	2024	Josh Cooley	Animation	animation
-kung-fu-panda-4	Kung Fu Panda 4	2024	Mike Mitchell	Animation	animation
-flow	Flow	2024	Gints Zilbalodis	Animation	animation
-wallace-and-gromit-vengeance-most-fowl	Wallace and Gromit Vengeance Most Fowl	2024	Nick Park	Animation	animation
-memoir-of-a-snail	Memoir of a Snail	2024	Adam Elliot	Animation	animation
-despicable-me-4	Despicable Me 4	2024	Chris Renaud	Animation	animation
-elio	Elio	2025	Domee Shi	Animation	animation
-holiday-inn	Holiday Inn	1942	Mark Sandrich	Holiday	holiday
-meet-me-in-st-louis	Meet Me in St Louis	1944	Vincente Minnelli	Holiday	holiday
-its-a-wonderful-life-1946	It's a Wonderful Life	1946	Frank Capra	Holiday	holiday
-miracle-on-34th-street	Miracle on 34th Street	1947	George Seaton	Holiday	holiday
-scrooge	Scrooge	1951	Brian Desmond Hurst	Holiday	holiday
-white-christmas	White Christmas	1954	Michael Curtiz	Holiday	holiday
-scrooged-1988	Scrooged	1988	Richard Donner	Holiday	holiday
-national-lampoons-christmas-vacation	National Lampoon's Christmas Vacation	1989	Chris Columbus	Holiday	holiday
-home-alone-2-lost-in-new-york	Home Alone 2 Lost in New York	1992	Chris Columbus	Holiday	holiday
-addams-family-values	Addams Family Values	1993	Barry Sonnenfeld	Holiday	holiday
-hocus-pocus	Hocus Pocus	1993	Kenny Ortega	Holiday	holiday
-the-santa-clause	The Santa Clause	1994	John Pasquin	Holiday	holiday
-elf-2003	Elf	2003	Jon Favreau	Holiday	holiday
-the-polar-express	The Polar Express	2004	Robert Zemeckis	Holiday	holiday
-monster-house	Monster House	2007	Gil Kenan	Holiday	holiday
-arthur-christmas	Arthur Christmas	2011	Sarah Smith	Holiday	holiday
-rare-exports	Rare Exports	2015	Jalmari Helander	Holiday	holiday
-the-grinch	The Grinch	2018	Scott Mosier	Holiday	holiday
-violent-night	Violent Night	2022	Tommy Wirkola	Holiday	holiday
-red-one	Red One	2024	Jake Kasdan	Holiday	holiday
-remember-the-night	Remember the Night	1940	Mitchell Leisen	Holiday	holiday
-the-man-who-came-to-dinner	The Man Who Came to Dinner	1942	William Keighley	Holiday	holiday
-christmas-in-connecticut	Christmas in Connecticut	1945	Peter Godfrey	Holiday	holiday
-the-bishops-wife	The Bishop's Wife	1947	Henry Koster	Holiday	holiday
-it-happened-on-fifth-avenue	It Happened on Fifth Avenue	1947	Roy Del Ruth	Holiday	holiday
-holiday-affair	Holiday Affair	1949	Don Hartman	Holiday	holiday
-the-lemon-drop-kid	The Lemon Drop Kid	1951	Sidney Lanfield	Holiday	holiday
-were-no-angels	We're No Angels	1955	Michael Curtiz	Holiday	holiday
-babes-in-toyland	Babes in Toyland	1961	Jack Donohue	Holiday	holiday
-rudolph-the-red-nosed-reindeer	Rudolph the Red-Nosed Reindeer	1964	Larry Roemer	Holiday	holiday
-a-charlie-brown-christmas	A Charlie Brown Christmas	1965	Bill Melendez	Holiday	holiday
-how-the-grinch-stole-christmas-1966	How the Grinch Stole Christmas	1966	Chuck Jones	Holiday	holiday
-frosty-the-snowman	Frosty the Snowman	1969	Jules Bass	Holiday	holiday
-santa-claus-is-comin-to-town	Santa Claus Is Comin' to Town	1970	Jules Bass	Holiday	holiday
-scrooge-1970	Scrooge	1970	Ronald Neame	Holiday	holiday
-the-year-without-a-santa-claus	The Year Without a Santa Claus	1974	Jules Bass	Holiday	holiday
-the-silent-partner	The Silent Partner	1978	Daryl Duke	Holiday	holiday
-santa-claus-the-movie	Santa Claus The Movie	1985	Jeannot Szwarc	Holiday	holiday
-ernest-saves-christmas	Ernest Saves Christmas	1988	John R. Cherry III	Holiday	holiday
-prancer	Prancer	1989	John D. Hancock	Holiday	holiday
-all-i-want-for-christmas	All I Want for Christmas	1991	Robert Lieberman	Holiday	holiday
-the-muppet-christmas-carol	The Muppet Christmas Carol	1992	Brian Henson	Holiday	holiday
-batman-returns	Batman Returns	1992	Tim Burton	Holiday	holiday
-mixed-nuts	Mixed Nuts	1994	Nora Ephron	Holiday	holiday
-the-ref	The Ref	1994	Ted Demme	Holiday	holiday
-miracle-on-34th-street-1994	Miracle on 34th Street	1994	Les Mayfield	Holiday	holiday
-home-for-the-holidays	Home for the Holidays	1995	Jodie Foster	Holiday	holiday
-while-you-were-sleeping	While You Were Sleeping	1995	Jon Turteltaub	Holiday	holiday
-jingle-all-the-way	Jingle All the Way	1996	Brian Levant	Holiday	holiday
-home-alone-3	Home Alone 3	1997	Raja Gosnell	Holiday	holiday
-jack-frost	Jack Frost	1998	Troy Miller	Holiday	holiday
-ill-be-home-for-christmas	I'll Be Home for Christmas	1998	Arlene Sanford	Holiday	holiday
-youve-got-mail	You've Got Mail	1998	Nora Ephron	Holiday	holiday
-eyes-wide-shut	Eyes Wide Shut	1999	Stanley Kubrick	Holiday	holiday
-the-family-man	The Family Man	2000	Brett Ratner	Holiday	holiday
-serendipity	Serendipity	2001	Peter Chelsom	Holiday	holiday
-the-santa-clause-2	The Santa Clause 2	2002	Michael Lembeck	Holiday	holiday
-bad-santa	Bad Santa	2003	Terry Zwigoff	Holiday	holiday
-pieces-of-april	Pieces of April	2003	Peter Hedges	Holiday	holiday
-christmas-with-the-kranks	Christmas with the Kranks	2004	Joe Roth	Holiday	holiday
-the-family-stone	The Family Stone	2005	Thomas Bezucha	Holiday	holiday
-just-friends	Just Friends	2005	Roger Kumble	Holiday	holiday
-the-holiday	The Holiday	2006	Nancy Meyers	Holiday	holiday
-the-santa-clause-3	The Santa Clause 3	2006	Michael Lembeck	Holiday	holiday
-black-christmas-2006	Black Christmas	2006	Glen Morgan	Holiday	holiday
-unaccompanied-minors	Unaccompanied Minors	2006	Paul Feig	Holiday	holiday
-fred-claus	Fred Claus	2007	David Dobkin	Holiday	holiday
-this-christmas	This Christmas	2007	Preston A. Whitmore II	Holiday	holiday
-four-christmases	Four Christmases	2008	Seth Gordon	Holiday	holiday
-a-christmas-carol	A Christmas Carol	2009	Robert Zemeckis	Holiday	holiday
-rise-of-the-guardians	Rise of the Guardians	2012	Peter Ramsey	Holiday	holiday
-the-best-man-holiday	The Best Man Holiday	2013	Malcolm D. Lee	Holiday	holiday
-krampus	Krampus	2015	Michael Dougherty	Holiday	holiday
-the-night-before	The Night Before	2015	Jonathan Levine	Holiday	holiday
-office-christmas-party	Office Christmas Party	2016	Josh Gordon	Holiday	holiday
-bad-santa-2	Bad Santa 2	2016	Mark Waters	Holiday	holiday
-better-watch-out	Better Watch Out	2016	Chris Peckover	Holiday	holiday
-anna-and-the-apocalypse	Anna and the Apocalypse	2017	John McPhail	Holiday	holiday
-the-star	The Star	2017	Timothy Reckart	Holiday	holiday
-the-christmas-chronicles	The Christmas Chronicles	2018	Clay Kaytis	Holiday	holiday
-last-christmas	Last Christmas	2019	Paul Feig	Holiday	holiday
-noelle	Noelle	2019	Marc Lawrence	Holiday	holiday
-black-christmas-2019	Black Christmas	2019	Sophia Takal	Holiday	holiday
-happiest-season	Happiest Season	2020	Clea DuVall	Holiday	holiday
-the-christmas-chronicles-2	The Christmas Chronicles 2	2020	Chris Columbus	Holiday	holiday
-fatman	Fatman	2020	Eshom Nelms	Holiday	holiday
-holidate	Holidate	2020	John Whitesell	Holiday	holiday
-jingle-jangle	Jingle Jangle	2020	David E. Talbert	Holiday	holiday
-8-bit-christmas	8-Bit Christmas	2021	Michael Dowse	Holiday	holiday
-a-boy-called-christmas	A Boy Called Christmas	2021	Gil Kenan	Holiday	holiday
-single-all-the-way	Single All the Way	2021	Michael Mayer	Holiday	holiday
-spirited	Spirited	2022	Sean Anders	Holiday	holiday
-a-christmas-story-christmas	A Christmas Story Christmas	2022	Clay Kaytis	Holiday	holiday
-falling-for-christmas	Falling for Christmas	2022	Janeen Damian	Holiday	holiday
-candy-cane-lane	Candy Cane Lane	2023	Reginald Hudlin	Holiday	holiday
-family-switch	Family Switch	2023	McG	Holiday	holiday
-genie	Genie	2023	Sam Boyd	Holiday	holiday
-the-best-christmas-pageant-ever	The Best Christmas Pageant Ever	2024	Dallas Jenkins	Holiday	holiday
-that-christmas	That Christmas	2024	Simon Otto	Holiday	holiday
-hot-frosty	Hot Frosty	2024	Jerry Ciccoritti	Holiday	holiday
-our-little-secret	Our Little Secret	2024	Stephen Herek	Holiday	holiday
-m	M	1931	Fritz Lang	Crime	crime
-the-public-enemy	The Public Enemy	1931	William A. Wellman	Crime	crime
-scarface	Scarface	1932	Howard Hawks	Crime	crime
-the-killers	The Killers	1946	Robert Siodmak	Crime	crime
-out-of-the-past	Out of the Past	1947	Jacques Tourneur	Crime	crime
-white-heat	White Heat	1949	Raoul Walsh	Crime	crime
-the-asphalt-jungle	The Asphalt Jungle	1950	John Huston	Crime	crime
-the-killing	The Killing	1956	Stanley Kubrick	Crime	crime
-sweet-smell-of-success	Sweet Smell of Success	1957	Alexander Mackendrick	Crime	crime
-oceans-11	Ocean's 11	1960	Lewis Milestone	Crime	crime
-bullitt	Bullitt	1968	Peter Yates	Crime	crime
-the-italian-job	The Italian Job	1969	Peter Collinson	Crime	crime
-get-carter	Get Carter	1971	Mike Hodges	Crime	crime
-shaft	Shaft	1971	Gordon Parks	Crime	crime
-the-long-good-friday	The Long Good Friday	1980	John Mackenzie	Crime	crime
-thief	Thief	1981	Michael Mann	Crime	crime
-blood-simple	Blood Simple	1984	Joel Coen	Crime	crime
-to-live-and-die-in-l-a	To Live and Die in L.A.	1985	William Friedkin	Crime	crime
-at-close-range	At Close Range	1986	James Foley	Crime	crime
-king-of-new-york	King of New York	1990	Abel Ferrara	Crime	crime
-carlitos-way	Carlito's Way	1993	Brian De Palma	Crime	crime
-casino	Casino	1995	Martin Scorsese	Crime	crime
-donnie-brasco	Donnie Brasco	1997	Mike Newell	Crime	crime
-ronin	Ronin	1998	John Frankenheimer	Crime	crime
-payback	Payback	1999	Brian Helgeland	Crime	crime
-the-limey	The Limey	1999	Steven Soderbergh	Crime	crime
-narc	Narc	2002	Joe Carnahan	Crime	crime
-25th-hour	25th Hour	2002	Spike Lee	Crime	crime
-layer-cake	Layer Cake	2004	Matthew Vaughn	Crime	crime
-american-gangster	American Gangster	2007	Ridley Scott	Crime	crime
-gone-baby-gone	Gone Baby Gone	2007	Ben Affleck	Crime	crime
-public-enemies	Public Enemies	2009	Michael Mann	Crime	crime
-animal-kingdom	Animal Kingdom	2010	David Michod	Crime	crime
-end-of-watch	End of Watch	2012	David Ayer	Crime	crime
-lawless	Lawless	2012	John Hillcoat	Crime	crime
-the-place-beyond-the-pines	The Place Beyond the Pines	2012	Derek Cianfrance	Crime	crime
-good-time	Good Time	2017	Benny Safdie	Crime	crime
-the-gentlemen	The Gentlemen	2019	Guy Ritchie	Crime	crime
-the-many-saints-of-newark	The Many Saints of Newark	2021	Alan Taylor	Crime	crime
-no-sudden-move	No Sudden Move	2021	Steven Soderbergh	Crime	crime
-emily-the-criminal	Emily the Criminal	2022	John Patton Ford	Crime	crime
-the-killer	The Killer	2023	David Fincher	Crime	crime
-the-order	The Order	2024	Justin Kurzel	Crime	crime
-rebel-ridge	Rebel Ridge	2024	Jeremy Saulnier	Crime	crime
-logans-run	Logan's Run	1976	Michael Anderson	Sci-Fi	scifi
-brazil	Brazil	1985	Terry Gilliam	Sci-Fi	scifi
-they-live-1988	They Live	1988	John Carpenter	Sci-Fi	scifi
+inside-out	Inside Out	2015	Pete Docter	Animation,Comedy,Family	animation,family,comedy
+zootopia	Zootopia	2016	Byron Howard	Animation,Comedy,Family	animation,family,comedy
+finding-dory	Finding Dory	2016	Andrew Stanton	Adventure,Animation,Family	family,animation
+your-name	Your Name	2016	Makoto Shinkai	Animation,Romance,Drama	animation,romance,drama
+kubo-and-the-two-strings	Kubo and the Two Strings	2016	Travis Knight	Animation,Adventure,Family	family,animation
+moana	Moana	2016	Ron Clements	Animation,Adventure,Family	family,animation
+the-breadwinner	The Breadwinner	2017	Nora Twomey	Animation,War,Drama	war,animation,drama
+incredibles-2	Incredibles 2	2018	Brad Bird	Animation,Action,Family	animation,family,action
+isle-of-dogs	Isle of Dogs	2018	Wes Anderson	Adventure,Comedy,Animation	animation,comedy
+toy-story-4	Toy Story 4	2019	Josh Cooley	Family,Comedy,Animation,Adventure	family,animation,comedy
+how-to-train-your-dragon-the-hidden-world	How to Train Your Dragon The Hidden World	2019	Dean DeBlois	Animation,Adventure,Family	animation,fantasy,family
+klaus	Klaus	2019	Sergio Pablos	Animation,Family,Holiday	holiday,animation,family
+soul	Soul	2020	Pete Docter	Animation,Family,Fantasy	animation,family,fantasy
+wolfwalkers	Wolfwalkers	2020	Tomm Moore	Animation,Family,Adventure,Fantasy	family,fantasy,animation
+encanto	Encanto	2021	Jared Bush	Animation,Family,Fantasy	animation,family,fantasy
+belle	Belle	2021	Mamoru Hosoda	Animation,Sci-Fi,Drama,Music	scifi,animation,drama
+turning-red	Turning Red	2022	Domee Shi	Animation,Family,Comedy,Fantasy	family,fantasy,animation
+puss-in-boots-the-last-wish	Puss in Boots The Last Wish	2022	Joel Crawford	Animation,Adventure,Fantasy	animation,fantasy,family
+guillermo-del-toros-pinocchio	Guillermo del Toro's Pinocchio	2022	Guillermo del Toro	Animation,Fantasy,Adventure,Drama	fantasy,animation,drama
+marcel-the-shell-with-shoes-on	Marcel the Shell with Shoes On	2022	Dean Fleischer Camp	Animation,Comedy,Drama,Family,Fantasy	family,fantasy,animation
+the-boy-and-the-heron	The Boy and the Heron	2023	Hayao Miyazaki	Animation,Fantasy,Drama	fantasy,animation,drama
+wish	Wish	2023	Chris Buck	Animation,Family,Fantasy	animation,family,fantasy
+transformers-one	Transformers One	2024	Josh Cooley	Animation,Sci-Fi,Adventure,Family	family,scifi,animation
+kung-fu-panda-4	Kung Fu Panda 4	2024	Mike Mitchell	Animation,Comedy,Adventure,Action,Family	family,animation,action
+flow	Flow	2024	Gints Zilbalodis	Adventure,Animation,Family,Fantasy	family,fantasy,animation
+wallace-and-gromit-vengeance-most-fowl	Wallace and Gromit Vengeance Most Fowl	2024	Nick Park	Animation,Adventure,Comedy,Sci-Fi,Family	family,scifi,animation
+memoir-of-a-snail	Memoir of a Snail	2024	Adam Elliot	Animation,Comedy,Drama	animation,comedy,drama
+despicable-me-4	Despicable Me 4	2024	Chris Renaud	Animation,Comedy,Action,Sci-Fi,Family	family,scifi,animation
+elio	Elio	2025	Domee Shi	Animation,Adventure,Sci-Fi,Family,Comedy	family,scifi,animation
+holiday-inn	Holiday Inn	1942	Mark Sandrich	Musical,Comedy,Holiday	holiday,musical,classics
+meet-me-in-st-louis	Meet Me in St Louis	1944	Vincente Minnelli	Musical,Romance,Holiday	family,holiday,musical
+its-a-wonderful-life-1946	It's a Wonderful Life	1946	Frank Capra	Drama,Family,Holiday	holiday,family,classics
+miracle-on-34th-street	Miracle on 34th Street	1947	George Seaton	Comedy,Drama,Family	family,holiday,comedy
+scrooge	Scrooge	1951	Brian Desmond Hurst	Fantasy,Drama,Holiday	holiday,classics,fantasy
+white-christmas	White Christmas	1954	Michael Curtiz	Musical,Comedy,Holiday	holiday,musical,classics
+scrooged-1988	Scrooged	1988	Richard Donner	Fantasy,Comedy,Drama	fantasy,holiday,comedy
+national-lampoons-christmas-vacation	National Lampoon's Christmas Vacation	1989	Chris Columbus	Comedy,Holiday	holiday,comedy
+home-alone-2-lost-in-new-york	Home Alone 2 Lost in New York	1992	Chris Columbus	Comedy,Family,Holiday	holiday,family,comedy
+addams-family-values	Addams Family Values	1993	Barry Sonnenfeld	Comedy,Family,Fantasy	family,fantasy,holiday
+hocus-pocus	Hocus Pocus	1993	Kenny Ortega	Fantasy,Comedy,Family	family,fantasy,holiday
+the-santa-clause	The Santa Clause	1994	John Pasquin	Fantasy,Drama,Comedy,Family	family,fantasy,holiday
+elf-2003	Elf	2003	Jon Favreau	Comedy,Family,Holiday	holiday,comedy,family
+the-polar-express	The Polar Express	2004	Robert Zemeckis	Adventure,Animation,Family,Fantasy	family,holiday,animation
+monster-house	Monster House	2007	Gil Kenan	Animation,Comedy,Family,Fantasy,Horror	family,holiday,animation
+arthur-christmas	Arthur Christmas	2011	Sarah Smith	Drama,Animation,Family,Comedy	family,holiday,animation
+rare-exports	Rare Exports	2015	Jalmari Helander	Comedy,Horror,Holiday	holiday,horror,comedy
+the-grinch	The Grinch	2018	Scott Mosier	Animation,Comedy,Family,Fantasy	family,holiday,animation
+violent-night	Violent Night	2022	Tommy Wirkola	Action,Comedy,Holiday	holiday,action,comedy
+red-one	Red One	2024	Jake Kasdan	Action,Adventure,Comedy,Fantasy	fantasy,holiday,action
+remember-the-night	Remember the Night	1940	Mitchell Leisen	Comedy,Romance,Drama	holiday,comedy,romance
+the-man-who-came-to-dinner	The Man Who Came to Dinner	1942	William Keighley	Comedy	holiday,comedy,classics
+christmas-in-connecticut	Christmas in Connecticut	1945	Peter Godfrey	Comedy,Romance	holiday,comedy,romance
+the-bishops-wife	The Bishop's Wife	1947	Henry Koster	Comedy,Fantasy,Drama,Romance	fantasy,holiday,comedy
+it-happened-on-fifth-avenue	It Happened on Fifth Avenue	1947	Roy Del Ruth	Comedy,Romance,Music	holiday,comedy,romance
+holiday-affair	Holiday Affair	1949	Don Hartman	Comedy,Romance,Drama	holiday,comedy,romance
+the-lemon-drop-kid	The Lemon Drop Kid	1951	Sidney Lanfield	Comedy,Crime	holiday,comedy,crime
+were-no-angels	We're No Angels	1955	Michael Curtiz	Comedy,Crime	holiday,comedy,crime
+babes-in-toyland	Babes in Toyland	1961	Jack Donohue	Comedy,Fantasy,Family,Music	family,fantasy,holiday
+rudolph-the-red-nosed-reindeer	Rudolph the Red-Nosed Reindeer	1964	Larry Roemer	Animation,Family,Adventure,Fantasy	family,holiday,animation
+a-charlie-brown-christmas	A Charlie Brown Christmas	1965	Bill Melendez	Animation,Family,Comedy,TV Movie	family,holiday,animation
+how-the-grinch-stole-christmas-1966	How the Grinch Stole Christmas	1966	Chuck Jones	Animation,Family,Holiday	holiday,animation,family
+frosty-the-snowman	Frosty the Snowman	1969	Jules Bass	Family,Animation,TV Movie	family,holiday,animation
+santa-claus-is-comin-to-town	Santa Claus Is Comin' to Town	1970	Jules Bass	Animation,Family,Fantasy,TV Movie	family,holiday,animation
+scrooge-1970	Scrooge	1970	Ronald Neame	Fantasy,Drama,Family	family,fantasy,holiday
+the-year-without-a-santa-claus	The Year Without a Santa Claus	1974	Jules Bass	Animation,Family,TV Movie,Fantasy	family,holiday,animation
+the-silent-partner	The Silent Partner	1978	Daryl Duke	Drama,Thriller	holiday,thriller,drama
+santa-claus-the-movie	Santa Claus The Movie	1985	Jeannot Szwarc	Family,Fantasy,Adventure	family,fantasy,holiday
+ernest-saves-christmas	Ernest Saves Christmas	1988	John R. Cherry III	Comedy,Family	family,holiday,comedy
+prancer	Prancer	1989	John D. Hancock	Family,Drama,Fantasy	family,fantasy,holiday
+all-i-want-for-christmas	All I Want for Christmas	1991	Robert Lieberman	Family,Drama,Comedy	family,holiday,comedy
+the-muppet-christmas-carol	The Muppet Christmas Carol	1992	Brian Henson	Comedy,Family,Holiday	holiday,family,comedy
+batman-returns	Batman Returns	1992	Tim Burton	Action,Fantasy	fantasy,holiday,action
+mixed-nuts	Mixed Nuts	1994	Nora Ephron	Comedy,Drama,Romance	holiday,comedy,romance
+the-ref	The Ref	1994	Ted Demme	Comedy,Crime,Drama	holiday,comedy,crime
+miracle-on-34th-street-1994	Miracle on 34th Street	1994	Les Mayfield	Fantasy,Drama,Family	family,fantasy,holiday
+home-for-the-holidays	Home for the Holidays	1995	Jodie Foster	Comedy,Drama,Romance	holiday,comedy,romance
+while-you-were-sleeping	While You Were Sleeping	1995	Jon Turteltaub	Romance,Comedy	holiday,comedy,romance
+jingle-all-the-way	Jingle All the Way	1996	Brian Levant	Family,Adventure,Comedy	family,holiday,comedy
+home-alone-3	Home Alone 3	1997	Raja Gosnell	Comedy,Family,Holiday	holiday,family,comedy
+jack-frost	Jack Frost	1998	Troy Miller	Comedy,Family,Drama,Fantasy	family,fantasy,holiday
+ill-be-home-for-christmas	I'll Be Home for Christmas	1998	Arlene Sanford	Comedy,Family	family,holiday,comedy
+youve-got-mail	You've Got Mail	1998	Nora Ephron	Comedy,Romance	holiday,comedy,romance
+eyes-wide-shut	Eyes Wide Shut	1999	Stanley Kubrick	Drama,Thriller,Mystery	holiday,thriller,drama
+the-family-man	The Family Man	2000	Brett Ratner	Comedy,Drama,Romance,Fantasy	fantasy,holiday,comedy
+serendipity	Serendipity	2001	Peter Chelsom	Comedy,Romance	holiday,comedy,romance
+the-santa-clause-2	The Santa Clause 2	2002	Michael Lembeck	Fantasy,Comedy,Family	family,fantasy,holiday
+bad-santa	Bad Santa	2003	Terry Zwigoff	Drama,Comedy,Crime	holiday,comedy,crime
+pieces-of-april	Pieces of April	2003	Peter Hedges	Comedy,Drama	holiday,comedy,drama
+christmas-with-the-kranks	Christmas with the Kranks	2004	Joe Roth	Comedy,Family	family,holiday,comedy
+the-family-stone	The Family Stone	2005	Thomas Bezucha	Comedy,Drama,Romance	holiday,comedy,romance
+just-friends	Just Friends	2005	Roger Kumble	Comedy,Romance	holiday,comedy,romance
+the-holiday	The Holiday	2006	Nancy Meyers	Comedy,Romance,Holiday	holiday,romance,comedy
+the-santa-clause-3	The Santa Clause 3	2006	Michael Lembeck	Comedy,Family,Adventure	family,holiday,comedy
+black-christmas-2006	Black Christmas	2006	Glen Morgan	Horror,Holiday	holiday,horror
+unaccompanied-minors	Unaccompanied Minors	2006	Paul Feig	Family,Comedy	family,holiday,comedy
+fred-claus	Fred Claus	2007	David Dobkin	Action,Comedy,Drama	holiday,action,comedy
+this-christmas	This Christmas	2007	Preston A. Whitmore II	Comedy,Drama,Romance	holiday,comedy,romance
+four-christmases	Four Christmases	2008	Seth Gordon	Comedy,Romance,Drama	holiday,comedy,romance
+a-christmas-carol	A Christmas Carol	2009	Robert Zemeckis	Animation,Drama,Family,Fantasy	family,holiday,animation
+rise-of-the-guardians	Rise of the Guardians	2012	Peter Ramsey	Action,Adventure,Animation,Family,Fantasy	family,holiday,animation
+the-best-man-holiday	The Best Man Holiday	2013	Malcolm D. Lee	Comedy	holiday,comedy
+krampus	Krampus	2015	Michael Dougherty	Comedy,Horror,Holiday	holiday,horror,comedy
+the-night-before	The Night Before	2015	Jonathan Levine	Comedy,Adventure,Fantasy	fantasy,holiday,comedy
+office-christmas-party	Office Christmas Party	2016	Josh Gordon	Comedy	holiday,comedy
+bad-santa-2	Bad Santa 2	2016	Mark Waters	Comedy,Crime,Mystery	holiday,comedy,crime
+better-watch-out	Better Watch Out	2016	Chris Peckover	Horror,Thriller,Comedy	horror,holiday,comedy
+anna-and-the-apocalypse	Anna and the Apocalypse	2017	John McPhail	Horror,Musical,Holiday	holiday,horror,musical
+the-star	The Star	2017	Timothy Reckart	Animation,Comedy,Adventure,Family,Fantasy	family,holiday,animation
+the-christmas-chronicles	The Christmas Chronicles	2018	Clay Kaytis	Comedy,Adventure,Family,Fantasy	family,fantasy,holiday
+last-christmas	Last Christmas	2019	Paul Feig	Comedy,Drama,Romance	holiday,comedy,romance
+noelle	Noelle	2019	Marc Lawrence	Family,Comedy,Fantasy	family,fantasy,holiday
+black-christmas-2019	Black Christmas	2019	Sophia Takal	Horror,Holiday	holiday,horror
+happiest-season	Happiest Season	2020	Clea DuVall	Romance,Comedy	holiday,comedy,romance
+the-christmas-chronicles-2	The Christmas Chronicles 2	2020	Chris Columbus	Family,Fantasy,Adventure,Comedy	family,fantasy,holiday
+fatman	Fatman	2020	Eshom Nelms	Action,Fantasy,Comedy	fantasy,holiday,action
+holidate	Holidate	2020	John Whitesell	Comedy,Romance	holiday,comedy,romance
+jingle-jangle	Jingle Jangle	2020	David E. Talbert	Family,Fantasy,Music	family,fantasy,holiday
+8-bit-christmas	8-Bit Christmas	2021	Michael Dowse	Comedy,Family,Holiday	holiday,family,comedy
+a-boy-called-christmas	A Boy Called Christmas	2021	Gil Kenan	Family,Adventure,Fantasy	family,fantasy,holiday
+single-all-the-way	Single All the Way	2021	Michael Mayer	Romance,Comedy	holiday,comedy,romance
+spirited	Spirited	2022	Sean Anders	Comedy,Musical,Holiday	holiday,musical,comedy
+a-christmas-story-christmas	A Christmas Story Christmas	2022	Clay Kaytis	Comedy,Family,Holiday	holiday,family,comedy
+falling-for-christmas	Falling for Christmas	2022	Janeen Damian	Romance,Comedy,Family	family,holiday,comedy
+candy-cane-lane	Candy Cane Lane	2023	Reginald Hudlin	Comedy,Fantasy,Family	family,fantasy,holiday
+family-switch	Family Switch	2023	McG	Comedy,Fantasy,Family	family,fantasy,holiday
+genie	Genie	2023	Sam Boyd	Fantasy,Comedy	fantasy,holiday,comedy
+the-best-christmas-pageant-ever	The Best Christmas Pageant Ever	2024	Dallas Jenkins	Comedy,Drama,Family	family,holiday,comedy
+that-christmas	That Christmas	2024	Simon Otto	Animation,Comedy,Family,Fantasy,Adventure	family,holiday,animation
+hot-frosty	Hot Frosty	2024	Jerry Ciccoritti	Romance,Comedy	holiday,comedy,romance
+our-little-secret	Our Little Secret	2024	Stephen Herek	Romance,Comedy,Drama	holiday,comedy,romance
+m	M	1931	Fritz Lang	Drama,Thriller,Crime	crime,thriller,classics
+the-public-enemy	The Public Enemy	1931	William A. Wellman	Crime,Drama	crime,classics,drama
+scarface	Scarface	1932	Howard Hawks	Crime,Action,Drama,Thriller	action,crime,thriller
+the-killers	The Killers	1946	Robert Siodmak	Crime,Mystery,Thriller	crime,thriller,classics
+out-of-the-past	Out of the Past	1947	Jacques Tourneur	Crime	classics,crime
+white-heat	White Heat	1949	Raoul Walsh	Crime,Drama,Thriller	crime,thriller,classics
+the-asphalt-jungle	The Asphalt Jungle	1950	John Huston	Crime,Drama	crime,classics,drama
+the-killing	The Killing	1956	Stanley Kubrick	Crime,Thriller,Drama	crime,thriller,classics
+sweet-smell-of-success	Sweet Smell of Success	1957	Alexander Mackendrick	Drama	classics,drama
+oceans-11	Ocean's 11	1960	Lewis Milestone	Crime,Comedy,Thriller	comedy,crime,thriller
+bullitt	Bullitt	1968	Peter Yates	Action,Crime,Thriller	action,crime,thriller
+the-italian-job	The Italian Job	1969	Peter Collinson	Crime,Comedy,Thriller	comedy,crime,thriller
+get-carter	Get Carter	1971	Mike Hodges	Crime,Thriller	crime,thriller,classics
+shaft	Shaft	1971	Gordon Parks	Crime,Thriller,Drama,Action	action,crime,thriller
+the-long-good-friday	The Long Good Friday	1980	John Mackenzie	Crime,Thriller,Drama	crime,thriller,drama
+thief	Thief	1981	Michael Mann	Crime,Thriller,Drama	crime,thriller,drama
+blood-simple	Blood Simple	1984	Joel Coen	Crime,Drama,Thriller	crime,thriller,drama
+to-live-and-die-in-l-a	To Live and Die in L.A.	1985	William Friedkin	Crime,Thriller,Action	action,crime,thriller
+at-close-range	At Close Range	1986	James Foley	Crime,Drama,Thriller	crime,thriller,drama
+king-of-new-york	King of New York	1990	Abel Ferrara	Crime	crime,thriller
+carlitos-way	Carlito's Way	1993	Brian De Palma	Crime,Drama,Thriller	crime,thriller,drama
+casino	Casino	1995	Martin Scorsese	Crime	crime,drama
+donnie-brasco	Donnie Brasco	1997	Mike Newell	Crime,Drama,Thriller	crime,thriller,drama
+ronin	Ronin	1998	John Frankenheimer	Action,Thriller,Crime	action,crime,thriller
+payback	Payback	1999	Brian Helgeland	Action,Drama,Crime,Thriller	action,crime,thriller
+the-limey	The Limey	1999	Steven Soderbergh	Crime,Drama,Thriller	crime,thriller,drama
+narc	Narc	2002	Joe Carnahan	Crime	crime,thriller
+25th-hour	25th Hour	2002	Spike Lee	Crime	crime,drama
+layer-cake	Layer Cake	2004	Matthew Vaughn	Drama,Thriller,Crime	crime,thriller,drama
+american-gangster	American Gangster	2007	Ridley Scott	Crime	crime,drama
+gone-baby-gone	Gone Baby Gone	2007	Ben Affleck	Crime	crime,drama
+public-enemies	Public Enemies	2009	Michael Mann	Crime	crime,drama
+animal-kingdom	Animal Kingdom	2010	David Michod	Crime	crime,drama
+end-of-watch	End of Watch	2012	David Ayer	Crime,Drama,Thriller	crime,thriller,drama
+lawless	Lawless	2012	John Hillcoat	Crime,Drama,Western	western,crime,drama
+the-place-beyond-the-pines	The Place Beyond the Pines	2012	Derek Cianfrance	Crime	crime,drama
+good-time	Good Time	2017	Benny Safdie	Crime,Thriller,Drama	crime,thriller,drama
+the-gentlemen	The Gentlemen	2019	Guy Ritchie	Action,Comedy,Crime	action,comedy,crime
+the-many-saints-of-newark	The Many Saints of Newark	2021	Alan Taylor	Crime	crime,drama
+no-sudden-move	No Sudden Move	2021	Steven Soderbergh	Crime	crime,thriller
+emily-the-criminal	Emily the Criminal	2022	John Patton Ford	Crime,Drama,Thriller	crime,thriller,drama
+the-killer	The Killer	2023	David Fincher	Crime	crime,thriller
+the-order	The Order	2024	Justin Kurzel	Crime,Drama,Thriller	crime,thriller,drama
+rebel-ridge	Rebel Ridge	2024	Jeremy Saulnier	Crime,Action,Thriller,Drama	action,crime,thriller
+logans-run	Logan's Run	1976	Michael Anderson	Sci-Fi	scifi,action
+brazil	Brazil	1985	Terry Gilliam	Sci-Fi	scifi,cult
+they-live-1988	They Live	1988	John Carpenter	Sci-Fi	scifi,cult
 dark-city-1998	Dark City	1998	Alex Proyas	Sci-Fi	scifi
-pitch-black	Pitch Black	2000	David Twohy	Sci-Fi	scifi
-serenity	Serenity	2005	Joss Whedon	Sci-Fi	scifi
-sunshine	Sunshine	2007	Danny Boyle	Sci-Fi	scifi
-moon	Moon	2009	Duncan Jones	Sci-Fi	scifi
-ex-machina-2014	Ex Machina	2014	Alex Garland	Sci-Fi	scifi
-the-creator	The Creator	2023	Gareth Edwards	Sci-Fi	scifi
-tron-ares	Tron Ares	2025	Joachim Ronning	Sci-Fi	scifi
-breakfast-at-tiffanys	Breakfast at Tiffany's	1961	Blake Edwards	Romance	romance
-the-umbrellas-of-cherbourg	The Umbrellas of Cherbourg	1964	Jacques Demy	Romance	romance
-the-way-we-were	The Way We Were	1973	Sydney Pollack	Romance	romance
-manhattan	Manhattan	1979	Woody Allen	Romance	romance
-four-weddings-and-a-funeral	Four Weddings and a Funeral	1994	Mike Newell	Romance	romance
-together	Together	2025	Michael Shanks	Horror	horror
-the-conjuring-last-rites	The Conjuring Last Rites	2025	Michael Chaves	Horror	horror
-black-phone-2	Black Phone 2	2025	Scott Derrickson	Horror	horror
-the-long-walk	The Long Walk	2025	Francis Lawrence	Horror	horror
-dangerous-animals	Dangerous Animals	2025	Sean Byrne	Horror	horror
-opus	Opus	2025	Mark Anthony Green	Horror	horror
-the-woman-in-the-yard	The Woman in the Yard	2025	Jaume Collet-Serra	Horror	horror
-clown-in-a-cornfield	Clown in a Cornfield	2025	Eli Craig	Horror	horror
-i-know-what-you-did-last-summer	I Know What You Did Last Summer	2025	Jennifer Kaytin Robinson	Horror	horror
-five-nights-at-freddys-2	Five Nights at Freddy's 2	2025	Emma Tammi	Horror	horror
-keeper	Keeper	2025	Osgood Perkins	Horror	horror
-good-boy	Good Boy	2025	Ben Leonberg	Horror	horror
-him	Him	2025	Justin Tipping	Horror	horror
-juror-no-2	Juror No 2	2024	Clint Eastwood	Thriller	thriller
-carry-on	Carry-On	2024	Jaume Collet-Serra	Thriller	thriller
-blink-twice	Blink Twice	2024	Zoe Kravitz	Thriller	thriller
-woman-of-the-hour	Woman of the Hour	2024	Anna Kendrick	Thriller	thriller
-black-bag	Black Bag	2025	Steven Soderbergh	Thriller	thriller
-the-amateur	The Amateur	2025	James Hawes	Thriller	thriller
-kraven-the-hunter	Kraven the Hunter	2024	J.C. Chandor	Action	action
-venom-the-last-dance	Venom The Last Dance	2024	Kelly Marcel	Action	action
-sonic-the-hedgehog-3	Sonic the Hedgehog 3	2024	Jeff Fowler	Action	action
-ballerina	Ballerina	2025	Len Wiseman	Action	action
-thunderbolts	Thunderbolts	2025	Jake Schreier	Action	action
-the-accountant-2	The Accountant 2	2025	Gavin O'Connor	Action	action
-novocaine	Novocaine	2025	Dan Berk	Action	action
-a-working-man	A Working Man	2025	David Ayer	Action	action
-nobody-2	Nobody 2	2025	Timo Tjahjanto	Action	action
-karate-kid-legends	Karate Kid Legends	2025	Jonathan Entwistle	Action	action
-warfare	Warfare	2025	Alex Garland	Action	action
-captain-america-brave-new-world	Captain America Brave New World	2025	Julius Onah	Action	action
-saturday-night	Saturday Night	2024	Jason Reitman	Comedy	comedy
-my-old-ass	My Old Ass	2024	Megan Park	Comedy	comedy
-lilo-and-stitch	Lilo and Stitch	2025	Dean Fleischer Camp	Comedy	comedy
-freakier-friday	Freakier Friday	2025	Nisha Ganatra	Comedy	comedy
-paddington-in-peru	Paddington in Peru	2025	Dougal Wilson	Comedy	comedy
-mufasa-the-lion-king	Mufasa The Lion King	2024	Barry Jenkins	Animation	animation
-the-bad-guys-2	The Bad Guys 2	2025	Pierre Perifel	Animation	animation
-dog-man	Dog Man	2025	Peter Hastings	Animation	animation
-joker-folie-a-deux	Joker Folie a Deux	2024	Todd Phillips	Drama	drama
-a-different-man	A Different Man	2024	Aaron Schimberg	Drama	drama
-the-apprentice	The Apprentice	2024	Ali Abbasi	Drama	drama
-hard-truths	Hard Truths	2024	Mike Leigh	Drama	drama
-im-still-here	I'm Still Here	2024	Walter Salles	Drama	drama
-the-seed-of-the-sacred-fig	The Seed of the Sacred Fig	2024	Mohammad Rasoulof	Drama	drama
-kinds-of-kindness	Kinds of Kindness	2024	Yorgos Lanthimos	Drama	drama
-one-battle-after-another	One Battle After Another	2025	Paul Thomas Anderson	Drama	drama
-the-smashing-machine	The Smashing Machine	2025	Benny Safdie	Drama	drama
-frankenstein-2025	Frankenstein	2025	Guillermo del Toro	Drama	drama
-marty-supreme	Marty Supreme	2025	Josh Safdie	Drama	drama
+pitch-black	Pitch Black	2000	David Twohy	Thriller,Sci-Fi,Action	scifi,action,thriller
+serenity	Serenity	2005	Joss Whedon	Sci-Fi,Action,Adventure,Thriller	scifi,action,thriller
+sunshine	Sunshine	2007	Danny Boyle	Sci-Fi	scifi,thriller
+moon	Moon	2009	Duncan Jones	Sci-Fi	scifi,drama
+ex-machina-2014	Ex Machina	2014	Alex Garland	Sci-Fi	scifi,drama
+the-creator	The Creator	2023	Gareth Edwards	Sci-Fi	scifi,action
+tron-ares	Tron Ares	2025	Joachim Ronning	Sci-Fi,Adventure,Action	scifi,action,new
+breakfast-at-tiffanys	Breakfast at Tiffany's	1961	Blake Edwards	Comedy,Romance,Drama	comedy,romance,classics
+the-umbrellas-of-cherbourg	The Umbrellas of Cherbourg	1964	Jacques Demy	Drama,Romance	romance,classics,drama
+the-way-we-were	The Way We Were	1973	Sydney Pollack	Drama,Romance	romance,classics,drama
+manhattan	Manhattan	1979	Woody Allen	Comedy,Drama,Romance	comedy,romance,drama
+four-weddings-and-a-funeral	Four Weddings and a Funeral	1994	Mike Newell	Comedy,Drama,Romance	comedy,romance,drama
+together	Together	2025	Michael Shanks	Horror,Romance	horror,romance,new
+the-conjuring-last-rites	The Conjuring Last Rites	2025	Michael Chaves	Horror	horror,new
+black-phone-2	Black Phone 2	2025	Scott Derrickson	Horror,Thriller	horror,thriller,new
+the-long-walk	The Long Walk	2025	Francis Lawrence	Sci-Fi,Thriller,Horror	horror,scifi,thriller
+dangerous-animals	Dangerous Animals	2025	Sean Byrne	Horror,Thriller	horror,thriller,new
+opus	Opus	2025	Mark Anthony Green	Horror,Mystery,Thriller	horror,thriller,new
+the-woman-in-the-yard	The Woman in the Yard	2025	Jaume Collet-Serra	Horror	horror,new
+clown-in-a-cornfield	Clown in a Cornfield	2025	Eli Craig	Horror,Mystery,Thriller	horror,thriller,new
+i-know-what-you-did-last-summer	I Know What You Did Last Summer	2025	Jennifer Kaytin Robinson	Horror,Thriller,Mystery	horror,thriller,new
+five-nights-at-freddys-2	Five Nights at Freddy's 2	2025	Emma Tammi	Horror,Thriller	horror,thriller,new
+keeper	Keeper	2025	Osgood Perkins	Horror	horror,new
+good-boy	Good Boy	2025	Ben Leonberg	Horror	horror,new
+him	Him	2025	Justin Tipping	Horror,Mystery,Thriller	horror,thriller,new
+juror-no-2	Juror No 2	2024	Clint Eastwood	Drama,Thriller	thriller,drama,new
+carry-on	Carry-On	2024	Jaume Collet-Serra	Thriller,Action	action,thriller,new
+blink-twice	Blink Twice	2024	Zoe Kravitz	Mystery,Thriller,Horror	horror,thriller,new
+woman-of-the-hour	Woman of the Hour	2024	Anna Kendrick	Crime,Drama,Thriller	crime,thriller,drama
+black-bag	Black Bag	2025	Steven Soderbergh	Drama,Mystery,Thriller	thriller,drama,new
+the-amateur	The Amateur	2025	James Hawes	Thriller,Action	action,thriller,new
+kraven-the-hunter	Kraven the Hunter	2024	J.C. Chandor	Action,Adventure,Thriller	action,thriller,new
+venom-the-last-dance	Venom The Last Dance	2024	Kelly Marcel	Sci-Fi,Action,Adventure	scifi,action,new
+sonic-the-hedgehog-3	Sonic the Hedgehog 3	2024	Jeff Fowler	Action,Sci-Fi,Comedy,Family	family,scifi,action
+ballerina	Ballerina	2025	Len Wiseman	Action,Thriller,Crime	action,crime,thriller
+thunderbolts	Thunderbolts	2025	Jake Schreier	Action,Sci-Fi,Adventure	scifi,action,new
+the-accountant-2	The Accountant 2	2025	Gavin O'Connor	Mystery,Crime,Thriller	crime,thriller,new
+novocaine	Novocaine	2025	Dan Berk	Action,Comedy,Thriller	action,comedy,thriller
+a-working-man	A Working Man	2025	David Ayer	Action,Crime,Thriller	action,crime,thriller
+nobody-2	Nobody 2	2025	Timo Tjahjanto	Action,Thriller,Crime	action,crime,thriller
+karate-kid-legends	Karate Kid Legends	2025	Jonathan Entwistle	Action,Adventure,Drama	action,drama,new
+warfare	Warfare	2025	Alex Garland	War,Action	war,action,new
+captain-america-brave-new-world	Captain America Brave New World	2025	Julius Onah	Action,Thriller,Sci-Fi	scifi,action,thriller
+saturday-night	Saturday Night	2024	Jason Reitman	Comedy,Drama	comedy,drama,new
+my-old-ass	My Old Ass	2024	Megan Park	Drama,Comedy	comedy,drama,new
+lilo-and-stitch	Lilo and Stitch	2025	Dean Fleischer Camp	Comedy,Family,Sci-Fi	family,comedy,scifi
+freakier-friday	Freakier Friday	2025	Nisha Ganatra	Comedy,Fantasy,Family	family,fantasy,comedy
+paddington-in-peru	Paddington in Peru	2025	Dougal Wilson	Comedy,Family,Adventure	family,comedy
+mufasa-the-lion-king	Mufasa The Lion King	2024	Barry Jenkins	Adventure,Family,Animation	family,animation,new
+the-bad-guys-2	The Bad Guys 2	2025	Pierre Perifel	Family,Comedy,Crime,Adventure,Animation,Action	family,animation,action
+dog-man	Dog Man	2025	Peter Hastings	Family,Comedy,Adventure,Animation,Action	family,animation,action
+joker-folie-a-deux	Joker Folie a Deux	2024	Todd Phillips	Drama,Crime,Thriller	crime,thriller,drama
+a-different-man	A Different Man	2024	Aaron Schimberg	Comedy,Drama	comedy,drama,new
+the-apprentice	The Apprentice	2024	Ali Abbasi	History,Drama,Comedy	comedy,drama,new
+hard-truths	Hard Truths	2024	Mike Leigh	Drama,Comedy	comedy,drama,new
+im-still-here	I'm Still Here	2024	Walter Salles	Drama,History	drama,new
+the-seed-of-the-sacred-fig	The Seed of the Sacred Fig	2024	Mohammad Rasoulof	Drama,Thriller,Crime	crime,thriller,drama
+kinds-of-kindness	Kinds of Kindness	2024	Yorgos Lanthimos	Comedy,Drama	comedy,drama,new
+one-battle-after-another	One Battle After Another	2025	Paul Thomas Anderson	Thriller,Crime,Comedy	comedy,crime,thriller
+the-smashing-machine	The Smashing Machine	2025	Benny Safdie	Drama,History,Action	action,drama,new
+frankenstein-2025	Frankenstein	2025	Guillermo del Toro	Horror,Drama	fantasy,horror,new
+marty-supreme	Marty Supreme	2025	Josh Safdie	Drama,Thriller	thriller,drama,new
