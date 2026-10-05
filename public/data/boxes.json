@@ -1,9 +1,15 @@
 {
   "10-things-i-hate-about-you": {
-    "back": "/sleeves/10-things-i-hate-about-you-still.jpg?v=42816cc4",
-    "cover": "/sleeves/10-things-i-hate-about-you.jpg?v=fe2d40f0",
+    "back": "/sleeves/10-things-i-hate-about-you-still.jpg?v=617b77ee",
+    "cover": "/sleeves/10-things-i-hate-about-you.jpg?v=77785250",
     "fit": "contain",
     "spine": "/sleeves/spines/10-things-i-hate-about-you.png?v=4903f7d2"
+  },
+  "12-years-a-slave": {
+    "back": "/sleeves/12-years-a-slave-still.jpg?v=fb2aca50",
+    "cover": "/sleeves/12-years-a-slave.jpg?v=56ec5097",
+    "fit": "contain",
+    "spine": "/sleeves/spines/12-years-a-slave.png?v=3020e3d7"
   },
   "2001-a-space-odyssey": {
     "back": "/sleeves/2001-a-space-odyssey-still.jpg?v=97444a7a",
@@ -18,10 +24,16 @@
     "spine": "/sleeves/spines/28-years-later.png?v=0ecb370d"
   },
   "a-christmas-story": {
-    "back": "/sleeves/a-christmas-story-still.jpg?v=66381387",
-    "cover": "/sleeves/a-christmas-story.jpg?v=0649f766",
+    "back": "/sleeves/a-christmas-story-still.jpg?v=5e56f3ba",
+    "cover": "/sleeves/a-christmas-story.jpg?v=5b37eb56",
     "fit": "contain",
     "spine": "/sleeves/spines/a-christmas-story.png?v=892ccbe4"
+  },
+  "a-clockwork-orange": {
+    "back": "/sleeves/a-clockwork-orange-still.jpg?v=636c69f5",
+    "cover": "/sleeves/a-clockwork-orange.jpg?v=a77ec875",
+    "fit": "contain",
+    "spine": "/sleeves/spines/a-clockwork-orange.png?v=b2057e2c"
   },
   "a-minecraft-movie": {
     "back": "/sleeves/a-minecraft-movie-still.jpg?v=88549946",
@@ -125,6 +137,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/avatar-fire-and-ash.png?v=53cc192f"
   },
+  "avengers-secret-wars": {
+    "back": "/sleeves/avengers-secret-wars-still.jpg?v=54a9b9f5",
+    "cover": "/sleeves/avengers-secret-wars.jpg?v=c5cdab60",
+    "fit": "contain",
+    "spine": "/sleeves/spines/avengers-secret-wars.png?v=e2ac9008"
+  },
   "back-to-the-future": {
     "back": "/sleeves/back-to-the-future-clock.jpg?v=c4ba940e",
     "cover": "/sleeves/back-to-the-future.jpg?v=1a786f1c",
@@ -149,11 +167,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/batman-1989.png?v=a436b727"
   },
+  "beauty-and-the-beast-1991": {
+    "back": "/sleeves/beauty-and-the-beast-1991-still.jpg?v=90a278b7",
+    "cover": "/sleeves/beauty-and-the-beast-1991.jpg?v=23560c6c",
+    "fit": "contain",
+    "spine": "/sleeves/spines/beauty-and-the-beast-1991.png?v=2fea1093"
+  },
   "beetlejuice": {
     "back": "/sleeves/beetlejuice-still.jpg?v=0dfea338",
     "cover": "/sleeves/beetlejuice.jpg?v=000bbf11",
     "fit": "contain",
     "spine": "/sleeves/spines/beetlejuice.png?v=1429012c"
+  },
+  "beetlejuice-beetlejuice": {
+    "back": "/sleeves/beetlejuice-beetlejuice-still.jpg?v=6e37efa5",
+    "cover": "/sleeves/beetlejuice-beetlejuice.jpg?v=f1e34d77",
+    "fit": "contain",
+    "spine": "/sleeves/spines/beetlejuice-beetlejuice.png?v=a51bc270"
+  },
+  "beyond-the-spider-verse": {
+    "back": "/sleeves/beyond-the-spider-verse-still.jpg?v=cbc8f1a4",
+    "cover": "/sleeves/beyond-the-spider-verse.jpg?v=d1847460",
+    "fit": "contain",
+    "spine": "/sleeves/spines/beyond-the-spider-verse.png?v=44121954"
   },
   "big-fish": {
     "back": "/sleeves/big-fish-still.jpg?v=09f21cd8",
@@ -167,11 +203,35 @@
     "fit": "contain",
     "spine": "/sleeves/spines/big-fish-film.png?v=1d2f7ce4"
   },
+  "black-christmas": {
+    "back": "/sleeves/black-christmas-still.jpg?v=89ba4e8b",
+    "cover": "/sleeves/black-christmas.jpg?v=c38cca8d",
+    "fit": "contain",
+    "spine": "/sleeves/spines/black-christmas.png?v=757b1ad4"
+  },
+  "black-sunday": {
+    "back": "/sleeves/black-sunday-still.jpg?v=f4149ed1",
+    "cover": "/sleeves/black-sunday.jpg?v=ca4d6ee2",
+    "fit": "contain",
+    "spine": "/sleeves/spines/black-sunday.png?v=649b87b9"
+  },
+  "blacula": {
+    "back": "/sleeves/blacula-still.jpg?v=f3a6c7aa",
+    "cover": "/sleeves/blacula.jpg?v=5b9f7ae9",
+    "fit": "contain",
+    "spine": "/sleeves/spines/blacula.png?v=10c01faa"
+  },
   "blade-runner": {
     "back": "/sleeves/blade-runner-roof.jpg?v=fdc9bfb6",
     "cover": "/sleeves/blade-runner.jpg?v=cd309ed6",
     "fit": "contain",
     "spine": "/sleeves/spines/blade-runner.png?v=e7abf9db"
+  },
+  "bride-of-frankenstein": {
+    "back": "/sleeves/bride-of-frankenstein-still.jpg?v=c50a40a4",
+    "cover": "/sleeves/bride-of-frankenstein.jpg?v=6f138ffd",
+    "fit": "contain",
+    "spine": "/sleeves/spines/bride-of-frankenstein.png?v=6f2d8155"
   },
   "carrie-1976": {
     "back": "/sleeves/carrie-1976-still.jpg?v=cb8c900d",
@@ -184,6 +244,12 @@
     "cover": "/sleeves/casablanca.jpg?v=75e02403",
     "fit": "contain",
     "spine": "/sleeves/spines/casablanca.png?v=25ffa22a"
+  },
+  "cat-people": {
+    "back": "/sleeves/cat-people-still.jpg?v=c75c6483",
+    "cover": "/sleeves/cat-people.jpg?v=f8ff8e1d",
+    "fit": "contain",
+    "spine": "/sleeves/spines/cat-people.png?v=87f6da6b"
   },
   "challengers": {
     "back": "/sleeves/challengers-still.jpg?v=cbdd0f39",
@@ -233,6 +299,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/clueless.png?v=52616c47"
   },
+  "coco-2017": {
+    "back": "/sleeves/coco-2017-still.jpg?v=8ba7fdb0",
+    "cover": "/sleeves/coco-2017.jpg?v=e688d950",
+    "fit": "contain",
+    "spine": "/sleeves/spines/coco-2017.png?v=392e0b9f"
+  },
   "coming-to-america": {
     "back": "/sleeves/coming-to-america-shop.jpg?v=f8f955e2",
     "cover": "/sleeves/coming-to-america.jpg?v=adf834aa",
@@ -244,6 +316,12 @@
     "cover": "/sleeves/conclave-2024.jpg?v=aa44496e",
     "fit": "contain",
     "spine": "/sleeves/spines/conclave-2024.png?v=4770dc81"
+  },
+  "creature-from-the-black-lagoon": {
+    "back": "/sleeves/creature-from-the-black-lagoon-still.jpg?v=07fb7ae1",
+    "cover": "/sleeves/creature-from-the-black-lagoon.jpg?v=98dea5b5",
+    "fit": "contain",
+    "spine": "/sleeves/spines/creature-from-the-black-lagoon.png?v=aefb8317"
   },
   "dark-city": {
     "back": "/sleeves/dark-city-still.jpg?v=cd478a78",
@@ -269,11 +347,23 @@
     "fit": "contain",
     "spine": "/sleeves/spines/dead-poets-society.png?v=612885a8"
   },
+  "deadpool-and-wolverine": {
+    "back": "/sleeves/deadpool-and-wolverine-still.jpg?v=59b17810",
+    "cover": "/sleeves/deadpool-and-wolverine.jpg?v=aee22672",
+    "fit": "contain",
+    "spine": "/sleeves/spines/deadpool-and-wolverine.png?v=e03c9e3d"
+  },
   "decision-to-leave": {
     "back": "/sleeves/decision-to-leave-still.jpg?v=38ca8a26",
     "cover": "/sleeves/decision-to-leave.jpg?v=1ceab813",
     "fit": "contain",
     "spine": "/sleeves/spines/decision-to-leave.png?v=c33a6105"
+  },
+  "deep-red": {
+    "back": "/sleeves/deep-red-still.jpg?v=1e3caf1f",
+    "cover": "/sleeves/deep-red.jpg?v=e6bd7b11",
+    "fit": "contain",
+    "spine": "/sleeves/spines/deep-red.png?v=6a0287c0"
   },
   "die-hard": {
     "back": "/sleeves/die-hard-still.jpg?v=d59dc29a",
@@ -311,11 +401,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/donnie-darko.png?v=018140fe"
   },
+  "dont-look-now": {
+    "back": "/sleeves/dont-look-now-still.jpg?v=9775030f",
+    "cover": "/sleeves/dont-look-now.jpg?v=abd79c95",
+    "fit": "contain",
+    "spine": "/sleeves/spines/dont-look-now.png?v=b73fb5e6"
+  },
+  "dracula": {
+    "back": "/sleeves/dracula-still.jpg?v=a8b9c889",
+    "cover": "/sleeves/dracula.jpg?v=ff0442a8",
+    "fit": "contain",
+    "spine": "/sleeves/spines/dracula.png?v=6ede71e9"
+  },
   "drive-2011": {
     "back": "/sleeves/drive-2011-still.jpg?v=6791d45c",
     "cover": "/sleeves/drive-2011.jpg?v=f8710254",
     "fit": "contain",
     "spine": "/sleeves/spines/drive-2011.png?v=3fee395b"
+  },
+  "drive-my-car": {
+    "back": "/sleeves/drive-my-car-still.jpg?v=1d5366c8",
+    "cover": "/sleeves/drive-my-car.jpg?v=21e7d81c",
+    "fit": "contain",
+    "spine": "/sleeves/spines/drive-my-car.png?v=59348f6b"
   },
   "dumb-and-dumber": {
     "back": "/sleeves/dumb-and-dumber-still.jpg?v=f78cdf31",
@@ -383,6 +491,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/eternal-sunshine-of-the-spotless-mind.png?v=621da5f8"
   },
+  "everything-everywhere-all-at-once": {
+    "back": "/sleeves/everything-everywhere-all-at-once-still.jpg?v=cbc749bb",
+    "cover": "/sleeves/everything-everywhere-all-at-once.jpg?v=f442aee9",
+    "fit": "contain",
+    "spine": "/sleeves/spines/everything-everywhere-all-at-once.png?v=64bf33d3"
+  },
   "evil-dead-2": {
     "back": "/sleeves/evil-dead-2-still.jpg?v=bca37d54",
     "cover": "/sleeves/evil-dead-2.jpg?v=de6164fd",
@@ -394,6 +508,12 @@
     "cover": "/sleeves/ex-machina.jpg?v=f35b39e6",
     "fit": "contain",
     "spine": "/sleeves/spines/ex-machina.png?v=e4c8852b"
+  },
+  "f1-2025": {
+    "back": "/sleeves/f1-2025-still.jpg?v=62ca04df",
+    "cover": "/sleeves/f1-2025.jpg?v=19cfc470",
+    "fit": "contain",
+    "spine": "/sleeves/spines/f1-2025.png?v=b369ac57"
   },
   "fargo": {
     "back": "/sleeves/fargo-still.jpg?v=0dea6808",
@@ -412,6 +532,12 @@
     "cover": "/sleeves/fight-club.jpg?v=95d98a2e",
     "fit": "contain",
     "spine": "/sleeves/spines/fight-club.png?v=09b9d636"
+  },
+  "finding-nemo": {
+    "back": "/sleeves/finding-nemo-still.jpg?v=80983af1",
+    "cover": "/sleeves/finding-nemo.jpg?v=09604bb9",
+    "fit": "contain",
+    "spine": "/sleeves/spines/finding-nemo.png?v=d55ec288"
   },
   "first-blood": {
     "back": "/sleeves/first-blood-woods.jpg?v=543bb6e8",
@@ -437,11 +563,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/four-rooms.png?v=bd02c834"
   },
+  "frankenstein": {
+    "back": "/sleeves/frankenstein-still.jpg?v=6af26457",
+    "cover": "/sleeves/frankenstein.jpg?v=c43a50c4",
+    "fit": "contain",
+    "spine": "/sleeves/spines/frankenstein.png?v=be7db6ce"
+  },
+  "frozen-3": {
+    "back": "/sleeves/frozen-3-still.jpg?v=f10f30f6",
+    "cover": "/sleeves/frozen-3.jpg?v=c3edb45a",
+    "fit": "contain",
+    "spine": "/sleeves/spines/frozen-3.png?v=f2335ba2"
+  },
   "full-metal-jacket": {
     "back": "/sleeves/full-metal-jacket-still.jpg?v=4a22b61e",
     "cover": "/sleeves/full-metal-jacket.jpg?v=4a9f2cd4",
     "fit": "contain",
     "spine": "/sleeves/spines/full-metal-jacket.png?v=946ab4a5"
+  },
+  "furiosa": {
+    "back": "/sleeves/furiosa-still.jpg?v=ac4a7182",
+    "cover": "/sleeves/furiosa.jpg?v=0c06fa8a",
+    "fit": "contain",
+    "spine": "/sleeves/spines/furiosa.png?v=3585c31c"
   },
   "get-out": {
     "back": "/sleeves/get-out-still.jpg?v=c72742bc",
@@ -449,11 +593,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/get-out.png?v=f3635d27"
   },
+  "ghost-1990": {
+    "back": "/sleeves/ghost-1990-still.jpg?v=eb14748f",
+    "cover": "/sleeves/ghost-1990.jpg?v=d236e781",
+    "fit": "contain",
+    "spine": "/sleeves/spines/ghost-1990.png?v=15755506"
+  },
   "ghostbusters": {
     "back": "/sleeves/ghostbusters-still.jpg?v=cde12df3",
     "cover": "/sleeves/ghostbusters.jpg?v=91fe5ee4",
     "fit": "contain",
     "spine": "/sleeves/spines/ghostbusters.png?v=a53fe588"
+  },
+  "godzilla-minus-one": {
+    "back": "/sleeves/godzilla-minus-one-still.jpg?v=096e51f5",
+    "cover": "/sleeves/godzilla-minus-one.jpg?v=b3283362",
+    "fit": "contain",
+    "spine": "/sleeves/spines/godzilla-minus-one.png?v=6369f942"
+  },
+  "godzilla-x-kong-supernova": {
+    "back": "/sleeves/godzilla-x-kong-supernova-still.jpg?v=e373081d",
+    "cover": "/sleeves/godzilla-x-kong-supernova.jpg?v=aa21f30c",
+    "fit": "contain",
+    "spine": "/sleeves/spines/godzilla-x-kong-supernova.png?v=a149fd1f"
   },
   "good-will-hunting": {
     "back": "/sleeves/good-will-hunting-still.jpg?v=a04dedb2",
@@ -479,6 +641,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/gremlins.png?v=a5b149b3"
   },
+  "gremlins-3": {
+    "back": "/sleeves/gremlins-3-still.jpg?v=d6235ac8",
+    "cover": "/sleeves/gremlins-3.jpg?v=5015a916",
+    "fit": "contain",
+    "spine": "/sleeves/spines/gremlins-3.png?v=79a32cf1"
+  },
   "groundhog-day": {
     "back": "/sleeves/groundhog-day-still.jpg?v=d6ea4f22",
     "cover": "/sleeves/groundhog-day.jpg?v=a14a4f8c",
@@ -489,13 +657,19 @@
     "back": "/sleeves/halloween-1978-still.jpg?v=e910e5b1",
     "cover": "/sleeves/halloween-1978.jpg?v=6b55f1cf",
     "fit": "contain",
-    "spine": "/sleeves/spines/halloween-1978.png?v=a89ab301"
+    "spine": "/sleeves/spines/halloween-1978.png?v=e1814afe"
   },
   "hard-boiled": {
     "back": "/sleeves/hard-boiled-still.jpg?v=329ca255",
     "cover": "/sleeves/hard-boiled.jpg?v=b594e5a7",
     "fit": "contain",
     "spine": "/sleeves/spines/hard-boiled.png?v=a88d362d"
+  },
+  "harry-potter-and-the-sorcerers-stone": {
+    "back": "/sleeves/harry-potter-and-the-sorcerers-stone-still.jpg?v=4e9fc3af",
+    "cover": "/sleeves/harry-potter-and-the-sorcerers-stone.jpg?v=6c13a77d",
+    "fit": "contain",
+    "spine": "/sleeves/spines/harry-potter-and-the-sorcerers-stone.png?v=b13848ac"
   },
   "heat-1995": {
     "back": "/sleeves/heat-1995-still.jpg?v=2804deb7",
@@ -533,11 +707,35 @@
     "fit": "contain",
     "spine": "/sleeves/spines/hot-fuzz.png?v=fd0e2b1a"
   },
+  "house": {
+    "back": "/sleeves/house-still.jpg?v=cee927df",
+    "cover": "/sleeves/house.jpg?v=58011615",
+    "fit": "contain",
+    "spine": "/sleeves/spines/house.png?v=58ee804f"
+  },
+  "how-to-train-your-dragon-2025": {
+    "back": "/sleeves/how-to-train-your-dragon-2025-still.jpg?v=5889fff9",
+    "cover": "/sleeves/how-to-train-your-dragon-2025.jpg?v=c363408c",
+    "fit": "contain",
+    "spine": "/sleeves/spines/how-to-train-your-dragon-2025.png?v=96916d52"
+  },
+  "hunt-for-gollum": {
+    "back": "/sleeves/hunt-for-gollum-still.jpg?v=9334584c",
+    "cover": "/sleeves/hunt-for-gollum.jpg?v=ac1e9ef1",
+    "fit": "contain",
+    "spine": "/sleeves/spines/hunt-for-gollum.png?v=3747be0b"
+  },
   "i-saw-the-tv-glow": {
     "back": "/sleeves/i-saw-the-tv-glow-still.jpg?v=0f8ef8a1",
     "cover": "/sleeves/i-saw-the-tv-glow.jpg?v=064e18e2",
     "fit": "contain",
     "spine": "/sleeves/spines/i-saw-the-tv-glow.png?v=342c1c46"
+  },
+  "in-the-mood-for-love": {
+    "back": "/sleeves/in-the-mood-for-love-still.jpg?v=8933c031",
+    "cover": "/sleeves/in-the-mood-for-love.jpg?v=f401e608",
+    "fit": "contain",
+    "spine": "/sleeves/spines/in-the-mood-for-love.png?v=8bf9b116"
   },
   "inception": {
     "back": "/sleeves/inception-still.jpg?v=b0e04f9b",
@@ -569,11 +767,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/interstellar.png?v=29ad92d8"
   },
+  "invasion-of-the-body-snatchers": {
+    "back": "/sleeves/invasion-of-the-body-snatchers-still.jpg?v=ef465870",
+    "cover": "/sleeves/invasion-of-the-body-snatchers.jpg?v=fffa683d",
+    "fit": "contain",
+    "spine": "/sleeves/spines/invasion-of-the-body-snatchers.png?v=213f8702"
+  },
+  "invasion-of-the-body-snatchers-1978": {
+    "back": "/sleeves/invasion-of-the-body-snatchers-1978-still.jpg?v=008b6726",
+    "cover": "/sleeves/invasion-of-the-body-snatchers-1978.jpg?v=e01b59d9",
+    "fit": "contain",
+    "spine": "/sleeves/spines/invasion-of-the-body-snatchers-1978.png?v=a004c712"
+  },
   "its-a-wonderful-life": {
     "back": "/sleeves/its-a-wonderful-life-still.jpg?v=5d3f4ccb",
     "cover": "/sleeves/its-a-wonderful-life.jpg?v=cb6b1f60",
     "fit": "contain",
     "spine": "/sleeves/spines/its-a-wonderful-life.png?v=add62620"
+  },
+  "its-alive": {
+    "back": "/sleeves/its-alive-still.jpg?v=f2dbd0d9",
+    "cover": "/sleeves/its-alive.jpg?v=bf11de69",
+    "fit": "contain",
+    "spine": "/sleeves/spines/its-alive.png?v=855d386b"
   },
   "jaws": {
     "back": "/sleeves/jaws-orca.jpg?v=37fd5949",
@@ -593,15 +809,21 @@
     "fit": "contain",
     "spine": "/sleeves/spines/jurassic-park.png?v=f67f1d8e"
   },
+  "jurassic-world-rebirth": {
+    "back": "/sleeves/jurassic-world-rebirth-still.jpg?v=6a08b0db",
+    "cover": "/sleeves/jurassic-world-rebirth.jpg?v=5593d91f",
+    "fit": "contain",
+    "spine": "/sleeves/spines/jurassic-world-rebirth.png?v=3a22f2fb"
+  },
   "kill-bill-vol-1": {
-    "back": "/sleeves/kill-bill-vol-1-still.jpg?v=1116e960",
-    "cover": "/sleeves/kill-bill-vol-1.jpg?v=32f24735",
+    "back": "/sleeves/kill-bill-vol-1-still.jpg?v=21473603",
+    "cover": "/sleeves/kill-bill-vol-1.jpg?v=63656e10",
     "fit": "contain",
     "spine": "/sleeves/spines/kill-bill-vol-1.png?v=0efec897"
   },
   "knives-out": {
-    "back": "/sleeves/knives-out-still.jpg?v=d96ece2a",
-    "cover": "/sleeves/knives-out.jpg?v=bcb67b5e",
+    "back": "/sleeves/knives-out-still.jpg?v=55de19fb",
+    "cover": "/sleeves/knives-out.jpg?v=8bb81ae5",
     "fit": "contain",
     "spine": "/sleeves/spines/knives-out.png?v=0b15ecf6"
   },
@@ -654,10 +876,16 @@
     "spine": "/sleeves/spines/mad-max-2.png?v=d9e36f1a"
   },
   "mad-max-fury-road": {
-    "back": "/sleeves/mad-max-fury-road-still.jpg?v=6aae4ece",
-    "cover": "/sleeves/mad-max-fury-road.jpg?v=9b71d2dc",
+    "back": "/sleeves/mad-max-fury-road-still.jpg?v=122d533f",
+    "cover": "/sleeves/mad-max-fury-road.jpg?v=a21ce47c",
     "fit": "contain",
     "spine": "/sleeves/spines/mad-max-fury-road.png?v=a33fbcda"
+  },
+  "man-of-tomorrow": {
+    "back": "/sleeves/man-of-tomorrow-still.jpg?v=dcc41377",
+    "cover": "/sleeves/man-of-tomorrow.jpg?v=43deba7c",
+    "fit": "contain",
+    "spine": "/sleeves/spines/man-of-tomorrow.png?v=2a0a88dd"
   },
   "manhunter": {
     "back": "/sleeves/manhunter-still.jpg?v=e6fa7cbf",
@@ -671,17 +899,41 @@
     "fit": "contain",
     "spine": "/sleeves/spines/mean-girls.png?v=47f9a9a6"
   },
+  "memories-of-murder": {
+    "back": "/sleeves/memories-of-murder-still.jpg?v=c5f2341f",
+    "cover": "/sleeves/memories-of-murder.jpg?v=973d7a8d",
+    "fit": "contain",
+    "spine": "/sleeves/spines/memories-of-murder.png?v=9fc22ed4"
+  },
+  "mickey-17": {
+    "back": "/sleeves/mickey-17-still.jpg?v=4699c82d",
+    "cover": "/sleeves/mickey-17.jpg?v=5cc29042",
+    "fit": "contain",
+    "spine": "/sleeves/spines/mickey-17.png?v=b92d8585"
+  },
   "midsommar": {
     "back": "/sleeves/midsommar-still.jpg?v=0f4fec0f",
     "cover": "/sleeves/midsommar.jpg?v=9282fa44",
     "fit": "contain",
     "spine": "/sleeves/spines/midsommar.png?v=38d16ad6"
   },
+  "mission-impossible-the-final-reckoning": {
+    "back": "/sleeves/mission-impossible-the-final-reckoning-still.jpg?v=e2567290",
+    "cover": "/sleeves/mission-impossible-the-final-reckoning.jpg?v=b56b1f77",
+    "fit": "contain",
+    "spine": "/sleeves/spines/mission-impossible-the-final-reckoning.png?v=9377f6a6"
+  },
   "moana-2": {
     "back": "/sleeves/moana-2-still.jpg?v=ed9d47ce",
     "cover": "/sleeves/moana-2.jpg?v=e47652d7",
     "fit": "contain",
     "spine": "/sleeves/spines/moana-2.png?v=01245429"
+  },
+  "moana-2026": {
+    "back": "/sleeves/moana-2026-still.jpg?v=58c18356",
+    "cover": "/sleeves/moana-2026.jpg?v=1fbc6207",
+    "fit": "contain",
+    "spine": "/sleeves/spines/moana-2026.png?v=ba57dca4"
   },
   "moonlight": {
     "back": "/sleeves/moonlight-still.jpg?v=b8c43d0d",
@@ -712,6 +964,12 @@
     "cover": "/sleeves/night-of-the-comet.jpg?v=1daaed9c",
     "fit": "contain",
     "spine": "/sleeves/spines/night-of-the-comet.png?v=9bcbf546"
+  },
+  "night-of-the-living-dead": {
+    "back": "/sleeves/night-of-the-living-dead-still.jpg?v=2c8fe352",
+    "cover": "/sleeves/night-of-the-living-dead.jpg?v=812ee587",
+    "fit": "contain",
+    "spine": "/sleeves/spines/night-of-the-living-dead.png?v=67c48254"
   },
   "nightmare-before-christmas": {
     "back": "/sleeves/nightmare-before-christmas-still.jpg?v=876d281a",
@@ -749,6 +1007,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/nosferatu-2024.png?v=c400510c"
   },
+  "nosferatu-the-vampyre": {
+    "back": "/sleeves/nosferatu-the-vampyre-still.jpg?v=e99bd921",
+    "cover": "/sleeves/nosferatu-the-vampyre.jpg?v=0f0e61e6",
+    "fit": "contain",
+    "spine": "/sleeves/spines/nosferatu-the-vampyre.png?v=95991e12"
+  },
   "office-space": {
     "back": "/sleeves/office-space-still.jpg?v=ee11465d",
     "cover": "/sleeves/office-space.jpg?v=c33786f4",
@@ -772,6 +1036,12 @@
     "cover": "/sleeves/oppenheimer.jpg?v=9360a7b2",
     "fit": "contain",
     "spine": "/sleeves/spines/oppenheimer.png?v=b5015126"
+  },
+  "paddington-2": {
+    "back": "/sleeves/paddington-2-still.jpg?v=98d03ed2",
+    "cover": "/sleeves/paddington-2.jpg?v=a1e6c4f8",
+    "fit": "contain",
+    "spine": "/sleeves/spines/paddington-2.png?v=30a5193f"
   },
   "pans-labyrinth": {
     "back": "/sleeves/pans-labyrinth-still.jpg?v=9323cf30",
@@ -797,6 +1067,24 @@
     "fit": "contain",
     "spine": "/sleeves/spines/perfect-days.png?v=b40024ba"
   },
+  "phantasm": {
+    "back": "/sleeves/phantasm-still.jpg?v=25dfc21e",
+    "cover": "/sleeves/phantasm.jpg?v=164c7d74",
+    "fit": "contain",
+    "spine": "/sleeves/spines/phantasm.png?v=4aa8b84b"
+  },
+  "piranha": {
+    "back": "/sleeves/piranha-still.jpg?v=bd443ff3",
+    "cover": "/sleeves/piranha.jpg?v=07f624fd",
+    "fit": "contain",
+    "spine": "/sleeves/spines/piranha.png?v=1e7bd343"
+  },
+  "pirates-of-the-caribbean": {
+    "back": "/sleeves/pirates-of-the-caribbean-still.jpg?v=77f86df5",
+    "cover": "/sleeves/pirates-of-the-caribbean.jpg?v=c8cc26a1",
+    "fit": "contain",
+    "spine": "/sleeves/spines/pirates-of-the-caribbean.png?v=fb6d3147"
+  },
   "point-break": {
     "back": "/sleeves/point-break-still.jpg?v=71f9ea47",
     "cover": "/sleeves/point-break.jpg?v=3221d0da",
@@ -809,11 +1097,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/poltergeist.png?v=0fd7469b"
   },
+  "poor-things": {
+    "back": "/sleeves/poor-things-still.jpg?v=6b3479a6",
+    "cover": "/sleeves/poor-things.jpg?v=dafe0992",
+    "fit": "contain",
+    "spine": "/sleeves/spines/poor-things.png?v=abe39127"
+  },
+  "portrait-of-a-lady-on-fire": {
+    "back": "/sleeves/portrait-of-a-lady-on-fire-still.jpg?v=fda94c2b",
+    "cover": "/sleeves/portrait-of-a-lady-on-fire.jpg?v=586030ef",
+    "fit": "contain",
+    "spine": "/sleeves/spines/portrait-of-a-lady-on-fire.png?v=fe946f0a"
+  },
   "predator": {
     "back": "/sleeves/predator-still.jpg?v=21ae255c",
     "cover": "/sleeves/predator.jpg?v=1e11aefd",
     "fit": "contain",
     "spine": "/sleeves/spines/predator.png?v=15e053ec"
+  },
+  "predator-badlands": {
+    "back": "/sleeves/predator-badlands-still.jpg?v=20e046e9",
+    "cover": "/sleeves/predator-badlands.jpg?v=0b0b43ef",
+    "fit": "contain",
+    "spine": "/sleeves/spines/predator-badlands.png?v=dd8c7e51"
   },
   "pretty-woman": {
     "back": "/sleeves/pretty-woman-still.jpg?v=f3757ba6",
@@ -942,14 +1248,14 @@
     "spine": "/sleeves/spines/se7en.png?v=b939829b"
   },
   "shaun-of-the-dead": {
-    "back": "/sleeves/shaun-of-the-dead-still.jpg?v=14eda6f7",
-    "cover": "/sleeves/shaun-of-the-dead.jpg?v=7ee79286",
+    "back": "/sleeves/shaun-of-the-dead-still.jpg?v=4236c92a",
+    "cover": "/sleeves/shaun-of-the-dead.jpg?v=ffc5ca04",
     "fit": "contain",
     "spine": "/sleeves/spines/shaun-of-the-dead.png?v=01a5e671"
   },
   "shrek": {
-    "back": "/sleeves/shrek-still.jpg?v=f5f1ab94",
-    "cover": "/sleeves/shrek.jpg?v=9930e02b",
+    "back": "/sleeves/shrek-still.jpg?v=b7c0bc57",
+    "cover": "/sleeves/shrek.jpg?v=740d2f9a",
     "fit": "contain",
     "spine": "/sleeves/spines/shrek.png?v=15b92eea"
   },
@@ -971,6 +1277,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/sleepless-in-seattle.png?v=01eb5d9b"
   },
+  "slumdog-millionaire": {
+    "back": "/sleeves/slumdog-millionaire-still.jpg?v=788ac168",
+    "cover": "/sleeves/slumdog-millionaire.jpg?v=35c91bb3",
+    "fit": "contain",
+    "spine": "/sleeves/spines/slumdog-millionaire.png?v=7c0366cf"
+  },
   "society-1989": {
     "back": "/sleeves/society-1989-still.jpg?v=03648f49",
     "cover": "/sleeves/society-1989.jpg?v=8b97cda4",
@@ -982,6 +1294,24 @@
     "cover": "/sleeves/speed-1994.jpg?v=d1c3dcb0",
     "fit": "contain",
     "spine": "/sleeves/spines/speed-1994.png?v=e0a2e15b"
+  },
+  "spider-man-across-the-spider-verse": {
+    "back": "/sleeves/spider-man-across-the-spider-verse-still.jpg?v=3d93e988",
+    "cover": "/sleeves/spider-man-across-the-spider-verse.jpg?v=3f879002",
+    "fit": "contain",
+    "spine": "/sleeves/spines/spider-man-across-the-spider-verse.png?v=111c2819"
+  },
+  "spider-man-brand-new-day": {
+    "back": "/sleeves/spider-man-brand-new-day-still.jpg?v=644d0656",
+    "cover": "/sleeves/spider-man-brand-new-day.jpg?v=95f12a67",
+    "fit": "contain",
+    "spine": "/sleeves/spines/spider-man-brand-new-day.png?v=189204e2"
+  },
+  "spider-man-into-the-spider-verse": {
+    "back": "/sleeves/spider-man-into-the-spider-verse-still.jpg?v=ff0839fe",
+    "cover": "/sleeves/spider-man-into-the-spider-verse.jpg?v=56469717",
+    "fit": "contain",
+    "spine": "/sleeves/spines/spider-man-into-the-spider-verse.png?v=3fa82a98"
   },
   "spirited-away": {
     "back": "/sleeves/spirited-away-still.jpg?v=317c0a13",
@@ -997,7 +1327,7 @@
   },
   "star-wars": {
     "back": "/sleeves/star-wars-still.jpg?v=16ef73b6",
-    "cover": "/sleeves/star-wars.jpg?v=79379c02",
+    "cover": "/sleeves/star-wars.jpg?v=4de41c70",
     "fit": "contain",
     "spine": "/sleeves/spines/star-wars.png?v=48a6e6f3"
   },
@@ -1049,11 +1379,23 @@
     "fit": "contain",
     "spine": "/sleeves/spines/terminator-2.png?v=bd941246"
   },
+  "the-amityville-horror": {
+    "back": "/sleeves/the-amityville-horror-still.jpg?v=00ea0c91",
+    "cover": "/sleeves/the-amityville-horror.jpg?v=17d7a63b",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-amityville-horror.png?v=d94fd688"
+  },
   "the-big-lebowski": {
     "back": "/sleeves/the-big-lebowski-still.jpg?v=0d44e442",
     "cover": "/sleeves/the-big-lebowski.jpg?v=880dbab5",
     "fit": "contain",
     "spine": "/sleeves/spines/the-big-lebowski.png?v=b3c6d49a"
+  },
+  "the-blob": {
+    "back": "/sleeves/the-blob-still.jpg?v=fb92d7a7",
+    "cover": "/sleeves/the-blob.jpg?v=ce8028a2",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-blob.png?v=647b548a"
   },
   "the-breakfast-club": {
     "back": "/sleeves/the-breakfast-club-still.jpg?v=c16f9f01",
@@ -1109,6 +1451,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-fantastic-four-first-steps.png?v=b40345cf"
   },
+  "the-fellowship-of-the-ring": {
+    "back": "/sleeves/the-fellowship-of-the-ring-still.jpg?v=22cf1230",
+    "cover": "/sleeves/the-fellowship-of-the-ring.jpg?v=db64f305",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-fellowship-of-the-ring.png?v=32c821e5"
+  },
   "the-fifth-element": {
     "back": "/sleeves/the-fifth-element-still.jpg?v=22eab401",
     "cover": "/sleeves/the-fifth-element.jpg?v=d4bee4ca",
@@ -1145,11 +1493,35 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-grand-budapest-hotel.png?v=44a28007"
   },
+  "the-handmaiden": {
+    "back": "/sleeves/the-handmaiden-still.jpg?v=4b6c335b",
+    "cover": "/sleeves/the-handmaiden.jpg?v=c6f37eb4",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-handmaiden.png?v=1276e0de"
+  },
+  "the-hills-have-eyes": {
+    "back": "/sleeves/the-hills-have-eyes-still.jpg?v=e27eff74",
+    "cover": "/sleeves/the-hills-have-eyes.jpg?v=0a560f85",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-hills-have-eyes.png?v=8344715f"
+  },
   "the-hurricane": {
     "back": "/sleeves/the-hurricane-still.jpg?v=ab3275e9",
     "cover": "/sleeves/the-hurricane.jpg?v=6e8c7706",
     "fit": "contain",
     "spine": "/sleeves/spines/the-hurricane.png?v=0405bb19"
+  },
+  "the-hurt-locker": {
+    "back": "/sleeves/the-hurt-locker-still.jpg?v=979f5d04",
+    "cover": "/sleeves/the-hurt-locker.jpg?v=7745ab09",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-hurt-locker.png?v=50cd5d8c"
+  },
+  "the-invisible-man": {
+    "back": "/sleeves/the-invisible-man-still.jpg?v=19ee730e",
+    "cover": "/sleeves/the-invisible-man.jpg?v=9ff1ea13",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-invisible-man.png?v=85e24c38"
   },
   "the-iron-giant": {
     "back": "/sleeves/the-iron-giant-still.jpg?v=eea3fb4e",
@@ -1163,6 +1535,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-karate-kid.png?v=ab0840f8"
   },
+  "the-last-house-on-the-left": {
+    "back": "/sleeves/the-last-house-on-the-left-still.jpg?v=d93abac2",
+    "cover": "/sleeves/the-last-house-on-the-left.jpg?v=af4b6f1f",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-last-house-on-the-left.png?v=2a5d00cf"
+  },
   "the-lighthouse": {
     "back": "/sleeves/the-lighthouse-still.jpg?v=06cc3ae4",
     "cover": "/sleeves/the-lighthouse.jpg?v=62b5c608",
@@ -1175,11 +1553,29 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-lion-king.png?v=fcbf0e56"
   },
+  "the-little-mermaid": {
+    "back": "/sleeves/the-little-mermaid-still.jpg?v=0d548931",
+    "cover": "/sleeves/the-little-mermaid.jpg?v=5b7f8ba1",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-little-mermaid.png?v=fe3d7197"
+  },
+  "the-lord-of-the-rings-the-return-of-the-king": {
+    "back": "/sleeves/the-lord-of-the-rings-the-return-of-the-king-still.jpg?v=0390c839",
+    "cover": "/sleeves/the-lord-of-the-rings-the-return-of-the-king.jpg?v=ac81c5ff",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-lord-of-the-rings-the-return-of-the-king.png?v=6d3d729c"
+  },
   "the-lost-boys": {
-    "back": "/sleeves/the-lost-boys-still.jpg?v=266c5c24",
-    "cover": "/sleeves/the-lost-boys.jpg?v=bc53673e",
+    "back": "/sleeves/the-lost-boys-still.jpg?v=bc24f98f",
+    "cover": "/sleeves/the-lost-boys.jpg?v=ad2ad374",
     "fit": "contain",
     "spine": "/sleeves/spines/the-lost-boys.png?v=4b2bd18e"
+  },
+  "the-magicians-nephew": {
+    "back": "/sleeves/the-magicians-nephew-still.jpg?v=bbddd082",
+    "cover": "/sleeves/the-magicians-nephew.jpg?v=3c024559",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-magicians-nephew.png?v=df06cab3"
   },
   "the-matrix": {
     "back": "/sleeves/the-matrix-still.jpg?v=b98a4c00",
@@ -1204,6 +1600,18 @@
     "cover": "/sleeves/the-notebook.jpg?v=9c2ddb0c",
     "fit": "contain",
     "spine": "/sleeves/spines/the-notebook.png?v=a63941a7"
+  },
+  "the-odyssey-2026": {
+    "back": "/sleeves/the-odyssey-2026-still.jpg?v=7625d1b9",
+    "cover": "/sleeves/the-odyssey-2026.jpg?v=67ea2086",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-odyssey-2026.png?v=9a338735"
+  },
+  "the-omen": {
+    "back": "/sleeves/the-omen-still.jpg?v=908a6ccb",
+    "cover": "/sleeves/the-omen.jpg?v=da1c7fe8",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-omen.png?v=e59026b3"
   },
   "the-princess-bride": {
     "back": "/sleeves/the-princess-bride-still.jpg?v=42b3170a",
@@ -1259,6 +1667,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-substance.png?v=b5ba1313"
   },
+  "the-super-mario-galaxy-movie": {
+    "back": "/sleeves/the-super-mario-galaxy-movie-still.jpg?v=67857cde",
+    "cover": "/sleeves/the-super-mario-galaxy-movie.jpg?v=4721f8b6",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-super-mario-galaxy-movie.png?v=bd776df4"
+  },
   "the-terminator": {
     "back": "/sleeves/the-terminator-still.jpg?v=5d78e270",
     "cover": "/sleeves/the-terminator.jpg?v=2fe18460",
@@ -1271,11 +1685,23 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-texas-chain-saw-massacre.png?v=b1b711ba"
   },
+  "the-texas-chainsaw-massacre-2": {
+    "back": "/sleeves/the-texas-chainsaw-massacre-2-still.jpg?v=29f99bba",
+    "cover": "/sleeves/the-texas-chainsaw-massacre-2.jpg?v=336318cb",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-texas-chainsaw-massacre-2.png?v=202cbf9d"
+  },
   "the-thing-1982": {
     "back": "/sleeves/the-thing-1982-blood.jpg?v=76aac39f",
     "cover": "/sleeves/the-thing-1982.jpg?v=f86fa9d0",
     "fit": "contain",
     "spine": "/sleeves/spines/the-thing-1982.png?v=5832666e"
+  },
+  "the-thing-from-another-world": {
+    "back": "/sleeves/the-thing-from-another-world-still.jpg?v=cd16c545",
+    "cover": "/sleeves/the-thing-from-another-world.jpg?v=9ec41ebc",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-thing-from-another-world.png?v=3f5d2b2e"
   },
   "the-usual-suspects": {
     "back": "/sleeves/the-usual-suspects-still.jpg?v=0eab6b2f",
@@ -1289,6 +1715,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/the-warriors.png?v=3010f1e5"
   },
+  "the-wicker-man": {
+    "back": "/sleeves/the-wicker-man-still.jpg?v=e3857a5d",
+    "cover": "/sleeves/the-wicker-man.jpg?v=5d3bc082",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-wicker-man.png?v=46ad548d"
+  },
   "the-wild-robot": {
     "back": "/sleeves/the-wild-robot-still.jpg?v=69541ec5",
     "cover": "/sleeves/the-wild-robot.jpg?v=8cd35203",
@@ -1300,6 +1732,12 @@
     "cover": "/sleeves/the-witch-2015.jpg?v=b89c9594",
     "fit": "contain",
     "spine": "/sleeves/spines/the-witch-2015.png?v=c5778965"
+  },
+  "the-wolf-man": {
+    "back": "/sleeves/the-wolf-man-still.jpg?v=5b8351c6",
+    "cover": "/sleeves/the-wolf-man.jpg?v=c1243b48",
+    "fit": "contain",
+    "spine": "/sleeves/spines/the-wolf-man.png?v=b534a5fd"
   },
   "the-zone-of-interest": {
     "back": "/sleeves/the-zone-of-interest-still.jpg?v=26401c68",
@@ -1337,6 +1775,12 @@
     "fit": "contain",
     "spine": "/sleeves/spines/top-gun.png?v=e75eb914"
   },
+  "top-gun-maverick": {
+    "back": "/sleeves/top-gun-maverick-still.jpg?v=6331a758",
+    "cover": "/sleeves/top-gun-maverick.jpg?v=796a4adc",
+    "fit": "contain",
+    "spine": "/sleeves/spines/top-gun-maverick.png?v=5553d615"
+  },
   "total-recall": {
     "back": "/sleeves/total-recall-still.jpg?v=32cfab70",
     "cover": "/sleeves/total-recall.jpg?v=8e023ff4",
@@ -1348,6 +1792,12 @@
     "cover": "/sleeves/toy-story.jpg?v=6f4eed1a",
     "fit": "contain",
     "spine": "/sleeves/spines/toy-story.png?v=270e01f9"
+  },
+  "toy-story-5": {
+    "back": "/sleeves/toy-story-5-still.jpg?v=5e2a3620",
+    "cover": "/sleeves/toy-story-5.jpg?v=a5e52d8d",
+    "fit": "contain",
+    "spine": "/sleeves/spines/toy-story-5.png?v=eb097bfc"
   },
   "tremors": {
     "back": "/sleeves/tremors-still.jpg?v=296ce9d1",
@@ -1380,8 +1830,8 @@
     "spine": "/sleeves/spines/violent-night-2.png?v=9f1e4820"
   },
   "wall-e": {
-    "back": "/sleeves/wall-e-still.jpg?v=971f6739",
-    "cover": "/sleeves/wall-e.jpg?v=2a4d2d2e",
+    "back": "/sleeves/wall-e-still.jpg?v=8ba88151",
+    "cover": "/sleeves/wall-e.jpg?v=1fdc4dff",
     "fit": "contain",
     "spine": "/sleeves/spines/wall-e.png?v=95177400"
   },

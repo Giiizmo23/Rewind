@@ -1,0 +1,8399 @@
+{
+  "pending": 1124,
+  "done": 75,
+  "films": [
+    {
+      "slug": "everything-everywhere-all-at-once",
+      "title": "Everything Everywhere All at Once",
+      "year": 2022,
+      "genres": "Sci-Fi,Comedy,Action",
+      "status": "painted"
+    },
+    {
+      "slug": "12-years-a-slave",
+      "title": "12 Years a Slave",
+      "year": 2013,
+      "genres": "Drama,History,Biography",
+      "status": "painted"
+    },
+    {
+      "slug": "the-lord-of-the-rings-the-return-of-the-king",
+      "title": "The Lord of the Rings: The Return of the King",
+      "year": 2003,
+      "genres": "Adventure,Fantasy,Action",
+      "status": "painted"
+    },
+    {
+      "slug": "spider-man-into-the-spider-verse",
+      "title": "Spider-Man: Into the Spider-Verse",
+      "year": 2018,
+      "genres": "Animation,Action,Comedy",
+      "status": "painted"
+    },
+    {
+      "slug": "spider-man-across-the-spider-verse",
+      "title": "Spider-Man: Across the Spider-Verse",
+      "year": 2023,
+      "genres": "Animation,Action",
+      "status": "painted"
+    },
+    {
+      "slug": "portrait-of-a-lady-on-fire",
+      "title": "Portrait of a Lady on Fire",
+      "year": 2019,
+      "genres": "Romance,Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "in-the-mood-for-love",
+      "title": "In the Mood for Love",
+      "year": 2000,
+      "genres": "Romance,Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "paddington-2",
+      "title": "Paddington 2",
+      "year": 2017,
+      "genres": "Comedy,Family,Crime",
+      "status": "painted"
+    },
+    {
+      "slug": "coco-2017",
+      "title": "Coco",
+      "year": 2017,
+      "genres": "Animation,Adventure,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "the-handmaiden",
+      "title": "The Handmaiden",
+      "year": 2016,
+      "genres": "Thriller,Romance,Crime",
+      "status": "painted"
+    },
+    {
+      "slug": "memories-of-murder",
+      "title": "Memories of Murder",
+      "year": 2003,
+      "genres": "Crime,Thriller,Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "top-gun-maverick",
+      "title": "Top Gun: Maverick",
+      "year": 2022,
+      "genres": "Action,Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "the-fellowship-of-the-ring",
+      "title": "The Lord of the Rings: The Fellowship of the Ring",
+      "year": 2001,
+      "genres": "Adventure,Fantasy,Action",
+      "status": "painted"
+    },
+    {
+      "slug": "harry-potter-and-the-sorcerers-stone",
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "year": 2001,
+      "genres": "Adventure,Fantasy,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "finding-nemo",
+      "title": "Finding Nemo",
+      "year": 2003,
+      "genres": "Animation,Adventure,Comedy",
+      "status": "painted"
+    },
+    {
+      "slug": "pirates-of-the-caribbean",
+      "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "year": 2003,
+      "genres": "Adventure,Action,Comedy",
+      "status": "painted"
+    },
+    {
+      "slug": "beauty-and-the-beast-1991",
+      "title": "Beauty and the Beast",
+      "year": 1991,
+      "genres": "Animation,Romance,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "the-little-mermaid",
+      "title": "The Little Mermaid",
+      "year": 1989,
+      "genres": "Animation,Romance,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "ghost-1990",
+      "title": "Ghost",
+      "year": 1990,
+      "genres": "Romance,Drama,Fantasy",
+      "status": "painted"
+    },
+    {
+      "slug": "the-hurt-locker",
+      "title": "The Hurt Locker",
+      "year": 2008,
+      "genres": "War,Thriller,Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "slumdog-millionaire",
+      "title": "Slumdog Millionaire",
+      "year": 2008,
+      "genres": "Drama,Romance,Crime",
+      "status": "painted"
+    },
+    {
+      "slug": "poor-things",
+      "title": "Poor Things",
+      "year": 2023,
+      "genres": "Comedy,Romance,Sci-Fi",
+      "status": "painted"
+    },
+    {
+      "slug": "drive-my-car",
+      "title": "Drive My Car",
+      "year": 2021,
+      "genres": "Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "godzilla-minus-one",
+      "title": "Godzilla Minus One",
+      "year": 2023,
+      "genres": "Action,Sci-Fi,Drama",
+      "status": "painted"
+    },
+    {
+      "slug": "mickey-17",
+      "title": "Mickey 17",
+      "year": 2025,
+      "genres": "Sci-Fi,Comedy,Adventure",
+      "status": "painted"
+    },
+    {
+      "slug": "mission-impossible-the-final-reckoning",
+      "title": "Mission: Impossible \u2013 The Final Reckoning",
+      "year": 2025,
+      "genres": "Action,Thriller",
+      "status": "painted"
+    },
+    {
+      "slug": "jurassic-world-rebirth",
+      "title": "Jurassic World Rebirth",
+      "year": 2025,
+      "genres": "Action,Sci-Fi,Adventure",
+      "status": "painted"
+    },
+    {
+      "slug": "how-to-train-your-dragon-2025",
+      "title": "How to Train Your Dragon",
+      "year": 2025,
+      "genres": "Adventure,Fantasy,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "predator-badlands",
+      "title": "Predator: Badlands",
+      "year": 2025,
+      "genres": "Action,Sci-Fi,Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "f1-2025",
+      "title": "F1",
+      "year": 2025,
+      "genres": "Action,Drama,Sport",
+      "status": "painted"
+    },
+    {
+      "slug": "the-odyssey-2026",
+      "title": "The Odyssey",
+      "year": 2026,
+      "genres": "Adventure,Drama,Epic",
+      "status": "painted"
+    },
+    {
+      "slug": "spider-man-brand-new-day",
+      "title": "Spider-Man: Brand New Day",
+      "year": 2026,
+      "genres": "Action,Adventure,Sci-Fi",
+      "status": "painted"
+    },
+    {
+      "slug": "toy-story-5",
+      "title": "Toy Story 5",
+      "year": 2026,
+      "genres": "Animation,Comedy,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "moana-2026",
+      "title": "Moana",
+      "year": 2026,
+      "genres": "Adventure,Fantasy,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "the-super-mario-galaxy-movie",
+      "title": "The Super Mario Galaxy Movie",
+      "year": 2026,
+      "genres": "Animation,Adventure,Comedy",
+      "status": "painted"
+    },
+    {
+      "slug": "the-magicians-nephew",
+      "title": "The Chronicles of Narnia: The Magician's Nephew",
+      "year": 2027,
+      "genres": "Fantasy,Adventure,Family",
+      "status": "painted"
+    },
+    {
+      "slug": "beyond-the-spider-verse",
+      "title": "Spider-Man: Beyond the Spider-Verse",
+      "year": 2027,
+      "genres": "Animation,Action",
+      "status": "painted"
+    },
+    {
+      "slug": "man-of-tomorrow",
+      "title": "Man of Tomorrow",
+      "year": 2027,
+      "genres": "Action,Sci-Fi,Adventure",
+      "status": "painted"
+    },
+    {
+      "slug": "avengers-secret-wars",
+      "title": "Avengers: Secret Wars",
+      "year": 2027,
+      "genres": "Action,Sci-Fi,Adventure",
+      "status": "painted"
+    },
+    {
+      "slug": "hunt-for-gollum",
+      "title": "The Lord of the Rings: The Hunt for Gollum",
+      "year": 2027,
+      "genres": "Adventure,Fantasy,Action",
+      "status": "painted"
+    },
+    {
+      "slug": "gremlins-3",
+      "title": "Gremlins 3",
+      "year": 2027,
+      "genres": "Comedy,Horror,Holiday",
+      "status": "painted"
+    },
+    {
+      "slug": "frozen-3",
+      "title": "Frozen 3",
+      "year": 2027,
+      "genres": "Animation,Family,Fantasy",
+      "status": "painted"
+    },
+    {
+      "slug": "godzilla-x-kong-supernova",
+      "title": "Godzilla x Kong: Supernova",
+      "year": 2027,
+      "genres": "Action,Sci-Fi,Adventure",
+      "status": "painted"
+    },
+    {
+      "slug": "deadpool-and-wolverine",
+      "title": "Deadpool & Wolverine",
+      "year": 2024,
+      "genres": "Action,Comedy,Sci-Fi",
+      "status": "painted"
+    },
+    {
+      "slug": "beetlejuice-beetlejuice",
+      "title": "Beetlejuice Beetlejuice",
+      "year": 2024,
+      "genres": "Comedy,Fantasy,Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "furiosa",
+      "title": "Furiosa: A Mad Max Saga",
+      "year": 2024,
+      "genres": "Action,Sci-Fi,Adventure",
+      "status": "painted"
+    },
+    {
+      "slug": "a-clockwork-orange",
+      "title": "A Clockwork Orange",
+      "year": 1971,
+      "genres": "Sci-Fi,Crime",
+      "status": "painted"
+    },
+    {
+      "slug": "dracula",
+      "title": "Dracula",
+      "year": 1931,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "frankenstein",
+      "title": "Frankenstein",
+      "year": 1931,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-invisible-man",
+      "title": "The Invisible Man",
+      "year": 1933,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "bride-of-frankenstein",
+      "title": "Bride of Frankenstein",
+      "year": 1935,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-wolf-man",
+      "title": "The Wolf Man",
+      "year": 1941,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "cat-people",
+      "title": "Cat People",
+      "year": 1942,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-thing-from-another-world",
+      "title": "The Thing from Another World",
+      "year": 1951,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "creature-from-the-black-lagoon",
+      "title": "Creature from the Black Lagoon",
+      "year": 1954,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "invasion-of-the-body-snatchers",
+      "title": "Invasion of the Body Snatchers",
+      "year": 1956,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-blob",
+      "title": "The Blob",
+      "year": 1958,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "black-sunday",
+      "title": "Black Sunday",
+      "year": 1960,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "night-of-the-living-dead",
+      "title": "Night of the Living Dead",
+      "year": 1968,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "blacula",
+      "title": "Blacula",
+      "year": 1972,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-last-house-on-the-left",
+      "title": "The Last House on the Left",
+      "year": 1972,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-wicker-man",
+      "title": "The Wicker Man",
+      "year": 1973,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "dont-look-now",
+      "title": "Don't Look Now",
+      "year": 1973,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "black-christmas",
+      "title": "Black Christmas",
+      "year": 1974,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "its-alive",
+      "title": "It's Alive",
+      "year": 1974,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-texas-chainsaw-massacre-2",
+      "title": "The Texas Chainsaw Massacre 2",
+      "year": 1986,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "deep-red",
+      "title": "Deep Red",
+      "year": 1975,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-omen",
+      "title": "The Omen",
+      "year": 1976,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-hills-have-eyes",
+      "title": "The Hills Have Eyes",
+      "year": 1977,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "house",
+      "title": "House",
+      "year": 1977,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "invasion-of-the-body-snatchers-1978",
+      "title": "Invasion of the Body Snatchers",
+      "year": 1978,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "piranha",
+      "title": "Piranha",
+      "year": 1978,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "the-amityville-horror",
+      "title": "The Amityville Horror",
+      "year": 1979,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "phantasm",
+      "title": "Phantasm",
+      "year": 1979,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "nosferatu-the-vampyre",
+      "title": "Nosferatu the Vampyre",
+      "year": 1979,
+      "genres": "Horror",
+      "status": "painted"
+    },
+    {
+      "slug": "zombi-2",
+      "title": "Zombi 2",
+      "year": 1979,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "friday-the-13th",
+      "title": "Friday the 13th",
+      "year": 1980,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fog",
+      "title": "The Fog",
+      "year": 1980,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "prom-night",
+      "title": "Prom Night",
+      "year": 1980,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "an-american-werewolf-in-london",
+      "title": "An American Werewolf in London",
+      "year": 1981,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-howling",
+      "title": "The Howling",
+      "year": 1981,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-evil-dead",
+      "title": "The Evil Dead",
+      "year": 1981,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "halloween-ii",
+      "title": "Halloween II",
+      "year": 1981,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "friday-the-13th-part-2",
+      "title": "Friday the 13th Part 2",
+      "year": 1981,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "scanners",
+      "title": "Scanners",
+      "year": 1981,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "halloween-iii-season-of-the-witch",
+      "title": "Halloween III Season of the Witch",
+      "year": 1982,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "creepshow",
+      "title": "Creepshow",
+      "year": 1982,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "cat-people-1982",
+      "title": "Cat People",
+      "year": 1982,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "videodrome",
+      "title": "Videodrome",
+      "year": 1983,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-dead-zone",
+      "title": "The Dead Zone",
+      "year": 1983,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "christine",
+      "title": "Christine",
+      "year": 1983,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "cujo",
+      "title": "Cujo",
+      "year": 1983,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "psycho-ii",
+      "title": "Psycho II",
+      "year": 1983,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "sleepaway-camp",
+      "title": "Sleepaway Camp",
+      "year": 1983,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "gremlins-1984",
+      "title": "Gremlins",
+      "year": 1984,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "fright-night",
+      "title": "Fright Night",
+      "year": 1985,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "re-animator",
+      "title": "Re-Animator",
+      "year": 1985,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "day-of-the-dead",
+      "title": "Day of the Dead",
+      "year": 1985,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-return-of-the-living-dead",
+      "title": "The Return of the Living Dead",
+      "year": 1985,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "aliens-1986",
+      "title": "Aliens",
+      "year": 1986,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "hellraiser",
+      "title": "Hellraiser",
+      "year": 1987,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "prince-of-darkness",
+      "title": "Prince of Darkness",
+      "year": 1987,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-monster-squad",
+      "title": "The Monster Squad",
+      "year": 1987,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "childs-play",
+      "title": "Child's Play",
+      "year": 1988,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "hellbound-hellraiser-ii",
+      "title": "Hellbound Hellraiser II",
+      "year": 1988,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "pet-sematary",
+      "title": "Pet Sematary",
+      "year": 1989,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "a-nightmare-on-elm-street-5-the-dream-child",
+      "title": "A Nightmare on Elm Street 5 The Dream Child",
+      "year": 1989,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "misery",
+      "title": "Misery",
+      "year": 1990,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-exorcist-iii",
+      "title": "The Exorcist III",
+      "year": 1990,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "night-of-the-living-dead-1990",
+      "title": "Night of the Living Dead",
+      "year": 1990,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-people-under-the-stairs",
+      "title": "The People Under the Stairs",
+      "year": 1991,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "candyman",
+      "title": "Candyman",
+      "year": 1992,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "army-of-darkness",
+      "title": "Army of Darkness",
+      "year": 1992,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "bram-stokers-dracula",
+      "title": "Bram Stoker's Dracula",
+      "year": 1992,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "wes-cravens-new-nightmare",
+      "title": "Wes Craven's New Nightmare",
+      "year": 1994,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "in-the-mouth-of-madness",
+      "title": "In the Mouth of Madness",
+      "year": 1994,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "from-dusk-till-dawn",
+      "title": "From Dusk Till Dawn",
+      "year": 1996,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "scream-2",
+      "title": "Scream 2",
+      "year": 1997,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "ringu",
+      "title": "Ringu",
+      "year": 1998,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "bride-of-chucky",
+      "title": "Bride of Chucky",
+      "year": 1998,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-blair-witch-project",
+      "title": "The Blair Witch Project",
+      "year": 1999,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-sixth-sense-1999",
+      "title": "The Sixth Sense",
+      "year": 1999,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "audition",
+      "title": "Audition",
+      "year": 1999,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "final-destination",
+      "title": "Final Destination",
+      "year": 2000,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-others",
+      "title": "The Others",
+      "year": 2001,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "pulse",
+      "title": "Pulse",
+      "year": 2001,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-ring",
+      "title": "The Ring",
+      "year": 2002,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "28-days-later",
+      "title": "28 Days Later",
+      "year": 2002,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "signs",
+      "title": "Signs",
+      "year": 2002,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "dawn-of-the-dead",
+      "title": "Dawn of the Dead",
+      "year": 2004,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "saw",
+      "title": "Saw",
+      "year": 2004,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-grudge",
+      "title": "The Grudge",
+      "year": 2004,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-descent",
+      "title": "The Descent",
+      "year": 2005,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "saw-ii",
+      "title": "Saw II",
+      "year": 2005,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "28-weeks-later",
+      "title": "28 Weeks Later",
+      "year": 2007,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-orphanage",
+      "title": "The Orphanage",
+      "year": 2007,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "rec",
+      "title": "REC",
+      "year": 2007,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-mist",
+      "title": "The Mist",
+      "year": 2007,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "let-the-right-one-in",
+      "title": "Let the Right One In",
+      "year": 2008,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-strangers",
+      "title": "The Strangers",
+      "year": 2008,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "drag-me-to-hell",
+      "title": "Drag Me to Hell",
+      "year": 2009,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "paranormal-activity",
+      "title": "Paranormal Activity",
+      "year": 2009,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "insidious",
+      "title": "Insidious",
+      "year": 2010,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "let-me-in",
+      "title": "Let Me In",
+      "year": 2010,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-cabin-in-the-woods",
+      "title": "The Cabin in the Woods",
+      "year": 2011,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "sinister",
+      "title": "Sinister",
+      "year": 2012,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-conjuring",
+      "title": "The Conjuring",
+      "year": 2013,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "evil-dead",
+      "title": "Evil Dead",
+      "year": 2013,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "mama",
+      "title": "Mama",
+      "year": 2013,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "it-follows",
+      "title": "It Follows",
+      "year": 2014,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-babadook",
+      "title": "The Babadook",
+      "year": 2014,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-guest",
+      "title": "The Guest",
+      "year": 2014,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-conjuring-2",
+      "title": "The Conjuring 2",
+      "year": 2016,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "train-to-busan",
+      "title": "Train to Busan",
+      "year": 2016,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-wailing",
+      "title": "The Wailing",
+      "year": 2016,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "raw",
+      "title": "Raw",
+      "year": 2016,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-witch",
+      "title": "The Witch",
+      "year": 2016,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "it",
+      "title": "It",
+      "year": 2017,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "annabelle-creation",
+      "title": "Annabelle Creation",
+      "year": 2017,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "suspiria",
+      "title": "Suspiria",
+      "year": 2018,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-nun",
+      "title": "The Nun",
+      "year": 2018,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "us",
+      "title": "Us",
+      "year": 2019,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "it-chapter-two",
+      "title": "It Chapter Two",
+      "year": 2019,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "ready-or-not",
+      "title": "Ready or Not",
+      "year": 2019,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-invisible-man-2020",
+      "title": "The Invisible Man",
+      "year": 2020,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "saint-maud",
+      "title": "Saint Maud",
+      "year": 2020,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "malignant",
+      "title": "Malignant",
+      "year": 2021,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-black-phone",
+      "title": "The Black Phone",
+      "year": 2021,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "candyman-2021",
+      "title": "Candyman",
+      "year": 2021,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-night-house",
+      "title": "The Night House",
+      "year": 2021,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "barbarian",
+      "title": "Barbarian",
+      "year": 2022,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "smile",
+      "title": "Smile",
+      "year": 2022,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "x",
+      "title": "X",
+      "year": 2022,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "pearl",
+      "title": "Pearl",
+      "year": 2022,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "m3gan",
+      "title": "M3GAN",
+      "year": 2022,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "scream",
+      "title": "Scream",
+      "year": 2022,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "evil-dead-rise",
+      "title": "Evil Dead Rise",
+      "year": 2023,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "talk-to-me",
+      "title": "Talk to Me",
+      "year": 2023,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-nun-ii",
+      "title": "The Nun II",
+      "year": 2023,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "maxxxine",
+      "title": "MaXXXine",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "smile-2",
+      "title": "Smile 2",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "terrifier-3",
+      "title": "Terrifier 3",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-first-omen",
+      "title": "The First Omen",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "immaculate",
+      "title": "Immaculate",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "abigail",
+      "title": "Abigail",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "oddity",
+      "title": "Oddity",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "late-night-with-the-devil",
+      "title": "Late Night with the Devil",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "heretic",
+      "title": "Heretic",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "a-quiet-place-day-one",
+      "title": "A Quiet Place Day One",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "speak-no-evil",
+      "title": "Speak No Evil",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "strange-darling",
+      "title": "Strange Darling",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "cuckoo",
+      "title": "Cuckoo",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "in-a-violent-nature",
+      "title": "In a Violent Nature",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "trap",
+      "title": "Trap",
+      "year": 2024,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "wolf-man",
+      "title": "Wolf Man",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-monkey",
+      "title": "The Monkey",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "companion",
+      "title": "Companion",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "final-destination-bloodlines",
+      "title": "Final Destination Bloodlines",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "bring-her-back",
+      "title": "Bring Her Back",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "heart-eyes",
+      "title": "Heart Eyes",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "m3gan-2-0",
+      "title": "M3GAN 2.0",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "until-dawn",
+      "title": "Until Dawn",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "shadow-of-a-doubt",
+      "title": "Shadow of a Doubt",
+      "year": 1943,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "double-indemnity",
+      "title": "Double Indemnity",
+      "year": 1944,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "laura",
+      "title": "Laura",
+      "year": 1944,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "notorious",
+      "title": "Notorious",
+      "year": 1946,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "strangers-on-a-train",
+      "title": "Strangers on a Train",
+      "year": 1951,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-night-of-the-hunter",
+      "title": "The Night of the Hunter",
+      "year": 1955,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "kiss-me-deadly",
+      "title": "Kiss Me Deadly",
+      "year": 1955,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "touch-of-evil",
+      "title": "Touch of Evil",
+      "year": 1958,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-manchurian-candidate",
+      "title": "The Manchurian Candidate",
+      "year": 1962,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "bonnie-and-clyde",
+      "title": "Bonnie and Clyde",
+      "year": 1967,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "klute",
+      "title": "Klute",
+      "year": 1971,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "dirty-harry",
+      "title": "Dirty Harry",
+      "year": 1971,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-french-connection",
+      "title": "The French Connection",
+      "year": 1971,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "frenzy",
+      "title": "Frenzy",
+      "year": 1972,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-conversation",
+      "title": "The Conversation",
+      "year": 1974,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-parallax-view",
+      "title": "The Parallax View",
+      "year": 1974,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-taking-of-pelham-one-two-three",
+      "title": "The Taking of Pelham One Two Three",
+      "year": 1974,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "three-days-of-the-condor",
+      "title": "Three Days of the Condor",
+      "year": 1975,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "network",
+      "title": "Network",
+      "year": 1976,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "all-the-presidents-men",
+      "title": "All the President's Men",
+      "year": 1976,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "marathon-man",
+      "title": "Marathon Man",
+      "year": 1976,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "taxi-driver-1976",
+      "title": "Taxi Driver",
+      "year": 1976,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "dressed-to-kill",
+      "title": "Dressed to Kill",
+      "year": 1980,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "blow-out",
+      "title": "Blow Out",
+      "year": 1981,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "body-heat",
+      "title": "Body Heat",
+      "year": 1981,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "lethal-weapon-1985",
+      "title": "Lethal Weapon",
+      "year": 1985,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "fatal-attraction",
+      "title": "Fatal Attraction",
+      "year": 1987,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "full-metal-jacket-1987",
+      "title": "Full Metal Jacket",
+      "year": 1987,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "midnight-run",
+      "title": "Midnight Run",
+      "year": 1988,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-silence-of-the-lambs",
+      "title": "The Silence of the Lambs",
+      "year": 1991,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "basic-instinct",
+      "title": "Basic Instinct",
+      "year": 1992,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "se7en-1995",
+      "title": "Se7en",
+      "year": 1995,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-usual-suspects-1995",
+      "title": "The Usual Suspects",
+      "year": 1995,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "fargo-1996",
+      "title": "Fargo",
+      "year": 1996,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "l-a-confidential",
+      "title": "L.A. Confidential",
+      "year": 1997,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-game",
+      "title": "The Game",
+      "year": 1997,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "out-of-sight",
+      "title": "Out of Sight",
+      "year": 1998,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "lock-stock-and-two-smoking-barrels",
+      "title": "Lock Stock and Two Smoking Barrels",
+      "year": 1998,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "fight-club-1999",
+      "title": "Fight Club",
+      "year": 1999,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-matrix-1999",
+      "title": "The Matrix",
+      "year": 1999,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "memento",
+      "title": "Memento",
+      "year": 2000,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "american-psycho",
+      "title": "American Psycho",
+      "year": 2000,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "snatch",
+      "title": "Snatch",
+      "year": 2000,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "requiem-for-a-dream",
+      "title": "Requiem for a Dream",
+      "year": 2000,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "oceans-eleven",
+      "title": "Ocean's Eleven",
+      "year": 2001,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "minority-report",
+      "title": "Minority Report",
+      "year": 2002,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "insomnia",
+      "title": "Insomnia",
+      "year": 2002,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "collateral",
+      "title": "Collateral",
+      "year": 2004,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-machinist",
+      "title": "The Machinist",
+      "year": 2004,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "a-history-of-violence",
+      "title": "A History of Violence",
+      "year": 2005,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-prestige",
+      "title": "The Prestige",
+      "year": 2006,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "inside-man",
+      "title": "Inside Man",
+      "year": 2006,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "children-of-men-2006",
+      "title": "Children of Men",
+      "year": 2006,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "zodiac-2007",
+      "title": "Zodiac",
+      "year": 2007,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-bourne-ultimatum",
+      "title": "The Bourne Ultimatum",
+      "year": 2007,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "michael-clayton",
+      "title": "Michael Clayton",
+      "year": 2007,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "eastern-promises",
+      "title": "Eastern Promises",
+      "year": 2007,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-dark-knight-2008",
+      "title": "The Dark Knight",
+      "year": 2008,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "district-9",
+      "title": "District 9",
+      "year": 2009,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "shutter-island",
+      "title": "Shutter Island",
+      "year": 2010,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "inception-2010",
+      "title": "Inception",
+      "year": 2010,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-girl-with-the-dragon-tattoo",
+      "title": "The Girl with the Dragon Tattoo",
+      "year": 2011,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "looper",
+      "title": "Looper",
+      "year": 2012,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "prisoners",
+      "title": "Prisoners",
+      "year": 2013,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "enemy",
+      "title": "Enemy",
+      "year": 2013,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "gone-girl",
+      "title": "Gone Girl",
+      "year": 2014,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "nightcrawler",
+      "title": "Nightcrawler",
+      "year": 2014,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "birdman",
+      "title": "Birdman",
+      "year": 2014,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "hell-or-high-water",
+      "title": "Hell or High Water",
+      "year": 2014,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "sicario",
+      "title": "Sicario",
+      "year": 2015,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "baby-driver",
+      "title": "Baby Driver",
+      "year": 2017,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "widows",
+      "title": "Widows",
+      "year": 2018,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "tenet",
+      "title": "Tenet",
+      "year": 2020,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "love-lies-bleeding",
+      "title": "Love Lies Bleeding",
+      "year": 2024,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-gorge",
+      "title": "The Gorge",
+      "year": 2025,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "drop",
+      "title": "Drop",
+      "year": 2025,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "metropolis",
+      "title": "Metropolis",
+      "year": 1927,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-day-the-earth-stood-still",
+      "title": "The Day the Earth Stood Still",
+      "year": 1951,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-war-of-the-worlds",
+      "title": "The War of the Worlds",
+      "year": 1953,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "them",
+      "title": "Them!",
+      "year": 1954,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "forbidden-planet",
+      "title": "Forbidden Planet",
+      "year": 1956,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "2001-a-space-odyssey-1968",
+      "title": "2001 A Space Odyssey",
+      "year": 1968,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "planet-of-the-apes",
+      "title": "Planet of the Apes",
+      "year": 1968,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "solaris",
+      "title": "Solaris",
+      "year": 1972,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "westworld",
+      "title": "Westworld",
+      "year": 1973,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "soylent-green",
+      "title": "Soylent Green",
+      "year": 1973,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "star-wars-1977",
+      "title": "Star Wars",
+      "year": 1977,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "close-encounters-of-the-third-kind",
+      "title": "Close Encounters of the Third Kind",
+      "year": 1977,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-empire-strikes-back",
+      "title": "The Empire Strikes Back",
+      "year": 1980,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "tron",
+      "title": "Tron",
+      "year": 1982,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "return-of-the-jedi",
+      "title": "Return of the Jedi",
+      "year": 1983,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-terminator-1984",
+      "title": "The Terminator",
+      "year": 1984,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-last-starfighter",
+      "title": "The Last Starfighter",
+      "year": 1984,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "starman",
+      "title": "Starman",
+      "year": 1984,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "dune",
+      "title": "Dune",
+      "year": 1984,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "robocop-1987",
+      "title": "RoboCop",
+      "year": 1987,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-abyss",
+      "title": "The Abyss",
+      "year": 1989,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "terminator-2-judgment-day",
+      "title": "Terminator 2 Judgment Day",
+      "year": 1991,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "jurassic-park-1993",
+      "title": "Jurassic Park",
+      "year": 1993,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "12-monkeys",
+      "title": "12 Monkeys",
+      "year": 1995,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "independence-day",
+      "title": "Independence Day",
+      "year": 1996,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "starship-troopers",
+      "title": "Starship Troopers",
+      "year": 1997,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "gattaca",
+      "title": "Gattaca",
+      "year": 1997,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fifth-element-1997",
+      "title": "The Fifth Element",
+      "year": 1997,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "contact",
+      "title": "Contact",
+      "year": 1997,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "galaxy-quest",
+      "title": "Galaxy Quest",
+      "year": 1999,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "a-i-artificial-intelligence",
+      "title": "A.I. Artificial Intelligence",
+      "year": 2001,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "eternal-sunshine-of-the-spotless-mind-2004",
+      "title": "Eternal Sunshine of the Spotless Mind",
+      "year": 2004,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "star-wars-episode-iii-revenge-of-the-sith",
+      "title": "Star Wars Episode III Revenge of the Sith",
+      "year": 2005,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "avatar",
+      "title": "Avatar",
+      "year": 2009,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "star-trek",
+      "title": "Star Trek",
+      "year": 2009,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "prometheus",
+      "title": "Prometheus",
+      "year": 2012,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "pacific-rim",
+      "title": "Pacific Rim",
+      "year": 2013,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "gravity",
+      "title": "Gravity",
+      "year": 2013,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "interstellar-2014",
+      "title": "Interstellar",
+      "year": 2014,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "edge-of-tomorrow",
+      "title": "Edge of Tomorrow",
+      "year": 2014,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "godzilla",
+      "title": "Godzilla",
+      "year": 2014,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-martian",
+      "title": "The Martian",
+      "year": 2015,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "star-wars-the-force-awakens",
+      "title": "Star Wars The Force Awakens",
+      "year": 2015,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "ex-machina-2015",
+      "title": "Ex Machina",
+      "year": 2015,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "rogue-one",
+      "title": "Rogue One",
+      "year": 2016,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "blade-runner-2049",
+      "title": "Blade Runner 2049",
+      "year": 2017,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "war-for-the-planet-of-the-apes",
+      "title": "War for the Planet of the Apes",
+      "year": 2017,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "annihilation",
+      "title": "Annihilation",
+      "year": 2018,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "upgrade",
+      "title": "Upgrade",
+      "year": 2018,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-batman",
+      "title": "The Batman",
+      "year": 2022,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "prey",
+      "title": "Prey",
+      "year": 2022,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "avatar-the-way-of-water",
+      "title": "Avatar The Way of Water",
+      "year": 2022,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "kingdom-of-the-planet-of-the-apes",
+      "title": "Kingdom of the Planet of the Apes",
+      "year": 2024,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "godzilla-x-kong-the-new-empire",
+      "title": "Godzilla x Kong The New Empire",
+      "year": 2024,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-getaway",
+      "title": "The Getaway",
+      "year": 1972,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "enter-the-dragon",
+      "title": "Enter the Dragon",
+      "year": 1973,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "death-wish",
+      "title": "Death Wish",
+      "year": 1974,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-towering-inferno",
+      "title": "The Towering Inferno",
+      "year": 1974,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-outlaw-josey-wales",
+      "title": "The Outlaw Josey Wales",
+      "year": 1976,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "king-kong",
+      "title": "King Kong",
+      "year": 1976,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "smokey-and-the-bandit",
+      "title": "Smokey and the Bandit",
+      "year": 1977,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "superman",
+      "title": "Superman",
+      "year": 1978,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "mad-max",
+      "title": "Mad Max",
+      "year": 1979,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "raiders-of-the-lost-ark-1981",
+      "title": "Raiders of the Lost Ark",
+      "year": 1981,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "escape-from-new-york",
+      "title": "Escape from New York",
+      "year": 1981,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "conan-the-barbarian",
+      "title": "Conan the Barbarian",
+      "year": 1982,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "star-trek-ii-the-wrath-of-khan",
+      "title": "Star Trek II The Wrath of Khan",
+      "year": 1982,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "blue-thunder",
+      "title": "Blue Thunder",
+      "year": 1983,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "indiana-jones-and-the-temple-of-doom",
+      "title": "Indiana Jones and the Temple of Doom",
+      "year": 1984,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "red-dawn",
+      "title": "Red Dawn",
+      "year": 1984,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "rambo-first-blood-part-ii",
+      "title": "Rambo First Blood Part II",
+      "year": 1985,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "commando",
+      "title": "Commando",
+      "year": 1985,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "rocky-iv",
+      "title": "Rocky IV",
+      "year": 1985,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "top-gun-1986",
+      "title": "Top Gun",
+      "year": 1986,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "big-trouble-in-little-china",
+      "title": "Big Trouble in Little China",
+      "year": 1986,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "highlander",
+      "title": "Highlander",
+      "year": 1986,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "predator-1987",
+      "title": "Predator",
+      "year": 1987,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "lethal-weapon-1987",
+      "title": "Lethal Weapon",
+      "year": 1987,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "lethal-weapon-2",
+      "title": "Lethal Weapon 2",
+      "year": 1989,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "road-house",
+      "title": "Road House",
+      "year": 1989,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "die-hard-2",
+      "title": "Die Hard 2",
+      "year": 1990,
+      "genres": "Action,Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-hunt-for-red-october",
+      "title": "The Hunt for Red October",
+      "year": 1990,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "robin-hood-prince-of-thieves",
+      "title": "Robin Hood Prince of Thieves",
+      "year": 1991,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "point-break-1991",
+      "title": "Point Break",
+      "year": 1991,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "lethal-weapon-3",
+      "title": "Lethal Weapon 3",
+      "year": 1992,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fugitive",
+      "title": "The Fugitive",
+      "year": 1993,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "hard-target",
+      "title": "Hard Target",
+      "year": 1993,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "true-lies",
+      "title": "True Lies",
+      "year": 1994,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "leon-the-professional",
+      "title": "Leon The Professional",
+      "year": 1994,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "die-hard-with-a-vengeance",
+      "title": "Die Hard with a Vengeance",
+      "year": 1995,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "goldeneye",
+      "title": "GoldenEye",
+      "year": 1995,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-rock",
+      "title": "The Rock",
+      "year": 1996,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "broken-arrow",
+      "title": "Broken Arrow",
+      "year": 1996,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "mission-impossible",
+      "title": "Mission Impossible",
+      "year": 1996,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "face-off",
+      "title": "Face Off",
+      "year": 1997,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "con-air",
+      "title": "Con Air",
+      "year": 1997,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "air-force-one",
+      "title": "Air Force One",
+      "year": 1997,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-lost-world-jurassic-park",
+      "title": "The Lost World Jurassic Park",
+      "year": 1997,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "armageddon",
+      "title": "Armageddon",
+      "year": 1998,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-thomas-crown-affair",
+      "title": "The Thomas Crown Affair",
+      "year": 1999,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "mission-impossible-2",
+      "title": "Mission Impossible 2",
+      "year": 2000,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "gladiator",
+      "title": "Gladiator",
+      "year": 2000,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "x-men",
+      "title": "X-Men",
+      "year": 2000,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "training-day",
+      "title": "Training Day",
+      "year": 2001,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "black-hawk-down",
+      "title": "Black Hawk Down",
+      "year": 2001,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fast-and-the-furious",
+      "title": "The Fast and the Furious",
+      "year": 2001,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "spider-man",
+      "title": "Spider-Man",
+      "year": 2002,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-lord-of-the-rings-the-two-towers",
+      "title": "The Lord of the Rings The Two Towers",
+      "year": 2002,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-bourne-identity",
+      "title": "The Bourne Identity",
+      "year": 2002,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "x2",
+      "title": "X2",
+      "year": 2003,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-matrix-reloaded",
+      "title": "The Matrix Reloaded",
+      "year": 2003,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "terminator-3-rise-of-the-machines",
+      "title": "Terminator 3 Rise of the Machines",
+      "year": 2003,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "spider-man-2",
+      "title": "Spider-Man 2",
+      "year": 2004,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-bourne-supremacy",
+      "title": "The Bourne Supremacy",
+      "year": 2004,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "kill-bill-volume-2",
+      "title": "Kill Bill Volume 2",
+      "year": 2004,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "batman-begins",
+      "title": "Batman Begins",
+      "year": 2005,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "king-kong-2005",
+      "title": "King Kong",
+      "year": 2005,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "war-of-the-worlds",
+      "title": "War of the Worlds",
+      "year": 2005,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "constantine",
+      "title": "Constantine",
+      "year": 2005,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "casino-royale",
+      "title": "Casino Royale",
+      "year": 2006,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "pans-labyrinth-2006",
+      "title": "Pan's Labyrinth",
+      "year": 2006,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "live-free-or-die-hard",
+      "title": "Live Free or Die Hard",
+      "year": 2007,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "300",
+      "title": "300",
+      "year": 2007,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "iron-man",
+      "title": "Iron Man",
+      "year": 2008,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-incredible-hulk",
+      "title": "The Incredible Hulk",
+      "year": 2008,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "hellboy-ii-the-golden-army",
+      "title": "Hellboy II The Golden Army",
+      "year": 2008,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "taken",
+      "title": "Taken",
+      "year": 2008,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "sherlock-holmes",
+      "title": "Sherlock Holmes",
+      "year": 2009,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "kick-ass",
+      "title": "Kick-Ass",
+      "year": 2010,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "captain-america-the-first-avenger",
+      "title": "Captain America The First Avenger",
+      "year": 2010,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "mission-impossible-ghost-protocol",
+      "title": "Mission Impossible Ghost Protocol",
+      "year": 2011,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "rise-of-the-planet-of-the-apes",
+      "title": "Rise of the Planet of the Apes",
+      "year": 2011,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-raid",
+      "title": "The Raid",
+      "year": 2011,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-avengers",
+      "title": "The Avengers",
+      "year": 2012,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-dark-knight-rises",
+      "title": "The Dark Knight Rises",
+      "year": 2012,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "skyfall",
+      "title": "Skyfall",
+      "year": 2012,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-hunger-games",
+      "title": "The Hunger Games",
+      "year": 2012,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "dredd",
+      "title": "Dredd",
+      "year": 2012,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "iron-man-3",
+      "title": "Iron Man 3",
+      "year": 2013,
+      "genres": "Action,Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-hunger-games-catching-fire",
+      "title": "The Hunger Games Catching Fire",
+      "year": 2013,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-raid-2",
+      "title": "The Raid 2",
+      "year": 2013,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "captain-america-the-winter-soldier",
+      "title": "Captain America The Winter Soldier",
+      "year": 2014,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "dawn-of-the-planet-of-the-apes",
+      "title": "Dawn of the Planet of the Apes",
+      "year": 2014,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "guardians-of-the-galaxy",
+      "title": "Guardians of the Galaxy",
+      "year": 2014,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "jurassic-world",
+      "title": "Jurassic World",
+      "year": 2015,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "creed",
+      "title": "Creed",
+      "year": 2015,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "captain-america-civil-war",
+      "title": "Captain America Civil War",
+      "year": 2016,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "deadpool",
+      "title": "Deadpool",
+      "year": 2016,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "wonder-woman",
+      "title": "Wonder Woman",
+      "year": 2017,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "thor-ragnarok",
+      "title": "Thor Ragnarok",
+      "year": 2017,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "logan",
+      "title": "Logan",
+      "year": 2017,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "john-wick-chapter-2",
+      "title": "John Wick Chapter 2",
+      "year": 2017,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "avengers-infinity-war",
+      "title": "Avengers Infinity War",
+      "year": 2018,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "black-panther",
+      "title": "Black Panther",
+      "year": 2018,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "mission-impossible-fallout",
+      "title": "Mission Impossible Fallout",
+      "year": 2018,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "deadpool-2",
+      "title": "Deadpool 2",
+      "year": 2018,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "avengers-endgame",
+      "title": "Avengers Endgame",
+      "year": 2019,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "john-wick-chapter-3-parabellum",
+      "title": "John Wick Chapter 3 Parabellum",
+      "year": 2019,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "joker",
+      "title": "Joker",
+      "year": 2019,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "extraction",
+      "title": "Extraction",
+      "year": 2020,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "no-time-to-die",
+      "title": "No Time to Die",
+      "year": 2021,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "eternals",
+      "title": "Eternals",
+      "year": 2021,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "john-wick-chapter-4",
+      "title": "John Wick Chapter 4",
+      "year": 2022,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "mission-impossible-dead-reckoning",
+      "title": "Mission Impossible Dead Reckoning",
+      "year": 2023,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "guardians-of-the-galaxy-vol-3",
+      "title": "Guardians of the Galaxy Vol 3",
+      "year": 2023,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fall-guy",
+      "title": "The Fall Guy",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "monkey-man",
+      "title": "Monkey Man",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "deadpool-and-wolverine-2024",
+      "title": "Deadpool and Wolverine",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "gladiator-ii",
+      "title": "Gladiator II",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "bad-boys-ride-or-die",
+      "title": "Bad Boys Ride or Die",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-godfather-1972",
+      "title": "The Godfather",
+      "year": 1972,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "mean-streets",
+      "title": "Mean Streets",
+      "year": 1973,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "serpico",
+      "title": "Serpico",
+      "year": 1973,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "chinatown-1974",
+      "title": "Chinatown",
+      "year": 1974,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "dog-day-afternoon",
+      "title": "Dog Day Afternoon",
+      "year": 1975,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "once-upon-a-time-in-america",
+      "title": "Once Upon a Time in America",
+      "year": 1984,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "stand-by-me-1986",
+      "title": "Stand by Me",
+      "year": 1986,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-untouchables",
+      "title": "The Untouchables",
+      "year": 1987,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "millers-crossing",
+      "title": "Miller's Crossing",
+      "year": 1990,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "reservoir-dogs-1992",
+      "title": "Reservoir Dogs",
+      "year": 1992,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "jackie-brown",
+      "title": "Jackie Brown",
+      "year": 1997,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "traffic",
+      "title": "Traffic",
+      "year": 2000,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "road-to-perdition",
+      "title": "Road to Perdition",
+      "year": 2002,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "city-of-god",
+      "title": "City of God",
+      "year": 2002,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "catch-me-if-you-can",
+      "title": "Catch Me If You Can",
+      "year": 2002,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "kiss-kiss-bang-bang",
+      "title": "Kiss Kiss Bang Bang",
+      "year": 2005,
+      "genres": "Crime,Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "no-country-for-old-men-2007",
+      "title": "No Country for Old Men",
+      "year": 2007,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "in-bruges",
+      "title": "In Bruges",
+      "year": 2008,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-town",
+      "title": "The Town",
+      "year": 2010,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "argo",
+      "title": "Argo",
+      "year": 2012,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-wolf-of-wall-street",
+      "title": "The Wolf of Wall Street",
+      "year": 2013,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "american-hustle",
+      "title": "American Hustle",
+      "year": 2013,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-big-short",
+      "title": "The Big Short",
+      "year": 2015,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "carol",
+      "title": "Carol",
+      "year": 2015,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "hell-or-high-water-2016",
+      "title": "Hell or High Water",
+      "year": 2016,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "three-billboards-outside-ebbing-missouri",
+      "title": "Three Billboards Outside Ebbing Missouri",
+      "year": 2017,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-irishman",
+      "title": "The Irishman",
+      "year": 2019,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "nightmare-alley",
+      "title": "Nightmare Alley",
+      "year": 2021,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "killers-of-the-flower-moon",
+      "title": "Killers of the Flower Moon",
+      "year": 2023,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "duck-soup",
+      "title": "Duck Soup",
+      "year": 1933,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "it-happened-one-night",
+      "title": "It Happened One Night",
+      "year": 1934,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-thin-man",
+      "title": "The Thin Man",
+      "year": 1934,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bringing-up-baby",
+      "title": "Bringing Up Baby",
+      "year": 1938,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "his-girl-friday",
+      "title": "His Girl Friday",
+      "year": 1940,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "sullivans-travels",
+      "title": "Sullivan's Travels",
+      "year": 1941,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-lady-eve",
+      "title": "The Lady Eve",
+      "year": 1941,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-palm-beach-story",
+      "title": "The Palm Beach Story",
+      "year": 1942,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "arsenic-and-old-lace",
+      "title": "Arsenic and Old Lace",
+      "year": 1944,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "singin-in-the-rain",
+      "title": "Singin in the Rain",
+      "year": 1952,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "some-like-it-hot",
+      "title": "Some Like It Hot",
+      "year": 1959,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-apartment",
+      "title": "The Apartment",
+      "year": 1960,
+      "genres": "Comedy,Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "its-a-mad-mad-mad-mad-world",
+      "title": "It's a Mad Mad Mad Mad World",
+      "year": 1963,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "dr-strangelove",
+      "title": "Dr Strangelove",
+      "year": 1964,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-graduate",
+      "title": "The Graduate",
+      "year": 1967,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "blazing-saddles",
+      "title": "Blazing Saddles",
+      "year": 1974,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "young-frankenstein",
+      "title": "Young Frankenstein",
+      "year": 1974,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "monty-python-and-the-holy-grail",
+      "title": "Monty Python and the Holy Grail",
+      "year": 1975,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-kentucky-fried-movie",
+      "title": "The Kentucky Fried Movie",
+      "year": 1977,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "high-anxiety",
+      "title": "High Anxiety",
+      "year": 1977,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "oh-god",
+      "title": "Oh God",
+      "year": 1977,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "animal-house",
+      "title": "Animal House",
+      "year": 1978,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "up-in-smoke",
+      "title": "Up in Smoke",
+      "year": 1978,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "foul-play",
+      "title": "Foul Play",
+      "year": 1978,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "being-there",
+      "title": "Being There",
+      "year": 1979,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "life-of-brian",
+      "title": "Life of Brian",
+      "year": 1979,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-jerk",
+      "title": "The Jerk",
+      "year": 1979,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "meatballs",
+      "title": "Meatballs",
+      "year": 1979,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-muppet-movie",
+      "title": "The Muppet Movie",
+      "year": 1979,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "airplane-1980",
+      "title": "Airplane",
+      "year": 1980,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-blues-brothers",
+      "title": "The Blues Brothers",
+      "year": 1980,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "caddyshack",
+      "title": "Caddyshack",
+      "year": 1980,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "stir-crazy",
+      "title": "Stir Crazy",
+      "year": 1980,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "9-to-5",
+      "title": "9 to 5",
+      "year": 1980,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "private-benjamin",
+      "title": "Private Benjamin",
+      "year": 1980,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "stripes",
+      "title": "Stripes",
+      "year": 1981,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "arthur",
+      "title": "Arthur",
+      "year": 1981,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "fast-times-at-ridgemont-high",
+      "title": "Fast Times at Ridgemont High",
+      "year": 1982,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "diner",
+      "title": "Diner",
+      "year": 1982,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "trading-places",
+      "title": "Trading Places",
+      "year": 1982,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "national-lampoons-vacation",
+      "title": "National Lampoon's Vacation",
+      "year": 1983,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "risky-business",
+      "title": "Risky Business",
+      "year": 1983,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "ghostbusters-1984",
+      "title": "Ghostbusters",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "this-is-spinal-tap",
+      "title": "This Is Spinal Tap",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "police-academy",
+      "title": "Police Academy",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "beverly-hills-cop",
+      "title": "Beverly Hills Cop",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "sixteen-candles",
+      "title": "Sixteen Candles",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "revenge-of-the-nerds",
+      "title": "Revenge of the Nerds",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "splash",
+      "title": "Splash",
+      "year": 1984,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-breakfast-club-1985",
+      "title": "The Breakfast Club",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "weird-science",
+      "title": "Weird Science",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "fletch",
+      "title": "Fletch",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "spies-like-us",
+      "title": "Spies Like Us",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "clue",
+      "title": "Clue",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "better-off-dead",
+      "title": "Better Off Dead",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-sure-thing",
+      "title": "The Sure Thing",
+      "year": 1985,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "ferris-buellers-day-off-1986",
+      "title": "Ferris Bueller's Day Off",
+      "year": 1986,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "pretty-in-pink",
+      "title": "Pretty in Pink",
+      "year": 1986,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "three-amigos",
+      "title": "Three Amigos",
+      "year": 1986,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "lucas",
+      "title": "Lucas",
+      "year": 1986,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "spaceballs",
+      "title": "Spaceballs",
+      "year": 1987,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "planes-trains-and-automobiles",
+      "title": "Planes Trains and Automobiles",
+      "year": 1987,
+      "genres": "Comedy,Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-princess-bride-1987",
+      "title": "The Princess Bride",
+      "year": 1987,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "a-fish-called-wanda",
+      "title": "A Fish Called Wanda",
+      "year": 1988,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "coming-to-america-1988",
+      "title": "Coming to America",
+      "year": 1988,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "big",
+      "title": "Big",
+      "year": 1988,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "dirty-rotten-scoundrels",
+      "title": "Dirty Rotten Scoundrels",
+      "year": 1988,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "parenthood",
+      "title": "Parenthood",
+      "year": 1989,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "uncle-buck",
+      "title": "Uncle Buck",
+      "year": 1989,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bill-and-teds-excellent-adventure",
+      "title": "Bill and Ted's Excellent Adventure",
+      "year": 1989,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "look-whos-talking",
+      "title": "Look Who's Talking",
+      "year": 1989,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "what-about-bob",
+      "title": "What About Bob",
+      "year": 1991,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "hot-shots",
+      "title": "Hot Shots",
+      "year": 1991,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "waynes-world",
+      "title": "Wayne's World",
+      "year": 1992,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "my-cousin-vinny",
+      "title": "My Cousin Vinny",
+      "year": 1992,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "sister-act",
+      "title": "Sister Act",
+      "year": 1992,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "a-league-of-their-own",
+      "title": "A League of Their Own",
+      "year": 1992,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "mrs-doubtfire",
+      "title": "Mrs Doubtfire",
+      "year": 1993,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "groundhog-day-1993",
+      "title": "Groundhog Day",
+      "year": 1993,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-mask",
+      "title": "The Mask",
+      "year": 1994,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "dumb-and-dumber-1994",
+      "title": "Dumb and Dumber",
+      "year": 1994,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "ace-ventura-pet-detective",
+      "title": "Ace Ventura Pet Detective",
+      "year": 1994,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "reality-bites",
+      "title": "Reality Bites",
+      "year": 1994,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "clerks-1994",
+      "title": "Clerks",
+      "year": 1994,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "clueless-1995",
+      "title": "Clueless",
+      "year": 1995,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "dracula-dead-and-loving-it",
+      "title": "Dracula Dead and Loving It",
+      "year": 1995,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "billy-madison",
+      "title": "Billy Madison",
+      "year": 1995,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "happy-gilmore",
+      "title": "Happy Gilmore",
+      "year": 1996,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "kingpin",
+      "title": "Kingpin",
+      "year": 1996,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-cable-guy",
+      "title": "The Cable Guy",
+      "year": 1996,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bottle-rocket",
+      "title": "Bottle Rocket",
+      "year": 1996,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "swingers",
+      "title": "Swingers",
+      "year": 1996,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "austin-powers-international-man-of-mystery",
+      "title": "Austin Powers International Man of Mystery",
+      "year": 1997,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "as-good-as-it-gets",
+      "title": "As Good as It Gets",
+      "year": 1997,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "grosse-pointe-blank",
+      "title": "Grosse Pointe Blank",
+      "year": 1997,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "theres-something-about-mary",
+      "title": "There's Something About Mary",
+      "year": 1997,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-truman-show",
+      "title": "The Truman Show",
+      "year": 1998,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "rushmore",
+      "title": "Rushmore",
+      "year": 1998,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "office-space-1999",
+      "title": "Office Space",
+      "year": 1999,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "american-pie",
+      "title": "American Pie",
+      "year": 1999,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "austin-powers-the-spy-who-shagged-me",
+      "title": "Austin Powers The Spy Who Shagged Me",
+      "year": 1999,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "election",
+      "title": "Election",
+      "year": 1999,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "being-john-malkovich",
+      "title": "Being John Malkovich",
+      "year": 1999,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "meet-the-parents",
+      "title": "Meet the Parents",
+      "year": 2000,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "best-in-show",
+      "title": "Best in Show",
+      "year": 2000,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "o-brother-where-art-thou",
+      "title": "O Brother Where Art Thou",
+      "year": 2000,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "high-fidelity",
+      "title": "High Fidelity",
+      "year": 2000,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "how-the-grinch-stole-christmas",
+      "title": "How the Grinch Stole Christmas",
+      "year": 2000,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "zoolander",
+      "title": "Zoolander",
+      "year": 2001,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "super-troopers",
+      "title": "Super Troopers",
+      "year": 2001,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "wet-hot-american-summer",
+      "title": "Wet Hot American Summer",
+      "year": 2001,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "jay-and-silent-bob-strike-back",
+      "title": "Jay and Silent Bob Strike Back",
+      "year": 2001,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "my-big-fat-greek-wedding",
+      "title": "My Big Fat Greek Wedding",
+      "year": 2001,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bridget-joness-diary",
+      "title": "Bridget Jones's Diary",
+      "year": 2001,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "austin-powers-in-goldmember",
+      "title": "Austin Powers in Goldmember",
+      "year": 2002,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "old-school",
+      "title": "Old School",
+      "year": 2003,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bruce-almighty",
+      "title": "Bruce Almighty",
+      "year": 2003,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "freaky-friday",
+      "title": "Freaky Friday",
+      "year": 2003,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "school-of-rock",
+      "title": "School of Rock",
+      "year": 2003,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "anchorman-2004",
+      "title": "Anchorman",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "dodgeball",
+      "title": "Dodgeball",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "50-first-dates",
+      "title": "50 First Dates",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "13-going-on-30",
+      "title": "13 Going on 30",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "napoleon-dynamite",
+      "title": "Napoleon Dynamite",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "mean-girls-2004",
+      "title": "Mean Girls",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-perks-of-being-a-wallflower",
+      "title": "The Perks of Being a Wallflower",
+      "year": 2004,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-40-year-old-virgin",
+      "title": "The 40-Year-Old Virgin",
+      "year": 2005,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "wedding-crashers",
+      "title": "Wedding Crashers",
+      "year": 2005,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "talladega-nights-the-ballad-of-ricky-bobby",
+      "title": "Talladega Nights The Ballad of Ricky Bobby",
+      "year": 2006,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "borat",
+      "title": "Borat",
+      "year": 2006,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "nacho-libre",
+      "title": "Nacho Libre",
+      "year": 2006,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "knocked-up",
+      "title": "Knocked Up",
+      "year": 2007,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "superbad-2007",
+      "title": "Superbad",
+      "year": 2007,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "juno",
+      "title": "Juno",
+      "year": 2007,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "step-brothers",
+      "title": "Step Brothers",
+      "year": 2008,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "tropic-thunder",
+      "title": "Tropic Thunder",
+      "year": 2008,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "pineapple-express",
+      "title": "Pineapple Express",
+      "year": 2008,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "forgetting-sarah-marshall",
+      "title": "Forgetting Sarah Marshall",
+      "year": 2008,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "role-models",
+      "title": "Role Models",
+      "year": 2008,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-hangover",
+      "title": "The Hangover",
+      "year": 2009,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "zombieland",
+      "title": "Zombieland",
+      "year": 2009,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "500-days-of-summer",
+      "title": "500 Days of Summer",
+      "year": 2009,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-proposal",
+      "title": "The Proposal",
+      "year": 2009,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-other-guys",
+      "title": "The Other Guys",
+      "year": 2010,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "easy-a",
+      "title": "Easy A",
+      "year": 2010,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "scott-pilgrim-vs-the-world",
+      "title": "Scott Pilgrim vs the World",
+      "year": 2010,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bridesmaids",
+      "title": "Bridesmaids",
+      "year": 2011,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "crazy-stupid-love",
+      "title": "Crazy Stupid Love",
+      "year": 2011,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "50-50",
+      "title": "50/50",
+      "year": 2011,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "horrible-bosses",
+      "title": "Horrible Bosses",
+      "year": 2011,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "21-jump-street",
+      "title": "21 Jump Street",
+      "year": 2012,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "ted",
+      "title": "Ted",
+      "year": 2012,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "pitch-perfect",
+      "title": "Pitch Perfect",
+      "year": 2012,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "this-is-the-end",
+      "title": "This Is the End",
+      "year": 2013,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-worlds-end",
+      "title": "The World's End",
+      "year": 2013,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-heat",
+      "title": "The Heat",
+      "year": 2013,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "were-the-millers",
+      "title": "We're the Millers",
+      "year": 2013,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "about-time",
+      "title": "About Time",
+      "year": 2013,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "22-jump-street",
+      "title": "22 Jump Street",
+      "year": 2014,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-lego-movie",
+      "title": "The Lego Movie",
+      "year": 2014,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "what-we-do-in-the-shadows",
+      "title": "What We Do in the Shadows",
+      "year": 2014,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "neighbors",
+      "title": "Neighbors",
+      "year": 2014,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "spy",
+      "title": "Spy",
+      "year": 2015,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "trainwreck",
+      "title": "Trainwreck",
+      "year": 2015,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "ant-man",
+      "title": "Ant-Man",
+      "year": 2015,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-nice-guys",
+      "title": "The Nice Guys",
+      "year": 2016,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "hunt-for-the-wilderpeople",
+      "title": "Hunt for the Wilderpeople",
+      "year": 2016,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-big-sick",
+      "title": "The Big Sick",
+      "year": 2017,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "game-night",
+      "title": "Game Night",
+      "year": 2018,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "blockers",
+      "title": "Blockers",
+      "year": 2018,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "eighth-grade",
+      "title": "Eighth Grade",
+      "year": 2018,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "booksmart",
+      "title": "Booksmart",
+      "year": 2018,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "crazy-rich-asians",
+      "title": "Crazy Rich Asians",
+      "year": 2018,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "jojo-rabbit",
+      "title": "Jojo Rabbit",
+      "year": 2019,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "palm-springs",
+      "title": "Palm Springs",
+      "year": 2020,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "shiva-baby",
+      "title": "Shiva Baby",
+      "year": 2021,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "glass-onion",
+      "title": "Glass Onion",
+      "year": 2022,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-unbearable-weight-of-massive-talent",
+      "title": "The Unbearable Weight of Massive Talent",
+      "year": 2022,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "bottoms",
+      "title": "Bottoms",
+      "year": 2023,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-holdovers",
+      "title": "The Holdovers",
+      "year": 2023,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "hit-man",
+      "title": "Hit Man",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "drive-away-dolls",
+      "title": "Drive-Away Dolls",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "beverly-hills-cop-axel-f",
+      "title": "Beverly Hills Cop Axel F",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "ghostbusters-frozen-empire",
+      "title": "Ghostbusters Frozen Empire",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "anyone-but-you",
+      "title": "Anyone But You",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "another-simple-favor",
+      "title": "Another Simple Favor",
+      "year": 2025,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "gone-with-the-wind",
+      "title": "Gone with the Wind",
+      "year": 1939,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-wizard-of-oz",
+      "title": "The Wizard of Oz",
+      "year": 1939,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-shop-around-the-corner",
+      "title": "The Shop Around the Corner",
+      "year": 1940,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "casablanca-1942",
+      "title": "Casablanca",
+      "year": 1942,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "brief-encounter",
+      "title": "Brief Encounter",
+      "year": 1945,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-best-years-of-our-lives",
+      "title": "The Best Years of Our Lives",
+      "year": 1946,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "roman-holiday",
+      "title": "Roman Holiday",
+      "year": 1953,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "sabrina",
+      "title": "Sabrina",
+      "year": 1954,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "an-affair-to-remember",
+      "title": "An Affair to Remember",
+      "year": 1957,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "funny-face",
+      "title": "Funny Face",
+      "year": 1957,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "west-side-story",
+      "title": "West Side Story",
+      "year": 1961,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-goodbye-girl",
+      "title": "The Goodbye Girl",
+      "year": 1977,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "moonstruck-1987",
+      "title": "Moonstruck",
+      "year": 1987,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "dirty-dancing-1987",
+      "title": "Dirty Dancing",
+      "year": 1987,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "say-anything-1989",
+      "title": "Say Anything",
+      "year": 1989,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "when-harry-met-sally-1989",
+      "title": "When Harry Met Sally",
+      "year": 1989,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "sense-and-sensibility",
+      "title": "Sense and Sensibility",
+      "year": 1995,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "before-sunrise",
+      "title": "Before Sunrise",
+      "year": 1995,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-english-patient",
+      "title": "The English Patient",
+      "year": 1996,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "titanic-1997",
+      "title": "Titanic",
+      "year": 1997,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "sliding-doors",
+      "title": "Sliding Doors",
+      "year": 1998,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "notting-hill",
+      "title": "Notting Hill",
+      "year": 1999,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "almost-famous",
+      "title": "Almost Famous",
+      "year": 2000,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "moulin-rouge",
+      "title": "Moulin Rouge",
+      "year": 2001,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "amelie-2001",
+      "title": "Amelie",
+      "year": 2001,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "bend-it-like-beckham",
+      "title": "Bend It Like Beckham",
+      "year": 2002,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "sweet-home-alabama",
+      "title": "Sweet Home Alabama",
+      "year": 2002,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "about-a-boy",
+      "title": "About a Boy",
+      "year": 2002,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "love-actually-2003",
+      "title": "Love Actually",
+      "year": 2003,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "somethings-gotta-give",
+      "title": "Something's Gotta Give",
+      "year": 2003,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "before-sunset",
+      "title": "Before Sunset",
+      "year": 2004,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "closer",
+      "title": "Closer",
+      "year": 2004,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "year": 2005,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "brokeback-mountain",
+      "title": "Brokeback Mountain",
+      "year": 2005,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-devil-wears-prada",
+      "title": "The Devil Wears Prada",
+      "year": 2006,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "500-days-of-summer-2007",
+      "title": "500 Days of Summer",
+      "year": 2007,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-curious-case-of-benjamin-button",
+      "title": "The Curious Case of Benjamin Button",
+      "year": 2008,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "its-complicated",
+      "title": "It's Complicated",
+      "year": 2009,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "blue-valentine",
+      "title": "Blue Valentine",
+      "year": 2010,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "friends-with-benefits",
+      "title": "Friends with Benefits",
+      "year": 2011,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "before-midnight",
+      "title": "Before Midnight",
+      "year": 2013,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "her-2013",
+      "title": "Her",
+      "year": 2013,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "call-me-by-your-name",
+      "title": "Call Me by Your Name",
+      "year": 2017,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "love-simon",
+      "title": "Love Simon",
+      "year": 2018,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "to-all-the-boys-ive-loved-before",
+      "title": "To All the Boys I've Loved Before",
+      "year": 2018,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "set-it-up",
+      "title": "Set It Up",
+      "year": 2018,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-farewell",
+      "title": "The Farewell",
+      "year": 2019,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "promising-young-woman",
+      "title": "Promising Young Woman",
+      "year": 2020,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "past-lives-2021",
+      "title": "Past Lives",
+      "year": 2021,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "anatomy-of-a-fall",
+      "title": "Anatomy of a Fall",
+      "year": 2023,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "queer",
+      "title": "Queer",
+      "year": 2024,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "babygirl",
+      "title": "Babygirl",
+      "year": 2024,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "citizen-kane",
+      "title": "Citizen Kane",
+      "year": 1941,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-maltese-falcon",
+      "title": "The Maltese Falcon",
+      "year": 1941,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-treasure-of-the-sierra-madre",
+      "title": "The Treasure of the Sierra Madre",
+      "year": 1948,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "sunset-boulevard",
+      "title": "Sunset Boulevard",
+      "year": 1950,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "all-about-eve",
+      "title": "All About Eve",
+      "year": 1950,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "rashomon",
+      "title": "Rashomon",
+      "year": 1950,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-streetcar-named-desire",
+      "title": "A Streetcar Named Desire",
+      "year": 1951,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "high-noon",
+      "title": "High Noon",
+      "year": 1952,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "ikiru",
+      "title": "Ikiru",
+      "year": 1952,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "tokyo-story",
+      "title": "Tokyo Story",
+      "year": 1953,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "on-the-waterfront",
+      "title": "On the Waterfront",
+      "year": 1954,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "seven-samurai",
+      "title": "Seven Samurai",
+      "year": 1954,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "12-angry-men",
+      "title": "12 Angry Men",
+      "year": 1957,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-bridge-on-the-river-kwai",
+      "title": "The Bridge on the River Kwai",
+      "year": 1957,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "paths-of-glory",
+      "title": "Paths of Glory",
+      "year": 1957,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-seventh-seal",
+      "title": "The Seventh Seal",
+      "year": 1957,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "ben-hur",
+      "title": "Ben-Hur",
+      "year": 1959,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "lawrence-of-arabia",
+      "title": "Lawrence of Arabia",
+      "year": 1962,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "whos-afraid-of-virginia-woolf",
+      "title": "Who's Afraid of Virginia Woolf",
+      "year": 1966,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "in-the-heat-of-the-night",
+      "title": "In the Heat of the Night",
+      "year": 1967,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "midnight-cowboy",
+      "title": "Midnight Cowboy",
+      "year": 1969,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "mash",
+      "title": "MASH",
+      "year": 1970,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "patton",
+      "title": "Patton",
+      "year": 1970,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "five-easy-pieces",
+      "title": "Five Easy Pieces",
+      "year": 1970,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-last-picture-show",
+      "title": "The Last Picture Show",
+      "year": 1971,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-sting",
+      "title": "The Sting",
+      "year": 1973,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "american-graffiti",
+      "title": "American Graffiti",
+      "year": 1973,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "badlands",
+      "title": "Badlands",
+      "year": 1973,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "one-flew-over-the-cuckoos-nest-1975",
+      "title": "One Flew Over the Cuckoo's Nest",
+      "year": 1975,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "barry-lyndon",
+      "title": "Barry Lyndon",
+      "year": 1975,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "nashville",
+      "title": "Nashville",
+      "year": 1975,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-deer-hunter",
+      "title": "The Deer Hunter",
+      "year": 1978,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "apocalypse-now-1979",
+      "title": "Apocalypse Now",
+      "year": 1979,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "kramer-vs-kramer",
+      "title": "Kramer vs Kramer",
+      "year": 1979,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "raging-bull",
+      "title": "Raging Bull",
+      "year": 1980,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "ordinary-people",
+      "title": "Ordinary People",
+      "year": 1980,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "gandhi",
+      "title": "Gandhi",
+      "year": 1982,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-verdict",
+      "title": "The Verdict",
+      "year": 1982,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "tootsie",
+      "title": "Tootsie",
+      "year": 1982,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "terms-of-endearment",
+      "title": "Terms of Endearment",
+      "year": 1983,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-right-stuff",
+      "title": "The Right Stuff",
+      "year": 1983,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-killing-fields",
+      "title": "The Killing Fields",
+      "year": 1984,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "out-of-africa",
+      "title": "Out of Africa",
+      "year": 1985,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-color-purple",
+      "title": "The Color Purple",
+      "year": 1985,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "ran",
+      "title": "Ran",
+      "year": 1985,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "platoon",
+      "title": "Platoon",
+      "year": 1986,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "blue-velvet",
+      "title": "Blue Velvet",
+      "year": 1986,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "hannah-and-her-sisters",
+      "title": "Hannah and Her Sisters",
+      "year": 1986,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-last-emperor",
+      "title": "The Last Emperor",
+      "year": 1987,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "working-girl",
+      "title": "Working Girl",
+      "year": 1988,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "do-the-right-thing",
+      "title": "Do the Right Thing",
+      "year": 1989,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "born-on-the-fourth-of-july",
+      "title": "Born on the Fourth of July",
+      "year": 1989,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "dead-poets-society-1989",
+      "title": "Dead Poets Society",
+      "year": 1989,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "field-of-dreams",
+      "title": "Field of Dreams",
+      "year": 1989,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "driving-miss-daisy",
+      "title": "Driving Miss Daisy",
+      "year": 1989,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "dances-with-wolves",
+      "title": "Dances with Wolves",
+      "year": 1990,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "thelma-and-louise",
+      "title": "Thelma and Louise",
+      "year": 1991,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "boyz-n-the-hood",
+      "title": "Boyz n the Hood",
+      "year": 1991,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "bugsy",
+      "title": "Bugsy",
+      "year": 1991,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "unforgiven",
+      "title": "Unforgiven",
+      "year": 1992,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "malcolm-x",
+      "title": "Malcolm X",
+      "year": 1992,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-player",
+      "title": "The Player",
+      "year": 1992,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "schindlers-list",
+      "title": "Schindler's List",
+      "year": 1993,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-piano",
+      "title": "The Piano",
+      "year": 1993,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "philadelphia",
+      "title": "Philadelphia",
+      "year": 1993,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "in-the-name-of-the-father",
+      "title": "In the Name of the Father",
+      "year": 1993,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "forrest-gump-1994",
+      "title": "Forrest Gump",
+      "year": 1994,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "three-colors-red",
+      "title": "Three Colors Red",
+      "year": 1994,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "chungking-express",
+      "title": "Chungking Express",
+      "year": 1994,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "braveheart",
+      "title": "Braveheart",
+      "year": 1995,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "apollo-13",
+      "title": "Apollo 13",
+      "year": 1995,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "babe",
+      "title": "Babe",
+      "year": 1995,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "il-postino",
+      "title": "Il Postino",
+      "year": 1995,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "shine",
+      "title": "Shine",
+      "year": 1996,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "secrets-and-lies",
+      "title": "Secrets and Lies",
+      "year": 1996,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "good-will-hunting-1997",
+      "title": "Good Will Hunting",
+      "year": 1997,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "boogie-nights",
+      "title": "Boogie Nights",
+      "year": 1997,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "saving-private-ryan-1998",
+      "title": "Saving Private Ryan",
+      "year": 1998,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "life-is-beautiful",
+      "title": "Life Is Beautiful",
+      "year": 1998,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-thin-red-line",
+      "title": "The Thin Red Line",
+      "year": 1998,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "american-beauty",
+      "title": "American Beauty",
+      "year": 1999,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-green-mile",
+      "title": "The Green Mile",
+      "year": 1999,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "magnolia",
+      "title": "Magnolia",
+      "year": 1999,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "erin-brockovich",
+      "title": "Erin Brockovich",
+      "year": 2000,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "crouching-tiger-hidden-dragon",
+      "title": "Crouching Tiger Hidden Dragon",
+      "year": 2000,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-beautiful-mind",
+      "title": "A Beautiful Mind",
+      "year": 2001,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "gosford-park",
+      "title": "Gosford Park",
+      "year": 2001,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "in-the-bedroom",
+      "title": "In the Bedroom",
+      "year": 2001,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-pianist",
+      "title": "The Pianist",
+      "year": 2002,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "gangs-of-new-york",
+      "title": "Gangs of New York",
+      "year": 2002,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "adaptation",
+      "title": "Adaptation",
+      "year": 2002,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "about-schmidt",
+      "title": "About Schmidt",
+      "year": 2002,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-hours",
+      "title": "The Hours",
+      "year": 2002,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "talk-to-her",
+      "title": "Talk to Her",
+      "year": 2002,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "mystic-river",
+      "title": "Mystic River",
+      "year": 2003,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "master-and-commander",
+      "title": "Master and Commander",
+      "year": 2003,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "lost-in-translation-2003",
+      "title": "Lost in Translation",
+      "year": 2003,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "million-dollar-baby",
+      "title": "Million Dollar Baby",
+      "year": 2004,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "sideways",
+      "title": "Sideways",
+      "year": 2004,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "ray",
+      "title": "Ray",
+      "year": 2004,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "hotel-rwanda",
+      "title": "Hotel Rwanda",
+      "year": 2004,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-motorcycle-diaries",
+      "title": "The Motorcycle Diaries",
+      "year": 2004,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "crash",
+      "title": "Crash",
+      "year": 2005,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "capote",
+      "title": "Capote",
+      "year": 2005,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "good-night-and-good-luck",
+      "title": "Good Night and Good Luck",
+      "year": 2005,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "babel",
+      "title": "Babel",
+      "year": 2006,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "little-miss-sunshine",
+      "title": "Little Miss Sunshine",
+      "year": 2006,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "letters-from-iwo-jima",
+      "title": "Letters from Iwo Jima",
+      "year": 2006,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "there-will-be-blood-2007",
+      "title": "There Will Be Blood",
+      "year": 2007,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-diving-bell-and-the-butterfly",
+      "title": "The Diving Bell and the Butterfly",
+      "year": 2007,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "atonement",
+      "title": "Atonement",
+      "year": 2007,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "milk",
+      "title": "Milk",
+      "year": 2008,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-wrestler",
+      "title": "The Wrestler",
+      "year": 2008,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "gran-torino",
+      "title": "Gran Torino",
+      "year": 2008,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-hurt-locker-2009",
+      "title": "The Hurt Locker",
+      "year": 2009,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "precious",
+      "title": "Precious",
+      "year": 2009,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "up-in-the-air",
+      "title": "Up in the Air",
+      "year": 2009,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "an-education",
+      "title": "An Education",
+      "year": 2009,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-kings-speech",
+      "title": "The King's Speech",
+      "year": 2010,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "black-swan",
+      "title": "Black Swan",
+      "year": 2010,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fighter",
+      "title": "The Fighter",
+      "year": 2010,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "true-grit",
+      "title": "True Grit",
+      "year": 2010,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "winters-bone",
+      "title": "Winter's Bone",
+      "year": 2010,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-artist",
+      "title": "The Artist",
+      "year": 2011,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-descendants",
+      "title": "The Descendants",
+      "year": 2011,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "moneyball",
+      "title": "Moneyball",
+      "year": 2011,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-tree-of-life",
+      "title": "The Tree of Life",
+      "year": 2011,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-separation",
+      "title": "A Separation",
+      "year": 2011,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "midnight-in-paris",
+      "title": "Midnight in Paris",
+      "year": 2011,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "lincoln",
+      "title": "Lincoln",
+      "year": 2012,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "life-of-pi",
+      "title": "Life of Pi",
+      "year": 2012,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "silver-linings-playbook",
+      "title": "Silver Linings Playbook",
+      "year": 2012,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "zero-dark-thirty",
+      "title": "Zero Dark Thirty",
+      "year": 2012,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-master",
+      "title": "The Master",
+      "year": 2012,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "amour",
+      "title": "Amour",
+      "year": 2012,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "nebraska",
+      "title": "Nebraska",
+      "year": 2013,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "dallas-buyers-club",
+      "title": "Dallas Buyers Club",
+      "year": 2013,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "boyhood",
+      "title": "Boyhood",
+      "year": 2014,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "whiplash-2014",
+      "title": "Whiplash",
+      "year": 2014,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "spotlight",
+      "title": "Spotlight",
+      "year": 2015,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-revenant",
+      "title": "The Revenant",
+      "year": 2015,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "room",
+      "title": "Room",
+      "year": 2015,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "manchester-by-the-sea",
+      "title": "Manchester by the Sea",
+      "year": 2016,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "fences",
+      "title": "Fences",
+      "year": 2016,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "hidden-figures",
+      "title": "Hidden Figures",
+      "year": 2016,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "dunkirk",
+      "title": "Dunkirk",
+      "year": 2017,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "phantom-thread",
+      "title": "Phantom Thread",
+      "year": 2017,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "green-book",
+      "title": "Green Book",
+      "year": 2018,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "blackkklansman",
+      "title": "BlacKkKlansman",
+      "year": 2018,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-favourite",
+      "title": "The Favourite",
+      "year": 2018,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "roma",
+      "title": "Roma",
+      "year": 2018,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-star-is-born",
+      "title": "A Star Is Born",
+      "year": 2018,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "if-beale-street-could-talk",
+      "title": "If Beale Street Could Talk",
+      "year": 2018,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "1917",
+      "title": "1917",
+      "year": 2019,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "marriage-story",
+      "title": "Marriage Story",
+      "year": 2019,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "little-women",
+      "title": "Little Women",
+      "year": 2019,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "once-upon-a-time-in-hollywood",
+      "title": "Once Upon a Time in Hollywood",
+      "year": 2019,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "minari",
+      "title": "Minari",
+      "year": 2020,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-father",
+      "title": "The Father",
+      "year": 2020,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-power-of-the-dog",
+      "title": "The Power of the Dog",
+      "year": 2021,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "licorice-pizza",
+      "title": "Licorice Pizza",
+      "year": 2021,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "belfast",
+      "title": "Belfast",
+      "year": 2021,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "west-side-story-2021",
+      "title": "West Side Story",
+      "year": 2021,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-banshees-of-inisherin",
+      "title": "The Banshees of Inisherin",
+      "year": 2022,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "tar",
+      "title": "Tar",
+      "year": 2022,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "all-quiet-on-the-western-front",
+      "title": "All Quiet on the Western Front",
+      "year": 2022,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-fabelmans",
+      "title": "The Fabelmans",
+      "year": 2022,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "women-talking",
+      "title": "Women Talking",
+      "year": 2022,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-whale",
+      "title": "The Whale",
+      "year": 2022,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-brutalist",
+      "title": "The Brutalist",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-real-pain",
+      "title": "A Real Pain",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-complete-unknown",
+      "title": "A Complete Unknown",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "nickel-boys",
+      "title": "Nickel Boys",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-room-next-door",
+      "title": "The Room Next Door",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "emilia-perez",
+      "title": "Emilia Perez",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "sing-sing",
+      "title": "Sing Sing",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "snow-white-and-the-seven-dwarfs",
+      "title": "Snow White and the Seven Dwarfs",
+      "year": 1937,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "pinocchio",
+      "title": "Pinocchio",
+      "year": 1940,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "fantasia",
+      "title": "Fantasia",
+      "year": 1940,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "dumbo",
+      "title": "Dumbo",
+      "year": 1941,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "bambi",
+      "title": "Bambi",
+      "year": 1942,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "cinderella",
+      "title": "Cinderella",
+      "year": 1950,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "alice-in-wonderland",
+      "title": "Alice in Wonderland",
+      "year": 1951,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "peter-pan",
+      "title": "Peter Pan",
+      "year": 1953,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "lady-and-the-tramp",
+      "title": "Lady and the Tramp",
+      "year": 1955,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "sleeping-beauty",
+      "title": "Sleeping Beauty",
+      "year": 1959,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "one-hundred-and-one-dalmatians",
+      "title": "One Hundred and One Dalmatians",
+      "year": 1961,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-jungle-book",
+      "title": "The Jungle Book",
+      "year": 1967,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-aristocats",
+      "title": "The Aristocats",
+      "year": 1970,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "robin-hood",
+      "title": "Robin Hood",
+      "year": 1973,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-rescuers",
+      "title": "The Rescuers",
+      "year": 1977,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-secret-of-nimh",
+      "title": "The Secret of NIMH",
+      "year": 1982,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-dark-crystal",
+      "title": "The Dark Crystal",
+      "year": 1982,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "nausicaa-of-the-valley-of-the-wind",
+      "title": "Nausicaa of the Valley of the Wind",
+      "year": 1984,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "castle-in-the-sky",
+      "title": "Castle in the Sky",
+      "year": 1986,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "my-neighbor-totoro",
+      "title": "My Neighbor Totoro",
+      "year": 1988,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "grave-of-the-fireflies",
+      "title": "Grave of the Fireflies",
+      "year": 1988,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "all-dogs-go-to-heaven",
+      "title": "All Dogs Go to Heaven",
+      "year": 1989,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "aladdin",
+      "title": "Aladdin",
+      "year": 1992,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "porco-rosso",
+      "title": "Porco Rosso",
+      "year": 1992,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-nightmare-before-christmas",
+      "title": "The Nightmare Before Christmas",
+      "year": 1993,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "toy-story-1995",
+      "title": "Toy Story",
+      "year": 1995,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "whisper-of-the-heart",
+      "title": "Whisper of the Heart",
+      "year": 1995,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "perfect-blue",
+      "title": "Perfect Blue",
+      "year": 1997,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "hercules",
+      "title": "Hercules",
+      "year": 1997,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "anastasia",
+      "title": "Anastasia",
+      "year": 1997,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "mulan",
+      "title": "Mulan",
+      "year": 1998,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-iron-giant-1998",
+      "title": "The Iron Giant",
+      "year": 1998,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "toy-story-2",
+      "title": "Toy Story 2",
+      "year": 1999,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "south-park-bigger-longer-and-uncut",
+      "title": "South Park Bigger Longer and Uncut",
+      "year": 1999,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "chicken-run",
+      "title": "Chicken Run",
+      "year": 2000,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-emperors-new-groove",
+      "title": "The Emperor's New Groove",
+      "year": 2000,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "monsters-inc",
+      "title": "Monsters Inc",
+      "year": 2001,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "spirited-away-2001",
+      "title": "Spirited Away",
+      "year": 2001,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "spirited-away-2002",
+      "title": "Spirited Away",
+      "year": 2002,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-incredibles",
+      "title": "The Incredibles",
+      "year": 2004,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "howls-moving-castle",
+      "title": "Howl's Moving Castle",
+      "year": 2004,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "wallace-and-gromit-the-curse-of-the-were-rabbit",
+      "title": "Wallace and Gromit The Curse of the Were-Rabbit",
+      "year": 2005,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "madagascar",
+      "title": "Madagascar",
+      "year": 2005,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "corpse-bride",
+      "title": "Corpse Bride",
+      "year": 2005,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "cars",
+      "title": "Cars",
+      "year": 2006,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "happy-feet",
+      "title": "Happy Feet",
+      "year": 2006,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "ratatouille",
+      "title": "Ratatouille",
+      "year": 2007,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "kung-fu-panda",
+      "title": "Kung Fu Panda",
+      "year": 2008,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "fantastic-mr-fox",
+      "title": "Fantastic Mr Fox",
+      "year": 2008,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "up",
+      "title": "Up",
+      "year": 2009,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "coraline",
+      "title": "Coraline",
+      "year": 2009,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-secret-of-kells",
+      "title": "The Secret of Kells",
+      "year": 2009,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "toy-story-3",
+      "title": "Toy Story 3",
+      "year": 2010,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "how-to-train-your-dragon",
+      "title": "How to Train Your Dragon",
+      "year": 2010,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "tangled",
+      "title": "Tangled",
+      "year": 2010,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "despicable-me",
+      "title": "Despicable Me",
+      "year": 2010,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "kung-fu-panda-2",
+      "title": "Kung Fu Panda 2",
+      "year": 2011,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "rango",
+      "title": "Rango",
+      "year": 2011,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "brave",
+      "title": "Brave",
+      "year": 2012,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "wreck-it-ralph",
+      "title": "Wreck-It Ralph",
+      "year": 2012,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "paranorman",
+      "title": "ParaNorman",
+      "year": 2012,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "frozen",
+      "title": "Frozen",
+      "year": 2013,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-wind-rises",
+      "title": "The Wind Rises",
+      "year": 2013,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "big-hero-6",
+      "title": "Big Hero 6",
+      "year": 2014,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "how-to-train-your-dragon-2",
+      "title": "How to Train Your Dragon 2",
+      "year": 2014,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-tale-of-the-princess-kaguya",
+      "title": "The Tale of the Princess Kaguya",
+      "year": 2014,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "inside-out",
+      "title": "Inside Out",
+      "year": 2015,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "zootopia",
+      "title": "Zootopia",
+      "year": 2016,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "finding-dory",
+      "title": "Finding Dory",
+      "year": 2016,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "your-name",
+      "title": "Your Name",
+      "year": 2016,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "kubo-and-the-two-strings",
+      "title": "Kubo and the Two Strings",
+      "year": 2016,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "moana",
+      "title": "Moana",
+      "year": 2016,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-breadwinner",
+      "title": "The Breadwinner",
+      "year": 2017,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "incredibles-2",
+      "title": "Incredibles 2",
+      "year": 2018,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "isle-of-dogs",
+      "title": "Isle of Dogs",
+      "year": 2018,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "toy-story-4",
+      "title": "Toy Story 4",
+      "year": 2019,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "how-to-train-your-dragon-the-hidden-world",
+      "title": "How to Train Your Dragon The Hidden World",
+      "year": 2019,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "klaus",
+      "title": "Klaus",
+      "year": 2019,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "soul",
+      "title": "Soul",
+      "year": 2020,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "wolfwalkers",
+      "title": "Wolfwalkers",
+      "year": 2020,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "encanto",
+      "title": "Encanto",
+      "year": 2021,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "belle",
+      "title": "Belle",
+      "year": 2021,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "turning-red",
+      "title": "Turning Red",
+      "year": 2022,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "puss-in-boots-the-last-wish",
+      "title": "Puss in Boots The Last Wish",
+      "year": 2022,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "guillermo-del-toros-pinocchio",
+      "title": "Guillermo del Toro's Pinocchio",
+      "year": 2022,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "marcel-the-shell-with-shoes-on",
+      "title": "Marcel the Shell with Shoes On",
+      "year": 2022,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-boy-and-the-heron",
+      "title": "The Boy and the Heron",
+      "year": 2023,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "wish",
+      "title": "Wish",
+      "year": 2023,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "transformers-one",
+      "title": "Transformers One",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "kung-fu-panda-4",
+      "title": "Kung Fu Panda 4",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "flow",
+      "title": "Flow",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "wallace-and-gromit-vengeance-most-fowl",
+      "title": "Wallace and Gromit Vengeance Most Fowl",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "memoir-of-a-snail",
+      "title": "Memoir of a Snail",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "despicable-me-4",
+      "title": "Despicable Me 4",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "elio",
+      "title": "Elio",
+      "year": 2025,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "holiday-inn",
+      "title": "Holiday Inn",
+      "year": 1942,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "meet-me-in-st-louis",
+      "title": "Meet Me in St Louis",
+      "year": 1944,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "its-a-wonderful-life-1946",
+      "title": "It's a Wonderful Life",
+      "year": 1946,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "miracle-on-34th-street",
+      "title": "Miracle on 34th Street",
+      "year": 1947,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "scrooge",
+      "title": "Scrooge",
+      "year": 1951,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "white-christmas",
+      "title": "White Christmas",
+      "year": 1954,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "scrooged-1988",
+      "title": "Scrooged",
+      "year": 1988,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "national-lampoons-christmas-vacation",
+      "title": "National Lampoon's Christmas Vacation",
+      "year": 1989,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "home-alone-2-lost-in-new-york",
+      "title": "Home Alone 2 Lost in New York",
+      "year": 1992,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "addams-family-values",
+      "title": "Addams Family Values",
+      "year": 1993,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "hocus-pocus",
+      "title": "Hocus Pocus",
+      "year": 1993,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-santa-clause",
+      "title": "The Santa Clause",
+      "year": 1994,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "elf-2003",
+      "title": "Elf",
+      "year": 2003,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-polar-express",
+      "title": "The Polar Express",
+      "year": 2004,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "monster-house",
+      "title": "Monster House",
+      "year": 2007,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "arthur-christmas",
+      "title": "Arthur Christmas",
+      "year": 2011,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "rare-exports",
+      "title": "Rare Exports",
+      "year": 2015,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-grinch",
+      "title": "The Grinch",
+      "year": 2018,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "violent-night",
+      "title": "Violent Night",
+      "year": 2022,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "red-one",
+      "title": "Red One",
+      "year": 2024,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "remember-the-night",
+      "title": "Remember the Night",
+      "year": 1940,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-man-who-came-to-dinner",
+      "title": "The Man Who Came to Dinner",
+      "year": 1942,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "christmas-in-connecticut",
+      "title": "Christmas in Connecticut",
+      "year": 1945,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-bishops-wife",
+      "title": "The Bishop's Wife",
+      "year": 1947,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "it-happened-on-fifth-avenue",
+      "title": "It Happened on Fifth Avenue",
+      "year": 1947,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "holiday-affair",
+      "title": "Holiday Affair",
+      "year": 1949,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-lemon-drop-kid",
+      "title": "The Lemon Drop Kid",
+      "year": 1951,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "were-no-angels",
+      "title": "We're No Angels",
+      "year": 1955,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "babes-in-toyland",
+      "title": "Babes in Toyland",
+      "year": 1961,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "rudolph-the-red-nosed-reindeer",
+      "title": "Rudolph the Red-Nosed Reindeer",
+      "year": 1964,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "a-charlie-brown-christmas",
+      "title": "A Charlie Brown Christmas",
+      "year": 1965,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "how-the-grinch-stole-christmas-1966",
+      "title": "How the Grinch Stole Christmas",
+      "year": 1966,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "frosty-the-snowman",
+      "title": "Frosty the Snowman",
+      "year": 1969,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "santa-claus-is-comin-to-town",
+      "title": "Santa Claus Is Comin' to Town",
+      "year": 1970,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "scrooge-1970",
+      "title": "Scrooge",
+      "year": 1970,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-year-without-a-santa-claus",
+      "title": "The Year Without a Santa Claus",
+      "year": 1974,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-silent-partner",
+      "title": "The Silent Partner",
+      "year": 1978,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "santa-claus-the-movie",
+      "title": "Santa Claus The Movie",
+      "year": 1985,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "ernest-saves-christmas",
+      "title": "Ernest Saves Christmas",
+      "year": 1988,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "prancer",
+      "title": "Prancer",
+      "year": 1989,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "all-i-want-for-christmas",
+      "title": "All I Want for Christmas",
+      "year": 1991,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-muppet-christmas-carol",
+      "title": "The Muppet Christmas Carol",
+      "year": 1992,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "batman-returns",
+      "title": "Batman Returns",
+      "year": 1992,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "mixed-nuts",
+      "title": "Mixed Nuts",
+      "year": 1994,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-ref",
+      "title": "The Ref",
+      "year": 1994,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "miracle-on-34th-street-1994",
+      "title": "Miracle on 34th Street",
+      "year": 1994,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "home-for-the-holidays",
+      "title": "Home for the Holidays",
+      "year": 1995,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "while-you-were-sleeping",
+      "title": "While You Were Sleeping",
+      "year": 1995,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "jingle-all-the-way",
+      "title": "Jingle All the Way",
+      "year": 1996,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "home-alone-3",
+      "title": "Home Alone 3",
+      "year": 1997,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "jack-frost",
+      "title": "Jack Frost",
+      "year": 1998,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "ill-be-home-for-christmas",
+      "title": "I'll Be Home for Christmas",
+      "year": 1998,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "youve-got-mail",
+      "title": "You've Got Mail",
+      "year": 1998,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "eyes-wide-shut",
+      "title": "Eyes Wide Shut",
+      "year": 1999,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-family-man",
+      "title": "The Family Man",
+      "year": 2000,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "serendipity",
+      "title": "Serendipity",
+      "year": 2001,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-santa-clause-2",
+      "title": "The Santa Clause 2",
+      "year": 2002,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "bad-santa",
+      "title": "Bad Santa",
+      "year": 2003,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "pieces-of-april",
+      "title": "Pieces of April",
+      "year": 2003,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "christmas-with-the-kranks",
+      "title": "Christmas with the Kranks",
+      "year": 2004,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-family-stone",
+      "title": "The Family Stone",
+      "year": 2005,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "just-friends",
+      "title": "Just Friends",
+      "year": 2005,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-holiday",
+      "title": "The Holiday",
+      "year": 2006,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-santa-clause-3",
+      "title": "The Santa Clause 3",
+      "year": 2006,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "black-christmas-2006",
+      "title": "Black Christmas",
+      "year": 2006,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "unaccompanied-minors",
+      "title": "Unaccompanied Minors",
+      "year": 2006,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "fred-claus",
+      "title": "Fred Claus",
+      "year": 2007,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "this-christmas",
+      "title": "This Christmas",
+      "year": 2007,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "four-christmases",
+      "title": "Four Christmases",
+      "year": 2008,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "a-christmas-carol",
+      "title": "A Christmas Carol",
+      "year": 2009,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "rise-of-the-guardians",
+      "title": "Rise of the Guardians",
+      "year": 2012,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-best-man-holiday",
+      "title": "The Best Man Holiday",
+      "year": 2013,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "krampus",
+      "title": "Krampus",
+      "year": 2015,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-night-before",
+      "title": "The Night Before",
+      "year": 2015,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "office-christmas-party",
+      "title": "Office Christmas Party",
+      "year": 2016,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "bad-santa-2",
+      "title": "Bad Santa 2",
+      "year": 2016,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "better-watch-out",
+      "title": "Better Watch Out",
+      "year": 2016,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "anna-and-the-apocalypse",
+      "title": "Anna and the Apocalypse",
+      "year": 2017,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-star",
+      "title": "The Star",
+      "year": 2017,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-christmas-chronicles",
+      "title": "The Christmas Chronicles",
+      "year": 2018,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "last-christmas",
+      "title": "Last Christmas",
+      "year": 2019,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "noelle",
+      "title": "Noelle",
+      "year": 2019,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "black-christmas-2019",
+      "title": "Black Christmas",
+      "year": 2019,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "happiest-season",
+      "title": "Happiest Season",
+      "year": 2020,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-christmas-chronicles-2",
+      "title": "The Christmas Chronicles 2",
+      "year": 2020,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "fatman",
+      "title": "Fatman",
+      "year": 2020,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "holidate",
+      "title": "Holidate",
+      "year": 2020,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "jingle-jangle",
+      "title": "Jingle Jangle",
+      "year": 2020,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "8-bit-christmas",
+      "title": "8-Bit Christmas",
+      "year": 2021,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "a-boy-called-christmas",
+      "title": "A Boy Called Christmas",
+      "year": 2021,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "single-all-the-way",
+      "title": "Single All the Way",
+      "year": 2021,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "spirited",
+      "title": "Spirited",
+      "year": 2022,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "a-christmas-story-christmas",
+      "title": "A Christmas Story Christmas",
+      "year": 2022,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "falling-for-christmas",
+      "title": "Falling for Christmas",
+      "year": 2022,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "candy-cane-lane",
+      "title": "Candy Cane Lane",
+      "year": 2023,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "family-switch",
+      "title": "Family Switch",
+      "year": 2023,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "genie",
+      "title": "Genie",
+      "year": 2023,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "the-best-christmas-pageant-ever",
+      "title": "The Best Christmas Pageant Ever",
+      "year": 2024,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "that-christmas",
+      "title": "That Christmas",
+      "year": 2024,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "hot-frosty",
+      "title": "Hot Frosty",
+      "year": 2024,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "our-little-secret",
+      "title": "Our Little Secret",
+      "year": 2024,
+      "genres": "Holiday",
+      "status": "pending"
+    },
+    {
+      "slug": "m",
+      "title": "M",
+      "year": 1931,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-public-enemy",
+      "title": "The Public Enemy",
+      "year": 1931,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "scarface",
+      "title": "Scarface",
+      "year": 1932,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-killers",
+      "title": "The Killers",
+      "year": 1946,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "out-of-the-past",
+      "title": "Out of the Past",
+      "year": 1947,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "white-heat",
+      "title": "White Heat",
+      "year": 1949,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-asphalt-jungle",
+      "title": "The Asphalt Jungle",
+      "year": 1950,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-killing",
+      "title": "The Killing",
+      "year": 1956,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "sweet-smell-of-success",
+      "title": "Sweet Smell of Success",
+      "year": 1957,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "oceans-11",
+      "title": "Ocean's 11",
+      "year": 1960,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "bullitt",
+      "title": "Bullitt",
+      "year": 1968,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-italian-job",
+      "title": "The Italian Job",
+      "year": 1969,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "get-carter",
+      "title": "Get Carter",
+      "year": 1971,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "shaft",
+      "title": "Shaft",
+      "year": 1971,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-long-good-friday",
+      "title": "The Long Good Friday",
+      "year": 1980,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "thief",
+      "title": "Thief",
+      "year": 1981,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "blood-simple",
+      "title": "Blood Simple",
+      "year": 1984,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "to-live-and-die-in-l-a",
+      "title": "To Live and Die in L.A.",
+      "year": 1985,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "at-close-range",
+      "title": "At Close Range",
+      "year": 1986,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "king-of-new-york",
+      "title": "King of New York",
+      "year": 1990,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "carlitos-way",
+      "title": "Carlito's Way",
+      "year": 1993,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "casino",
+      "title": "Casino",
+      "year": 1995,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "donnie-brasco",
+      "title": "Donnie Brasco",
+      "year": 1997,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "ronin",
+      "title": "Ronin",
+      "year": 1998,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "payback",
+      "title": "Payback",
+      "year": 1999,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-limey",
+      "title": "The Limey",
+      "year": 1999,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "narc",
+      "title": "Narc",
+      "year": 2002,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "25th-hour",
+      "title": "25th Hour",
+      "year": 2002,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "layer-cake",
+      "title": "Layer Cake",
+      "year": 2004,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "american-gangster",
+      "title": "American Gangster",
+      "year": 2007,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "gone-baby-gone",
+      "title": "Gone Baby Gone",
+      "year": 2007,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "public-enemies",
+      "title": "Public Enemies",
+      "year": 2009,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "animal-kingdom",
+      "title": "Animal Kingdom",
+      "year": 2010,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "end-of-watch",
+      "title": "End of Watch",
+      "year": 2012,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "lawless",
+      "title": "Lawless",
+      "year": 2012,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-place-beyond-the-pines",
+      "title": "The Place Beyond the Pines",
+      "year": 2012,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "good-time",
+      "title": "Good Time",
+      "year": 2017,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-gentlemen",
+      "title": "The Gentlemen",
+      "year": 2019,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-many-saints-of-newark",
+      "title": "The Many Saints of Newark",
+      "year": 2021,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "no-sudden-move",
+      "title": "No Sudden Move",
+      "year": 2021,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "emily-the-criminal",
+      "title": "Emily the Criminal",
+      "year": 2022,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-killer",
+      "title": "The Killer",
+      "year": 2023,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "the-order",
+      "title": "The Order",
+      "year": 2024,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "rebel-ridge",
+      "title": "Rebel Ridge",
+      "year": 2024,
+      "genres": "Crime",
+      "status": "pending"
+    },
+    {
+      "slug": "logans-run",
+      "title": "Logan's Run",
+      "year": 1976,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "brazil",
+      "title": "Brazil",
+      "year": 1985,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "they-live-1988",
+      "title": "They Live",
+      "year": 1988,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "dark-city-1998",
+      "title": "Dark City",
+      "year": 1998,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "pitch-black",
+      "title": "Pitch Black",
+      "year": 2000,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "serenity",
+      "title": "Serenity",
+      "year": 2005,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "sunshine",
+      "title": "Sunshine",
+      "year": 2007,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "moon",
+      "title": "Moon",
+      "year": 2009,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "ex-machina-2014",
+      "title": "Ex Machina",
+      "year": 2014,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "the-creator",
+      "title": "The Creator",
+      "year": 2023,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "tron-ares",
+      "title": "Tron Ares",
+      "year": 2025,
+      "genres": "Sci-Fi",
+      "status": "pending"
+    },
+    {
+      "slug": "breakfast-at-tiffanys",
+      "title": "Breakfast at Tiffany's",
+      "year": 1961,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-umbrellas-of-cherbourg",
+      "title": "The Umbrellas of Cherbourg",
+      "year": 1964,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "the-way-we-were",
+      "title": "The Way We Were",
+      "year": 1973,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "manhattan",
+      "title": "Manhattan",
+      "year": 1979,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "four-weddings-and-a-funeral",
+      "title": "Four Weddings and a Funeral",
+      "year": 1994,
+      "genres": "Romance",
+      "status": "pending"
+    },
+    {
+      "slug": "together",
+      "title": "Together",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-conjuring-last-rites",
+      "title": "The Conjuring Last Rites",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "black-phone-2",
+      "title": "Black Phone 2",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-long-walk",
+      "title": "The Long Walk",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "dangerous-animals",
+      "title": "Dangerous Animals",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "opus",
+      "title": "Opus",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "the-woman-in-the-yard",
+      "title": "The Woman in the Yard",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "clown-in-a-cornfield",
+      "title": "Clown in a Cornfield",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "i-know-what-you-did-last-summer",
+      "title": "I Know What You Did Last Summer",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "five-nights-at-freddys-2",
+      "title": "Five Nights at Freddy's 2",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "keeper",
+      "title": "Keeper",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "good-boy",
+      "title": "Good Boy",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "him",
+      "title": "Him",
+      "year": 2025,
+      "genres": "Horror",
+      "status": "pending"
+    },
+    {
+      "slug": "juror-no-2",
+      "title": "Juror No 2",
+      "year": 2024,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "carry-on",
+      "title": "Carry-On",
+      "year": 2024,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "blink-twice",
+      "title": "Blink Twice",
+      "year": 2024,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "woman-of-the-hour",
+      "title": "Woman of the Hour",
+      "year": 2024,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "black-bag",
+      "title": "Black Bag",
+      "year": 2025,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "the-amateur",
+      "title": "The Amateur",
+      "year": 2025,
+      "genres": "Thriller",
+      "status": "pending"
+    },
+    {
+      "slug": "kraven-the-hunter",
+      "title": "Kraven the Hunter",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "venom-the-last-dance",
+      "title": "Venom The Last Dance",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "sonic-the-hedgehog-3",
+      "title": "Sonic the Hedgehog 3",
+      "year": 2024,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "ballerina",
+      "title": "Ballerina",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "thunderbolts",
+      "title": "Thunderbolts",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "the-accountant-2",
+      "title": "The Accountant 2",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "novocaine",
+      "title": "Novocaine",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "a-working-man",
+      "title": "A Working Man",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "nobody-2",
+      "title": "Nobody 2",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "karate-kid-legends",
+      "title": "Karate Kid Legends",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "warfare",
+      "title": "Warfare",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "captain-america-brave-new-world",
+      "title": "Captain America Brave New World",
+      "year": 2025,
+      "genres": "Action",
+      "status": "pending"
+    },
+    {
+      "slug": "saturday-night",
+      "title": "Saturday Night",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "my-old-ass",
+      "title": "My Old Ass",
+      "year": 2024,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "lilo-and-stitch",
+      "title": "Lilo and Stitch",
+      "year": 2025,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "freakier-friday",
+      "title": "Freakier Friday",
+      "year": 2025,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "paddington-in-peru",
+      "title": "Paddington in Peru",
+      "year": 2025,
+      "genres": "Comedy",
+      "status": "pending"
+    },
+    {
+      "slug": "mufasa-the-lion-king",
+      "title": "Mufasa The Lion King",
+      "year": 2024,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "the-bad-guys-2",
+      "title": "The Bad Guys 2",
+      "year": 2025,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "dog-man",
+      "title": "Dog Man",
+      "year": 2025,
+      "genres": "Animation",
+      "status": "pending"
+    },
+    {
+      "slug": "joker-folie-a-deux",
+      "title": "Joker Folie a Deux",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "a-different-man",
+      "title": "A Different Man",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-apprentice",
+      "title": "The Apprentice",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "hard-truths",
+      "title": "Hard Truths",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "im-still-here",
+      "title": "I'm Still Here",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-seed-of-the-sacred-fig",
+      "title": "The Seed of the Sacred Fig",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "kinds-of-kindness",
+      "title": "Kinds of Kindness",
+      "year": 2024,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "one-battle-after-another",
+      "title": "One Battle After Another",
+      "year": 2025,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "the-smashing-machine",
+      "title": "The Smashing Machine",
+      "year": 2025,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "frankenstein-2025",
+      "title": "Frankenstein",
+      "year": 2025,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "marty-supreme",
+      "title": "Marty Supreme",
+      "year": 2025,
+      "genres": "Drama",
+      "status": "pending"
+    },
+    {
+      "slug": "shrek-5",
+      "title": "Shrek 5",
+      "year": 2027,
+      "genres": "Animation,Comedy,Fantasy",
+      "status": "pending"
+    },
+    {
+      "slug": "the-legend-of-zelda-2027",
+      "title": "The Legend of Zelda",
+      "year": 2027,
+      "genres": "Adventure,Fantasy,Action",
+      "status": "pending"
+    }
+  ]
+}
