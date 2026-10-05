@@ -8691,7 +8691,8 @@
           const v = armSection(section);
           if (v) {
             if (section.__rwSynth) v.seed = [];
-            v.films = filmsFor(section, id);
+            var listed = filmsFor(section, id);
+            v.films = theme ? listed : listed.slice(0, 8);
             v.start = -1;
             v.key = theme ? id : "";
           }
