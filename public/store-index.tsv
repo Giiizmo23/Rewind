@@ -99,18 +99,25 @@ a-minecraft-movie	A Minecraft Movie	2025	Jared Hess	Adventure,Comedy,Family	fami
 weapons-2025	Weapons	2025	Zach Cregger	Horror,Mystery,Thriller	horror,new
 f1-2025	F1	2025	Joseph Kosinski	Action,Drama,Sport	sports,action,new
 the-odyssey-2026	The Odyssey	2026	Christopher Nolan	Adventure,Action,Fantasy	fantasy,action,new
+a-clockwork-orange	A Clockwork Orange	1971		Crime,Drama,Sci-Fi	cult,classics,scifi
 spider-man-brand-new-day	Spider-Man: Brand New Day	2026	Destin Daniel Cretton	Action,Adventure,Sci-Fi	action,scifi,new
+after-hours	After Hours	1985		Comedy,Thriller	cult,comedy,thriller
 toy-story-5	Toy Story 5	2026	Andrew Stanton	Animation,Comedy,Family	animation,family,new
 project-hail-mary	Project Hail Mary	2026	Phil Lord, Christopher Miller	Sci-Fi,Adventure,Comedy	scifi,comedy,new
+akira	Akira	1988		Animation,Sci-Fi,Action	scifi,cult,animation
 moana-2026	Moana	2026	Thomas Kail	Adventure,Fantasy,Family	family,fantasy,new
 the-super-mario-galaxy-movie	The Super Mario Galaxy Movie	2026	Aaron Horvath, Michael Jelenic	Animation,Adventure,Comedy	family,fantasy,animation
 dune-part-three	Dune: Part Three	2026	Denis Villeneuve	Sci-Fi,Adventure	coming
 sunrise-on-the-reaping	The Hunger Games: Sunrise on the Reaping	2026	Francis Lawrence	Sci-Fi,Action,Adventure	coming
 the-social-reckoning	The Social Reckoning	2026	Aaron Sorkin	Drama,Thriller	coming
+basket-case	Basket Case	1982		Horror,Comedy	horror,cult,comedy
 clayface	Clayface	2026	James Watkins	Horror,Crime,Fantasy	coming
+beetlejuice	Beetlejuice	1988		Comedy,Fantasy,Horror	comedy,fantasy,holiday
 violent-night-2	Violent Night 2	2026	Tommy Wirkola	Action,Comedy,Fantasy	coming
+big-fish	Big Fish	2003		Adventure,Drama,Fantasy	fantasy,drama
 focker-in-law	Focker-in-Law	2026	John Hamburg	Comedy,Romance	coming
 remain-2027	Remain	2027	M. Night Shyamalan	Romance,Horror,Mystery,Thriller	coming
+carrie-1976	Carrie	1976		Horror	horror
 the-magicians-nephew	The Chronicles of Narnia: The Magician's Nephew	2027	Greta Gerwig	Fantasy,Adventure,Family	coming
 star-wars-starfighter	Star Wars: Starfighter	2027	Shawn Levy	Sci-Fi,Adventure,Action	coming
 beyond-the-spider-verse	Spider-Man: Beyond the Spider-Verse	2027	Bob Persichetti, Justin K. Thompson	Animation,Action,Adventure,Sci-Fi	coming
@@ -120,45 +127,24 @@ avengers-secret-wars	Avengers: Secret Wars	2027	Anthony Russo, Joe Russo	Sci-Fi,
 hunt-for-gollum	The Lord of the Rings: The Hunt for Gollum	2027	Andy Serkis	Adventure,Fantasy	coming
 gremlins-3	Gremlins 3	2027	Chris Columbus	Comedy,Horror,Fantasy	coming
 frozen-3	Frozen 3	2027	Jennifer Lee	Animation,Family,Fantasy	coming
+dawn-of-the-dead-1978	Dawn of the Dead	1978		Horror,Sci-Fi	horror,scifi
 godzilla-x-kong-supernova	Godzilla x Kong: Supernova	2027	Grant Sputore	Sci-Fi,Action,Adventure	coming
+dazed-and-confused	Dazed and Confused	1993		Comedy,Drama	comedy,cult
 the-legend-of-zelda-2027	The Legend of Zelda	2027	Wes Ball	Adventure,Fantasy,Action	coming
 inside-out-2	Inside Out 2	2024	Kelsey Mann	Animation,Comedy,Family	animation,family,new
 deadpool-and-wolverine	Deadpool & Wolverine	2024	Shawn Levy	Action,Comedy,Sci-Fi	action,comedy,scifi,new
+doctor-sleep	Doctor Sleep	2019		Horror,Drama	horror,thriller
 moana-2	Moana 2	2024	David G. Derrick Jr.	Animation,Adventure,Family	family,fantasy,animation
 twisters-2024	Twisters	2024	Lee Isaac Chung	Action,Adventure,Thriller	action,thriller,new
+donnie-darko	Donnie Darko	2001		Fantasy,Drama,Mystery	fantasy,cult,drama
 beetlejuice-beetlejuice	Beetlejuice Beetlejuice	2024	Tim Burton	Comedy,Fantasy,Horror	comedy,fantasy,new
 alien-romulus	Alien: Romulus	2024	Fede Álvarez	Horror,Sci-Fi,Thriller	horror,scifi,new
+ed-wood	Ed Wood	1994		Comedy,Drama,Biography	comedy,cult,drama
 the-wild-robot	The Wild Robot	2024	Chris Sanders	Animation,Sci-Fi,Family	animation,family,new
 civil-war-2024	Civil War	2024	Alex Garland	Action,Drama,Thriller	war,thriller,new
 furiosa	Furiosa: A Mad Max Saga	2024	George Miller	Action,Sci-Fi,Adventure	action,scifi,new
-conclave-2024	Conclave	2024	Edward Berger	Drama,Thriller	drama,thriller,new
-the-lion-king	The Lion King	1994	Allers & Minkoff	Animation,Family	animation,family
-the-shawshank-redemption	The Shawshank Redemption	1994	Frank Darabont	Drama,Crime	crime,drama
-jaws	Jaws	1975	Steven Spielberg	Horror,Thriller,Adventure	horror,thriller
-the-shining	The Shining	1980	Stanley Kubrick	Horror	horror,classics
-first-blood	First Blood	1982	Ted Kotcheff	Action,Thriller,War	action
-halloween-1978	Halloween	1978	John Carpenter	Horror	horror,classics
-blade-runner	Blade Runner	1982	Ridley Scott	Sci-Fi	scifi,classics
-the-thing-1982	The Thing	1982	John Carpenter	Horror,Sci-Fi	horror,scifi
-back-to-the-future	Back to the Future	1985	Robert Zemeckis	Sci-Fi,Comedy	scifi,comedy,family
-pulp-fiction	Pulp Fiction	1994	Quentin Tarantino	Crime,Drama	crime,drama
-goodfellas	Goodfellas	1990	Martin Scorsese	Crime,Drama	crime,drama
-alien	Alien	1979	Ridley Scott	Sci-Fi,Horror	scifi,horror,classics
-heat-1995	Heat	1995	Michael Mann	Crime,Drama	crime,drama
-die-hard	Die Hard	1988	John McTiernan	Action,Thriller,Holiday	holiday,action
-a-clockwork-orange	A Clockwork Orange	1971		Crime,Drama,Sci-Fi	cult,classics,scifi
-after-hours	After Hours	1985		Comedy,Thriller	cult,comedy,thriller
-akira	Akira	1988		Animation,Sci-Fi,Action	scifi,cult,animation
-basket-case	Basket Case	1982		Horror,Comedy	horror,cult,comedy
-beetlejuice	Beetlejuice	1988		Comedy,Fantasy,Horror	comedy,fantasy,holiday
-big-fish	Big Fish	2003		Adventure,Drama,Fantasy	fantasy,drama
-carrie-1976	Carrie	1976		Horror	horror
-dawn-of-the-dead-1978	Dawn of the Dead	1978		Horror,Sci-Fi	horror,scifi
-dazed-and-confused	Dazed and Confused	1993		Comedy,Drama	comedy,cult
-doctor-sleep	Doctor Sleep	2019		Horror,Drama	horror,thriller
-donnie-darko	Donnie Darko	2001		Fantasy,Drama,Mystery	fantasy,cult,drama
-ed-wood	Ed Wood	1994		Comedy,Drama,Biography	comedy,cult,drama
 edward-scissorhands	Edward Scissorhands	1990		Drama,Fantasy,Romance	fantasy,romance,drama
+conclave-2024	Conclave	2024	Edward Berger	Drama,Thriller	drama,thriller,new
 et	E.T. the Extra-Terrestrial	1982		Family,Sci-Fi,Adventure	family,scifi
 evil-dead-2	Evil Dead 2	1987		Horror,Comedy	horror,comedy,cult
 four-rooms	Four Rooms	1995		Comedy	comedy,cult
@@ -200,6 +186,20 @@ the-warriors	The Warriors	1979		Action,Thriller	action,cult,thriller
 total-recall	Total Recall	1990		Action,Sci-Fi	scifi,action
 tremors	Tremors	1990		Horror,Comedy,Sci-Fi	horror,comedy,scifi
 vertigo	Vertigo	1958		Mystery,Romance,Thriller	thriller,romance,classics
+jaws	Jaws	1975	Steven Spielberg	Horror,Thriller,Adventure	horror,thriller
+halloween-1978	Halloween	1978	John Carpenter	Horror	horror,classics
+alien	Alien	1979	Ridley Scott	Sci-Fi,Horror	scifi,horror,classics
+the-shining	The Shining	1980	Stanley Kubrick	Horror	horror,classics
+first-blood	First Blood	1982	Ted Kotcheff	Action,Thriller,War	action
+blade-runner	Blade Runner	1982	Ridley Scott	Sci-Fi	scifi,classics
+the-thing-1982	The Thing	1982	John Carpenter	Horror,Sci-Fi	horror,scifi
+back-to-the-future	Back to the Future	1985	Robert Zemeckis	Sci-Fi,Comedy	scifi,comedy,family
+die-hard	Die Hard	1988	John McTiernan	Action,Thriller,Holiday	holiday,action
+goodfellas	Goodfellas	1990	Martin Scorsese	Crime,Drama	crime,drama
+the-lion-king	The Lion King	1994	Allers & Minkoff	Animation,Family	animation,family
+the-shawshank-redemption	The Shawshank Redemption	1994	Frank Darabont	Drama,Crime	crime,drama
+pulp-fiction	Pulp Fiction	1994	Quentin Tarantino	Crime,Drama	crime,drama
+heat-1995	Heat	1995	Michael Mann	Crime,Drama	crime,drama
 dracula	Dracula	1931	Tod Browning	Horror	horror,classics
 frankenstein	Frankenstein	1931	James Whale	Drama,Horror,Sci-Fi	horror,scifi,classics
 the-invisible-man	The Invisible Man	1933	James Whale	Horror,Sci-Fi	horror,scifi,classics
@@ -2350,3 +2350,103 @@ hobo-with-a-shotgun-2011	Hobo with a Shotgun	2011	Jason Eisener	Crime,Action,Thr
 saw-iii-2006	Saw III	2006	Darren Lynn Bousman	Horror,Thriller,Crime	horror,thriller,crime
 damien-omen-ii-1978	Damien - Omen II	1978	Don Taylor	Horror,Thriller	horror,thriller
 poltergeist-ii-the-other-side-1986	Poltergeist II: The Other Side	1986	Brian Gibson	Horror,Thriller	horror,thriller
+plan-9-from-outer-space-1957	Plan 9 from Outer Space	1957	Edward D. Wood Jr.	Sci-Fi,Horror	cult,scifi,horror
+coherence-2014	Coherence	2014	James Ward Byrkit	Thriller,Sci-Fi	scifi,thriller
+buffalo-soldiers-2002	Buffalo Soldiers	2002	Gregor Jordan	Drama,Comedy,War,Crime	war,comedy,crime
+after-life-1999	After Life	1999	Hirokazu Kore-eda	Fantasy,Drama	drama,fantasy,indie
+frailty-2002	Frailty	2002	Bill Paxton	Drama,Thriller,Crime	horror,thriller,crime
+may-2003	May	2003	Lucky McKee	Drama,Horror,Comedy	horror,romance,comedy
+under-the-skin-2014	Under the Skin	2014	Jonathan Glazer	Thriller,Sci-Fi,Drama	scifi,horror,thriller
+them-2006	Them	2006	Xavier Palud	Horror,Thriller	horror,thriller
+the-bridge-1959	The Bridge	1959	Bernhard Wicki	Drama,History,War	war,drama,classics
+thumbelina-1994	Thumbelina	1994	Don Bluth	Animation,Fantasy,Romance,Family	animation,family,fantasy
+cats-don-t-dance-1997	Cats Don't Dance	1997	Mark Dindal	Animation,Comedy,Family,Music	animation,family,musical
+the-road-to-el-dorado-2000	The Road to El Dorado	2000	Bibo Bergeron	Family,Adventure,Animation,Comedy	animation,family,comedy
+spirit-stallion-of-the-cimarron-2002	Spirit: Stallion of the Cimarron	2002	Kelly Asbury	Animation,Adventure,Family,Drama	animation,family,western
+flubber-1997	Flubber	1997	Les Mayfield	Comedy,Family,Sci-Fi	family,comedy,scifi
+a-bug-s-life-1998	A Bug's Life	1998	John Lasseter	Adventure,Animation,Comedy,Family	animation,family,comedy
+the-odd-life-of-timothy-green-2012	The Odd Life of Timothy Green	2012	Peter Hedges	Fantasy,Drama,Comedy,Family	family,fantasy,comedy
+john-carter-2012	John Carter	2012	Andrew Stanton	Action,Adventure,Sci-Fi	fantasy,scifi,action
+seventh-son-2014	Seventh Son	2014	Sergei Bodrov	Adventure,Fantasy	fantasy,action
+pan-2015	Pan	2015	Joe Wright	Fantasy,Adventure,Family,Action	fantasy,family,action
+the-dark-tower-2017	The Dark Tower	2017	Nikolaj Arcel	Fantasy,Action,Sci-Fi	fantasy,action,scifi
+42-2013	42	2013	Brian Helgeland	Drama	sports,drama
+cat-s-eye-1985	Cat's Eye	1985	Lewis Teague	Horror,Thriller	horror,thriller
+arachnophobia-1990	Arachnophobia	1990	Frank Marshall	Comedy,Horror	horror,comedy,thriller
+species-1995	Species	1995	Roger Donaldson	Sci-Fi,Horror,Action	horror,scifi,action
+phantoms-1998	Phantoms	1998	Joe Chappelle	Horror,Sci-Fi,Thriller	horror,thriller,scifi
+ghost-ship-2002	Ghost Ship	2002	Steve Beck	Horror,Mystery,Thriller	horror,thriller
+house-of-1000-corpses-2003	House of 1000 Corpses	2003	Rob Zombie	Horror	horror,cult
+boogeyman-2005	Boogeyman	2005	Stephen Kay	Thriller,Horror,Drama,Mystery	horror,thriller,drama
+silent-hill-2006	Silent Hill	2006	Christophe Gans	Horror,Mystery	horror,thriller
+orphan-2009	Orphan	2009	Jaume Collet-Serra	Horror,Thriller	horror,thriller
+jennifer-s-body-2009	Jennifer's Body	2009	Karyn Kusama	Horror,Comedy	horror,comedy
+the-wolfman-2010	The Wolfman	2010	Joe Johnston	Horror	horror,thriller
+oculus-2013	Oculus	2013	Gianni Carella	Horror	horror,thriller
+don-t-breathe-2016	Don't Breathe	2016	Fede Álvarez	Horror,Thriller	horror,thriller
+split-2016	Split	2016	Deborah Kampmeier	Fantasy,Drama,Thriller,Crime	horror,thriller,fantasy
+enemy-mine-1985	Enemy Mine	1985	Wolfgang Petersen	Drama,Sci-Fi	scifi,drama
+short-circuit-1986	Short Circuit	1986	John Badham	Sci-Fi,Comedy,Family	scifi,comedy,family
+virtuosity-1995	Virtuosity	1995	Brett Leonard	Action,Crime,Sci-Fi,Thriller	scifi,action,thriller
+star-trek-first-contact-1996	Star Trek: First Contact	1996	Jonathan Frakes	Sci-Fi,Action,Adventure,Thriller	scifi,action,thriller
+impostor-2001	Impostor	2001	Gary Fleder	Action,Sci-Fi,Thriller	scifi,thriller,action
+solaris-2002	Solaris	2002	Steven Soderbergh	Drama,Sci-Fi,Mystery	scifi,romance,thriller
+the-time-machine-2002	The Time Machine	2002	Simon Wells	Sci-Fi,Adventure,Action	scifi,action
+the-island-2005	The Island	2005	Michael Bay	Action,Thriller,Sci-Fi	scifi,action,thriller
+passengers-2016	Passengers	2016	Morten Tyldum	Drama,Romance,Sci-Fi	scifi,romance,drama
+ad-astra-2019	Ad Astra	2019	James Gray	Sci-Fi,Drama	scifi,drama
+a-wrinkle-in-time-2018	A Wrinkle in Time	2018	Ava DuVernay	Adventure,Sci-Fi,Family,Fantasy	family,fantasy,scifi
+song-of-the-sea-2014	Song of the Sea	2014	Tomm Moore	Family,Animation,Fantasy	animation,fantasy,family
+the-cat-returns-2002	The Cat Returns	2002	Hiroyuki Morita	Adventure,Fantasy,Animation,Drama	animation,family,fantasy
+ponyo-2008	Ponyo	2008	Hayao Miyazaki	Animation,Fantasy,Family	animation,family,fantasy
+warriors-of-the-wind-1984	Warriors of the Wind	1984	Hayao Miyazaki	Adventure,Animation,Fantasy	animation,fantasy,scifi
+pom-poko-1994	Pom Poko	1994	Isao Takahata	Adventure,Animation,Fantasy	animation,fantasy,family
+the-boxtrolls-2014	The Boxtrolls	2014	Graham Annable	Animation,Comedy,Family,Fantasy	animation,family,fantasy
+heavy-metal-1981	Heavy Metal	1981	Gerald Potterton	Animation,Sci-Fi,Adventure,Fantasy	animation,scifi,fantasy
+the-last-unicorn-1982	The Last Unicorn	1982	Jules Bass	Fantasy,Animation,Family,Adventure	animation,fantasy,family
+the-book-of-life-2014	The Book of Life	2014	Jorge R. Gutierrez	Animation,Family,Fantasy	animation,family,fantasy
+epic-2013	Epic	2013	Chris Wedge	Animation,Adventure,Family,Fantasy	animation,family,fantasy
+cirque-du-freak-the-vampire-s-assistant-2009	Cirque du Freak: The Vampire's Assistant	2009	Paul Weitz	Adventure,Fantasy,Action,Thriller	family,fantasy,horror
+kicking-and-screaming-2005	Kicking & Screaming	2005	Jesse Dylan	Family,Comedy	sports,family,comedy
+battle-royale-2000	Battle Royale	2000	Kinji Fukasaku	Drama,Thriller,Action	scifi,action,horror
+i-am-legend-2007	I Am Legend	2007	Francis Lawrence	Drama,Sci-Fi,Thriller	scifi,horror,thriller
+robot-dreams-2023	Robot Dreams	2023	Pablo Berger	Animation,Drama,Comedy,Sci-Fi	animation,family,comedy
+the-mitchells-vs-the-machines-2021	The Mitchells vs. the Machines	2021	Mike Rianda	Animation,Adventure,Comedy	animation,comedy,family
+petite-maman-2021	Petite Maman	2021	Céline Sciamma	Drama,Fantasy	fantasy,drama,family
+van-helsing-2004	Van Helsing	2004	Stephen Sommers	Horror,Adventure,Action	fantasy,action,horror
+triangle-2009	Triangle	2009	Christopher Smith	Horror	scifi,horror,thriller
+rollerball-2002	Rollerball	2002	John McTiernan	Action,Sci-Fi,Thriller	sports,scifi,action
+death-race-2008	Death Race	2008	Paul W. S. Anderson	Action,Thriller,Sci-Fi	sports,action,scifi
+screamers-1995	Screamers	1995	Christian Duguay	Horror,Sci-Fi,War	horror,scifi,war
+the-fly-ii-1989	The Fly II	1989	Chris Walas	Horror,Sci-Fi	horror,scifi
+mimic-1997	Mimic	1997	Guillermo del Toro	Horror,Sci-Fi	horror,scifi
+species-ii-1998	Species II	1998	Peter Medak	Sci-Fi,Action,Horror	horror,scifi,action
+jason-x-2001	Jason X	2001	James Isaac	Horror,Sci-Fi	horror,scifi
+cloverfield-2008	Cloverfield	2008	Matt Reeves	Action,Thriller,Sci-Fi	horror,scifi,action
+the-thing-2011	The Thing	2011	Matthijs van Heijningen Jr.	Horror,Sci-Fi,Mystery	horror,scifi,thriller
+10-cloverfield-lane-2016	10 Cloverfield Lane	2016	Dan Trachtenberg	Thriller,Sci-Fi,Drama,Horror	horror,thriller,scifi
+alien-covenant-2017	Alien: Covenant	2017	Ridley Scott	Horror,Sci-Fi	horror,scifi
+life-2017	Life	2017	Daniel Espinosa	Horror,Sci-Fi,Mystery	horror,scifi,thriller
+possessor-2020	Possessor	2020	Brandon Cronenberg	Horror,Thriller,Sci-Fi	horror,scifi,thriller
+the-knight-before-christmas-2019	The Knight Before Christmas	2019	Monika Mitchell	Comedy,Romance	holiday,romance,fantasy
+nativity-2009	Nativity!	2009	Debbie Isitt	Comedy,Family	holiday,comedy,family
+chicken-for-linda-2023	Chicken for Linda!	2023	Chiara Malta	Animation,Comedy,Family,Music	animation,family,comedy
+ernest-and-celestine-2012	Ernest & Celestine	2012	Stéphane Aubier	Animation,Family,Crime,Drama	animation,family,crime
+when-marnie-was-there-2014	When Marnie Was There	2014	Hiromasa Yonebayashi	Animation,Drama,Family	animation,drama,family
+you-re-next-2013	You're Next	2013	Adam Wingard	Horror,Thriller,Mystery	horror,thriller
+the-red-turtle-2016	The Red Turtle	2016	Michael Dudok de Wit	Animation,Drama,Fantasy,Family	animation,fantasy,family
+i-lost-my-body-2019	I Lost My Body	2019	Jérémy Clapin	Animation,Drama,Fantasy	animation,drama,fantasy
+the-peanuts-movie-2015	The Peanuts Movie	2015	Steve Martino	Animation,Comedy,Family	animation,family,comedy
+fantastic-mr-fox-2009	Fantastic Mr. Fox	2009	Wes Anderson	Adventure,Animation,Comedy,Family	animation,comedy,family
+missing-link-2019	Missing Link	2019	Chris Butler	Family,Animation,Comedy,Adventure	animation,family,comedy
+a-scanner-darkly-2006	A Scanner Darkly	2006	Richard Linklater	Animation,Sci-Fi,Thriller	animation,scifi,thriller
+fire-and-ice-1983	Fire and Ice	1983	Ralph Bakshi	Animation,Fantasy,Sci-Fi,Adventure	animation,fantasy,action
+rock-and-rule-1983	Rock & Rule	1983	Clive A. Smith	Adventure,Animation,Fantasy	animation,musical,fantasy
+watership-down-1978	Watership Down	1978	Martin Rosen	Adventure,Animation,Drama	animation,drama,fantasy
+felidae-1994	Felidae	1994	Michael Schaack	Animation,Mystery,Horror	animation,horror,thriller
+ninja-scroll-1993	Ninja Scroll	1993	Yoshiaki Kawajiri	Fantasy,Animation,Action,Horror	animation,action,fantasy
+metropolis-2001	Metropolis	2001	Rintaro	Animation,Sci-Fi	animation,scifi,action
+steamboy-2004	Steamboy	2004	Katsuhiro Otomo	Animation,Fantasy,Sci-Fi	animation,scifi,action
+children-of-the-sea-2019	Children of the Sea	2019	Ayumu Watanabe	Animation,Fantasy,Adventure,Mystery	animation,fantasy,thriller
+suzume-2022	Suzume	2022	Makoto Shinkai	Animation,Drama,Adventure,Fantasy	animation,fantasy,drama
+the-super-mario-bros-movie-2023	The Super Mario Bros. Movie	2023	Aaron Horvath	Family,Comedy,Adventure,Fantasy	animation,family,comedy
