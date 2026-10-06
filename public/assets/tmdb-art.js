@@ -150,6 +150,9 @@
     host.appendChild(line);
   }
 
+  hookBoxes();
+  scan(document);
+
   fetch("/data/catalog.json")
     .then(function (res) {
       return res.ok ? res.json() : [];
