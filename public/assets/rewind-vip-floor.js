@@ -379,7 +379,7 @@
     const sid = "halloween1978";
     const spineInk =
       '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
-      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=hallfit" alt="" draggable="false" decoding="async">' +
+      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=hallseen" alt="" draggable="false" decoding="async">' +
       '<span class="vhs-spine-year">1978</span><span class="vhs-spine-no">RW-1978-10</span></div>';
     const sticker =
       '<svg class="vhs-sticker" viewBox="0 0 64 64" aria-hidden="true" data-stk-v="9">' +
@@ -14210,15 +14210,15 @@
         img.style.setProperty("transform", "none", "important");
         img.style.setProperty("background", "transparent", "important");
         if (img.closest("[data-slug='halloween-1978']")) {
-          img.style.setProperty("inset", "9% 10%", "important");
-          img.style.setProperty("top", "9%", "important");
-          img.style.setProperty("right", "10%", "important");
-          img.style.setProperty("bottom", "9%", "important");
-          img.style.setProperty("left", "10%", "important");
-          img.style.setProperty("width", "80%", "important");
-          img.style.setProperty("height", "82%", "important");
-          img.style.setProperty("max-width", "80%", "important");
-          img.style.setProperty("max-height", "82%", "important");
+          img.style.setProperty("inset", "auto", "important");
+          img.style.setProperty("top", "16%", "important");
+          img.style.setProperty("right", "8%", "important");
+          img.style.setProperty("bottom", "18%", "important");
+          img.style.setProperty("left", "8%", "important");
+          img.style.setProperty("width", "84%", "important");
+          img.style.setProperty("height", "66%", "important");
+          img.style.setProperty("max-width", "84%", "important");
+          img.style.setProperty("max-height", "66%", "important");
           img.style.setProperty("margin", "auto", "important");
           img.style.setProperty("object-fit", "contain", "important");
           img.style.setProperty("object-position", "center center", "important");
