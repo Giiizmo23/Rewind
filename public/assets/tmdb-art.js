@@ -152,6 +152,10 @@
 
   function pinPainted(img) {
     if (!img || !img.getAttribute) return false;
+    var src = img.getAttribute("src") || "";
+    if (src.indexOf("/sleeves/spines/") >= 0) return false;
+    if (img.classList && img.classList.contains("vhs-spine-logo")) return false;
+    if (img.closest && img.closest(".vhs-spine")) return false;
     var box = img.closest && (img.closest(".vhs-box") || img.closest("[data-slug]"));
     var fromBox = box && box.getAttribute("data-slug");
     var fromSrc = sleeveSlug(img.getAttribute("src") || "");
@@ -167,8 +171,19 @@
     return true;
   }
 
+  function restoreHalloweenSpine(img) {
+    if (!img || !img.closest) return false;
+    if (!img.classList.contains("vhs-spine-logo") && !img.closest(".vhs-spine")) return false;
+    var box = img.closest("[data-slug]");
+    if (!box || box.getAttribute("data-slug") !== "halloween-1978") return false;
+    var want = "/sleeves/spines/halloween-1978.png?v=wordspine";
+    if ((img.getAttribute("src") || "").indexOf("halloween-1978.png") < 0) img.src = want;
+    return true;
+  }
+
   function consider(img) {
     if (!img || !img.getAttribute) return;
+    if (restoreHalloweenSpine(img)) return;
     if (pinPainted(img)) return;
     if (stillSlug(img.getAttribute("src") || "")) return;
     var slug = sleeveSlug(img.getAttribute("src") || "");
