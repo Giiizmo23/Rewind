@@ -16,8 +16,16 @@
     delete memory["hereditary"];
     delete memory["the-crow"];
     delete memory["there-will-be-blood"];
+    delete memory["there-will-be-blood-2007"];
   } catch (e) {}
-  var keepPainted = { "halloween-1978": 1, hereditary: 1, "the-crow": 1, "there-will-be-blood": 1 };
+  var painted = {
+    "halloween-1978": "/sleeves/halloween-1978.jpg?v=painted",
+    hereditary: "/sleeves/hereditary.jpg?v=painted",
+    "the-crow": "/sleeves/the-crow.jpg?v=painted",
+    "there-will-be-blood": "/sleeves/there-will-be-blood.jpg?v=painted",
+    "there-will-be-blood-2007": "/sleeves/there-will-be-blood.jpg?v=painted",
+  };
+  var keepPainted = painted;
 
   function save() {
     try {
@@ -103,6 +111,7 @@
           }
           if (still) stillMemory[job.slug] = still;
           document.querySelectorAll("img").forEach(function (img) {
+            if (img.dataset.painted === "1" || pinPainted(img)) return;
             var src = img.getAttribute("src") || "";
             if (still && (stillSlug(src) === job.slug || img.dataset.tmdbStill === job.slug)) paint(img, still);
             else if (poster && !stillSlug(src) && (sleeveSlug(src) === job.slug || img.dataset.tmdbSlug === job.slug)) paint(img, poster);
@@ -122,7 +131,12 @@
     var orig = window.boxAssets;
     if (!orig || orig.__tmdb) return;
     function wrapped(slug) {
-      if (keepPainted[String(slug || "")]) return orig(slug);
+      var pin = painted[String(slug || "")];
+      if (pin) {
+        var kept = Object.assign({}, orig(slug) || {});
+        kept.cover = pin;
+        return kept;
+      }
       var row = orig(slug);
       var poster = memory[String(slug || "")];
       if (!row && !poster) return row;
@@ -136,8 +150,26 @@
 
   var stillMemory = {};
 
+  function pinPainted(img) {
+    if (!img || !img.getAttribute) return false;
+    var box = img.closest && (img.closest(".vhs-box") || img.closest("[data-slug]"));
+    var fromBox = box && box.getAttribute("data-slug");
+    var fromSrc = sleeveSlug(img.getAttribute("src") || "");
+    var slug = painted[fromBox] ? fromBox : fromSrc;
+    var url = painted[slug];
+    if (!url) return false;
+    img.dataset.painted = "1";
+    img.dataset.tmdbArt = "keep";
+    img.style.setProperty("opacity", "1", "important");
+    img.style.setProperty("display", "block", "important");
+    img.style.setProperty("visibility", "visible", "important");
+    if ((img.getAttribute("src") || "").split("?")[0] !== url.split("?")[0]) img.src = url;
+    return true;
+  }
+
   function consider(img) {
     if (!img || !img.getAttribute) return;
+    if (pinPainted(img)) return;
     if (stillSlug(img.getAttribute("src") || "")) return;
     var slug = sleeveSlug(img.getAttribute("src") || "");
     if (!slug || keepPainted[slug]) return;
