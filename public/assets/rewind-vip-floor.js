@@ -966,8 +966,8 @@
       document.head.appendChild(css);
     }
     const chrome = document.getElementById("rewind-member-chrome");
-    if (chrome && chrome.dataset.v !== "v236") {
-      chrome.dataset.v = "v236";
+    if (chrome && chrome.dataset.v !== "v237") {
+      chrome.dataset.v = "v237";
       chrome.textContent =
         'html[data-member="1"] main a[href="/login?desk=new"],' +
         'html[data-member="1"] main a[href="/login?desk=return"],' +
