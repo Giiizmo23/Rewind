@@ -1065,8 +1065,10 @@
     if (already && main.getAttribute("data-tape-ready") === readyKey && window.__rwCredits) return;
     if (!already) fillTape(stub);
     if (rich.overview && window.__rwCredits) {
-      fillTape(Object.assign({}, stub, known, rich, { credits: credits }));
+      const painted = Object.assign({}, stub, known, rich, { credits: credits });
+      fillTape(painted);
       main.setAttribute("data-tape-ready", readyKey);
+      pullCast(slug, painted);
       return;
     }
     if (!already) main.setAttribute("data-tape-ready", slug + ":0:0");
@@ -1085,7 +1087,48 @@
           slug + ":" + (merged.overview ? "1" : "0") + ":" + ((credit.cast && credit.cast.length) || 0)
         );
       }
+      pullCast(slug, merged);
     });
+  }
+  function pullCast(slug, film) {
+    const cast = film && film.credits && film.credits.cast;
+    if (!slug || (cast && cast.length)) return;
+    const title = String((film && film.title) || "").trim();
+    if (title.length < 2 || title === "…") return;
+    window.__rwCastPull = window.__rwCastPull || {};
+    if (window.__rwCastPull[slug]) return;
+    window.__rwCastPull[slug] = 1;
+    const year = String((film && film.year) || "").replace(/\D/g, "").slice(0, 4);
+    fetch("/api/rewind/tmdb/search?q=" + encodeURIComponent(title))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        const rows = (data && data.results) || [];
+        const wanted = title.toLowerCase();
+        const same = rows.filter(function (row) { return String(row.title || "").toLowerCase() === wanted; });
+        const yearHit = year && same.find(function (row) { return String(row.year || "") === year; });
+        const hit = yearHit || same[0] || rows[0];
+        const id = hit && String(hit.slug || "").replace(/^tmdb-/, "").replace(/\D/g, "");
+        if (!id) return null;
+        return fetch("/api/rewind/tmdb/film?id=" + id).then(function (r) { return r.ok ? r.json() : null; });
+      })
+      .then(function (info) {
+        if (!info || filmSlug() !== slug) return;
+        const people = info.credits && info.credits.cast;
+        if (!people || !people.length) return;
+        if (!window.__rwCredits) window.__rwCredits = {};
+        window.__rwCredits[slug] = info.credits;
+        const rich = (window.__rwCatalog || {})[slug] || {};
+        fillTape(Object.assign({}, film, rich, {
+          slug: slug,
+          title: rich.title || film.title || info.title,
+          overview: rich.overview || film.overview || info.overview,
+          director: rich.director || film.director || info.director,
+          tagline: rich.tagline || film.tagline || info.tagline,
+          runtime: rich.runtime || film.runtime || info.runtime,
+          credits: info.credits,
+        }));
+      })
+      .catch(function () {});
   }
   window.__rwPaintTapePage = paintTapePage;
 
