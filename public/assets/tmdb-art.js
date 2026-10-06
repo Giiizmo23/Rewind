@@ -14,8 +14,10 @@
     memory["a-clockwork-orange"] = "https://image.tmdb.org/t/p/w500/4sHeTAp65WrSSuc05nRBKddhBxO.jpg";
     delete memory["halloween-1978"];
     delete memory["hereditary"];
+    delete memory["the-crow"];
+    delete memory["there-will-be-blood"];
   } catch (e) {}
-  var keepPainted = { "halloween-1978": 1, hereditary: 1 };
+  var keepPainted = { "halloween-1978": 1, hereditary: 1, "the-crow": 1, "there-will-be-blood": 1 };
 
   function save() {
     try {
