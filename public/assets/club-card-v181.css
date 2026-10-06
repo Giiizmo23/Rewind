@@ -1727,7 +1727,6 @@ html:not([data-drop="1"]) .store-bg::after {
   background:none!important;background-image:none!important;
 }
 .vhs-box[data-slug="the-matrix"][data-spine-logo="1"] .vhs-spine-logo,
-.vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-logo,
 .vhs-box[data-slug="the-shining"][data-spine-logo="1"] .vhs-spine-logo{
   display:block!important;width:86%!important;max-width:86%!important;max-height:58%!important;
   height:auto!important;transform:none!important;opacity:1!important;filter:none!important;
@@ -5930,5 +5929,23 @@ html body .vhs-box .vhs-back-still img{
   height:auto!important;
   object-fit:cover!important;
   object-position:center top!important;
+}
+
+
+
+/* halloween-spine-fit */
+html body .vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-logo{
+  position:absolute!important;
+  top:18%!important;
+  right:12%!important;
+  bottom:16%!important;
+  left:12%!important;
+  width:76%!important;
+  height:66%!important;
+  max-width:76%!important;
+  max-height:66%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:auto!important;
 }
 

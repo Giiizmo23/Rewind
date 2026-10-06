@@ -379,7 +379,7 @@
     const sid = "halloween1978";
     const spineInk =
       '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
-      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=hallfull" alt="" draggable="false" decoding="async">' +
+      '<img class="vhs-spine-logo" src="/sleeves/spines/halloween-1978.png?v=hallfit" alt="" draggable="false" decoding="async">' +
       '<span class="vhs-spine-year">1978</span><span class="vhs-spine-no">RW-1978-10</span></div>';
     const sticker =
       '<svg class="vhs-sticker" viewBox="0 0 64 64" aria-hidden="true" data-stk-v="9">' +
