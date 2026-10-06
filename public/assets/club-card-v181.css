@@ -2355,10 +2355,10 @@ html:not([data-drop="1"]) .store-bg::after {
 .vhs-box[data-slug="halloween-1978"] .vhs-spine{background:#000!important;overflow:hidden!important;}
 .vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-logo,
 .vhs-box[data-slug="halloween-1978"] .vhs-spine-logo{
-  display:block!important;position:absolute!important;inset:0!important;
-  width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
-  object-fit:cover!important;object-position:center center!important;
-  z-index:1!important;transform:none!important;margin:0!important;
+  display:block!important;position:absolute!important;inset:9% 10%!important;
+  width:80%!important;height:82%!important;max-width:80%!important;max-height:82%!important;
+  object-fit:contain!important;object-position:center center!important;
+  z-index:1!important;transform:none!important;margin:auto!important;
 }
 .vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-vhs{
   display:block!important;opacity:1!important;visibility:visible!important;
@@ -5836,8 +5836,21 @@ html body .vhs-box[data-slug="the-godfather"][data-spine-logo="1"] .vhs-spine-lo
 html body .vhs-box[data-slug="the-godfather"] .vhs-spine-vhs,
 html body .vhs-box[data-slug="the-godfather"] .vhs-spine-no{color:#f3e6c8!important}
 html body .vhs-box[data-slug="halloween-1978"] .vhs-spine-logo{
-  object-fit:contain!important;width:auto!important;height:auto!important;
-  max-width:92%!important;max-height:92%!important;position:static!important;inset:auto!important;
+  display:block!important;
+  position:absolute!important;
+  inset:9% 10%!important;
+  top:9%!important;
+  right:10%!important;
+  bottom:9%!important;
+  left:10%!important;
+  width:80%!important;
+  height:82%!important;
+  max-width:80%!important;
+  max-height:82%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:auto!important;
+  transform:none!important;
 }
 html body .vhs-box[data-slug="halloween-1978"] .vhs-spine-vhs,
 html body .vhs-box[data-slug="halloween-1978"] .vhs-spine-no{color:#e8c56a!important}
