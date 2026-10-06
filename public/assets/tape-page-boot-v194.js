@@ -949,7 +949,7 @@
       return out;
     }
     Promise.all([
-      fetch("/data/catalog.json?v=1200", { cache: "no-cache" })
+      fetch("/data/catalog.json?v=1201", { cache: "no-cache" })
         .then(function (r) {
           return r.ok ? r.json() : [];
         })
@@ -963,7 +963,7 @@
         .catch(function () {
           return "";
         }),
-      fetch("/data/credits.json?v=3", { cache: "no-cache" })
+      fetch("/data/credits.json?v=4", { cache: "no-cache" })
         .then(function (r) {
           return r.ok ? r.json() : {};
         })

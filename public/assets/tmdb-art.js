@@ -34,6 +34,12 @@
     return match ? match[1] : "";
   }
 
+  function stillSlug(src) {
+    var path = String(src || "").split("?")[0];
+    var match = path.match(/\/sleeves\/([a-z0-9-]+)-still\.jpg$/);
+    return match ? match[1] : "";
+  }
+
   function label(img, slug) {
     var known = catalog[slug];
     if (known && known.title) return known;
@@ -84,14 +90,20 @@
         })
         .then(function (data) {
           var poster = data && data.poster;
-          if (!poster) {
+          var still = (data && data.still) || "";
+          if (!poster && !still) {
             job.img.dataset.tmdbArt = "miss";
             return;
           }
-          memory[job.slug] = poster;
-          save();
+          if (poster) {
+            memory[job.slug] = poster;
+            save();
+          }
+          if (still) stillMemory[job.slug] = still;
           document.querySelectorAll("img").forEach(function (img) {
-            if (sleeveSlug(img.currentSrc || img.src) === job.slug || img.dataset.tmdbSlug === job.slug) paint(img, poster);
+            var src = img.getAttribute("src") || "";
+            if (still && (stillSlug(src) === job.slug || img.dataset.tmdbStill === job.slug)) paint(img, still);
+            else if (poster && !stillSlug(src) && (sleeveSlug(src) === job.slug || img.dataset.tmdbSlug === job.slug)) paint(img, poster);
           });
         })
         .catch(function () {
@@ -120,8 +132,11 @@
     window.boxAssets = wrapped;
   }
 
+  var stillMemory = {};
+
   function consider(img) {
     if (!img || !img.getAttribute) return;
+    if (stillSlug(img.getAttribute("src") || "")) return;
     var slug = sleeveSlug(img.getAttribute("src") || "");
     if (!slug || keepPainted[slug]) return;
     img.dataset.tmdbSlug = slug;
@@ -190,7 +205,24 @@
     function (e) {
       var img = e.target;
       if (!img || img.tagName !== "IMG") return;
-      var slug = img.dataset.tmdbSlug || sleeveSlug(img.getAttribute("src") || "");
+      var raw = img.getAttribute("src") || "";
+      var still = stillSlug(raw);
+      if (still) {
+        if (keepPainted[still]) return;
+        img.onerror = null;
+        img.dataset.tmdbStill = still;
+        if (stillMemory[still]) {
+          paint(img, stillMemory[still]);
+          return;
+        }
+        if (img.dataset.tmdbArt === "wait") return;
+        img.dataset.tmdbSlug = still;
+        img.dataset.tmdbArt = "wait";
+        queue.push({ img: img, slug: still });
+        pump();
+        return;
+      }
+      var slug = img.dataset.tmdbSlug || sleeveSlug(raw);
       if (!slug) return;
       if (memory[slug]) {
         setTimeout(function () {

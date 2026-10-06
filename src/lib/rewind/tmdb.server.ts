@@ -119,15 +119,14 @@ function postersFromPage(html: string): Array<{ title: string; year: string; pos
 }
 
 function pickPoster(
-  rows: Array<{ title: string; year: string; poster: string }>,
+  rows: Array<{ title: string; year: string; poster: string; still?: string }>,
   title: string,
   year: string,
-): string {
+): { title: string; year: string; poster: string; still?: string } | null {
   const wanted = title.toLowerCase();
   const named = rows.filter((row) => row.title.toLowerCase() === wanted);
   const pool = named.length ? named : rows;
-  const hit = pool.find((row) => year && row.year === year) || pool[0];
-  return hit ? hit.poster : "";
+  return pool.find((row) => year && row.year === year) || pool[0] || null;
 }
 
 function strip(value: string): string {
@@ -300,6 +299,7 @@ async function poster(url: URL): Promise<Response> {
   endpoint.searchParams.set("language", "en-US");
   if (year) endpoint.searchParams.set("year", year);
   let art = "";
+  let still = "";
   try {
     const data = (await tmdb(endpoint)) as { results?: Array<Record<string, unknown>> };
     const rows = (Array.isArray(data.results) ? data.results : [])
@@ -308,15 +308,19 @@ async function poster(url: URL): Promise<Response> {
         title: String(row.title || row.original_title || ""),
         year: yearOf(row.release_date),
         poster: img(row.poster_path, "w500") || img(row.backdrop_path, "w780"),
+        still: img(row.backdrop_path, "w780"),
       }))
       .filter((row) => row.poster);
-    art = pickPoster(rows, title, year);
+    const picked = pickPoster(rows, title, year);
+    art = (picked && picked.poster) || "";
+    still = (picked && picked.still) || "";
   } catch (err) {
     if (!(err instanceof Error) || err.message !== "key") throw err;
     const html = await htmlPage("/search/movie?query=" + encodeURIComponent(title));
-    art = pickPoster(postersFromPage(html), title, year);
+    const picked = pickPoster(postersFromPage(html), title, year);
+    art = (picked && picked.poster) || "";
   }
-  const body = { ok: true, poster: art };
+  const body = { ok: true, poster: art, still };
   cache.set(cacheKey, { at: Date.now(), body });
   return json(body, 200, 3600);
 }

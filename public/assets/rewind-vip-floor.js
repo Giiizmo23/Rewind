@@ -8682,6 +8682,7 @@
       const changed = applied !== theme;
       applied = theme;
       donorTemplate();
+      const claimed = {};
       sections.forEach(function (section) {
         const id = sectionTheme(section);
         shelfSlugs(section);
@@ -8693,7 +8694,19 @@
           if (v) {
             if (section.__rwSynth) v.seed = [];
             var listed = filmsFor(section, id);
-            v.films = theme ? listed : listed.slice(0, 8);
+            if (theme) {
+              v.films = listed;
+            } else {
+              var preview = [];
+              for (var i = 0; i < listed.length && preview.length < 8; i += 1) {
+                var film = listed[i];
+                var slug = film && film.slug;
+                if (!slug || claimed[slug]) continue;
+                claimed[slug] = 1;
+                preview.push(film);
+              }
+              v.films = preview;
+            }
             v.start = -1;
             v.key = theme ? id : "";
           }
@@ -8758,7 +8771,7 @@
     const initial = themeOf(location.pathname + location.search) || "";
     applyAisle(initial, false);
     Promise.all([
-      fetch("/data/catalog.json?v=1105", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=1106", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
       covers = {};
@@ -9092,7 +9105,7 @@
     fill(Object.assign({}, stub, known || {}, rich || {}));
     if (rich && rich.overview) return;
     Promise.all([
-      fetch("/data/catalog.json?v=1105", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=1106", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
       fetch("/store-index.tsv", { cache: "force-cache" }).then(function (r) { return r.ok ? r.text() : ""; }).catch(function () { return ""; }),
     ]).then(function (pair) {
       const catalog = {};
