@@ -12,13 +12,16 @@
       if (saved[key]) memory[key] = saved[key];
     });
     memory["a-clockwork-orange"] = "https://image.tmdb.org/t/p/w500/4sHeTAp65WrSSuc05nRBKddhBxO.jpg";
+    delete memory["halloween-1978"];
   } catch (e) {}
+  var keepPainted = { "halloween-1978": 1 };
 
   function save() {
     try {
       sessionStorage.setItem("rw-tmdb-art", JSON.stringify(memory));
     } catch (e) {}
   }
+  save();
 
   function sleeveSlug(src) {
     var path = String(src || "").split("?")[0];
@@ -104,6 +107,7 @@
     var orig = window.boxAssets;
     if (!orig || orig.__tmdb) return;
     function wrapped(slug) {
+      if (keepPainted[String(slug || "")]) return orig(slug);
       var row = orig(slug);
       var poster = memory[String(slug || "")];
       if (!row && !poster) return row;
@@ -118,7 +122,7 @@
   function consider(img) {
     if (!img || !img.getAttribute) return;
     var slug = sleeveSlug(img.getAttribute("src") || "");
-    if (!slug) return;
+    if (!slug || keepPainted[slug]) return;
     img.dataset.tmdbSlug = slug;
     if (memory[slug]) {
       paint(img, memory[slug]);
