@@ -8384,12 +8384,24 @@
       var director = String((film && film.director) || "").trim();
       return /^on the shelf\.?$/i.test(overview) && genres === "Drama" && !director;
     }
+    function filmYear(film) {
+      var m = String(film && film.year || "").match(/\d{4}/);
+      var n = m ? Number(m[0]) : 0;
+      return n >= 1900 && n <= 2100 ? n : 0;
+    }
+    function knownFilm(slug) {
+      if (!catalog) return null;
+      for (var i = 0; i < catalog.length; i += 1) {
+        if (catalog[i] && catalog[i].slug === slug) return catalog[i];
+      }
+      return null;
+    }
     function inTheme(film, theme) {
       if (!theme || placeholderShelf(film)) return false;
       const themes = themesOf(film);
       if (theme === "coming") return themes.indexOf("coming") >= 0;
       if (themes.indexOf("coming") >= 0) return false;
-      if (theme === "new") return Number(film.year) >= 2024;
+      if (theme === "new") return filmYear(film) >= 2026;
       return themes.indexOf(theme) >= 0;
     }
     function runtimeLabel(min) {
@@ -8555,9 +8567,15 @@
     }
     function filmsFor(section, theme) {
       const v = section.__virt;
-      const films = v.seed.slice();
+      const films = [];
       const seen = {};
-      films.forEach(function (f) { if (f && f.slug) seen[f.slug] = 1; });
+      v.seed.forEach(function (f) {
+        if (!f || !f.slug || seen[f.slug]) return;
+        var full = knownFilm(f.slug) || f;
+        if (theme && catalog && !inTheme(full, theme)) return;
+        seen[f.slug] = 1;
+        films.push(f);
+      });
       if (!catalog || !theme) return films;
       const extras = [];
       catalog.forEach(function (film) {
