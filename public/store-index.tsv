@@ -1894,7 +1894,7 @@ wild-wild-west-1999	Wild Wild West	1999	Barry Sonnenfeld	Action, Adventure, Come
 the-lone-ranger-2013	The Lone Ranger	2013	Gore Verbinski	Action, Adventure, Western	action,western
 cowboys-and-aliens-2011	Cowboys & Aliens	2011	Jon Favreau	Science Fiction, Western	scifi,western
 jonah-hex-2010	Jonah Hex	2010	Jimmy Hayward	Western, Fantasy, Thriller	thriller,western,fantasy
-the-kid-2019	The Kid	2019	Vincent D'Onofrio	Western, Drama, Action	action,western,drama
+the-kid-2019	The Kid	2019	Vincent D'Onofrio	Western, Drama, Action	western,drama,action
 old-henry-2021	Old Henry	2021	Potsy Ponciroli	Western, Drama	western,drama
 terror-on-the-prairie-2022	Terror on the Prairie	2022	Michael Polish	Western	western
 the-last-manhunt-2022	The Last Manhunt	2022	Christian Camargo	Western, Crime, Drama, Romance, Action	action,crime,western,romance,drama
@@ -2750,7 +2750,7 @@ gamer-2009	Gamer	2009	Brian Taylor	Action, Thriller, Science Fiction	thriller,sc
 the-little-mermaid-2023	The Little Mermaid	2023	Rob Marshall	Adventure, Family, Fantasy, Romance	romance,family,fantasy
 tron-legacy-2010	TRON: Legacy	2010	Joseph Kosinski	Adventure, Action, Science Fiction	scifi,action
 damsel-2024	Damsel	2024	Juan Carlos Fresnadillo	Fantasy, Action, Adventure	action,fantasy,new
-new-york-new-york-1977	New York, New York	1977	Martin Scorsese	Romance, Drama, Music	romance,musical,drama
+new-york-new-york-1977	New York, New York	1977	Martin Scorsese	Romance, Drama, Music	musical,drama,romance
 a-letter-to-momo-2012	A Letter to Momo	2012	Hiroyuki Okiura	Comedy, Fantasy, Animation, Drama, Family	comedy,animation,family,fantasy,drama
 cabin-fever-2003	Cabin Fever	2003	Eli Roth	Horror	horror
 synchronic-2020	Synchronic	2020	Justin Benson	Horror, Science Fiction, Thriller	horror,thriller,scifi
@@ -5373,7 +5373,7 @@ bound-by-honor-1993	Bound by Honor	1993	Taylor Hackford	Crime, Drama, Thriller	t
 the-pelican-brief-1993	The Pelican Brief	1993	Alan J. Pakula	Thriller, Crime, Drama	thriller,crime,drama
 child-s-play-3-1991	Child's Play 3	1991	Jack Bender	Horror	horror
 the-transporter-refueled-2015	The Transporter Refueled	2015	Camille Delamarre	Action, Thriller, Crime	thriller,action,crime
-tom-clancy-s-without-remorse-2021	Tom Clancy's Without Remorse	2021	Stefano Sollima	Action, Thriller, War	thriller,action,war
+tom-clancy-s-without-remorse-2021	Tom Clancy's Without Remorse	2021	Stefano Sollima	Action, Thriller, War	action,thriller,war
 after-everything-2023	After Everything	2023	Castille Landon	Romance, Drama	romance,drama
 charlie-s-angels-2019	Charlie's Angels	2019	Elizabeth Banks	Action, Adventure, Comedy	action,comedy
 the-post-2017	The Post	2017	Steven Spielberg	Drama, History	drama
@@ -7036,7 +7036,7 @@ vixen-1968	Vixen!	1968	Russ Meyer	Drama	drama,classics
 the-guilt-trip-2012	The Guilt Trip	2012	Anne Fletcher	Comedy	comedy
 nine-lives-2016	Nine Lives	2016	Barry Sonnenfeld	Fantasy, Comedy, Family	comedy,family,fantasy
 the-monkey-king-2023	The Monkey King	2023	Anthony Stacchi	Animation, Fantasy, Adventure, Family, Comedy	comedy,animation,family,fantasy
-the-machine-2023	The Machine	2023	Peter Atencio	Comedy, Action, Crime	action,crime,comedy
+the-machine-2023	The Machine	2023	Peter Atencio	Comedy, Action, Crime	comedy,action,crime
 a-man-apart-2003	A Man Apart	2003	F. Gary Gray	Action, Drama, Crime	action,crime,drama
 the-mountain-between-us-2017	The Mountain Between Us	2017	Hany Abu-Assad	Drama, Adventure, Romance	action,romance,drama
 revenge-of-the-pink-panther-1978	Revenge of the Pink Panther	1978	Blake Edwards	Comedy, Crime, Mystery	thriller,crime,comedy
@@ -8442,7 +8442,7 @@ an-affair-my-sister-in-law-s-love-2018	An Affair: My Sister-in-law's Love	2018	C
 togo-2019	Togo	2019	Ericson Core	Adventure, History, Drama	action,drama
 empire-state-2013	Empire State	2013	Dito Montiel	Action, Drama	action,drama
 rurouni-kenshin-part-i-origins-2012	Rurouni Kenshin Part I: Origins	2012	Keishi Otomo	Adventure, Action, Fantasy, War, History	action,war,fantasy
-the-house-2022	The House	2022	Paloma Baeza	Animation, Drama, Comedy, Horror, Fantasy	horror,comedy,animation,fantasy,drama
+the-house-2022	The House	2022	Paloma Baeza	Animation, Drama, Comedy, Horror, Fantasy	animation,drama,comedy,horror,fantasy
 save-the-last-dance-for-me-1986	Save the Last Dance for Me	1986	Hisayasu Satō	Crime, Drama	crime,drama
 life-of-crime-2013	Life of Crime	2013	Daniel Schechter	Comedy, Crime	crime,comedy
 the-9th-life-of-louis-drax-2016	The 9th Life of Louis Drax	2016	Alexandre Aja	Mystery, Thriller	thriller
@@ -8652,7 +8652,7 @@ harsh-times-2005	Harsh Times	2005	David Ayer	Crime, Drama, Thriller, Action	thri
 sound-of-falling-2025	Sound of Falling	2025	Mascha Schilinski	Drama	drama,new
 shattered-2022	Shattered	2022	Luis Prieto	Thriller, Horror, Crime, Mystery	horror,thriller,crime
 point-of-no-return-1993	Point of No Return	1993	John Badham	Action, Crime, Thriller	thriller,action,crime
-vengeance-2022	Vengeance	2022	B.J. Novak	Comedy, Mystery, Thriller	thriller,comedy
+vengeance-2022	Vengeance	2022	B.J. Novak	Comedy, Mystery, Thriller	comedy,thriller
 the-wife-2017	The Wife	2017	Björn Runge	Drama	drama
 my-mother-s-wedding-2025	My Mother's Wedding	2025	Kristin Scott Thomas	Comedy, Drama	comedy,drama,new
 bed-rella-2016	Bed-Rella	2016	Choi Moo-yeon	Romance, Drama	romance,drama
