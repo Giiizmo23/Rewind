@@ -1222,8 +1222,8 @@
         '.rw-dm-row.is-request{display:flex!important;align-items:center!important;gap:.65rem!important}' +
         '.rw-dm-row .rw-dm-copy{flex:1 1 auto;min-width:0}' +
         '.rw-dm-row .rw-dm-acts{display:flex;gap:.35rem;flex:0 0 auto;margin-left:auto;align-items:center}' +
-        '.rw-ask-btn{height:1.85rem;border:0;border-radius:999px;padding:0 .7rem;background:#c41230;color:#fff8f4;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap}' +
-        '.rw-ask-btn.is-ghost{background:transparent;color:#1a140f;box-shadow:inset 0 0 0 1.5px #1a140f}html[data-theme="dark"] .rw-ask-btn.is-ghost,html[data-theme="night"] .rw-ask-btn.is-ghost{color:#f3efe6!important;-webkit-text-fill-color:#f3efe6!important;box-shadow:inset 0 0 0 1.5px #f3efe6!important}' +
+        '.rw-ask-btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;height:2rem;min-height:2rem;line-height:1;border:0;border-radius:999px;padding:0 .85rem;background:#c41230;color:#fff8f4;-webkit-text-fill-color:#fff8f4;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}' +
+        '.rw-ask-btn.is-ghost{background:transparent;color:#1a140f;box-shadow:inset 0 0 0 1.5px #1a140f}html[data-theme="dark"] .rw-ask-btn.is-ghost,html[data-theme="night"] .rw-ask-btn.is-ghost{color:#f3efe6!important;-webkit-text-fill-color:#f3efe6!important;box-shadow:inset 0 0 0 1.5px #f3efe6!important}.rw-ask-btn.is-quiet{background:transparent!important;color:#8d847b!important;-webkit-text-fill-color:#8d847b!important;box-shadow:inset 0 0 0 1px rgba(243,239,230,.28)!important;cursor:default}.rw-dm-row.is-hit{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:.45rem .7rem!important;background:transparent!important}.rw-dm-row.is-hit .rw-dm-acts{flex:1 0 100%;display:flex;gap:.45rem;margin:0 0 .15rem 3.1rem;justify-content:flex-start}' +
         '.cork-person .rw-dm-ava{display:flex!important;align-items:center;justify-content:center;width:1.65rem;height:1.65rem;flex:0 0 auto;border-radius:999px;overflow:hidden;background:#1a140f;color:#fff8f4;font-size:.62rem;letter-spacing:.03em;font-family:Oswald,"Arial Narrow",sans-serif}' +
         '.cork-person .rw-dm-ava.is-pic img{width:100%;height:100%;object-fit:cover;display:block}' +
         '.rw-dm-row > .rw-dm-ava{display:flex!important;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;margin:0!important;padding:0;border:0;box-shadow:none;opacity:1!important;overflow:visible;font-size:1.75rem;line-height:1}' +
@@ -5040,15 +5040,15 @@
       const shown = String(p.name || handle);
       const state = p.friend || "none";
       const add = state === "friends"
-        ? '<span class="rw-ask-btn is-ghost">Friends</span>'
+        ? '<span class="rw-ask-btn is-quiet">Friends</span>'
         : state === "out"
-          ? '<span class="rw-ask-btn is-ghost">Requested</span>'
+          ? '<span class="rw-ask-btn is-quiet">Requested</span>'
           : '<button type="button" class="rw-ask-btn" data-club-follow="' + boardEsc(handle) + '" data-act="' + (state === "in" ? "accept" : "request") + '">' + (state === "in" ? "Accept" : "Add") + "</button>";
-      return '<div class="rw-dm-row is-request" data-member-open="' + boardEsc(handle) + '">' +
+      return '<div class="rw-dm-row is-hit" data-member-open="' + boardEsc(handle) + '">' +
         tapeMark(shown, handle, p.avatar) +
         '<span class="rw-dm-copy"><b>' + boardEsc(shown) + '</b><span>@' + boardEsc(handle) + "</span></span>" +
         '<span class="rw-dm-acts">' + add +
-        '<button type="button" class="rw-ask-btn is-ghost" data-club-msg="' + boardEsc(handle) + '">Message</button></span></div>';
+        '<button type="button" class="rw-ask-btn" data-club-msg="' + boardEsc(handle) + '">Message</button></span></div>';
     }).join("");
   }
   function inboxMarkup() {
