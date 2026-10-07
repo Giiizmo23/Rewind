@@ -26,7 +26,7 @@
   }
   try { markHomeApp(); } catch (eMark) {}
   const CSS_ID = "nd-stage-css-v92n86";
-  const VER = "92n87";
+  const VER = "92n88";
   let heldTheme = null;
   const FACE = encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" fill="none">' +
@@ -2369,6 +2369,18 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
   background: linear-gradient(90deg, #ffb020, #ff3b30) !important;
   box-shadow: 0 0 12px #ff5a3c !important;
 }
+html body[data-drop="1"] .drop-tape .vhs-window img,
+html body[data-drop="1"] .drop-clerk .vhs-window img{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  max-height:none !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  background:transparent !important;
+}
 `;
 
   let opened = false;
@@ -3814,7 +3826,7 @@ html[data-drop="1"] .drop-clerk[data-nd-clerk="1"][data-step="checkout"] .scan-f
     const slug = film.slug;
     const row = window.boxAssets && window.boxAssets(slug);
     const src = (row && row.cover) || ("/sleeves/" + slug + ".jpg");
-    const fit = (row && row.fit) || "contain";
+    const fit = "cover";
     const spineSrc = (row && row.spine) || ("/sleeves/spines/" + slug + ".png");
     const title = String(film.title || "").replace(/"/g, "");
     const year = film.year || "";
