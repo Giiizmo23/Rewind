@@ -8592,6 +8592,24 @@
     function clearWindow(v) {
       while (v.grid.firstChild) v.grid.removeChild(v.grid.firstChild);
     }
+    function stubLine(text) {
+      var t = String(text || "").trim();
+      if (!t) return true;
+      if (/^on the shelf\.?$/i.test(t)) return true;
+      if (/^a tape from the rewind wall\.?$/i.test(t)) return true;
+      if (/^a \d{4}\b.+\bpicture directed by\b/i.test(t)) return true;
+      return false;
+    }
+    function fillStubBack(node, film) {
+      var full = knownFilm(film && film.slug) || film;
+      if (!full || !node) return;
+      var syn = node.querySelector(".vhs-back-syn");
+      if (syn && full.overview && !stubLine(full.overview) && stubLine(syn.textContent)) syn.textContent = full.overview;
+      var credits = node.querySelector(".vhs-back-credits");
+      if (credits && full.director && !String(credits.textContent || "").trim()) credits.textContent = "A film by " + full.director;
+      var tag = node.querySelector(".vhs-back-tag");
+      if (tag && full.tagline && stubLine(tag.textContent)) tag.textContent = "\u201c" + full.tagline + "\u201d";
+    }
     function layoutSection(section) {
       const v = section.__virt;
       if (!v) return;
@@ -8643,6 +8661,8 @@
           node = v.template.cloneNode(true);
           paintSlot(node, film);
           v.bySlug[film.slug] = node;
+        } else {
+          fillStubBack(node, film);
         }
         node.hidden = false;
         if (startRow === 0 && (i - from) < g.cols) node.setAttribute("data-shelf-top", "1");
@@ -8812,7 +8832,7 @@
     const initial = themeOf(location.pathname + location.search) || "";
     applyAisle(initial, false);
     Promise.all([
-      fetch("/data/catalog.json?v=1106", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=1107", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
       covers = {};
@@ -9146,7 +9166,7 @@
     fill(Object.assign({}, stub, known || {}, rich || {}));
     if (rich && rich.overview) return;
     Promise.all([
-      fetch("/data/catalog.json?v=1106", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=1107", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
       fetch("/store-index.tsv", { cache: "force-cache" }).then(function (r) { return r.ok ? r.text() : ""; }).catch(function () { return ""; }),
     ]).then(function (pair) {
       const catalog = {};

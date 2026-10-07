@@ -5949,3 +5949,8 @@ html body .vhs-box[data-slug="halloween-1978"][data-spine-logo="1"] .vhs-spine-l
   margin:auto!important;
 }
 
+/* Hold the old sleeve until the TMDB poster is ready, so the wall does not flash the wrong cover. */
+html body .vhs-box:not([data-slug="halloween-1978"]):not([data-slug="hereditary"]):not([data-slug="the-crow"]):not([data-slug="there-will-be-blood"]):not([data-slug="there-will-be-blood-2007"]) .vhs-window img[src*="/sleeves/"]:not([data-tmdb-art="1"]):not([data-tmdb-art="miss"]):not([data-tmdb-art="keep"]):not([data-painted="1"]){
+  opacity:0!important;
+}
+
