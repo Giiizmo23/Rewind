@@ -1223,7 +1223,7 @@
         '.rw-dm-row .rw-dm-copy{flex:1 1 auto;min-width:0}' +
         '.rw-dm-row .rw-dm-acts{display:flex;gap:.35rem;flex:0 0 auto;margin-left:auto;align-items:center}' +
         '.rw-ask-btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;height:2rem;min-height:2rem;line-height:1;border:0;border-radius:999px;padding:0 .85rem;background:#c41230;color:#fff8f4;-webkit-text-fill-color:#fff8f4;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}' +
-        '.rw-ask-btn.is-ghost{background:transparent;color:#1a140f;box-shadow:inset 0 0 0 1.5px #1a140f}html[data-theme="dark"] .rw-ask-btn.is-ghost,html[data-theme="night"] .rw-ask-btn.is-ghost{color:#f3efe6!important;-webkit-text-fill-color:#f3efe6!important;box-shadow:inset 0 0 0 1.5px #f3efe6!important}.rw-ask-btn.is-quiet{background:transparent!important;color:#8d847b!important;-webkit-text-fill-color:#8d847b!important;box-shadow:inset 0 0 0 1px rgba(243,239,230,.28)!important;cursor:default}.rw-dm-row.is-hit{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:.45rem .7rem!important;background:transparent!important}.rw-dm-row.is-hit .rw-dm-acts{flex:1 0 100%;display:flex;gap:.45rem;margin:0 0 .15rem 3.1rem;justify-content:flex-start}' +
+        '.rw-ask-btn.is-ghost{background:transparent;color:#1a140f;box-shadow:inset 0 0 0 1.5px #1a140f}html[data-theme="dark"] .rw-ask-btn.is-ghost,html[data-theme="night"] .rw-ask-btn.is-ghost{color:#f3efe6!important;-webkit-text-fill-color:#f3efe6!important;box-shadow:inset 0 0 0 1.5px #f3efe6!important}.rw-ask-btn.is-quiet{background:transparent!important;color:#8d847b!important;-webkit-text-fill-color:#8d847b!important;box-shadow:inset 0 0 0 1px rgba(243,239,230,.28)!important;cursor:default}.cork-person .rw-ask-btn.is-quiet{color:#5c5148!important;-webkit-text-fill-color:#5c5148!important;box-shadow:inset 0 0 0 1px rgba(26,20,15,.35)!important}.cork-person .cork-acts{flex-wrap:wrap!important;justify-content:flex-end!important}.rw-dm-row.is-hit{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:.45rem .7rem!important;background:transparent!important}.rw-dm-row.is-hit .rw-dm-acts{flex:1 0 100%;display:flex;gap:.45rem;margin:0 0 .15rem 3.1rem;justify-content:flex-start}' +
         '.cork-person .rw-dm-ava{display:flex!important;align-items:center;justify-content:center;width:1.65rem;height:1.65rem;flex:0 0 auto;border-radius:999px;overflow:hidden;background:#1a140f;color:#fff8f4;font-size:.62rem;letter-spacing:.03em;font-family:Oswald,"Arial Narrow",sans-serif}' +
         '.cork-person .rw-dm-ava.is-pic img{width:100%;height:100%;object-fit:cover;display:block}' +
         '.rw-dm-row > .rw-dm-ava{display:flex!important;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;margin:0!important;padding:0;border:0;box-shadow:none;opacity:1!important;overflow:visible;font-size:1.75rem;line-height:1}' +
@@ -5161,13 +5161,9 @@
       '<div class="rw-inbox-sheet" role="dialog" aria-label="Messages">' +
       '<div class="rw-inbox-head"><div><p>Club chat</p><h2>Messages</h2></div>' +
       '<button type="button" class="rw-inbox-x" data-inbox-close aria-label="Close">×</button></div>' +
-      '<form class="rw-dm-start" data-dm-find="1">' +
-      '<input type="search" maxlength="24" placeholder="Find a member" autocomplete="off" enterkeyhint="search" value="' + boardEsc(inboxFind) + '" />' +
-      '<button type="submit">Search</button></form>' +
-      '<p class="rw-dm-miss" data-dm-miss hidden></p>' +
-      inboxFindRows() +
+      '<p class="rw-inbox-empty" style="margin:.7rem 0 .2rem"><a href="/board?lane=friends" style="color:#c41230">Find a member on the Board</a></p>' +
       '<div class="rw-inbox-list">' +
-      (rows || '<p class="rw-inbox-empty">Nobody on the other end yet. Find a member. Friends can message straight through. Everyone else has to accept first.</p>') +
+      (rows || '<p class="rw-inbox-empty">Nobody on the other end yet. Friends can message straight through. Everyone else has to accept first.</p>') +
       "</div></div>"
     );
   }
@@ -11993,38 +11989,62 @@
         } else {
         const q = clubFind.trim().toLowerCase().replace(/^@/, "");
         const circle = clubBook.people || [];
+        const seenAsk = {};
+        const asks = [];
+        function pushAsk(p) {
+          const handle = String((p && p.handle) || "").replace(/^@/, "").trim();
+          const key = handle.toLowerCase();
+          if (!handle || seenAsk[key]) return;
+          seenAsk[key] = 1;
+          asks.push(p);
+        }
+        (clubBook.friendIn || []).forEach(pushAsk);
+        circle.forEach(function (p) { if (p && p.friend === "in") pushAsk(p); });
+        const friends = circle.filter(function (p) { return p && p.friend === "friends" && !seenAsk[String(p.handle || "").toLowerCase()]; });
+        const waiting = circle.filter(function (p) { return p && p.friend === "out"; });
         const local = q
           ? circle.filter(function (p) {
-            return String(p.handle).indexOf(q) >= 0 || String(p.name || "").toLowerCase().indexOf(q) >= 0;
+            return String(p.handle).toLowerCase().indexOf(q) >= 0 || String(p.name || "").toLowerCase().indexOf(q) >= 0;
           })
-          : circle;
+          : [];
         const people = q && clubHits && clubHits.length ? clubHits : local;
         const finder = '<label class="cork-find"><input data-club-find type="search" enterkeyhint="search" placeholder="Search a username or a real name" value="' + boardEsc(clubFind) + '"></label>';
-        if (q && q.length >= 2 && !clubHits && !people.length) {
-          html = finder + '<p class="cork-empty">Looking through the club…</p>';
-        } else if (!q && !people.length) {
-          html = finder + '<p class="cork-empty">Nobody here yet. Search a username or a real name. If they already have a card, it will come up.</p>';
-        } else if (!people.length) {
-          html = finder + (clubBook.shared === false
-            ? '<p class="cork-empty">The shared counter is down, so that card can’t be looked up from here. Nothing was erased.</p>'
-            : '<p class="cork-empty">No card under that name. They have to stamp a membership first.</p>');
-        } else {
-          const down = clubBook.shared === false ? '<p class="cork-empty">The shared counter is down. Nothing was erased. This is only what this copy can see.</p>' : "";
-          html = finder + down + people.map(function (p) {
-            const state = p.friend || "none";
-            const handle = String(p.handle || "").replace(/^@/, "");
-            const shown = String(p.name || "").trim();
-            const same = !shown || shown.toLowerCase() === handle.toLowerCase();
-            const who = boardEsc(same ? handle : shown);
-            const plus = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
-            const env = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H7l-3 3V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
-            const add = state === "none" ? '<button type="button" class="cork-ico" aria-label="Add" data-club-follow="' + boardEsc(handle) + '" data-act="request">' + plus + "</button>" : "";
-            const face = tapeMark(shown || handle, handle, p.avatar);
-            return '<article class="cork-slip" data-member-open="' + boardEsc(handle) + '"><div class="cork-slip-body cork-person">' + face + '<div class="cork-id"><p class="cork-slip-line"><span class="cork-who">' + who + "</span></p></div>" +
-              '<div class="cork-acts">' + add + '<button type="button" class="cork-ico is-ghost" aria-label="Message" data-club-msg="' + boardEsc(handle) + '">' + env + "</button></div></div></article>";
-          }).join("");
-          fillClubFaces(people);
+        function memberSlip(p) {
+          const state = p.friend || (seenAsk[String(p.handle || "").toLowerCase()] ? "in" : "none");
+          const handle = String(p.handle || "").replace(/^@/, "");
+          const shown = String(p.name || "").trim();
+          const same = !shown || shown.toLowerCase() === handle.toLowerCase();
+          const who = boardEsc(same ? handle : shown);
+          const face = tapeMark(shown || handle, handle, p.avatar);
+          let acts = "";
+          if (state === "in") {
+            acts = '<button type="button" class="rw-ask-btn" data-club-follow="' + boardEsc(handle) + '" data-act="accept">Accept</button><button type="button" class="rw-ask-btn is-ghost" data-club-follow="' + boardEsc(handle) + '" data-act="decline">Not now</button>';
+          } else if (state === "friends") {
+            acts = '<span class="rw-ask-btn is-quiet">Friends</span>';
+          } else if (state === "out") {
+            acts = '<span class="rw-ask-btn is-quiet">Requested</span>';
+          } else {
+            acts = '<button type="button" class="rw-ask-btn" data-club-follow="' + boardEsc(handle) + '" data-act="request">Add</button>';
+          }
+          return '<article class="cork-slip" data-member-open="' + boardEsc(handle) + '"><div class="cork-slip-body cork-person">' + face + '<div class="cork-id"><p class="cork-slip-line"><span class="cork-who">' + who + "</span></p>" + (same ? "" : '<p class="cork-slip-review">@' + boardEsc(handle) + "</p>") + "</div><div class=\"cork-acts\">" + acts + "</div></div></article>";
         }
+        const askHtml = asks.length ? '<p class="cork-kicker">Requests</p>' + asks.map(function (p) { p.friend = "in"; return memberSlip(p); }).join("") : "";
+        let body = "";
+        if (q && q.length >= 2 && !clubHits && !people.length) {
+          body = '<p class="cork-empty">Looking through the club…</p>';
+        } else if (q && !people.length) {
+          body = clubBook.shared === false
+            ? '<p class="cork-empty">The shared counter is down, so that card can’t be looked up from here. Nothing was erased.</p>'
+            : '<p class="cork-empty">No card under that name. They have to stamp a membership first.</p>';
+        } else if (q) {
+          body = people.map(memberSlip).join("");
+        } else {
+          body = (friends.length ? '<p class="cork-kicker">Friends</p>' + friends.map(memberSlip).join("") : '<p class="cork-empty">No friends on the card yet. Search a name above.</p>') +
+            (waiting.length ? '<p class="cork-kicker">Waiting</p>' + waiting.map(memberSlip).join("") : "");
+        }
+        const down = clubBook.shared === false && !q ? '<p class="cork-empty">The shared counter is down. Nothing was erased. This is only what this copy can see.</p>' : "";
+        html = finder + down + askHtml + body;
+        fillClubFaces(asks.concat(q ? people : friends.concat(waiting)));
         }
       } else {
         html = '<p class="cork-empty">No incoming hearts or invites. When someone likes your review, it lands here.</p>';
