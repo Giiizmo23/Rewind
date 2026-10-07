@@ -129084,7 +129084,7 @@
     "runtime": 74,
     "overview": "On the mystical island of Themyscira, a proud and fierce warrior race of Amazons have raised a daughter of untold beauty, grace and strength: Princess Diana. When an Army fighter pilot, Steve Trevor, crash-lands on the island, the rebellious and headstrong Diana defies Amazonian law by accompanying Trevor back to civilization.",
     "genres": "Action, Adventure, Animation, Fantasy, Science Fiction",
-    "themes": "action,animation,fantasy",
+    "themes": "scifi,action,animation,fantasy",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12730",
     "tagline": "Courageous princess. Fierce warrior. Legendary superhero."
@@ -129123,7 +129123,7 @@
     "runtime": 8,
     "overview": "A young couple looking to start a family who experience emotions—from grief and loss to ultimate joy—as they embark on an ethereal, abstract, and imaginative cosmic dance of life.",
     "genres": "Animation, Family, Drama, Fantasy",
-    "themes": "animation,family,drama",
+    "themes": "animation,family,fantasy,drama,new",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12733",
     "tagline": ""
@@ -129136,7 +129136,7 @@
     "runtime": 105,
     "overview": "In the 1870s, a young Harvard dropout seeks his destiny out West by tying his fate to a team of buffalo hunters led by a man named Miller. Together, they embark on a harrowing journey risking life and sanity.",
     "genres": "Adventure, Drama, Western",
-    "themes": "action,drama,western",
+    "themes": "action,western,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12734",
     "tagline": "Nature judges like a god all men that come to her."
@@ -129149,7 +129149,7 @@
     "runtime": 130,
     "overview": "The Hong Kong police is hunting a counterfeiting gang led by a mastermind code-named \"Painter\" . The gang possesses exceptional counterfeiting skills which makes it difficult to distinguish the authenticity of its counterfeit currency. The scope of their criminal activities extends globally and greatly attracts the attention of the police. In order to crack the true identity of \"Painter\", the police recruits a painter named Lee Man to assist in solving the case.",
     "genres": "Action, Crime, Mystery",
-    "themes": "action,crime,thriller",
+    "themes": "thriller,action,crime",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12735",
     "tagline": ""
@@ -129162,7 +129162,7 @@
     "runtime": 81,
     "overview": "When a hulking monster arrives on Earth and begins a mindless rampage, the Justice League is quickly called in to stop it. But it soon becomes apparent that only Superman can stand against the monstrosity.",
     "genres": "Science Fiction, Animation, Action, Drama, Adventure",
-    "themes": "scifi,animation,action",
+    "themes": "scifi,action,animation,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12736",
     "tagline": "Witness the day Metropolis stood still."
@@ -129175,7 +129175,7 @@
     "runtime": 73,
     "overview": "When the sadness of her father's disappearance gets to Molly Hale, she unknowingly uses the Unown to create her own dream world along with Entei, who she believes to be her father. When Entei kidnaps Ash's mother, Ash — alongside Misty and Brock — invade the mansion looking for his mom and trying to stop the mysteries of Molly's Dream World and Entei!",
     "genres": "Adventure, Fantasy, Animation, Action, Family",
-    "themes": "action,fantasy,animation",
+    "themes": "action,animation,family,fantasy",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-12737",
     "tagline": "This spring the Unown spells adventure."
@@ -129188,7 +129188,7 @@
     "runtime": 96,
     "overview": "Each year, three brothers Samuel, Jeffrey and Michael Douglas visits their Japanese grandfather, Mori Shintaro whom the boys affectionately refer to as Grandpa, for the summer. Mori is a highly skilled in the fields of Martial arts and Ninjutsu, and for years he has trained the boys in his techniques. After an organized crime ring proves to be too much for the FBI, it's time for the 3 brother NINJAS! To use their martial arts skills, they team up to battle the crime ring and outwit some very persistent kidnappers!",
     "genres": "Family, Action, Adventure, Comedy",
-    "themes": "family,action,comedy",
+    "themes": "action,comedy,family",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12738",
     "tagline": "Tum Tum, Colt and Rocky Ready for a Ninja Summer!"
@@ -129201,7 +129201,7 @@
     "runtime": 72,
     "overview": "When news of John Smith's death reaches America, Pocahontas is devastated. She sets off to London with John Rolfe, to meet with the King of England on a diplomatic mission: to create peace and respect between the two great lands. However, Governor Ratcliffe is still around; he wants to return to Jamestown and take over. He will stop at nothing to discredit the young princess.",
     "genres": "Animation, Family, Adventure, Romance",
-    "themes": "animation,family,action",
+    "themes": "romance,animation,family",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12739",
     "tagline": "A new journey begins!"
@@ -129227,7 +129227,7 @@
     "runtime": 109,
     "overview": "Every year the Prime Minister has a list of all kinds of troublemakers eliminated in the name of the famous Reason of State. Serge Shuster, Special Adviser to the President of the Republic, finds himself on this list, better known as the Matignon List.  Condemned to certain death and at the heart of an implacable plot and a state secret that also put his family in danger, Serge, his wife and children have only one hope left - their gardener, Léo, who hates it when « slugs » invade his garden... Especially those that want to kill innocent families.",
     "genres": "Action, Comedy",
-    "themes": "action,comedy",
+    "themes": "action,comedy,new",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12741",
     "tagline": ""
@@ -129240,7 +129240,7 @@
     "runtime": 89,
     "overview": "When her nation is invaded, a young princess is taken into the Princess Protection Program. She is relocated to Louisiana, where she stays with a covert agent and his tomboyish daughter, and must learn how to behave like an ordinary teenager.",
     "genres": "Family, TV Movie, Comedy, Drama",
-    "themes": "family,drama,comedy",
+    "themes": "comedy,family,drama",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12742",
     "tagline": "Royality meets reality."
@@ -129253,7 +129253,7 @@
     "runtime": 105,
     "overview": "A deep cover operative awakens to find himself imprisoned on a submarine. With the help of a fellow prisoner and an amateur agent, he must race against the clock to escape the vessel and expose who set him up.",
     "genres": "Action, Thriller",
-    "themes": "action,thriller",
+    "themes": "thriller,action",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12743",
     "tagline": "Some secrets never surface"
@@ -129279,7 +129279,7 @@
     "runtime": 95,
     "overview": "A troubled man starts working at a retirement home and realizes its residents and caretakers harbor sinister secrets. As he investigates the building and its forbidden fourth floor, he starts to uncover connections to his own past and upbringing as a foster child.",
     "genres": "Horror, Mystery, Thriller",
-    "themes": "horror,thriller",
+    "themes": "horror,thriller,new",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12745",
     "tagline": "Evil never gets old."
@@ -129331,7 +129331,7 @@
     "runtime": 114,
     "overview": "Simple Italian postman learns to love poetry while delivering mail to a famous poet; he uses this to woo local beauty Beatrice.",
     "genres": "Comedy, Drama, Romance",
-    "themes": "comedy,drama,romance",
+    "themes": "comedy,romance,drama",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12749",
     "tagline": "Dreams do come true."
@@ -129357,7 +129357,7 @@
     "runtime": 15,
     "overview": "Agent Peggy Carter is relegated to a desk job and frustrated at her male boss and comrades' sexist dismissal of her place in the SSR. Ordered to work late one night, Carter gets an alert that the villain Zodiac has been spotted and decides to take care of it herself.",
     "genres": "Adventure, Action, Science Fiction",
-    "themes": "action,scifi",
+    "themes": "scifi,action",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12751",
     "tagline": "In an all-new Captain America adventure."
@@ -129383,7 +129383,7 @@
     "runtime": 96,
     "overview": "It's the day before Christmas, the day before John's 21st birthday. He's a prostitute on Santa Monica Blvd in L.A., and he wants to spend that night and the next day at the posh Park Plaza Hotel. Meanwhile, Donner, a lad new to the streets, wants John to leave the city with him. John spends the day trying to figure out how to deal with Donner's friendship.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12753",
     "tagline": "This ain't no 90210"
@@ -129396,7 +129396,7 @@
     "runtime": 97,
     "overview": "In the not-too-distant future, two drifters traveling through the desert stumble across the biggest gold nugget ever found and the dream of immense wealth and greed takes hold. They hatch a plan to excavate their bounty, with one man leaving to secure the necessary tools while the other remains with the gold. The man who remains must endure harsh desert elements, ravenous wild dogs, and mysterious intruders, while battling the sinking suspicion that he has been abandoned to his fate.",
     "genres": "Action, Adventure, Thriller",
-    "themes": "action,thriller",
+    "themes": "thriller,action",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12754",
     "tagline": "Survive at any cost"
@@ -129422,7 +129422,7 @@
     "runtime": 108,
     "overview": "When her husband goes missing during their Caribbean vacation, a woman sets off on her own to take down the men she thinks are responsible.",
     "genres": "Action, Crime, Thriller",
-    "themes": "action,crime,thriller",
+    "themes": "thriller,action,crime",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12756",
     "tagline": "She Will Stop At Nothing"
@@ -129435,7 +129435,7 @@
     "runtime": 130,
     "overview": "In Nazi Germany, Kitty runs a brothel where the soldiers come to 'relax'. Recording devices have been installed by a power-hungry official who plans to use the information to blackmail and usurp Hitler. One of the girls discovers the ploy and, with the madam's help, takes on the dangerous task of exposing the conspiracy.",
     "genres": "Drama, War",
-    "themes": "drama,war,classics",
+    "themes": "war,drama,classics",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12757",
     "tagline": "Depraved. Decadent. Damned."
@@ -129461,7 +129461,7 @@
     "runtime": 105,
     "overview": "Amanda Ogle is a woman living in her aging Toyota Camry on the streets of Seattle. When her car is stolen and impounded, she’s thrust into a relentless legal battle against an indifferent system. What begins as a fight to reclaim her car evolves into a deeply human story of resilience, dignity, and the power of one woman’s voice in the face of systemic failure.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12759",
     "tagline": ""
@@ -129474,7 +129474,7 @@
     "runtime": 104,
     "overview": "Young orphan Heathcliff is adopted by the wealthy Earnshaw family and moves into their estate, Wuthering Heights. Soon, the new resident falls for his compassionate foster sister, Cathy. The two share a remarkable bond that seems unbreakable until Cathy, feeling the pressure of social convention, suppresses her feelings and marries Edgar Linton, a man of means who befits her stature. Heathcliff vows to win her back.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance,classics",
+    "themes": "romance,drama,classics",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12760",
     "tagline": "I am torn with Desire… tortured by hate!"
@@ -129500,7 +129500,7 @@
     "runtime": 93,
     "overview": "In the last moments of World War II, a secret Nazi space program evaded destruction by fleeing to the Dark Side of the Moon. During 70 years of utter secrecy, the Nazis construct a gigantic space fortress with a massive armada of flying saucers.",
     "genres": "Action, Comedy, Science Fiction",
-    "themes": "action,comedy,scifi",
+    "themes": "scifi,action,comedy",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-12762",
     "tagline": "We come in peace!"
@@ -129513,7 +129513,7 @@
     "runtime": 118,
     "overview": "Triad gangster turned corrupt cop Lau Kin-ming goes to dangerous lengths to avoid detection.",
     "genres": "Crime, Drama, Action",
-    "themes": "crime,drama,action",
+    "themes": "action,crime,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12763",
     "tagline": "The Ultimate Showdown."
@@ -129526,7 +129526,7 @@
     "runtime": 78,
     "overview": "The legendary Elfkins (Heinzelmännchen) of Cologne were gnomes secretly helping craftsmen at night until they were ousted by a tailor's malevolent wife 200 years ago. This is the story of their return.",
     "genres": "Family, Animation, Comedy, Fantasy",
-    "themes": "family,animation,comedy",
+    "themes": "comedy,animation,family,fantasy",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12764",
     "tagline": ""
@@ -129539,7 +129539,7 @@
     "runtime": 102,
     "overview": "A man whose brain becomes magnetized unintentionally destroys every tape in his friend's video store. In order to satisfy the store's most loyal renter, an aging woman with signs of dementia, the two men set out to remake the lost films.",
     "genres": "Drama, Comedy",
-    "themes": "drama,comedy",
+    "themes": "comedy,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12765",
     "tagline": "You name it, we shoot it."
@@ -129552,7 +129552,7 @@
     "runtime": 134,
     "overview": "A respected priest volunteers for an experimental procedure that may lead to a cure for a deadly virus. He gets infected and dies, but a blood transfusion of unknown origin brings him back to life. Now, he’s torn between faith and bloodlust, and has a newfound desire for the wife of a childhood friend.",
     "genres": "Drama, Horror, Thriller",
-    "themes": "drama,horror,thriller",
+    "themes": "horror,thriller,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12766",
     "tagline": "Lusting after sinful pleasures."
@@ -129565,7 +129565,7 @@
     "runtime": 115,
     "overview": "Ed Okin used to have a boring life. He used to have trouble getting to sleep. Then one night, he met Diana. Now, Ed's having trouble staying alive.",
     "genres": "Thriller, Comedy, Action, Crime, Drama, Romance",
-    "themes": "thriller,comedy,action",
+    "themes": "thriller,action,crime,comedy,romance,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12767",
     "tagline": "A dangerous romance"
@@ -129578,7 +129578,7 @@
     "runtime": 88,
     "overview": "When a group of close-knit friends assemble for the marriage of Skylar and Dan, they have no idea they will witness The Rapture and face a series of catastrophic events turning the celebration into a life-or-death struggle.",
     "genres": "Thriller, Horror",
-    "themes": "thriller,horror",
+    "themes": "horror,thriller",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12768",
     "tagline": "After the rapture, there are fates worse than death."
@@ -129604,7 +129604,7 @@
     "runtime": 51,
     "overview": "The advent of new weight loss drugs has a huge impact on everyone in South Park. When Cartman is denied access to the life-changing medicine, the kids jump into action.",
     "genres": "Animation, Comedy, TV Movie",
-    "themes": "animation,comedy,drama",
+    "themes": "comedy,animation,new",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-12770",
     "tagline": "The weight is over."
@@ -129617,7 +129617,7 @@
     "runtime": 90,
     "overview": "In a world overrun by zombies, military personnel and survivalists live in an underground bunker while they seek a cure.",
     "genres": "Action, Horror",
-    "themes": "action,horror",
+    "themes": "horror,action",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12771",
     "tagline": "Join the undying war."
@@ -129630,7 +129630,7 @@
     "runtime": 95,
     "overview": "A short kid from a Canadian army base becomes the international pop culture darling of the 1980s—only to find the course of his life altered by a stunning diagnosis. What happens when an incurable optimist confronts an incurable disease?",
     "genres": "Documentary",
-    "themes": "indie",
+    "themes": "drama,indie",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12772",
     "tagline": ""
@@ -129643,7 +129643,7 @@
     "runtime": 98,
     "overview": "A young athlete whose running days might be behind her, a compulsive liar, a shy researcher, a bitter old woman, and a little girl with a big secret—the only thing they have in common is the annual Wind Festival in Fula City.  The festival celebrates the Legendary Pokémon Lugia, who brings the wind that powers this seaside city. When a series of threats endangers not just the festival, but all the people and Pokémon of Fula City, it’ll take more than just Satoshi and Pikachu to save the day! Can everyone put aside their differences and work together—or will it all end in destruction?",
     "genres": "Animation, Family, Adventure, Fantasy",
-    "themes": "animation,family,action",
+    "themes": "animation,family,fantasy",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-12773",
     "tagline": "Our hopes. Our dreams. Our stories."
@@ -129656,7 +129656,7 @@
     "runtime": 102,
     "overview": "Bill is a penniless drifter who scams strangers out of just enough money to feed himself and his partner in crime, an orphan girl known as Curly Sue. Bill and Curly Sue target Grey, a yuppie lawyer, but their con takes an unexpected turn when the successful woman begins to like the ramshackle duo. But there's one problem—Grey's jealous, conniving boyfriend, Walker.",
     "genres": "Comedy, Drama, Family, Romance",
-    "themes": "comedy,drama,family",
+    "themes": "comedy,romance,family,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12774",
     "tagline": "A funny story about a family... And the little girl who started it."
@@ -129682,7 +129682,7 @@
     "runtime": 123,
     "overview": "A biography of artist Frida Kahlo, who channeled the pain of a crippling injury and her tempestuous marriage into her work.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-12776",
     "tagline": "Prepare to be seduced."
@@ -129708,7 +129708,7 @@
     "runtime": 127,
     "overview": "In 1920s Ireland young doctor Damien O'Donovan prepares to depart for a new job in a London hospital. As he says his goodbyes at a friend's farm, British Black and Tans arrive, and a young man is killed. Damien joins his brother Teddy in the Irish Republican Army, but political events are soon set in motion that tear the brothers apart.",
     "genres": "Drama, War",
-    "themes": "drama,war",
+    "themes": "war,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12778",
     "tagline": "War has cost them their innocence... Freedom will cost them their blood."
@@ -129721,7 +129721,7 @@
     "runtime": 97,
     "overview": "Lukas, a young farmer whose family is killed by savage raiders in the countryside, sets out on an epic quest for revenge, forming an unlikely trio with a majestic dragon and a swashbuckling, sword-fighting mercenary, Darius.",
     "genres": "Fantasy, Action, Adventure",
-    "themes": "fantasy,action",
+    "themes": "action,fantasy",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12779",
     "tagline": ""
@@ -129734,7 +129734,7 @@
     "runtime": 99,
     "overview": "A group of five mountaineers are hiking and climbing in the Scottish Highlands when they discover a young Serbian girl buried in a small chamber in the wilderness. They become caught up in a terrifying game of cat and mouse with the kidnappers as they try to get the girl to safety.",
     "genres": "Adventure, Action, Thriller, Crime",
-    "themes": "action,thriller,crime",
+    "themes": "thriller,action,crime",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12780",
     "tagline": "Out here, there's nowhere to hide."
@@ -129747,7 +129747,7 @@
     "runtime": 96,
     "overview": "In August 1969, Charles Manson's followers killed seven people on his orders. Why? Explore a conspiracy of mind control, CIA experiments, and murder.",
     "genres": "Documentary, Crime",
-    "themes": "indie,crime",
+    "themes": "crime,indie,new",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12781",
     "tagline": ""
@@ -129773,7 +129773,7 @@
     "runtime": 87,
     "overview": "Over the course of one evening, an unsuspecting group of twenty-somethings find themselves bombarded by a series of natural disasters and catastrophic events.",
     "genres": "Comedy, Science Fiction",
-    "themes": "comedy,scifi",
+    "themes": "scifi,comedy",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12783",
     "tagline": "Your favorite movies are going to be destroyed."
@@ -129786,7 +129786,7 @@
     "runtime": 165,
     "overview": "Seeing Balu's spendthrift and carefree attitude, his father sends him to his friend's house in a village to get reformed. Things get complicated when he gets entangled in a love triangle.",
     "genres": "Romance, Comedy",
-    "themes": "romance,comedy",
+    "themes": "comedy,romance",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12784",
     "tagline": ""
@@ -129799,7 +129799,7 @@
     "runtime": 107,
     "overview": "The Empire of Izmer is a divided land: elite magicians called “mages” rule while lowly commoners are powerless. When Empress Savina vows to bring equality and prosperity to her land, the evil mage Profion plots to depose her.",
     "genres": "Drama, Adventure, Fantasy",
-    "themes": "drama,action,fantasy",
+    "themes": "fantasy,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12785",
     "tagline": "This is no game."
@@ -129825,7 +129825,7 @@
     "runtime": 110,
     "overview": "A serial killer strikes fear in the hearts of residents of Hamburg during the early 1970s.",
     "genres": "Crime, Thriller, Horror, Comedy",
-    "themes": "crime,thriller,horror",
+    "themes": "horror,thriller,crime,comedy",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12787",
     "tagline": ""
@@ -129838,7 +129838,7 @@
     "runtime": 84,
     "overview": "It's been ten years since the creation of the Great Truce, an elaborate joint-species surveillance system designed and monitored by cats and dogs to keep the peace when conflicts arise. But when a tech-savvy villain hacks into wireless networks to use frequencies only heard by cats and dogs, he manipulates them into conflict and the worldwide battle between cats and dogs is BACK ON. Now, a team of inexperienced and untested agents will have to use their old-school animal instincts to restore order and peace between cats and dogs everywhere.",
     "genres": "Family, Comedy, Action",
-    "themes": "family,comedy,action",
+    "themes": "action,comedy,family",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12788",
     "tagline": ""
@@ -129851,7 +129851,7 @@
     "runtime": 105,
     "overview": "Offering unprecedented access to the 20 days leading up to the 2025 Presidential Inauguration — through the eyes of the First Lady-elect herself — step inside Melania Trump's world as she orchestrates inauguration plans, navigates the complexities of the White House transition, and reenters public life with her family. With exclusive footage capturing critical meetings, private conversations, and never-before-seen environments, Mrs. Trump returns to one of the world's most powerful roles.",
     "genres": "Documentary",
-    "themes": "indie",
+    "themes": "drama,indie,new",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-12789",
     "tagline": "Twenty days to history."
@@ -129864,7 +129864,7 @@
     "runtime": 81,
     "overview": "A famous businessman's links with organized crime are looked into by the Zero Division of the Tokyo Police, with the investigation being headed by a highly trained, extremely violent and very beautiful female officer. When not having shoot-outs with the crime syndicate thugs trying to kill her, she spends most of her time in her apartment, wearing lingerie and taking showers. A sub-plot involves the businessman's S&amp;M-obsessed daughter.",
     "genres": "Drama, Action",
-    "themes": "drama,action",
+    "themes": "action,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12790",
     "tagline": ""
@@ -129877,7 +129877,7 @@
     "runtime": 94,
     "overview": "A fatal plane crash changes the lives of Roman and Jake forever. Roman loses his wife and daughter in the accident, while Jake loses his mind—as he happens to be the air traffic controller who failed to avert the nightmare. Rage and revenge engulfs Roman and Jake finds himself swamped with guilt and regret.",
     "genres": "Drama, Thriller",
-    "themes": "drama,thriller",
+    "themes": "thriller,drama",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-12791",
     "tagline": "All he had left was revenge"
@@ -129916,7 +129916,7 @@
     "runtime": 106,
     "overview": "Over the summer of 1976, thirty-six bombs detonate in the heart of Cleveland while a turf war raged between Irish mobster Danny Greene and the Italian mafia. Based on a true story, Kill the Irishman chronicles Greene's heroic rise from a tough Cleveland neighborhood to become an enforcer in the local mob.",
     "genres": "Action, Crime, Thriller, Drama",
-    "themes": "action,crime,thriller",
+    "themes": "thriller,action,crime,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12794",
     "tagline": "The man the mob couldn't kill."
@@ -129942,7 +129942,7 @@
     "runtime": 100,
     "overview": "A violent fugitive on the run from the law makes his way from Hong Kong to South Africa, where he discovers that he's immune to the Ebola virus, and later returns home to spread the deadly disease.",
     "genres": "Comedy, Crime, Horror",
-    "themes": "comedy,crime,horror",
+    "themes": "horror,crime,comedy",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-12796",
     "tagline": ""
@@ -129981,7 +129981,7 @@
     "runtime": 103,
     "overview": "While exploring the neighboring woods, 13-year-old John discovers an unfinished bunker — a deep hole in the ground. Seemingly without provocation, he drugs his affluent parents and older sister and drags their unconscious bodies into the bunker, where he holds them captive. As they anxiously wait for John to free them from the hole, the boy returns home, where he can finally do what he wants.",
     "genres": "Drama, Thriller, Horror",
-    "themes": "drama,thriller,horror",
+    "themes": "horror,thriller,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-12799",
     "tagline": ""
@@ -129994,7 +129994,7 @@
     "runtime": 92,
     "overview": "The horrifying true story of Ed Kemper, a cunning and sadistic serial killer shaped by childhood abuse, whose charm masked his grotesque obsession with murder, mutilation, and the ultimate act of revenge on his mother.",
     "genres": "Horror, Crime, Thriller",
-    "themes": "horror,crime,thriller",
+    "themes": "horror,thriller,crime,new",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-12800",
     "tagline": "The true story of an American psycho."
