@@ -176,7 +176,7 @@
     if (!img.classList.contains("vhs-spine-logo") && !img.closest(".vhs-spine")) return false;
     var box = img.closest("[data-slug]");
     if (!box || box.getAttribute("data-slug") !== "halloween-1978") return false;
-    var want = "/sleeves/spines/halloween-1978.png?v=hallseen";
+    var want = "/sleeves/spines/halloween-1978.png?v=een3";
     if ((img.getAttribute("src") || "").indexOf("halloween-1978.png") < 0) img.src = want;
     return true;
   }
