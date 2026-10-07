@@ -125,8 +125,14 @@ function pickPoster(
 ): { title: string; year: string; poster: string; still?: string } | null {
   const wanted = title.toLowerCase();
   const named = rows.filter((row) => row.title.toLowerCase() === wanted);
-  const pool = named.length ? named : rows;
-  return pool.find((row) => year && row.year === year) || pool[0] || null;
+  if (!named.length) return null;
+  const y = Number(year);
+  if (!y) return named[0];
+  const near = named.find((row) => {
+    const ry = Number(row.year);
+    return Boolean(ry) && Math.abs(ry - y) <= 1;
+  });
+  return near || named[0];
 }
 
 function strip(value: string): string {
@@ -290,14 +296,13 @@ async function poster(url: URL): Promise<Response> {
   const title = String(url.searchParams.get("title") || "").trim().slice(0, 80);
   const year = String(url.searchParams.get("year") || "").replace(/\D/g, "").slice(0, 4);
   if (title.length < 1) return json({ ok: true, poster: "" });
-  const cacheKey = "p:" + title.toLowerCase() + ":" + year;
+  const cacheKey = "p2:" + title.toLowerCase() + ":" + year;
   const hit = cache.get(cacheKey);
   if (hit && Date.now() - hit.at < FILM_TTL) return json(hit.body, 200, 3600);
   const endpoint = new URL(SEARCH);
   endpoint.searchParams.set("query", title);
   endpoint.searchParams.set("include_adult", "false");
   endpoint.searchParams.set("language", "en-US");
-  if (year) endpoint.searchParams.set("year", year);
   let art = "";
   let still = "";
   try {

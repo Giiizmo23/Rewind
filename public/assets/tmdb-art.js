@@ -7,7 +7,7 @@
   var queue = [];
   var busy = 0;
   try {
-    var saved = JSON.parse(sessionStorage.getItem("rw-tmdb-art") || "{}") || {};
+    var saved = JSON.parse(sessionStorage.getItem("rw-tmdb-art2") || "{}") || {};
     Object.keys(saved).forEach(function (key) {
       if (saved[key]) memory[key] = saved[key];
     });
@@ -17,6 +17,8 @@
     delete memory["the-crow"];
     delete memory["there-will-be-blood"];
     delete memory["there-will-be-blood-2007"];
+    memory["the-witch"] = "https://image.tmdb.org/t/p/w500/zap5hpFCWSvdWSuPGAQyjUv2wAC.jpg";
+    memory["the-witch-2015"] = memory["the-witch"];
   } catch (e) {}
   var painted = {
     "halloween-1978": "/sleeves/halloween-1978.jpg?v=painted",
@@ -29,7 +31,7 @@
 
   function save() {
     try {
-      sessionStorage.setItem("rw-tmdb-art", JSON.stringify(memory));
+      sessionStorage.setItem("rw-tmdb-art2", JSON.stringify(memory));
     } catch (e) {}
   }
   save();
@@ -90,7 +92,7 @@
       busy += 1;
       var info = label(job.img, job.slug);
       var url =
-        "/api/rewind/tmdb/poster?title=" +
+        "/api/rewind/tmdb/poster?v=2&title=" +
         encodeURIComponent(info.title) +
         "&year=" +
         encodeURIComponent(info.year || "");
