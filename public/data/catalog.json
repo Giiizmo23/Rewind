@@ -2918,8 +2918,8 @@
     "director": "Nobuhiko Obayashi",
     "runtime": 0,
     "overview": "A 1977 horror picture directed by Nobuhiko Obayashi.",
-    "genres": "Comedy,Fantasy,Horror",
-    "themes": "fantasy,horror,comedy",
+    "genres": "Comedy, Fantasy, Horror",
+    "themes": "horror,comedy,fantasy",
     "palette": "#0c1022|#e8d6aa|#c45c2a",
     "catalogNo": "RW-3022",
     "tagline": "After midnight"
@@ -24654,8 +24654,8 @@
     "director": "Vincent D'Onofrio",
     "runtime": 100,
     "overview": "New Mexico Territory, 1880. Rio Cutler and his older sister Sara must abandon their home after an unfortunate event happens.",
-    "genres": "Western,Drama,Action",
-    "themes": "western,drama,action",
+    "genres": "Western, Drama, Action",
+    "themes": "action,western,drama",
     "palette": "#242830|#d2b482|#a08c6e",
     "catalogNo": "RW-4697",
     "tagline": "It only matters the story they tell when you're gone"
@@ -30673,7 +30673,7 @@
     "director": "Xavier Palud",
     "runtime": 77,
     "overview": "Lucas and Clementine live peacefully in their isolated country house, but one night they wake up to strange noise. They're not alone... and a group of hooded assailants begin to terrorize them throughout the night.",
-    "genres": "Horror,Thriller",
+    "genres": "Horror, Thriller",
     "themes": "horror,thriller",
     "palette": "#141816|#dcd2a0|#b43c28",
     "catalogNo": "RW-5160",
@@ -31908,7 +31908,7 @@
     "director": "Robert Harmon",
     "runtime": 90,
     "overview": "A psychology student who experienced night terrors as a child must face the chilling realization that her nightmares were not all in her head.",
-    "genres": "Horror,Thriller",
+    "genres": "Horror, Thriller",
     "themes": "horror,thriller",
     "palette": "#1a2418|#c4aa80|#e8dcc8",
     "catalogNo": "RW-5255",
@@ -35782,8 +35782,8 @@
     "director": "Martin Scorsese",
     "runtime": 163,
     "overview": "An egotistical saxophone player and a young singer meet on V-J Day and embark upon a strained and rocky romance, even as their careers begin a long uphill climb.",
-    "genres": "Romance,Drama,Music",
-    "themes": "musical,drama,romance",
+    "genres": "Romance, Drama, Music",
+    "themes": "romance,musical,drama",
     "palette": "#1a4a6e|#c45a3a|#e8dcc8",
     "catalogNo": "RW-5553",
     "tagline": "The war was over and the world was falling in love again."
@@ -53943,8 +53943,8 @@
     "director": "Nobuhiko Obayashi",
     "runtime": 88,
     "overview": "Hoping to find a sense of connection to her late mother, Gorgeous takes a trip with her friends to visit her aunt's ancestral house in the countryside. The girls soon discover that there is more to the old house than meets the eye.",
-    "genres": "Comedy,Fantasy,Horror",
-    "themes": "cult,horror,comedy",
+    "genres": "Comedy, Fantasy, Horror",
+    "themes": "horror,comedy,fantasy,cult",
     "palette": "#242830|#d2b482|#a08c6e",
     "catalogNo": "RW-6950",
     "tagline": "In the heart of a violet forest, an old house awaits young g"
@@ -57090,7 +57090,7 @@
     "runtime": 96,
     "overview": "In the border town of Reino del Duero, Fátima, known as \"The Collector,\" gives a seemingly mundane object to some visiting strangers. What the visitors don't suspect is that Fátima's gifts will trigger a series of disturbing and dramatic paranormal events that will change their lives forever.",
     "genres": "Horror, Mystery",
-    "themes": "horror,thriller",
+    "themes": "horror,thriller,new",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-7192",
     "tagline": ""
@@ -57506,7 +57506,7 @@
     "runtime": 0,
     "overview": "A woman takes a man she just met at a nightclub to a hotel, so they can have a one-night stand, but things start to get complicated when he asks her to spend the night with him so they can have a chance to know about each other between the sheets.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-7224",
     "tagline": "Two strangers, an hotel room, the game of seduction begins"
@@ -58806,7 +58806,7 @@
     "runtime": 65,
     "overview": "Welcome! Come inside to the unmanned AI Hotel! Min-goo and Soo-ji entered an unmanned hotel located in an attractive location. AI that is more human than humans greet them and received fantastic services from the all-rounder male AI, 69, and innocent but sexy female AI, G10. What services do they offer in this unmanned hotel?",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-7324",
     "tagline": ""
@@ -59235,7 +59235,7 @@
     "runtime": 70,
     "overview": "Emotions and intrigue run high in this titillating taboo family affair. Chloe and Nica are sisters who both find themselves in their own passionate love affairs with their stepdad Carl.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-7357",
     "tagline": ""
@@ -60340,7 +60340,7 @@
     "runtime": 70,
     "overview": "A young woman gets a new job as an executive secretary. Her boss discovers that she resembles her late mother who he desired but lost to another man. Seeing his chance for revenge the boss and his sadistic circle of friends make plans to turn her into his personal sex slave.",
     "genres": "Drama, Horror",
-    "themes": "drama,horror",
+    "themes": "horror,drama",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-7442",
     "tagline": "1000mm bust distorted by rope! Ran Masaki, a ritual of humiliation!"
@@ -60379,7 +60379,7 @@
     "runtime": 71,
     "overview": "Jin Yi feels skeptical about her accustomed life as a high-class prostitute. The life she wants to run away from. She has a crush on the newly joined boxer Doo San and wants to leave with him, but Doo San decides to stay, contrary to Jin Yi's wishes. On the other hand, Yeon Soo struggled to enter the music school, but continuing her college life alone, she couldn't keep up with her studies and working part-time. A performance wearing a short skirt, ready to give her body to the professor in charge. But the professor in charge doesn't even blink.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-7445",
     "tagline": ""
@@ -64370,7 +64370,7 @@
     "runtime": 75,
     "overview": "Lusted after by all, she trades her innocence to escape her island. Betrayed, she strips away her abusers' darkest secrets in this sultry cinematic classic.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-7752",
     "tagline": ""
@@ -67412,7 +67412,7 @@
     "runtime": 116,
     "overview": "Ugo is an old actor who feels too young to be in an \"old actor's house\". He just can't stand the rules of the other old people so he escapes with a young girl.",
     "genres": "Drama, Romance, Comedy",
-    "themes": "drama,romance,comedy",
+    "themes": "comedy,romance,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-7986",
     "tagline": ""
@@ -68673,7 +68673,7 @@
     "runtime": 74,
     "overview": "Yeon-woo is reunited with her first love, Yoon-jeong, at a reunion after returning from America. While her husband is on a business trip, Yoon Jeong-eun calls Yeon-woo to her house and has sex. Yoon-jeong's husband, Jun-hyeok, finds another man's hair in the bed and visits Yeon-woo to warn him. Yoon-jung comes to Yeon-woo with a complicated heart. The two have sex once again and confirm their love...",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-8083",
     "tagline": ""
@@ -69882,7 +69882,7 @@
     "runtime": 110,
     "overview": "An elite Navy SEAL uncovers an international conspiracy while seeking justice for the murder of his pregnant wife.",
     "genres": "Action, Thriller, War",
-    "themes": "action,thriller,war",
+    "themes": "thriller,action,war",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-8176",
     "tagline": "From the author of Rainbow Six."
@@ -70272,7 +70272,7 @@
     "runtime": 98,
     "overview": "At a college in Rome, a professor, nicknamed \"Dodo\" is in a deep depression. His stunningly beautiful wife has just left him for another man. Dodo wants her back very badly and has erotic daydreams about her. A beautiful young student in his class asks him for a ride home and seduces the lucky man, but still he wonders about his wife and her lover.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-8206",
     "tagline": ""
@@ -71156,7 +71156,7 @@
     "runtime": 119,
     "overview": "Three compelling stories in one erotic experience. Yen Durano plays three different women in three titillating stories. In a collaboration of three directors: Roman Perez, Jr., Sigrid Polon, and Omar Deroca.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-8274",
     "tagline": ""
@@ -74640,7 +74640,7 @@
     "runtime": 85,
     "overview": "I had a dream...sleeping with you and Hwa-yeong.  Jin-goo and Joo-hee were happy until one day their daughter Hwa-yeong, who had eloped with another man, came home. Hwa-yeong and Jin-goo were a couple at school and she had gotten pregnant. So things took place quickly and they got to live with Hwa-yeong's mother Joo-hee. However, when Hwa-yeong found out she wasn't pregnant, hit it off with another man and left the house. Jin-goo and Joo-hee had fallen in love while she was gone. Hwa-yeong had broken up with her other man and came home. However, she finds it weird that Jin-goo is still at her mother's house. Jin-goo and Joo-hee put out all sorts of lies to hide the truth from Hwa-yeong.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-8542",
     "tagline": "I had a dream...sleeping with you and Hwa-yeong."
@@ -74653,7 +74653,7 @@
     "runtime": 118,
     "overview": "The beautiful Shizuko and her husband Toyama Takayoshi have a loving relationship, But Takayoshi is getting older and isn't always able to perform. His primary source of gratification involves observing his wife in sadomasochistic scenarios so he commissions a painter, skilled in the arts of bondage to bring these fantasies to life. Soon, Shiziko becomes a willing and submissive participant in fulfilling the S&M fantasies of not only her husband but a slew of rich lecherous men.",
     "genres": "Drama, Thriller, Romance, Horror",
-    "themes": "drama,thriller,romance",
+    "themes": "horror,thriller,romance,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-8543",
     "tagline": ""
@@ -75862,7 +75862,7 @@
     "runtime": 70,
     "overview": "A female teacher spots one of her students being molested by a vagrant. But her rescue attempt fails as the vagrant drags the teacher into an empty classroom and sexually assaults her. The student finds a school employee, a piano tuner, to try and help but all they can offer is some comfort. Later the piano tuner invites the teacher to his house. He wants her to be his obedient loving bride and has built a nice caged apartment in his basement all for her. He subjects her to an endless series of sexual humiliations to persuade her to say yes.",
     "genres": "Drama, Horror",
-    "themes": "drama,horror",
+    "themes": "horror,drama",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-8636",
     "tagline": "I gave up my self-esteem as a teacher... I blamed the pain of shame on the iron grid, the mysterious doll that vibrated the white lower limbs!"
@@ -78540,7 +78540,7 @@
     "runtime": 134,
     "overview": "Murphy is an American living in Paris who enters a highly sexually and emotionally charged relationship with the unstable Electra. Unaware of the seismic effect it will have on their relationship, they invite their pretty neighbor into their bed.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-8842",
     "tagline": ""
@@ -79190,7 +79190,7 @@
     "runtime": 69,
     "overview": "A woman on her way to Tokyo is repeatedly raped by various men she encounters on the highway.",
     "genres": "Crime, Thriller, Drama",
-    "themes": "crime,thriller,drama",
+    "themes": "thriller,crime,drama",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-8892",
     "tagline": "Stripped, torn, violated... What awaited the lone woman on her path was a brutal checkpoint of humiliation by beast-like men."
@@ -79554,7 +79554,7 @@
     "runtime": 90,
     "overview": "While scouting out apartments in London for her Venetian boyfriend, Carla rents an apartment overlooking the Thames. There, she meets a real estate agent by the name of Moira.",
     "genres": "Comedy, Drama, Romance",
-    "themes": "comedy,drama,romance",
+    "themes": "comedy,romance,drama",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-8920",
     "tagline": ""
@@ -82011,7 +82011,7 @@
     "runtime": 56,
     "overview": "A behind the scenes look at Jane Remover opening  for Turnstile on the Never Enough tour.",
     "genres": "Documentary",
-    "themes": "indie",
+    "themes": "indie,new",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-9109",
     "tagline": "Turn up or die."
@@ -83519,7 +83519,7 @@
     "runtime": 89,
     "overview": "Yeong-gil is in graduate class and is stressed about getting a job. To make things worse, he's not had any experience with women yet, so he's always searching for something in his dreams but wakes up to nothing. Then one day, there is a change in his life, he puts his hand in The Box of Pandora and gets a job although it wasn't a regular position. He sleeps with his female superior during the interview even though it's not how he imagined it. Then one day, he visits Joo-yeon's home and meets her beautiful mother. Can he keep himself from being seduced by this woman?",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-9225",
     "tagline": ""
@@ -83766,7 +83766,7 @@
     "runtime": 110,
     "overview": "Painter Ha-rim became blind due to an unfortunate accident. His wife Sun-yeong searches far and low for a cornea donor until she meets terminal cancer patient Dae-geun. These two make a startling and dangerous deal for Ha-rim's cornea.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-9244",
     "tagline": "If I open it more, will you give it to me?"
@@ -83922,7 +83922,7 @@
     "runtime": 90,
     "overview": "A veteran call girl and a runaway prostitute witness a murder which sends them on an out-of-control roller coaster ride through the twilight zone of sex-for-sale.",
     "genres": "Action, Thriller, Romance",
-    "themes": "action,thriller,romance",
+    "themes": "thriller,action,romance",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-9256",
     "tagline": "A jaded call-girl… a fledgling hooker… the night from hell."
@@ -84325,7 +84325,7 @@
     "runtime": 79,
     "overview": "When they were young, Min-joo and Seo-yeon cared for each other and were closer than brothers and sisters. However, she accidentally learns about Seo-yeon's tutor, Woo-hyeon, and because of this man, their 10-year friendship starts to become shaky. Meanwhile, Jeong-soo is hurt in seeing Min-joo like that, and so he distanced himself from Min-joo. Because of Min-joo and Seo-yeon's misunderstanding, Jeong-soo who couldn't care much might just leave so Min-joo tries to break up with the help of Seo-yeon. While in the process of breaking up, Min-joo and Seo-yeon went back to their close relationship.  The love of women who have been separated because of man, and the two men's friendship is comically drawn.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-9287",
     "tagline": ""
@@ -85287,7 +85287,7 @@
     "runtime": 140,
     "overview": "England, 15th century. Hal, a capricious prince who lives among the populace far from court, is forced by circumstances to reluctantly accept the throne and become Henry V.",
     "genres": "Drama, History, War",
-    "themes": "drama,war",
+    "themes": "war,drama",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-9361",
     "tagline": "All hail."
@@ -86626,7 +86626,7 @@
     "runtime": 89,
     "overview": "A reformed criminal's attempt at going straight is derailed when he reunites with his sanity-testing twin brother on a road trip for the score of a lifetime. Dodging bullets, the law, and an overbearing mother along the way, they must heal their severed family bond before they end up killing each other.",
     "genres": "Action, Comedy, Crime",
-    "themes": "action,comedy,crime",
+    "themes": "action,crime,comedy,new",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-9464",
     "tagline": "Family is a life sentence."
@@ -86938,7 +86938,7 @@
     "runtime": 91,
     "overview": "When a poor college student who cracks an online poker game goes bust, he arranges a face-to-face with the man he thinks cheated him, a sly offshore entrepreneur.",
     "genres": "Crime, Thriller, Drama",
-    "themes": "crime,thriller,drama",
+    "themes": "thriller,crime,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-9488",
     "tagline": "The house always wins."
@@ -87471,7 +87471,7 @@
     "runtime": 95,
     "overview": "After a yachting accident, a millionaire and his wife are shipwrecked on a desert island along with their former deckhand, Manuel.",
     "genres": "Adventure, Drama, Thriller",
-    "themes": "action,drama,thriller",
+    "themes": "thriller,action,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-9529",
     "tagline": "Looks can kill."
@@ -88069,7 +88069,7 @@
     "runtime": 103,
     "overview": "FBI agent Jack Crawford is out for revenge when his partner is killed and all clues point to the mysterious assassin Rogue. But when Rogue turns up years later to take care of some unfinished business, he triggers a violent clash of rival gangs. Will the truth come out before it's too late? And when the dust settles, who will remain standing?",
     "genres": "Action, Crime, Thriller",
-    "themes": "action,crime,thriller",
+    "themes": "thriller,action,crime",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-9575",
     "tagline": "Vengeance is the ultimate weapon."
@@ -88537,7 +88537,7 @@
     "runtime": 11,
     "overview": "An intimate evening between two teenagers is shaken when their emotions, lusts and secret desires collide with the need to capture everything on a mobile phone camera.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-9611",
     "tagline": "WHO WOULD YOU SHOW THIS TO?"
@@ -90630,7 +90630,7 @@
     "runtime": 70,
     "overview": "A gripping story about a woman wagered in a high-stakes card game. But the stakes get even hotter when she’s won by the man who’s long been obsessed with her.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-9772",
     "tagline": ""
@@ -91501,7 +91501,7 @@
     "runtime": 112,
     "overview": "Bert Kreischer faces a familial crisis and the arrival of his estranged father when the ghost of his booze-soaked past arrives: a murderous mobster hellbent on kidnapping Bert back to the motherland to atone for his crimes. Together, he and his father must retrace the steps of his younger self in the midst of a war between a sociopathic crime family while they attempt to find common ground.",
     "genres": "Comedy, Action, Crime",
-    "themes": "comedy,action,crime",
+    "themes": "action,crime,comedy",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-9839",
     "tagline": "To be a hero, it takes a lot of gut."
@@ -92320,7 +92320,7 @@
     "runtime": 4,
     "overview": "Alone in a filth-ridden apartment, a solitary man consumes a steady diet of toxic internet culture and processed waste. When a breakup text triggers a visceral reaction, the line between the consumer and his filth begins to blur.",
     "genres": "Horror, Drama, Fantasy",
-    "themes": "horror,drama,fantasy",
+    "themes": "horror,fantasy,drama,new",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-9902",
     "tagline": "EAT. SCROLL. ROT."
@@ -93698,7 +93698,7 @@
     "runtime": 65,
     "overview": "Sachiko has just committed a crime. She is helped by a couple to whom she grants her confidence. Quickly this couple blackmails her and threatens to deliver her to the police. Sachiko has no other choice but to obey them.",
     "genres": "Drama, Horror",
-    "themes": "drama,horror,classics",
+    "themes": "horror,drama,classics",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-10008",
     "tagline": ""
@@ -94166,7 +94166,7 @@
     "runtime": 70,
     "overview": "A hole on the wall accidentally connects two women emotionally and physically. Forbidden love, greed, betrayal... what lies beyond the hole? And for how long can they keep covering it up?",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-10044",
     "tagline": ""
@@ -98599,7 +98599,7 @@
     "runtime": 67,
     "overview": "A female teacher who is skilled in kendo is assigned to a rural high school in a beautiful remote valley. But she is soon trapped in a wide conspiracy of lust and perversion by those around her.",
     "genres": "Drama, Thriller, Horror",
-    "themes": "drama,thriller,horror",
+    "themes": "horror,thriller,drama",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-10385",
     "tagline": "1000mm bust shaking with pleasure! I can't take my eyes off you even for a moment!"
@@ -99197,7 +99197,7 @@
     "runtime": 7,
     "overview": "Eric, a young man in recovery, lives in a home designed to help people in addiction situations. Throughout the documentary, he shares his journey from the depths of addiction to his recovery, highlighting the importance of letting oneself be helped in the process and evidencing the persevering attitude that one must have in order to keep one's feet on the ground and be reborn in a new place. life.",
     "genres": "Documentary",
-    "themes": "indie",
+    "themes": "indie,new",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-10431",
     "tagline": ""
@@ -99821,7 +99821,7 @@
     "runtime": 160,
     "overview": "In the early 1990s, this city of desire, once a land of opportunity, was plagued by rampant crime and a breakdown of order. Man Tsz-keung, a working-class man desperate to change his fate, meets flight attendant Lok Ka-yuen, and the two team up to rob a large sum of money. This success fuels Man Tsz-keung's madness, pushing him into a deeper power struggle with wealthy businessman Chan Fai-yin. Meanwhile, mainland police officer Qi Honggang and Hong Kong police officer Guan Suchen continue their investigation of Wan Ziqiang, leading to a joint operation between the two police forces, setting the stage for a clash between good and evil. This film is fictional.",
     "genres": "Drama, Crime",
-    "themes": "drama,crime",
+    "themes": "crime,drama,new",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-10479",
     "tagline": ""
@@ -104280,7 +104280,7 @@
     "runtime": 114,
     "overview": "When the disappearance of a local girl overshadows the abduction of another, the guilt-ridden mother of the first girl takes it upon herself to uncover the truth, leading her into a dangerous web of jealousy, deception, and police corruption. This tense thriller explores the depths of a mother's love, the power of community, and the harsh realities of living under the spotlight of a small-town scandal.  —Janaya Black",
     "genres": "Thriller",
-    "themes": "thriller",
+    "themes": "thriller,new",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-10822",
     "tagline": ""
@@ -104631,7 +104631,7 @@
     "runtime": 71,
     "overview": "A charming bus conductor drawn to both men and women who feels an unexpected spark with a shy commuter. On crowded bus rides where bodies brush, desire grows and love becomes messy.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-10849",
     "tagline": ""
@@ -106516,7 +106516,7 @@
     "runtime": 71,
     "overview": "An erotic thriller about Mara, a woman who seduces celebrities and influencers to secretly film and blackmail them for money. But when love enters the picture, her dangerous scheme begins to fall apart.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-10994",
     "tagline": ""
@@ -106945,7 +106945,7 @@
     "runtime": 107,
     "overview": "Erik Matti’s classic Ekis gets a bold reboot with an all-girls ensemble led by Angela Morena, Cheena Dizon, and Aliya Raymundo. A crew of female thugs launches a kidnap-for-ransom plot, but when things go wrong, escaping the chaos becomes impossible.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-11027",
     "tagline": "Tirahin mo nang patalikod"
@@ -108024,7 +108024,7 @@
     "runtime": 72,
     "overview": "Karen plays Dolor, a street food vendor with big dreams. Men flock Dolor's stall not just for her dipping sauce but for the secret pleasure that comes with it.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-11110",
     "tagline": ""
@@ -108648,7 +108648,7 @@
     "runtime": 129,
     "overview": "A mother lives quietly with her son. One day, a girl is brutally killed, and the boy is charged with the murder. Now, it's his mother's mission to prove him innocent.",
     "genres": "Crime, Drama, Mystery",
-    "themes": "crime,drama,thriller",
+    "themes": "thriller,crime,drama",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-11158",
     "tagline": "She'll stop at nothing."
@@ -109779,7 +109779,7 @@
     "runtime": 97,
     "overview": "Across different eras, a poor family, an anxious developer and a fed-up landlady become tied to the same mysterious house in this animated dark comedy.",
     "genres": "Animation, Drama, Comedy, Horror, Fantasy",
-    "themes": "animation,drama,comedy",
+    "themes": "horror,comedy,animation,fantasy,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-11245",
     "tagline": "Three visionary tales. One unforgettable place."
@@ -111300,7 +111300,7 @@
     "runtime": 85,
     "overview": "A sultry woman who charms the hearts of men in a remote province. Dolores, a devoted wife to her paraplegic husband, falls for a young mountaineer. What begins as a reckless escape turns into an affair drenched in passion and secrecy.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama,new",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-11362",
     "tagline": ""
@@ -111391,7 +111391,7 @@
     "runtime": 101,
     "overview": "Ella, an events project manager, usually takes a private transportation service. However, she is forced to take a bus, where bus conductor Rico becomes aroused when her body gets pressed into him due to the thick crowd.  This encounter deeply affects Ella, and from that night on, she starts pursuing Rico. Even after discovering that Rico already has a live-in partner and a daughter, Ella doesn’t care at all and she’ll do anything to make him want her just as much.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#1c1418|#c45a3a|#f3e6c8",
     "catalogNo": "RW-11369",
     "tagline": ""
@@ -112509,7 +112509,7 @@
     "runtime": 108,
     "overview": "Ben, a journalist from New York City, travels to West Texas in order to investigate the death of a girl he was hooking up with while recording a murder mystery podcast along the way.",
     "genres": "Comedy, Mystery, Thriller",
-    "themes": "comedy,thriller",
+    "themes": "thriller,comedy",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-11455",
     "tagline": "Find the story before it finds you."
@@ -115213,7 +115213,7 @@
     "runtime": 61,
     "overview": "After divorce from her husband, Na-yeon, who lived with her son Dong-jin, suffered from a business failure. At the request of a junior democrat who has nowhere to go, four people live together for a while. Hyung-cheol tries to sex with Min-ju, but is rejected. Hyung-cheol, who is idle without knowing the date, is dissatisfied, I'm going out saying I'm looking for a job even by myself. There are only Nayeon and Hyungcheol at home. Nayeon takes a shower while Hyung-cheol is sleeping and masturbates while thinking of Hyung-cheol.  Hyung-cheol woke up thinking that the moaning in the bathroom was democratic.  Nayeon is surprised to see her masturbating, but she cannot overcome her excitement and attacks her.  When the two sexes were in full swing, Min-ju, who came back home, sees it.  That night, he goes to Dongjin's room and tells the truth...",
     "genres": "Drama, Romance",
-    "themes": "drama,romance",
+    "themes": "romance,drama",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-11663",
     "tagline": ""
@@ -116357,7 +116357,7 @@
     "runtime": 67,
     "overview": "An unsatisfied married woman reconnects with a friend who has been engaging in peculiar sexual practices with her own artist husband.",
     "genres": "Drama, Romance",
-    "themes": "drama,romance,classics",
+    "themes": "romance,drama,classics",
     "palette": "#1a1410|#c4aa80|#c41230",
     "catalogNo": "RW-11751",
     "tagline": "Bitch! Intoxicated by the beauty of depravity, the play of beasts... Starring Naomi Tani, the original Queen of SM"
@@ -117072,7 +117072,7 @@
     "runtime": 74,
     "overview": "Three married women had always been dissatisfied sexually with their husbands, and Hyoji, who recently divorced due to her husband's erectile dysfunction. They gathered after a long time and had a drink complaining to each other, and they received a business card from an unidentified handsome man, saying, \"Don't you want to play tteok pounding game?\" The four of them head to the meeting place and meet suspicious agents who were waiting for them.",
     "genres": "Comedy, Drama, Romance",
-    "themes": "comedy,drama,romance",
+    "themes": "comedy,romance,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-11806",
     "tagline": ""
@@ -118021,7 +118021,7 @@
     "runtime": 65,
     "overview": "On his 60th birthday, the wealthy Seiichiro Eto dies of rage after having an affair with his maid, Keiko. The remaining sisters fall into the hands of someone who is after their beautiful bodies and the Eto family’s assets, and are subjected to extreme humiliation.",
     "genres": "Drama, Horror",
-    "themes": "drama,horror",
+    "themes": "horror,drama",
     "palette": "#201410|#e8c07a|#8a3030",
     "catalogNo": "RW-11879",
     "tagline": "A love that can only be tormented... SM - beautiful and intimate world of bondage!"
@@ -120179,7 +120179,7 @@
     "runtime": 9,
     "overview": "Twila, a morally conscious cannibal, struggles to resist a dangerously primal obsession with her insecure boyfriend, Gerlach.",
     "genres": "Horror",
-    "themes": "horror",
+    "themes": "horror,new",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12045",
     "tagline": ""
@@ -122922,7 +122922,7 @@
     "runtime": 3,
     "overview": "A precision crew assembles for one last job, but the score isn't what anyone thinks it is.",
     "genres": "Crime, Mystery",
-    "themes": "crime,thriller",
+    "themes": "thriller,crime,new",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12256",
     "tagline": "This one's got a killer number"
@@ -124482,7 +124482,7 @@
     "runtime": 92,
     "overview": "A divorced horror novelist coming to terms with the disappearance of his young son inherits an old mansion home to malevolent supernatural residents.",
     "genres": "Comedy, Horror, Fantasy",
-    "themes": "comedy,horror,fantasy",
+    "themes": "horror,comedy,fantasy",
     "palette": "#1a1814|#d7c4a0|#1a6b6b",
     "catalogNo": "RW-12376",
     "tagline": "Horror has found a new home."
@@ -125353,7 +125353,7 @@
     "runtime": 88,
     "overview": "When Scott and Kate Johansen’s daughter gets into the college of her dreams it’s cause for celebration. That is, until Scott and Kate learn that the scholarship they were counting on didn’t come through, and they’re now on the hook for tuition they can’t begin to afford. With the help of their friend and neighbor Frank also in need of a major payday they decide to open an illegal casino in his suburban house, risking everything together on a Vegas-style bacchanal where money flows, inhibitions are checked at the door, and all bets are off.",
     "genres": "Comedy, Crime",
-    "themes": "comedy,crime",
+    "themes": "crime,comedy",
     "palette": "#10141c|#8aa0b8|#c41230",
     "catalogNo": "RW-12443",
     "tagline": "If you can't beat the house, be the house."
@@ -125691,7 +125691,7 @@
     "runtime": 72,
     "overview": "Lena and Mara are drawn into a secret affair that defies boundaries and threatens everything they’ve built. When Mara uncovers her groom’s betrayal, she finds solace in Lena, a newfound friend who soon becomes something more. As passion and secrecy collide, their choices endanger careers, fracture relationships, and lead to devastating consequences.",
     "genres": "Drama",
-    "themes": "drama",
+    "themes": "drama,new",
     "palette": "#141c1c|#1a6b6b|#e8c07a",
     "catalogNo": "RW-12469",
     "tagline": ""

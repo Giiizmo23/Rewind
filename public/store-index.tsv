@@ -222,7 +222,7 @@ the-texas-chainsaw-massacre-2	The Texas Chainsaw Massacre 2	1986	Tobe Hooper	Hor
 deep-red	Deep Red	1975	Dario Argento	Horror, Mystery, Thriller	horror,thriller,cult
 the-omen	The Omen	1976	Richard Donner	Horror, Thriller	horror,thriller
 the-hills-have-eyes	The Hills Have Eyes	1977	Wes Craven	Horror	horror
-house	House	1977	Nobuhiko Obayashi	Comedy,Fantasy,Horror	fantasy,horror,comedy
+house	House	1977	Nobuhiko Obayashi	Comedy, Fantasy, Horror	horror,comedy,fantasy
 invasion-of-the-body-snatchers-1978	Invasion of the Body Snatchers	1978	Philip Kaufman	Science Fiction, Horror	horror,scifi
 piranha	Piranha	1978	Joe Dante	Horror, Science Fiction, Comedy	horror,scifi,comedy
 the-amityville-horror	The Amityville Horror	1979	Stuart Rosenberg	Horror	horror
@@ -1894,7 +1894,7 @@ wild-wild-west-1999	Wild Wild West	1999	Barry Sonnenfeld	Action, Adventure, Come
 the-lone-ranger-2013	The Lone Ranger	2013	Gore Verbinski	Action, Adventure, Western	action,western
 cowboys-and-aliens-2011	Cowboys & Aliens	2011	Jon Favreau	Science Fiction, Western	scifi,western
 jonah-hex-2010	Jonah Hex	2010	Jimmy Hayward	Western, Fantasy, Thriller	thriller,western,fantasy
-the-kid-2019	The Kid	2019	Vincent D'Onofrio	Western,Drama,Action	western,drama,action
+the-kid-2019	The Kid	2019	Vincent D'Onofrio	Western, Drama, Action	action,western,drama
 old-henry-2021	Old Henry	2021	Potsy Ponciroli	Western, Drama	western,drama
 terror-on-the-prairie-2022	Terror on the Prairie	2022	Michael Polish	Western	western
 the-last-manhunt-2022	The Last Manhunt	2022	Christian Camargo	Western, Crime, Drama, Romance, Action	action,crime,western,romance,drama
@@ -2357,7 +2357,7 @@ after-life-1999	After Life	1999	Hirokazu Kore-eda	Fantasy, Drama	fantasy,drama,i
 frailty-2002	Frailty	2002	Bill Paxton	Drama, Thriller, Crime	thriller,crime,drama
 may-2003	May	2003	Lucky McKee	Drama, Horror, Comedy	horror,comedy,drama
 under-the-skin-2014	Under the Skin	2014	Jonathan Glazer	Thriller, Science Fiction, Drama	thriller,scifi,drama
-them-2006	Them	2006	Xavier Palud	Horror,Thriller	horror,thriller
+them-2006	Them	2006	Xavier Palud	Horror, Thriller	horror,thriller
 the-bridge-1959	The Bridge	1959	Bernhard Wicki	Drama, History, War	war,drama,classics
 thumbelina-1994	Thumbelina	1994	Don Bluth	Animation, Fantasy, Romance, Family	romance,animation,family,fantasy
 cats-don-t-dance-1997	Cats Don't Dance	1997	Mark Dindal	Animation, Comedy, Family, Music	comedy,animation,family,musical
@@ -2452,7 +2452,7 @@ suzume-2022	Suzume	2022	Makoto Shinkai	Animation, Drama, Adventure, Fantasy	anim
 the-super-mario-bros-movie-2023	The Super Mario Bros. Movie	2023	Aaron Horvath	Family, Comedy, Adventure, Fantasy, Animation	comedy,animation,family,fantasy
 a-quiet-place-part-ii-2021	A Quiet Place Part II	2021	John Krasinski	Science Fiction, Thriller, Horror	horror,thriller,scifi
 vampire-hunter-d-bloodlust-2001	Vampire Hunter D: Bloodlust	2001	Yoshiaki Kawajiri	Animation, Fantasy, Horror	horror,animation,fantasy
-they-2002	They	2002	Robert Harmon	Horror,Thriller	horror,thriller
+they-2002	They	2002	Robert Harmon	Horror, Thriller	horror,thriller
 teenage-mutant-ninja-turtles-mutant-mayhem-2023	Teenage Mutant Ninja Turtles: Mutant Mayhem	2023	Jeff Rowe	Animation, Comedy, Action, Science Fiction	scifi,action,comedy,animation
 nimona-2023	Nimona	2023	Troy Quane	Animation, Family, Fantasy, Adventure, Science Fiction, Action	scifi,action,animation,family,fantasy
 the-pirates-in-an-adventure-with-scientists-2012	The Pirates! In an Adventure with Scientists!	2012	Peter Lord	Animation, Adventure, Family, Comedy	comedy,animation,family
@@ -2750,7 +2750,7 @@ gamer-2009	Gamer	2009	Brian Taylor	Action, Thriller, Science Fiction	thriller,sc
 the-little-mermaid-2023	The Little Mermaid	2023	Rob Marshall	Adventure, Family, Fantasy, Romance	romance,family,fantasy
 tron-legacy-2010	TRON: Legacy	2010	Joseph Kosinski	Adventure, Action, Science Fiction	scifi,action
 damsel-2024	Damsel	2024	Juan Carlos Fresnadillo	Fantasy, Action, Adventure	action,fantasy,new
-new-york-new-york-1977	New York, New York	1977	Martin Scorsese	Romance,Drama,Music	musical,drama,romance
+new-york-new-york-1977	New York, New York	1977	Martin Scorsese	Romance, Drama, Music	romance,musical,drama
 a-letter-to-momo-2012	A Letter to Momo	2012	Hiroyuki Okiura	Comedy, Fantasy, Animation, Drama, Family	comedy,animation,family,fantasy,drama
 cabin-fever-2003	Cabin Fever	2003	Eli Roth	Horror	horror
 synchronic-2020	Synchronic	2020	Justin Benson	Horror, Science Fiction, Thriller	horror,thriller,scifi
@@ -4147,7 +4147,7 @@ brink-1998	Brink!	1998	Greg Beeman	Drama, TV Movie, Family	family,drama,sports
 johnny-tsunami-1999	Johnny Tsunami	1999	Steve Boyum	Family, TV Movie, Drama	family,drama,sports
 thank-you-for-your-service-2017	Thank You for Your Service	2017	Jason Hall	Drama, War	war,drama
 motocrossed-2001	Motocrossed	2001	Steve Boyum	TV Movie, Family, Comedy, Drama, Romance	comedy,romance,family,drama,sports
-house-1977	House	1977	Nobuhiko Obayashi	Comedy,Fantasy,Horror	cult,horror,comedy
+house-1977	House	1977	Nobuhiko Obayashi	Comedy, Fantasy, Horror	horror,comedy,fantasy,cult
 right-on-track-2003	Right on Track	2003	Duwayne Dunham	Drama, Family	family,drama,sports
 country-strong-2010	Country Strong	2010	Shana Feste	Drama, Romance, Music	romance,musical,drama
 halloweentown-high-2004	Halloweentown High	2004	Mark A.Z. Dippé	Family, Fantasy, Comedy, TV Movie	comedy,family,fantasy
@@ -4389,7 +4389,7 @@ a-place-called-silence-2024	A Place Called Silence	2024	Sam Quah	Crime, Mystery,
 don-t-look-down-2008	Don't Look Down	2008	Eliseo Subiela	Drama, Romance	romance,drama
 disclosure-day-2026	Disclosure Day	2026	Steven Spielberg	Science Fiction, Thriller	thriller,scifi,new
 siren-2004	Siren	2004	Satoshi Torao	Horror	horror
-the-collector-2025	The Collector	2025	Manuel Sanabria	Horror, Mystery	horror,thriller
+the-collector-2025	The Collector	2025	Manuel Sanabria	Horror, Mystery	horror,thriller,new
 missing-child-videotape-2025	Missing Child Videotape	2025	Ryota Kondo	Mystery, Horror	horror,thriller,new
 avatar-aang-the-last-airbender-2026	Avatar Aang: The Last Airbender	2026	Lauren Montgomery	Animation, Adventure, Fantasy, Action	action,animation,fantasy,new
 family-2026	Family	2026	Benjamin Finkel	Drama, Horror	horror,drama,new
@@ -4421,7 +4421,7 @@ doraemon-the-movie-new-nobita-and-the-castle-of-the-undersea-devil-2026	Doraemon
 michael-2026	Michael	2026	Antoine Fuqua	Music, Drama	musical,drama,new
 soulm8te-2026	Soulm8te	2026	Kate Dolan	Horror, Science Fiction, Thriller	horror,thriller,scifi,new
 strung-2026	Strung	2026	Malcolm D. Lee	Mystery, Thriller	thriller,new
-entre-s-banas-2008	Entre sábanas	2008	Gustavo Nieto Roa	Drama, Romance	drama,romance
+entre-s-banas-2008	Entre sábanas	2008	Gustavo Nieto Roa	Drama, Romance	romance,drama
 the-furious-2026	The Furious	2026	Kenji Tanigaki	Action, Crime, Thriller	thriller,action,crime,new
 supergirl-2026	Supergirl	2026	Craig Gillespie	Action, Adventure, Science Fiction	scifi,action,new
 rita-2024	Rita	2024	Jerry Lopez Sineneng	Drama, Fantasy, Horror	horror,fantasy,drama,new
@@ -4521,7 +4521,7 @@ buddy-2026	Buddy	2026	Casper Kelly	Horror, Comedy, Fantasy	horror,comedy,fantasy
 the-vvaan-2026	The Vvaan	2026	Deepak Kumar Mishra	Action, Adventure, Thriller	thriller,action,new
 back-to-the-future-part-ii-1989	Back to the Future Part II	1989	Robert Zemeckis	Adventure, Comedy, Science Fiction	scifi,action,comedy
 spider-man-3-2007	Spider-Man 3	2007	Sam Raimi	Action, Adventure, Science Fiction	scifi,action
-ai-sex-hotel-2022	AI Sex Hotel	2022	Park Seon-ho-II	Drama, Romance	drama,romance
+ai-sex-hotel-2022	AI Sex Hotel	2022	Park Seon-ho-II	Drama, Romance	romance,drama
 cars-2-2011	Cars 2	2011	John Lasseter	Animation, Family, Adventure, Comedy	comedy,animation,family
 crayon-shin-chan-the-movie-very-bizarre-my-yokai-vacation-2026	Crayon Shin-chan the Movie: Very Bizarre! My Yokai Vacation	2026	Masaki Watanabe	Adventure, Animation, Comedy	comedy,animation,new
 vishwanath-sons-2026	Vishwanath & Sons	2026	Venky Atluri	Drama, Romance, Comedy	comedy,romance,drama,new
@@ -4554,7 +4554,7 @@ rabbit-trap-2025	Rabbit Trap	2025	Bryn Chainey	Thriller, Fantasy, Horror, Myster
 batman-v-superman-dawn-of-justice-2016	Batman v Superman: Dawn of Justice	2016	Zack Snyder	Action, Adventure, Fantasy	action,fantasy
 the-weight-2026	The Weight	2026	Padraic McKinley	Drama, Thriller, Crime	thriller,crime,drama,new
 apex-2026	Apex	2026	Baltasar Kormákur	Action, Thriller	thriller,action,new
-stepdaddy-2026	Stepdaddy	2026	Christopher Novabos	Drama	drama
+stepdaddy-2026	Stepdaddy	2026	Christopher Novabos	Drama	drama,new
 terminator-genisys-2015	Terminator Genisys	2015	Alan Taylor	Science Fiction, Action, Thriller	thriller,scifi,action
 the-intouchables-2011	The Intouchables	2011	Éric Toledano	Drama, Comedy	comedy,drama
 spa-weekend-2026	Spa Weekend	2026	Jon Lucas	Comedy	comedy,new
@@ -4639,10 +4639,10 @@ our-fault-2025	Our Fault	2025	Domingo González	Romance, Drama	romance,drama,new
 pirates-of-the-caribbean-dead-men-tell-no-tales-2017	Pirates of the Caribbean: Dead Men Tell No Tales	2017	Espen Sandberg	Adventure, Action, Fantasy	action,fantasy
 jurassic-world-fallen-kingdom-2018	Jurassic World: Fallen Kingdom	2018	J. A. Bayona	Adventure, Science Fiction, Thriller	thriller,scifi,action
 ma-rainey-s-black-bottom-2020	Ma Rainey's Black Bottom	2020	George C. Wolfe	Drama, Music	musical,drama
-snake-and-whip-1986	Snake and Whip	1986	Shōgorō Nishimura	Drama, Horror	drama,horror
+snake-and-whip-1986	Snake and Whip	1986	Shōgorō Nishimura	Drama, Horror	horror,drama
 taken-3-2014	Taken 3	2014	Olivier Megaton	Thriller, Action	thriller,action
 the-karate-kid-2010	The Karate Kid	2010	Harald Zwart	Action, Adventure, Drama, Family	action,family,drama
-dangerous-relationship-professor-and-female-college-student-2021	Dangerous Relationship: Professor and Female College Student	2021	EROPING	Drama, Romance	drama,romance
+dangerous-relationship-professor-and-female-college-student-2021	Dangerous Relationship: Professor and Female College Student	2021	EROPING	Drama, Romance	romance,drama
 venom-2018	Venom	2018	Ruben Fleischer	Science Fiction, Action	scifi,action
 cos-fan-tutte-2013	Così fan tutte	2013	Hannes Rossacher	Music, TV Movie	musical
 zack-snyder-s-justice-league-2021	Zack Snyder's Justice League	2021	Zack Snyder	Action, Adventure, Fantasy	action,fantasy
@@ -4949,7 +4949,7 @@ mujeres-infieles-2-2003	Mujeres infieles 2	2003	Adolfo Martínez Solares	Drama	d
 wild-child-2008	Wild Child	2008	Nick Moore	Comedy, Family	comedy,family
 scary-movie-4-2006	Scary Movie 4	2006	David Zucker	Comedy	comedy
 angel-has-fallen-2019	Angel Has Fallen	2019	Ric Roman Waugh	Action, Thriller	thriller,action
-isla-2026	Isla	2026	Rodante Pajemna Jr.	Drama	drama
+isla-2026	Isla	2026	Rodante Pajemna Jr.	Drama	drama,new
 unfaithful-2002	Unfaithful	2002	Adrian Lyne	Thriller, Drama, Romance	thriller,romance,drama
 bury-the-devil-2026	Bury the Devil	2026	Adam O'Brien	Horror, Thriller	horror,thriller,new
 oscar-shaw-2026	Oscar Shaw	2026	R. Ellis Frazier	Action, Crime, Thriller, Western	thriller,action,crime,western,new
@@ -5183,7 +5183,7 @@ ninja-wars-blackfox-vs-shogun-s-ninja-2026	Ninja Wars: BlackFox vs Shogun's Ninj
 the-blue-lagoon-1980	The Blue Lagoon	1980	Randal Kleiser	Adventure, Drama, Romance	action,romance,drama
 instant-family-2018	Instant Family	2018	Sean Anders	Comedy, Drama	comedy,drama
 invited-delivery-man-2-2022	Invited Delivery Man 2	2022	Lee Sang-soo	Romance	romance
-first-love-1978	First Love	1978	Dino Risi	Drama, Romance, Comedy	drama,romance,comedy
+first-love-1978	First Love	1978	Dino Risi	Drama, Romance, Comedy	comedy,romance,drama
 indecent-proposal-1993	Indecent Proposal	1993	Adrian Lyne	Romance, Drama	romance,drama
 for-your-eyes-only-1981	For Your Eyes Only	1981	John Glen	Adventure, Action, Thriller	thriller,action
 into-the-wild-2007	Into the Wild	2007	Sean Penn	Adventure, Drama	action,drama
@@ -5280,7 +5280,7 @@ juror-2-2024	Juror #2	2024	Clint Eastwood	Drama, Thriller	thriller,drama,new
 american-wedding-2003	American Wedding	2003	Jesse Dylan	Comedy, Romance	comedy,romance
 fantastic-four-rise-of-the-silver-surfer-2007	Fantastic Four: Rise of the Silver Surfer	2007	Tim Story	Science Fiction, Adventure, Action	scifi,action
 snake-eyes-g-i-joe-origins-2021	Snake Eyes: G.I. Joe Origins	2021	Robert Schwentke	Action, Adventure	action
-adultery-alumni-association-3-2020	Adultery Alumni Association 3	2020	Jo Tae-ho	Drama, Romance	drama,romance
+adultery-alumni-association-3-2020	Adultery Alumni Association 3	2020	Jo Tae-ho	Drama, Romance	romance,drama
 blue-streak-1999	Blue Streak	1999	Les Mayfield	Action, Comedy, Crime	action,crime,comedy
 the-torture-club-2014	The Torture Club	2014	Kōta Yoshida	Drama, Comedy	comedy,drama
 fall-for-me-2025	Fall for Me	2025	Sherry Hormann	Romance, Thriller	thriller,romance,new
@@ -5373,7 +5373,7 @@ bound-by-honor-1993	Bound by Honor	1993	Taylor Hackford	Crime, Drama, Thriller	t
 the-pelican-brief-1993	The Pelican Brief	1993	Alan J. Pakula	Thriller, Crime, Drama	thriller,crime,drama
 child-s-play-3-1991	Child's Play 3	1991	Jack Bender	Horror	horror
 the-transporter-refueled-2015	The Transporter Refueled	2015	Camille Delamarre	Action, Thriller, Crime	thriller,action,crime
-tom-clancy-s-without-remorse-2021	Tom Clancy's Without Remorse	2021	Stefano Sollima	Action, Thriller, War	action,thriller,war
+tom-clancy-s-without-remorse-2021	Tom Clancy's Without Remorse	2021	Stefano Sollima	Action, Thriller, War	thriller,action,war
 after-everything-2023	After Everything	2023	Castille Landon	Romance, Drama	romance,drama
 charlie-s-angels-2019	Charlie's Angels	2019	Elizabeth Banks	Action, Adventure, Comedy	action,comedy
 the-post-2017	The Post	2017	Steven Spielberg	Drama, History	drama
@@ -5403,7 +5403,7 @@ sniper-no-nation-2026	Sniper: No Nation	2026	Trevor Calverley	Action, Thriller	t
 antz-1998	Antz	1998	Eric Darnell	Animation, Comedy, Family	comedy,animation,family
 hackers-1995	Hackers	1995	Iain Softley	Action, Crime, Thriller, Drama	thriller,action,crime,drama
 end-of-days-1999	End of Days	1999	Peter Hyams	Action, Horror, Fantasy	horror,action,fantasy
-the-voyeur-1994	The Voyeur	1994	Tinto Brass	Drama, Romance	drama,romance
+the-voyeur-1994	The Voyeur	1994	Tinto Brass	Drama, Romance	romance,drama
 train-dreams-2025	Train Dreams	2025	Clint Bentley	Drama	drama,new
 paul-blart-mall-cop-2-2015	Paul Blart: Mall Cop 2	2015	Andy Fickman	Action, Comedy, Family	action,comedy,family
 g-force-2009	G-Force	2009	Hoyt Yeatman	Family, Fantasy, Action, Adventure, Comedy	action,comedy,family,fantasy
@@ -5471,7 +5471,7 @@ the-flintstones-1994	The Flintstones	1994	Brian Levant	Fantasy, Comedy, Family	c
 safe-house-2012	Safe House	2012	Daniel Espinosa	Action, Thriller	thriller,action
 sultana-2026	Sultana	2026	Ali Kemal Güven	Drama, Music	musical,drama,new
 one-gram-of-life-2025	One Gram of Life	2025	Atanas Mihaylov	Drama	drama,new
-eks-2024	EKS	2024	Roman Perez Jr.	Drama	drama
+eks-2024	EKS	2024	Roman Perez Jr.	Drama	drama,new
 club-kid-2026	Club Kid	2026	Jordan Firstman	Comedy, Drama	comedy,drama,new
 not-another-teen-movie-2001	Not Another Teen Movie	2001	Joel Gallen	Comedy	comedy
 ghosted-2023	Ghosted	2023	Dexter Fletcher	Action, Comedy, Romance	action,comedy,romance
@@ -5739,8 +5739,8 @@ lilo-stitch-2-stitch-has-a-glitch-2005	Lilo & Stitch 2: Stitch Has a Glitch	2005
 vampires-suck-2010	Vampires Suck	2010	Jason Friedberg	Comedy, Fantasy	comedy,fantasy
 a-walk-among-the-tombstones-2014	A Walk Among the Tombstones	2014	Scott Frank	Crime, Drama, Mystery, Thriller	thriller,crime,drama
 humint-2026	Humint	2026	Ryoo Seung-wan	Thriller, Action, Drama	thriller,action,drama,new
-young-mother-the-original-2016	Young Mother: The Original	2016	Jeong Do-soo	Drama, Romance	drama,romance
-flower-snake-ii-2005	Flower & Snake II	2005	Takashi Ishii	Drama, Thriller, Romance, Horror	drama,thriller,romance
+young-mother-the-original-2016	Young Mother: The Original	2016	Jeong Do-soo	Drama, Romance	romance,drama
+flower-snake-ii-2005	Flower & Snake II	2005	Takashi Ishii	Drama, Thriller, Romance, Horror	horror,thriller,romance,drama
 flight-2012	Flight	2012	Robert Zemeckis	Drama	drama
 mortal-kombat-1995	Mortal Kombat	1995	Paul W. S. Anderson	Action, Fantasy	action,fantasy
 allied-2016	Allied	2016	Robert Zemeckis	Action, Drama, War, Romance, Thriller	thriller,action,war,romance,drama
@@ -5833,7 +5833,7 @@ bikini-hoe-down-1997	Bikini Hoe-Down	1997	Fred Olen Ray	Comedy	comedy
 new-year-s-eve-2011	New Year's Eve	2011	Garry Marshall	Comedy, Romance	comedy,romance
 body-of-lies-2008	Body of Lies	2008	Ridley Scott	Action, Drama, Thriller	thriller,action,drama
 the-losers-2010	The Losers	2010	Sylvain White	Action, Adventure, Crime, Mystery, Thriller	thriller,action,crime
-female-teacher-in-rope-hell-1981	Female Teacher in Rope Hell	1981	Shōgorō Nishimura	Drama, Horror	drama,horror
+female-teacher-in-rope-hell-1981	Female Teacher in Rope Hell	1981	Shōgorō Nishimura	Drama, Horror	horror,drama
 the-brave-one-2007	The Brave One	2007	Neil Jordan	Crime, Drama, Thriller	thriller,crime,drama
 johnny-english-strikes-again-2018	Johnny English Strikes Again	2018	David Kerr	Action, Adventure, Comedy	action,comedy
 the-ogre-s-bride-2026	The Ogre's Bride	2026	Chihiro Ikeda	Romance, Fantasy	romance,fantasy,new
@@ -6039,7 +6039,7 @@ the-nut-job-2014	The Nut Job	2014	Peter Lepeniotis	Animation, Comedy, Family, Ad
 nine-1-2-weeks-1986	Nine 1/2 Weeks	1986	Adrian Lyne	Drama, Romance	romance,drama
 the-x-files-1998	The X-Files	1998	Rob Bowman	Mystery, Science Fiction, Thriller	thriller,scifi
 u-s-marshals-1998	U.S. Marshals	1998	Stuart Baird	Thriller, Crime, Action	thriller,action,crime
-love-2015	Love	2015	Gaspar Noé	Drama, Romance	drama,romance
+love-2015	Love	2015	Gaspar Noé	Drama, Romance	romance,drama
 morning-glory-2010	Morning Glory	2010	Roger Michell	Drama, Comedy, Romance	comedy,romance,drama
 the-way-back-2010	The Way Back	2010	Peter Weir	Drama, Adventure, History	action,drama
 the-name-of-the-rose-1986	The Name of the Rose	1986	Jean-Jacques Annaud	Drama, Thriller, Mystery	thriller,drama
@@ -6089,7 +6089,7 @@ mommy-2014	Mommy	2014	Xavier Dolan	Drama	drama
 snow-white-and-7-wise-men-1982	Snow White and 7 Wise Men	1982	Mario Bianchi	Comedy	comedy
 what-a-girl-wants-2003	What a Girl Wants	2003	Dennie Gordon	Family, Comedy, Drama, Romance	comedy,romance,family,drama
 in-all-innocence-1998	In All Innocence	1998	Pierre Jolivet	Drama, Romance	romance,drama
-raping-1978	Raping!	1978	Yasuharu Hasebe	Crime, Thriller, Drama	crime,thriller,drama
+raping-1978	Raping!	1978	Yasuharu Hasebe	Crime, Thriller, Drama	thriller,crime,drama
 the-texas-chainsaw-massacre-the-beginning-2006	The Texas Chainsaw Massacre: The Beginning	2006	Jonathan Liebesman	Horror, Thriller	horror,thriller
 valentine-s-day-2010	Valentine's Day	2010	Garry Marshall	Comedy, Romance	comedy,romance
 the-pale-blue-eye-2022	The Pale Blue Eye	2022	Scott Cooper	Thriller, Crime, Horror, Mystery	horror,thriller,crime
@@ -6117,7 +6117,7 @@ jimmy-neutron-boy-genius-2001	Jimmy Neutron: Boy Genius	2001	John A. Davis	Famil
 blackhat-2015	Blackhat	2015	Michael Mann	Crime, Thriller, Action	thriller,action,crime
 sagaran-2026	Sagaran	2026	Sid T. Pascua	Drama	drama,new
 the-sword-in-the-stone-1963	The Sword in the Stone	1963	Wolfgang Reitherman	Animation, Family, Fantasy	animation,family,fantasy
-cheeky-2000	Cheeky	2000	Tinto Brass	Comedy, Drama, Romance	comedy,drama,romance
+cheeky-2000	Cheeky	2000	Tinto Brass	Comedy, Drama, Romance	comedy,romance,drama
 shame-2011	Shame	2011	Steve McQueen	Drama	drama
 girls-trip-2017	Girls Trip	2017	Malcolm D. Lee	Comedy, Romance, Adventure	action,comedy,romance
 sex-and-the-city-2-2010	Sex and the City 2	2010	Michael Patrick King	Comedy, Drama, Romance	comedy,romance,drama
@@ -6306,7 +6306,7 @@ labyrinth-romanesque-1988	Labyrinth Romanesque	1988	Shunya Ito	Mystery	thriller
 time-cut-2024	Time Cut	2024	Hannah Macpherson	Horror, Science Fiction, Thriller	horror,thriller,scifi,new
 shrek-the-halls-2007	Shrek the Halls	2007	Gary Trousdale	Adventure, Animation, Comedy, Fantasy, Family	comedy,animation,family,fantasy
 elevation-2024	Elevation	2024	George Nolfi	Action, Science Fiction, Thriller	thriller,scifi,action,new
-the-experience-2025	The Experience	2025	Jane Remover	Documentary	indie
+the-experience-2025	The Experience	2025	Jane Remover	Documentary	indie,new
 the-355-2022	The 355	2022	Simon Kinberg	Action, Adventure, Thriller	thriller,action
 absolute-power-1997	Absolute Power	1997	Clint Eastwood	Crime, Drama, Action	action,crime,drama
 jfk-1991	JFK	1991	Oliver Stone	Drama, Thriller, History	thriller,drama
@@ -6422,7 +6422,7 @@ klara-and-the-sun-2026	Klara and the Sun	2026	Taika Waititi	Science Fiction, Dra
 dirty-angels-2024	Dirty Angels	2024	Martin Campbell	Drama, Thriller, War	thriller,war,drama,new
 outcome-2026	Outcome	2026	Jonah Hill	Comedy, Drama	comedy,drama,new
 faster-2010	Faster	2010	George Tillman Jr.	Crime, Drama, Action, Thriller	thriller,action,crime,drama
-young-mother-2-2014	Young Mother 2	2014	Noh Seong-soo	Drama, Romance	drama,romance
+young-mother-2-2014	Young Mother 2	2014	Noh Seong-soo	Drama, Romance	romance,drama
 to-catch-a-thief-1955	To Catch a Thief	1955	Alfred Hitchcock	Mystery, Romance, Thriller	thriller,romance,classics
 sniper-ultimate-kill-2017	Sniper: Ultimate Kill	2017	Claudio Fäh	Action	action
 along-came-a-spider-2001	Along Came a Spider	2001	Lee Tamahori	Crime, Mystery, Thriller, Action	thriller,action,crime
@@ -6441,7 +6441,7 @@ coming-2-america-2021	Coming 2 America	2021	Craig Brewer	Comedy	comedy
 the-debut-2026	The Debut	2026	Jesse Eisenberg	Music, Comedy, Drama	comedy,musical,drama,new
 curiosa-2019	Curiosa	2019	Lou Jeunet	Drama, History	drama
 the-pursuit-of-lust-4-2025	The Pursuit of Lust 4	2025	Batdelger Byambasvren	Romance	romance,new
-female-war-a-nasty-deal-2015	Female War: A Nasty Deal	2015	No Zin-soo	Drama, Romance	drama,romance
+female-war-a-nasty-deal-2015	Female War: A Nasty Deal	2015	No Zin-soo	Drama, Romance	romance,drama
 papillon-2017	Papillon	2017	Michael Noer	Adventure, Crime, Drama	action,crime,drama
 out-for-justice-1991	Out for Justice	1991	John Flynn	Action, Crime, Drama, Thriller	thriller,action,crime,drama
 the-blob-1988	The Blob	1988	Chuck Russell	Horror, Science Fiction, Thriller	horror,thriller,scifi
@@ -6453,7 +6453,7 @@ borat-subsequent-moviefilm-delivery-of-prodigious-bribe-to-american-regime-for-m
 mousehunt-1997	MouseHunt	1997	Gore Verbinski	Comedy, Family	comedy,family
 one-piece-film-gold-2016	One Piece Film: GOLD	2016	Hiroaki Miyamoto	Action, Animation, Adventure, Comedy	action,comedy,animation
 missing-2023	Missing	2023	Nicholas D. Johnson	Drama, Mystery, Thriller	thriller,drama
-x-2011	X	2011	Jon Hewitt	Action, Thriller, Romance	action,thriller,romance
+x-2011	X	2011	Jon Hewitt	Action, Thriller, Romance	thriller,action,romance
 three-thousand-years-of-longing-2022	Three Thousand Years of Longing	2022	George Miller	Drama, Fantasy, Romance	romance,fantasy,drama
 smokin-aces-2006	Smokin' Aces	2006	Joe Carnahan	Action, Comedy, Crime, Thriller	thriller,action,crime,comedy
 movie-43-2013	Movie 43	2013	Steven Brill	Comedy	comedy
@@ -6484,7 +6484,7 @@ the-devil-s-own-1997	The Devil's Own	1997	Alan J. Pakula	Crime, Thriller, Drama	
 last-seen-alive-2022	Last Seen Alive	2022	Brian Goodman	Action, Thriller	thriller,action
 paranormal-activity-next-of-kin-2021	Paranormal Activity: Next of Kin	2021	William Eubank	Horror, Mystery	horror,thriller
 gail-daughtry-and-the-celebrity-sex-pass-2026	Gail Daughtry and the Celebrity Sex Pass	2026	David Wain	Comedy	comedy,new
-r-rated-idol-seung-ha-s-sex-scandal-2020	R-Rated Idol Seung-ha's Sex Scandal	2020	Choi Jin-chul	Drama, Romance	drama,romance
+r-rated-idol-seung-ha-s-sex-scandal-2020	R-Rated Idol Seung-ha's Sex Scandal	2020	Choi Jin-chul	Drama, Romance	romance,drama
 under-the-tuscan-sun-2003	Under the Tuscan Sun	2003	Audrey Wells	Romance, Comedy	comedy,romance
 free-birds-2013	Free Birds	2013	Jimmy Hayward	Animation, Comedy, Family	comedy,animation,family
 code-of-honor-1987	Code of Honor	1987	Billy Chan Wui-Ngai	Drama, Action, Crime	action,crime,drama
@@ -6558,7 +6558,7 @@ barbie-as-the-princess-the-pauper-2004	Barbie as The Princess & the Pauper	2004	
 girl-s-pleasure-man-hunting-1977	Girl’s Pleasure: Man Hunting	1977	Toshiya Fujita	Drama, Thriller	thriller,drama,classics
 all-of-you-2025	All of You	2025	William Bridges	Romance, Drama	romance,drama,new
 the-glass-castle-2017	The Glass Castle	2017	Destin Daniel Cretton	Drama	drama
-the-king-2019	The King	2019	David Michôd	Drama, History, War	drama,war
+the-king-2019	The King	2019	David Michôd	Drama, History, War	war,drama
 flora-and-son-2023	Flora and Son	2023	John Carney	Music, Comedy, Drama	comedy,musical,drama
 doctor-zhivago-1965	Doctor Zhivago	1965	David Lean	Drama, Romance, War	war,romance,drama
 bad-times-at-the-el-royale-2018	Bad Times at the El Royale	2018	Drew Goddard	Thriller, Mystery, Crime, Drama	thriller,crime,drama
@@ -6661,7 +6661,7 @@ the-story-of-ong-nyeo-2014	The Story of Ong-nyeo	2014	Gyeong Seok-Ho	Romance, Dr
 i-want-to-eat-your-pancreas-2018	I Want to Eat Your Pancreas	2018	Shinichiro Ushijima	Animation, Drama, Romance	romance,animation,drama
 sex-and-death-101-2007	Sex and Death 101	2007	Daniel Waters	Comedy, Romance, Drama	comedy,romance,drama
 spy-game-2001	Spy Game	2001	Tony Scott	Action, Crime, Thriller	thriller,action,crime
-brothers-2024	Brothers	2024	Max Barbakow	Action, Comedy, Crime	action,comedy,crime
+brothers-2024	Brothers	2024	Max Barbakow	Action, Comedy, Crime	action,crime,comedy,new
 in-dubious-battle-2016	In Dubious Battle	2016	James Franco	Drama	drama
 escape-from-the-planet-of-the-apes-1971	Escape from the Planet of the Apes	1971	Don Taylor	Action, Science Fiction	scifi,action,classics
 the-eternal-zero-2013	The Eternal Zero	2013	Takashi Yamazaki	War, Drama, Action, Mystery	thriller,action,war,drama
@@ -6685,7 +6685,7 @@ the-greatest-beer-run-ever-2022	The Greatest Beer Run Ever	2022	Peter Farrelly	D
 the-hunchback-of-notre-dame-1939	The Hunchback of Notre Dame	1939	William Dieterle	Drama, Romance, Horror	horror,romance,drama
 sleeping-with-the-enemy-1991	Sleeping with the Enemy	1991	Joseph Ruben	Drama, Thriller	thriller,drama
 late-spring-1949	Late Spring	1949	Yasujirō Ozu	Drama	drama,classics
-runner-runner-2013	Runner Runner	2013	Brad Furman	Crime, Thriller, Drama	crime,thriller,drama
+runner-runner-2013	Runner Runner	2013	Brad Furman	Crime, Thriller, Drama	thriller,crime,drama
 i-am-celine-dion-2024	I Am: Celine Dion	2024	Irene Taylor	Documentary, Music	musical,indie,new
 girl-in-the-box-2016	Girl in the Box	2016	Stephen Kemp	Drama, TV Movie	drama
 sex-plate-17-2017	Sex Plate 17	2017	Song Eun-joo	Comedy, Drama, Romance	comedy,romance,drama
@@ -6726,7 +6726,7 @@ one-of-them-days-2025	One of Them Days	2025	Lawrence Lamont	Comedy	comedy,new
 the-out-laws-2023	The Out-Laws	2023	Tyler Spindel	Romance, Action, Comedy	action,comedy,romance
 walk-of-shame-2014	Walk of Shame	2014	Steven Brill	Comedy	comedy
 knights-of-the-zodiac-2023	Knights of the Zodiac	2023	Tomek Bagiński	Fantasy, Action, Science Fiction	scifi,action,fantasy
-three-2005	Three	2005	Stewart Raffill	Adventure, Drama, Thriller	action,drama,thriller
+three-2005	Three	2005	Stewart Raffill	Adventure, Drama, Thriller	thriller,action,drama
 jumanji-open-world-2026	Jumanji: Open World	2026	Jake Kasdan	Adventure, Comedy, Fantasy	comedy,fantasy,new
 all-the-king-s-men-2006	All the King's Men	2006	Steven Zaillian	Drama, Thriller	thriller,drama
 step-up-revolution-2012	Step Up Revolution	2012	Scott Speer	Music, Drama, Romance	romance,musical,drama
@@ -6772,7 +6772,7 @@ the-rookie-1990	The Rookie	1990	Clint Eastwood	Action, Crime, Drama, Thriller	th
 awarapan-2-2026	Awarapan 2	2026	Nitin Kakkar	Action, Drama, Romance	action,romance,drama,new
 el-infierno-2010	El Infierno	2010	Luis Estrada	Action, Crime, Western, Comedy, Drama	action,crime,western,comedy,drama
 road-to-ninja-naruto-the-movie-2012	Road to Ninja: Naruto the Movie	2012	Hayato Date	Animation, Fantasy, Action	action,animation,fantasy
-war-2007	War	2007	Philip G. Atwell	Action, Crime, Thriller	action,crime,thriller
+war-2007	War	2007	Philip G. Atwell	Action, Crime, Thriller	thriller,action,crime
 scooby-doo-pirates-ahoy-2006	Scooby-Doo! Pirates Ahoy!	2006	Chuck Sheetz	Fantasy, Animation, Comedy, Family, Mystery, Adventure	thriller,comedy,animation,family,fantasy
 kangaroo-kids-2026	Kangaroo Kids	2026	Fairai Branscombe Richmond	Family	family,new
 udta-teer-2026	Udta Teer	2026	Aakash Kaushik	Comedy	comedy,new
@@ -6808,7 +6808,7 @@ g-d-n-2026	G.D.N	2026	Krishnakumar Ramakumar	Drama	drama,new
 one-hour-photo-2002	One Hour Photo	2002	Mark Romanek	Drama, Thriller	thriller,drama
 the-monuments-men-2014	The Monuments Men	2014	George Clooney	War, Drama, History	war,drama
 jungle-fever-1991	Jungle Fever	1991	Spike Lee	Drama, Romance	romance,drama
-sex-2026	Sex	2026	Andrej Tomin	Drama	drama
+sex-2026	Sex	2026	Andrej Tomin	Drama	drama,new
 guns-up-2025	Guns Up	2025	Edward Drake	Action, Comedy, Crime	action,crime,comedy,new
 soul-plane-2004	Soul Plane	2004	Jessy Terrero	Comedy	comedy
 the-beloved-2026	The Beloved	2026	Rodrigo Sorogoyen	Drama	drama,new
@@ -6969,7 +6969,7 @@ keman-a-tlar-2020	Keman Ağıtları	2020	Mehmet Tanrısever	Drama	drama
 the-lizzie-mcguire-movie-2003	The Lizzie McGuire Movie	2003	Jim Fall	Family, Comedy	comedy,family
 a-line-of-fire-2025	A Line of Fire	2025	Matt Shapira	Action, Thriller	thriller,action,new
 leo-2023	Leo	2023	David Wachtenheim	Animation, Comedy, Family	comedy,animation,family
-siping-2026	Siping	2026	Christopher Novabos	Drama	drama
+siping-2026	Siping	2026	Christopher Novabos	Drama	drama,new
 honey-i-blew-up-the-kid-1992	Honey, I Blew Up the Kid	1992	Randal Kleiser	Adventure, Comedy, Family, Science Fiction	scifi,comedy,family
 around-the-world-in-80-days-2004	Around the World in 80 Days	2004	Frank Coraci	Action, Adventure, Comedy	action,comedy
 the-witches-of-eastwick-1987	The Witches of Eastwick	1987	George Miller	Comedy, Fantasy, Horror	horror,comedy,fantasy
@@ -7036,7 +7036,7 @@ vixen-1968	Vixen!	1968	Russ Meyer	Drama	drama,classics
 the-guilt-trip-2012	The Guilt Trip	2012	Anne Fletcher	Comedy	comedy
 nine-lives-2016	Nine Lives	2016	Barry Sonnenfeld	Fantasy, Comedy, Family	comedy,family,fantasy
 the-monkey-king-2023	The Monkey King	2023	Anthony Stacchi	Animation, Fantasy, Adventure, Family, Comedy	comedy,animation,family,fantasy
-the-machine-2023	The Machine	2023	Peter Atencio	Comedy, Action, Crime	comedy,action,crime
+the-machine-2023	The Machine	2023	Peter Atencio	Comedy, Action, Crime	action,crime,comedy
 a-man-apart-2003	A Man Apart	2003	F. Gary Gray	Action, Drama, Crime	action,crime,drama
 the-mountain-between-us-2017	The Mountain Between Us	2017	Hany Abu-Assad	Drama, Adventure, Romance	action,romance,drama
 revenge-of-the-pink-panther-1978	Revenge of the Pink Panther	1978	Blake Edwards	Comedy, Crime, Mystery	thriller,crime,comedy
@@ -7099,7 +7099,7 @@ unthinkable-2010	Unthinkable	2010	Gregor Jordan	Drama, Thriller	thriller,drama
 go-team-2026	Go Team!	2026	Diego Núñez Irigoyen	Comedy	comedy,new
 a-man-called-ove-2015	A Man Called Ove	2015	Hannes Holm	Comedy, Drama	comedy,drama
 nowhere-to-run-1993	Nowhere to Run	1993	Robert Harmon	Action, Drama, Thriller	thriller,action,drama
-the-birth-2026	The Birth	2026	Saeid Ghasemi	Horror, Drama, Fantasy	horror,drama,fantasy
+the-birth-2026	The Birth	2026	Saeid Ghasemi	Horror, Drama, Fantasy	horror,fantasy,drama,new
 get-hard-2015	Get Hard	2015	Etan Cohen	Comedy, Crime	crime,comedy
 naruto-shippuden-the-movie-the-will-of-fire-2009	Naruto Shippuden the Movie: The Will of Fire	2009	Masahiko Murata	Action, Adventure, Comedy, Drama, Fantasy, Animation	action,comedy,animation,fantasy,drama
 ruby-sparks-2012	Ruby Sparks	2012	Jonathan Dayton	Comedy, Romance, Fantasy, Drama	comedy,romance,fantasy,drama
@@ -7205,7 +7205,7 @@ ice-age-a-mammoth-christmas-2011	Ice Age: A Mammoth Christmas	2011	Karen Disher	
 blonde-2022	Blonde	2022	Andrew Dominik	Drama	drama
 batman-assault-on-arkham-2014	Batman: Assault on Arkham	2014	Ethan Spaulding	Thriller, Animation, Action, Crime	thriller,action,crime,animation
 it-s-only-the-end-of-the-world-2016	It's Only the End of the World	2016	Xavier Dolan	Drama	drama
-woods-are-wet-1973	Woods Are Wet	1973	Tatsumi Kumashiro	Drama, Horror	drama,horror,classics
+woods-are-wet-1973	Woods Are Wet	1973	Tatsumi Kumashiro	Drama, Horror	horror,drama,classics
 miss-congeniality-2-armed-and-fabulous-2005	Miss Congeniality 2: Armed and Fabulous	2005	John Pasquin	Action, Comedy	action,comedy
 baththa-2026	Baththa	2026	Balaji Tharaneetharan	Drama, Comedy, Action	action,comedy,drama,new
 kill-2024	KILL	2024	Nikhil Nagesh Bhat	Action, Crime, Thriller	thriller,action,crime,new
@@ -7241,7 +7241,7 @@ miracle-in-cell-no-7-2019	Miracle in Cell No. 7	2019	Mehmet Ada Öztekin	Drama	d
 love-strange-love-1982	Love Strange Love	1982	Walter Hugo Khouri	Drama, History	drama
 spermageddon-2024	Spermageddon	2024	Tommy Wirkola	Animation, Adventure, Fantasy, Comedy	comedy,animation,fantasy,new
 funny-people-2009	Funny People	2009	Judd Apatow	Comedy, Drama	comedy,drama
-sundutan-2026	Sundutan	2026	Rodante Pajemna Jr.	Drama	drama
+sundutan-2026	Sundutan	2026	Rodante Pajemna Jr.	Drama	drama,new
 the-spirit-of-christmas-1953	The Spirit of Christmas	1953	Mabel Beaton	Animation, Family	animation,family,holiday
 the-babysitter-killer-queen-2020	The Babysitter: Killer Queen	2020	McG	Comedy, Horror	horror,comedy
 iron-mask-2019	Iron Mask	2019	Oleg Stepchenko	Action, Adventure, Family, Fantasy	action,family,fantasy
@@ -7582,7 +7582,7 @@ winchester-2018	Winchester	2018	Michael Spierig	Horror, Thriller	horror,thriller
 small-fry-2011	Small Fry	2011	Angus MacLane	Animation, Comedy, Family, Adventure	comedy,animation,family
 run-hide-fight-infidels-2026	Run Hide Fight: Infidels	2026	Kyle Rankin	Action, Thriller	thriller,action,new
 bodycam-2026	Bodycam	2026	Brandon Christensen	Horror	horror,new
-beautiful-teacher-in-torture-hell-1985	Beautiful Teacher in Torture Hell	1985	Masahito Segawa	Drama, Thriller, Horror	drama,thriller,horror
+beautiful-teacher-in-torture-hell-1985	Beautiful Teacher in Torture Hell	1985	Masahito Segawa	Drama, Thriller, Horror	horror,thriller,drama
 billie-eilish-the-world-s-a-little-blurry-2021	Billie Eilish: The World's a Little Blurry	2021	R.J. Cutler	Documentary, Music	musical,indie
 the-great-debaters-2007	The Great Debaters	2007	Denzel Washington	Drama	drama
 the-banishing-2021	The Banishing	2021	Christopher Smith	Horror	horror
@@ -7628,7 +7628,7 @@ scorpion-king-book-of-souls-2018	Scorpion King: Book of Souls	2018	Don Michael P
 boruto-naruto-the-movie-2015	Boruto: Naruto the Movie	2015	Hiroyuki Yamashita	Adventure, Action, Animation, Comedy, Fantasy	action,comedy,animation,fantasy
 andr-is-an-idiot-2026	André Is an Idiot	2026	Tony Benna	Documentary	drama,indie,new
 ju-on-the-grudge-2002	Ju-on: The Grudge	2002	Takashi Shimizu	Horror	horror
-underground-2024	Underground	2024	Juana María Sohn Chanourdie	Documentary	indie
+underground-2024	Underground	2024	Juana María Sohn Chanourdie	Documentary	indie,new
 even-if-this-love-disappears-tonight-2025	Even If This Love Disappears Tonight	2025	Kim Hye-young	Romance, Drama	romance,drama,new
 female-ninjas-magic-chronicles-2-secret-of-the-christian-bells-1992	Female Ninjas Magic Chronicles 2: Secret of the Christian Bells	1992	Masaru Tsushima	Action	action
 in-the-name-of-the-king-a-dungeon-siege-tale-2007	In the Name of the King: A Dungeon Siege Tale	2007	Uwe Boll	Adventure, Fantasy	fantasy
@@ -7676,7 +7676,7 @@ let-him-go-2020	Let Him Go	2020	Thomas Bezucha	Thriller, Crime, Western	thriller
 agathiyar-1972	Agathiyar	1972	A. P. Nagarajan	Drama	drama,classics
 starstruck-2010	Starstruck	2010	Michael Grossman	Romance, Comedy, TV Movie, Music	comedy,romance,musical
 mother-bhumi-2025	Mother Bhumi	2025	Keat Aun Chong	Drama, History	drama,new
-v-2026	V	2026	Han Yan	Drama, Crime	drama,crime
+v-2026	V	2026	Han Yan	Drama, Crime	crime,drama,new
 the-gruffalo-2009	The Gruffalo	2009	Max Lang	Animation, Family, TV Movie	animation,family
 cape-fear-1962	Cape Fear	1962	J. Lee Thompson	Thriller, Drama, Crime	thriller,crime,drama
 snack-shack-2024	Snack Shack	2024	Adam Rehmeier	Comedy, Drama	comedy,drama,new
@@ -8019,7 +8019,7 @@ snake-eyes-1998	Snake Eyes	1998	Brian De Palma	Crime, Mystery, Thriller	thriller
 rv-2006	RV	2006	Barry Sonnenfeld	Family, Comedy, Adventure	comedy,family
 the-experiment-2001	The Experiment	2001	Oliver Hirschbiegel	Drama, Thriller	thriller,drama
 i-give-it-a-year-2013	I Give It a Year	2013	Dan Mazer	Comedy, Romance	comedy,romance
-missing-2025	Missing	2025	Janaya Black	Thriller	thriller
+missing-2025	Missing	2025	Janaya Black	Thriller	thriller,new
 peppermint-2018	Peppermint	2018	Pierre Morel	Action, Thriller	thriller,action
 the-boat-that-rocked-2009	The Boat That Rocked	2009	Richard Curtis	Drama, Comedy	comedy,drama
 crazy-love-1993	Crazy Love	1993	Roman Cheung Shiu-Lun	Comedy, Romance, Drama	comedy,romance,drama
@@ -8046,7 +8046,7 @@ white-bird-2023	White Bird	2023	Marc Forster	Drama, War	war,drama
 thirteen-days-2000	Thirteen Days	2000	Roger Donaldson	History, Thriller	thriller
 the-marsh-king-s-daughter-2023	The Marsh King's Daughter	2023	Neil Burger	Thriller, Crime, Mystery	thriller,crime
 saint-seiya-legend-of-sanctuary-2014	Saint Seiya: Legend of Sanctuary	2014	Keiichi Sato	Action, Animation, Fantasy	action,animation,fantasy
-tayuan-2-2026	Tayuan 2	2026	Topel Lee	Drama	drama
+tayuan-2-2026	Tayuan 2	2026	Topel Lee	Drama	drama,new
 senior-year-2022	Senior Year	2022	Alex Hardcastle	Comedy	comedy
 grand-canyon-film-show-1915	Grand Canyon Film Show	1915	Emery Kolb	Documentary	drama,classics,indie
 my-girl-2-1994	My Girl 2	1994	Howard Zieff	Comedy, Family	comedy,family
@@ -8191,7 +8191,7 @@ batman-beyond-return-of-the-joker-2000	Batman Beyond: Return of the Joker	2000	C
 the-strangers-prey-at-night-2018	The Strangers: Prey at Night	2018	Johannes Roberts	Horror, Thriller	horror,thriller
 the-waiting-2013	The Waiting	2013	Mario Rizzi	Documentary	indie
 get-him-to-the-greek-2010	Get Him to the Greek	2010	Nicholas Stoller	Adventure, Comedy, Music	action,comedy,musical
-scandal-queen-2026	Scandal Queen	2026	Topel Lee	Drama	drama
+scandal-queen-2026	Scandal Queen	2026	Topel Lee	Drama	drama,new
 the-mechanic-1972	The Mechanic	1972	Michael Winner	Action, Crime, Thriller	thriller,action,crime
 devara-part-1-2024	Devara: Part 1	2024	Koratala Siva	Drama, Action	action,drama,new
 the-campaign-2012	The Campaign	2012	Jay Roach	Comedy	comedy
@@ -8224,7 +8224,7 @@ lunok-2026	Lunok	2026	Rain Yamson	Drama	drama,new
 acid-2023	Acid	2023	Just Philippot	Drama, Science Fiction, Fantasy	scifi,fantasy,drama
 maps-to-the-stars-2014	Maps to the Stars	2014	David Cronenberg	Drama	drama
 the-boy-who-harnessed-the-wind-2019	The Boy Who Harnessed the Wind	2019	Chiwetel Ejiofor	Drama, History	drama
-ekis-2025	Ekis	2025	Christian Paolo Lat	Drama	drama
+ekis-2025	Ekis	2025	Christian Paolo Lat	Drama	drama,new
 camp-x-ray-2014	Camp X-Ray	2014	Peter Sattler	Drama	drama
 io-capitano-2023	Io Capitano	2023	Matteo Garrone	Adventure, Drama	action,drama
 crying-freeman-1995	Crying Freeman	1995	Christophe Gans	Action, Crime	action,crime
@@ -8307,7 +8307,7 @@ naruto-the-movie-guardians-of-the-crescent-moon-kingdom-2006	Naruto the Movie: G
 i-spit-on-your-grave-iii-vengeance-is-mine-2015	I Spit on Your Grave III: Vengeance Is Mine	2015	Richard Schenkman	Horror	horror
 propeller-one-way-night-coach-2026	Propeller One-Way Night Coach	2026	John Travolta	Adventure, Drama, Family	family,drama,new
 immoral-tales-1974	Immoral Tales	1974	Walerian Borowczyk	Drama, Romance	romance,drama,classics
-sawsawan-2026	Sawsawan	2026	Rodante Pajemna Jr.	Drama	drama
+sawsawan-2026	Sawsawan	2026	Rodante Pajemna Jr.	Drama	drama,new
 impossible-things-2021	Impossible Things	2021	Ernesto Contreras	Family, Drama	family,drama
 please-stand-by-2018	Please Stand By	2018	Ben Lewin	Comedy, Drama	comedy,drama
 cinderella-2021	Cinderella	2021	Kay Cannon	Fantasy, Romance, Comedy	comedy,romance,fantasy
@@ -8355,7 +8355,7 @@ the-trojan-women-1971	The Trojan Women	1971	Mihalis Kakogiannis	Drama	drama,clas
 the-powerpuff-girls-movie-2002	The Powerpuff Girls Movie	2002	Craig McCracken	Animation, Action, Family	action,animation,family
 disconnect-2013	Disconnect	2013	Henry Alex Rubin	Drama, Thriller	thriller,drama
 victorian-psycho-2026	Victorian Psycho	2026	Zachary Wigon	Horror, Thriller	horror,thriller,new
-mother-2009	Mother	2009	Bong Joon Ho	Crime, Drama, Mystery	crime,drama,thriller
+mother-2009	Mother	2009	Bong Joon Ho	Crime, Drama, Mystery	thriller,crime,drama
 fib-the-truth-2021	Fib the Truth	2021	Olga Akatyeva	Drama, Thriller	thriller,drama
 red-lights-2012	Red Lights	2012	Rodrigo Cortés	Thriller	thriller
 rebecca-1940	Rebecca	1940	Alfred Hitchcock	Mystery, Romance, Thriller	thriller,romance,classics
@@ -8442,7 +8442,7 @@ an-affair-my-sister-in-law-s-love-2018	An Affair: My Sister-in-law's Love	2018	C
 togo-2019	Togo	2019	Ericson Core	Adventure, History, Drama	action,drama
 empire-state-2013	Empire State	2013	Dito Montiel	Action, Drama	action,drama
 rurouni-kenshin-part-i-origins-2012	Rurouni Kenshin Part I: Origins	2012	Keishi Otomo	Adventure, Action, Fantasy, War, History	action,war,fantasy
-the-house-2022	The House	2022	Paloma Baeza	Animation, Drama, Comedy, Horror, Fantasy	animation,drama,comedy
+the-house-2022	The House	2022	Paloma Baeza	Animation, Drama, Comedy, Horror, Fantasy	horror,comedy,animation,fantasy,drama
 save-the-last-dance-for-me-1986	Save the Last Dance for Me	1986	Hisayasu Satō	Crime, Drama	crime,drama
 life-of-crime-2013	Life of Crime	2013	Daniel Schechter	Comedy, Crime	crime,comedy
 the-9th-life-of-louis-drax-2016	The 9th Life of Louis Drax	2016	Alexandre Aja	Mystery, Thriller	thriller
@@ -8559,14 +8559,14 @@ the-pledge-2001	The Pledge	2001	Sean Penn	Crime, Drama, Mystery, Thriller	thrill
 without-a-paddle-2004	Without a Paddle	2004	Steven Brill	Comedy, Action, Adventure, Mystery	thriller,action,comedy
 the-legend-of-the-nahuala-2007	The Legend of the Nahuala	2007	Ricardo Arnaiz	Family, Fantasy, Animation, Horror	horror,animation,family,fantasy
 lilya-4-ever-2002	Lilya 4-ever	2002	Lukas Moodysson	Drama, Crime	crime,drama
-ligaw-2025	Ligaw	2025	Omar Deroca	Drama, Romance	drama,romance
+ligaw-2025	Ligaw	2025	Omar Deroca	Drama, Romance	romance,drama,new
 mrs-barrington-1974	Mrs. Barrington	1974	Chuck Vincent	Comedy	comedy,classics
 bureau-749-2024	Bureau 749	2024	Lu Chuan	Action, Adventure, Science Fiction	scifi,action,new
 love-at-second-sight-2019	Love at Second Sight	2019	Hugo Gélin	Comedy, Romance, Fantasy	comedy,romance,fantasy
 ben-is-back-2018	Ben Is Back	2018	Peter Hedges	Drama	drama
 united-93-2006	United 93	2006	Paul Greengrass	Drama, History, Thriller	thriller,drama
 we-2018	We	2018	Rene Eller	Crime, Drama, History	crime,drama
-tayuan-2023	Tayuan	2023	Topel Lee	Drama, Romance	drama,romance
+tayuan-2023	Tayuan	2023	Topel Lee	Drama, Romance	romance,drama
 father-mother-sister-brother-2025	Father Mother Sister Brother	2025	Jim Jarmusch	Comedy, Drama	comedy,drama,new
 awake-2007	Awake	2007	Joby Harold	Thriller, Crime, Mystery	thriller,crime
 blackberry-2023	BlackBerry	2023	Matt Johnson	Comedy, Drama, History	comedy,drama
@@ -8652,7 +8652,7 @@ harsh-times-2005	Harsh Times	2005	David Ayer	Crime, Drama, Thriller, Action	thri
 sound-of-falling-2025	Sound of Falling	2025	Mascha Schilinski	Drama	drama,new
 shattered-2022	Shattered	2022	Luis Prieto	Thriller, Horror, Crime, Mystery	horror,thriller,crime
 point-of-no-return-1993	Point of No Return	1993	John Badham	Action, Crime, Thriller	thriller,action,crime
-vengeance-2022	Vengeance	2022	B.J. Novak	Comedy, Mystery, Thriller	comedy,thriller
+vengeance-2022	Vengeance	2022	B.J. Novak	Comedy, Mystery, Thriller	thriller,comedy
 the-wife-2017	The Wife	2017	Björn Runge	Drama	drama
 my-mother-s-wedding-2025	My Mother's Wedding	2025	Kristin Scott Thomas	Comedy, Drama	comedy,drama,new
 bed-rella-2016	Bed-Rella	2016	Choi Moo-yeon	Romance, Drama	romance,drama
@@ -8860,7 +8860,7 @@ manhattan-night-2016	Manhattan Night	2016	Brian DeCubellis	Drama, Mystery, Thril
 bokeh-2017	Bokeh	2017	Geoffrey Orthwein	Drama, Science Fiction, Thriller	thriller,scifi,drama
 purple-noon-1960	Purple Noon	1960	René Clément	Crime, Drama, Thriller	thriller,crime,drama
 a-trip-to-the-moon-1902	A Trip to the Moon	1902	Georges Méliès	Adventure, Science Fiction, Comedy	scifi,action,comedy
-big-tits-mom-friend-2020	Big Tits Mom Friend	2020	Lee Jeong-seok	Drama, Romance	drama,romance
+big-tits-mom-friend-2020	Big Tits Mom Friend	2020	Lee Jeong-seok	Drama, Romance	romance,drama
 a-minecraft-movie-squared-2027	A Minecraft Movie Squared	2027	Jared Hess	Family, Fantasy, Comedy, Adventure	comedy,family,fantasy,coming,new
 the-lair-of-the-white-worm-1988	The Lair of the White Worm	1988	Ken Russell	Horror, Comedy	horror,comedy
 see-no-evil-2006	See No Evil	2006	Gregory Dark	Horror, Thriller	horror,thriller
@@ -8948,7 +8948,7 @@ the-boondock-saints-ii-all-saints-day-2009	The Boondock Saints II: All Saints Da
 extinction-2015	Extinction	2015	Miguel Ángel Vivas	Horror, Science Fiction, Thriller	horror,thriller,scifi
 stranded-2015	Stranded	2015	Andy Nehl	Comedy	comedy,indie
 rising-sun-1993	Rising Sun	1993	Philip Kaufman	Action, Drama, Thriller	thriller,action,drama
-rope-cosmetology-1978	Rope Cosmetology	1978	Shōgorō Nishimura	Drama, Romance	drama,romance,classics
+rope-cosmetology-1978	Rope Cosmetology	1978	Shōgorō Nishimura	Drama, Romance	romance,drama,classics
 mr-nice-guy-1997	Mr. Nice Guy	1997	Sammo Hung	Crime, Action, Comedy	action,crime,comedy
 another-man-2026	Another Man	2026	David Moragas	Romance, Comedy	comedy,romance,new
 wonder-woman-bloodlines-2019	Wonder Woman: Bloodlines	2019	Justin Copeland	Science Fiction, Animation	scifi,animation
@@ -9003,7 +9003,7 @@ mardi-gras-spring-break-2011	Mardi Gras: Spring Break	2011	Phil Dornfeld	Comedy	
 madame-bamboo-1991	Madame Bamboo	1991	Hsia Tsu-hui	Drama, Comedy	comedy,drama
 blood-red-sky-2021	Blood Red Sky	2021	Peter Thorwarth	Horror, Thriller, Action	horror,thriller,action
 how-much-do-you-love-me-2005	How Much Do You Love Me?	2005	Bertrand Blier	Comedy, Drama	comedy,drama
-sex-game-6969-2022	Sex Game 6969	2022	Mongta	Comedy, Drama, Romance	comedy,drama,romance
+sex-game-6969-2022	Sex Game 6969	2022	Mongta	Comedy, Drama, Romance	comedy,romance,drama
 beautiful-wedding-2024	Beautiful Wedding	2024	Roger Kumble	Romance, Comedy, Drama	comedy,romance,drama,new
 girl-hell-1999	Girl Hell	1999	Daisuke Yamanouchi	Horror	horror
 accident-man-hitman-s-holiday-2022	Accident Man: Hitman's Holiday	2022	Harry Kirby	Action, Comedy, Crime	action,crime,comedy,holiday
@@ -9076,7 +9076,7 @@ barbie-fairytopia-mermaidia-2006	Barbie Fairytopia: Mermaidia	2006	Walter P. Mar
 balandrau-where-the-fierce-wind-blew-2026	Balandrau: Where the Fierce Wind Blew	2026	Fernando Trullols	Drama	drama,new
 marlowe-2023	Marlowe	2023	Neil Jordan	Crime	crime
 firestarter-2022	Firestarter	2022	Keith Thomas	Horror, Science Fiction	horror,scifi
-dan-oniroku-female-bondage-torture-1989	Dan Oniroku: Female Bondage Torture	1989	Satoru Kobayashi	Drama, Horror	drama,horror
+dan-oniroku-female-bondage-torture-1989	Dan Oniroku: Female Bondage Torture	1989	Satoru Kobayashi	Drama, Horror	horror,drama
 replicas-2018	Replicas	2018	Jeffrey Nachmanoff	Science Fiction, Thriller, Drama	thriller,scifi,drama
 melissa-p-2005	Melissa P.	2005	Luca Guadagnino	Drama	drama
 molester-diary-a-man-who-kept-stroking-ass-2-1995	Molester Diary: A Man Who Kept Stroking Ass 2	1995	Tadafumi Tomioka	Drama	drama
@@ -9242,7 +9242,7 @@ drop-dead-gorgeous-1999	Drop Dead Gorgeous	1999	Michael Patrick Jann	Comedy	come
 young-sister-s-taste-2023	Young Sister's Taste	2023	Jung Ha-yoon-I	Drama, Romance	romance,drama
 two-is-a-family-2016	Two Is a Family	2016	Hugo Gélin	Drama, Comedy	comedy,drama
 king-tweety-2022	King Tweety	2022	Careen Ingle	Animation, Comedy, Family, Adventure, Fantasy, Mystery	thriller,comedy,animation,family,fantasy
-fed-up-2025	Fed Up	2025	Isabella Aursby	Horror	horror
+fed-up-2025	Fed Up	2025	Isabella Aursby	Horror	horror,new
 the-myth-2005	The Myth	2005	Stanley Tong Gwai-Lai	Action, Adventure, Comedy, Drama, Fantasy	action,comedy,fantasy,drama
 dream-horse-2021	Dream Horse	2021	Euros Lyn	Comedy, Drama	comedy,drama
 hard-feelings-2023	Hard Feelings	2023	Granz Henman	Comedy	comedy
@@ -9453,7 +9453,7 @@ which-brings-me-to-you-2023	Which Brings Me to You	2023	Peter Hutchings	Romance,
 gasoline-alley-2022	Gasoline Alley	2022	Edward Drake	Action, Thriller, Crime, Mystery	thriller,action,crime
 colorful-stage-the-movie-a-miku-who-can-t-sing-2025	COLORFUL STAGE! The Movie: A Miku Who Can't Sing	2025	Hiroyuki Hata	Animation, Music, Drama, Science Fiction	scifi,animation,musical,drama,new
 the-astronaut-s-wife-1999	The Astronaut's Wife	1999	Rand Ravich	Drama, Science Fiction, Thriller	thriller,scifi,drama
-the-company-2026	The Company	2026	Fernando de Miguel Fuertes	Crime, Mystery	crime,thriller
+the-company-2026	The Company	2026	Fernando de Miguel Fuertes	Crime, Mystery	thriller,crime,new
 troll-2022	Troll	2022	Roar Uthaug	Fantasy, Action, Adventure	action,fantasy
 barbie-in-the-pink-shoes-2013	Barbie in the Pink Shoes	2013	Owen Hurley	Animation, Family	animation,family
 wardriver-2026	Wardriver	2026	Rebecca Thomas	Thriller, Crime	thriller,crime,new
@@ -9573,7 +9573,7 @@ female-ninjas-magic-chronicles-3-sacred-book-of-sexual-positions-1993	Female Nin
 sleepwalkers-1992	Sleepwalkers	1992	Mick Garris	Horror, Fantasy, Thriller	horror,thriller,fantasy
 one-missed-call-2008	One Missed Call	2008	Eric Valette	Horror, Mystery, Thriller	horror,thriller
 the-dating-app-killer-the-monica-white-story-2026	The Dating App Killer: The Monica White Story	2026	Elisabeth Röhm	Thriller, TV Movie	thriller,new
-house-1985	House	1985	Steve Miner	Comedy, Horror, Fantasy	comedy,horror,fantasy
+house-1985	House	1985	Steve Miner	Comedy, Horror, Fantasy	horror,comedy,fantasy
 cannibal-girls-1973	Cannibal Girls	1973	Ivan Reitman	Comedy, Horror	horror,comedy,classics
 play-misty-for-me-1971	Play Misty for Me	1971	Clint Eastwood	Drama, Thriller	thriller,drama,classics
 the-flight-of-the-phoenix-1965	The Flight of the Phoenix	1965	Robert Aldrich	Adventure, Drama	action,drama,classics
@@ -9640,7 +9640,7 @@ a-sacrifice-2024	A Sacrifice	2024	Jordan Scott	Thriller, Horror	horror,thriller,
 dolemite-is-my-name-2019	Dolemite Is My Name	2019	Craig Brewer	Drama, Comedy, History	comedy,drama
 art-of-the-devil-2-2005	Art of the Devil 2	2005	Yossapong Phonsup	Horror, Thriller	horror,thriller
 riff-raff-2025	Riff Raff	2025	Dito Montiel	Crime, Comedy, Drama	crime,comedy,drama,new
-the-house-2017	The House	2017	Andrew J. Cohen	Comedy, Crime	comedy,crime
+the-house-2017	The House	2017	Andrew J. Cohen	Comedy, Crime	crime,comedy
 did-you-hear-about-the-morgans-2009	Did You Hear About the Morgans?	2009	Marc Lawrence	Comedy, Drama, Romance	comedy,romance,drama
 adam-s-curse-reborn-from-hell-2025	Adam's Curse: Reborn from Hell	2025	Giulio De Santi	Action, Horror	horror,action,new
 school-ties-1992	School Ties	1992	Robert Mandel	Drama	drama
@@ -9666,7 +9666,7 @@ detective-chinatown-1900-2025	Detective Chinatown 1900	2025	Chen Sicheng	Comedy,
 goofy-and-wilbur-1939	Goofy and Wilbur	1939	Dick Huemer	Animation, Comedy	comedy,animation
 ironclad-2011	Ironclad	2011	Jonathan English	Romance, Adventure, Action, History	action,romance
 1999-2027	1999	2027	Leonid Plyaskin	War, Drama	war,drama,coming,new
-sulutan-2026	Sulutan	2026	Rodante Pajemna Jr.	Drama	drama
+sulutan-2026	Sulutan	2026	Rodante Pajemna Jr.	Drama	drama,new
 the-last-exorcism-part-ii-2013	The Last Exorcism Part II	2013	Ed Gass-Donnelly	Horror, Thriller	horror,thriller
 lucky-sky-diamond-1989	Lucky Sky Diamond	1989	Izo Hashimoto	Horror, Science Fiction	horror,scifi
 son-of-frankenstein-1939	Son of Frankenstein	1939	Rowland V. Lee	Horror, Science Fiction	horror,scifi,classics
