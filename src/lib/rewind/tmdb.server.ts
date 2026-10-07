@@ -1,6 +1,27 @@
 const SEARCH = "https://api.themoviedb.org/3/search/movie";
 const MOVIE = "https://api.themoviedb.org/3/movie/";
 const IMG = "https://image.tmdb.org/t/p/";
+const GENRE_ID: Record<string, string> = {
+  "28": "Action",
+  "12": "Adventure",
+  "16": "Animation",
+  "35": "Comedy",
+  "80": "Crime",
+  "99": "Documentary",
+  "18": "Drama",
+  "10751": "Family",
+  "14": "Fantasy",
+  "36": "History",
+  "27": "Horror",
+  "10402": "Music",
+  "9648": "Mystery",
+  "10749": "Romance",
+  "878": "Science Fiction",
+  "10770": "TV Movie",
+  "53": "Thriller",
+  "10752": "War",
+  "37": "Western",
+};
 
 type CacheEntry = { at: number; body: unknown };
 const cache = new Map<string, CacheEntry>();
@@ -125,14 +146,8 @@ function pickPoster(
 ): { title: string; year: string; poster: string; still?: string } | null {
   const wanted = title.toLowerCase();
   const named = rows.filter((row) => row.title.toLowerCase() === wanted);
-  if (!named.length) return null;
-  const y = Number(year);
-  if (!y) return named[0];
-  const near = named.find((row) => {
-    const ry = Number(row.year);
-    return Boolean(ry) && Math.abs(ry - y) <= 1;
-  });
-  return near || named[0];
+  const pool = named.length ? named : rows;
+  return pool.find((row) => year && row.year === year) || pool[0] || null;
 }
 
 function strip(value: string): string {
@@ -243,11 +258,50 @@ export async function tmdbRoute(url: URL): Promise<Response> {
     if (path === "/api/rewind/tmdb/search") return await search(url);
     if (path === "/api/rewind/tmdb/film") return await film(url);
     if (path === "/api/rewind/tmdb/poster") return await poster(url);
+    if (path === "/api/rewind/tmdb/credits") return await credits(url);
   } catch (err) {
     if (err instanceof Error && err.message === "key") return json({ ok: false, err: "key", results: [] }, 200, 30);
     return json({ ok: false, err: "tmdb", results: [] }, 200, 15);
   }
   return json({ ok: false, err: "missing" }, 404, 30);
+}
+
+async function credits(url: URL): Promise<Response> {
+  const name = String(url.searchParams.get("name") || "").trim().slice(0, 80);
+  if (name.length < 2) return json({ ok: true, films: [] });
+  const cacheKey = "c:" + name.toLowerCase();
+  const hit = cache.get(cacheKey);
+  if (hit && Date.now() - hit.at < FILM_TTL) return json(hit.body, 200, 3600);
+  const found = new URL("https://api.themoviedb.org/3/search/person");
+  found.searchParams.set("query", name);
+  found.searchParams.set("language", "en-US");
+  const people = (await tmdb(found)) as { results?: Array<Record<string, unknown>> };
+  const films: Array<{ id: string; title: string; original: string; year: string; genres: string[] }> = [];
+  const seen = new Set<string>();
+  for (const person of (people.results || []).slice(0, 4)) {
+    const creditsUrl = new URL("https://api.themoviedb.org/3/person/" + String(person.id) + "/movie_credits");
+    creditsUrl.searchParams.set("language", "en-US");
+    const credit = (await tmdb(creditsUrl)) as { crew?: Array<Record<string, unknown>> };
+    for (const row of credit.crew || []) {
+      if (String(row.job || "") !== "Director") continue;
+      const id = String(row.id || "");
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      const genres = (Array.isArray(row.genre_ids) ? row.genre_ids : [])
+        .map((genre) => GENRE_ID[String(genre)] || "")
+        .filter(Boolean);
+      films.push({
+        id,
+        title: String(row.title || row.original_title || ""),
+        original: String(row.original_title || ""),
+        year: yearOf(row.release_date),
+        genres,
+      });
+    }
+  }
+  const body = { ok: true, films };
+  cache.set(cacheKey, { at: Date.now(), body });
+  return json(body, 200, 3600);
 }
 
 async function search(url: URL): Promise<Response> {
@@ -296,13 +350,14 @@ async function poster(url: URL): Promise<Response> {
   const title = String(url.searchParams.get("title") || "").trim().slice(0, 80);
   const year = String(url.searchParams.get("year") || "").replace(/\D/g, "").slice(0, 4);
   if (title.length < 1) return json({ ok: true, poster: "" });
-  const cacheKey = "p2:" + title.toLowerCase() + ":" + year;
+  const cacheKey = "p:" + title.toLowerCase() + ":" + year;
   const hit = cache.get(cacheKey);
   if (hit && Date.now() - hit.at < FILM_TTL) return json(hit.body, 200, 3600);
   const endpoint = new URL(SEARCH);
   endpoint.searchParams.set("query", title);
   endpoint.searchParams.set("include_adult", "false");
   endpoint.searchParams.set("language", "en-US");
+  if (year) endpoint.searchParams.set("year", year);
   let art = "";
   let still = "";
   try {
