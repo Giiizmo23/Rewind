@@ -1179,7 +1179,7 @@
         '.rw-dm-start{display:flex;gap:.4rem;margin-top:.7rem}' +
         '.rw-dm-row{width:100%;text-align:left;border:0;border-bottom:1px solid rgba(22,20,18,.1);background:transparent!important;color:inherit;padding:.75rem .8rem;border-radius:0;cursor:pointer}' +
         '.rw-dm-row > span > b{display:block;font-family:Oswald,"Arial Narrow",sans-serif;letter-spacing:.14em;text-transform:uppercase;font-weight:500;font-size:1.05rem}' +
-        '.rw-dm-start input{flex:1;height:2.6rem;border:0;border-radius:.15rem;background:#ece8e1;padding:0 .75rem;font-size:16px}' +
+        '.rw-dm-start input{flex:1;height:2.6rem;border:0;border-radius:.15rem;background:#ece8e1;padding:0 .75rem;font-size:16px;color:#16120e!important;-webkit-text-fill-color:#16120e!important;caret-color:#16120e!important;color-scheme:light}.rw-dm-start input::placeholder{color:#6d645b!important;-webkit-text-fill-color:#6d645b!important;opacity:1}' +
         '.rw-dm-miss{margin:.35rem 0 0;font-size:.75rem;color:#c41230}' +
         '.rw-dm-ask{margin:.7rem 0 0;font-size:.82rem;line-height:1.35}' +
         '.rw-dm-row.is-request{background:rgba(196,18,48,.06)!important}' +
@@ -1223,7 +1223,7 @@
         '.rw-dm-row .rw-dm-copy{flex:1 1 auto;min-width:0}' +
         '.rw-dm-row .rw-dm-acts{display:flex;gap:.35rem;flex:0 0 auto;margin-left:auto;align-items:center}' +
         '.rw-ask-btn{height:1.85rem;border:0;border-radius:999px;padding:0 .7rem;background:#c41230;color:#fff8f4;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap}' +
-        '.rw-ask-btn.is-ghost{background:transparent;color:#1a140f;box-shadow:inset 0 0 0 1.5px #1a140f}' +
+        '.rw-ask-btn.is-ghost{background:transparent;color:#1a140f;box-shadow:inset 0 0 0 1.5px #1a140f}html[data-theme="dark"] .rw-ask-btn.is-ghost,html[data-theme="night"] .rw-ask-btn.is-ghost{color:#f3efe6!important;-webkit-text-fill-color:#f3efe6!important;box-shadow:inset 0 0 0 1.5px #f3efe6!important}' +
         '.cork-person .rw-dm-ava{display:flex!important;align-items:center;justify-content:center;width:1.65rem;height:1.65rem;flex:0 0 auto;border-radius:999px;overflow:hidden;background:#1a140f;color:#fff8f4;font-size:.62rem;letter-spacing:.03em;font-family:Oswald,"Arial Narrow",sans-serif}' +
         '.cork-person .rw-dm-ava.is-pic img{width:100%;height:100%;object-fit:cover;display:block}' +
         '.rw-dm-row > .rw-dm-ava{display:flex!important;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;margin:0!important;padding:0;border:0;box-shadow:none;opacity:1!important;overflow:visible;font-size:1.75rem;line-height:1}' +
@@ -5029,6 +5029,28 @@
     });
   }
   let inboxThread = "";
+  let inboxFind = "";
+  let inboxHits = null;
+  function inboxFindRows() {
+    if (!inboxHits) return "";
+    if (!inboxHits.length) return '<p class="rw-dm-miss">No card under that name.</p>';
+    return inboxHits.map(function (p) {
+      const handle = String(p.handle || "").replace(/[^a-zA-Z0-9_]/g, "");
+      if (!handle) return "";
+      const shown = String(p.name || handle);
+      const state = p.friend || "none";
+      const add = state === "friends"
+        ? '<span class="rw-ask-btn is-ghost">Friends</span>'
+        : state === "out"
+          ? '<span class="rw-ask-btn is-ghost">Requested</span>'
+          : '<button type="button" class="rw-ask-btn" data-club-follow="' + boardEsc(handle) + '" data-act="' + (state === "in" ? "accept" : "request") + '">' + (state === "in" ? "Accept" : "Add") + "</button>";
+      return '<div class="rw-dm-row is-request" data-member-open="' + boardEsc(handle) + '">' +
+        tapeMark(shown, handle, p.avatar) +
+        '<span class="rw-dm-copy"><b>' + boardEsc(shown) + '</b><span>@' + boardEsc(handle) + "</span></span>" +
+        '<span class="rw-dm-acts">' + add +
+        '<button type="button" class="rw-ask-btn is-ghost" data-club-msg="' + boardEsc(handle) + '">Message</button></span></div>';
+    }).join("");
+  }
   function inboxMarkup() {
     const people = clubPeople();
     if (inboxThread) {
@@ -5140,9 +5162,10 @@
       '<div class="rw-inbox-head"><div><p>Club chat</p><h2>Messages</h2></div>' +
       '<button type="button" class="rw-inbox-x" data-inbox-close aria-label="Close">×</button></div>' +
       '<form class="rw-dm-start" data-dm-find="1">' +
-      '<input type="text" maxlength="24" placeholder="Find a member" autocomplete="off" />' +
-      '<button type="submit">Message</button></form>' +
+      '<input type="search" maxlength="24" placeholder="Find a member" autocomplete="off" enterkeyhint="search" value="' + boardEsc(inboxFind) + '" />' +
+      '<button type="submit">Search</button></form>' +
       '<p class="rw-dm-miss" data-dm-miss hidden></p>' +
+      inboxFindRows() +
       '<div class="rw-inbox-list">' +
       (rows || '<p class="rw-inbox-empty">Nobody on the other end yet. Find a member. Friends can message straight through. Everyone else has to accept first.</p>') +
       "</div></div>"
@@ -5190,6 +5213,7 @@
         e.preventDefault();
         const input = finder.querySelector("input");
         const q = String(input && input.value || "").trim().replace(/^@/, "");
+        inboxFind = q;
         const miss = box.querySelector("[data-dm-miss]");
         if (q.length < 2) {
           if (miss) {
@@ -5200,33 +5224,32 @@
         }
         clubPost("/api/rewind/club/search", { q: q }).then(function (data) {
           const people = (data && data.people) || [];
-          const needle = q.replace(/[^a-zA-Z0-9_]/g, "");
-          const exact = people.find(function (p) { return String(p.handle || "").toLowerCase() === needle.toLowerCase(); });
-          const hit = exact || people[0];
-          if (!hit) {
-            if (miss) {
-              miss.hidden = false;
-              miss.textContent = data && data.shared === false
-                ? "The shared counter is down, so that card can’t be looked up from here. Nothing was erased."
-                : !data
-                ? "The counter didn't answer. Nothing was erased."
-                : data.err === "auth" || data.err === "password"
-                  ? "Sign in again, then search."
-                  : data.err === "nocard"
-                    ? "No card under that name."
-                    : data.ok === false
-                      ? "The counter didn't answer. Nothing was erased."
-                      : "No card under that name.";
-            }
-            return;
+          inboxFind = q;
+          inboxHits = data && data.ok !== false ? people : [];
+          people.forEach(function (hit) {
+            if (!hit || !hit.handle) return;
+            if (!clubBook.people.some(function (p) { return p.handle === hit.handle; })) clubBook.people.push(hit);
+            if (hit.msg) clubGate[hit.handle] = hit.msg;
+          });
+          const miss = box.querySelector("[data-dm-miss]");
+          if (!people.length && miss) {
+            miss.hidden = false;
+            miss.textContent = data && data.shared === false
+              ? "The shared counter is down, so that card can’t be looked up from here. Nothing was erased."
+              : !data
+              ? "The counter didn't answer. Nothing was erased."
+              : data.err === "auth" || data.err === "password"
+                ? "Sign in again, then search."
+                : "No card under that name.";
+            inboxHits = [];
           }
-          if (!clubBook.people.some(function (p) { return p.handle === hit.handle; })) clubBook.people.push(hit);
-          if (hit.msg) clubGate[hit.handle] = hit.msg;
-          if (miss) miss.hidden = true;
-          inboxThread = hit.handle;
-          inboxKind = "";
-          clubFresh[hit.handle] = 0;
           paintInbox();
+          const again = document.querySelector("#rw-inbox [data-dm-find] input");
+          if (again) {
+            again.focus();
+            const n = again.value.length;
+            try { again.setSelectionRange(n, n); } catch (eN) {}
+          }
         });
       });
     }
@@ -12236,14 +12259,16 @@
             if (note) note.textContent = "Couldn't add them. Try again.";
             return;
           }
-          (clubBook.people || []).concat(clubHits || []).forEach(function (p) {
-            if (p.handle === handle) p.friend = data.friend || "out";
+          (clubBook.people || []).concat(clubHits || [], inboxHits || []).forEach(function (p) {
+            if (p && p.handle === handle) p.friend = data.friend || "out";
           });
           const review = document.getElementById("rw-review");
           if (review && data.friend === "friends" && review.getAttribute("data-review-handle") === handle) {
             openStoreReview(handle, review.getAttribute("data-review-slug") || "", review.getAttribute("data-review-name") || "");
           }
           renderBoardLane("friends");
+          const openInboxBox = document.getElementById("rw-inbox");
+          if (openInboxBox && openInboxBox.classList.contains("is-on") && !inboxThread) paintInbox();
           loadClubBook().then(function () { renderBoardLane("friends"); });
         });
         return;
