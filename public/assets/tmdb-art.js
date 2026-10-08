@@ -76,6 +76,14 @@
     img.style.setProperty("object-fit", "cover", "important");
     img.style.setProperty("object-position", "center center", "important");
     img.referrerPolicy = "no-referrer";
+    if (img.crossOrigin !== "anonymous") img.crossOrigin = "anonymous";
+    if (!img.__rwStickerHook) {
+      img.__rwStickerHook = 1;
+      img.addEventListener("load", function () {
+        var box = img.closest && img.closest(".vhs-box");
+        if (box && window.__rwPlaceSticker) window.__rwPlaceSticker(box, img);
+      });
+    }
     var win = img.closest && img.closest(".vhs-window");
     if (win) {
       win.querySelectorAll(".vhs-cover-word").forEach(function (node) {

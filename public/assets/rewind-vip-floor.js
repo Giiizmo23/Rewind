@@ -132,62 +132,84 @@
     return sd + (mean < 80 ? 40 : 0) + (skin / n) * 120;
   }
   function placeBatchSticker(box, img) {
-    if (!img || !img.naturalWidth || box.getAttribute("data-sticker-set") === "1") return;
+    if (!box || !img || !img.naturalWidth) return;
+    var src = img.currentSrc || img.getAttribute("src") || "";
+    if (!src || box.getAttribute("data-sticker-src") === src) return;
+    var st = box.querySelector(".vhs-sticker");
+    if (!st) return;
+    var nw = img.naturalWidth, nh = img.naturalHeight;
+    var rect = img.getBoundingClientRect();
+    var rw = rect.width || nw, rh = rect.height || nh;
+    var scale = Math.max(rw / nw, rh / nh) || 1;
+    var vw = Math.min(nw, rw / scale), vh = Math.min(nh, rh / scale);
+    var sx = Math.max(0, (nw - vw) / 2), sy = Math.max(0, (nh - vh) / 2);
     var canvas = document.createElement("canvas");
-    var W = img.naturalWidth, H = img.naturalHeight;
+    var W = 90, H = Math.max(12, Math.round(W * (vh / vw)));
     canvas.width = W;
     canvas.height = H;
     var ctx = canvas.getContext("2d", { willReadFrequently: true });
-    try { ctx.drawImage(img, 0, 0, W, H); } catch (e) { return; }
-    var cw = Math.max(12, Math.round(W * 0.16));
-    var ch = Math.max(12, Math.round(H * 0.11));
+    try { ctx.drawImage(img, sx, sy, vw, vh, 0, 0, W, H); } catch (e) { parkSticker(st, box, "tl", src); return; }
+    var cw = Math.max(12, Math.round(W * 0.22));
+    var ch = Math.max(12, Math.round(H * 0.16));
     var corners = [["tl", 0, 0], ["tr", W - cw, 0], ["bl", 0, H - ch], ["br", W - cw, H - ch]];
-    var pick = "", px = 0, py = 0;
+    var open = [];
     for (var k = 0; k < corners.length; k++) {
       var spec = corners[k];
-      var data = ctx.getImageData(spec[1], spec[2], cw, ch).data;
-      if (!regionBusy(data, cw, ch)) { pick = spec[0]; px = spec[1]; py = spec[2]; break; }
+      var data;
+      try { data = ctx.getImageData(spec[1], spec[2], cw, ch).data; }
+      catch (e2) { parkSticker(st, box, "tl", src); return; }
+      var score = regionScore(data, cw, ch);
+      if (!regionBusy(data, cw, ch)) open.push({ id: spec[0], score: score });
     }
-    var st = box.querySelector(".vhs-sticker");
-    if (!st) return;
-    var pos;
-    if (pick === "tl") pos = ["8px auto auto 8px", "8px", "auto", "auto", "8px"];
-    else if (pick === "tr") pos = ["8px 8px auto auto", "8px", "8px", "auto", "auto"];
-    else if (pick === "bl") pos = ["auto auto 8px 8px", "auto", "auto", "8px", "8px"];
-    else if (pick === "br") pos = ["auto 8px 8px auto", "auto", "8px", "8px", "auto"];
-    else {
-      var best = null, bestScore = 1e9, step = 48;
-      for (var y = 0; y <= H - ch; y += step) {
-        for (var x = 0; x <= W - cw; x += step) {
-          var cx = (x + cw / 2) / W, cy = (y + ch / 2) / H;
-          if (cx > 0.28 && cx < 0.72 && cy > 0.32 && cy < 0.78) continue;
-          var d = ctx.getImageData(x, y, cw, ch).data;
-          if (regionBusy(d, cw, ch)) continue;
-          var score = regionScore(d, cw, ch);
-          if (score < bestScore) { bestScore = score; best = [x / W, y / H]; }
-        }
+    open.sort(function (a, b) { return a.score - b.score; });
+    var pick = open.length ? open[0].id : "";
+    if (pick) { parkSticker(st, box, pick, src); return; }
+    var best = null, bestScore = 1e9, step = Math.max(8, Math.round(W / 8));
+    for (var y = 0; y <= H - ch; y += step) {
+      for (var x = 0; x <= W - cw; x += step) {
+        var cx = (x + cw / 2) / W, cy = (y + ch / 2) / H;
+        if (cx > 0.22 && cx < 0.78 && cy > 0.18 && cy < 0.82) continue;
+        var d = ctx.getImageData(x, y, cw, ch).data;
+        if (regionBusy(d, cw, ch)) continue;
+        var sc = regionScore(d, cw, ch);
+        if (sc < bestScore) { bestScore = sc; best = [x / W, y / H]; }
       }
-      if (!best) {
-        var least = 1e9;
-        for (var c = 0; c < corners.length; c++) {
-          var cell = corners[c];
-          var dd = ctx.getImageData(cell[1], cell[2], cw, ch).data;
-          var sc = regionScore(dd, cw, ch);
-          if (sc < least) { least = sc; best = [cell[1] / W, cell[2] / H]; pick = cell[0]; }
-        }
-      }
-      if (!best) return;
-      if (!pick) pick = "free";
-      pos = ["auto", (best[1] * 100).toFixed(1) + "%", "auto", "auto", (best[0] * 100).toFixed(1) + "%"];
     }
+    if (best) {
+      st.style.setProperty("inset", "auto", "important");
+      st.style.setProperty("top", (best[1] * 100).toFixed(1) + "%", "important");
+      st.style.setProperty("right", "auto", "important");
+      st.style.setProperty("bottom", "auto", "important");
+      st.style.setProperty("left", (best[0] * 100).toFixed(1) + "%", "important");
+      st.setAttribute("data-placed", "1");
+      box.setAttribute("data-sticker", "free");
+      box.setAttribute("data-sticker-src", src);
+      return;
+    }
+    var least = 1e9, leastId = "tl";
+    for (var c = 0; c < corners.length; c++) {
+      var cell = corners[c];
+      var dd = ctx.getImageData(cell[1], cell[2], cw, ch).data;
+      var quiet = regionScore(dd, cw, ch);
+      if (quiet < least) { least = quiet; leastId = cell[0]; }
+    }
+    parkSticker(st, box, leastId, src);
+  }
+  function parkSticker(st, box, pick, src) {
+    var pos = pick === "tl" ? ["8px auto auto 8px", "8px", "auto", "auto", "8px"]
+      : pick === "tr" ? ["8px 8px auto auto", "8px", "8px", "auto", "auto"]
+      : pick === "bl" ? ["auto auto 8px 8px", "auto", "auto", "8px", "8px"]
+      : ["auto 8px 8px auto", "auto", "8px", "8px", "auto"];
     st.style.setProperty("inset", pos[0], "important");
     st.style.setProperty("top", pos[1], "important");
     st.style.setProperty("right", pos[2], "important");
     st.style.setProperty("bottom", pos[3], "important");
     st.style.setProperty("left", pos[4], "important");
+    st.setAttribute("data-placed", "1");
     box.setAttribute("data-sticker", pick);
-    box.setAttribute("data-sticker-set", "1");
+    if (src) box.setAttribute("data-sticker-src", src);
   }
+  window.__rwPlaceSticker = placeBatchSticker;
   function tmdbBag() {
     try {
       const bag = JSON.parse(localStorage.getItem("rewind-tmdb-films") || "null");
@@ -14225,39 +14247,12 @@
           inner.style.setProperty("height", "100%", "important");
         }
       });
-      var spot =
-        slug === "longlegs" || slug === "i-saw-the-tv-glow" || slug === "anora" || slug === "the-substance" || slug === "nightmare-on-elm-street" || slug === "there-will-be-blood"
-          ? ["8px auto auto 8px", "8px", "auto", "auto", "8px"]
-          : slug === "psycho" || slug === "a-clockwork-orange"
-            ? ["8px 8px auto auto", "8px", "8px", "auto", "auto"]
-            : slug === "clayface"
-              ? ["auto auto 10px 8px", "auto", "auto", "10px", "8px"]
-              : slug === "halloween-1978"
-                ? ["auto 8px 8px auto", "auto", "8px", "8px", "auto"]
-                : slug === "back-to-the-future"
-                  ? ["auto 6px auto auto", "64%", "6px", "auto", "auto"]
-                  : slug === "the-crow"
-                    ? ["auto auto auto 8px", "38%", "auto", "auto", "8px"]
-                    : slug === "the-big-lebowski"
-                      ? ["auto auto 8px 8px", "auto", "auto", "8px", "8px"]
-                      : null;
-      if (spot) {
-        box.querySelectorAll(".vhs-sticker").forEach(function (st) {
-          st.style.setProperty("inset", spot[0], "important");
-          st.style.setProperty("top", spot[1], "important");
-          st.style.setProperty("right", spot[2], "important");
-          st.style.setProperty("bottom", spot[3], "important");
-          st.style.setProperty("left", spot[4], "important");
-        });
-      }
-      if (BATCH_STICKER[slug]) {
-        var coverImg = box.querySelector(".vhs-window img");
-        var applySticker = function () { placeBatchSticker(box, coverImg); };
-        if (coverImg && coverImg.complete && coverImg.naturalWidth) applySticker();
-        else if (coverImg && !coverImg.__rwStickerArm) {
-          coverImg.__rwStickerArm = 1;
-          coverImg.addEventListener("load", applySticker);
-        }
+      var coverImg = box.querySelector(".vhs-window img");
+      var applySticker = function () { placeBatchSticker(box, coverImg); };
+      if (coverImg && coverImg.complete && coverImg.naturalWidth) applySticker();
+      else if (coverImg && !coverImg.__rwStickerArm) {
+        coverImg.__rwStickerArm = 1;
+        coverImg.addEventListener("load", applySticker);
       }
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;
       var spineVer = "572";
