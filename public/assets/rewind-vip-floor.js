@@ -9252,11 +9252,25 @@
     function aisleSize(section, theme) {
       const seen = {};
       let n = 0;
-      shelfSlugs(section).forEach(function (slug) {
-        if (!slug || seen[slug]) return;
-        seen[slug] = 1;
-        n += 1;
-      });
+      var seeds = section.__virt && section.__virt.seed;
+      if (seeds && seeds.length && catalog) {
+        seeds.forEach(function (stub) {
+          if (!stub || !stub.slug || seen[stub.slug]) return;
+          var full = resolveSeed(stub);
+          if (theme && !inTheme(full, theme)) return;
+          var slug = (full && full.slug) || stub.slug;
+          if (seen[slug]) return;
+          seen[slug] = 1;
+          seen[stub.slug] = 1;
+          n += 1;
+        });
+      } else {
+        shelfSlugs(section).forEach(function (slug) {
+          if (!slug || seen[slug]) return;
+          seen[slug] = 1;
+          n += 1;
+        });
+      }
       if (!catalog) return n;
       catalog.forEach(function (film) {
         if (!film || !film.slug || seen[film.slug]) return;
@@ -9309,16 +9323,163 @@
       section.__virt = { grid: grid, wrap: wrap, top: top, bot: bot, template: template, bySlug: bySlug, seed: seed, films: seed.slice(), start: -1, end: -1, cols: 0, count: 0 };
       return section.__virt;
     }
+    function normTitle(s) {
+      return String(s || "").toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "");
+    }
+    function sleeveOf(slug) {
+      if (!slug || !window.boxAssets) return "";
+      var boxed = window.boxAssets(slug);
+      return boxed && boxed.cover ? slug : "";
+    }
+    function resolveSeed(stub) {
+      var full = knownFilm(stub && stub.slug);
+      if (full) return full;
+      if (!catalog || !stub || !stub.title) return stub;
+      var want = normTitle(stub.title);
+      var year = String(stub.year || "");
+      var exact = [];
+      for (var i = 0; i < catalog.length; i++) {
+        var f = catalog[i];
+        if (!f || !f.title) continue;
+        if (normTitle(f.title) === want) exact.push(f);
+      }
+      if (!exact.length) return stub;
+      if (year) {
+        for (var j = 0; j < exact.length; j++) {
+          if (String(exact[j].year) === year) return exact[j];
+        }
+      }
+      exact.sort(function (a, b) { return (Number(a.year) || 9999) - (Number(b.year) || 9999); });
+      return exact[0];
+    }
+    var ACTION_FAME = {
+      "the-dark-knight-2008": 1,
+      "avengers-endgame": 2,
+      "avengers-infinity-war": 3,
+      "the-avengers": 4,
+      "spider-man-no-way-home-2021": 5,
+      "the-matrix-1999": 6,
+      "die-hard": 7,
+      "mad-max-fury-road": 8,
+      "john-wick": 9,
+      "inception-2010": 10,
+      "jurassic-park-1993": 11,
+      "the-terminator-1984": 12,
+      "terminator-2-judgment-day": 13,
+      "aliens-1986": 14,
+      "raiders-of-the-lost-ark-1981": 15,
+      "gladiator": 16,
+      "top-gun-maverick": 17,
+      "top-gun-1986": 18,
+      "black-panther": 19,
+      "the-dark-knight-rises": 20,
+      "iron-man": 21,
+      "captain-america-the-winter-soldier": 22,
+      "captain-america-civil-war": 23,
+      "guardians-of-the-galaxy": 24,
+      "spider-man": 25,
+      "spider-man-into-the-spider-verse": 26,
+      "deadpool": 27,
+      "logan": 28,
+      "predator-1987": 29,
+      "robocop-1987": 30,
+      "total-recall": 31,
+      "first-blood": 32,
+      "speed-1994": 33,
+      "lethal-weapon-1985": 34,
+      "heat-1995": 35,
+      "kill-bill-vol-1": 36,
+      "batman-1989": 37,
+      "point-break-1991": 38,
+      "the-rock": 39,
+      "independence-day": 40,
+      "men-in-black-1997": 41,
+      "pirates-of-the-caribbean": 42,
+      "the-bourne-identity": 43,
+      "casino-royale": 44,
+      "mission-impossible": 45,
+      "mission-impossible-fallout": 46,
+      "skyfall": 47,
+      "taken": 48,
+      "true-lies": 49,
+      "beverly-hills-cop": 50,
+      "bad-boys-1995": 51,
+      "rush-hour-1998": 52,
+      "the-fast-and-the-furious": 53,
+      "furious-7-2015": 54,
+      "face-off": 55,
+      "enter-the-dragon": 56,
+      "crouching-tiger-hidden-dragon": 57,
+      "the-raid": 58,
+      "hard-boiled": 59,
+      "scarface-1983": 60,
+      "mad-max-2": 61,
+      "mad-max": 62,
+      "edge-of-tomorrow": 63,
+      "nobody-2021": 64,
+      "avatar": 65,
+      "star-wars-1977": 66,
+      "dune-part-two": 67,
+      "dune-2021": 68,
+      "indiana-jones-and-the-last-crusade": 69,
+      "wonder-woman": 70,
+      "thor-ragnarok": 71,
+      "john-wick-chapter-2": 72,
+      "john-wick-chapter-3-parabellum": 73,
+      "john-wick-chapter-4": 74,
+      "die-hard-with-a-vengeance": 75,
+      "die-hard-2": 76,
+      "lethal-weapon-2": 77,
+      "rambo-first-blood-part-ii": 78,
+      "commando": 79,
+      "con-air": 80,
+      "the-fugitive": 81,
+      "300": 82,
+      "transformers-2007": 83,
+      "aquaman-2018": 84,
+      "venom-2018": 85,
+      "kingsman-the-secret-service-2015": 86,
+      "the-equalizer-2014": 87,
+      "extraction": 88,
+      "everything-everywhere-all-at-once": 89,
+      "furiosa": 90,
+      "bullet-train-2022": 91,
+      "gladiator-ii": 92,
+      "goldeneye": 93,
+      "the-matrix-reloaded": 94,
+      "avengers-age-of-ultron-2015": 95,
+      "spider-man-2": 96,
+      "captain-america-the-first-avenger": 97
+    };
+    function actionRank(film) {
+      var slug = film && film.slug;
+      if (slug && ACTION_FAME[slug]) return ACTION_FAME[slug];
+      var year = filmYear(film);
+      var boxed = window.boxAssets && slug && window.boxAssets(slug);
+      if (boxed && year && year < 2026) return 400;
+      if (year && year < 2026) return 800;
+      return 1200;
+    }
     function filmsFor(section, theme) {
       const v = section.__virt;
       const films = [];
       const seen = {};
       v.seed.forEach(function (f) {
         if (!f || !f.slug || seen[f.slug]) return;
-        var full = knownFilm(f.slug) || f;
+        var full = resolveSeed(f);
         if (theme && catalog && !inTheme(full, theme)) return;
+        var slug = (full && full.slug) || f.slug;
+        if (seen[slug] || seen[f.slug]) return;
+        seen[slug] = 1;
         seen[f.slug] = 1;
-        films.push(f);
+        var show = full && full.title ? full : f;
+        if (full && f.slug && full.slug !== f.slug && sleeveOf(f.slug) && !sleeveOf(full.slug)) {
+          show = {};
+          for (var k in full) if (Object.prototype.hasOwnProperty.call(full, k)) show[k] = full[k];
+          show.slug = f.slug;
+          seen[f.slug] = 1;
+        }
+        films.push(show);
       });
       if (!catalog || !theme) return films;
       const extras = [];
@@ -9329,6 +9490,11 @@
         extras.push(film);
       });
       extras.sort(function (a, b) {
+        if (theme === "action") {
+          var ra = actionRank(a), rb = actionRank(b);
+          if (ra !== rb) return ra - rb;
+          return String(a.title || "").localeCompare(String(b.title || ""));
+        }
         return (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.title || "").localeCompare(String(b.title || ""));
       });
       return films.concat(extras);
@@ -9448,11 +9614,25 @@
       let n = 0;
       sections.forEach(function (section) {
         const theme = sectionTheme(section);
-        shelfSlugs(section).forEach(function (slug) {
-          if (!slug || seen[slug]) return;
-          seen[slug] = 1;
-          n += 1;
-        });
+        var seeds = section.__virt && section.__virt.seed;
+        if (seeds && seeds.length && catalog) {
+          seeds.forEach(function (stub) {
+            if (!stub || !stub.slug) return;
+            var full = resolveSeed(stub);
+            if (!inTheme(full, theme)) return;
+            var slug = (full && full.slug) || stub.slug;
+            if (!slug || seen[slug]) return;
+            seen[slug] = 1;
+            seen[stub.slug] = 1;
+            n += 1;
+          });
+        } else {
+          shelfSlugs(section).forEach(function (slug) {
+            if (!slug || seen[slug]) return;
+            seen[slug] = 1;
+            n += 1;
+          });
+        }
         if (!catalog) return;
         catalog.forEach(function (film) {
           if (!film || !film.slug || seen[film.slug]) return;
