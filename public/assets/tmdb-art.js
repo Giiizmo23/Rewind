@@ -76,7 +76,6 @@
     img.style.setProperty("object-fit", "cover", "important");
     img.style.setProperty("object-position", "center center", "important");
     img.referrerPolicy = "no-referrer";
-    if (img.crossOrigin !== "anonymous") img.crossOrigin = "anonymous";
     if (!img.__rwStickerHook) {
       img.__rwStickerHook = 1;
       img.addEventListener("load", function () {
@@ -93,9 +92,50 @@
     if ((img.getAttribute("src") || "") !== url) img.src = url;
   }
 
+  function showTitle(img) {
+    if (!img) return;
+    if (img.naturalWidth) {
+      img.style.setProperty("opacity", "1", "important");
+      img.style.setProperty("display", "block", "important");
+      return;
+    }
+    img.style.setProperty("display", "none", "important");
+    var win = img.closest && img.closest(".vhs-window");
+    if (!win || win.querySelector(".vhs-cover-word")) return;
+    var box = img.closest && img.closest(".vhs-box");
+    var slug = (box && box.getAttribute("data-slug")) || img.dataset.tmdbSlug || "";
+    var info = label(img, slug);
+    var tag = document.createElement("span");
+    tag.className = "vhs-cover-word";
+    tag.textContent = info.title || "Tape";
+    tag.style.cssText = "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12%;color:#f3e6c8;font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:15px;line-height:1.15;letter-spacing:.02em;z-index:4;pointer-events:none";
+    win.appendChild(tag);
+  }
+
+  function inView(img) {
+    var node = (img.closest && (img.closest(".vhs-box") || img.closest("article"))) || img;
+    var rect = node.getBoundingClientRect();
+    if (!rect.width && !rect.height) return false;
+    var height = window.innerHeight || 800;
+    return rect.bottom > -300 && rect.top < height + 500;
+  }
+
+  function markMiss(slug) {
+    document.querySelectorAll("img").forEach(function (img) {
+      var id = img.dataset.tmdbSlug || sleeveSlug(img.getAttribute("src") || "");
+      if (id !== slug) return;
+      img.dataset.tmdbArt = "miss";
+      showTitle(img);
+    });
+  }
+
   function pump() {
-    while (busy < 3 && queue.length) {
-      var job = queue.shift();
+    while (busy < 6 && queue.length) {
+      var pick = 0;
+      for (var i = 0; i < queue.length; i++) {
+        if (queue[i].img && inView(queue[i].img)) { pick = i; break; }
+      }
+      var job = queue.splice(pick, 1)[0];
       if (!job) continue;
       busy += 1;
       var info = label(job.img, job.slug);
@@ -112,7 +152,7 @@
           var poster = data && data.poster;
           var still = (data && data.still) || "";
           if (!poster && !still) {
-            job.img.dataset.tmdbArt = "miss";
+            markMiss(job.slug);
             return;
           }
           if (poster) {
@@ -128,7 +168,7 @@
           });
         })
         .catch(function () {
-          job.img.dataset.tmdbArt = "miss";
+          markMiss(job.slug);
         })
         .then(function () {
           busy -= 1;
@@ -203,7 +243,12 @@
       paint(img, memory[slug]);
       return;
     }
-    if (img.dataset.tmdbArt === "wait" || img.dataset.tmdbArt === "miss") return;
+    if (img.dataset.tmdbArt === "wait" || img.dataset.tmdbArt === "miss" || img.dataset.tmdbArt === "1") return;
+    if (img.complete && !img.naturalWidth) showTitle(img);
+    if (!inView(img)) {
+      img.dataset.tmdbArt = "later";
+      return;
+    }
     img.dataset.tmdbArt = "wait";
     queue.push({ img: img, slug: slug });
     pump();
@@ -259,6 +304,14 @@
     });
   });
   observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["src"] });
+  var scanTick = 0;
+  window.addEventListener("scroll", function () {
+    if (scanTick) return;
+    scanTick = window.requestAnimationFrame(function () {
+      scanTick = 0;
+      scan(document);
+    });
+  }, true);
   document.addEventListener(
     "error",
     function (e) {
@@ -283,6 +336,11 @@
       }
       var slug = img.dataset.tmdbSlug || sleeveSlug(raw);
       if (!slug) return;
+      if ((raw.indexOf("image.tmdb.org") >= 0 || raw.indexOf("media.themoviedb.org") >= 0) && img.dataset.tmdbBroke === "1") {
+        showTitle(img);
+        return;
+      }
+      if (raw.indexOf("image.tmdb.org") >= 0 || raw.indexOf("media.themoviedb.org") >= 0) img.dataset.tmdbBroke = "1";
       if (memory[slug]) {
         setTimeout(function () {
           paint(img, memory[slug]);
