@@ -1,6 +1,641 @@
 (() => {
   if (window.__rwVipFloor) return;
   window.__rwVipFloor = 1;
+
+  var KEEP_PAINTED = { "halloween-1978": 1 };
+  function sleeveSlugOf(src) {
+    var m = String(src || "").split("?")[0].match(/\/sleeves\/([a-z0-9-]+)\.jpg$/);
+    return m ? m[1] : "";
+  }
+  function waitingForPoster(img) {
+    var src = (img && (img.getAttribute("src") || img.currentSrc)) || "";
+    if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) return false;
+    if (img.dataset && (img.dataset.tmdbArt === "1" || img.dataset.tmdbArt === "miss")) return false;
+    var slug = sleeveSlugOf(src);
+    if (!slug || KEEP_PAINTED[slug]) return false;
+    return true;
+  }
+  function scoreSrc(url) {
+    if (!url) return url;
+    if (url.indexOf("image.tmdb.org") < 0 && url.indexOf("themoviedb.org") < 0) return url;
+    return url + (url.indexOf("?") >= 0 ? "&" : "?") + "rwcors=1";
+  }
+  var TITLE_BAND = {
+    "the-lion-king": [0.12, 0.39, 0.96, 0.66],
+    "jaws": [0.03, 0.02, 0.97, 0.225],
+    "the-shawshank-redemption": [0.07, 0.795, 0.93, 0.965],
+    "coming-to-america": [0.03, 0.015, 0.97, 0.215],
+    "alien": [0.04, 0.095, 0.96, 0.16],
+    "back-to-the-future": [0.015, 0.01, 0.70, 0.205],
+    "pulp-fiction": [0.01, 0.0, 0.99, 0.175],
+    "die-hard": [0.05, 0.84, 0.95, 0.97],
+    "point-break": [0.03, 0.565, 0.97, 0.69],
+    "goodfellas": [0.06, 0.48, 0.94, 0.625],
+    "se7en": [0.02, 0.74, 0.98, 0.995],
+    "the-shining": [0.06, 0.20, 0.96, 0.75],
+    "heat": [0.06, 0.845, 0.94, 0.98],
+    "heat-1995": [0.06, 0.845, 0.94, 0.98],
+    "first-blood": [0.05, 0.785, 0.95, 0.905],
+    "blade-runner": [0.02, 0.86, 0.98, 0.98],
+    "the-thing-1982": [0.04, 0.72, 0.96, 0.96],
+    "the-matrix": [0.06, 0.84, 0.94, 0.96],
+    "the-matrix-1999": [0.06, 0.84, 0.94, 0.96],
+    "jurassic-park": [0.07, 0.35, 0.93, 0.53],
+    "jurassic-park-1993": [0.07, 0.35, 0.93, 0.53],
+    "the-godfather": [0.16, 0.77, 0.84, 0.97],
+    "the-godfather-1972": [0.16, 0.77, 0.84, 0.97],
+    "raiders-of-the-lost-ark": [0.03, 0.015, 0.97, 0.22],
+    "raiders-of-the-lost-ark-1981": [0.03, 0.015, 0.97, 0.22],
+    "et": [0.16, 0.76, 0.84, 0.955],
+    "carrie-1976": [0.04, 0.055, 0.96, 0.19],
+    "the-fly-1986": [0.05, 0.045, 0.95, 0.20],
+    "star-wars": [0.02, 0.73, 0.98, 0.985],
+    "top-gun": [0.02, 0.62, 0.98, 0.76],
+    "the-exorcist": [0.08, 0.15, 0.92, 0.32],
+    "gremlins": [0.04, 0.82, 0.96, 0.97],
+    "halloween-1978": [0.02, 0.02, 0.98, 0.15]
+  };
+  if (!document.getElementById("rw-spine-match")) {
+    var spineMatchCss = document.createElement("style");
+    spineMatchCss.id = "rw-spine-match";
+    spineMatchCss.textContent =
+      "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-logo{display:block!important;position:absolute!important;inset:auto!important;top:16%!important;bottom:24%!important;left:22%!important;right:22%!important;width:56%!important;height:60%!important;max-width:56%!important;max-height:60%!important;margin:auto!important;object-fit:contain!important;object-position:center center!important;transform:none!important;filter:none!important;background:transparent!important;z-index:2!important;outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
+      "html body .vhs-spine-logo{outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
+      "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-word{display:none!important}";
+    (document.head || document.documentElement).appendChild(spineMatchCss);
+  }
+  function spineHex(rgb) {
+    function h(n) {
+      var v = Math.max(0, Math.min(255, Math.round(n)));
+      return (v < 16 ? "0" : "") + v.toString(16);
+    }
+    return "#" + h(rgb[0]) + h(rgb[1]) + h(rgb[2]);
+  }
+  function trimTitleCanvas(src) {
+    var w = src.width, h = src.height;
+    if (w < 8 || h < 8) return src;
+    var ctx = src.getContext("2d", { willReadFrequently: true });
+    var data = ctx.getImageData(0, 0, w, h).data;
+    function at(x, y) {
+      var i = (y * w + x) * 4;
+      return [data[i], data[i + 1], data[i + 2]];
+    }
+    var pts = [];
+    var stepX = Math.max(1, Math.floor(w / 16));
+    var stepY = Math.max(1, Math.floor(h / 12));
+    var x, y;
+    for (x = 0; x < w; x += stepX) { pts.push(at(x, 0)); pts.push(at(x, h - 1)); }
+    for (y = 0; y < h; y += stepY) { pts.push(at(0, y)); pts.push(at(w - 1, y)); }
+    var med = [0, 0, 0];
+    var c;
+    for (c = 0; c < 3; c++) {
+      var col = pts.map(function (p) { return p[c]; }).sort(function (a, b) { return a - b; });
+      med[c] = col[Math.floor(col.length / 2)];
+    }
+    function dist(p) {
+      var d0 = p[0] - med[0], d1 = p[1] - med[1], d2 = p[2] - med[2];
+      return Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+    }
+    var spreads = pts.map(dist).sort(function (a, b) { return a - b; });
+    var spread = spreads[Math.floor(spreads.length / 2)];
+    src.__rwGround = med;
+    if (spread > 22) return src;
+    var minX = w, minY = h, maxX = 0, maxY = 0, nInk = 0;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        if (dist(at(x, y)) > 34) {
+          if (x < minX) minX = x;
+          if (y < minY) minY = y;
+          if (x > maxX) maxX = x;
+          if (y > maxY) maxY = y;
+          nInk++;
+        }
+      }
+    }
+    if (nInk < 12) return src;
+    var padX = Math.round((maxX - minX) * 0.04);
+    var padY = Math.round((maxY - minY) * 0.08);
+    minX = Math.max(0, minX - padX);
+    minY = Math.max(0, minY - padY);
+    maxX = Math.min(w - 1, maxX + padX);
+    maxY = Math.min(h - 1, maxY + padY);
+    if ((maxX - minX) < w * 0.4 || (maxY - minY) < h * 0.35) return src;
+    var cut = document.createElement("canvas");
+    cut.width = maxX - minX + 1;
+    cut.height = maxY - minY + 1;
+    cut.getContext("2d").drawImage(src, minX, minY, cut.width, cut.height, 0, 0, cut.width, cut.height);
+    cut.__rwGround = med;
+    return cut;
+  }
+  function closeMask(mask, w, h, rad) {
+    var n = w * h;
+    var dil = new Uint8Array(n);
+    var y, x, dy, dx, yy, xx;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        if (!mask[y * w + x]) continue;
+        for (dy = -rad; dy <= rad; dy++) {
+          yy = y + dy;
+          if (yy < 0 || yy >= h) continue;
+          for (dx = -rad; dx <= rad; dx++) {
+            xx = x + dx;
+            if (xx < 0 || xx >= w) continue;
+            dil[yy * w + xx] = 1;
+          }
+        }
+      }
+    }
+    var out = new Uint8Array(n);
+    var ok;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        ok = 1;
+        for (dy = -rad; dy <= rad && ok; dy++) {
+          yy = y + dy;
+          if (yy < 0 || yy >= h) { ok = 0; break; }
+          for (dx = -rad; dx <= rad; dx++) {
+            xx = x + dx;
+            if (xx < 0 || xx >= w || !dil[yy * w + xx]) { ok = 0; break; }
+          }
+        }
+        if (ok) out[y * w + x] = 1;
+      }
+    }
+    return out;
+  }
+  function shaveTitleHorns(mask, w, h) {
+    var n = w * h;
+    var labels = new Int32Array(n);
+    var parent = [0];
+    function find(a) {
+      while (parent[a] !== a) {
+        parent[a] = parent[parent[a]];
+        a = parent[a];
+      }
+      return a;
+    }
+    var nid = 0, y, x, i, left, up, a, b;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        i = y * w + x;
+        if (!mask[i]) continue;
+        left = x ? labels[i - 1] : 0;
+        up = y ? labels[i - w] : 0;
+        if (left && up) {
+          a = find(left);
+          b = find(up);
+          if (a !== b) parent[b] = a;
+          labels[i] = a;
+        } else if (left || up) {
+          labels[i] = left || up;
+        } else {
+          nid += 1;
+          parent.push(nid);
+          labels[i] = nid;
+        }
+      }
+    }
+    var box = {};
+    for (i = 0; i < n; i++) {
+      if (!labels[i]) continue;
+      var root = find(labels[i]);
+      labels[i] = root;
+      y = (i / w) | 0;
+      var rec = box[root];
+      if (!rec) box[root] = rec = { y0: y, y1: y, rows: {} };
+      if (y < rec.y0) rec.y0 = y;
+      if (y > rec.y1) rec.y1 = y;
+      rec.rows[y] = (rec.rows[y] || 0) + 1;
+    }
+    var out = new Uint8Array(mask);
+    var keys = Object.keys(box);
+    for (var k = 0; k < keys.length; k++) {
+      rec = box[keys[k]];
+      var bh = rec.y1 - rec.y0 + 1;
+      var maxc = 0;
+      var ys = Object.keys(rec.rows);
+      var ri;
+      for (ri = 0; ri < ys.length; ri++) if (rec.rows[ys[ri]] > maxc) maxc = rec.rows[ys[ri]];
+      if (bh < 8 || maxc < 12) continue;
+      var id = +keys[k];
+      for (ri = 0; ri < ys.length; ri++) {
+        y = +ys[ri];
+        if (rec.rows[y] >= maxc * 0.28) continue;
+        if ((y - rec.y0) > bh * 0.18 && (rec.y1 - y) > bh * 0.18) continue;
+        for (x = 0; x < w; x++) {
+          i = y * w + x;
+          if (labels[i] === id) out[i] = 0;
+        }
+      }
+    }
+    return out;
+  }
+  function liftTitleLetters(src, slug) {
+    var w = src.width, h = src.height;
+    if (w < 8 || h < 8) return null;
+    var ctx = src.getContext("2d", { willReadFrequently: true });
+    var img = ctx.getImageData(0, 0, w, h);
+    var d = img.data;
+    var n = w * h;
+    var t = Math.max(1, Math.min(3, (h / 30) | 0));
+    var br = [], bg = [], bb = [];
+    function take(x, y) {
+      var i = (y * w + x) * 4;
+      br.push(d[i]);
+      bg.push(d[i + 1]);
+      bb.push(d[i + 2]);
+    }
+    var x, y;
+    for (x = 0; x < w; x++) {
+      for (y = 0; y < t; y++) {
+        take(x, y);
+        take(x, h - 1 - y);
+      }
+    }
+    for (y = t; y < h - t; y++) {
+      for (x = 0; x < t; x++) {
+        take(x, y);
+        take(w - 1 - x, y);
+      }
+    }
+    if (!br.length) return null;
+    function medOf(arr) {
+      var s = arr.slice().sort(function (a, b) { return a - b; });
+      return s[(s.length / 2) | 0];
+    }
+    var mr = medOf(br), mg = medOf(bg), mb = medOf(bb);
+    var lum = new Float32Array(n);
+    var sat = new Float32Array(n);
+    var dist = new Float32Array(n);
+    var bdist = [];
+    var p, i, r, g, b, mx, mn, dr, dg, db;
+    for (p = 0; p < n; p++) {
+      i = p * 4;
+      r = d[i]; g = d[i + 1]; b = d[i + 2];
+      lum[p] = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      mx = r > g ? r : g; if (b > mx) mx = b;
+      mn = r < g ? r : g; if (b < mn) mn = b;
+      sat[p] = (mx - mn) / (mx > 1 ? mx : 1);
+      dr = r - mr; dg = g - mg; db = b - mb;
+      dist[p] = Math.sqrt(dr * dr + dg * dg + db * db);
+    }
+    for (x = 0; x < w; x++) {
+      for (y = 0; y < t; y++) {
+        bdist.push(dist[y * w + x]);
+        bdist.push(dist[(h - 1 - y) * w + x]);
+      }
+    }
+    for (y = t; y < h - t; y++) {
+      for (x = 0; x < t; x++) {
+        bdist.push(dist[y * w + x]);
+        bdist.push(dist[y * w + (w - 1 - x)]);
+      }
+    }
+    bdist.sort(function (a, b) { return a - b; });
+    var spread = bdist[(bdist.length / 2) | 0] || 0;
+    var medlum = 0.2126 * mr + 0.7152 * mg + 0.0722 * mb;
+    var lightN = 0, darkN = 0;
+    for (p = 0; p < n; p++) {
+      if (lum[p] > 198 && sat[p] < 0.26) lightN++;
+      if (lum[p] < 48) darkN++;
+    }
+    var lf = lightN / n, df = darkN / n;
+    var bins = {};
+    for (p = 0; p < n; p++) {
+      i = p * 4;
+      var bk = (d[i] >> 4) * 256 + (d[i + 1] >> 4) * 16 + (d[i + 2] >> 4);
+      bins[bk] = (bins[bk] || 0) + 1;
+    }
+    var bestK = 0, bestC = 0, bkKey;
+    for (bkKey in bins) if (bins[bkKey] > bestC) { bestC = bins[bkKey]; bestK = +bkKey; }
+    if (bestC / n > 0.55) {
+      mr = ((bestK >> 8) & 15) * 16 + 8;
+      mg = ((bestK >> 4) & 15) * 16 + 8;
+      mb = (bestK & 15) * 16 + 8;
+      medlum = 0.2126 * mr + 0.7152 * mg + 0.0722 * mb;
+      for (p = 0; p < n; p++) {
+        i = p * 4;
+        dr = d[i] - mr; dg = d[i + 1] - mg; db = d[i + 2] - mb;
+        dist[p] = Math.sqrt(dr * dr + dg * dg + db * db);
+      }
+      spread = 0;
+    }
+    var mask = new Uint8Array(n);
+    var edge = 0, margin = 0, filled = 0;
+    function paint(pred) {
+      var c = 0;
+      for (p = 0; p < n; p++) if (pred(p)) { mask[p] = 1; c++; }
+      return c / n;
+    }
+    if (spread >= 34 && df >= 0.08 && df <= 0.32 && lf >= 0.28) {
+      paint(function (p) { return lum[p] < 48; });
+      edge = 1; filled = 1;
+    } else if (spread >= 34 && lf >= 0.035 && lf <= 0.58) {
+      paint(function (p) { return lum[p] > 172 && sat[p] < 0.3; });
+      edge = 1; margin = 1; filled = 1;
+    } else if (spread >= 34 && df >= 0.04 && df <= 0.42) {
+      paint(function (p) { return lum[p] < 48; });
+      edge = 1; filled = 1;
+    } else if (spread >= 20 && medlum < 75) {
+      var hot = 0;
+      for (p = 0; p < n; p++) if (lum[p] > 138 && (d[p * 4] > 145 || lum[p] > 185)) hot++;
+      if (hot / n >= 0.06 && hot / n <= 0.42) {
+        paint(function (p) { return lum[p] > 138 && (d[p * 4] > 145 || lum[p] > 185); });
+        edge = 1; filled = 1;
+      }
+    }
+    if (!filled) {
+      paint(function (p) { return dist[p] > 16; });
+      if (medlum < 52) {
+        var chroma = 0, red = 0, pale = 0, green = 0, keep = 0;
+        for (p = 0; p < n; p++) {
+          if (!mask[p]) continue;
+          i = p * 4;
+          r = d[i]; g = d[i + 1]; b = d[i + 2];
+          if (sat[p] > 0.35) {
+            chroma++;
+            if (r > g + 26 && r > b + 26 && r > 72) red++;
+          }
+          if (lum[p] > 150 && sat[p] < 0.48) pale++;
+          if (g > r + 12 && g > b && lum[p] < 165) green++;
+          else keep++;
+        }
+        if (red / n > 0.07 && chroma > 0 && red > chroma * 0.45 && pale / n < 0.05) {
+          var core = new Uint8Array(n);
+          for (p = 0; p < n; p++) {
+            if (!mask[p] || sat[p] <= 0.35) continue;
+            i = p * 4;
+            r = d[i]; g = d[i + 1]; b = d[i + 2];
+            if (r > g + 26 && r > b + 26 && r > 72) core[p] = 1;
+          }
+          var halo = new Uint8Array(n);
+          var yy, xx, dy, dx;
+          for (yy = 0; yy < h; yy++) {
+            for (xx = 0; xx < w; xx++) {
+              if (!core[yy * w + xx]) continue;
+              for (dy = -2; dy <= 2; dy++) {
+                for (dx = -2; dx <= 2; dx++) {
+                  if (dx * dx + dy * dy > 5) continue;
+                  var nx = xx + dx, ny = yy + dy;
+                  if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+                  if (dist[ny * w + nx] > 10) halo[ny * w + nx] = 1;
+                }
+              }
+            }
+          }
+          mask = halo;
+        } else if (green / n > 0.025 && keep / n > 0.03) {
+          for (p = 0; p < n; p++) {
+            if (!mask[p]) continue;
+            i = p * 4;
+            r = d[i]; g = d[i + 1]; b = d[i + 2];
+            if (g > r + 12 && g > b && lum[p] < 165) mask[p] = 0;
+          }
+        }
+      }
+    }
+    if (slug !== "the-thing-1982" && mb > mr + 12 && mb > mg) {
+      for (p = 0; p < n; p++) {
+        if (!mask[p]) continue;
+        i = p * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        if (b > r + 14 && b > g && lum[p] < 175) mask[p] = 0;
+      }
+    }
+    var paleN = 0, redN = 0;
+    for (p = 0; p < n; p++) {
+      if (!mask[p]) continue;
+      i = p * 4;
+      r = d[i]; g = d[i + 1]; b = d[i + 2];
+      if (lum[p] > 150 && sat[p] < 0.38) paleN++;
+      if (sat[p] > 0.42 && r > g + 35 && r > b + 35 && r > 90 && lum[p] < 210) redN++;
+    }
+    if (redN / n > 0.004 && redN / n < 0.06 && paleN / n > 0.08) {
+      for (p = 0; p < n; p++) {
+        if (!mask[p]) continue;
+        i = p * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        if (sat[p] > 0.42 && r > g + 35 && r > b + 35 && r > 90 && lum[p] < 210) mask[p] = 0;
+      }
+    }
+    if (slug === "se7en") {
+      mask = new Uint8Array(n);
+      for (p = 0; p < n; p++) {
+        i = p * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        var sevenInk = r > 70 && g < 35 && b < 40 && r > g + 50 && r > b + 45 && sat[p] > 0.55;
+        var warm = sat[p] > 0.38 && r > g + 10 && lum[p] < 145 && g > 40;
+        if (sevenInk || (lum[p] > 92 && sat[p] < 0.42 && !warm)) mask[p] = 1;
+      }
+      edge = 0;
+      margin = 0;
+    } else if (slug === "goodfellas") {
+      mask = new Uint8Array(n);
+      for (p = 0; p < n; p++) {
+        if (lum[p] > 110 && sat[p] < 0.28) mask[p] = 1;
+      }
+      edge = 1;
+      margin = 0;
+    } else if (slug === "point-break") {
+      mask = new Uint8Array(n);
+      for (p = 0; p < n; p++) {
+        if (lum[p] > 172 && sat[p] < 0.3) mask[p] = 1;
+      }
+      mask = shaveTitleHorns(mask, w, h);
+      edge = 1;
+      margin = 1;
+    } else if (slug === "pulp-fiction") {
+      mask = new Uint8Array(n);
+      for (p = 0; p < n; p++) {
+        i = p * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        if (r > 160 && g > 120 && b < 130 && r > b + 40 && g > b + 30 && sat[p] > 0.35 && lum[p] > 100) mask[p] = 1;
+      }
+      edge = 1;
+      margin = 1;
+    } else if (slug === "back-to-the-future") {
+      mask = new Uint8Array(n);
+      for (p = 0; p < n; p++) {
+        i = p * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        if (r > 120 && g > 25 && b < 190 && r > b + 20 && sat[p] > 0.22 && lum[p] > 45) mask[p] = 1;
+        else if (r > 180 && g > 140 && b < 120 && sat[p] > 0.2) mask[p] = 1;
+      }
+      edge = 1;
+      margin = 0;
+    }
+    var minBh = slug === "goodfellas" ? 0.35 : slug === "point-break" ? 0.32 : slug === "pulp-fiction" ? 0.4 : 0;
+    var kept = cleanTitleInk(mask, w, h, edge, margin, minBh);
+    var ink = 0;
+    for (p = 0; p < n; p++) if (kept[p]) ink++;
+    var frac = ink / n;
+    if (frac < 0.02 || frac > 0.7) return null;
+    var minX = w, minY = h, maxX = 0, maxY = 0;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        if (!kept[y * w + x]) continue;
+        if (x < minX) minX = x;
+        if (y < minY) minY = y;
+        if (x > maxX) maxX = x;
+        if (y > maxY) maxY = y;
+      }
+    }
+    if (maxX <= minX || maxY <= minY) return null;
+    var padX = Math.max(1, Math.round((maxX - minX) * 0.03));
+    var padY = Math.max(1, Math.round((maxY - minY) * 0.05));
+    minX = Math.max(0, minX - padX);
+    minY = Math.max(0, minY - padY);
+    maxX = Math.min(w - 1, maxX + padX);
+    maxY = Math.min(h - 1, maxY + padY);
+    var cw = maxX - minX + 1, ch = maxY - minY + 1;
+    if (cw < 8 || ch < 8) return null;
+    var cut = document.createElement("canvas");
+    cut.width = cw;
+    cut.height = ch;
+    var octx = cut.getContext("2d");
+    var copy = octx.createImageData(cw, ch);
+    var cd = copy.data;
+    for (y = 0; y < ch; y++) {
+      for (x = 0; x < cw; x++) {
+        var sp = (minY + y) * w + (minX + x);
+        if (!kept[sp]) continue;
+        var si = sp * 4, di = (y * cw + x) * 4;
+        cd[di] = d[si];
+        cd[di + 1] = d[si + 1];
+        cd[di + 2] = d[si + 2];
+        cd[di + 3] = 255;
+      }
+    }
+    octx.putImageData(copy, 0, 0);
+    return { canvas: cut, bg: spineHex([mr, mg, mb]) };
+  }
+  function cleanTitleInk(mask, w, h, edge, margin, minBhFrac) {
+    var n = w * h;
+    var labels = new Int32Array(n);
+    var parent = [0];
+    function find(a) {
+      while (parent[a] !== a) {
+        parent[a] = parent[parent[a]];
+        a = parent[a];
+      }
+      return a;
+    }
+    var nid = 0;
+    var y, x, i, left, up, a, b;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        i = y * w + x;
+        if (!mask[i]) continue;
+        left = x ? labels[i - 1] : 0;
+        up = y ? labels[i - w] : 0;
+        if (left && up) {
+          a = find(left);
+          b = find(up);
+          if (a !== b) parent[b] = a;
+          labels[i] = a;
+        } else if (left || up) {
+          labels[i] = left || up;
+        } else {
+          nid += 1;
+          parent.push(nid);
+          labels[i] = nid;
+        }
+      }
+    }
+    var info = {};
+    for (i = 0; i < n; i++) {
+      if (!labels[i]) continue;
+      var root = find(labels[i]);
+      labels[i] = root;
+      x = i % w;
+      y = (i / w) | 0;
+      var rec = info[root];
+      if (!rec) info[root] = [1, x, y, x, y];
+      else {
+        rec[0] += 1;
+        if (x < rec[1]) rec[1] = x;
+        if (y < rec[2]) rec[2] = y;
+        if (x > rec[3]) rec[3] = x;
+        if (y > rec[4]) rec[4] = y;
+      }
+    }
+    var minArea = Math.max(8, (w * h * 0.0004) | 0);
+    var out = new Uint8Array(n);
+    var keys = Object.keys(info);
+    for (var k = 0; k < keys.length; k++) {
+      rec = info[keys[k]];
+      var area = rec[0], x0 = rec[1], y0 = rec[2], x1 = rec[3], y1 = rec[4];
+      var bw = x1 - x0 + 1, bh = y1 - y0 + 1;
+      if (minBhFrac && bh < h * minBhFrac) continue;
+      if (margin && area < w * h * 0.012 && bh < h * 0.24) {
+        if (y0 > h * 0.76 || y1 < h * 0.16) continue;
+      }
+      var touches = x0 <= 1 || y0 <= 1 || x1 >= w - 2 || y1 >= h - 2;
+      if (edge && touches && area < w * h * 0.018 && bh < h * 0.34 && bw < w * 0.28) continue;
+      var tall = bh >= h * 0.2 && area >= Math.max(8, (bh * 0.8) | 0);
+      if (area >= minArea || tall) info[keys[k]].keep = 1;
+    }
+    for (i = 0; i < n; i++) {
+      if (labels[i] && info[labels[i]] && info[labels[i]].keep) out[i] = 1;
+    }
+    return out;
+  }
+  function cropTitleSpine(im, band, slug) {
+    var nw = im.naturalWidth, nh = im.naturalHeight;
+    if (!nw || !nh) return { skip: 1 };
+    var x = Math.max(0, Math.round(band[0] * nw));
+    var y = Math.max(0, Math.round(band[1] * nh));
+    var w = Math.max(2, Math.round((band[2] - band[0]) * nw));
+    var h = Math.max(2, Math.round((band[3] - band[1]) * nh));
+    if (x + w > nw) w = nw - x;
+    if (y + h > nh) h = nh - y;
+    var slice = document.createElement("canvas");
+    slice.width = w;
+    slice.height = h;
+    slice.getContext("2d").drawImage(im, x, y, w, h, 0, 0, w, h);
+    var trimmed = trimTitleCanvas(slice);
+    var lifted = null;
+    try { lifted = liftTitleLetters(trimmed, slug); } catch (eLift) { lifted = null; }
+    var spunSource = lifted ? lifted.canvas : trimmed;
+    var cw = spunSource.width, ch = spunSource.height;
+    var spun = document.createElement("canvas");
+    spun.width = ch;
+    spun.height = cw;
+    var octx = spun.getContext("2d");
+    octx.translate(ch, 0);
+    octx.rotate(Math.PI / 2);
+    octx.drawImage(spunSource, 0, 0);
+    var bg = lifted ? lifted.bg : spineHex(trimmed.__rwGround || [8, 8, 8]);
+    var dataUrl;
+    try { dataUrl = lifted ? spun.toDataURL("image/png") : spun.toDataURL("image/jpeg", 0.86); }
+    catch (eCrop) { return { skip: 1 }; }
+    if (!dataUrl || dataUrl.length < 32) return { skip: 1 };
+    return { src: dataUrl, bg: bg };
+  }
+  function queueSpineMatch(slug, url) {
+    window.__rwSpinePending = window.__rwSpinePending || {};
+    window.__rwSpineReady = window.__rwSpineReady || {};
+    if (window.__rwSpinePending[url] || window.__rwSpineReady[url]) return;
+    var band = TITLE_BAND[slug];
+    if (!band) return;
+    window.__rwSpinePending[url] = 1;
+    function finish(rec) {
+      delete window.__rwSpinePending[url];
+      window.__rwSpineReady[url] = rec || { skip: 1 };
+      try { fixAllSpines(); } catch (eSpine) {}
+    }
+    function paintFrom(im) {
+      try { finish(cropTitleSpine(im, band, slug)); }
+      catch (ePaint) { finish({ skip: 1 }); }
+    }
+    var tmdb = url.indexOf("image.tmdb.org") >= 0 || url.indexOf("themoviedb.org") >= 0;
+    var loader = new Image();
+    if (tmdb) loader.crossOrigin = "anonymous";
+    loader.onload = function () { paintFrom(loader); };
+    loader.onerror = function () { finish({ skip: 1 }); };
+    loader.src = tmdb ? scoreSrc(url) : url;
+  }
+
   function backStill(slug) {
     var row = window.boxAssets && window.boxAssets(slug);
     if (row && row.back) return row.back;
@@ -131,8 +766,33 @@
     var sd = Math.sqrt(Math.max(0, sum2 / n - mean * mean));
     return sd + (mean < 80 ? 40 : 0) + (skin / n) * 120;
   }
+  var STICKER_PIN = {
+    "the-shawshank-redemption": "tl",
+    "coming-to-america": "bl",
+    "goodfellas": "bl",
+    "point-break": "br",
+    "heat": "tr",
+    "heat-1995": "tr",
+    "back-to-the-future": "br",
+    "pulp-fiction": "bl",
+    "alien": "bl",
+    "die-hard": "tr"
+  };
+  function pinnedCorner(box) {
+    var slug = box && box.getAttribute && box.getAttribute("data-slug");
+    return (slug && STICKER_PIN[slug]) || "";
+  }
   function placeBatchSticker(box, img) {
-    if (!box || !img || !img.naturalWidth) return;
+    if (!box) return;
+    var pinned = pinnedCorner(box);
+    if (pinned) {
+      var stickers = box.querySelectorAll(".vhs-sticker");
+      var pinnedSrc = (img && (img.currentSrc || img.getAttribute("src"))) || "pin";
+      if (!stickers.length) return;
+      stickers.forEach(function (node) { parkSticker(node, box, pinned, pinnedSrc); });
+      return;
+    }
+    if (!img || !img.naturalWidth) return;
     var src = img.currentSrc || img.getAttribute("src") || "";
     if (!src || box.getAttribute("data-sticker-src") === src) return;
     var st = box.querySelector(".vhs-sticker");
@@ -164,28 +824,6 @@
     open.sort(function (a, b) { return a.score - b.score; });
     var pick = open.length ? open[0].id : "";
     if (pick) { parkSticker(st, box, pick, src); return; }
-    var best = null, bestScore = 1e9, step = Math.max(8, Math.round(W / 8));
-    for (var y = 0; y <= H - ch; y += step) {
-      for (var x = 0; x <= W - cw; x += step) {
-        var cx = (x + cw / 2) / W, cy = (y + ch / 2) / H;
-        if (cx > 0.22 && cx < 0.78 && cy > 0.18 && cy < 0.82) continue;
-        var d = ctx.getImageData(x, y, cw, ch).data;
-        if (regionBusy(d, cw, ch)) continue;
-        var sc = regionScore(d, cw, ch);
-        if (sc < bestScore) { bestScore = sc; best = [x / W, y / H]; }
-      }
-    }
-    if (best) {
-      st.style.setProperty("inset", "auto", "important");
-      st.style.setProperty("top", (best[1] * 100).toFixed(1) + "%", "important");
-      st.style.setProperty("right", "auto", "important");
-      st.style.setProperty("bottom", "auto", "important");
-      st.style.setProperty("left", (best[0] * 100).toFixed(1) + "%", "important");
-      st.setAttribute("data-placed", "1");
-      box.setAttribute("data-sticker", "free");
-      box.setAttribute("data-sticker-src", src);
-      return;
-    }
     var least = 1e9, leastId = "tl";
     for (var c = 0; c < corners.length; c++) {
       var cell = corners[c];
@@ -208,6 +846,15 @@
     st.setAttribute("data-placed", "1");
     box.setAttribute("data-sticker", pick);
     if (src) box.setAttribute("data-sticker-src", src);
+  }
+  function lockPinnedStickers() {
+    document.querySelectorAll(".vhs-box").forEach(function (box) {
+      var pin = pinnedCorner(box);
+      if (!pin) return;
+      var img = box.querySelector(".vhs-window img");
+      var src = (img && (img.currentSrc || img.getAttribute("src"))) || box.getAttribute("data-sticker-src") || "pin";
+      box.querySelectorAll(".vhs-sticker").forEach(function (st) { parkSticker(st, box, pin, src); });
+    });
   }
   window.__rwPlaceSticker = placeBatchSticker;
   function tmdbBag() {
@@ -1139,9 +1786,24 @@
         'html body .vhs-barcode rect{fill:#f0ead8!important}' +
         '.vhs-sticker-type{fill:var(--rw-primary,#c41230);font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:10.4px!important;font-weight:900;letter-spacing:.04em!important}' +
         '.vhs-sticker-rewind{font-size:12px!important;letter-spacing:.07em!important}' +
-        '.vhs-box[data-slug="alien"] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;bottom:8px!important;left:auto!important}' +
-        'html body .vhs-box[data-slug="goodfellas"] .vhs-sticker,html body .vhs-box[data-slug="goodfellas"][data-sticker] .vhs-sticker,html body .vhs-box[data-title="none"][data-slug="goodfellas"] .vhs-sticker{inset:auto auto 17% 4%!important;top:auto!important;right:auto!important;bottom:17%!important;left:4%!important}' +
+        'html body .vhs-box .vhs-sticker{transition:none!important}' +
+        "html body .vhs-box[data-slug][data-sticker='tl'].vhs-box .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
+        "html body .vhs-box[data-slug][data-sticker='tr'].vhs-box .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
+        "html body .vhs-box[data-slug][data-sticker='bl'].vhs-box .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box[data-slug][data-sticker='br'].vhs-box .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='the-shawshank-redemption'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='the-shawshank-redemption'] .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='coming-to-america'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='coming-to-america'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='goodfellas'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='goodfellas'] .vhs-sticker,html body .vhs-box[data-title='none'][data-slug='goodfellas'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='point-break'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='point-break'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='heat'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='heat'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='heat-1995'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='heat-1995'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='back-to-the-future'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='back-to-the-future'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='pulp-fiction'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='pulp-fiction'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='alien'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='alien'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='die-hard'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='die-hard'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
+        'html body .vhs-box:not([data-sticker-src]) .vhs-sticker{visibility:hidden!important}' +
         '.vhs-box[data-slug="the-thing-1982"] .vhs-sticker{inset:auto auto 10px 10px!important;top:auto!important;right:auto!important;left:10px!important;bottom:10px!important}' +
+        'html body .vhs-box[data-slug="first-blood"] .vhs-window img{opacity:1!important;display:block!important;visibility:visible!important}' +
         '.lobby-picks .vhs-box,.lobby-picks .vhs-box[data-size],.lobby-picks .vhs-box[data-size="lg"],.lobby-picks .vhs-box[data-size="drop"],.lobby-picks .vhs-box[data-size="md"],.lobby-picks .vhs-box[data-size="sm"]{width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;flex:none!important;touch-action:none!important}' +
         '.lobby-picks [data-member-rails="manager"] h2,.lobby-picks [data-member-rails] .mb-3 h2{font-size:1.45rem!important}' +
         'html[data-member="1"] [data-lobby-hid="orig"]{display:none!important}' +
@@ -8468,19 +9130,83 @@
       const cover = box.querySelector(".vhs-window img");
       if (cover) {
         cover.removeAttribute("srcset");
-        cover.setAttribute("loading", "lazy");
-        cover.src = filmArt(slug);
+        cover.removeAttribute("sizes");
+        cover.removeAttribute("data-tmdb-slug");
+        cover.removeAttribute("data-tmdb-tries");
+        if (cover.getAttribute("loading") !== "eager") cover.setAttribute("loading", "lazy");
+        cover.style.setProperty("display", "block", "important");
+        cover.style.setProperty("visibility", "visible", "important");
+        var existing = cover.getAttribute("src") || "";
+        var existingRemote = existing.indexOf("image.tmdb.org") >= 0 || existing.indexOf("themoviedb.org") >= 0;
+        var art = filmArt(slug);
+        var remote = art.indexOf("image.tmdb.org") >= 0 || art.indexOf("themoviedb.org") >= 0;
+        var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007" || slug === "first-blood";
+        if (existingRemote && !remote && !keepSleeve && cover.getAttribute("data-rw-cover") === slug) {
+          art = existing;
+          remote = true;
+        }
+        var same = existing.split("?")[0] === String(art || "").split("?")[0];
+        if (keepSleeve) {
+          cover.src = art;
+          cover.setAttribute("data-painted", "1");
+          cover.setAttribute("data-tmdb-art", "keep");
+          cover.setAttribute("data-rw-cover", slug);
+          cover.style.setProperty("opacity", "1", "important");
+        } else if (remote) {
+          if (!same) cover.style.setProperty("opacity", "0", "important");
+          cover.src = art;
+          cover.setAttribute("data-tmdb-art", "1");
+          cover.setAttribute("data-rw-cover", slug);
+          cover.removeAttribute("data-painted");
+          var showRemote = function () {
+            var now = cover.getAttribute("src") || "";
+            if (now.indexOf("image.tmdb.org") < 0 && now.indexOf("themoviedb.org") < 0) return;
+            if (!cover.naturalWidth) return;
+            cover.style.setProperty("opacity", "1", "important");
+          };
+          if (cover.complete && cover.naturalWidth) showRemote();
+          else cover.addEventListener("load", showRemote);
+        } else {
+          cover.style.setProperty("opacity", "0", "important");
+          if (!same) cover.src = art;
+          cover.removeAttribute("data-tmdb-art");
+          cover.removeAttribute("data-painted");
+        }
         cover.removeAttribute("srcset");
         var fit = (window.boxAssets && window.boxAssets(slug) && window.boxAssets(slug).fit) || "contain";
         cover.style.setProperty("object-fit", fit, "important");
+        var win = cover.closest(".vhs-window");
+        if (win) win.querySelectorAll(".vhs-cover-word").forEach(function (node) { node.remove(); });
       }
+      box.removeAttribute("data-sticker-src");
+      box.removeAttribute("data-sticker-set");
+      box.removeAttribute("data-sticker");
+      box.removeAttribute("data-spine-match");
+      box.querySelectorAll(".vhs-spine-word").forEach(function (word) {
+        word.textContent = film.title || "";
+        word.style.setProperty("display", "none", "important");
+      });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         const file = slug === "back-to-the-future" ? "back-to-the-future" : slug;
         const boxed = window.boxAssets && window.boxAssets(slug);
         img.setAttribute("loading", "lazy");
         img.removeAttribute("srcset");
+        img.style.setProperty("display", "none", "important");
+        img.onload = function () {
+          if (!img.naturalWidth) return;
+          img.style.setProperty("display", "block", "important");
+        };
+        img.onerror = function () {
+          img.onerror = null;
+          img.style.setProperty("display", "none", "important");
+          var ink = img.closest(".vhs-spine-ink");
+          var word = ink && ink.querySelector(".vhs-spine-word");
+          if (word) {
+            word.textContent = film.title || slug;
+            word.style.setProperty("display", "flex", "important");
+          }
+        };
         img.src = (boxed && boxed.spine) || ("/sleeves/spines/" + file + ".png");
-        img.onerror = function () { this.style.display = "none"; };
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) { el.textContent = film.year ? String(film.year) : ""; });
       box.querySelectorAll(".vhs-spine-no").forEach(function (el) { el.textContent = film.catalogNo || ""; });
@@ -8694,6 +9420,7 @@
     }
     function layoutAisles() {
       sections.forEach(layoutSection);
+      try { if (window.__rwScanArt) window.__rwScanArt(); } catch (eScan) {}
     }
     let aisleTick = false;
     function scheduleAisles() {
@@ -13556,10 +14283,10 @@
   function fixDieHardSticker() {
     document.querySelectorAll('.vhs-box[data-slug="die-hard"]').forEach(function (box) {
       box.querySelectorAll(".vhs-sticker").forEach(function (st) {
-        st.style.setProperty("inset", "auto 8px 8px auto", "important");
-        st.style.setProperty("top", "auto", "important");
+        st.style.setProperty("inset", "8px 8px auto auto", "important");
+        st.style.setProperty("top", "8px", "important");
         st.style.setProperty("right", "8px", "important");
-        st.style.setProperty("bottom", "8px", "important");
+        st.style.setProperty("bottom", "auto", "important");
         st.style.setProperty("left", "auto", "important");
       });
       const img = box.querySelector(".vhs-back-still img");
@@ -13606,12 +14333,17 @@
     document.querySelectorAll('.vhs-box[data-slug="jaws"]').forEach(function (box) {
       box.querySelectorAll(".vhs-window img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("v=488") < 0) {
+        if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) {
+          img.style.setProperty("object-fit", "cover", "important");
+          img.style.setProperty("object-position", "center center", "important");
+        } else if (src.indexOf("v=488") < 0) {
+          img.style.setProperty("opacity", "0", "important");
           img.removeAttribute("srcset");
           img.src = "/sleeves/jaws.jpg?v=488";
+        } else {
+          img.style.setProperty("object-fit", "cover", "important");
+          img.style.setProperty("object-position", "center center", "important");
         }
-        img.style.setProperty("object-fit", "cover", "important");
-        img.style.setProperty("object-position", "center center", "important");
       });
       box.querySelectorAll(".vhs-back-still").forEach(function (el) {
         el.style.setProperty("background-image", "none", "important");
@@ -13717,11 +14449,11 @@
 
   function fixShawshankSticker() {
     document.querySelectorAll('.vhs-box[data-slug="the-shawshank-redemption"] .vhs-sticker').forEach(function (st) {
-      st.style.setProperty("inset", "auto auto 8px 8px", "important");
-      st.style.setProperty("top", "auto", "important");
+      st.style.setProperty("inset", "8px auto auto 8px", "important");
+      st.style.setProperty("top", "8px", "important");
       st.style.setProperty("right", "auto", "important");
       st.style.setProperty("left", "8px", "important");
-      st.style.setProperty("bottom", "8px", "important");
+      st.style.setProperty("bottom", "auto", "important");
     });
   }
 
@@ -13742,6 +14474,11 @@
           img.removeAttribute("srcset");
           img.src = "/sleeves/first-blood.jpg?v=258";
         }
+        img.setAttribute("data-painted", "1");
+        img.setAttribute("data-tmdb-art", "keep");
+        img.style.setProperty("opacity", "1", "important");
+        img.style.setProperty("display", "block", "important");
+        img.style.setProperty("visibility", "visible", "important");
       });
       box.querySelectorAll(".vhs-sticker").forEach(function (st) {
         st.style.setProperty("inset", "8px 8px auto auto", "important");
@@ -13781,7 +14518,10 @@
       if (!slug) return;
       if (slug === "dune-part-two") {
         box.querySelectorAll(".vhs-window img").forEach(function (face) {
-          if ((face.getAttribute("src") || "").indexOf("dune-part-two.jpg?v=2") < 0) {
+          var now = face.getAttribute("src") || "";
+          if (now.indexOf("image.tmdb.org") >= 0 || now.indexOf("themoviedb.org") >= 0) return;
+          if (now.indexOf("dune-part-two.jpg?v=2") < 0) {
+            face.style.setProperty("opacity", "0", "important");
             face.removeAttribute("srcset");
             face.src = "/sleeves/dune-part-two.jpg?v=2";
           }
@@ -13927,11 +14667,11 @@
         img.style.setProperty("object-position", "center 42%", "important");
         still.style.setProperty("background-position", "center 42%", "important");
         box.querySelectorAll(".vhs-sticker").forEach(function (st) {
-          st.style.setProperty("inset", "auto auto 17% 4%", "important");
+          st.style.setProperty("inset", "auto auto 8px 8px", "important");
           st.style.setProperty("top", "auto", "important");
           st.style.setProperty("right", "auto", "important");
-          st.style.setProperty("bottom", "17%", "important");
-          st.style.setProperty("left", "4%", "important");
+          st.style.setProperty("bottom", "8px", "important");
+          st.style.setProperty("left", "8px", "important");
         });
       }
       still.style.setProperty("background-repeat", "no-repeat", "important");
@@ -14200,7 +14940,6 @@
           box.style.setProperty("--vhs-depth", "58px", "important");
           box.style.setProperty("--vhs-lip", "58px", "important");
         }
-        if (src.split("?")[0] !== want.split("?")[0] || src.indexOf(want) < 0) img.src = want;
         img.style.setProperty("object-fit", fit, "important");
         img.style.setProperty("object-position", "center center", "important");
         img.style.setProperty("position", "absolute", "important");
@@ -14211,26 +14950,20 @@
         if (!img.__rwCoverArm) {
           img.__rwCoverArm = 1;
           img.addEventListener("error", function () {
-            img.style.setProperty("display", "none", "important");
-            var win = img.closest(".vhs-window");
-            if (!win || win.querySelector(".vhs-cover-word")) return;
-            var tag = document.createElement("span");
-            tag.className = "vhs-cover-word";
-            tag.textContent = spineTitle;
-            tag.style.cssText = "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12%;color:#f3e6c8;font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:15px;line-height:1.15;letter-spacing:.02em;z-index:4;pointer-events:none";
-            win.appendChild(tag);
+            var bad = img.getAttribute("src") || "";
+            if (bad.indexOf("image.tmdb.org") >= 0 || bad.indexOf("media.themoviedb.org") >= 0) return;
+            if (img.dataset && (img.dataset.painted === "1" || img.dataset.tmdbArt === "keep" || img.dataset.tmdbArt === "1")) return;
+            img.style.setProperty("opacity", "0", "important");
           });
         }
-        if (img.complete && !img.naturalWidth && (img.getAttribute("src") || "").indexOf("/sleeves/") >= 0) {
-          img.style.setProperty("display", "none", "important");
-          var winNow = img.closest(".vhs-window");
-          if (winNow && !winNow.querySelector(".vhs-cover-word")) {
-            var tagNow = document.createElement("span");
-            tagNow.className = "vhs-cover-word";
-            tagNow.textContent = spineTitle;
-            tagNow.style.cssText = "position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12%;color:#f3e6c8;font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:15px;line-height:1.15;letter-spacing:.02em;z-index:4;pointer-events:none";
-            winNow.appendChild(tagNow);
+        var srcIsRemote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0;
+        var wantIsSleeve = want.indexOf("/sleeves/") >= 0;
+        if (!(srcIsRemote && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
+          if (img.crossOrigin) {
+            img.crossOrigin = null;
+            img.removeAttribute("crossorigin");
           }
+          img.src = want;
         }
       });
       box.querySelectorAll(".vhs-window").forEach(function (win) {
@@ -14287,6 +15020,36 @@
         img.style.setProperty("z-index", "2", "important");
         img.style.setProperty("transform", "none", "important");
         img.style.setProperty("background", "transparent", "important");
+        img.style.setProperty("outline", "none", "important");
+        img.style.setProperty("outline-offset", "0", "important");
+        img.style.setProperty("border", "0", "important");
+        img.style.setProperty("box-shadow", "none", "important");
+        if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-match") === "1") {
+          img.style.setProperty("top", "16%", "important");
+          img.style.setProperty("bottom", "24%", "important");
+          img.style.setProperty("left", "22%", "important");
+          img.style.setProperty("right", "22%", "important");
+          img.style.setProperty("width", "56%", "important");
+          img.style.setProperty("height", "60%", "important");
+          img.style.setProperty("max-width", "56%", "important");
+          img.style.setProperty("max-height", "60%", "important");
+          if (img.naturalWidth && img.naturalHeight && img.naturalHeight / img.naturalWidth > 5.2) {
+            img.style.setProperty("top", "22%", "important");
+            img.style.setProperty("bottom", "28%", "important");
+            img.style.setProperty("height", "50%", "important");
+            img.style.setProperty("max-height", "50%", "important");
+          }
+        }
+        if (img.closest("[data-slug='the-shining']")) {
+          img.style.setProperty("top", "9%", "important");
+          img.style.setProperty("bottom", "12%", "important");
+          img.style.setProperty("left", "16%", "important");
+          img.style.setProperty("right", "16%", "important");
+          img.style.setProperty("width", "68%", "important");
+          img.style.setProperty("height", "79%", "important");
+          img.style.setProperty("max-width", "68%", "important");
+          img.style.setProperty("max-height", "79%", "important");
+        }
         if (img.closest("[data-slug='halloween-1978']")) {
           img.style.setProperty("inset", "auto", "important");
           img.style.setProperty("top", "16%", "important");
@@ -14325,7 +15088,6 @@
           ink.style.setProperty("background-color", SPINE_GROUND[slug], "important");
           ink.style.setProperty("background-image", "none", "important");
         }
-        showSpineWord(ink);
         if (ink.querySelector(".vhs-spine-logo")) return;
         var img = document.createElement("img");
         img.className = "vhs-spine-logo";
@@ -14334,12 +15096,41 @@
         img.decoding = "async";
         ink.appendChild(img);
       });
+      var coverForSpine = box.querySelector(".vhs-window img");
+      var coverAttr = coverForSpine ? (coverForSpine.getAttribute("src") || "") : "";
+      var coverShown = coverForSpine ? (coverForSpine.currentSrc || "") : "";
+      var coverUrl = coverAttr || coverShown;
+      if (coverAttr && coverShown && coverShown.indexOf(coverAttr.split("?")[0]) < 0) coverUrl = coverAttr;
+      var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
+      if (TITLE_BAND[slug] && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
+        if (!spineReady) queueSpineMatch(slug, coverUrl);
+      }
+      var spineHit = !!(spineReady && spineReady.src);
+      if (spineHit) {
+        box.setAttribute("data-spine-match", "1");
+        if (spineReady.bg) {
+          box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
+            sp.style.setProperty("background-color", spineReady.bg, "important");
+            sp.style.setProperty("background-image", "none", "important");
+          });
+        }
+      } else if (box.getAttribute("data-spine-match") === "1") {
+        box.removeAttribute("data-spine-match");
+      }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        if (spineHit) {
+          if ((img.getAttribute("src") || "") !== spineReady.src) img.src = spineReady.src;
+          fitSpineLogo(img);
+          hideSpineWord(img.closest(".vhs-spine-ink"));
+          return;
+        }
         var boxedSpine = window.boxAssets && window.boxAssets(slug);
         var want = (boxedSpine && boxedSpine.spine) || ("/sleeves/spines/" + spineFile + ".png");
         var cur = img.getAttribute("src") || "";
-        if (cur.indexOf(want) < 0) img.src = want;
-        fitSpineLogo(img);
+        if ((cur.split("?")[0] !== want.split("?")[0]) && cur.indexOf(want) < 0) {
+          img.style.setProperty("display", "none", "important");
+          img.src = want;
+        }
         if (!img.__rwArm) {
           img.__rwArm = 1;
           img.addEventListener("error", function () {
@@ -14366,6 +15157,8 @@
           img.style.setProperty("display", "none", "important");
           var inkNow = img.closest(".vhs-spine-ink");
           if (inkNow) showSpineWord(inkNow);
+        } else {
+          img.style.setProperty("display", "none", "important");
         }
       });
       var still = box.querySelector(".vhs-back-still img");
@@ -14558,6 +15351,7 @@
       fixJawsCover();
       fixBladeRunner();
       fixEveryBack();
+      lockPinnedStickers();
       setTimeout(fixPointBreakBack, 400);
       setTimeout(fixComingToAmericaBack, 400);
       setTimeout(fixDieHardSticker, 400);
@@ -14579,6 +15373,9 @@
       setTimeout(fixEveryBack, 1600);
       setTimeout(fixPointBreakBack, 1900);
       setTimeout(fixAllSpines, 2000);
+      setTimeout(lockPinnedStickers, 400);
+      setTimeout(lockPinnedStickers, 1600);
+      setTimeout(lockPinnedStickers, 2500);
     });
   } else {
     dressLobby();
@@ -14599,6 +15396,7 @@
     fixJawsCover();
     fixBladeRunner();
     fixEveryBack();
+    lockPinnedStickers();
     setTimeout(fixPointBreakBack, 400);
     setTimeout(fixComingToAmericaBack, 400);
     setTimeout(fixDieHardSticker, 400);
@@ -14618,6 +15416,9 @@
     setTimeout(fixEveryBack, 1800);
     setTimeout(fixPointBreakBack, 2100);
     setTimeout(fixAllSpines, 2200);
+    setTimeout(lockPinnedStickers, 400);
+    setTimeout(lockPinnedStickers, 1800);
+    setTimeout(lockPinnedStickers, 2600);
   }
   try {
     if (!window.__rwNdNavArm) {

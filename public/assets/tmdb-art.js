@@ -7,9 +7,14 @@
   var queue = [];
   var busy = 0;
   try {
-    var saved = JSON.parse(sessionStorage.getItem("rw-tmdb-art2") || "{}") || {};
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem("rw-tmdb-art2") || "{}") || {}; } catch (eLs) {}
+    var ses = JSON.parse(sessionStorage.getItem("rw-tmdb-art2") || "{}") || {};
     Object.keys(saved).forEach(function (key) {
       if (saved[key]) memory[key] = saved[key];
+    });
+    Object.keys(ses).forEach(function (key) {
+      if (ses[key]) memory[key] = ses[key];
     });
     memory["a-clockwork-orange"] = "https://image.tmdb.org/t/p/w500/4sHeTAp65WrSSuc05nRBKddhBxO.jpg";
     delete memory["halloween-1978"];
@@ -26,13 +31,15 @@
     "the-crow": "/sleeves/the-crow.jpg?v=painted",
     "there-will-be-blood": "/sleeves/there-will-be-blood.jpg?v=painted",
     "there-will-be-blood-2007": "/sleeves/there-will-be-blood.jpg?v=painted",
+    "first-blood": "/sleeves/first-blood.jpg?v=258",
   };
   var keepPainted = painted;
 
   function save() {
-    try {
-      sessionStorage.setItem("rw-tmdb-art2", JSON.stringify(memory));
-    } catch (e) {}
+    var raw = "";
+    try { raw = JSON.stringify(memory); } catch (e) { return; }
+    try { sessionStorage.setItem("rw-tmdb-art2", raw); } catch (e) {}
+    try { localStorage.setItem("rw-tmdb-art2", raw); } catch (e) {}
   }
   save();
 
@@ -69,13 +76,24 @@
   }
 
   function paint(img, url) {
+    if (img.crossOrigin) {
+      img.crossOrigin = null;
+      img.removeAttribute("crossorigin");
+    }
+    img.removeAttribute("srcset");
+    img.removeAttribute("sizes");
+    var same = (img.getAttribute("src") || "") === url;
+    if (!same) {
+      img.style.setProperty("opacity", "0", "important");
+      img.src = url;
+    }
     img.dataset.tmdbArt = "1";
     img.style.setProperty("display", "block", "important");
-    img.style.setProperty("opacity", "1", "important");
     img.style.setProperty("visibility", "visible", "important");
     img.style.setProperty("object-fit", "cover", "important");
     img.style.setProperty("object-position", "center center", "important");
     img.referrerPolicy = "no-referrer";
+    if (same && img.complete && img.naturalWidth) revealCover(img);
     if (!img.__rwStickerHook) {
       img.__rwStickerHook = 1;
       img.addEventListener("load", function () {
@@ -89,14 +107,37 @@
         node.remove();
       });
     }
-    if ((img.getAttribute("src") || "") !== url) img.src = url;
+    if (img.crossOrigin) {
+      img.crossOrigin = null;
+      img.removeAttribute("crossorigin");
+    }
+  }
+
+  function waitingSleeve(img) {
+    var src = (img && img.getAttribute && img.getAttribute("src")) || "";
+    if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) return false;
+    if (img.dataset && img.dataset.painted === "1") return false;
+    var art = img.dataset && img.dataset.tmdbArt;
+    if (art === "keep" || art === "miss") return false;
+    return src.indexOf("/sleeves/") >= 0;
+  }
+
+  function revealCover(img) {
+    if (!img || !img.naturalWidth || waitingSleeve(img)) return;
+    img.style.setProperty("display", "block", "important");
+    img.style.setProperty("opacity", "1", "important");
+    img.style.setProperty("visibility", "visible", "important");
+    var win = img.closest && img.closest(".vhs-window");
+    if (!win) return;
+    win.querySelectorAll(".vhs-cover-word").forEach(function (node) {
+      node.remove();
+    });
   }
 
   function showTitle(img) {
     if (!img) return;
-    if (img.naturalWidth) {
-      img.style.setProperty("opacity", "1", "important");
-      img.style.setProperty("display", "block", "important");
+    if (img.naturalWidth || img.complete === false) {
+      if (img.naturalWidth) revealCover(img);
       return;
     }
     img.style.setProperty("display", "none", "important");
@@ -168,7 +209,17 @@
           });
         })
         .catch(function () {
-          markMiss(job.slug);
+          var tries = Number(job.img && job.img.dataset.tmdbTries || 0) + 1;
+          if (job.img) job.img.dataset.tmdbTries = String(tries);
+          if (tries < 3 && job.img) {
+            job.img.dataset.tmdbArt = "";
+            if (inView(job.img)) {
+              job.img.dataset.tmdbArt = "wait";
+              queue.push(job);
+            }
+          } else {
+            markMiss(job.slug);
+          }
         })
         .then(function () {
           busy -= 1;
@@ -244,7 +295,6 @@
       return;
     }
     if (img.dataset.tmdbArt === "wait" || img.dataset.tmdbArt === "miss" || img.dataset.tmdbArt === "1") return;
-    if (img.complete && !img.naturalWidth) showTitle(img);
     if (!inView(img)) {
       img.dataset.tmdbArt = "later";
       return;
@@ -336,8 +386,16 @@
       }
       var slug = img.dataset.tmdbSlug || sleeveSlug(raw);
       if (!slug) return;
+      if ((raw.indexOf("image.tmdb.org") >= 0 || raw.indexOf("media.themoviedb.org") >= 0) && img.crossOrigin) {
+        img.crossOrigin = null;
+        img.removeAttribute("crossorigin");
+        var again = raw;
+        img.removeAttribute("src");
+        img.src = again;
+        return;
+      }
       if ((raw.indexOf("image.tmdb.org") >= 0 || raw.indexOf("media.themoviedb.org") >= 0) && img.dataset.tmdbBroke === "1") {
-        showTitle(img);
+        if (!img.naturalWidth) showTitle(img);
         return;
       }
       if (raw.indexOf("image.tmdb.org") >= 0 || raw.indexOf("media.themoviedb.org") >= 0) img.dataset.tmdbBroke = "1";
@@ -353,5 +411,15 @@
     },
     true,
   );
+  document.addEventListener(
+    "load",
+    function (e) {
+      var img = e.target;
+      if (!img || img.tagName !== "IMG" || !img.closest || !img.closest(".vhs-window")) return;
+      revealCover(img);
+    },
+    true,
+  );
+  window.__rwScanArt = function () { scan(document); };
   hookBoxes();
 })();
