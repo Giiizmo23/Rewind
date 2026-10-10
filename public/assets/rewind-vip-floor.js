@@ -641,6 +641,18 @@
     if (row && row.back) return row.back;
     return "/sleeves/" + slug + "-still.jpg?v=541";
   }
+  // Back stills that fail to load (many 2026 films have none) are remembered for this page load.
+  // fixEveryBack() and fixOneSpine() used to set src back to the missing file on every pass (a 404
+  // loop that never stops, racing tmdb-art.js). They now leave a missed still alone (no new request)
+  // and keep whatever tmdb-art.js paints there clipped away, so the box back still shows what it shows
+  // today: an empty still area. display is untouched, so nothing else on the box re-flows.
+  var stillMiss = {};
+  document.addEventListener("error", function (e) {
+    var t = e.target;
+    if (!t || t.tagName !== "IMG") return;
+    var s = t.getAttribute("src") || "";
+    if (s.indexOf("-still.jpg") >= 0) stillMiss[s] = 1;
+  }, true);
   var BATCH_STICKER = {
     "kill-bill-vol-1": 1,
     "a-christmas-story": 1,
@@ -8999,7 +9011,10 @@
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:19.5rem!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:var(--shelf-row)!important;column-gap:0!important;row-gap:0!important;margin:0 0 1.5rem!important;width:100vw!important;max-width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;box-sizing:border-box!important;padding:0 22px 0!important;border:0!important;background-color:#f6f4ef!important;background-image:url(/assets/shelf/post-left.jpg?v=16),url(/assets/shelf/post-right.jpg?v=16),url(/assets/shelf/lip.png?v=17)!important;background-repeat:no-repeat,no-repeat,repeat-y!important;background-size:22px calc(100% - 6rem),22px calc(100% - 6rem),100% var(--shelf-row)!important;background-position:left 6rem,right 6rem,left top!important;background-origin:border-box!important;background-clip:border-box!important;box-shadow:0 16px 22px rgba(26,20,16,.16)!important;overflow:visible!important}" +
         "html[data-theme='night']:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot),html[data-theme='dark']:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot){background-color:#0a0b0e!important}" +
         "@media(min-width:640px){html body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:19rem;grid-template-columns:repeat(4,minmax(0,1fr))!important}}" +
+        /* Aisle shelf counts (Julian, Oct 10 2026): the 2-up rule above is more specific than the 4/5 rules, so tablets/desktops showed 2 per shelf while aisleGeom() lays out 4/5. Same specificity as the 2-up rule, later in source; phones (<640px) and the home-screen app (standalone) never match. */
+        "@media(min-width:640px) and (not (display-mode:standalone)){html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:19rem!important;grid-template-columns:repeat(4,minmax(0,1fr))!important}}" +
         "@media(min-width:1024px){html body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:18rem;grid-template-columns:repeat(5,minmax(0,1fr))!important}}" +
+        "@media(min-width:1024px) and (not (display-mode:standalone)){html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot){--shelf-row:18rem!important;grid-template-columns:repeat(5,minmax(0,1fr))!important}}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot{height:var(--shelf-row)!important;min-height:0!important;max-height:var(--shelf-row)!important;margin:0!important;padding:.15rem .4rem 14px!important;background-color:transparent!important;background-image:linear-gradient(to bottom,#8f8880 0,#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-repeat:no-repeat!important;background-size:100% 100%!important;background-position:left top!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:center!important;overflow:visible!important;position:relative!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-color:transparent!important;background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-size:100% 100%!important;background-position:left top!important;background-repeat:no-repeat!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-color:transparent!important;background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
@@ -16085,7 +16100,8 @@
       const stillVer = slug === "the-crow" ? "540" : slug === "halloween-1978" ? "522" : slug === "point-break" ? "532" : "520";
       const want = backStill(slug);
       const cur = img.getAttribute("src") || "";
-      if (want.indexOf("-still.jpg?v=") < 0 || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0)) {
+      const stillMissed = !!stillMiss[want];
+      if (!stillMissed && cur !== want && (want.indexOf("-still.jpg?v=") < 0 || (cur.indexOf("jaws-orca.jpg") < 0 && cur.indexOf("-still.jpg?v=" + stillVer) < 0))) {
         img.onerror = function () {
           img.onerror = null;
           img.style.setProperty("display", "none", "important");
@@ -16102,6 +16118,7 @@
       var pos = slug === "the-shining" ? "center 70%" : slug === "blade-runner" ? "center 42%" : slug === "back-to-the-future" ? "center 40%" : "center top";
       img.style.setProperty("object-position", pos, "important");
       img.style.setProperty("display", "block", "important");
+      if (stillMissed) img.style.setProperty("clip-path", "inset(100%)", "important");
       img.style.setProperty("margin", "0", "important");
       still.style.setProperty("background-size", "cover", "important");
       still.style.setProperty("background-position", pos, "important");
@@ -16617,7 +16634,7 @@
       var still = box.querySelector(".vhs-back-still img");
       if (still) {
         var back = backStill(slug);
-        if ((still.getAttribute("src") || "").indexOf(back) < 0) still.src = back;
+        if (!stillMiss[back] && (still.getAttribute("src") || "").indexOf(back) < 0) still.src = back;
         var shelfGrid = box.closest(".grid");
         var onShelfStill = !!(shelfGrid && shelfGrid.classList.contains("grid-cols-2") && box.closest(".tape-slot"));
         if (onShelfStill) {
