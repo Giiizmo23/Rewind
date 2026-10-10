@@ -65,12 +65,12 @@
       var y = ink.querySelector(".vhs-spine-year"); if (y) y.textContent = film.year ? String(film.year) : "";
       var no = ink.querySelector(".vhs-spine-no"); if (no) no.textContent = film.catalogNo || "";
     });
+    var boxed = window.boxAssets && window.boxAssets(slug);
     var cover = box.querySelector(".vhs-window img");
     if (cover) {
       ["data-tmdb-art", "data-rw-cover", "data-tmdb-slug", "data-painted", "srcset", "sizes", "fetchpriority"].forEach(function (a) { cover.removeAttribute(a); });
       cover.setAttribute("alt", title);
       cover.setAttribute("loading", "lazy");
-      var boxed = window.boxAssets && window.boxAssets(slug);
       cover.src = (boxed && boxed.cover) || "/sleeves/" + slug + ".jpg?v=520";
     }
     box.querySelectorAll(".vhs-face .vhs-title, .vhs-back-title").forEach(function (el) { el.textContent = title; });
@@ -81,13 +81,19 @@
     var stocks = box.querySelectorAll(".vhs-back-stock");
     if (stocks[0]) stocks[0].textContent = [film.year, runtimeLabel(film.runtime)].filter(Boolean).join(" \u00b7 ");
     if (stocks[1]) stocks[1].textContent = (film.catalogNo ? film.catalogNo + " \u00b7 " : "") + "Hi-Fi Stereo";
+    /* The template's back still belongs to its own film (e.g. /sleeves/the-lion-king-rock.jpg).
+       Re-point it at this film: left stale, the member lobby's duplicate-tape pass reads that
+       /sleeves/ file as the tape's slug whenever the cover is a TMDB URL, and hides the tape. */
+    var backSrc = (boxed && boxed.back) || "/sleeves/" + slug + "-still.jpg?v=520";
     var shell = box.querySelector(".vhs-shell-back"), copy = box.querySelector(".vhs-back-copy");
-    if (shell && copy && !box.querySelector(".vhs-back-still")) {
-      var wrap = document.createElement("div"); wrap.className = "vhs-back-still";
+    var wrap = box.querySelector(".vhs-back-still");
+    if (!wrap && shell && copy) { wrap = document.createElement("div"); wrap.className = "vhs-back-still"; shell.insertBefore(wrap, copy); }
+    if (wrap) {
+      wrap.querySelectorAll("img").forEach(function (img) { img.remove(); });
       var still = document.createElement("img"); still.alt = ""; still.draggable = false; still.decoding = "async"; still.loading = "lazy";
-      still.src = "/sleeves/" + slug + "-still.jpg?v=520";
       still.onerror = function () { this.onerror = null; this.style.display = "none"; };
-      wrap.appendChild(still); shell.insertBefore(wrap, copy);
+      still.src = backSrc;
+      wrap.appendChild(still);
     }
     var open = article.querySelector("a.tape-slot-open"); if (open) open.setAttribute("href", "/films/" + slug);
     var t = article.querySelector(".tape-slot-title"); if (t) t.textContent = title;
