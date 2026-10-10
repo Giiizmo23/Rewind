@@ -268,14 +268,12 @@ candyman	Candyman	1992	Bernard Rose	Drama, Horror, Thriller	horror,thriller,dram
 army-of-darkness	Army of Darkness	1992	Sam Raimi	Fantasy, Horror, Comedy	horror,comedy,fantasy
 bram-stokers-dracula	Bram Stoker's Dracula	1992	Francis Ford Coppola	Romance, Horror	horror,romance
 wes-cravens-new-nightmare	Wes Craven's New Nightmare	1994	Wes Craven	Horror, Mystery, Fantasy	horror,thriller,fantasy
-in-the-mouth-of-madness	In the Mouth of Madness	1994	John Carpenter	Horror, Mystery, Drama, Thriller, Fantasy	horror,thriller,fantasy,drama
 from-dusk-till-dawn	From Dusk Till Dawn	1996	Robert Rodriguez	Horror, Action, Crime	horror,action,crime,cult
 scream-2	Scream 2	1997	Wes Craven	Horror, Mystery	horror,thriller
 ringu	Ringu	1998	Hideo Nakata	Horror, Thriller	horror,thriller
 bride-of-chucky	Bride of Chucky	1998	Ronny Yu	Horror, Comedy	horror,comedy
 the-blair-witch-project	The Blair Witch Project	1999	Daniel Myrick	Horror, Mystery	horror,thriller
 the-sixth-sense-1999	The Sixth Sense	1999	M. Night Shyamalan	Mystery, Thriller, Drama	thriller,drama
-audition	Audition	1999	Takashi Miike	Horror, Drama	horror,drama,cult
 final-destination	Final Destination	2000	James Wong	Horror	horror
 the-others	The Others	2001	Alejandro Amenabar	Horror, Mystery, Thriller	horror,thriller
 pulse	Pulse	2001	Kiyoshi Kurosawa	Horror, Thriller, Mystery	horror,thriller
@@ -295,21 +293,16 @@ let-the-right-one-in	Let the Right One In	2008	Tomas Alfredson	Horror, Drama	hor
 the-strangers	The Strangers	2008	Bryan Bertino	Horror	horror
 drag-me-to-hell	Drag Me to Hell	2009	Sam Raimi	Horror, Thriller	horror,thriller
 paranormal-activity	Paranormal Activity	2009	Oren Peli	Horror, Mystery	horror,thriller
-insidious	Insidious	2010	James Wan	Horror, Thriller	horror,thriller
 let-me-in	Let Me In	2010	Matt Reeves	Drama, Horror, Mystery	horror,thriller,drama
-the-cabin-in-the-woods	The Cabin in the Woods	2011	Drew Goddard	Horror, Mystery, Comedy	horror,thriller,comedy
 sinister	Sinister	2012	Scott Derrickson	Horror, Thriller, Mystery	horror,thriller
 the-conjuring	The Conjuring	2013	James Wan	Horror, Thriller	horror,thriller
 evil-dead	Evil Dead	2013	Fede Alvarez	Horror	horror
 mama	Mama	2013	Andy Muschietti	Horror	horror
-it-follows	It Follows	2014	David Robert Mitchell	Horror, Mystery	horror,thriller
 the-babadook	The Babadook	2014	Jennifer Kent	Drama, Horror	horror,drama
 the-guest	The Guest	2014	Adam Wingard	Mystery, Thriller, Action	thriller,action
 the-conjuring-2	The Conjuring 2	2016	James Wan	Horror	horror
 train-to-busan	Train to Busan	2016	Yeon Sang-ho	Action, Horror, Thriller, Adventure	horror,thriller,action
 the-wailing	The Wailing	2016	Na Hong-jin	Horror, Mystery	horror,thriller
-raw	Raw	2016	Julia Ducournau	Horror, Drama	horror,drama
-the-witch	The Witch	2016	Robert Eggers	Horror, Fantasy, Mystery	horror,thriller,fantasy
 it	It	2017	Andy Muschietti	Horror, Thriller, Drama	horror,thriller,drama
 annabelle-creation	Annabelle Creation	2017	David F. Sandberg	Horror	horror
 suspiria	Suspiria	2018	Luca Guadagnino	Horror, Mystery, Drama	horror,thriller,drama
@@ -320,7 +313,6 @@ ready-or-not	Ready or Not	2019	Matt Bettinelli-Olpin	Horror, Comedy	horror,comed
 the-invisible-man-2020	The Invisible Man	2020	Leigh Whannell	Thriller, Science Fiction, Horror	horror,thriller,scifi
 saint-maud	Saint Maud	2020	Rose Glass	Horror, Mystery, Thriller	horror,thriller
 malignant	Malignant	2021	James Wan	Horror, Mystery	horror,thriller
-the-black-phone	The Black Phone	2021	Scott Derrickson	Horror, Thriller	horror,thriller
 candyman-2021	Candyman	2021	Nia DaCosta	Horror, Thriller	horror,thriller
 the-night-house	The Night House	2021	David Bruckner	Horror, Mystery	horror,thriller
 barbarian	Barbarian	2022	Zach Cregger	Horror, Mystery, Thriller	horror,thriller,indie
@@ -419,7 +411,6 @@ inception-2010	Inception	2010	Christopher Nolan	Action, Science Fiction, Adventu
 the-girl-with-the-dragon-tattoo	The Girl with the Dragon Tattoo	2011	David Fincher	Thriller, Crime, Mystery	thriller,crime
 looper	Looper	2012	Rian Johnson	Action, Thriller, Science Fiction	thriller,scifi,action
 prisoners	Prisoners	2013	Denis Villeneuve	Drama, Thriller, Crime	thriller,crime,drama
-enemy	Enemy	2013	Denis Villeneuve	Thriller, Mystery	thriller
 gone-girl	Gone Girl	2014	David Fincher	Mystery, Thriller, Drama	thriller,drama
 nightcrawler	Nightcrawler	2014	Dan Gilroy	Crime, Drama, Thriller	thriller,crime,drama
 birdman	Birdman	2014	Alejandro G. Inarritu	Documentary	drama
@@ -519,7 +510,6 @@ lethal-weapon-3	Lethal Weapon 3	1992	Richard Donner	Action, Thriller, Crime	thri
 the-fugitive	The Fugitive	1993	Andrew Davis	Action, Thriller, Drama	thriller,action,drama
 hard-target	Hard Target	1993	John Woo	Action, Thriller, Crime	thriller,action,crime
 true-lies	True Lies	1994	James Cameron	Action, Thriller	thriller,action
-leon-the-professional	Leon The Professional	1994	Luc Besson	Crime, Drama, Action	action,crime,drama
 die-hard-with-a-vengeance	Die Hard with a Vengeance	1995	John McTiernan	Action, Thriller	thriller,action
 goldeneye	GoldenEye	1995	Martin Campbell	Adventure, Action, Thriller	thriller,action
 the-rock	The Rock	1996	Michael Bay	Action, Adventure, Thriller	thriller,action
@@ -560,10 +550,8 @@ hellboy-ii-the-golden-army	Hellboy II The Golden Army	2008	Guillermo del Toro	Fa
 taken	Taken	2008	Pierre Morel	Action, Thriller	thriller,action
 sherlock-holmes	Sherlock Holmes	2009	Guy Ritchie	Action, Adventure, Mystery	thriller,action
 kick-ass	Kick-Ass	2010	Matthew Vaughn	Action, Crime	action,crime
-captain-america-the-first-avenger	Captain America The First Avenger	2010	Joe Johnston	Action, Adventure, Science Fiction	scifi,action
 mission-impossible-ghost-protocol	Mission Impossible Ghost Protocol	2011	Brad Bird	Action, Thriller, Adventure	thriller,action
 rise-of-the-planet-of-the-apes	Rise of the Planet of the Apes	2011	Rupert Wyatt	Thriller, Action, Drama, Science Fiction	thriller,scifi,action,drama
-the-raid	The Raid	2011	Gareth Evans	Action, Thriller, Crime	thriller,action,crime
 the-avengers	The Avengers	2012	Joss Whedon	Science Fiction, Action, Adventure	scifi,action
 the-dark-knight-rises	The Dark Knight Rises	2012	Christopher Nolan	Action, Crime, Drama, Thriller	thriller,action,crime,drama
 skyfall	Skyfall	2012	Sam Mendes	Action, Adventure, Thriller	thriller,action
@@ -571,7 +559,6 @@ the-hunger-games	The Hunger Games	2012	Gary Ross	Science Fiction, Adventure, Act
 dredd	Dredd	2012	Pete Travis	Action, Science Fiction	scifi,action
 iron-man-3	Iron Man 3	2013	Shane Black	Action, Adventure, Science Fiction	scifi,action
 the-hunger-games-catching-fire	The Hunger Games Catching Fire	2013	Francis Lawrence	Adventure, Action, Science Fiction	scifi,action
-the-raid-2	The Raid 2	2013	Gareth Evans	Action, Crime, Thriller	thriller,action,crime
 captain-america-the-winter-soldier	Captain America The Winter Soldier	2014	Anthony Russo	Action, Adventure, Science Fiction	scifi,action
 dawn-of-the-planet-of-the-apes	Dawn of the Planet of the Apes	2014	Matt Reeves	Science Fiction, Action, Drama, Thriller	thriller,scifi,action,drama
 guardians-of-the-galaxy	Guardians of the Galaxy	2014	James Gunn	Action, Science Fiction, Adventure	scifi,action
@@ -593,7 +580,6 @@ joker	Joker	2019	Todd Phillips	Crime, Thriller, Drama	thriller,crime,drama
 extraction	Extraction	2020	Sam Hargrave	Action, Thriller	thriller,action
 no-time-to-die	No Time to Die	2021	Cary Joji Fukunaga	Action, Thriller, Adventure	thriller,action
 eternals	Eternals	2021	Chloe Zhao	Science Fiction, Action, Adventure	scifi,action
-john-wick-chapter-4	John Wick Chapter 4	2022	Chad Stahelski	Action, Thriller, Crime	thriller,action,crime
 mission-impossible-dead-reckoning	Mission Impossible Dead Reckoning	2023	Christopher McQuarrie	Action, Adventure, Thriller	thriller,action
 guardians-of-the-galaxy-vol-3	Guardians of the Galaxy Vol 3	2023	James Gunn	Science Fiction, Adventure, Action	scifi,action
 the-fall-guy	The Fall Guy	2024	David Leitch	Action, Comedy, Romance	action,comedy,romance
@@ -669,7 +655,6 @@ stripes	Stripes	1981	Ivan Reitman	Action, Comedy	action,comedy
 arthur	Arthur	1981	Steve Gordon	Comedy, Drama, Romance	comedy,romance,drama
 fast-times-at-ridgemont-high	Fast Times at Ridgemont High	1982	Amy Heckerling	Comedy, Romance, Drama	comedy,romance,drama
 diner	Diner	1982	Barry Levinson	Comedy, Drama	comedy,drama
-trading-places	Trading Places	1982	John Landis	Comedy	comedy
 national-lampoons-vacation	National Lampoon's Vacation	1983	Harold Ramis	Comedy, Adventure	action,comedy
 risky-business	Risky Business	1983	Paul Brickman	Romance, Comedy, Drama	comedy,romance,drama
 ghostbusters-1984	Ghostbusters	1984	Ivan Reitman	Comedy, Fantasy	comedy,fantasy
@@ -725,7 +710,6 @@ swingers	Swingers	1996	Doug Liman	Comedy, Drama	comedy,drama
 austin-powers-international-man-of-mystery	Austin Powers International Man of Mystery	1997	Jay Roach	Comedy, Crime	crime,comedy
 as-good-as-it-gets	As Good as It Gets	1997	James L. Brooks	Drama, Comedy, Romance	comedy,romance,drama
 grosse-pointe-blank	Grosse Pointe Blank	1997	George Armitage	Action, Comedy, Thriller, Romance	thriller,action,comedy,romance
-theres-something-about-mary	There's Something About Mary	1997	Bobby Farrelly	Romance, Comedy	comedy,romance
 the-truman-show	The Truman Show	1998	Peter Weir	Comedy, Drama	comedy,drama
 rushmore	Rushmore	1998	Wes Anderson	Comedy, Drama	comedy,drama,indie
 office-space-1999	Office Space	1999	Mike Judge	Comedy	comedy,cult
@@ -742,13 +726,11 @@ zoolander	Zoolander	2001	Ben Stiller	Comedy	comedy
 super-troopers	Super Troopers	2001	Jay Chandrasekhar	Comedy, Crime, Mystery	thriller,crime,comedy
 wet-hot-american-summer	Wet Hot American Summer	2001	David Wain	Comedy	comedy
 jay-and-silent-bob-strike-back	Jay and Silent Bob Strike Back	2001	Kevin Smith	Comedy, Adventure, Action	action,comedy
-my-big-fat-greek-wedding	My Big Fat Greek Wedding	2001	Joel Zwick	Comedy, Drama, Romance	comedy,romance,drama
 bridget-joness-diary	Bridget Jones's Diary	2001	Sharon Maguire	Comedy, Romance, Drama	comedy,romance,drama
 austin-powers-in-goldmember	Austin Powers in Goldmember	2002	Jay Roach	Comedy, Crime	crime,comedy
 old-school	Old School	2003	Todd Phillips	Comedy	comedy
 bruce-almighty	Bruce Almighty	2003	Tom Shadyac	Fantasy, Comedy	comedy,fantasy
 freaky-friday	Freaky Friday	2003	Mark Waters	Comedy, Family, Fantasy	comedy,family,fantasy
-school-of-rock	School of Rock	2003	Richard Linklater	Comedy, Family, Music	comedy,family,musical
 anchorman-2004	Anchorman	2004	Adam McKay	Comedy	comedy
 dodgeball	Dodgeball	2004	Rawson Marshall Thurber	Comedy	comedy
 50-first-dates	50 First Dates	2004	Peter Segal	Comedy, Romance	comedy,romance
@@ -801,7 +783,6 @@ the-big-sick	The Big Sick	2017	Michael Showalter	Comedy, Drama, Romance	comedy,r
 game-night	Game Night	2018	John Francis Daley	Mystery, Comedy, Crime	thriller,crime,comedy
 blockers	Blockers	2018	Kay Cannon	Comedy	comedy
 eighth-grade	Eighth Grade	2018	Bo Burnham	Comedy, Drama	comedy,drama,indie
-booksmart	Booksmart	2018	Olivia Wilde	Comedy	comedy
 crazy-rich-asians	Crazy Rich Asians	2018	Jon M. Chu	Comedy, Romance	comedy,romance
 jojo-rabbit	Jojo Rabbit	2019	Taika Waititi	Comedy, War, Drama	war,comedy,drama
 palm-springs	Palm Springs	2020	Max Barbakow	Comedy, Romance, Science Fiction	scifi,comedy,romance
@@ -814,12 +795,10 @@ hit-man	Hit Man	2024	Richard Linklater	Comedy, Romance, Crime	crime,comedy,roman
 drive-away-dolls	Drive-Away Dolls	2024	Ethan Coen	Comedy, Crime	crime,comedy
 beverly-hills-cop-axel-f	Beverly Hills Cop Axel F	2024	Mark Molloy	Action, Comedy, Crime	action,crime,comedy
 ghostbusters-frozen-empire	Ghostbusters Frozen Empire	2024	Gil Kenan	Fantasy, Adventure, Comedy	comedy,fantasy
-anyone-but-you	Anyone But You	2024	Will Gluck	Romance, Comedy	comedy,romance
 another-simple-favor	Another Simple Favor	2025	Jake Kasdan	Comedy, Thriller, Mystery	thriller,comedy
 gone-with-the-wind	Gone with the Wind	1939	Victor Fleming	Drama, War, Romance	war,romance,drama,classics
 the-wizard-of-oz	The Wizard of Oz	1939	Victor Fleming	Adventure, Fantasy, Family	family,fantasy,classics
 the-shop-around-the-corner	The Shop Around the Corner	1940	Ernst Lubitsch	Comedy, Drama, Romance	comedy,romance,drama,classics
-casablanca-1942	Casablanca	1942	Michael Curtiz	Drama, Romance	romance,drama,classics
 brief-encounter	Brief Encounter	1945	David Lean	Drama, Romance	romance,drama,classics
 the-best-years-of-our-lives	The Best Years of Our Lives	1946	William Wyler	Drama, Romance, War	war,romance,drama,classics
 roman-holiday	Roman Holiday	1953	William Wyler	Romance, Comedy, Drama	comedy,romance,holiday,drama,classics
@@ -840,7 +819,6 @@ sliding-doors	Sliding Doors	1998	Peter Howitt	Comedy, Drama, Fantasy, Romance	co
 notting-hill	Notting Hill	1999	Roger Michell	Romance, Comedy	comedy,romance
 almost-famous	Almost Famous	2000	Cameron Crowe	Drama, Music	musical,drama
 moulin-rouge	Moulin Rouge	2001	Baz Luhrmann	Drama, Romance, Music	romance,musical,drama
-amelie-2001	Amelie	2001	Jean-Pierre Jeunet	Comedy, Romance	comedy,romance
 bend-it-like-beckham	Bend It Like Beckham	2002	Gurinder Chadha	Comedy, Drama, Romance	comedy,romance,drama,sports
 sweet-home-alabama	Sweet Home Alabama	2002	Andy Tennant	Comedy, Romance	comedy,romance
 about-a-boy	About a Boy	2002	Chris Weitz	Drama, Comedy, Romance	comedy,romance,drama
@@ -946,7 +924,6 @@ secrets-and-lies	Secrets and Lies	1996	Mike Leigh	Drama	drama
 good-will-hunting-1997	Good Will Hunting	1997	Gus Van Sant	Drama	drama
 boogie-nights	Boogie Nights	1997	Paul Thomas Anderson	Drama, Comedy	comedy,drama,indie
 saving-private-ryan-1998	Saving Private Ryan	1998	Steven Spielberg	War, Drama, History	war,drama
-life-is-beautiful	Life Is Beautiful	1998	Roberto Benigni	Comedy, Drama	comedy,drama
 the-thin-red-line	The Thin Red Line	1998	Terrence Malick	Drama, History, War	war,drama
 american-beauty	American Beauty	1999	Sam Mendes	Drama	drama
 the-green-mile	The Green Mile	1999	Frank Darabont	Fantasy, Drama, Crime	crime,fantasy,drama
@@ -982,7 +959,6 @@ atonement	Atonement	2007	Joe Wright	Drama, Romance	romance,drama
 milk	Milk	2008	Gus Van Sant	History, Drama	drama
 the-wrestler	The Wrestler	2008	Darren Aronofsky	Drama, Romance	romance,drama
 gran-torino	Gran Torino	2008	Clint Eastwood	Drama	drama
-the-hurt-locker-2009	The Hurt Locker	2009	Kathryn Bigelow	Drama, Thriller, War	thriller,war,drama
 precious	Precious	2009	Lee Daniels	Drama	drama
 up-in-the-air	Up in the Air	2009	Jason Reitman	Drama, Romance	romance,drama
 an-education	An Education	2009	Lone Scherfig	Drama, Romance	romance,drama
@@ -1025,14 +1001,12 @@ if-beale-street-could-talk	If Beale Street Could Talk	2018	Barry Jenkins	Romance
 marriage-story	Marriage Story	2019	Noah Baumbach	Drama	drama
 little-women	Little Women	2019	Greta Gerwig	Drama, Romance	romance,drama
 once-upon-a-time-in-hollywood	Once Upon a Time in Hollywood	2019	Quentin Tarantino	Comedy, Drama, Thriller	thriller,comedy,drama
-minari	Minari	2020	Lee Isaac Chung	Drama	drama,indie
 the-father	The Father	2020	Florian Zeller	Drama	drama
 the-power-of-the-dog	The Power of the Dog	2021	Jane Campion	Drama, Western	western,drama
 licorice-pizza	Licorice Pizza	2021	Paul Thomas Anderson	Drama, Comedy, Romance	comedy,romance,drama
 belfast	Belfast	2021	Kenneth Branagh	Drama, History	drama
 west-side-story-2021	West Side Story	2021	Steven Spielberg	Drama, Romance, Crime	crime,romance,drama
 the-banshees-of-inisherin	The Banshees of Inisherin	2022	Martin McDonagh	Drama, Comedy	comedy,drama
-tar	Tar	2022	Todd Field	Music, Drama	musical,drama
 all-quiet-on-the-western-front	All Quiet on the Western Front	2022	Edward Berger	War, Drama	war,drama
 the-fabelmans	The Fabelmans	2022	Steven Spielberg	Drama	drama
 women-talking	Women Talking	2022	Sarah Polley	Drama	drama
@@ -1042,9 +1016,7 @@ a-real-pain	A Real Pain	2024	Jesse Eisenberg	Comedy, Drama	comedy,drama
 a-complete-unknown	A Complete Unknown	2024	James Mangold	Drama, Music	musical,drama
 nickel-boys	Nickel Boys	2024	RaMell Ross	Drama, History	drama
 the-room-next-door	The Room Next Door	2024	Pedro Almodovar	Drama	drama
-emilia-perez	Emilia Perez	2024	Jacques Audiard	Drama, Thriller	thriller,drama
 sing-sing	Sing Sing	2024	Greg Kwedar	Drama	drama
-snow-white-and-the-seven-dwarfs	Snow White and the Seven Dwarfs	1937	David Hand	Fantasy, Animation, Family	animation,family,fantasy
 pinocchio	Pinocchio	1940	Ben Sharpsteen	Animation, Family, Fantasy	animation,family,fantasy
 fantasia	Fantasia	1940	Ben Sharpsteen	Animation, Family, Fantasy	animation,family,fantasy
 dumbo	Dumbo	1941	Ben Sharpsteen	Animation, Family	animation,family,classics
@@ -1071,18 +1043,15 @@ porco-rosso	Porco Rosso	1992	Hayao Miyazaki	Animation, Adventure, Fantasy	animat
 the-nightmare-before-christmas	The Nightmare Before Christmas	1993	Henry Selick	Fantasy, Animation, Family	animation,family,fantasy,holiday
 toy-story-1995	Toy Story	1995	John Lasseter	Family, Comedy, Animation, Adventure	comedy,animation,family
 whisper-of-the-heart	Whisper of the Heart	1995	Hayao Miyazaki	Animation, Drama, Family	animation,family,drama
-perfect-blue	Perfect Blue	1997	Satoshi Kon	Animation, Thriller	thriller,animation
 hercules	Hercules	1997	Ron Clements	Animation, Family, Fantasy, Adventure, Comedy, Romance	comedy,romance,animation,family,fantasy
 anastasia	Anastasia	1997	Don Bluth	Animation, Family, Fantasy, Adventure	animation,family,fantasy
 mulan	Mulan	1998	Barry Cook	Animation, Family, Adventure	animation,family
-the-iron-giant-1998	The Iron Giant	1998	Brad Bird	Animation, Drama, Family, Science Fiction, Adventure	scifi,animation,family,drama
 toy-story-2	Toy Story 2	1999	John Lasseter	Animation, Comedy, Family	comedy,animation,family
 south-park-bigger-longer-and-uncut	South Park Bigger Longer and Uncut	1999	Trey Parker	Animation, Comedy	comedy,animation
 chicken-run	Chicken Run	2000	Peter Lord	Animation, Comedy, Family	comedy,animation,family
 the-emperors-new-groove	The Emperor's New Groove	2000	Mark Dindal	Adventure, Animation, Comedy, Family, Fantasy	comedy,animation,family,fantasy
 monsters-inc	Monsters Inc	2001	Pete Docter	Animation, Comedy, Family, Fantasy	comedy,animation,family,fantasy
 spirited-away-2001	Spirited Away	2001	Hayao Miyazaki	Animation, Family, Fantasy	animation,family,fantasy
-spirited-away-2002	Spirited Away	2002	Hayao Miyazaki	Animation, Family, Fantasy	animation,family,fantasy
 the-incredibles	The Incredibles	2004	Brad Bird	Action, Adventure, Animation, Family	action,animation,family
 howls-moving-castle	Howl's Moving Castle	2004	Hayao Miyazaki	Fantasy, Animation, Adventure	animation,fantasy
 wallace-and-gromit-the-curse-of-the-were-rabbit	Wallace and Gromit The Curse of the Were-Rabbit	2005	Nick Park	Adventure, Animation, Comedy, Family	comedy,animation,family
@@ -1092,7 +1061,6 @@ cars	Cars	2006	John Lasseter	Animation, Adventure, Comedy, Family	comedy,animati
 happy-feet	Happy Feet	2006	George Miller	Animation, Comedy, Family	comedy,animation,family
 ratatouille	Ratatouille	2007	Brad Bird	Animation, Comedy, Family, Fantasy	comedy,animation,family,fantasy
 kung-fu-panda	Kung Fu Panda	2008	John Stevenson	Action, Animation, Comedy, Family	action,comedy,animation,family
-fantastic-mr-fox	Fantastic Mr Fox	2008	Wes Anderson	Adventure, Animation, Comedy, Family	comedy,animation,family
 up	Up	2009	Pete Docter	Animation, Comedy, Family, Adventure	comedy,animation,family
 coraline	Coraline	2009	Henry Selick	Animation, Family, Fantasy, Horror	horror,animation,family,fantasy
 the-secret-of-kells	The Secret of Kells	2009	Tomm Moore	Animation, Family, Fantasy	animation,family,fantasy
@@ -1109,7 +1077,6 @@ frozen	Frozen	2013	Chris Buck	Animation, Family, Adventure, Fantasy	animation,fa
 the-wind-rises	The Wind Rises	2013	Hayao Miyazaki	Animation, Drama, History, Romance	romance,animation,drama
 big-hero-6	Big Hero 6	2014	Don Hall	Adventure, Family, Animation, Action, Comedy	action,comedy,animation,family
 how-to-train-your-dragon-2	How to Train Your Dragon 2	2014	Dean DeBlois	Fantasy, Action, Adventure, Animation, Family	action,animation,family,fantasy
-the-tale-of-the-princess-kaguya	The Tale of the Princess Kaguya	2014	Isao Takahata	Animation, Drama, Fantasy	animation,fantasy,drama
 inside-out	Inside Out	2015	Pete Docter	Animation, Family, Adventure, Drama, Comedy	comedy,animation,family,drama
 zootopia	Zootopia	2016	Byron Howard	Animation, Adventure, Family, Comedy	comedy,animation,family
 finding-dory	Finding Dory	2016	Andrew Stanton	Adventure, Animation, Family	animation,family
@@ -1153,7 +1120,6 @@ hocus-pocus	Hocus Pocus	1993	Kenny Ortega	Fantasy, Comedy, Family	comedy,family,
 the-santa-clause	The Santa Clause	1994	John Pasquin	Fantasy, Drama, Comedy, Family	comedy,family,fantasy,drama
 elf-2003	Elf	2003	Jon Favreau	Comedy, Family, Fantasy	comedy,family,fantasy
 the-polar-express	The Polar Express	2004	Robert Zemeckis	Adventure, Animation, Family, Fantasy	animation,family,fantasy
-monster-house	Monster House	2007	Gil Kenan	Animation, Comedy, Family, Fantasy, Horror	horror,comedy,animation,family,fantasy
 arthur-christmas	Arthur Christmas	2011	Sarah Smith	Drama, Animation, Family, Comedy	comedy,animation,family,holiday,drama
 rare-exports	Rare Exports	2015	Jalmari Helander	Fantasy, Horror	horror,fantasy,holiday
 the-grinch	The Grinch	2018	Scott Mosier	Animation, Comedy, Family, Fantasy	comedy,animation,family,fantasy,holiday
@@ -1215,7 +1181,6 @@ krampus	Krampus	2015	Michael Dougherty	Horror, Comedy, Fantasy	horror,comedy,fan
 the-night-before	The Night Before	2015	Jonathan Levine	Comedy, Adventure, Fantasy	comedy,fantasy
 office-christmas-party	Office Christmas Party	2016	Josh Gordon	Comedy	comedy,holiday
 bad-santa-2	Bad Santa 2	2016	Mark Waters	Comedy, Crime, Mystery	thriller,crime,comedy
-better-watch-out	Better Watch Out	2016	Chris Peckover	Horror, Thriller, Comedy	horror,thriller,comedy
 anna-and-the-apocalypse	Anna and the Apocalypse	2017	John McPhail	Horror, Comedy, Fantasy	horror,comedy,fantasy
 the-star	The Star	2017	Timothy Reckart	Animation, Comedy, Adventure, Family, Fantasy	comedy,animation,family,fantasy
 the-christmas-chronicles	The Christmas Chronicles	2018	Clay Kaytis	Comedy, Adventure, Family, Fantasy	comedy,family,fantasy,holiday
@@ -1256,7 +1221,6 @@ get-carter	Get Carter	1971	Mike Hodges	Crime, Thriller	thriller,crime,classics
 shaft	Shaft	1971	Gordon Parks	Crime, Thriller, Drama, Action	thriller,action,crime,drama
 the-long-good-friday	The Long Good Friday	1980	John Mackenzie	Crime, Thriller, Drama	thriller,crime,drama
 thief	Thief	1981	Michael Mann	Crime, Thriller, Drama	thriller,crime,drama
-blood-simple	Blood Simple	1984	Joel Coen	Crime, Drama, Thriller	thriller,crime,drama
 to-live-and-die-in-l-a	To Live and Die in L.A.	1985	William Friedkin	Crime, Thriller, Action	thriller,action,crime
 at-close-range	At Close Range	1986	James Foley	Crime, Drama, Thriller	thriller,crime,drama
 king-of-new-york	King of New York	1990	Abel Ferrara	Thriller, Crime	thriller,crime
@@ -1275,9 +1239,7 @@ public-enemies	Public Enemies	2009	Michael Mann	Crime, History, Drama	crime,dram
 animal-kingdom	Animal Kingdom	2010	David Michod	Crime, Drama	crime,drama
 end-of-watch	End of Watch	2012	David Ayer	Crime, Drama, Thriller	thriller,crime,drama
 lawless	Lawless	2012	John Hillcoat	Crime, Drama, Western	crime,western,drama
-the-place-beyond-the-pines	The Place Beyond the Pines	2012	Derek Cianfrance	Drama, Crime	crime,drama
 good-time	Good Time	2017	Benny Safdie	Crime, Thriller, Drama	thriller,crime,drama
-the-gentlemen	The Gentlemen	2019	Guy Ritchie	Action, Comedy, Crime	action,crime,comedy
 the-many-saints-of-newark	The Many Saints of Newark	2021	Alan Taylor	Crime, Drama	crime,drama
 no-sudden-move	No Sudden Move	2021	Steven Soderbergh	Crime, Thriller	thriller,crime
 emily-the-criminal	Emily the Criminal	2022	John Patton Ford	Crime, Drama, Thriller	thriller,crime,drama
@@ -1292,7 +1254,6 @@ pitch-black	Pitch Black	2000	David Twohy	Thriller, Science Fiction, Action	thril
 serenity	Serenity	2005	Joss Whedon	Science Fiction, Action, Adventure, Thriller	thriller,scifi,action
 sunshine	Sunshine	2007	Danny Boyle	Science Fiction, Thriller	thriller,scifi
 moon	Moon	2009	Duncan Jones	Science Fiction, Drama	scifi,drama
-ex-machina-2014	Ex Machina	2014	Alex Garland	Drama, Science Fiction	scifi,drama
 the-creator	The Creator	2023	Gareth Edwards	Science Fiction, Action, Adventure	scifi,action
 tron-ares	Tron Ares	2025	Joachim Ronning	Science Fiction, Adventure, Action	scifi,action
 breakfast-at-tiffanys	Breakfast at Tiffany's	1961	Blake Edwards	Comedy, Romance, Drama	comedy,romance,drama,classics
@@ -1335,11 +1296,9 @@ saturday-night	Saturday Night	2024	Jason Reitman	Comedy, Drama	comedy,drama
 my-old-ass	My Old Ass	2024	Megan Park	Drama, Comedy	comedy,drama
 lilo-and-stitch	Lilo and Stitch	2025	Dean Fleischer Camp	Family, Science Fiction, Comedy	scifi,comedy,family
 freakier-friday	Freakier Friday	2025	Nisha Ganatra	Comedy, Fantasy, Family	comedy,family,fantasy
-paddington-in-peru	Paddington in Peru	2025	Dougal Wilson	Adventure, Comedy, Family	comedy,family
 mufasa-the-lion-king	Mufasa The Lion King	2024	Barry Jenkins	Adventure, Family, Animation	animation,family
 the-bad-guys-2	The Bad Guys 2	2025	Pierre Perifel	Family, Comedy, Crime, Adventure, Animation, Action	action,crime,comedy,animation,family
 dog-man	Dog Man	2025	Peter Hastings	Family, Comedy, Adventure, Animation, Action	action,comedy,animation,family
-joker-folie-a-deux	Joker Folie a Deux	2024	Todd Phillips	Drama, Crime, Thriller	thriller,crime,drama
 a-different-man	A Different Man	2024	Aaron Schimberg	Comedy, Drama	comedy,drama
 the-apprentice	The Apprentice	2024	Ali Abbasi	History, Drama, Comedy	comedy,drama
 hard-truths	Hard Truths	2024	Mike Leigh	Drama, Comedy	comedy,drama
@@ -1465,7 +1424,6 @@ inferno-1980	Inferno	1980	Dario Argento	Horror, Thriller	horror,thriller
 liquid-sky-1982	Liquid Sky	1982	Slava Tsukerman	Science Fiction, Thriller, Drama	thriller,scifi,drama,cult
 tenebre-1982	Tenebre	1982	Dario Argento	Horror, Mystery, Thriller	horror,thriller
 the-toxic-avenger-1984	The Toxic Avenger	1984	Lloyd Kaufman	Action, Comedy, Horror, Science Fiction	horror,scifi,action,comedy,cult
-a-nightmare-on-elm-street-1984	A Nightmare on Elm Street	1984	Wes Craven	Horror	horror
 silent-night-deadly-night-1984	Silent Night, Deadly Night	1984	Charles E. Sellier Jr.	Thriller, Horror	horror,thriller
 ghoulies-1984	Ghoulies	1984	Luca Bercovici	Horror, Comedy	horror,comedy
 the-stuff-1985	The Stuff	1985	Larry Cohen	Horror, Science Fiction, Comedy	horror,scifi,comedy,cult
@@ -5702,7 +5660,6 @@ dragonheart-1996	DragonHeart	1996	Rob Cohen	Fantasy, Action, Adventure, Drama	ac
 nerve-2016	Nerve	2016	Henry Joost	Mystery, Adventure, Crime	thriller,action,crime
 the-13th-warrior-1999	The 13th Warrior	1999	John McTiernan	Adventure, History, Action	action
 the-promised-land-2023	The Promised Land	2023	Nikolaj Arcel	Action, Drama, History	action,drama
-nomadland-2021	Nomadland	2021	Chloé Zhao	Drama	drama
 the-walk-2015	The Walk	2015	Robert Zemeckis	History, Drama, Adventure	action,drama
 army-of-thieves-2021	Army of Thieves	2021	Matthias Schweighöfer	Action, Crime, Comedy	action,crime,comedy
 skyscraper-2018	Skyscraper	2018	Rawson Marshall Thurber	Action, Thriller, Adventure	thriller,action
@@ -7804,7 +7761,6 @@ last-man-standing-1996	Last Man Standing	1996	Walter Hill	Action, Crime, Drama, 
 attack-on-titan-2015	Attack on Titan	2015	Shinji Higuchi	Horror, Action, Science Fiction	horror,scifi,action
 firehouse-dog-2007	Firehouse Dog	2007	Todd Holland	Family, Comedy	comedy,family
 deseo-2013	Deseo	2013	Antonio Zavala Kugler	Drama	drama
-heathers-1989	Heathers	1989	Michael Lehmann	Comedy, Crime	crime,comedy
 paranormal-activity-2-2010	Paranormal Activity 2	2010	Tod Williams	Horror, Mystery	horror,thriller
 black-site-2022	Black Site	2022	Sophia Banks	Action, Thriller, Crime, Drama	thriller,action,crime,drama
 the-underdoggs-2024	The Underdoggs	2024	Charles Stone III	Comedy	comedy
@@ -8094,7 +8050,7 @@ final-fantasy-the-spirits-within-2001	Final Fantasy: The Spirits Within	2001	Hir
 zookeeper-2011	Zookeeper	2011	Frank Coraci	Comedy, Romance, Family	comedy,romance,family
 resonance-2026	Resonance	2026	Benedict Goddard	Science Fiction	scifi,new
 a-monster-in-paris-2011	A Monster in Paris	2011	Bibo Bergeron	Adventure, Animation, Family, Fantasy	animation,family,fantasy
-minari-2021	Minari	2021	Lee Isaac Chung	Drama	drama
+minari-2021	Minari	2021	Lee Isaac Chung	Drama	drama,indie
 batman-and-superman-battle-of-the-super-sons-2022	Batman and Superman: Battle of the Super Sons	2022	Matt Peters	Animation, Action, Science Fiction	scifi,action,animation
 the-simpsons-o-c-mon-all-ye-faithful-2024	The Simpsons: O C'mon All Ye Faithful	2024	Debbie Bruce Mahan	Animation, Comedy	comedy,animation
 you-re-not-you-2014	You're Not You	2014	George C. Wolfe	Drama	drama
@@ -8396,7 +8352,6 @@ shattered-glass-2003	Shattered Glass	2003	Billy Ray	Drama, History	drama
 rat-race-2001	Rat Race	2001	Jerry Zucker	Adventure, Comedy	action,comedy
 the-picture-of-dorian-gray-1945	The Picture of Dorian Gray	1945	Albert Lewin	Drama, Horror, Fantasy	horror,fantasy,drama
 how-to-seduce-your-teacher-1979	How to Seduce Your Teacher	1979	Mariano Laurenti	Comedy	comedy,classics
-society-1990	Society	1990	Brian Yuzna	Comedy, Horror, Mystery	horror,thriller,comedy
 the-yellow-handkerchief-1977	The Yellow Handkerchief	1977	Yoji Yamada	Comedy, Drama	comedy,drama,classics
 paranormal-activity-4-2012	Paranormal Activity 4	2012	Henry Joost	Horror	horror
 the-house-of-the-spirits-1993	The House of the Spirits	1993	Bille August	Romance, Drama	romance,drama
@@ -8849,7 +8804,7 @@ dead-for-a-dollar-2022	Dead for a Dollar	2022	Walter Hill	Western, Thriller, Act
 full-of-it-2007	Full of It	2007	Christian Charles	Comedy, Family, Drama	comedy,family,drama
 sniper-rogue-mission-2022	Sniper: Rogue Mission	2022	Oliver Thompson	Action, Thriller, Mystery	thriller,action
 the-pursuit-of-lust-2-2025	The Pursuit of Lust 2	2025	Batdelger Byambasvren	Romance	romance
-audition-2000	Audition	2000	Takashi Miike	Horror, Drama	horror,drama
+audition-2000	Audition	2000	Takashi Miike	Horror, Drama	horror,drama,cult
 the-scorpion-king-2-rise-of-a-warrior-2008	The Scorpion King 2: Rise of a Warrior	2008	Russell Mulcahy	Action, Adventure, Fantasy	action,fantasy
 alpha-and-omega-2010	Alpha and Omega	2010	Anthony Bell	Animation, Family, Comedy, Adventure, Romance	comedy,romance,animation,family
 miss-potter-2006	Miss Potter	2006	Chris Noonan	Drama, Family, Romance	romance,family,drama

@@ -291426,5 +291426,894 @@
         "role": "Dr. Fillmore"
       }
     ]
+  },
+  "emilia-perez-2024": {
+    "cast": [
+      {
+        "name": "Zoe Saldaña",
+        "role": "Rita"
+      },
+      {
+        "name": "Karla Sofía Gascón",
+        "role": "Emilia"
+      },
+      {
+        "name": "Selena Gomez",
+        "role": "Jessi"
+      },
+      {
+        "name": "Adriana Paz",
+        "role": "Epifania"
+      },
+      {
+        "name": "Edgar Ramírez",
+        "role": "Gustavo Brun"
+      },
+      {
+        "name": "Mark Ivanir",
+        "role": "Wasserman"
+      },
+      {
+        "name": "Eduardo Aladro",
+        "role": "Berlinger"
+      },
+      {
+        "name": "Emiliano Hasan",
+        "role": "Gabriel Mendoza"
+      },
+      {
+        "name": "Gaël Murguia-Fur",
+        "role": "Angel"
+      },
+      {
+        "name": "Tirso Pietriga",
+        "role": "Diego"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Jacques Audiard"
+      ],
+      "writer": [
+        "Jacques Audiard",
+        "Thomas Bidegain",
+        "Léa Mysius",
+        "Nicolas Livecchi"
+      ],
+      "producer": [
+        "Jacques Audiard",
+        "Pascal Caucheteux",
+        "Valérie Schermann",
+        "Anthony Vaccarello"
+      ],
+      "music": [
+        "Camille",
+        "Clément Ducol"
+      ],
+      "cinematography": [
+        "Paul Guilhaume"
+      ],
+      "editor": [
+        "Juliette Welfling"
+      ]
+    }
+  },
+  "tar-2022": {
+    "cast": [
+      {
+        "name": "Cate Blanchett",
+        "role": "Lydia Tár"
+      },
+      {
+        "name": "Noémie Merlant",
+        "role": "Francesca Lentini"
+      },
+      {
+        "name": "Nina Hoss",
+        "role": "Sharon Goodnow"
+      },
+      {
+        "name": "Sophie Kauer",
+        "role": "Olga Metkina"
+      },
+      {
+        "name": "Adam Gopnik",
+        "role": "Adam Gopnik"
+      },
+      {
+        "name": "Marc-Martin Straub",
+        "role": "Tailor #1"
+      },
+      {
+        "name": "Egon Brandstetter",
+        "role": "Tailor #2"
+      },
+      {
+        "name": "Ylva Pollak",
+        "role": "Tailor's Assistant #1"
+      },
+      {
+        "name": "Paula Först",
+        "role": "Tailor's Assistant #2"
+      },
+      {
+        "name": "Sylvia Flote",
+        "role": "Krista Taylor"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Todd Field"
+      ],
+      "writer": [
+        "Todd Field"
+      ],
+      "producer": [
+        "Todd Field",
+        "Scott Lambert",
+        "Alexandra Milchan"
+      ],
+      "music": [
+        "Hildur Guðnadóttir"
+      ],
+      "cinematography": [
+        "Florian Hoffmeister"
+      ],
+      "editor": [
+        "Monika Willi"
+      ]
+    }
+  },
+  "anyone-but-you-2023": {
+    "cast": [
+      {
+        "name": "Sydney Sweeney",
+        "role": "Bea"
+      },
+      {
+        "name": "Glen Powell",
+        "role": "Ben"
+      },
+      {
+        "name": "Alexandra Shipp",
+        "role": "Claudia"
+      },
+      {
+        "name": "Mia Artemis",
+        "role": "Barista"
+      },
+      {
+        "name": "Nat Buchanan",
+        "role": "Miranda Clerk"
+      },
+      {
+        "name": "Josh Bonello",
+        "role": "Skyler Cappuccino"
+      },
+      {
+        "name": "Gata",
+        "role": "Pete"
+      },
+      {
+        "name": "Hadley Robinson",
+        "role": "Halle"
+      },
+      {
+        "name": "Dermot Mulroney",
+        "role": "Leo"
+      },
+      {
+        "name": "Rachel Griffiths",
+        "role": "Innie"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Will Gluck"
+      ],
+      "writer": [
+        "Ilana Wolpert",
+        "Will Gluck"
+      ],
+      "producer": [
+        "Will Gluck",
+        "Jeff Kirschenbaum",
+        "Joe Roth"
+      ],
+      "music": [
+        "Este Haim",
+        "Christopher Stracey"
+      ],
+      "cinematography": [
+        "Danny Ruhlmann"
+      ],
+      "editor": [
+        "Kim Boritz-Brehm",
+        "Tia Nolan"
+      ]
+    }
+  },
+  "booksmart-2019": {
+    "cast": [
+      {
+        "name": "Kaitlyn Dever",
+        "role": "Amy"
+      },
+      {
+        "name": "Beanie Feldstein",
+        "role": "Molly"
+      },
+      {
+        "name": "Jessica Williams",
+        "role": "Miss Fine"
+      },
+      {
+        "name": "Jason Sudeikis",
+        "role": "Principal Brown"
+      },
+      {
+        "name": "Lisa Kudrow",
+        "role": "Charmaine"
+      },
+      {
+        "name": "Will Forte",
+        "role": "Doug"
+      },
+      {
+        "name": "Victoria Ruesga",
+        "role": "Ryan"
+      },
+      {
+        "name": "Mason Gooding",
+        "role": "Nick"
+      },
+      {
+        "name": "Skyler Gisondo",
+        "role": "Jared"
+      },
+      {
+        "name": "Diana Silvers",
+        "role": "Hope"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Olivia Wilde"
+      ],
+      "writer": [
+        "Emily Halpern",
+        "Sarah Haskins",
+        "Susanna Fogel",
+        "Katie Silberman"
+      ],
+      "producer": [
+        "Chelsea Barnard",
+        "David Distenfeld",
+        "Jessica Elbaum",
+        "Megan Ellison"
+      ],
+      "music": [
+        "Dan The Automator"
+      ],
+      "cinematography": [
+        "Jason McCormick"
+      ],
+      "editor": [
+        "Jamie Gross",
+        "Brent White"
+      ]
+    }
+  },
+  "fantastic-mr-fox-2009": {
+    "cast": [
+      {
+        "name": "George Clooney",
+        "role": "Mr. Fox"
+      },
+      {
+        "name": "Meryl Streep",
+        "role": "Mrs. Fox"
+      },
+      {
+        "name": "Bill Murray",
+        "role": "Badger"
+      },
+      {
+        "name": "Jason Schwartzman",
+        "role": "Ash"
+      },
+      {
+        "name": "Wallace Wolodarsky",
+        "role": "Kylie"
+      },
+      {
+        "name": "Eric Chase Anderson",
+        "role": "Kristofferson"
+      },
+      {
+        "name": "Michael Gambon",
+        "role": "Franklin Bean"
+      },
+      {
+        "name": "Willem Dafoe",
+        "role": "Rat"
+      },
+      {
+        "name": "Owen Wilson",
+        "role": "Coach Skip"
+      },
+      {
+        "name": "Jarvis Cocker",
+        "role": "Petey"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Wes Anderson"
+      ],
+      "writer": [
+        "Wes Anderson",
+        "Noah Baumbach",
+        "Roald Dahl"
+      ],
+      "producer": [
+        "Allison Abbate",
+        "Wes Anderson",
+        "Jeremy Dawson",
+        "Scott Rudin"
+      ],
+      "music": [
+        "Alexandre Desplat"
+      ],
+      "cinematography": [
+        "Tristan Oliver"
+      ],
+      "editor": [
+        "Ralph Foster",
+        "Stephen Perkins",
+        "Andrew Weisblum"
+      ]
+    }
+  },
+  "the-iron-giant-1999": {
+    "cast": [
+      {
+        "name": "Eli Marienthal",
+        "role": "Hogarth Hughes"
+      },
+      {
+        "name": "Harry Connick Jr.",
+        "role": "Dean McCoppin"
+      },
+      {
+        "name": "Jennifer Aniston",
+        "role": "Annie Hughes"
+      },
+      {
+        "name": "Vin Diesel",
+        "role": "The Iron Giant"
+      },
+      {
+        "name": "James Gammon",
+        "role": "Foreman Marv Loach"
+      },
+      {
+        "name": "Cloris Leachman",
+        "role": "Mrs. Tensedge"
+      },
+      {
+        "name": "Christopher McDonald",
+        "role": "Kent Mansley"
+      },
+      {
+        "name": "John Mahoney",
+        "role": "General Rogard"
+      },
+      {
+        "name": "M. Emmet Walsh",
+        "role": "Earl Stutz"
+      },
+      {
+        "name": "Jack Angel",
+        "role": "Additional Voices"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Brad Bird"
+      ],
+      "writer": [
+        "Tim McCanlies",
+        "Brad Bird",
+        "Ted Hughes"
+      ],
+      "producer": [
+        "Allison Abbate",
+        "Des McAnuff"
+      ],
+      "music": [
+        "Michael Kamen"
+      ],
+      "cinematography": [
+        "Steven Wilzbach"
+      ],
+      "editor": [
+        "Darren T. Holmes"
+      ]
+    }
+  },
+  "john-wick-chapter-4-2023": {
+    "cast": [
+      {
+        "name": "Keanu Reeves",
+        "role": "John Wick"
+      },
+      {
+        "name": "Laurence Fishburne",
+        "role": "Bowery King"
+      },
+      {
+        "name": "George Georgiou",
+        "role": "The Elder"
+      },
+      {
+        "name": "Lance Reddick",
+        "role": "Charon"
+      },
+      {
+        "name": "Clancy Brown",
+        "role": "Harbinger"
+      },
+      {
+        "name": "Ian McShane",
+        "role": "Winston"
+      },
+      {
+        "name": "Marko Zaror",
+        "role": "Chidi"
+      },
+      {
+        "name": "Bill Skarsgård",
+        "role": "Marquis"
+      },
+      {
+        "name": "Donnie Yen",
+        "role": "Caine"
+      },
+      {
+        "name": "Aimée Kwan",
+        "role": "Mia"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Chad Stahelski"
+      ],
+      "writer": [
+        "Shay Hatten",
+        "Michael Finch",
+        "Derek Kolstad"
+      ],
+      "producer": [
+        "Basil Iwanyk",
+        "Erica Lee",
+        "Chad Stahelski"
+      ],
+      "music": [
+        "Tyler Bates",
+        "Joel J. Richard"
+      ],
+      "cinematography": [
+        "Dan Laustsen"
+      ],
+      "editor": [
+        "Nathan Orloff"
+      ]
+    }
+  },
+  "life-is-beautiful-1997": {
+    "cast": [
+      {
+        "name": "Roberto Benigni",
+        "role": "Guido"
+      },
+      {
+        "name": "Nicoletta Braschi",
+        "role": "Dora"
+      },
+      {
+        "name": "Giorgio Cantarini",
+        "role": "Giosué"
+      },
+      {
+        "name": "Giustino Durano",
+        "role": "Zio"
+      },
+      {
+        "name": "Sergio Bini Bustric",
+        "role": "Ferruccio"
+      },
+      {
+        "name": "Marisa Paredes",
+        "role": "Madre di Dora"
+      },
+      {
+        "name": "Horst Buchholz",
+        "role": "Dottor Lessing"
+      },
+      {
+        "name": "Lidia Alfonsi",
+        "role": "Guicciardini"
+      },
+      {
+        "name": "Giuliana Lojodice",
+        "role": "Direttrice Didattica"
+      },
+      {
+        "name": "Amerigo Fontani",
+        "role": "Rodolfo"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Roberto Benigni"
+      ],
+      "writer": [
+        "Vincenzo Cerami",
+        "Roberto Benigni"
+      ],
+      "producer": [
+        "Gianluigi Braschi",
+        "John M. Davis",
+        "Elda Ferri"
+      ],
+      "music": [
+        "Nicola Piovani"
+      ],
+      "cinematography": [
+        "Tonino Delli Colli"
+      ],
+      "editor": [
+        "Simona Paggi"
+      ]
+    }
+  },
+  "paddington-in-peru-2024": {
+    "cast": [
+      {
+        "name": "Hugh Bonneville",
+        "role": "Henry Brown"
+      },
+      {
+        "name": "Emily Mortimer",
+        "role": "Mary Brown"
+      },
+      {
+        "name": "Ben Whishaw",
+        "role": "Paddington Bear"
+      },
+      {
+        "name": "Imelda Staunton",
+        "role": "Aunt Lucy"
+      },
+      {
+        "name": "Oliver Maltman",
+        "role": "Photo Booth"
+      },
+      {
+        "name": "Joel Fry",
+        "role": "Joe the Postman"
+      },
+      {
+        "name": "Robbie Gee",
+        "role": "Mr. Barnes"
+      },
+      {
+        "name": "Sanjeev Bhaskar",
+        "role": "Dr. Jafri"
+      },
+      {
+        "name": "Ben Miller",
+        "role": "Colonel Lancaster"
+      },
+      {
+        "name": "Jessica Hynes",
+        "role": "Miss Kitts"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Dougal Wilson"
+      ],
+      "writer": [
+        "Michael Bond",
+        "Paul King",
+        "Simon Farnaby",
+        "Mark Burton"
+      ],
+      "producer": [
+        "Rosie Alison"
+      ],
+      "music": [
+        "Dario Marianelli"
+      ],
+      "cinematography": [
+        "Erik Wilson"
+      ],
+      "editor": [
+        "Úna Ní Dhonghaíle"
+      ]
+    }
+  },
+  "the-raid-2-2014": {
+    "cast": [
+      {
+        "name": "Iko Uwais",
+        "role": "Rama"
+      },
+      {
+        "name": "Yayan Ruhian",
+        "role": "Prakoso"
+      },
+      {
+        "name": "Arifin Putra",
+        "role": "Uco"
+      },
+      {
+        "name": "Oka Antara",
+        "role": "Eka"
+      },
+      {
+        "name": "Tio Pakusadewo",
+        "role": "Bangun"
+      },
+      {
+        "name": "Alex Abbad",
+        "role": "Bejo"
+      },
+      {
+        "name": "Cecep Arif Rahman",
+        "role": "The Assassin"
+      },
+      {
+        "name": "Julie Estelle",
+        "role": "Alicia 'Hammer Girl'"
+      },
+      {
+        "name": "Very Tri Yulisman",
+        "role": "Baseball Bat Man"
+      },
+      {
+        "name": "Ryûhei Matsuda",
+        "role": "Keichi"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Gareth Evans"
+      ],
+      "writer": [
+        "Gareth Evans"
+      ],
+      "producer": [
+        "Nate Bolotin",
+        "Ario Sagantoro",
+        "Aram Tertzakian"
+      ],
+      "music": [
+        "Aria Prayogi",
+        "Joseph Trapanese",
+        "Fajar Yuskemal"
+      ],
+      "cinematography": [
+        "Matt Flannery",
+        "Dimas Imam Subhono"
+      ],
+      "editor": [
+        "Gareth Evans"
+      ]
+    }
+  },
+  "the-tale-of-the-princess-kaguya-2013": {
+    "cast": [
+      {
+        "name": "Aki Asakura",
+        "role": "Kaguya hime"
+      },
+      {
+        "name": "Kengo Kôra",
+        "role": "Sutemaru"
+      },
+      {
+        "name": "Takeo Chii",
+        "role": "Okina"
+      },
+      {
+        "name": "Nobuko Miyamoto",
+        "role": "Ôna"
+      },
+      {
+        "name": "Atsuko Takahata",
+        "role": "Sagami"
+      },
+      {
+        "name": "Tomoko Tabata",
+        "role": "Menowarawa"
+      },
+      {
+        "name": "Shinosuke Tatekawa",
+        "role": "Inbe no akita"
+      },
+      {
+        "name": "Takaya Kamikawa",
+        "role": "Ishitsukuri no miko"
+      },
+      {
+        "name": "Hikaru Ijûin",
+        "role": "Abe no udaijin"
+      },
+      {
+        "name": "Ryūdō Uzaki",
+        "role": "Ôtomo no dainagon"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Isao Takahata"
+      ],
+      "writer": [
+        "Isao Takahata",
+        "Riko Sakaguchi"
+      ],
+      "producer": [
+        "Yoshiaki Nishimura",
+        "Geoffrey Wexler"
+      ],
+      "music": [
+        "Joe Hisaishi"
+      ],
+      "cinematography": [
+        "Keisuke Nakamura"
+      ],
+      "editor": [
+        "Toshihiko Kojima"
+      ]
+    }
+  },
+  "there-s-something-about-mary-1998": {
+    "cast": [
+      {
+        "name": "Cameron Diaz",
+        "role": "Mary"
+      },
+      {
+        "name": "Matt Dillon",
+        "role": "Healy"
+      },
+      {
+        "name": "Ben Stiller",
+        "role": "Ted"
+      },
+      {
+        "name": "Lee Evans",
+        "role": "Tucker"
+      },
+      {
+        "name": "Chris Elliott",
+        "role": "Dom"
+      },
+      {
+        "name": "Lin Shaye",
+        "role": "Magda"
+      },
+      {
+        "name": "Jeffrey Tambor",
+        "role": "Sully"
+      },
+      {
+        "name": "Markie Post",
+        "role": "Mary's Mom"
+      },
+      {
+        "name": "Keith David",
+        "role": "Mary's Dad"
+      },
+      {
+        "name": "W. Earl Brown",
+        "role": "Warren"
+      }
+    ],
+    "crew": {
+      "director": [
+        "Bobby Farrelly",
+        "Peter Farrelly"
+      ],
+      "writer": [
+        "Ed Decter",
+        "John J. Strauss",
+        "Peter Farrelly",
+        "Bobby Farrelly"
+      ],
+      "producer": [
+        "Frank Beddor",
+        "Michael Steinberg",
+        "Bradley Thomas",
+        "Charles B. Wessler"
+      ],
+      "music": [
+        "Jonathan Richman"
+      ],
+      "cinematography": [
+        "Mark Irwin"
+      ],
+      "editor": [
+        "Christopher Greenbury"
+      ]
+    }
+  },
+  "trading-places-1983": {
+    "cast": [
+      {
+        "name": "Eddie Murphy",
+        "role": "Billy Ray Valentine"
+      },
+      {
+        "name": "Dan Aykroyd",
+        "role": "Louis Winthorpe III"
+      },
+      {
+        "name": "Ralph Bellamy",
+        "role": "Randolph Duke"
+      },
+      {
+        "name": "Don Ameche",
+        "role": "Mortimer Duke"
+      },
+      {
+        "name": "Denholm Elliott",
+        "role": "Coleman"
+      },
+      {
+        "name": "Maurice Woods",
+        "role": "Duke & Duke Employee"
+      },
+      {
+        "name": "Richard D. Fisher Jr.",
+        "role": "Duke & Duke Employee"
+      },
+      {
+        "name": "Jim Gallagher",
+        "role": "Duke & Duke Employee"
+      },
+      {
+        "name": "Anthony DiSabatino",
+        "role": "Duke & Duke Employee"
+      },
+      {
+        "name": "Bonnie Behrend",
+        "role": "Duke & Duke Employee"
+      }
+    ],
+    "crew": {
+      "director": [
+        "John Landis"
+      ],
+      "writer": [
+        "Timothy Harris",
+        "Herschel Weingrod"
+      ],
+      "producer": [
+        "Aaron Russo"
+      ],
+      "music": [
+        "Elmer Bernstein"
+      ],
+      "cinematography": [
+        "Robert Paynter"
+      ],
+      "editor": [
+        "Malcolm Campbell"
+      ]
+    }
   }
 }
