@@ -1,0 +1,65 @@
+/* Lobby shelves (approved by Julian, Oct 10 2026): on browser tablets/desktops the lobby shelves use the
+   same per-shelf counts as the aisles (4 at >=640px, 5 at >=1024px; values from
+   club-card-v181.css XVIII + rewind-vip-floor.js aisleGeom). Phones (<640px) and the installed
+   home-screen app (display-mode: standalone) are untouched: no rule here applies to them.
+   Shelf look (red posts, white ledge, gray wall #8f8880) is inherited unchanged from XVIII. */
+
+/* Guest lobby buttons: one red "Pick up a card", then two small text links. */
+main [data-lobby-cta] .lobby-cta-links{display:flex;align-items:center;justify-content:center;gap:.6rem;height:1.75rem;margin-top:-.25rem}
+main [data-lobby-cta] .lobby-cta-link{background:none!important;border:0!important;box-shadow:none!important;padding:.25rem .1rem!important;height:auto!important;width:auto!important;border-radius:0!important;font-size:.875rem;line-height:1.25rem;font-weight:500;color:var(--color-muted,#6b5f55);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+main [data-lobby-cta] .lobby-cta-link:hover{color:var(--color-fg,#1c1410)}
+main [data-lobby-cta] .lobby-cta-dot{color:var(--color-muted,#6b5f55);font-size:.875rem}
+html[data-member="1"] main [data-lobby-cta]{display:none!important}
+
+/* New Releases row: phones show one shelf of 2. */
+html body main section[data-lobby-shelf="new"] .grid.grid-cols-2 > .tape-slot:nth-child(n+3){display:none!important}
+
+@media (min-width:640px) and (not (display-mode: standalone)){
+  html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot){
+    --shelf-row:19rem!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4){
+    background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;
+  }
+  html[data-theme="night"]:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4),
+  html[data-theme="dark"]:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4){
+    background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;
+  }
+  html[data-theme="night"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4) .tape-slot-title,
+  html[data-theme="dark"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4) .tape-slot-title{color:#f3efe6!important}
+  html[data-theme="night"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4) .tape-slot-meta,
+  html[data-theme="dark"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+4) .tape-slot-meta{color:#c8c2b8!important}
+  /* New Releases: one shelf of 4 */
+  html body main section[data-lobby-shelf="new"] .grid.grid-cols-2 > .tape-slot:nth-child(-n+4){display:flex!important}
+}
+@media (min-width:1024px) and (not (display-mode: standalone)){
+  html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot){
+    --shelf-row:18rem!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+  html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5){
+    background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;
+  }
+  html[data-theme="night"]:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5),
+  html[data-theme="dark"]:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5){
+    background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;
+  }
+  html[data-theme="night"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5) .tape-slot-title,
+  html[data-theme="dark"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5) .tape-slot-title{color:#f3efe6!important}
+  html[data-theme="night"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5) .tape-slot-meta,
+  html[data-theme="dark"] body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+5) .tape-slot-meta{color:#c8c2b8!important}
+  /* 8 tapes do not fill two rows of 5; keep every shelf row full (5 per lobby shelf on desktop). */
+  html body main section[data-lobby-shelf] .grid.grid-cols-2 > .tape-slot:nth-child(n+6){display:none!important}
+  html body main section[data-lobby-shelf="new"] .grid.grid-cols-2 > .tape-slot:nth-child(-n+5){display:flex!important}
+}
+
+/* Guest CTA on phones: content-sized and centered (48px tall, same as before, so nothing below moves). */
+html body main section [data-lobby-cta] > a[href="/login?desk=new"]{width:15rem!important;max-width:100%!important;align-self:center!important}
+
+/* Guest CTA on tablet/desktop: a content-sized button lined up with the headline, not a
+   full-width bar. Phones (<640px) and the home-screen app keep the current layout. */
+@media (min-width:640px) and (not (display-mode: standalone)){
+  html body main section [data-lobby-cta]{width:18rem!important;max-width:18rem!important;align-self:flex-start!important;margin-left:0!important;margin-right:auto!important}
+  html body main section [data-lobby-cta] > a[href="/login?desk=new"]{width:100%!important;max-width:18rem!important;align-self:stretch!important}
+}
