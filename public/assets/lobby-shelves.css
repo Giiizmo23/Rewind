@@ -11,8 +11,8 @@ main [data-lobby-cta] .lobby-cta-link:hover{color:var(--color-fg,#1c1410)}
 main [data-lobby-cta] .lobby-cta-dot{color:var(--color-muted,#6b5f55);font-size:.875rem}
 html[data-member="1"] main [data-lobby-cta]{display:none!important}
 
-/* New Releases row: phones show one shelf of 2. */
-html body main section[data-lobby-shelf="new"] .grid.grid-cols-2 > .tape-slot:nth-child(n+3){display:none!important}
+/* New Releases row: phones (and the home-screen app) show 4, two rows of 2 on one shelf (Julian, Oct 10). */
+html body main section[data-lobby-shelf="new"] .grid.grid-cols-2 > .tape-slot:nth-child(n+5){display:none!important}
 
 @media (min-width:640px) and (not (display-mode: standalone)){
   html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot){
