@@ -9410,7 +9410,7 @@
         "face-off": 55,
         "enter-the-dragon": 56,
         "crouching-tiger-hidden-dragon": 57,
-        "the-raid": 58,
+        "the-raid-2012": 58,
         "hard-boiled": 59,
         "scarface-1983": 60,
         "mad-max-2": 61,
@@ -9426,7 +9426,7 @@
         "thor-ragnarok": 71,
         "john-wick-chapter-2": 72,
         "john-wick-chapter-3-parabellum": 73,
-        "john-wick-chapter-4": 74,
+        "john-wick-chapter-4-2023": 74,
         "die-hard-with-a-vengeance": 75,
         "die-hard-2": 76,
         "lethal-weapon-2": 77,
@@ -9449,13 +9449,13 @@
         "the-matrix-reloaded": 94,
         "avengers-age-of-ultron-2015": 95,
         "spider-man-2": 96,
-        "captain-america-the-first-avenger": 97,
+        "captain-america-the-first-avenger-2011": 97,
       },
       horror: {
         "halloween-1978": 1,
         "the-shining": 2,
         "the-exorcist": 3,
-        "a-nightmare-on-elm-street-1984": 4,
+        "nightmare-on-elm-street": 4,
         "the-thing-1982": 5,
         "psycho": 6,
         "alien": 7,
@@ -9482,7 +9482,7 @@
         "the-witch-2015": 28,
         "nope": 29,
         "the-babadook": 30,
-        "it-follows": 31,
+        "it-follows-2015": 31,
         "barbarian": 32,
         "talk-to-me": 33,
         "smile": 34,
@@ -9504,13 +9504,13 @@
         "the-others": 50,
         "the-mist": 51,
         "drag-me-to-hell": 52,
-        "insidious": 53,
+        "insidious-2011": 53,
         "sinister": 54,
         "the-conjuring-2": 55,
         "doctor-sleep": 56,
         "ready-or-not": 57,
         "the-invisible-man-2020": 58,
-        "the-cabin-in-the-woods": 59,
+        "the-cabin-in-the-woods-2012": 59,
         "sinners-2025": 60,
         "weapons-2025": 61,
         "the-conjuring-last-rites": 62,
@@ -9543,7 +9543,7 @@
         "robocop-1987": 24,
         "the-fifth-element-1997": 25,
         "children-of-men-2006": 26,
-        "ex-machina-2014": 27,
+        "ex-machina-2015": 27,
         "her-2013": 28,
         "wall-e": 29,
         "the-martian": 30,
@@ -9669,7 +9669,7 @@
         "the-mask": 60,
         "waynes-world": 61,
         "bill-and-teds-excellent-adventure": 62,
-        "school-of-rock": 63,
+        "the-school-of-rock-2003": 63,
         "paddington-2014": 64,
         "paddington-2": 65,
         "barbie": 66,
@@ -9743,7 +9743,7 @@
         "your-name": 30,
         "the-boy-and-the-heron": 31,
         "kiki-s-delivery-service-1989": 32,
-        "perfect-blue": 33,
+        "perfect-blue-1998": 33,
         "ghost-in-the-shell-1995": 34,
         "the-nightmare-before-christmas": 35,
         "coraline": 36,
@@ -9783,7 +9783,7 @@
         "moana-2": 70,
         "bambi": 71,
         "pinocchio": 72,
-        "snow-white-and-the-seven-dwarfs": 73,
+        "snow-white-and-the-seven-dwarfs-1938": 73,
         "fantasia": 74,
         "the-jungle-book": 75,
         "lady-and-the-tramp": 76,
@@ -9827,7 +9827,7 @@
         "the-dark-crystal": 23,
         "hocus-pocus": 24,
         "the-karate-kid": 25,
-        "school-of-rock": 26,
+        "the-school-of-rock-2003": 26,
         "night-at-the-museum-2006": 27,
         "the-chronicles-of-narnia-the-lion-the-witch-and-the-wardrobe-2005": 28,
         "mary-poppins-1964": 29,
@@ -9958,7 +9958,7 @@
         "love-actually-2003": 4,
         "the-notebook": 5,
         "titanic-1997": 6,
-        "casablanca-1942": 7,
+        "casablanca-1943": 7,
         "roman-holiday": 8,
         "breakfast-at-tiffanys": 9,
         "ghost-1990": 10,
@@ -10137,7 +10137,7 @@
         "hereditary": 39,
         "midsommar": 40,
         "the-witch-2015": 41,
-        "it-follows": 42,
+        "it-follows-2015": 42,
         "the-girl-with-the-dragon-tattoo": 43,
         "gone-baby-gone": 44,
         "mystic-river": 45,
@@ -10387,7 +10387,7 @@
         "the-commitments-1991": 14,
         "the-blues-brothers": 15,
         "this-is-spinal-tap": 16,
-        "school-of-rock": 17,
+        "the-school-of-rock-2003": 17,
         "pitch-perfect": 18,
         "sister-act": 19,
         "yesterday-2019": 20,
@@ -10431,7 +10431,7 @@
         "mandy-2018": 23,
       },
       classics: {
-        "casablanca-1942": 1,
+        "casablanca-1943": 1,
         "citizen-kane": 2,
         "the-godfather-1972": 3,
         "the-godfather-part-ii": 4,
@@ -10532,7 +10532,7 @@
         "primer-2004": 16,
         "upstream-color-2013": 17,
         "midsommar": 18,
-        "minari": 19,
+        "minari-2021": 19,
         "nomadland": 20,
         "another-round-2020": 21,
         "shoplifters-2018": 22,
@@ -10581,7 +10581,7 @@
         "whiplash-2014": 20,
         "the-prestige": 21,
         "the-lion-king": 22,
-        "casablanca-1942": 23,
+        "casablanca-1943": 23,
         "rear-window": 24,
         "citizen-kane": 25,
         "apocalypse-now-1979": 26,
@@ -10610,7 +10610,7 @@
         "little-women": 49,
         "1917": 50,
         "nomadland": 51,
-        "minari": 52,
+        "minari-2021": 52,
         "the-father": 53,
         "promising-young-woman": 54,
         "another-round-2020": 55,
@@ -10708,9 +10708,23 @@
       if (full === stub && theme && !inTheme(full, theme)) return null;
       return full;
     }
+    function shelfTier(film, theme) {
+      var slug = film && film.slug;
+      if (theme === "new") {
+        var boxedNew = window.boxAssets && slug && window.boxAssets(slug);
+        if (boxedNew && boxedNew.cover) return 400;
+        return 800;
+      }
+      var year = filmYear(film);
+      var boxed = window.boxAssets && slug && window.boxAssets(slug);
+      if (boxed && boxed.cover && year && year < 2026) return 400;
+      if (year && year < 2026) return 800;
+      return 1200;
+    }
     function filmsFor(section, theme) {
       const v = section.__virt;
       const films = [];
+      const keys = [];
       const seen = {};
       v.seed.forEach(function (f) {
         var full = seedKept(f, theme);
@@ -10724,9 +10738,11 @@
           show = {};
           for (var k in full) if (Object.prototype.hasOwnProperty.call(full, k)) show[k] = full[k];
           show.slug = f.slug;
+          Object.defineProperty(show, "__rwCatSlug", { value: full.slug });
           seen[f.slug] = 1;
         }
         films.push(show);
+        keys.push(full && full.title ? full : show);
       });
       if (!catalog || !theme) return films;
       const extras = [];
@@ -10736,15 +10752,24 @@
         seen[film.slug] = 1;
         extras.push(film);
       });
-      extras.sort(function (a, b) {
-        if (theme && theme !== "coming") {
-          var ra = shelfRank(a, theme), rb = shelfRank(b, theme);
-          if (ra !== rb) return ra - rb;
-          return String(a.title || "").localeCompare(String(b.title || ""));
-        }
-        return (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.title || "").localeCompare(String(b.title || ""));
+      if (theme === "coming") {
+        extras.sort(function (a, b) {
+          return (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.title || "").localeCompare(String(b.title || ""));
+        });
+        return films.concat(extras);
+      }
+      var rows = films.map(function (f, i) { return { f: f, k: keys[i] }; }).concat(extras.map(function (f) { return { f: f, k: f }; }));
+      rows.sort(function (x, y) {
+        var a = x.k, b = y.k;
+        var pa = Number(a.pop) || 0, pb = Number(b.pop) || 0;
+        if (pa !== pb) return pb - pa;
+        var ta = shelfTier(x.f, theme), tb = shelfTier(y.f, theme);
+        if (ta !== tb) return ta - tb;
+        var ya = Number(a.year) || 0, yb = Number(b.year) || 0;
+        if (ya !== yb) return yb - ya;
+        return String(a.title || "").localeCompare(String(b.title || ""));
       });
-      return films.concat(extras);
+      return rows.map(function (r) { return r.f; });
     }
     function clearWindow(v) {
       while (v.grid.firstChild) v.grid.removeChild(v.grid.firstChild);
@@ -10933,8 +10958,10 @@
               for (var i = 0; i < listed.length && preview.length < 8; i += 1) {
                 var film = listed[i];
                 var slug = film && film.slug;
-                if (!slug || claimed[slug]) continue;
+                var catSlug = film && film.__rwCatSlug;
+                if (!slug || claimed[slug] || (catSlug && claimed[catSlug])) continue;
                 claimed[slug] = 1;
+                if (catSlug) claimed[catSlug] = 1;
                 preview.push(film);
               }
               v.films = preview;
