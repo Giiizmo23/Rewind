@@ -11136,8 +11136,11 @@
       grid.appendChild(donor.cloneNode(true));
       section.__rwSynth = 1;
     }
+    function fileKey(title) {
+      return String(title || "").replace(/^(the|a|an)\s+/i, "").trim().toLowerCase();
+    }
     function fileLetter(title) {
-      var s = String(title || "").replace(/^(the|a|an)\s+/i, "").trim();
+      var s = fileKey(title);
       var c = (s.charAt(0) || "#").toUpperCase();
       return c >= "A" && c <= "Z" ? c : "#";
     }
@@ -11266,6 +11269,9 @@
                   var item = listed[fi];
                   if (fileLetter(item && item.title) === file.letter) pool.push(item);
                 }
+                pool.sort(function (a, b) {
+                  return fileKey(a && a.title).localeCompare(fileKey(b && b.title)) || String((a && a.slug) || "").localeCompare(String((b && b.slug) || ""));
+                });
               }
               var pages = Math.max(1, Math.ceil(pool.length / 6) || 1);
               var shelfN = file.letter ? Math.min(Math.max(1, file.shelf), pages) : 1;
