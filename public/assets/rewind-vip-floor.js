@@ -9338,14 +9338,24 @@
         var art = filmArt(slug);
         var remote = art.indexOf("image.tmdb.org") >= 0 || art.indexOf("themoviedb.org") >= 0;
         var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007" || slug === "first-blood";
-        var same = existing.split("?")[0] === String(art || "").split("?")[0];
+        var aisle = document.documentElement.getAttribute("data-aisles") === "1";
+        var poster = window.__rwPosters && window.__rwPosters[slug];
         if (keepSleeve) {
           cover.src = art;
           cover.setAttribute("data-painted", "1");
           cover.setAttribute("data-tmdb-art", "keep");
           cover.setAttribute("data-rw-cover", slug);
           cover.style.setProperty("opacity", "1", "important");
-        } else if (remote) {
+        } else if (aisle && (poster || existingRemote)) {
+          var use = poster || existing;
+          if ((cover.getAttribute("src") || "") !== use) cover.src = use;
+          cover.setAttribute("data-tmdb-art", "1");
+          cover.removeAttribute("data-painted");
+          cover.setAttribute("data-rw-cover", slug);
+          cover.style.setProperty("opacity", "1", "important");
+          cover.style.setProperty("display", "block", "important");
+          cover.style.setProperty("object-fit", "cover", "important");
+        } else if (remote && !aisle) {
           cover.src = art;
           cover.setAttribute("data-tmdb-art", "1");
           cover.setAttribute("data-rw-cover", slug);
@@ -9358,6 +9368,31 @@
           };
           if (cover.complete && cover.naturalWidth) showRemote();
           else cover.addEventListener("load", showRemote);
+        } else if (aisle) {
+          cover.removeAttribute("data-painted");
+          cover.removeAttribute("src");
+          cover.style.setProperty("display", "none", "important");
+          cover.setAttribute("data-tmdb-slug", slug);
+          cover.setAttribute("data-rw-cover", slug);
+          if (cover.dataset.tmdbArt !== "wait" && cover.dataset.tmdbArt !== "miss") {
+            cover.dataset.tmdbArt = "wait";
+            var aisleTitle = film.title || slug;
+            var aisleYear = film.year ? String(film.year) : "";
+            fetch("/api/rewind/tmdb/poster?v=2&title=" + encodeURIComponent(aisleTitle) + "&year=" + encodeURIComponent(aisleYear))
+              .then(function (r) { return r.ok ? r.json() : null; })
+              .then(function (data) {
+                var got = data && data.poster;
+                if (!got || !cover.isConnected) return;
+                window.__rwPosters = window.__rwPosters || {};
+                window.__rwPosters[slug] = got;
+                cover.src = got;
+                cover.setAttribute("data-tmdb-art", "1");
+                cover.style.setProperty("display", "block", "important");
+                cover.style.setProperty("opacity", "1", "important");
+                cover.style.setProperty("object-fit", "cover", "important");
+              })
+              .catch(function () { cover.dataset.tmdbArt = "miss"; });
+          }
         } else {
           var kept = paintedBox(slug);
           if (kept && kept.cover) {
@@ -9375,6 +9410,7 @@
         }
         cover.removeAttribute("srcset");
         var fit = (paintedBox(slug) && paintedBox(slug).fit) || "contain";
+        if (aisle && ((cover.getAttribute("src") || "").indexOf("image.tmdb.org") >= 0 || (cover.getAttribute("src") || "").indexOf("themoviedb.org") >= 0)) fit = "cover";
         cover.style.setProperty("object-fit", fit, "important");
         var win = cover.closest(".vhs-window");
         if (win) win.querySelectorAll(".vhs-cover-word").forEach(function (node) { node.remove(); });
@@ -16206,6 +16242,7 @@
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var src = img.getAttribute("src") || "";
+        if (src.indexOf("/sleeves/spines/match/") >= 0) return;
         if (src.indexOf("/sleeves/spines/jaws.png") < 0) img.src = "/sleeves/spines/jaws.png?v=572";
         img.style.setProperty("object-fit", "contain", "important");
       });
@@ -16335,6 +16372,7 @@
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var src = img.getAttribute("src") || "";
+        if (src.indexOf("/sleeves/spines/match/") >= 0) return;
         if (src.indexOf("first-blood") >= 0 && src.indexOf("/sleeves/spines/first-blood.png") < 0) img.src = "/sleeves/spines/first-blood.png?v=572";
         img.style.removeProperty("max-width");
         img.style.removeProperty("max-height");
@@ -16809,7 +16847,8 @@
         }
         var srcIsRemote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0;
         var wantIsSleeve = !!(want && want.indexOf("/sleeves/") >= 0);
-        if (want && !(srcIsRemote && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
+        var onAisle = document.documentElement.getAttribute("data-aisles") === "1";
+        if (want && !(srcIsRemote && wantIsSleeve) && !(onAisle && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
           if (img.crossOrigin) {
             img.crossOrigin = null;
             img.removeAttribute("crossorigin");
@@ -16952,8 +16991,12 @@
       var coverShown = coverForSpine ? (coverForSpine.currentSrc || "") : "";
       var coverUrl = coverAttr || coverShown;
       if (coverAttr && coverShown && coverShown.indexOf(coverAttr.split("?")[0]) < 0) coverUrl = coverAttr;
+      var bakedMatch = false;
+      box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        if ((img.getAttribute("src") || "").indexOf("/sleeves/spines/match/") >= 0) bakedMatch = true;
+      });
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
-      if (TITLE_BAND[slug] && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
+      if (!bakedMatch && TITLE_BAND[slug] && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
         if (!spineReady) queueSpineMatch(slug, coverUrl);
       }
       var spineHit = !!(spineReady && spineReady.src);
@@ -16969,6 +17012,13 @@
         box.removeAttribute("data-spine-match");
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        var cur = img.getAttribute("src") || "";
+        if (cur.indexOf("/sleeves/spines/match/") >= 0) {
+          box.setAttribute("data-spine-match", "1");
+          fitSpineLogo(img);
+          hideSpineWord(img.closest(".vhs-spine-ink"));
+          return;
+        }
         if (spineHit) {
           if ((img.getAttribute("src") || "") !== spineReady.src) img.src = spineReady.src;
           fitSpineLogo(img);
