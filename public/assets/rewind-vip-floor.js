@@ -9338,10 +9338,24 @@
           if (cover.complete && cover.naturalWidth) showRemote();
           else cover.addEventListener("load", showRemote);
         } else {
-          cover.style.setProperty("opacity", "0", "important");
-          if (!same) cover.src = art;
-          cover.removeAttribute("data-tmdb-art");
-          cover.removeAttribute("data-painted");
+          var kept = window.boxAssets && window.boxAssets(slug);
+          if (kept && kept.cover) {
+            if ((existing.split("?")[0]) !== String(kept.cover).split("?")[0]) cover.src = kept.cover;
+            cover.setAttribute("data-painted", "1");
+            cover.setAttribute("data-tmdb-art", "keep");
+            cover.style.setProperty("opacity", "1", "important");
+          } else if (cover.complete && cover.naturalWidth && same) {
+            cover.style.setProperty("opacity", "1", "important");
+          } else {
+            if (!same) cover.src = art;
+            var revealLocal = function () {
+              if (!cover.naturalWidth) return;
+              if ((cover.getAttribute("src") || "").indexOf("image.tmdb.org") >= 0) return;
+              cover.style.setProperty("opacity", "1", "important");
+            };
+            if (cover.complete && cover.naturalWidth) revealLocal();
+            else cover.addEventListener("load", revealLocal);
+          }
         }
         cover.removeAttribute("srcset");
         var fit = (window.boxAssets && window.boxAssets(slug) && window.boxAssets(slug).fit) || "contain";
@@ -10895,7 +10909,7 @@
       if (year && year < 2026) return 800;
       return 1200;
     }
-    function filmsFor(section, theme) {
+    function filmsFor(section, theme, limit) {
       const v = section.__virt;
       const films = [];
       const keys = [];
@@ -10933,7 +10947,7 @@
         return films.concat(extras);
       }
       var rows = films.map(function (f, i) { return { f: f, k: keys[i] }; }).concat(extras.map(function (f) { return { f: f, k: f }; }));
-      rows.sort(function (x, y) {
+      function before(x, y) {
         var a = x.k, b = y.k;
         var pa = Number(a.pop) || 0, pb = Number(b.pop) || 0;
         if (pa !== pb) return pb - pa;
@@ -10942,7 +10956,20 @@
         var ya = Number(a.year) || 0, yb = Number(b.year) || 0;
         if (ya !== yb) return yb - ya;
         return String(a.title || "").localeCompare(String(b.title || ""));
-      });
+      }
+      if (limit > 0) {
+        var best = [];
+        for (var bi = 0; bi < rows.length; bi += 1) {
+          var row = rows[bi];
+          if (best.length === limit && before(row, best[best.length - 1]) >= 0) continue;
+          var at = best.length;
+          while (at > 0 && before(row, best[at - 1]) < 0) at -= 1;
+          best.splice(at, 0, row);
+          if (best.length > limit) best.pop();
+        }
+        return best.map(function (r) { return r.f; });
+      }
+      rows.sort(function (x, y) { return before(x, y); });
       return rows.map(function (r) { return r.f; });
     }
     function clearWindow(v) {
@@ -11230,7 +11257,7 @@
           const v = armSection(section);
           if (v) {
             if (section.__rwSynth) v.seed = [];
-            var listed = filmsFor(section, id);
+            var listed = filmsFor(section, id, theme ? 0 : 8);
             if (theme) {
               var pool = listed;
               if (file.letter) {
@@ -11327,7 +11354,7 @@
       try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
     }
     Promise.all([
-      fetch("/data/catalog.json?v=1107", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
+      fetch("/data/catalog.json?v=1107").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
       covers = {};
@@ -16889,7 +16916,6 @@
         var want = (boxedSpine && boxedSpine.spine) || ("/sleeves/spines/" + spineFile + ".png");
         var cur = img.getAttribute("src") || "";
         if ((cur.split("?")[0] !== want.split("?")[0]) && cur.indexOf(want) < 0) {
-          img.style.setProperty("display", "none", "important");
           img.src = want;
         }
         if (!img.__rwArm) {
@@ -16918,8 +16944,6 @@
           img.style.setProperty("display", "none", "important");
           var inkNow = img.closest(".vhs-spine-ink");
           if (inkNow) showSpineWord(inkNow);
-        } else {
-          img.style.setProperty("display", "none", "important");
         }
       });
       var still = box.querySelector(".vhs-back-still img");

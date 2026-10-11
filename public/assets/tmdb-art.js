@@ -96,8 +96,14 @@
     img.removeAttribute("sizes");
     var same = (img.getAttribute("src") || "") === url;
     if (!same) {
-      img.style.setProperty("opacity", "0", "important");
-      img.src = url;
+      var hold = new Image();
+      hold.referrerPolicy = "no-referrer";
+      hold.onload = function () {
+        if (!img.isConnected) return;
+        img.src = url;
+        if (img.complete && img.naturalWidth) revealCover(img);
+      };
+      hold.src = url;
     }
     img.dataset.tmdbArt = "1";
     img.style.setProperty("display", "block", "important");
@@ -183,7 +189,7 @@
   }
 
   function pump() {
-    while (busy < 6 && queue.length) {
+    while (busy < 10 && queue.length) {
       var pick = 0;
       for (var i = 0; i < queue.length; i++) {
         if (queue[i].img && inView(queue[i].img)) { pick = i; break; }
@@ -251,6 +257,7 @@
         return kept;
       }
       var row = orig(slug);
+      if (row && row.cover && String(row.cover).indexOf("/sleeves/") >= 0 && !pin) return row;
       var poster = memory[String(slug || "")];
       if (!row && !poster) return row;
       var next = Object.assign({}, row || {});
@@ -300,6 +307,7 @@
     if (!img || !img.getAttribute) return;
     if (restoreHalloweenSpine(img)) return;
     if (pinPainted(img)) return;
+    if (img.dataset.painted === "1" || img.dataset.tmdbArt === "keep") return;
     if (stillSlug(img.getAttribute("src") || "")) return;
     var slug = sleeveSlug(img.getAttribute("src") || "");
     if (!slug || keepPainted[slug]) return;
