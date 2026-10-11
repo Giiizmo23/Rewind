@@ -9058,7 +9058,10 @@
     if (path !== "/films") return;
     if (window.__rwAislesOn) return;
     const sections = document.querySelectorAll("main .space-y-10 > section");
-    if (!sections.length) return;
+    if (!sections.length) {
+      try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
+      return;
+    }
     window.__rwAislesOn = 1;
     if (!document.getElementById("rw-aisle-floor")) {
       const style = document.createElement("style");
@@ -11102,7 +11105,10 @@
     window.addEventListener("scroll", scheduleAisles, { passive: true });
     window.addEventListener("resize", scheduleAisles);
     const initial = themeOf(location.pathname + location.search) || "";
-    applyAisle(initial, false);
+    applied = initial;
+    function aislesReady() {
+      try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
+    }
     Promise.all([
       fetch("/data/catalog.json?v=1107", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
@@ -11115,7 +11121,11 @@
         if (boxes[slug] && boxes[slug].back) stills[slug] = 1;
       });
       applyAisle(applied || "", false);
-    }).catch(function () {});
+      aislesReady();
+    }).catch(function () {
+      try { applyAisle(applied || "", false); } catch (eApply) {}
+      aislesReady();
+    });
   }
 
   function wireAisleSearch() {
