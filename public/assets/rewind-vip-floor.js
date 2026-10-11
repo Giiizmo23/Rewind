@@ -1778,8 +1778,8 @@
       document.head.appendChild(css);
     }
     const chrome = document.getElementById("rewind-member-chrome");
-    if (chrome && chrome.dataset.v !== "v238") {
-      chrome.dataset.v = "v238";
+    if (chrome && chrome.dataset.v !== "v239") {
+      chrome.dataset.v = "v239";
       chrome.textContent =
         'html[data-member="1"] main a[href="/login?desk=new"],' +
         'html[data-member="1"] main a[href="/login?desk=return"],' +
@@ -2341,8 +2341,8 @@
         '.rw-member-sheet.vip-wall-root > .vip-banner-wrap,.rw-member-sheet .vip-open > .vip-banner-wrap{margin:0 -1rem 4.05rem!important;padding:0!important}' +
         '.rw-member-sheet .vip-banner{border-radius:0!important;width:100%!important;margin:0!important;background:transparent!important;overflow:hidden!important}' +
         '.rw-member-sheet .vip-banner img{z-index:1!important}' +
-        '.rw-member-sheet .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0) 0%,#f6f4ef 100%)}' +
-        'html[data-theme="dark"] .rw-member-sheet .vip-banner::after,html[data-theme="night"] .rw-member-sheet .vip-banner::after{height:40%;background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
+        '.rw-member-sheet .vip-banner-fade{display:block!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:40%!important;z-index:5!important;pointer-events:none!important;background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)!important}' +
+        'html:not([data-theme="dark"]):not([data-theme="night"]) .rw-member-sheet .vip-banner-fade{background:linear-gradient(to bottom,rgba(246,244,239,0),#f6f4ef 100%)!important}' +
         '.rw-member-sheet .vip-banner-wrap{position:relative;z-index:6}' +
         '.rw-member-sheet .vip-avatar{position:absolute!important;bottom:-3.55rem!important;z-index:8;pointer-events:auto!important;overflow:hidden!important;border-radius:999px!important;box-shadow:none!important;-webkit-touch-callout:none;touch-action:manipulation}' +
         '.rw-member-sheet .vip-avatar img{pointer-events:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-select:none!important;border-radius:0!important;transform:scale(1.08)!important}' +
@@ -4872,7 +4872,7 @@
       '<div class="rw-member-sheet vip-wall-root" role="dialog" aria-label="' + vipEsc(card.name || card.handle) + ' VIP">' +
       '<div class="vip-open">' +
       '<div class="vip-banner-wrap">' +
-      '<div class="vip-banner" data-guest-banner="1"><img alt="" hidden></div>' +
+      '<div class="vip-banner" data-guest-banner="1"><img alt="" hidden><i class="vip-banner-fade" aria-hidden="true"></i></div>' +
       '<div class="vip-avatar" data-guest-avatar="1"><img alt="" hidden></div>' +
       "</div>" +
       '<section class="vip-bio-slot"><p data-vip-bio="1"' + (String(card.bio || "").trim() ? "" : " hidden") + ">" + vipEsc(String(card.bio || "").trim()) + "</p></section>" +
