@@ -344,22 +344,15 @@
 
   hookBoxes();
   scan(document);
-
-  fetch("/data/catalog.json")
-    .then(function (res) {
-      return res.ok ? res.json() : [];
-    })
-    .then(function (rows) {
-      (Array.isArray(rows) ? rows : []).forEach(function (row) {
-        if (row && row.slug) catalog[row.slug] = { title: row.title || "", year: row.year ? String(row.year) : "" };
-      });
-    })
-    .catch(function () {})
-    .then(function () {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
       hookBoxes();
       scan(document);
       credit();
     });
+  } else {
+    credit();
+  }
 
   var observer = new MutationObserver(function (list) {
     hookBoxes();

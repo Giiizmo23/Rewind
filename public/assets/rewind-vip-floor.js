@@ -9312,10 +9312,6 @@
         var art = filmArt(slug);
         var remote = art.indexOf("image.tmdb.org") >= 0 || art.indexOf("themoviedb.org") >= 0;
         var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007" || slug === "first-blood";
-        if (existingRemote && !remote && !keepSleeve && cover.getAttribute("data-rw-cover") === slug) {
-          art = existing;
-          remote = true;
-        }
         var same = existing.split("?")[0] === String(art || "").split("?")[0];
         if (keepSleeve) {
           cover.src = art;
@@ -9324,7 +9320,6 @@
           cover.setAttribute("data-rw-cover", slug);
           cover.style.setProperty("opacity", "1", "important");
         } else if (remote) {
-          if (!same) cover.style.setProperty("opacity", "0", "important");
           cover.src = art;
           cover.setAttribute("data-tmdb-art", "1");
           cover.setAttribute("data-rw-cover", slug);
@@ -11358,6 +11353,7 @@
     applied = initial;
     function aislesReady() {
       try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
+      try { document.documentElement.setAttribute("data-aisles-counted", "1"); } catch (eCount) {}
     }
     Promise.all([
       fetch("/data/catalog.json?v=1107").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
