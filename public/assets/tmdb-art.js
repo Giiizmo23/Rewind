@@ -24,6 +24,9 @@
     delete memory["there-will-be-blood-2007"];
     memory["the-witch"] = "https://image.tmdb.org/t/p/w500/zap5hpFCWSvdWSuPGAQyjUv2wAC.jpg";
     memory["the-witch-2015"] = memory["the-witch"];
+    /* Heat (1995, Michael Mann, TMDB 949). An early "heat 1995" lookup matched a wrestling event and got cached. */
+    memory["heat-1995"] = "https://image.tmdb.org/t/p/w500/umSVjVdbVwtx5ryCA2QXL44Durm.jpg";
+    if (memory["f1-2025"] && memory["f1-2025"].indexOf("e2rpZ2Qiq1t274xvb3K0sM0zwU1") >= 0) delete memory["f1-2025"];
   } catch (e) {}
   var painted = {
     "halloween-1978": "/sleeves/halloween-1978.jpg?v=painted",
@@ -71,7 +74,16 @@
     if (!title && word) title = String(word.textContent || "").trim();
     var yearText = yearEl ? String(yearEl.textContent || "") : "";
     var yearMatch = yearText.match(/\d{4}/);
-    if (!title) title = String(slug || "").replace(/-/g, " ");
+    if (!title) {
+      /* Before catalog.json loads, "heat-1995" must search as title "heat" + year 1995, not "heat 1995". */
+      var tail = String(slug || "").match(/^(.+)-((?:19|20)\d\d)$/);
+      if (tail && Number(tail[2]) <= new Date().getFullYear() + 2) {
+        title = tail[1].replace(/-/g, " ");
+        if (!yearMatch) yearMatch = [tail[2]];
+      } else {
+        title = String(slug || "").replace(/-/g, " ");
+      }
+    }
     return { title: title, year: yearMatch ? yearMatch[0] : "" };
   }
 
