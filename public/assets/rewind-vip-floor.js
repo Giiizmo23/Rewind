@@ -9161,6 +9161,9 @@
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot{height:var(--shelf-row)!important;min-height:0!important;max-height:var(--shelf-row)!important;margin:0!important;padding:.15rem .4rem 14px!important;background-color:transparent!important;background-image:linear-gradient(to bottom,#8f8880 0,#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-repeat:no-repeat!important;background-size:100% 100%!important;background-position:left top!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:center!important;overflow:visible!important;position:relative!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-color:transparent!important;background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-size:100% 100%!important;background-position:left top!important;background-repeat:no-repeat!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2),html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-color:transparent!important;background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
+        "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.rw-shelf-gap{height:var(--shelf-row)!important;min-height:0!important;pointer-events:none!important;background-color:transparent!important;background-image:linear-gradient(to bottom,#8f8880 0,#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important;background-repeat:no-repeat!important;background-size:100% 100%!important}" +
+        "html:not([data-drop='1']) body main .grid.grid-cols-2:has(>.tape-slot)>.rw-shelf-gap[data-shelf-top='1']{background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
+        "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.rw-shelf-gap[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.rw-shelf-gap[data-shelf-top='1']{background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-title,html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-title{color:#f3efe6!important}" +
         "html[data-theme='night'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-meta,html[data-theme='dark'] body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot:nth-child(-n+2) .tape-slot-meta{color:#c8c2b8!important}" +
         "html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot::before,html body main .grid.grid-cols-2:has(>.tape-slot)>.tape-slot::after{content:none!important;display:none!important;height:0!important;width:0!important;flex:none!important;margin:0!important;background:none!important;box-shadow:none!important}" +
@@ -10904,7 +10907,7 @@
       if (year && year < 2026) return 800;
       return 1200;
     }
-    function filmsFor(section, theme, limit) {
+    function filmsFor(section, theme, limit, skip) {
       const v = section.__virt;
       const films = [];
       const keys = [];
@@ -10939,7 +10942,17 @@
         extras.sort(function (a, b) {
           return (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.title || "").localeCompare(String(b.title || ""));
         });
-        return films.concat(extras);
+        var coming = films.concat(extras);
+        if (!(limit > 0)) return coming;
+        var kept = [];
+        for (var ci = 0; ci < coming.length && kept.length < limit; ci += 1) {
+          var comingFilm = coming[ci];
+          var comingSlug = comingFilm && comingFilm.slug;
+          var comingCat = comingFilm && comingFilm.__rwCatSlug;
+          if (skip && ((comingSlug && skip[comingSlug]) || (comingCat && skip[comingCat]))) continue;
+          kept.push(comingFilm);
+        }
+        return kept;
       }
       var rows = films.map(function (f, i) { return { f: f, k: keys[i] }; }).concat(extras.map(function (f) { return { f: f, k: f }; }));
       function before(x, y) {
@@ -10956,6 +10969,9 @@
         var best = [];
         for (var bi = 0; bi < rows.length; bi += 1) {
           var row = rows[bi];
+          var skipSlug = row.f && row.f.slug;
+          var skipCat = row.f && row.f.__rwCatSlug;
+          if (skip && ((skipSlug && skip[skipSlug]) || (skipCat && skip[skipCat]))) continue;
           if (best.length === limit && before(row, best[best.length - 1]) >= 0) continue;
           var at = best.length;
           while (at > 0 && before(row, best[at - 1]) < 0) at -= 1;
@@ -11048,6 +11064,19 @@
         frag.appendChild(node);
       }
       v.grid.appendChild(frag);
+      if (to === films.length && g.cols > 1) {
+        var short = films.length % g.cols;
+        if (short) {
+          var gapRow = Math.floor(films.length / g.cols);
+          for (var gap = 0; gap < g.cols - short; gap += 1) {
+            var bay = document.createElement("div");
+            bay.className = "rw-shelf-gap";
+            bay.setAttribute("aria-hidden", "true");
+            if (gapRow === 0) bay.setAttribute("data-shelf-top", "1");
+            v.grid.appendChild(bay);
+          }
+        }
+      }
       v.top.style.height = (startRow * g.row) + "px";
       v.bot.style.height = ((rows - endRow) * g.row) + "px";
       try { fixEveryBack(); } catch (eBack) {}
@@ -11255,8 +11284,8 @@
           const v = armSection(section);
           if (v) {
             if (section.__rwSynth) v.seed = [];
-            var listed = filmsFor(section, id, theme ? 0 : 8);
             if (theme) {
+              var listed = filmsFor(section, id, 0);
               var pool = listed;
               if (file.letter) {
                 pool = [];
@@ -11274,20 +11303,21 @@
               v.films = pool.slice(from, from + 6);
               openList = listed;
             } else {
-              var preview = [];
-              for (var i = 0; i < listed.length && preview.length < 8; i += 1) {
-                var film = listed[i];
+              var preview = filmsFor(section, id, 6, claimed);
+              for (var i = 0; i < preview.length; i += 1) {
+                var film = preview[i];
                 var slug = film && film.slug;
                 var catSlug = film && film.__rwCatSlug;
-                if (!slug || claimed[slug] || (catSlug && claimed[catSlug])) continue;
-                claimed[slug] = 1;
+                if (slug) claimed[slug] = 1;
                 if (catSlug) claimed[catSlug] = 1;
-                preview.push(film);
               }
               v.films = preview;
             }
             v.start = -1;
             v.key = theme ? id : "";
+            if (!theme && !v.films.length) section.hidden = true;
+          } else if (!theme) {
+            section.hidden = true;
           }
         }
         section.querySelectorAll("[data-aisle-extra]").forEach(function (el) { el.hidden = !theme; });
