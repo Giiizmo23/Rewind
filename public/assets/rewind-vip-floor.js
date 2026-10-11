@@ -52,8 +52,8 @@
     "star-wars": [0.02, 0.73, 0.98, 0.985],
     "top-gun": [0.02, 0.62, 0.98, 0.76],
     "the-exorcist": [0.08, 0.15, 0.92, 0.32],
-    "gremlins": [0.04, 0.82, 0.96, 0.97],
-    "halloween-1978": [0.02, 0.02, 0.98, 0.15]
+    "gremlins": [0.04, 0.82, 0.96, 0.97]
+    /* halloween-1978 keeps its approved spine art (/sleeves/spines/halloween-1978.png on #000); a cover-sampled spine color made two blacks. */
   };
   if (!document.getElementById("rw-spine-match")) {
     var spineMatchCss = document.createElement("style");
@@ -1219,6 +1219,8 @@
       ".tour-board .cork-person .cork-id b{display:block;font-size:.84rem}" +
       ".tour-board .cork-person .cork-id span{display:block;font-size:.68rem;opacity:.7}" +
       ".tour-board .tour-add{margin-left:auto;border:0;border-radius:99px;background:#c41230;color:#fff8f4;padding:.32rem .7rem;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}" +
+      ".club-tour .club-tour-nav{background:var(--color-bg,#f6f4ef)}" +
+      "html[data-theme=\"night\"] .club-tour .club-tour-nav,html[data-theme=\"dark\"] .club-tour .club-tour-nav{background:#0a0b0e}" +
       ".tour-board-note{margin:.45rem .2rem 0;text-align:center;font-size:.78rem;line-height:1.35;opacity:.62}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
       ".tour-aisle{display:flex;justify-content:center;margin:.55rem auto 0;width:100%;overflow:visible}" +

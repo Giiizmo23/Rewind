@@ -257,6 +257,8 @@
     if (src.indexOf("/sleeves/spines/") >= 0) return false;
     if (img.classList && img.classList.contains("vhs-spine-logo")) return false;
     if (img.closest && img.closest(".vhs-spine")) return false;
+    /* The back of the box keeps its own still; only the front cover is pinned to the painted sleeve. */
+    if (stillSlug(src) || (img.closest && img.closest(".vhs-back-still, .vhs-face-back"))) return false;
     var box = img.closest && (img.closest(".vhs-box") || img.closest("[data-slug]"));
     var fromBox = box && box.getAttribute("data-slug");
     var fromSrc = sleeveSlug(img.getAttribute("src") || "");
@@ -415,7 +417,9 @@
     "load",
     function (e) {
       var img = e.target;
-      if (!img || img.tagName !== "IMG" || !img.closest || !img.closest(".vhs-window")) return;
+      if (!img || img.tagName !== "IMG" || !img.closest) return;
+      /* Tour pictures (Your page favorites and photo) sit outside a .vhs-window; reveal them too once painted. */
+      if (!img.closest(".vhs-window") && !(img.dataset.tmdbArt === "1" && img.closest(".club-tour"))) return;
       revealCover(img);
     },
     true,
