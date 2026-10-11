@@ -963,13 +963,36 @@
     };
     try { localStorage.setItem("rewind-tmdb-films", JSON.stringify(bag)); } catch (e) {}
   }
+  var SLEEVE_ALIAS = {
+    "terminator-2-judgment-day": "terminator-2",
+    "the-nightmare-before-christmas": "nightmare-before-christmas",
+    "the-silence-of-the-lambs": "silence-of-the-lambs",
+    "national-lampoons-christmas-vacation": "christmas-vacation",
+    "am-lie-2001": "amelie"
+  };
+  function paintedBox(slug) {
+    if (!slug || !window.boxAssets) return null;
+    var direct = window.boxAssets(slug);
+    if (direct && direct.cover) return direct;
+    var base = String(slug).replace(/-(19|20)\d\d$/, "");
+    if (base && base !== slug) {
+      var stripped = window.boxAssets(base);
+      if (stripped && stripped.cover) return stripped;
+    }
+    var alt = SLEEVE_ALIAS[slug];
+    if (alt) {
+      var boxed = window.boxAssets(alt);
+      if (boxed && boxed.cover) return boxed;
+    }
+    return null;
+  }
   function filmArt(slug, version) {
     const id = String(slug || "");
     if (/^tmdb-\d+$/.test(id)) {
       const row = tmdbBag()[id];
       if (row && row.poster) return row.poster;
     }
-    var boxed = window.boxAssets && window.boxAssets(id);
+    var boxed = paintedBox(id);
     if (boxed && boxed.cover) return boxed.cover;
     return "/sleeves/" + id + ".jpg?v=" + (version || "520");
   }
@@ -9336,27 +9359,22 @@
           if (cover.complete && cover.naturalWidth) showRemote();
           else cover.addEventListener("load", showRemote);
         } else {
-          var kept = window.boxAssets && window.boxAssets(slug);
+          var kept = paintedBox(slug);
           if (kept && kept.cover) {
             if ((existing.split("?")[0]) !== String(kept.cover).split("?")[0]) cover.src = kept.cover;
             cover.setAttribute("data-painted", "1");
             cover.setAttribute("data-tmdb-art", "keep");
             cover.style.setProperty("opacity", "1", "important");
-          } else if (cover.complete && cover.naturalWidth && same) {
+            cover.style.setProperty("display", "block", "important");
+          } else if (existing.indexOf("/sleeves/") === 0 && (existing.indexOf("/" + slug + ".") >= 0 || (kept && kept.cover && existing.split("?")[0] === String(kept.cover).split("?")[0]))) {
             cover.style.setProperty("opacity", "1", "important");
-          } else {
-            if (!same) cover.src = art;
-            var revealLocal = function () {
-              if (!cover.naturalWidth) return;
-              if ((cover.getAttribute("src") || "").indexOf("image.tmdb.org") >= 0) return;
-              cover.style.setProperty("opacity", "1", "important");
-            };
-            if (cover.complete && cover.naturalWidth) revealLocal();
-            else cover.addEventListener("load", revealLocal);
+          } else if (existing.indexOf("image.tmdb.org") >= 0 || existing.indexOf("themoviedb.org") >= 0 || existing.indexOf("/sleeves/") === 0) {
+            cover.removeAttribute("src");
+            cover.style.setProperty("display", "none", "important");
           }
         }
         cover.removeAttribute("srcset");
-        var fit = (window.boxAssets && window.boxAssets(slug) && window.boxAssets(slug).fit) || "contain";
+        var fit = (paintedBox(slug) && paintedBox(slug).fit) || "contain";
         cover.style.setProperty("object-fit", fit, "important");
         var win = cover.closest(".vhs-window");
         if (win) win.querySelectorAll(".vhs-cover-word").forEach(function (node) { node.remove(); });
@@ -9370,10 +9388,26 @@
         word.style.setProperty("display", "none", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        const file = slug === "back-to-the-future" ? "back-to-the-future" : slug;
-        const boxed = window.boxAssets && window.boxAssets(slug);
-        img.setAttribute("loading", "lazy");
+        var boxed = paintedBox(slug);
+        var want = boxed && boxed.spine;
+        var cur = img.getAttribute("src") || "";
         img.removeAttribute("srcset");
+        if (want && cur.split("?")[0] === String(want).split("?")[0]) {
+          img.style.setProperty("display", "block", "important");
+          return;
+        }
+        if (!want) {
+          img.style.setProperty("display", "none", "important");
+          img.removeAttribute("src");
+          var ink0 = img.closest(".vhs-spine-ink");
+          var word0 = ink0 && ink0.querySelector(".vhs-spine-word");
+          if (word0) {
+            word0.textContent = film.title || slug;
+            word0.style.setProperty("display", "flex", "important");
+          }
+          return;
+        }
+        img.setAttribute("loading", "eager");
         img.style.setProperty("display", "none", "important");
         img.onload = function () {
           if (!img.naturalWidth) return;
@@ -9389,7 +9423,7 @@
             word.style.setProperty("display", "flex", "important");
           }
         };
-        img.src = (boxed && boxed.spine) || ("/sleeves/spines/" + file + ".png");
+        img.src = want;
       });
       box.querySelectorAll(".vhs-spine-year").forEach(function (el) { el.textContent = film.year ? String(film.year) : ""; });
       box.querySelectorAll(".vhs-spine-no").forEach(function (el) { el.textContent = film.catalogNo || ""; });
@@ -16151,10 +16185,6 @@
         if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) {
           img.style.setProperty("object-fit", "cover", "important");
           img.style.setProperty("object-position", "center center", "important");
-        } else if (src.indexOf("v=488") < 0) {
-          img.style.setProperty("opacity", "0", "important");
-          img.removeAttribute("srcset");
-          img.src = "/sleeves/jaws.jpg?v=488";
         } else {
           img.style.setProperty("object-fit", "cover", "important");
           img.style.setProperty("object-position", "center center", "important");
@@ -16285,9 +16315,10 @@
       });
       box.querySelectorAll(".vhs-window img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.indexOf("v=258") < 0) {
+        if (src.split("?")[0].indexOf("/sleeves/first-blood.jpg") < 0) {
           img.removeAttribute("srcset");
-          img.src = "/sleeves/first-blood.jpg?v=258";
+          var blood = paintedBox("first-blood");
+          if (blood && blood.cover) img.src = blood.cover;
         }
         img.setAttribute("data-painted", "1");
         img.setAttribute("data-tmdb-art", "keep");
@@ -16335,10 +16366,10 @@
         box.querySelectorAll(".vhs-window img").forEach(function (face) {
           var now = face.getAttribute("src") || "";
           if (now.indexOf("image.tmdb.org") >= 0 || now.indexOf("themoviedb.org") >= 0) return;
-          if (now.indexOf("dune-part-two.jpg?v=2") < 0) {
-            face.style.setProperty("opacity", "0", "important");
+          if (now.split("?")[0].indexOf("/sleeves/dune-part-two.jpg") < 0) {
             face.removeAttribute("srcset");
-            face.src = "/sleeves/dune-part-two.jpg?v=2";
+            var duneBox = paintedBox("dune-part-two");
+            if (duneBox && duneBox.cover) face.src = duneBox.cover;
           }
         });
       }
@@ -16748,8 +16779,8 @@
         if (src.indexOf("-still") >= 0 || src.indexOf("/spines/") >= 0) return;
         img.removeAttribute("srcset");
         img.removeAttribute("sizes");
-        var boxed = window.boxAssets && window.boxAssets(slug);
-        var want = (boxed && boxed.cover) || ("/sleeves/" + slug + ".jpg");
+        var boxed = paintedBox(slug);
+        var want = boxed && boxed.cover;
         var fit = (boxed && boxed.fit) || "contain";
         /* Night Drop tapes (data-size="drop") have a narrower face than 2:3, so "contain" letterboxed the poster; fill it like the aisles. */
         if (box.getAttribute("data-size") === "drop") fit = "cover";
@@ -16777,8 +16808,8 @@
           });
         }
         var srcIsRemote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0;
-        var wantIsSleeve = want.indexOf("/sleeves/") >= 0;
-        if (!(srcIsRemote && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
+        var wantIsSleeve = !!(want && want.indexOf("/sleeves/") >= 0);
+        if (want && !(srcIsRemote && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
           if (img.crossOrigin) {
             img.crossOrigin = null;
             img.removeAttribute("crossorigin");
@@ -16944,11 +16975,14 @@
           hideSpineWord(img.closest(".vhs-spine-ink"));
           return;
         }
-        var boxedSpine = window.boxAssets && window.boxAssets(slug);
-        var want = (boxedSpine && boxedSpine.spine) || ("/sleeves/spines/" + spineFile + ".png");
+        var boxedSpine = paintedBox(slug);
+        var wantSpine = boxedSpine && boxedSpine.spine;
         var cur = img.getAttribute("src") || "";
-        if ((cur.split("?")[0] !== want.split("?")[0]) && cur.indexOf(want) < 0) {
-          img.src = want;
+        if (wantSpine && cur.split("?")[0] !== String(wantSpine).split("?")[0]) {
+          img.src = wantSpine;
+        } else if (!wantSpine && cur && cur.indexOf("/spines/" + slug + ".") < 0) {
+          img.style.setProperty("display", "none", "important");
+          img.removeAttribute("src");
         }
         if (!img.__rwArm) {
           img.__rwArm = 1;
