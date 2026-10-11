@@ -2338,11 +2338,16 @@
         '.rw-member-stats{display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin-top:1rem;font-size:.82rem}' +
         '.rw-member-sheet.vip-wall-root{padding:0 1rem 5.5rem}' +
         '.rw-member-sheet.vip-wall-root > * + *{margin-top:1.5rem}' +
-        '.rw-member-sheet.vip-wall-root > .vip-banner-wrap{margin:0 -1rem 2.4rem!important;padding:0!important}' +
-        '.rw-member-sheet .vip-banner{border-radius:0!important;width:100%!important;margin:0!important}' +
+        '.rw-member-sheet.vip-wall-root > .vip-banner-wrap,.rw-member-sheet .vip-open > .vip-banner-wrap{margin:0 -1rem 4.05rem!important;padding:0!important}' +
+        '.rw-member-sheet .vip-banner{border-radius:0!important;width:100%!important;margin:0!important;background:transparent!important;overflow:hidden!important}' +
+        '.rw-member-sheet .vip-banner img{z-index:1!important}' +
+        '.rw-member-sheet .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0) 0%,#f6f4ef 100%)}' +
+        'html[data-theme="dark"] .rw-member-sheet .vip-banner::after,html[data-theme="night"] .rw-member-sheet .vip-banner::after{height:40%;background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
         '.rw-member-sheet .vip-banner-wrap{position:relative;z-index:6}' +
-        '.rw-member-sheet .vip-avatar{position:absolute!important;z-index:8;pointer-events:auto!important;overflow:hidden!important;border-radius:999px!important;-webkit-touch-callout:none;touch-action:manipulation}' +
-        '.rw-member-sheet .vip-avatar img{pointer-events:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-select:none!important;border-radius:999px!important}' +
+        '.rw-member-sheet .vip-avatar{position:absolute!important;bottom:-3.55rem!important;z-index:8;pointer-events:auto!important;overflow:hidden!important;border-radius:999px!important;box-shadow:none!important;-webkit-touch-callout:none;touch-action:manipulation}' +
+        '.rw-member-sheet .vip-avatar img{pointer-events:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-select:none!important;border-radius:0!important;transform:scale(1.08)!important}' +
+        '.rw-member-sheet > .vip-open{display:flex;flex-direction:column;min-height:calc(100dvh - 4.05rem - env(safe-area-inset-bottom,0px))}' +
+        '.rw-member-sheet .vip-open .vip-bio-slot{margin-top:1.7rem!important}' +
         '.rw-member-sheet .vip-bio-slot,.rw-member-sheet .top5-section{position:relative;z-index:1}' +
         '#rw-face-light{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;background:#070708;overflow:hidden}' +
         '#rw-face-light.is-on{display:flex}' +
@@ -2353,7 +2358,7 @@
         '.rw-member-sheet [data-vip-top5] .rw-member-tape{flex:1 1 0;width:auto;height:auto;aspect-ratio:2/3}' +
         '.rw-member-sheet [data-vip-tapes]{display:flex;gap:.55rem;overflow:auto;padding-bottom:.35rem}' +
         '.rw-member-sheet [data-vip-tapes] .rw-member-tape{flex:0 0 5.4rem;width:5.4rem;height:8rem}' +
-        '.rw-member-sheet .top5-section{margin-top:3.75rem;margin-bottom:.15rem}' +
+        '.rw-member-sheet .vip-open .top5-section{margin-top:auto!important;margin-bottom:0!important;padding-bottom:1.45rem}' +
         '.rw-member-sheet [data-vip-top5-empty]{margin-bottom:.35rem!important}' +
         '.rw-member-sheet [data-vip-card]{position:relative;z-index:3;margin-top:1.55rem!important}' +
         '.rw-member-sheet [data-vip-onvcr]{display:flex;gap:.55rem;overflow:auto;padding-bottom:.35rem}' +
@@ -4865,6 +4870,7 @@
     sheet.innerHTML =
       '<button type="button" class="rw-member-back" data-member-close aria-label="Back" style="position:absolute;top:.28rem;left:.2rem;z-index:20;width:1.7rem;height:1.7rem;border:0;border-radius:0;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;padding:0;box-shadow:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.85))"><svg width="13" height="13" viewBox="0 0 18 18" aria-hidden="true"><path d="M11.2 3.4 6 9l5.2 5.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
       '<div class="rw-member-sheet vip-wall-root" role="dialog" aria-label="' + vipEsc(card.name || card.handle) + ' VIP">' +
+      '<div class="vip-open">' +
       '<div class="vip-banner-wrap">' +
       '<div class="vip-banner" data-guest-banner="1"><img alt="" hidden></div>' +
       '<div class="vip-avatar" data-guest-avatar="1"><img alt="" hidden></div>' +
@@ -4876,6 +4882,7 @@
         ? '<div data-vip-top5 class="flex gap-2 pb-1">' + pins.map(memberSleeve).join("") + "</div>"
         : '<p data-vip-top5-empty class="mt-3 ticket-stub rounded-[var(--radius-md)] p-4 text-sm text-muted">Nothing in Favorites yet.</p>') +
       "</section>" +
+      "</div>" +
       (card.preview || card.friend !== "friends"
         ? '<div class="rw-member-acts"><button type="button" data-club-follow="' + vipEsc(card.handle) + '" data-act="' + (card.friend === "in" ? "accept" : "request") + '"' + (card.friend === "friends" || card.friend === "out" ? " disabled" : "") + ">" + friend + "</button>" +
           '<button type="button" data-club-msg="' + vipEsc(card.handle) + '">Message</button></div>'
