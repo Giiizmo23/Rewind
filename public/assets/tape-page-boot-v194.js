@@ -769,7 +769,7 @@
         '<p class="tp-logtitle">Members only</p>' +
         '<p class="tp-logyear">Logging, ratings, and lists stay behind the counter.</p>' +
         '<div class="tp-gate">' +
-        '<a class="is-red" href="/login?desk=return">Present your card</a>' +
+        '<a class="is-red" href="/login?desk=return">I have a card</a>' +
         '<a class="is-ghost" href="/login?desk=new">Pick up a card</a>' +
         "</div>" +
         '<button type="button" class="tp-done">Not now</button></div>';
