@@ -1220,6 +1220,13 @@
       ".tour-board .cork-person .cork-id span{display:block;font-size:.68rem;opacity:.7}" +
       ".tour-board .tour-add{margin-left:auto;border:0;border-radius:99px;background:#c41230;color:#fff8f4;padding:.32rem .7rem;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}" +
       ".club-tour .club-tour-nav{background:var(--color-bg,#f6f4ef)}" +
+      /* Tour fit: the demo never gets clipped or pushes the screen into a scroll; fitTourDemo() scales it down only when the screen is short. */
+      ".club-tour-slide>.tour-fit{flex-shrink:0;transform-origin:50% 0}" +
+      ".club-tour.is-tight .club-tour-slide{padding-top:.25rem}" +
+      ".club-tour.is-tight .club-tour-slide>h2{margin-top:.45rem}" +
+      ".club-tour.is-tight .club-tour-slide>p.mt-4{margin-top:.6rem}" +
+      ".club-tour.is-tight .club-tour-hint{padding-top:.35rem}" +
+      ".club-tour.is-tight .club-tour-nav{padding-top:.55rem}" +
       "html[data-theme=\"night\"] .club-tour .club-tour-nav,html[data-theme=\"dark\"] .club-tour .club-tour-nav{background:#0a0b0e}" +
       ".tour-board-note{margin:.45rem .2rem 0;text-align:center;font-size:.78rem;line-height:1.35;opacity:.62}" +
       ".tour-shot.board img{object-fit:cover;object-position:center top}" +
@@ -1405,6 +1412,54 @@
     if (s.visual === "rent") wireTourRent();
     if (s.visual === "locker") wireTourVcr();
     if (s.visual === "drop") wireTourDrop();
+    armTourFit();
+  }
+
+  /* Every tour screen fits the visible screen with no scrolling (mobile Safari with its toolbars, small phones).
+     Where it already fits nothing changes; otherwise trim the spacing, then scale the demo down to the room left. */
+  function fitTourDemo() {
+    if (!root) return;
+    const slide = root.querySelector(".club-tour-slide");
+    const demo = slide && slide.querySelector(".tour-fit");
+    root.classList.remove("is-tight");
+    if (!demo) return;
+    demo.style.removeProperty("transform");
+    demo.style.removeProperty("margin-bottom");
+    const over = function () { return root.scrollHeight - root.clientHeight; };
+    if (over() <= 0) return;
+    root.classList.add("is-tight");
+    if (over() <= 0) return;
+    const h = demo.getBoundingClientRect().height;
+    if (!h) return;
+    let scale = 1;
+    for (let k = 0; k < 4 && over() > 0; k++) {
+      const room = demo.getBoundingClientRect().height - over() - 1;
+      scale = Math.max(0.3, Math.min(scale, room / h));
+      demo.style.setProperty("transform", "scale(" + scale.toFixed(4) + ")");
+      demo.style.setProperty("margin-bottom", (-(h * (1 - scale))).toFixed(1) + "px");
+    }
+  }
+  let fitRaf = 0;
+  function queueTourFit() {
+    if (fitRaf) cancelAnimationFrame(fitRaf);
+    fitRaf = requestAnimationFrame(function () { fitRaf = 0; fitTourDemo(); });
+  }
+  function armTourFit() {
+    if (!root) return;
+    const slide = root.querySelector(".club-tour-slide");
+    if (slide) {
+      const kids = Array.prototype.slice.call(slide.children);
+      const demo = kids.find(function (el, n) { return n >= 3 && !el.classList.contains("club-tour-hint") && !el.classList.contains("club-tour-nav"); });
+      if (demo) demo.classList.add("tour-fit");
+    }
+    queueTourFit();
+    [120, 400, 1200, 2500].forEach(function (ms) { setTimeout(queueTourFit, ms); });
+    if (!root.__rwFit) {
+      root.__rwFit = 1;
+      root.addEventListener("load", queueTourFit, true);
+      window.addEventListener("resize", queueTourFit);
+      if (window.visualViewport) window.visualViewport.addEventListener("resize", queueTourFit);
+    }
   }
 
   function wireTourDrop() {
