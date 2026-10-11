@@ -647,12 +647,86 @@
   // and keep whatever tmdb-art.js paints there clipped away, so the box back still shows what it shows
   // today: an empty still area. display is untouched, so nothing else on the box re-flows.
   var stillMiss = {};
-  document.addEventListener("error", function (e) {
-    var t = e.target;
+  document.addEventListener("error", function (e) { stillFailed(e.target); }, true);
+  function stillFailed(t) {
     if (!t || t.tagName !== "IMG") return;
     var s = t.getAttribute("src") || "";
-    if (s.indexOf("-still.jpg") >= 0) stillMiss[s] = 1;
-  }, true);
+    if (s.indexOf("-still.jpg") >= 0) {
+      stillMiss[s] = 1;
+      delete stillAsk[s];
+      t.style.setProperty("clip-path", "inset(100%)", "important");
+      stillWaiters(s).forEach(function (w) {
+        w.removeAttribute("data-still-wait");
+        w.style.setProperty("clip-path", "inset(100%)", "important");
+      });
+    }
+  }
+  // Shelf copies can leave the page before their still answers (the document never hears it), so the img itself reports back.
+  function watchStill(img) {
+    if (!img || img.__rwStillWatch) return;
+    img.__rwStillWatch = 1;
+    img.addEventListener("error", function () { if (!img.isConnected) stillFailed(img); });
+    img.addEventListener("load", function () { if (!img.isConnected) stillLoaded(img); });
+  }
+  // While a still is still on its way, a second copy waits for the answer instead of asking again.
+  var stillAsk = {};
+  var stillOk = {};
+  function stillWaiters(src) {
+    return Array.prototype.filter.call(document.querySelectorAll("img[data-still-wait]"), function (w) {
+      return w.getAttribute("data-still-wait") === src;
+    });
+  }
+  document.addEventListener("load", function (e) { stillLoaded(e.target); }, true);
+  function stillLoaded(t) {
+    if (!t || t.tagName !== "IMG") return;
+    var s = t.getAttribute("src") || "";
+    if (s.indexOf("-still.jpg") < 0) return;
+    stillOk[s] = 1;
+    delete stillAsk[s];
+    stillWaiters(s).forEach(function (w) {
+      w.removeAttribute("data-still-wait");
+      w.setAttribute("src", s);
+    });
+  }
+  function stillBusy(src) {
+    if (stillOk[src] || stillMiss[src]) return false;
+    if (stillAsk[src] && Date.now() - stillAsk[src] < 4000) {
+      // A copy whose first ask was dropped from the page never hears back; let it ask for itself after a moment.
+      setTimeout(function () {
+        stillWaiters(src).forEach(function (w) {
+          w.removeAttribute("data-still-wait");
+          if (stillMiss[src]) w.style.setProperty("clip-path", "inset(100%)", "important");
+          else w.setAttribute("src", src);
+        });
+      }, 4100);
+      return true;
+    }
+    stillAsk[src] = Date.now();
+    return false;
+  }
+  // A back still already known missing on this page load is not asked for again; its img stays empty and clipped.
+  function stillAttr(slug) {
+    var src = backStill(slug);
+    if (stillMiss[src]) return 'style="clip-path:inset(100%)"';
+    if (stillBusy(src)) return 'data-still-wait="' + src + '"';
+    return 'src="' + src + '"';
+  }
+  // Shelf templates are copies of a real slot. cloneNode() on a slot re-requests its back still at once
+  // (a missing 2026 still was fetched again for every copy), so copies are made inert and drop the still src;
+  // fixEveryBack() sets the right still for whichever film the copy becomes.
+  function quietSlotClone(node) {
+    var t = document.createElement("template");
+    t.innerHTML = node.outerHTML;
+    var c = t.content.firstElementChild;
+    if (!c) return node.cloneNode(true);
+    c.querySelectorAll("img").forEach(function (im) {
+      var s = im.getAttribute("src") || "";
+      if (s.indexOf("-still.jpg") < 0) return;
+      im.removeAttribute("src");
+      im.removeAttribute("srcset");
+    });
+    return document.importNode(c, true);
+  }
   var BATCH_STICKER = {
     "kill-bill-vol-1": 1,
     "a-christmas-story": 1,
@@ -1385,7 +1459,7 @@
           <p class="mt-3 max-w-md text-base text-muted">Same desk as always. This tour doesn’t stamp anything — pick up a card when you want to log.</p>
           <div class="club-tour-end-actions">
             <a href="/login?desk=new" class="inline-flex h-12 items-center justify-center rounded-2xl bg-primary px-5 text-base font-medium text-primary-fg">Pick up a card</a>
-            <a href="/login?desk=return" class="inline-flex h-12 items-center justify-center rounded-2xl px-5 text-base font-medium shadow-[var(--shadow-border)]">Present your card</a>
+            <a href="/login?desk=return" class="inline-flex h-12 items-center justify-center rounded-2xl px-5 text-base font-medium shadow-[var(--shadow-border)]">I have a card</a>
             <button type="button" class="h-12 text-sm text-muted" data-tour-close>Skip this step — keep browsing</button>
           </div>
         </div>`;
@@ -4366,7 +4440,7 @@
       '</div><div class="club-stub"><p class="club-stub-url">bekindrewind.vercel.app</p></div>' +
       "</div></div></div></div>" +
       '<div class="desk-actions mt-4 flex flex-col gap-2">' +
-      '<a href="/login?desk=return" class="inline-flex h-11 w-full items-center justify-center rounded-2xl bg-primary px-5 text-base font-medium text-primary-fg">Present your card</a>' +
+      '<a href="/login?desk=return" class="inline-flex h-11 w-full items-center justify-center rounded-2xl bg-primary px-5 text-base font-medium text-primary-fg">I have a card</a>' +
       '<a href="/login?desk=new" class="inline-flex h-11 w-full items-center justify-center rounded-2xl px-5 text-base font-medium shadow-[var(--shadow-border)]">Pick up a card</a>' +
       '<button type="button" data-club-tour="1" class="inline-flex h-11 w-full items-center justify-center rounded-2xl px-5 text-base font-medium shadow-[var(--shadow-border)]">Take the tour</button>' +
       "</div>";
@@ -6263,7 +6337,7 @@
       a.setAttribute("hidden", "");
     });
     document.querySelectorAll("a.guest-cta").forEach((cta) => {
-      cta.textContent = "Present your card";
+      cta.textContent = "I have a card";
       cta.setAttribute("href", "/login?desk=return");
       cta.style.display = member ? "none" : "inline-flex";
     });
@@ -6272,7 +6346,7 @@
       const cta = document.createElement("a");
       cta.href = "/login?desk=return";
       cta.className = "guest-cta";
-      cta.textContent = "Present your card";
+      cta.textContent = "I have a card";
       cta.style.cssText = "display:inline-flex;height:2.15rem;align-items:center;border-radius:999px;background:#9f1d2f;color:#fff;padding:0 .9rem;font-size:.78rem;font-weight:600;text-decoration:none;white-space:nowrap;margin-left:auto";
       const moon = bar.querySelector(":scope > div:last-child");
       if (moon) bar.insertBefore(cta, moon);
@@ -8538,7 +8612,7 @@
     return (
       '<div data-scan-desk="1" data-live-desk="1" class="space-y-4">' +
       '<p class="text-xs uppercase tracking-[0.22em] text-muted">Front counter</p>' +
-      '<h1 class="font-display text-5xl tracking-[0.08em]">Present your card</h1>' +
+      '<h1 class="font-display text-5xl tracking-[0.08em]">I have a card</h1>' +
       '<p class="text-sm text-muted">Press and hold the card to the glass until it beeps. The door stays shut until then.</p>' +
       '<button type="button" class="scan-reader" data-scan-hold="1" data-card-scan="1">' +
       '<div class="scan-led-row"><span class="scan-led"></span><span class="scan-led-label">Reader</span></div>' +
@@ -9020,7 +9094,7 @@
         const cta = document.createElement("a");
         cta.href = "/login?desk=return";
         cta.className = "guest-cta";
-        cta.textContent = "Present your card";
+        cta.textContent = "I have a card";
         right.appendChild(cta);
       }
       if (!row.querySelector("a.member-hello")) {
@@ -9303,8 +9377,11 @@
         }
       }
       if (still) {
-        still.setAttribute("loading", "lazy");
-        still.src = backStill(slug);
+        // Eager, so a copy that leaves the shelf mid-flight still hears back (a lazy one is dropped and asked again later).
+        still.setAttribute("loading", "eager");
+        if (stillMiss[backStill(slug)]) still.style.setProperty("clip-path", "inset(100%)", "important");
+        else if (stillBusy(backStill(slug))) { still.removeAttribute("src"); still.setAttribute("data-still-wait", backStill(slug)); }
+        else { watchStill(still); still.src = backStill(slug); }
         still.onerror = function () {
           this.onerror = null;
           this.style.display = "none";
@@ -9369,7 +9446,7 @@
       shelfSlugs(section);
       const slots = Array.prototype.slice.call(grid.querySelectorAll(":scope > article.tape-slot"));
       if (!slots.length) return null;
-      const template = slots[0].cloneNode(true);
+      const template = quietSlotClone(slots[0]);
       const bySlug = {};
       const seed = [];
       slots.forEach(function (node) {
@@ -10993,7 +11070,7 @@
     }
     function donorTemplate() {
       const live = document.querySelector("main article.tape-slot");
-      if (live) window.__rwAisleDonor = live.cloneNode(true);
+      if (live) window.__rwAisleDonor = quietSlotClone(live);
       return window.__rwAisleDonor || null;
     }
     function ensureShelf(section) {
@@ -11408,7 +11485,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img src="' + backStill(slug) + '" alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
+        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img ' + stillAttr(slug) + ' alt="" draggable="false" decoding="async" onerror="this.onerror=null;this.style.opacity=\'0\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         '<p class="vhs-back-syn">' + overview + "</p></div>" +
@@ -11690,7 +11767,7 @@
     if (!tgl || !tgl.getAttribute) return "";
     var href = tgl.getAttribute("href") || "";
     var label = (tgl.textContent || "").replace(/\s+/g, " ").trim();
-    if (/^present your card$/i.test(label) || href.indexOf("desk=return") !== -1) return "return";
+    if (/^(present your card|i have a card)$/i.test(label) || href.indexOf("desk=return") !== -1) return "return";
     if (href.indexOf("desk=new") !== -1) return "new";
     if (href === "/login" || href === "/login/") return "return";
     return "";
@@ -12096,7 +12173,7 @@
         '<div class="vhs-face"><span class="vhs-format">VHS<small>FORMAT</small></span></div>' +
         '</div><span class="vhs-wear" aria-hidden="true"></span></div></div></div>' +
         '<div class="vhs-face-back"><div class="vhs-case vhs-case-back"><div class="vhs-shell vhs-shell-back">' +
-        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img src="' + backStill(slug) + '" alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-contain" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
+        '<div class="vhs-back-still" style="' + backStillBg(slug) + '"><img ' + stillAttr(slug) + ' alt="" draggable="false" decoding="async" class="absolute inset-0 size-full object-contain" onerror="this.onerror=null;this.style.display=\'none\'"></div>' +
         '<div class="vhs-back-copy"><div class="vhs-back-lede">' +
         (tagline ? '<p class="vhs-back-tag">“' + tagline + '”</p>' : "") +
         (overview ? '<p class="vhs-back-syn">' + overview + "</p>" : "") +
@@ -13509,7 +13586,7 @@
       if (row && !row.hasAttribute("data-lobby-prize") && !row.hasAttribute("data-lobby-stats") && row.tagName !== "SECTION") {
         row.querySelectorAll("a,button").forEach((el) => {
           const t = (el.textContent || "").trim();
-          if (/take the tour|pick up a card|present your card/i.test(t)) el.remove();
+          if (/take the tour|pick up a card|present your card|i have a card/i.test(t)) el.remove();
         });
         if (!row.children.length) row.remove();
       }
@@ -13915,7 +13992,7 @@
         }
         if (cur.indexOf("/sleeves/") >= 0 && cur.indexOf("-still.jpg") < 0 && img.getAttribute("data-rw-still2") !== "1") {
           img.setAttribute("data-rw-still2", "1");
-          img.setAttribute("src", "/sleeves/" + slug + "-still.jpg?v=541");
+          if (!stillMiss["/sleeves/" + slug + "-still.jpg?v=541"]) img.setAttribute("src", "/sleeves/" + slug + "-still.jpg?v=541");
         }
       });
     });
@@ -16178,6 +16255,7 @@
           img.style.setProperty("display", "none", "important");
         };
         img.removeAttribute("srcset");
+        watchStill(img);
         img.src = want;
       }
       img.style.setProperty("position", "absolute", "important");
