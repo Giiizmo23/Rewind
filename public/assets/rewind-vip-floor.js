@@ -1704,8 +1704,8 @@
       document.head.appendChild(css);
     }
     const chrome = document.getElementById("rewind-member-chrome");
-    if (chrome && chrome.dataset.v !== "v237") {
-      chrome.dataset.v = "v237";
+    if (chrome && chrome.dataset.v !== "v238") {
+      chrome.dataset.v = "v238";
       chrome.textContent =
         'html[data-member="1"] main a[href="/login?desk=new"],' +
         'html[data-member="1"] main a[href="/login?desk=return"],' +
@@ -2279,8 +2279,9 @@
         '.rw-member-sheet [data-vip-top5] .rw-member-tape{flex:1 1 0;width:auto;height:auto;aspect-ratio:2/3}' +
         '.rw-member-sheet [data-vip-tapes]{display:flex;gap:.55rem;overflow:auto;padding-bottom:.35rem}' +
         '.rw-member-sheet [data-vip-tapes] .rw-member-tape{flex:0 0 5.4rem;width:5.4rem;height:8rem}' +
-        '.rw-member-sheet .top5-section{margin-top:3.75rem}' +
-        '.rw-member-sheet [data-vip-card]{margin-top:1.65rem}' +
+        '.rw-member-sheet .top5-section{margin-top:3.75rem;margin-bottom:.15rem}' +
+        '.rw-member-sheet [data-vip-top5-empty]{margin-bottom:.35rem!important}' +
+        '.rw-member-sheet [data-vip-card]{position:relative;z-index:3;margin-top:1.55rem!important}' +
         '.rw-member-sheet [data-vip-onvcr]{display:flex;gap:.55rem;overflow:auto;padding-bottom:.35rem}' +
         '.rw-member-sheet [data-vip-onvcr] .rw-member-tape{flex:0 0 5.4rem;width:5.4rem;height:8rem}' +
         '.rw-guest-tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin:.15rem 0 .85rem}' +
@@ -4871,6 +4872,7 @@
       bindGuestFace(host, card.avatar);
       if (card.handle && isPicSrc(card.avatar)) facePics[String(card.handle).toLowerCase()] = card.avatar;
     }
+    try { armVipClicks(); } catch (eFlip) {}
     installGuestFaceTap();
   }
   function guestStars(rating) {
@@ -14294,7 +14296,9 @@
           if (state === "in") {
             acts = '<button type="button" class="rw-ask-btn" data-club-follow="' + boardEsc(handle) + '" data-act="accept">Accept</button><button type="button" class="rw-ask-btn is-ghost" data-club-follow="' + boardEsc(handle) + '" data-act="decline">Not now</button>';
           } else if (state === "friends") {
-            acts = '<span class="rw-ask-btn is-quiet">Friends</span>';
+            const person = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.1" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5.6 19.2c1.15-3.05 3.4-4.5 6.4-4.5s5.25 1.45 6.4 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+            const env = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.2h16v10.2H7.2L4 20.2V7.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m4 7.2 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+            acts = '<button type="button" class="cork-ico is-ghost" aria-label="Profile" data-member-open="' + boardEsc(handle) + '">' + person + '</button><button type="button" class="cork-ico" aria-label="Message" data-club-msg="' + boardEsc(handle) + '">' + env + "</button>";
           } else if (state === "out") {
             acts = '<span class="rw-ask-btn is-quiet">Requested</span>';
           } else {
