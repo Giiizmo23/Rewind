@@ -9189,7 +9189,20 @@
         "html body main .aisle-window>.grid.grid-cols-2[data-virt='1']{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot:nth-child(-n+5){background-image:linear-gradient(to bottom,#8f8880 0,#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
         "html:not([data-drop='1']) body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-image:linear-gradient(to bottom,#f6f4ef 0,#f6f4ef calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
-        "html[data-theme='night'] body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}";
+        "html[data-theme='night'] body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1'],html[data-theme='dark'] body main .grid.grid-cols-2[data-virt='1']:has(>.tape-slot)>.tape-slot[data-shelf-top='1']{background-image:linear-gradient(to bottom,#0a0b0e 0,#0a0b0e calc(6rem + 8px),#8f8880 calc(6rem + 8px),#8f8880 calc(100% - 40px),transparent calc(100% - 40px))!important}" +
+        ".rw-aisle-stick{position:sticky;top:3.5rem;z-index:35;background:#f6f4ef}" +
+        "html[data-theme='dark'] .rw-aisle-stick,html[data-theme='night'] .rw-aisle-stick{background:#0a0b0e}" +
+        ".rw-file-letters,.rw-file-pager{display:flex;gap:.4rem;overflow-x:auto;padding:.35rem 1rem .2rem;scrollbar-width:none}" +
+        ".rw-file-letters::-webkit-scrollbar,.rw-file-pager::-webkit-scrollbar{display:none}" +
+        ".rw-file-letters[hidden],.rw-file-pager[hidden]{display:none!important}" +
+        ".rw-file-letters button,.rw-file-pager button{flex:none;height:2.25rem;min-width:2.25rem;padding:0;border-radius:999px;border:1.5px solid rgba(26,20,15,.28);background:transparent;color:#1a140f;font-size:.75rem;font-weight:700;letter-spacing:.04em}" +
+        "html[data-theme='dark'] .rw-file-letters button,html[data-theme='night'] .rw-file-letters button,html[data-theme='dark'] .rw-file-pager button,html[data-theme='night'] .rw-file-pager button{border-color:rgba(243,239,230,.28);color:#f3efe6}" +
+        ".rw-file-letters button.is-on{background:#c41230;border-color:#c41230;color:#fff8f4}" +
+        ".rw-file-letters button:disabled,.rw-file-pager button:disabled{opacity:.28}" +
+        ".rw-file-letters button.rw-front,.rw-file-pager button{padding:0 .85rem;text-transform:uppercase;letter-spacing:.08em}" +
+        ".rw-file-pager{align-items:center;justify-content:space-between}" +
+        ".rw-file-pager span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#9a7040}" +
+        "html[data-theme='dark'] .rw-file-pager span,html[data-theme='night'] .rw-file-pager span{color:#e8c07a}";
       document.head.appendChild(style);
     }
     const CHIP_ON = "inline-flex h-10 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.14em] bg-primary text-primary-fg";
@@ -11096,11 +11109,117 @@
       grid.appendChild(donor.cloneNode(true));
       section.__rwSynth = 1;
     }
+    function fileLetter(title) {
+      var s = String(title || "").replace(/^(the|a|an)\s+/i, "").trim();
+      var c = (s.charAt(0) || "#").toUpperCase();
+      return c >= "A" && c <= "Z" ? c : "#";
+    }
+    function readFile() {
+      var letter = "";
+      var shelf = 1;
+      try {
+        var params = new URLSearchParams(location.search);
+        var raw = String(params.get("letter") || "").toUpperCase();
+        if (raw === "#" || (raw.length === 1 && raw >= "A" && raw <= "Z")) letter = raw;
+        var n = Number(params.get("shelf"));
+        if (n > 1) shelf = Math.floor(n);
+      } catch (err) {}
+      return { letter: letter, shelf: shelf };
+    }
+    function ensureFileBar() {
+      var stick = document.getElementById("rw-file-bar");
+      if (stick) return stick;
+      var chip = document.querySelector("main a.rounded-full");
+      var row = chip && chip.parentElement;
+      if (!row) return null;
+      stick = document.createElement("div");
+      stick.id = "rw-file-bar";
+      stick.className = "rw-aisle-stick";
+      row.parentNode.insertBefore(stick, row);
+      stick.appendChild(row);
+      var letters = document.createElement("div");
+      letters.className = "rw-file-letters";
+      letters.hidden = true;
+      stick.appendChild(letters);
+      var pager = document.createElement("div");
+      pager.className = "rw-file-pager";
+      pager.hidden = true;
+      stick.appendChild(pager);
+      stick.addEventListener("click", function (e) {
+        var btn = e.target && e.target.closest && e.target.closest("[data-file],[data-file-page]");
+        if (!btn || btn.disabled) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        var theme = themeOf(location.pathname + location.search) || "";
+        if (!theme) return;
+        var cur = readFile();
+        var letter = cur.letter;
+        var shelf = cur.shelf;
+        if (btn.hasAttribute("data-file-page")) {
+          shelf += Number(btn.getAttribute("data-file-page")) || 0;
+        } else {
+          var next = btn.getAttribute("data-file") || "";
+          if (!next || next === letter) { letter = ""; shelf = 1; }
+          else { letter = next; shelf = 1; }
+        }
+        var url = "/films?theme=" + encodeURIComponent(theme);
+        if (letter) url += "&letter=" + encodeURIComponent(letter);
+        if (letter && shelf > 1) url += "&shelf=" + shelf;
+        var now = ((location.pathname || "").replace(/\/$/, "") || "/") + (location.search || "");
+        if (now !== url) history.pushState({ rwAisle: theme }, "", url);
+        applyAisle(theme, true);
+      });
+      return stick;
+    }
+    function paintFileBar(theme, listed) {
+      var stick = ensureFileBar();
+      if (!stick) return;
+      var letters = stick.querySelector(".rw-file-letters");
+      var pager = stick.querySelector(".rw-file-pager");
+      if (!theme || !listed) {
+        letters.hidden = true;
+        pager.hidden = true;
+        return;
+      }
+      var file = readFile();
+      var counts = {};
+      listed.forEach(function (film) {
+        var L = fileLetter(film && film.title);
+        counts[L] = (counts[L] || 0) + 1;
+      });
+      var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      if (counts["#"]) alpha.push("#");
+      var html = '<button type="button" class="rw-front' + (file.letter ? "" : " is-on") + '" data-file="">Front</button>';
+      alpha.forEach(function (L) {
+        var n = counts[L] || 0;
+        html += '<button type="button" data-file="' + L + '"' + (n ? "" : " disabled") + (file.letter === L ? ' class="is-on"' : "") + ">" + L + "</button>";
+      });
+      letters.innerHTML = html;
+      letters.hidden = false;
+      var total = file.letter ? (counts[file.letter] || 0) : 0;
+      var pages = Math.max(1, Math.ceil(total / 6));
+      if (file.letter && pages > 1) {
+        var shelf = Math.min(Math.max(1, file.shelf), pages);
+        pager.hidden = false;
+        pager.innerHTML =
+          '<button type="button" data-file-page="-1"' + (shelf <= 1 ? " disabled" : "") + ">Back</button>" +
+          "<span>" + shelf + " of " + pages + "</span>" +
+          '<button type="button" data-file-page="1"' + (shelf >= pages ? " disabled" : "") + ">Next</button>";
+      } else {
+        pager.hidden = true;
+        pager.innerHTML = "";
+      }
+      var on = letters.querySelector(".is-on");
+      if (on && file.letter) on.scrollIntoView({ inline: "center", block: "nearest" });
+    }
     function applyAisle(theme, scroll) {
       const changed = applied !== theme;
       applied = theme;
       donorTemplate();
       const claimed = {};
+      var openList = null;
+      var file = theme ? readFile() : { letter: "", shelf: 1 };
       sections.forEach(function (section) {
         const id = sectionTheme(section);
         shelfSlugs(section);
@@ -11113,7 +11232,19 @@
             if (section.__rwSynth) v.seed = [];
             var listed = filmsFor(section, id);
             if (theme) {
-              v.films = listed;
+              var pool = listed;
+              if (file.letter) {
+                pool = [];
+                for (var fi = 0; fi < listed.length; fi += 1) {
+                  var item = listed[fi];
+                  if (fileLetter(item && item.title) === file.letter) pool.push(item);
+                }
+              }
+              var pages = Math.max(1, Math.ceil(pool.length / 6) || 1);
+              var shelfN = file.letter ? Math.min(Math.max(1, file.shelf), pages) : 1;
+              var from = (shelfN - 1) * 6;
+              v.films = pool.slice(from, from + 6);
+              openList = listed;
             } else {
               var preview = [];
               for (var i = 0; i < listed.length && preview.length < 8; i += 1) {
@@ -11158,8 +11289,10 @@
             n = aisleSize(section, theme);
           });
           floor.textContent = n + (n === 1 ? " tape in this aisle" : " tapes in this aisle");
+          if (file.letter) floor.textContent = "Filed under " + file.letter;
         }
       }
+      paintFileBar(theme, openList);
       if (scroll || (changed && theme)) {
         try { window.scrollTo(0, 0); } catch (err) {}
       }
