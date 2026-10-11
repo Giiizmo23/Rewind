@@ -88,6 +88,7 @@
   }
 
   function paint(img, url) {
+    if (rewardArt(img)) return;
     if (img.crossOrigin) {
       img.crossOrigin = null;
       img.removeAttribute("crossorigin");
@@ -131,7 +132,15 @@
     }
   }
 
+  /* Reward art (the rewards desk, worn pins and posters, painted covers, a worn reward header or avatar) is the painted sleeve on purpose: never swap it for a TMDB poster. */
+  function rewardArt(img) {
+    if (!img || !img.getAttribute) return false;
+    if (img.getAttribute("data-paint-art") === "1" || img.getAttribute("data-rw-reward") === "1") return true;
+    return !!(img.closest && img.closest("#rw-rewards, .rw-prize-art, .rw-look-art, .rw-worn, .rw-btn-pin, .pc-art, [data-paint-locker], [data-paint-member-wall]"));
+  }
+
   function waitingSleeve(img) {
+    if (rewardArt(img)) return false;
     var src = (img && img.getAttribute && img.getAttribute("src")) || "";
     if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) return false;
     if (img.dataset && img.dataset.painted === "1") return false;
@@ -220,7 +229,7 @@
           }
           if (still) stillMemory[job.slug] = still;
           document.querySelectorAll("img").forEach(function (img) {
-            if (img.dataset.painted === "1" || pinPainted(img)) return;
+            if (img.dataset.painted === "1" || rewardArt(img) || pinPainted(img)) return;
             var src = img.getAttribute("src") || "";
             if (still && (stillSlug(src) === job.slug || img.dataset.tmdbStill === job.slug)) paint(img, still);
             else if (poster && !stillSlug(src) && (sleeveSlug(src) === job.slug || img.dataset.tmdbSlug === job.slug)) paint(img, poster);
@@ -305,6 +314,7 @@
 
   function consider(img) {
     if (!img || !img.getAttribute) return;
+    if (rewardArt(img)) return;
     if (restoreHalloweenSpine(img)) return;
     if (pinPainted(img)) return;
     if (img.dataset.painted === "1" || img.dataset.tmdbArt === "keep") return;

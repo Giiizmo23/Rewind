@@ -5,6 +5,7 @@ import { promisify } from "node:util";
 import { getSql, type Sql } from "@/lib/db";
 import { collectActivity, floorActs, rankStore, type Act } from "@/lib/rewind/activity.server";
 import { tmdbRoute } from "@/lib/rewind/tmdb.server";
+import { paintedLook } from "../../../scripts/painted-look.mjs";
 
 const scryptAsync = promisify(scrypt);
 const LOCKER_MAX = 3_000_000;
@@ -389,6 +390,8 @@ function publicCard(member: Member, friend: string, open: boolean) {
   const reviews = films.filter((film) => String(film.review || "").trim()).length;
   const hearts = films.filter((film) => film.liked).length;
   const owned = films.filter((film) => film.owned).length;
+  // Painted Covers: only the worn ids (paint:<id>) from the wall that is already loaded; the art itself is a static file.
+  const painted = paintedLook(wall);
   const full = {
     handle: member.handle,
     name: str(face.name) || str(profile.name) || member.name,
@@ -402,6 +405,7 @@ function publicCard(member: Member, friend: string, open: boolean) {
     createdAt: member.created_at,
     avatar: member.locker.avatar || "",
     banner: member.locker.banner || "",
+    ...(painted ? { painted } : {}),
     friend,
     points: Number(statsBlock.points) || 0,
     stats: {
@@ -428,6 +432,7 @@ function publicCard(member: Member, friend: string, open: boolean) {
     bio: full.bio,
     avatar: full.avatar,
     banner: full.banner,
+    ...(painted ? { painted } : {}),
     friend,
     pins: pinned,
     preview: true,

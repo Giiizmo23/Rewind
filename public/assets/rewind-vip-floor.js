@@ -2131,6 +2131,32 @@
         '.rw-worn-poster{margin:.65rem 0 0;width:6.6rem}' +
         '.rw-worn-poster img{width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center top;border-radius:1px;box-shadow:4px 4px 0 rgba(36,24,12,.22)}' +
         '.rw-worn-poster figcaption{margin-top:.28rem;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#6f675c}' +
+        /* Painted Covers: in-app rewards made from the hand-painted sleeves. Images can't be dragged or long-press saved (best effort). */
+        '.pc-sec{margin:0 0 1.15rem;padding:.85rem .8rem .95rem;background:#16120e;border-radius:4px;color:#f6e7c1}' +
+        '.pc-kick{display:block;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#e0a63a}' +
+        '.pc-sec h3{margin:.15rem 0 .25rem;font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-weight:400;font-size:1.9rem;letter-spacing:.03em;line-height:.95;color:#fff8f4}' +
+        '.pc-copy{margin:0 0 .7rem;font-size:.74rem;line-height:1.4;color:#d9cdb4}' +
+        '.pc-row-h{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin:.75rem 0 .4rem;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#bfb29a}.pc-row-h b{color:#fff8f4;font-weight:600}' +
+        '.pc-row-h button{border:0;background:transparent;color:#f6e7c1;font:inherit;letter-spacing:inherit;text-transform:inherit;text-decoration:underline;cursor:pointer;padding:0}' +
+        '.pc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}.pc-grid.is-header{grid-template-columns:repeat(2,minmax(0,1fr))}' +
+        '.pc-grid .rw-prize{position:relative}.pc-grid .rw-prize-body{padding:.4rem .45rem .5rem;gap:.15rem}.pc-grid .rw-prize-body b{font-size:1rem}' +
+        '.pc-grid .rw-prize-buy{height:1.85rem;font-size:.7rem;margin-top:.2rem;border-radius:10px}' +
+        '.pc-more{display:block;width:100%;height:2.2rem;margin:.55rem 0 0;border:1.5px solid #f6e7c1;border-radius:12px;background:transparent;color:#f6e7c1;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}' +
+        '.pc-art{position:relative;display:block;background:#0e0b09;overflow:hidden}.pc-art img{display:block;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;pointer-events:none}' +
+        '.pc-art.is-avatar{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:.45rem}.pc-ring{display:block;width:100%;height:100%;border-radius:999px;overflow:hidden;box-shadow:0 0 0 2px #f6e7c1}' +
+        '.pc-art.is-poster{aspect-ratio:2/3}.pc-art.is-header{aspect-ratio:3/1}' +
+        '.pc-lock .pc-art img{filter:grayscale(.85) brightness(.5)}' +
+        '.pc-lock .pc-art::after{content:"";position:absolute;inset:0;background:center/1.3rem no-repeat url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23f6e7c1%27 stroke-width=%271.8%27%3E%3Crect x=%275%27 y=%2711%27 width=%2714%27 height=%279%27 rx=%271.5%27/%3E%3Cpath d=%27M8 11V8a4 4 0 0 1 8 0v3%27/%3E%3C/svg%3E")}' +
+        '.pc-tag{position:absolute;top:.3rem;left:.3rem;z-index:2;padding:.12rem .38rem;border-radius:999px;background:#f6e7c1;color:#16120e;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase}' +
+        '.pc-fine{margin:.7rem 0 0;font-size:.62rem;line-height:1.35;color:#a99c84}' +
+        '.rw-look-art.is-pc{width:min(88vw,22rem)}.rw-look-art.is-pc .pc-art{box-shadow:6px 6px 0 rgba(36,24,12,.22);border-radius:2px}.rw-look-art.is-pc .pc-art.is-avatar{width:min(70vw,15rem);margin:0 auto;background:transparent}' +
+        '.rw-look-art.is-pc .pc-art.is-header{aspect-ratio:2.2/1}' +
+        '.pc-wall{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.65rem}.pc-wall .rw-worn-poster{margin:0}' +
+        '.rw-worn-poster img[data-paint-art]{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none;pointer-events:none}' +
+        '.pc-locker{margin:0 0 1.6rem}.pc-shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:.7rem}@media (min-width:640px){.pc-shelf{grid-template-columns:repeat(6,minmax(0,1fr))}}' +
+        '.pc-slot{display:block;width:100%;padding:0;border:0;text-align:left;cursor:pointer;background:#f7f1de;color:#24180c;border-radius:2px;overflow:hidden;box-shadow:0 1px 0 rgba(36,24,12,.16)}' +
+        '.pc-slot .pc-art.is-avatar{background:#16120e}.pc-slot .pc-art.is-header{aspect-ratio:2/3}' +
+        '.pc-cap{display:block;padding:.35rem .45rem .45rem;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:#8a1020}.pc-cap b{display:block;font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;font-weight:400;font-size:1rem;letter-spacing:.03em;color:#24180c;text-transform:none}.pc-cap i{display:block;font-style:normal;color:#6f675c}' +
         'html[data-theme="dark"] .rw-prize,html[data-theme="night"] .rw-prize{background:#1c1916;color:#f3efe6}' +
         'html[data-theme="dark"] .rw-prize-body p,html[data-theme="night"] .rw-prize-body p,html[data-theme="dark"] .rw-bal span,html[data-theme="night"] .rw-bal span,html[data-theme="dark"] .rw-worn-poster figcaption,html[data-theme="night"] .rw-worn-poster figcaption{color:#cbbfa8}' +
         'html[data-theme="dark"] .rw-prize-filters button,html[data-theme="night"] .rw-prize-filters button{background:#2a2622;color:#f3efe6}' +
@@ -4976,6 +5002,7 @@
       bindGuestFace(host, card.avatar);
       if (card.handle && isPicSrc(card.avatar)) facePics[String(card.handle).toLowerCase()] = card.avatar;
     }
+    try { paintMemberLook(sheet, card); } catch (ePaint) {}
     try { armVipClicks(); } catch (eFlip) {}
     installGuestFaceTap();
   }
@@ -13523,7 +13550,7 @@
     { id: "slip-rewind", kind: "counter", title: "They Rewind It", pts: 30, mark: "REWOUND", blurb: "You do not have to. They do." },
   ];
   function pinButton(art) {
-    return '<span class="rw-btn-pin"><img loading="lazy" src="/sleeves/' + art + '" alt=""></span>';
+    return '<span class="rw-btn-pin"><img loading="lazy" data-tmdb-art="keep" src="/sleeves/' + art + '" alt=""></span>';
   }
   function rewardById(id) {
     for (let i = 0; i < REWARD_LIST.length; i++) if (REWARD_LIST[i].id === id) return REWARD_LIST[i];
@@ -13540,6 +13567,7 @@
     if (!r.used || typeof r.used !== "object") r.used = {};
     if (!r.equipped || typeof r.equipped !== "object") r.equipped = {};
     if (!Array.isArray(r.equipped.pins)) r.equipped.pins = [];
+    if (!Array.isArray(r.equipped.posters)) r.equipped.posters = [];
     return wall;
   }
   function saveRewardWall(wall) {
@@ -13565,8 +13593,10 @@
       eq.pins = (eq.pins || []).filter(function (id) { return id !== prize.id; });
       eq.pins.push(prize.id);
       if (eq.pins.length > 3) eq.pins = eq.pins.slice(-3);
-    } else if (prize.kind === "poster") eq.poster = prize.id;
-    else if (prize.kind === "scene") eq.header = prize.id;
+    } else if (prize.kind === "poster") {
+      eq.poster = prize.id;
+      paintTrimWall(eq);
+    } else if (prize.kind === "scene") eq.header = prize.id;
     else if (prize.kind === "face") eq.face = prize.id;
     else if (prize.kind === "badge") eq.badge = prize.id;
   }
@@ -13578,6 +13608,131 @@
     else if (prize.kind === "face" && eq.face === prize.id) eq.face = "";
     else if (prize.kind === "badge" && eq.badge === prize.id) eq.badge = "";
   }
+  /* Painted Covers. The old hand-painted sleeves as free in-app rewards bought with points: avatar 50, poster 100, header 150.
+     The art is the static /sleeves/<file> listed in /data/painted-rewards.json. The member keeps ids only, inside rewards:
+     owned["paint:<id>:avatar|header|poster"] = time, equipped.face / equipped.header = "paint:<id>", equipped.posters = ["paint:<id>", ...].
+     A worn painted header or avatar shows instead of the uploaded photo; the photo itself (locker.banner / locker.avatar) is never touched.
+     In-app only: no download links, never sold, never used in a shop or an ad. */
+  const PAINT_PRICE = { avatar: 50, poster: 100, header: 150 };
+  const PAINT_WALL = 3;
+  const PAINT_USE_NAME = { avatar: "avatar", header: "header", poster: "poster" };
+  /* Prizes whose art is a tiny file, studio key art or an official one-sheet look-alike: off the counter, but anything already owned keeps working. */
+  const RETIRED_PRIZES = { "post-amelie": 1, "post-home": 1, "pin-home": 1, "post-akira": 1, "pin-akira": 1, "post-lost": 1, "post-full": 1, "post-indy": 1, "post-dune": 1, "post-leave": 1, "post-chal": 1, "post-past": 1, "post-days": 1, "post-opp": 1, "post-sinners": 1, "post-wicked": 1, "post-inside": 1, "post-wild": 1 };
+  let paintBook = null;
+  let paintLoading = null;
+  const paintShow = { avatar: 12, header: 8, poster: 12 };
+  function loadPaintBook() {
+    if (paintBook) return Promise.resolve(paintBook);
+    if (!paintLoading) {
+      paintLoading = fetch("/data/painted-rewards.json?v=1")
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (doc) {
+          if (!doc || !Array.isArray(doc.covers)) { paintLoading = null; return null; }
+          const by = {};
+          doc.covers.forEach(function (c) { if (c && c.id && c.file) by[c.id] = c; });
+          paintBook = { covers: doc.covers.filter(function (c) { return c && by[c.id] === c; }), by: by, featured: doc.featured || {} };
+          return paintBook;
+        })
+        .catch(function () { paintLoading = null; return null; });
+    }
+    return paintLoading;
+  }
+  function isPaintId(v) {
+    return typeof v === "string" && /^paint:[a-z0-9-]{1,80}$/.test(v);
+  }
+  function paintCover(pid) {
+    if (!paintBook || !isPaintId(pid)) return null;
+    return paintBook.by[pid.slice(6)] || null;
+  }
+  function paintKey(id, use) {
+    return "paint:" + id + ":" + use;
+  }
+  function parsePaintKey(key) {
+    const m = /^paint:([a-z0-9-]{1,80}):(avatar|header|poster)$/.exec(String(key || ""));
+    return m ? { id: m[1], use: m[2] } : null;
+  }
+  function paintLook(c, use) {
+    if (use === "header") return { pos: c.w > c.h ? "50% 50%" : "50% 34%", tf: "", to: "" };
+    if (use !== "avatar") return { pos: "50% 0%", tf: "", to: "" };
+    const f = Array.isArray(c.focus) ? c.focus : [50, 45, 1.3];
+    const x = Math.max(0, Math.min(100, Number(f[0]) || 50));
+    const y = Math.max(0, Math.min(100, Number(f[1]) || 45)) / 100;
+    const z = Math.max(1, Math.min(3, Number(f[2]) || 1.3));
+    const ratio = c.w && c.h ? c.h / c.w : 1.5;
+    const spare = Math.max(0, ratio - 1);
+    const o = spare ? Math.max(0, Math.min(1, (ratio * y - 0.5) / spare)) : 0.5;
+    const fy = Math.max(0, Math.min(1, ratio * y - o * spare));
+    return { pos: "50% " + Math.round(o * 100) + "%", tf: "scale(" + z + ")", to: x + "% " + Math.round(fy * 100) + "%" };
+  }
+  /* Avatars on the VIP page carry a 1.08 bleed scale; keep it on top of the painted zoom. */
+  function paintBleed(tf, sel) {
+    const m = /scale\(([0-9.]+)\)/.exec(String(tf || ""));
+    if (!m || String(sel || "").indexOf("avatar") < 0) return tf;
+    return "scale(" + Math.round(Number(m[1]) * 1.08 * 1000) / 1000 + ")";
+  }
+  function paintImg(c, use) {
+    const k = paintLook(c, use);
+    const style = "object-position:" + k.pos + (k.tf ? ";transform:" + k.tf + ";transform-origin:" + k.to : "");
+    const img = '<img loading="lazy" decoding="async" draggable="false" data-tmdb-art="keep" data-paint-art="1" src="/sleeves/' + c.file + '" alt="" style="' + style + '">';
+    return '<span class="pc-art is-' + use + '">' + (use === "avatar" ? '<span class="pc-ring">' + img + "</span>" : img) + "</span>";
+  }
+  function paintShort(t) {
+    return String(t || "").replace(/^The /, "");
+  }
+  function paintOn(eq, id, use) {
+    const pid = "paint:" + id;
+    if (use === "avatar") return eq.face === pid;
+    if (use === "header") return eq.header === pid;
+    return (eq.posters || []).indexOf(pid) >= 0;
+  }
+  function paintTrimWall(eq) {
+    if (!Array.isArray(eq.posters)) eq.posters = [];
+    eq.posters = eq.posters.filter(isPaintId);
+    while (eq.posters.length + (eq.poster ? 1 : 0) > PAINT_WALL && eq.posters.length) eq.posters.shift();
+  }
+  function paintWear(eq, id, use) {
+    const pid = "paint:" + id;
+    if (use === "avatar") eq.face = pid;
+    else if (use === "header") eq.header = pid;
+    else {
+      eq.posters = (eq.posters || []).filter(function (x) { return x !== pid; });
+      eq.posters.push(pid);
+      paintTrimWall(eq);
+    }
+  }
+  function paintTakeOff(eq, id, use) {
+    const pid = "paint:" + id;
+    if (use === "avatar" && eq.face === pid) eq.face = "";
+    else if (use === "header" && eq.header === pid) eq.header = "";
+    else if (use === "poster") eq.posters = (eq.posters || []).filter(function (x) { return x !== pid; });
+  }
+  /* Buy, wear or take down one painted cover. Returns what happened, so tests can check it. */
+  function paintAct(key) {
+    const k = parsePaintKey(key);
+    const c = k && paintBook && paintBook.by[k.id];
+    if (!c || (c.uses || []).indexOf(k.use) < 0) return "bad";
+    const wall = rewardWall();
+    const r = wall.rewards;
+    const eq = r.equipped;
+    if (!r.owned[key]) {
+      const price = PAINT_PRICE[k.use];
+      if (spendablePoints() < price) return "short";
+      r.spent += price;
+      r.owned[key] = Date.now();
+      paintWear(eq, k.id, k.use);
+      saveRewardWall(wall);
+      return "bought";
+    }
+    if (paintOn(eq, k.id, k.use)) {
+      paintTakeOff(eq, k.id, k.use);
+      saveRewardWall(wall);
+      return "off";
+    }
+    paintWear(eq, k.id, k.use);
+    saveRewardWall(wall);
+    return "on";
+  }
+  try { window.__rwPaint = { load: loadPaintBook, act: function (key) { return paintAct(key); }, look: function () { try { applyRewardsLook(); } catch (e) {} } }; } catch (eW) {}
   function rewardAct(id) {
     const prize = rewardById(id);
     if (!prize) return;
@@ -13600,7 +13755,7 @@
     else wearReward(r, prize);
     saveRewardWall(wall);
   }
-  function setRewardPic(sel, url) {
+  function setRewardPic(sel, url, look) {
     const el = document.querySelector(sel);
     if (!el) return;
     const img = el.querySelector("img");
@@ -13608,17 +13763,38 @@
     if (url) {
       img.hidden = false;
       img.removeAttribute("hidden");
+      img.setAttribute("data-tmdb-art", "keep");
+      img.draggable = false;
       if (img.getAttribute("src") !== url) img.src = url;
       img.style.display = "block";
       img.style.opacity = "1";
       img.style.visibility = "visible";
       img.style.objectFit = "cover";
+      /* The page pins its own object-position and a 1.08 bleed scale with !important, so a painted crop has to win the same way. */
+      if (look) {
+        img.style.setProperty("object-position", look.pos, "important");
+        if (look.tf) {
+          img.style.setProperty("transform", paintBleed(look.tf, sel), "important");
+          img.style.setProperty("transform-origin", look.to, "important");
+        } else {
+          img.style.removeProperty("transform");
+          img.style.removeProperty("transform-origin");
+        }
+      } else {
+        img.style.removeProperty("object-position");
+        img.style.removeProperty("transform");
+        img.style.removeProperty("transform-origin");
+      }
       img.setAttribute("data-rw-reward", "1");
       el.classList.add("has-pic");
       return;
     }
     if (img.getAttribute("data-rw-reward") !== "1") return;
     img.removeAttribute("data-rw-reward");
+    img.removeAttribute("data-tmdb-art");
+    img.style.removeProperty("object-position");
+    img.style.removeProperty("transform");
+    img.style.removeProperty("transform-origin");
     const key = sel.indexOf("avatar") >= 0 ? "rewind-avatar" : "rewind-banner";
     if (isPicData(picCache[key])) {
       paintPicDom(key, picCache[key]);
@@ -13632,10 +13808,16 @@
   function applyRewardsLook() {
     const wall = rewardWall();
     const eq = wall.rewards.equipped;
+    const paintWaiting = !paintBook && (isPaintId(eq.header) || isPaintId(eq.face) || (eq.posters || []).length || Object.keys(wall.rewards.owned).some(function (k) { return k.slice(0, 6) === "paint:"; }));
+    if (paintWaiting) loadPaintBook().then(function (b) { if (b) try { applyRewardsLook(); } catch (eL) {} });
     const header = rewardById(eq.header);
     const face = rewardById(eq.face);
-    setRewardPic("[data-vip-wall] .vip-banner", header && header.art ? "/sleeves/" + header.art : "");
-    setRewardPic("[data-vip-wall] .vip-avatar", face && face.art ? "/sleeves/" + face.art : "");
+    const pHeader = paintCover(eq.header);
+    const pFace = paintCover(eq.face);
+    /* While the painted list is still loading, leave the header and avatar as they are, so the photo doesn't flash in between. */
+    if (!(paintWaiting && isPaintId(eq.header))) setRewardPic("[data-vip-wall] .vip-banner", pHeader ? "/sleeves/" + pHeader.file : header && header.art ? "/sleeves/" + header.art : "", pHeader ? paintLook(pHeader, "header") : null);
+    if (!(paintWaiting && isPaintId(eq.face))) setRewardPic("[data-vip-wall] .vip-avatar", pFace ? "/sleeves/" + pFace.file : face && face.art ? "/sleeves/" + face.art : "", pFace ? paintLook(pFace, "avatar") : null);
+    try { paintLockerShelf(wall.rewards); } catch (eShelf) {}
     const lead = document.querySelector("[data-vip-wall] [data-vip-lead]");
     if (!lead) return;
     let badge = document.querySelector("[data-vip-wall] [data-rw-badge]");
@@ -13654,7 +13836,8 @@
     let worn = document.querySelector("[data-vip-wall] [data-rw-worn]");
     const pins = (eq.pins || []).map(rewardById).filter(Boolean);
     const poster = rewardById(eq.poster);
-    if (!pins.length && !poster) {
+    const painted = (eq.posters || []).map(paintCover).filter(Boolean).slice(0, PAINT_WALL);
+    if (!pins.length && !poster && !painted.length) {
       if (worn) worn.remove();
       return;
     }
@@ -13666,18 +13849,193 @@
     }
     let html = "";
     if (pins.length) html += '<div class="rw-worn-pins">' + pins.map(function (p) { return pinButton(p.art); }).join("") + "</div>";
-    if (poster) html += '<figure class="rw-worn-poster"><img src="/sleeves/' + poster.art + '" alt=""/><figcaption>On your wall</figcaption></figure>';
+    if (poster && !painted.length) html += '<figure class="rw-worn-poster"><img data-tmdb-art="keep" src="/sleeves/' + poster.art + '" alt=""/><figcaption>On your wall</figcaption></figure>';
+    else if (painted.length) html += paintWallHtml(poster, painted);
     if (worn.innerHTML !== html) worn.innerHTML = html;
+  }
+  function paintWallHtml(poster, painted) {
+    let out = '<div class="pc-wall">';
+    if (poster) out += '<figure class="rw-worn-poster"><img data-tmdb-art="keep" src="/sleeves/' + poster.art + '" alt=""/><figcaption>' + vipEsc(paintShort(poster.title)) + "</figcaption></figure>";
+    painted.forEach(function (c) {
+      out += '<figure class="rw-worn-poster"><img draggable="false" data-tmdb-art="keep" data-paint-art="1" src="/sleeves/' + c.file + '" alt=""/><figcaption>' + vipEsc(paintShort(c.title)) + "</figcaption></figure>";
+    });
+    return out + "</div>";
+  }
+  /* The locker on your own VIP page: every painted cover you own. Tap one to wear it or take it down. */
+  function paintLockerShelf(r) {
+    const rack = document.querySelector("[data-vip-wall] [data-prize-locker]");
+    let sec = document.querySelector("[data-vip-wall] [data-paint-locker]");
+    const keys = Object.keys(r.owned || {}).filter(function (k) { return parsePaintKey(k); });
+    if (!rack || !keys.length || !paintBook) {
+      if (sec && (!keys.length || !rack)) sec.remove();
+      return;
+    }
+    const eq = r.equipped || {};
+    const order = { avatar: 0, header: 1, poster: 2 };
+    const items = keys.map(function (k) { const p = parsePaintKey(k); return { key: k, use: p.use, c: paintBook.by[p.id], on: paintOn(eq, p.id, p.use) }; })
+      .filter(function (x) { return x.c; })
+      .sort(function (a, b) { return order[a.use] - order[b.use] || (r.owned[a.key] || 0) - (r.owned[b.key] || 0); });
+    const html =
+      '<div><p class="text-xs uppercase tracking-[0.22em] text-muted">In your locker</p>' +
+      '<h2 class="font-display text-3xl tracking-[0.08em]">Painted covers</h2>' +
+      '<p class="mt-1 text-sm text-muted">Yours to keep. Tap one to wear it or take it down. Redeem more at the front counter.</p></div>' +
+      '<div class="pc-shelf">' + items.map(function (x) {
+        return '<button type="button" class="pc-slot" data-paint-slot="' + x.key + '" aria-pressed="' + (x.on ? "true" : "false") + '">' + paintImg(x.c, x.use === "header" ? "poster" : x.use) +
+          '<span class="pc-cap">' + PAINT_USE_NAME[x.use] + (x.on ? " · on" : "") + "<b>" + vipEsc(paintShort(x.c.title)) + "</b>" + (x.on ? "" : "<i>In the locker</i>") + "</span></button>";
+      }).join("") + "</div>";
+    if (!sec) {
+      sec = document.createElement("section");
+      sec.className = "pc-locker space-y-3";
+      sec.setAttribute("data-paint-locker", "1");
+      rack.parentNode.insertBefore(sec, rack);
+      sec.addEventListener("click", function (e) {
+        const slot = e.target && e.target.closest ? e.target.closest("[data-paint-slot]") : null;
+        if (!slot) return;
+        e.preventDefault();
+        e.stopPropagation();
+        paintAct(slot.getAttribute("data-paint-slot"));
+        try { applyRewardsLook(); } catch (eA) {}
+      });
+    }
+    if (sec.getAttribute("data-html") !== html) {
+      sec.innerHTML = html;
+      sec.setAttribute("data-html", html);
+    }
+  }
+  /* Another member's VIP sheet: their worn painted header, avatar and wall posters, from the ids in their public card. */
+  function paintMemberLook(sheet, card) {
+    const look = card && card.painted;
+    if (!sheet || !look || typeof look !== "object") return;
+    loadPaintBook().then(function (b) {
+      if (!b || !sheet.isConnected) return;
+      const h = paintCover(look.header);
+      const f = paintCover(look.face);
+      const banner = sheet.querySelector("[data-guest-banner] img");
+      const avatar = sheet.querySelector("[data-guest-avatar] img");
+      if (banner && h) {
+        const k = paintLook(h, "header");
+        banner.hidden = false;
+        banner.removeAttribute("hidden");
+        banner.setAttribute("data-tmdb-art", "keep");
+        banner.draggable = false;
+        banner.src = "/sleeves/" + h.file;
+        banner.style.setProperty("object-fit", "cover", "important");
+        banner.style.setProperty("object-position", k.pos, "important");
+        banner.parentElement.classList.add("has-pic");
+      }
+      if (avatar && f) {
+        const k = paintLook(f, "avatar");
+        const host = avatar.parentElement;
+        host.style.backgroundImage = "none";
+        host.classList.add("has-pic");
+        host.setAttribute("data-face-painted", "1");
+        avatar.removeAttribute("hidden");
+        avatar.hidden = false;
+        avatar.draggable = false;
+        avatar.setAttribute("data-tmdb-art", "keep");
+        avatar.src = "/sleeves/" + f.file;
+        avatar.style.cssText = "display:block!important;opacity:1!important;width:100%!important;height:100%!important;position:static!important;object-fit:cover!important;object-position:" + k.pos + "!important;transform:" + paintBleed(k.tf, "avatar") + "!important;transform-origin:" + k.to + "!important;pointer-events:none;-webkit-touch-callout:none;-webkit-user-drag:none;";
+      }
+      const posters = (Array.isArray(look.posters) ? look.posters : []).map(paintCover).filter(Boolean).slice(0, PAINT_WALL);
+      const slot = sheet.querySelector(".vip-bio-slot");
+      if (posters.length && slot && !sheet.querySelector("[data-paint-member-wall]")) {
+        const wallEl = document.createElement("div");
+        wallEl.className = "rw-worn";
+        wallEl.setAttribute("data-paint-member-wall", "1");
+        wallEl.innerHTML = paintWallHtml(null, posters);
+        slot.appendChild(wallEl);
+      }
+    });
   }
   function rewardArt(prize) {
     if (prize.kind === "pin") return '<div class="rw-prize-art is-pin">' + pinButton(prize.art) + "</div>";
     if (prize.kind === "badge") return '<div class="rw-prize-art"><span class="rw-member-badge">' + prize.title + "</span></div>";
     if (prize.kind === "counter") return '<div class="rw-prize-art"><span style="color:#f6e7c1;font-family:Bebas Neue,Arial Narrow,sans-serif;letter-spacing:.12em;font-size:1.35rem;text-align:center;padding:0 .6rem">' + prize.mark + "</span></div>";
-    return '<div class="rw-prize-art' + (prize.kind === "poster" ? " is-poster" : "") + '"><img loading="lazy" src="/sleeves/' + prize.art + '" alt=""/></div>';
+    return '<div class="rw-prize-art' + (prize.kind === "poster" ? " is-poster" : "") + '"><img loading="lazy" data-tmdb-art="keep" src="/sleeves/' + prize.art + '" alt=""/></div>';
   }
-  function openRewardsDesk(filter, lookId) {
+  function paintDeskHtml(r, left, full) {
+    if (!paintBook) {
+      return '<section class="pc-sec" data-paint-desk="1"><span class="pc-kick">From the old wall</span><h3>Painted Covers</h3><p class="pc-copy">Bringing the painted sleeves out of the back room…</p></section>';
+    }
+    const eq = r.equipped || {};
+    const sold = {};
+    REWARD_LIST.forEach(function (p) { if (p.kind === "poster" && p.art && !RETIRED_PRIZES[p.id]) sold[String(p.art).split("?")[0]] = 1; });
+    function pool(use) {
+      const feat = (paintBook.featured && paintBook.featured[use]) || [];
+      const list = paintBook.covers.filter(function (c) { return (c.uses || []).indexOf(use) >= 0 && (use !== "poster" || !sold[c.file]); });
+      const rank = function (c) {
+        if (r.owned[paintKey(c.id, use)]) return 0;
+        const i = feat.indexOf(c.id);
+        return i >= 0 ? 1 + i / 100 : 2;
+      };
+      return list.slice().sort(function (a, b) { return rank(a) - rank(b) || String(a.title).localeCompare(String(b.title)); });
+    }
+    function tile(c, use) {
+      const key = paintKey(c.id, use);
+      const owned = !!r.owned[key];
+      const price = PAINT_PRICE[use];
+      const lock = !owned && left < price;
+      const on = owned && paintOn(eq, c.id, use);
+      const btn = owned
+        ? '<button type="button" class="rw-prize-buy is-wear" data-rw-buy="' + key + '">' + (on ? "On your page" : "Put on your page") + "</button>"
+        : lock
+          ? '<button type="button" class="rw-prize-buy" data-rw-buy="' + key + '" disabled>' + price + " pts</button>"
+          : '<button type="button" class="rw-prize-buy" data-rw-buy="' + key + '">Redeem · ' + price + "</button>";
+      return '<article class="rw-prize' + (lock ? " pc-lock" : "") + '" data-rw-look="' + key + '">' + (owned ? '<span class="pc-tag">Owned</span>' : "") + paintImg(c, use) +
+        '<div class="rw-prize-body"><span class="rw-prize-kind">Painted ' + PAINT_USE_NAME[use] + "</span><b>" + vipEsc(paintShort(c.title)) + "</b>" + btn + "</div></article>";
+    }
+    function row(label, use) {
+      const list = pool(use);
+      const n = full ? paintShow[use] : use === "header" ? 4 : 6;
+      const shown = list.slice(0, n);
+      return '<div class="pc-row-h"><span><b>' + label + "</b> · " + PAINT_PRICE[use] + " pts each</span>" +
+        (full ? "<span>" + list.length + " covers</span>" : '<button type="button" data-rw-filter="paint">See all ' + list.length + "</button>") + "</div>" +
+        '<div class="pc-grid is-' + use + '">' + shown.map(function (c) { return tile(c, use); }).join("") + "</div>" +
+        (full && list.length > n ? '<button type="button" class="pc-more" data-pc-more="' + use + '">Show more ' + label.toLowerCase() + "</button>" : "");
+    }
+    return '<section class="pc-sec" data-paint-desk="1"><span class="pc-kick">From the old wall</span><h3>Painted Covers</h3>' +
+      '<p class="pc-copy">The hand-painted sleeves from before the switch to TMDB covers. Spend points to wear one as your picture, hang it across your header, or put up to three on your wall. They live on your page only.</p>' +
+      row("Avatars", "avatar") + row("Headers", "header") + row("Posters", "poster") +
+      '<p class="pc-fine">In-app only. Never sold, no downloads, no prints.</p></section>';
+  }
+  function paintLookHtml(key, r, left) {
+    const k = parsePaintKey(key);
+    const c = k && paintBook && paintBook.by[k.id];
+    if (!c) return "";
+    const eq = r.equipped || {};
+    const owned = !!r.owned[key];
+    const price = PAINT_PRICE[k.use];
+    const on = owned && paintOn(eq, k.id, k.use);
+    let note = "";
+    if (k.use === "poster" && !on) {
+      const wallNow = (eq.posters || []).filter(isPaintId);
+      if (wallNow.length + (eq.poster ? 1 : 0) >= PAINT_WALL && wallNow.length) {
+        const oldest = paintCover(wallNow[0]);
+        note = "Your wall holds " + PAINT_WALL + ". Putting this one up takes down " + vipEsc(paintShort(oldest ? oldest.title : "the oldest")) + ".";
+      }
+    }
+    const blurb = k.use === "avatar" ? "Your picture, cut from the painted sleeve. Shows instead of your photo while you wear it." :
+      k.use === "header" ? "Across the top of your page. Your own header photo comes back when you take it down." :
+      "A painted one-sheet for your wall. Up to " + PAINT_WALL + " at a time.";
+    const btn = owned
+      ? '<button type="button" class="rw-prize-buy is-wear" data-rw-buy="' + key + '">' + (on ? "Take it down" : "Put on your page") + "</button>"
+      : left < price
+        ? '<button type="button" class="rw-prize-buy" data-rw-buy="' + key + '" disabled>' + price + " pts · " + (price - left) + " to go</button>"
+        : '<button type="button" class="rw-prize-buy" data-rw-buy="' + key + '">Redeem · ' + price + "</button>";
+    return '<button type="button" class="rw-look-back" data-rw-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+      '<div class="rw-look"><div class="rw-look-art is-pc">' + paintImg(c, k.use).replace('loading="lazy" ', "") + "</div>" +
+      "<h2>" + vipEsc(c.title) + "</h2>" +
+      '<p class="rw-return-copy">Painted ' + PAINT_USE_NAME[k.use] + ". " + blurb + (note ? " " + note : "") + "</p>" + btn + "</div>";
+  }
+  function openRewardsDesk(filter, lookId, keepScroll) {
     const old = document.getElementById("rw-rewards");
+    const oldBody = old && old.querySelector(".rw-return-body");
+    const scrollWas = keepScroll && old ? [old.scrollTop, oldBody ? oldBody.scrollTop : 0] : null;
     if (old) old.remove();
+    if (!paintBook) loadPaintBook().then(function (b) {
+      const now = document.getElementById("rw-rewards");
+      if (b && now && now.querySelector("[data-paint-desk]")) openRewardsDesk(now.getAttribute("data-filter") || filter, now.getAttribute("data-look") || lookId, true);
+    });
     const sheet = document.createElement("div");
     sheet.id = "rw-rewards";
     sheet.className = "rw-return";
@@ -13685,6 +14043,8 @@
     sheet.setAttribute("aria-label", "Rewards");
     document.body.appendChild(sheet);
     const show = filter || "all";
+    sheet.setAttribute("data-filter", show);
+    if (lookId) sheet.setAttribute("data-look", lookId);
     const wall = rewardWall();
     const r = wall.rewards;
     const left = spendablePoints();
@@ -13703,11 +14063,13 @@
       if (p.kind === "pin") return '<div class="rw-look-art is-pin">' + pinButton(p.art) + "</div>";
       if (p.kind === "badge") return '<div class="rw-look-art is-badge"><span class="rw-member-badge">' + p.title + "</span></div>";
       if (p.kind === "counter") return '<div class="rw-look-art is-slip"><b>' + p.mark + "</b></div>";
-      return '<div class="rw-look-art is-' + p.kind + '"><img loading="lazy" src="/sleeves/' + p.art + '" alt=""/></div>';
+      return '<div class="rw-look-art is-' + p.kind + '"><img loading="lazy" data-tmdb-art="keep" src="/sleeves/' + p.art + '" alt=""/></div>';
     }
     const looking = lookId ? rewardById(lookId) : null;
     let body = "";
-    if (looking) {
+    if (lookId && parsePaintKey(lookId) && paintBook) {
+      body = paintLookHtml(lookId, r, left);
+    } else if (looking) {
       const act = prizeAction(looking);
       body =
         '<button type="button" class="rw-look-back" data-rw-back aria-label="Back"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
@@ -13718,6 +14080,7 @@
     } else {
       const filters = [
         ["all", "All"],
+        ["paint", "Painted Covers"],
         ["poster", "Posters"],
         ["pin", "Pins"],
         ["scene", "Scenes"],
@@ -13728,7 +14091,7 @@
       const chips = filters.map(function (f) {
         return '<button type="button" data-rw-filter="' + f[0] + '"' + (f[0] === show ? ' class="is-on"' : "") + ">" + f[1] + "</button>";
       }).join("");
-      const cards = REWARD_LIST.filter(function (p) { return show === "all" || p.kind === show; }).map(function (p) {
+      const cards = REWARD_LIST.filter(function (p) { return (show === "all" || p.kind === show) && (!RETIRED_PRIZES[p.id] || r.owned[p.id]); }).map(function (p) {
         const act = prizeAction(p);
         return '<article class="rw-prize" data-rw-look="' + p.id + '">' + rewardArt(p) +
           '<div class="rw-prize-body"><span class="rw-prize-kind">' + (kindName[p.kind] || p.kind) + "</span><b>" + p.title + "</b><p>" + p.blurb + "</p>" +
@@ -13739,25 +14102,39 @@
         '<p class="rw-return-copy">Spend what you earned. Tap a prize to see it up close. Posters, pins, scenes, faces, and badges go on your VIP page. Popcorn and free rentals stay a slip in your pocket until you use them.</p>' +
         '<div class="rw-bal"><div><b>' + left + '</b><span> to spend</span></div><span>' + earned + " earned · " + (r.spent || 0) + " spent</span></div>" +
         '<div class="rw-prize-filters">' + chips + "</div>" +
-        '<div class="rw-prize-grid">' + cards + "</div>";
+        (show === "all" || show === "paint" ? paintDeskHtml(r, left, show === "paint") : "") +
+        (show === "paint" ? "" : '<div class="rw-prize-grid">' + cards + "</div>");
     }
     sheet.innerHTML =
       '<div class="rw-return-bar"><b>REWIND</b><button type="button" class="rw-return-x" data-rewards-close aria-label="Close">×</button></div>' +
       '<div class="rw-return-body">' + body + "</div>";
+    if (scrollWas) {
+      sheet.scrollTop = scrollWas[0];
+      const nb = sheet.querySelector(".rw-return-body");
+      if (nb) nb.scrollTop = scrollWas[1];
+    }
     sheet.addEventListener("click", function (e) {
       const t = e.target && e.target.closest ? e.target : null;
       if (!t) return;
       if (t.closest("[data-rewards-close]")) { sheet.remove(); try { paintReturnBtn(); } catch (e1) {} return; }
       if (t.closest("[data-rw-back]")) { openRewardsDesk(show); return; }
+      const more = t.closest("[data-pc-more]");
+      if (more) {
+        const use = more.getAttribute("data-pc-more");
+        if (paintShow[use]) paintShow[use] += use === "header" ? 12 : 24;
+        openRewardsDesk(show, undefined, true);
+        return;
+      }
       const f = t.closest("[data-rw-filter]");
       if (f) { openRewardsDesk(f.getAttribute("data-rw-filter")); return; }
       const buy = t.closest("[data-rw-buy]");
       if (buy) {
         if (buy.disabled) return;
         const id = buy.getAttribute("data-rw-buy");
-        rewardAct(id);
+        if (parsePaintKey(id)) paintAct(id);
+        else rewardAct(id);
         try { applyRewardsLook(); } catch (e2) {}
-        openRewardsDesk(show, buy.closest(".rw-look") ? id : undefined);
+        openRewardsDesk(show, buy.closest(".rw-look") ? id : undefined, !buy.closest(".rw-look"));
         return;
       }
       const look = t.closest("[data-rw-look]");
