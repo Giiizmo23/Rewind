@@ -1559,6 +1559,10 @@
     window.__rwSpineReady = window.__rwSpineReady || {};
     window.__rwTitleAt = window.__rwTitleAt || {};
     if (window.__rwSpinePending[url] || window.__rwSpineReady[url]) return;
+    if (slug === "first-blood") {
+      finish({ letters: 1, ink: "#f4f1ea", src: "/sleeves/spines/first-blood-title.png?v=3", bg: "#080808", logo: 1 });
+      return;
+    }
     var band = titleBand(slug);
     window.__rwSpinePending[url] = 1;
     function finish(rec) {
@@ -2969,6 +2973,7 @@
         '.lobby-picks .vhs-box[data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-spine-logo="1"] .vhs-spine-logo{display:block!important;position:static!important;inset:auto!important;width:auto!important;height:auto!important;max-width:68%!important;max-height:68%!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important}' +
         '.lobby-picks .vhs-box[data-slug="alien"] .vhs-spine-ink,.vhs-box[data-slug="alien"][data-spine-logo="1"] .vhs-spine-ink,.vhs-box[data-slug="alien"] .vhs-spine-ink{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;overflow:hidden!important}' +
         '.lobby-picks .vhs-box[data-slug="alien"][data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-slug="alien"][data-spine-logo="1"] .vhs-spine-logo,.vhs-box[data-slug="alien"] .vhs-spine-logo{display:block!important;position:static!important;inset:auto!important;width:auto!important;height:auto!important;max-width:68%!important;max-height:68%!important;object-fit:contain!important;object-position:center center!important;margin:0 auto!important;transform:none!important}' +
+        'html body .vhs-box[data-slug="first-blood"] .vhs-spine-logo{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;margin:0!important;transform:none!important}' +
         '.lobby-picks .vhs-sticker{overflow:visible!important;width:1.55rem!important;height:1.55rem!important}' +
         '.vhs-spine-right .vhs-spine-ink{transform:rotate(180deg)!important}' +
         '.lobby-picks .vhs-face-back,.lobby-picks .vhs-case-back,.lobby-picks .vhs-shell-back,.vhs-box .vhs-face-back,.vhs-box .vhs-case-back,.vhs-box .vhs-shell-back{height:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}' +
@@ -18001,7 +18006,7 @@
         var src = img.getAttribute("src") || "";
         if (src.indexOf("data:") === 0) return;
         if (src.indexOf("/sleeves/spines/match/") >= 0) return;
-        if (src.indexOf("first-blood") >= 0 && src.indexOf("/sleeves/spines/first-blood.png") < 0) img.src = "/sleeves/spines/first-blood.png?v=572";
+        if (src.indexOf("/sleeves/spines/first-blood-title.png") >= 0) return;
         img.style.removeProperty("max-width");
         img.style.removeProperty("max-height");
         img.style.removeProperty("width");
@@ -18635,17 +18640,18 @@
           img.style.setProperty("display", "block", "important");
           img.style.setProperty("opacity", "1", "important");
           img.style.setProperty("visibility", "visible", "important");
-          img.style.setProperty("inset", "auto", "important");
-          img.style.setProperty("top", "14%", "important");
-          img.style.setProperty("bottom", "16%", "important");
-          img.style.setProperty("left", "6%", "important");
-          img.style.setProperty("right", "6%", "important");
-          img.style.setProperty("width", "88%", "important");
-          img.style.setProperty("height", "70%", "important");
-          img.style.setProperty("max-width", "88%", "important");
-          img.style.setProperty("max-height", "70%", "important");
-          img.style.setProperty("margin", "auto", "important");
-          img.style.setProperty("object-fit", "contain", "important");
+          img.style.setProperty("position", "absolute", "important");
+          img.style.setProperty("inset", "0", "important");
+          img.style.setProperty("top", "0", "important");
+          img.style.setProperty("bottom", "0", "important");
+          img.style.setProperty("left", "0", "important");
+          img.style.setProperty("right", "0", "important");
+          img.style.setProperty("width", "100%", "important");
+          img.style.setProperty("height", "100%", "important");
+          img.style.setProperty("max-width", "none", "important");
+          img.style.setProperty("max-height", "none", "important");
+          img.style.setProperty("margin", "0", "important");
+          img.style.setProperty("object-fit", "cover", "important");
           img.style.setProperty("object-position", "center center", "important");
           img.style.setProperty("filter", "none", "important");
           img.style.setProperty("background", "transparent", "important");
