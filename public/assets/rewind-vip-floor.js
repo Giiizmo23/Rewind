@@ -137,11 +137,11 @@
     var spineMatchCss = document.createElement("style");
     spineMatchCss.id = "rw-spine-match";
     spineMatchCss.textContent =
-      "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-logo{display:block!important;position:absolute!important;inset:auto!important;top:16%!important;bottom:24%!important;left:22%!important;right:22%!important;width:56%!important;height:60%!important;max-width:56%!important;max-height:60%!important;margin:auto!important;object-fit:contain!important;object-position:center center!important;transform:none!important;filter:none!important;background:transparent!important;z-index:2!important;outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
+      "html[data-aisles='1'] body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-logo{display:block!important;position:absolute!important;inset:auto!important;top:16%!important;bottom:24%!important;left:22%!important;right:22%!important;width:56%!important;height:60%!important;max-width:56%!important;max-height:60%!important;margin:auto!important;object-fit:contain!important;object-position:center center!important;transform:none!important;filter:none!important;background:transparent!important;z-index:2!important;outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
       "html body .vhs-spine-logo{outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
-      "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-word{display:none!important}" +
-      "html body .vhs-box[data-spine-letters='1'] .vhs-spine-logo{top:11%!important;bottom:13%!important;left:7%!important;right:7%!important;width:86%!important;height:76%!important;max-width:86%!important;max-height:76%!important;object-fit:contain!important}" +
-      "html body .vhs-box[data-spine-letters='1'] .vhs-spine-word{display:none!important}";
+      "html[data-aisles='1'] body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-word{display:none!important}" +
+      "html[data-aisles='1'] body .vhs-box[data-spine-letters='1'] .vhs-spine-logo{top:11%!important;bottom:13%!important;left:7%!important;right:7%!important;width:86%!important;height:76%!important;max-width:86%!important;max-height:76%!important;object-fit:contain!important}" +
+      "html[data-aisles='1'] body .vhs-box[data-spine-letters='1'] .vhs-spine-word{display:none!important}";
     (document.head || document.documentElement).appendChild(spineMatchCss);
   }
   function spineHex(rgb) {
@@ -18011,6 +18011,7 @@
       });
       var remoteCover = coverUrl.indexOf("image.tmdb.org") >= 0 || coverUrl.indexOf("media.themoviedb.org") >= 0 || coverUrl.indexOf("themoviedb.org") >= 0;
       var keepPaintedSpine = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
+      var onAisle = document.documentElement.getAttribute("data-aisles") === "1";
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
       if (!spineReady && coverUrl && window.__rwSpineReady) {
         var bareCover = coverUrl.split("?")[0];
@@ -18020,12 +18021,12 @@
           return true;
         });
       }
-      if (!bakedMatch && remoteCover && !keepPaintedSpine && coverForSpine && !waitingForPoster(coverForSpine)) {
+      if (onAisle && !bakedMatch && remoteCover && !keepPaintedSpine && coverForSpine && !waitingForPoster(coverForSpine)) {
         if (!spineReady) queueSpineMatch(slug, coverUrl);
-      } else if (!bakedMatch && titleBand(slug) && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
+      } else if (onAisle && !bakedMatch && titleBand(slug) && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
         if (!spineReady) queueSpineMatch(slug, coverUrl);
       }
-      var spineHit = !!(spineReady && spineReady.src);
+      var spineHit = onAisle && !!(spineReady && spineReady.src);
       if (spineHit) {
         if (spineReady.letters) box.setAttribute("data-spine-letters", "1");
         else box.removeAttribute("data-spine-letters");
@@ -18041,6 +18042,25 @@
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var cur = img.getAttribute("src") || "";
+        if (!onAisle) {
+          box.removeAttribute("data-spine-letters");
+          box.removeAttribute("data-spine-match");
+          var matchFile = "/sleeves/spines/match/" + slug + (slug === "carrie-1976" ? ".jpg?v=423" : ".png?v=423");
+          var knownMatch = slug === "carrie-1976" || slug === "coming-to-america" || slug === "first-blood" || slug === "goodfellas" || slug === "gremlins" || slug === "jaws" || slug === "jurassic-park" || slug === "point-break" || slug === "se7en" || slug === "star-wars" || slug === "the-exorcist" || slug === "the-fly-1986" || slug === "the-lion-king" || slug === "the-shawshank-redemption" || slug === "the-shining" || slug === "top-gun";
+          var lobbyFile = knownMatch ? matchFile : ((paintedBox(slug) || {}).spine || "");
+          if (lobbyFile && (cur.indexOf("data:") === 0 || (knownMatch && cur.indexOf("/sleeves/spines/match/") < 0) || (!knownMatch && cur.indexOf("/sleeves/spines/") < 0))) img.src = lobbyFile;
+          ["inset", "top", "right", "bottom", "left", "width", "height", "max-width", "max-height", "object-fit", "object-position", "transform"].forEach(function (prop) {
+            img.style.removeProperty(prop);
+          });
+          img.style.removeProperty("display");
+          hideSpineWord(img.closest(".vhs-spine-ink"));
+          if (!SPINE_GROUND[slug]) {
+            box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
+              sp.style.removeProperty("background-color");
+            });
+          }
+          return;
+        }
         if (cur.indexOf("/sleeves/spines/match/") >= 0) {
           box.setAttribute("data-spine-match", "1");
           fitSpineLogo(img);
@@ -18223,7 +18243,7 @@
       el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
     });
     syncSpineField(box);
-    blackCase(box);
+    if (onAisle) blackCase(box);
   }
 
   function syncSpineField(box) {
