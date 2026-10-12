@@ -1060,7 +1060,8 @@
       runtime: rich.runtime || "",
       credits: credits,
     };
-    const already = main.getAttribute("data-tape-page") === slug && main.querySelector(".tape-card-page");
+    const movie = main.querySelector(".tape-card-page[data-tape-layout='lb']");
+    const already = main.getAttribute("data-tape-page") === slug && !!movie;
     const readyKey = slug + ":" + (rich.overview ? "1" : "0") + ":" + ((credits.cast && credits.cast.length) || 0);
     if (already && main.getAttribute("data-tape-ready") === readyKey && window.__rwCredits) return;
     if (!already) fillTape(stub);

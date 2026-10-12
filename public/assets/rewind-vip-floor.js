@@ -11745,6 +11745,10 @@
     if (window.__rwTapeBoot) return;
     const slug = filmSlugPath();
     if (!slug) return;
+    // Movie pages belong to tape-page-boot. This older 3D card
+    // ("A tape from the Rewind wall") painted first and sat on screen
+    // until the catalog arrived.
+    return;
     const main = document.querySelector("main");
     if (!main) return;
     if (main.getAttribute("data-tape-page") === slug && main.querySelector(".tape-card-page")) {
