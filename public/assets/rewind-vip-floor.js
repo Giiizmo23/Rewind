@@ -1088,11 +1088,96 @@
     "obsession-2026": "white",
     "spider-man-brand-new-day": "ink"
   };
+  function liftFirstBlood(im) {
+    var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
+    if (!nw || !nh) return null;
+    var W = Math.min(nw, 1600);
+    var H = Math.max(8, Math.round(nh * (W / nw)));
+    var canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    var ctx = canvas.getContext("2d", { willReadFrequently: true });
+    try { ctx.drawImage(im, 0, 0, W, H); } catch (eDraw) { return null; }
+    var d;
+    try { d = ctx.getImageData(0, 0, W, H).data; } catch (eRead) { return null; }
+    var x0 = Math.round(0.02 * W), y0 = Math.round(0.768 * H);
+    var x1 = Math.round(0.98 * W), y1 = Math.round(0.848 * H);
+    if (x1 - x0 < 8 || y1 - y0 < 6) return null;
+    var minX = x1, minY = y1, maxX = x0, maxY = y0;
+    var y, x, i, r, g, b, red, a;
+    function alphaAt(r0, g0, b0) {
+      var rd = r0 - (g0 > b0 ? g0 : b0);
+      if (!(rd > 16 && r0 > g0 + 8 && r0 > b0 + 8 && g0 < 150 && b0 < 130)) return 0;
+      var aa = (rd - 16) / 55;
+      if (aa > 1) aa = 1;
+      if (r0 > 160 && rd > 45) aa = 1;
+      return aa;
+    }
+    for (y = y0; y < y1; y++) {
+      for (x = x0; x < x1; x++) {
+        i = (y * W + x) * 4;
+        if (alphaAt(d[i], d[i + 1], d[i + 2]) > 0.4) {
+          if (x < minX) minX = x;
+          if (y < minY) minY = y;
+          if (x > maxX) maxX = x;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+    if (maxX <= minX || maxY <= minY) return null;
+    var cw = maxX - minX + 1, chh = maxY - minY + 1;
+    var cut = document.createElement("canvas");
+    cut.width = cw;
+    cut.height = chh;
+    var o = cut.getContext("2d");
+    var copy = o.createImageData(cw, chh);
+    var cd = copy.data;
+    for (y = 0; y < chh; y++) {
+      for (x = 0; x < cw; x++) {
+        i = ((minY + y) * W + (minX + x)) * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        a = alphaAt(r, g, b);
+        var di = (y * cw + x) * 4;
+        if (a > 0.08) {
+          cd[di] = (8 + (r - 8) * a) | 0;
+          cd[di + 1] = (8 + (g - 8) * a) | 0;
+          cd[di + 2] = (8 + (b - 8) * a) | 0;
+        } else {
+          cd[di] = 8; cd[di + 1] = 8; cd[di + 2] = 8;
+        }
+        cd[di + 3] = 255;
+      }
+    }
+    o.putImageData(copy, 0, 0);
+    var fatW = 520, fatH = 200;
+    var fat = document.createElement("canvas");
+    fat.width = fatW;
+    fat.height = fatH;
+    var fctx = fat.getContext("2d");
+    fctx.fillStyle = "#080808";
+    fctx.fillRect(0, 0, fatW, fatH);
+    fctx.imageSmoothingEnabled = true;
+    fctx.imageSmoothingQuality = "high";
+    fctx.drawImage(cut, 0, 0, fatW, fatH);
+    var spun = document.createElement("canvas");
+    spun.width = fatH;
+    spun.height = fatW;
+    var out = spun.getContext("2d");
+    out.fillStyle = "#080808";
+    out.fillRect(0, 0, spun.width, spun.height);
+    out.translate(fatH, 0);
+    out.rotate(Math.PI / 2);
+    out.drawImage(fat, 0, 0);
+    var src = "";
+    try { src = spun.toDataURL("image/png"); } catch (eUrl) { return null; }
+    if (!src) return null;
+    return { src: src, bg: "#080808" };
+  }
   function liftCoverTitle(im, band, mode) {
     if (!band) return null;
     var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
     if (!nw || !nh) return null;
-    var cap = (mode === "cleanred" || mode === "logo") ? Math.min(nw, 1000) : Math.min(340, nw);
+    var cap = mode === "cleanred" ? Math.min(nw, 1600) : mode === "logo" ? Math.min(nw, 1000) : Math.min(340, nw);
     var W = Math.max(8, cap);
     var H = Math.max(8, Math.round(nh * (W / nw)));
     var canvas = document.createElement("canvas");
@@ -1303,6 +1388,17 @@
         if (touch < 2) speck.push(i);
       }
       for (i = 0; i < speck.length; i++) { keep[speck[i]] = 0; keptN--; }
+      var grow = [];
+      for (y = y0; y < y1; y++) {
+        for (x = x0; x < x1; x++) {
+          i = y * W + x;
+          if (keep[i]) continue;
+          if (!(keep[i - 1] || keep[i + 1] || keep[i - W] || keep[i + W])) continue;
+          var rr = d[i * 4], gg = d[i * 4 + 1], bb2 = d[i * 4 + 2];
+          if (rr > 90 && gg < 120 && bb2 < 100 && rr > gg + 24 && rr > bb2 + 24) grow.push(i);
+        }
+      }
+      for (i = 0; i < grow.length; i++) { keep[grow[i]] = 1; keptN++; }
       // Close the thin gaps where the gun crosses the letters. Letter spacing is wider than this.
       for (y = 0; y < H; y++) {
         var prev = -1;
@@ -1405,9 +1501,9 @@
         if (!keep[sp]) continue;
         var di = (y * cw + x) * 4;
         if (mode === "cleanred") {
-          cd[di] = 255;
-          cd[di + 1] = 16;
-          cd[di + 2] = 0;
+          cd[di] = d[sp * 4];
+          cd[di + 1] = d[sp * 4 + 1];
+          cd[di + 2] = d[sp * 4 + 2];
         } else if (mode === "logo" && !logoColor(d[sp * 4], d[sp * 4 + 1], d[sp * 4 + 2])) {
           continue;
         } else {
@@ -1419,44 +1515,21 @@
       }
     }
     o.putImageData(copy, 0, 0);
-    if (mode === "cleanred" && chh > 4 && cw > 4) {
-      var scaleX = cw > 700 ? 1 : 2;
-      var scaleY = chh > 80 ? 4 : 8;
-      var fatW = cw * scaleX;
-      var fatH = chh * scaleY;
-      var outW = fatH;
-      var outH = fatW;
-      var solid = document.createElement("canvas");
-      solid.width = outW;
-      solid.height = outH;
-      var sctx = solid.getContext("2d");
-      var simg = sctx.createImageData(outW, outH);
-      var sd = simg.data;
-      var cd = copy.data;
-      var oy, ox, fx, fy, sy, si, di;
-      for (oy = 0; oy < outH; oy++) {
-        fx = (oy * cw / outH) | 0;
-        if (fx >= cw) fx = cw - 1;
-        for (ox = 0; ox < outW; ox++) {
-          fy = fatH - 1 - ox;
-          sy = (fy * chh / fatH) | 0;
-          if (sy < 0) sy = 0;
-          if (sy >= chh) sy = chh - 1;
-          si = (sy * cw + fx) * 4;
-          di = (oy * outW + ox) * 4;
-          if (cd[si] > 180) {
-            sd[di] = 255; sd[di + 1] = 16; sd[di + 2] = 0; sd[di + 3] = 255;
-          } else {
-            sd[di] = br; sd[di + 1] = bgc; sd[di + 2] = bb; sd[di + 3] = 255;
-          }
-        }
-      }
-      sctx.putImageData(simg, 0, 0);
-      var solidSrc = "";
-      try { solidSrc = solid.toDataURL("image/png"); } catch (eSolid) { solidSrc = ""; }
-      if (solidSrc) return { src: solidSrc, bg: bg };
-    }
     var srcCut = cut;
+    if (mode === "cleanred" && chh > 4 && cw > 4) {
+      var fatW = Math.min(720, Math.max(cw, 520));
+      var fatH = Math.max(chh, Math.round(fatW * 0.40));
+      var fat = document.createElement("canvas");
+      fat.width = fatW;
+      fat.height = fatH;
+      var fctx = fat.getContext("2d");
+      fctx.fillStyle = bg || "#080808";
+      fctx.fillRect(0, 0, fatW, fatH);
+      fctx.imageSmoothingEnabled = true;
+      fctx.imageSmoothingQuality = "high";
+      fctx.drawImage(cut, 0, 0, fatW, fatH);
+      srcCut = fat;
+    }
     if (mode === "logo" && srcCut.width < 150) {
       var big = document.createElement("canvas");
       big.width = srcCut.width * 2;
@@ -1506,6 +1579,11 @@
           try { thing = liftThingLetters(im); } catch (eThing) { thing = ""; }
           if (thing) { finish({ letters: 1, ink: "#1a120c", src: thing, bg: window.__rwThingBg || "#d5e6f0", logo: 1 }); return; }
         }
+        if (slug === "first-blood") {
+          var blood = null;
+          try { blood = liftFirstBlood(im); } catch (eBlood) { blood = null; }
+          if (blood && blood.src) { finish({ letters: 1, ink: "#f4f1ea", src: blood.src, bg: "#080808", logo: 1 }); return; }
+        }
         var lifted = null;
         var liftMode = LIFT_TITLE[slug] || LIFT_TITLE[String(slug).replace(/-(19|20)\d\d$/, "")] || "";
         if (liftMode && slug !== "the-thing-1982") {
@@ -1527,7 +1605,9 @@
     }
     var tmdb = url.indexOf("image.tmdb.org") >= 0 || url.indexOf("themoviedb.org") >= 0;
     var fetchUrl = url;
-    if ((slug === "first-blood" || slug === "back-to-the-future") && /\/t\/p\/w\d+\//.test(url)) {
+    if (slug === "first-blood" && /\/t\/p\/w\d+\//.test(url)) {
+      fetchUrl = url.replace(/\/t\/p\/w\d+\//, "/t/p/original/");
+    } else if (slug === "back-to-the-future" && /\/t\/p\/w\d+\//.test(url)) {
       fetchUrl = url.replace(/\/t\/p\/w\d+\//, "/t/p/w780/");
     }
     var loader = new Image();
