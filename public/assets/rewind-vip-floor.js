@@ -10330,6 +10330,7 @@
     const CHIP_ON = "inline-flex h-10 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.14em] bg-primary text-primary-fg";
     const CHIP_OFF = "inline-flex h-10 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.14em] bg-elevated text-muted shadow-[var(--shadow-border)]";
     let catalog = null;
+    let catalogBySlug = null;
     let covers = null;
     let stills = null;
     let applied = null;
@@ -10349,7 +10350,11 @@
       return theme == null ? "" : theme;
     }
     function themesOf(film) {
-      return String((film && film.themes) || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+      if (!film) return [];
+      if (film.__rwThemes) return film.__rwThemes;
+      var list = String(film.themes || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+      try { Object.defineProperty(film, "__rwThemes", { value: list }); } catch (e) { film.__rwThemes = list; }
+      return list;
     }
     function placeholderShelf(film) {
       var overview = String((film && film.overview) || "").trim();
@@ -10363,6 +10368,8 @@
       return n >= 1900 && n <= 2100 ? n : 0;
     }
     function knownFilm(slug) {
+      if (!slug) return null;
+      if (catalogBySlug && catalogBySlug[slug]) return catalogBySlug[slug];
       if (!catalog) return null;
       for (var i = 0; i < catalog.length; i += 1) {
         if (catalog[i] && catalog[i].slug === slug) return catalog[i];
@@ -12590,6 +12597,11 @@
       fetch("/data/catalog.json?v=1107").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
+      catalogBySlug = {};
+      for (var ci = 0; ci < catalog.length; ci += 1) {
+        var row = catalog[ci];
+        if (row && row.slug) catalogBySlug[row.slug] = row;
+      }
       covers = {};
       stills = {};
       var boxes = window.__rwBoxes || {};
@@ -12597,8 +12609,13 @@
         if (boxes[slug] && boxes[slug].cover) covers[slug] = 1;
         if (boxes[slug] && boxes[slug].back) stills[slug] = 1;
       });
-      applyAisle(applied || "", false);
-      aislesReady();
+      var finish = function () {
+        applyAisle(applied || "", false);
+        aislesReady();
+      };
+      if (applied) finish();
+      else if (window.requestIdleCallback) window.requestIdleCallback(finish, { timeout: 250 });
+      else setTimeout(finish, 0);
     }).catch(function () {
       try { applyAisle(applied || "", false); } catch (eApply) {}
       aislesReady();
@@ -18718,7 +18735,8 @@
       var remoteCover = coverUrl.indexOf("image.tmdb.org") >= 0 || coverUrl.indexOf("media.themoviedb.org") >= 0 || coverUrl.indexOf("themoviedb.org") >= 0;
       var keepPaintedSpine = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
       var onAisle = document.documentElement.getAttribute("data-aisles") === "1";
-      var drawing = !keepPaintedSpine && !bakedMatch && !!coverUrl;
+      var aisleHome = onAisle && !/[?&]theme=/.test(location.search || "");
+      var drawing = !aisleHome && !keepPaintedSpine && !bakedMatch && !!coverUrl;
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
       if (!spineReady && coverUrl && window.__rwSpineReady) {
         var bareCover = coverUrl.split("?")[0];
@@ -19167,6 +19185,15 @@
       }, true);
     }
   } catch (eNav) {}
+  try {
+    var __rwHere = (location.pathname || "").replace(/\/$/, "") || "/";
+    if (__rwHere !== "/films" && __rwHere.indexOf("/films/") !== 0) {
+      var __rwPrefetch = document.createElement("link");
+      __rwPrefetch.rel = "prefetch";
+      __rwPrefetch.href = "/films";
+      document.head.appendChild(__rwPrefetch);
+    }
+  } catch (ePrefetch) {}
   try {
     let dressLiveUiQueued = 0;
     const mo = new MutationObserver(() => {
