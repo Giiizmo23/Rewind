@@ -35,7 +35,7 @@
     "the-shining": [0.06, 0.20, 0.96, 0.75],
     "heat": [0.07, 0.862, 0.93, 0.962],
     "heat-1995": [0.07, 0.862, 0.93, 0.962],
-    "first-blood": [0.05, 0.786, 0.95, 0.824],
+    "first-blood": [0.03, 0.770, 0.97, 0.842],
     "blade-runner": [0.04, 0.882, 0.97, 0.948],
     "the-thing-1982": [0.04, 0.72, 0.96, 0.96],
     "the-matrix": [0.06, 0.84, 0.94, 0.96],
@@ -1092,7 +1092,8 @@
     if (!band) return null;
     var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
     if (!nw || !nh) return null;
-    var W = Math.max(8, Math.min(340, nw));
+    var cap = mode === "cleanred" ? Math.min(nw, 900) : Math.min(340, nw);
+    var W = Math.max(8, cap);
     var H = Math.max(8, Math.round(nh * (W / nw)));
     var canvas = document.createElement("canvas");
     canvas.width = W;
@@ -1283,12 +1284,12 @@
         if (c.area < 12) continue;
         if (mode === "yellow" && c.area < 36) continue;
         if (mode === "white" && c.area < 28) continue;
-        if (mode === "cleanred" && c.area < 48) continue;
+        if (mode === "cleanred" && c.area < 8) continue;
         if (mode === "logo" && c.area < mainArea * 0.12) continue;
-        if (ln.comps.length >= 3 && c.area < med * 0.22) continue;
+        if (mode !== "cleanred" && ln.comps.length >= 3 && c.area < med * 0.22) continue;
         var bw = c.x1 - c.x0 + 1, bh = c.y1 - c.y0 + 1;
         // A logo that fills its band is the title, not a photo blob.
-        if (mode !== "logo" && bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
+        if (mode !== "logo" && mode !== "cleanred" && bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
         if (bh <= 3 && bw > cw0 * 0.45) continue;
         for (var pi = 0; pi < c.pts.length; pi++) keep[c.pts[pi]] = 1;
         keptN += c.area;
@@ -1307,10 +1308,8 @@
         var prev = -1;
         for (x = 0; x < W; x++) {
           if (!keep[y * W + x]) continue;
-          if (prev >= 0 && x - prev > 1 && x - prev <= 5) {
-            for (var fx = prev + 1; fx < x; fx++) {
-              if (!keep[y * W + fx]) { keep[y * W + fx] = 1; keptN++; }
-            }
+          if (prev >= 0 && x - prev === 2) {
+            if (!keep[y * W + prev + 1]) { keep[y * W + prev + 1] = 1; keptN++; }
           }
           prev = x;
         }
@@ -1406,8 +1405,8 @@
         var di = (y * cw + x) * 4;
         if (mode === "cleanred") {
           cd[di] = 255;
-          cd[di + 1] = 32;
-          cd[di + 2] = 24;
+          cd[di + 1] = 16;
+          cd[di + 2] = 0;
         } else if (mode === "logo" && !logoColor(d[sp * 4], d[sp * 4 + 1], d[sp * 4 + 2])) {
           continue;
         } else {
@@ -1420,17 +1419,6 @@
     }
     o.putImageData(copy, 0, 0);
     var srcCut = cut;
-    if (mode === "cleanred") {
-      var taller = document.createElement("canvas");
-      taller.width = cw;
-      taller.height = Math.max(chh + 1, Math.round(chh * 2.4));
-      var tctx = taller.getContext("2d");
-      tctx.imageSmoothingEnabled = false;
-      tctx.fillStyle = bg;
-      tctx.fillRect(0, 0, taller.width, taller.height);
-      tctx.drawImage(cut, 0, 0, cw, taller.height);
-      srcCut = taller;
-    }
     if (mode === "logo") {
       var big = document.createElement("canvas");
       big.width = srcCut.width * 2;
