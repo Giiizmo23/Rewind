@@ -55,6 +55,84 @@
     "gremlins": [0.04, 0.82, 0.96, 0.97]
     /* halloween-1978 keeps its approved spine art (/sleeves/spines/halloween-1978.png on #000); a cover-sampled spine color made two blacks. */
   };
+  function titleBand(slug) {
+    if (!slug) return null;
+    if (TITLE_BAND[slug]) return TITLE_BAND[slug];
+    var base = String(slug).replace(/-(19|20)\d\d$/, "");
+    return TITLE_BAND[base] || null;
+  }
+  function guessTitleBand(im) {
+    var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
+    if (!nw || !nh) return null;
+    var W = 72;
+    var H = Math.max(24, Math.round(W * nh / nw));
+    var canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    var ctx = canvas.getContext("2d", { willReadFrequently: true });
+    try { ctx.drawImage(im, 0, 0, W, H); } catch (eDraw) { return null; }
+    var data;
+    try { data = ctx.getImageData(0, 0, W, H).data; } catch (eRead) { return null; }
+    var lum = new Float32Array(W * H);
+    var i, x, y;
+    for (i = 0; i < W * H; i++) lum[i] = (data[i * 4] + data[i * 4 + 1] + data[i * 4 + 1] + data[i * 4 + 2]) / 4;
+    var rowInk = new Float32Array(H);
+    var rowSpan = new Float32Array(H);
+    var rowSkin = new Float32Array(H);
+    for (y = 1; y < H - 1; y++) {
+      var ink = 0, first = -1, last = -1, skin = 0, seen = 0;
+      for (x = 1; x < W - 1; x++) {
+        var p = y * W + x;
+        var o = p * 4;
+        if (Math.abs(lum[p] - lum[p - 1]) > 26 || Math.abs(lum[p] - lum[p - W]) > 34) {
+          ink++;
+          if (first < 0) first = x;
+          last = x;
+        }
+        if ((x & 1) === 0) {
+          seen++;
+          var r = data[o], g = data[o + 1], b = data[o + 2];
+          if (r > 95 && g > 40 && b > 20 && r > g && r > b && r - g > 14) skin++;
+        }
+      }
+      rowInk[y] = ink / W;
+      rowSpan[y] = first < 0 ? 0 : (last - first) / W;
+      rowSkin[y] = seen ? skin / seen : 0;
+    }
+    function isText(yy) {
+      return rowSkin[yy] < 0.22 && rowInk[yy] > 0.035 && rowInk[yy] < 0.55 && rowSpan[yy] > 0.32;
+    }
+    var best = null;
+    var y0 = -1;
+    for (y = 1; y <= H; y++) {
+      var on = y < H && isText(y);
+      if (on && y0 < 0) y0 = y;
+      if ((!on || y === H) && y0 >= 0) {
+        var y1 = y;
+        var h = y1 - y0;
+        var hf = h / H;
+        if (hf >= 0.02 && hf <= 0.22) {
+          var inkSum = 0, spanSum = 0;
+          for (var yy = y0; yy < y1; yy++) { inkSum += rowInk[yy]; spanSum += rowSpan[yy]; }
+          var score = (spanSum / h) * (inkSum / h);
+          if (hf > 0.14) score *= 0.6;
+          var f0 = y0 / H, f1 = y1 / H;
+          if (f1 < 0.36 || f0 > 0.62) score *= 1.35;
+          if (!best || score > best.score) best = { y0: f0, y1: f1, score: score };
+        }
+        y0 = -1;
+      }
+    }
+    if (!best || best.score < 0.02) return null;
+    return [0.02, Math.max(0, best.y0 - 0.012), 0.98, Math.min(1, best.y1 + 0.012)];
+  }
+  function cornerHitsTitle(pick, band) {
+    if (!pick || !band) return false;
+    var top = pick.charAt(0) === "t";
+    var a = top ? 0 : 0.82;
+    var b = top ? 0.18 : 1;
+    return band[1] < b && band[3] > a;
+  }
   if (!document.getElementById("rw-spine-match")) {
     var spineMatchCss = document.createElement("style");
     spineMatchCss.id = "rw-spine-match";
@@ -615,17 +693,24 @@
   function queueSpineMatch(slug, url) {
     window.__rwSpinePending = window.__rwSpinePending || {};
     window.__rwSpineReady = window.__rwSpineReady || {};
+    window.__rwTitleAt = window.__rwTitleAt || {};
     if (window.__rwSpinePending[url] || window.__rwSpineReady[url]) return;
-    var band = TITLE_BAND[slug];
-    if (!band) return;
+    var band = titleBand(slug);
     window.__rwSpinePending[url] = 1;
     function finish(rec) {
       delete window.__rwSpinePending[url];
       window.__rwSpineReady[url] = rec || { skip: 1 };
       try { fixAllSpines(); } catch (eSpine) {}
+      try { restick(url); } catch (eStick) {}
     }
     function paintFrom(im) {
-      try { finish(cropTitleSpine(im, band, slug)); }
+      var use = band || window.__rwTitleAt[url] || null;
+      if (!use) {
+        try { use = guessTitleBand(im); } catch (eGuess) { use = null; }
+      }
+      if (use) window.__rwTitleAt[url] = use;
+      if (!use) { finish({ skip: 1 }); return; }
+      try { finish(cropTitleSpine(im, use, slug)); }
       catch (ePaint) { finish({ skip: 1 }); }
     }
     var tmdb = url.indexOf("image.tmdb.org") >= 0 || url.indexOf("themoviedb.org") >= 0;
@@ -634,6 +719,19 @@
     loader.onload = function () { paintFrom(loader); };
     loader.onerror = function () { finish({ skip: 1 }); };
     loader.src = tmdb ? scoreSrc(url) : url;
+  }
+  function restick(url) {
+    var bare = String(url || "").split("?")[0];
+    document.querySelectorAll(".vhs-box").forEach(function (box) {
+      var img = box.querySelector(".vhs-window img");
+      if (!img) return;
+      var src = img.currentSrc || img.getAttribute("src") || "";
+      if (!src) return;
+      if (src !== url && src.split("?")[0] !== bare) return;
+      img.removeAttribute("data-rw-sticker-busy");
+      box.removeAttribute("data-sticker-src");
+      placeBatchSticker(box, img);
+    });
   }
 
   function backStill(slug) {
@@ -885,44 +983,83 @@
     }
     if (!img || !img.naturalWidth) return;
     var src = img.currentSrc || img.getAttribute("src") || "";
-    if (!src || box.getAttribute("data-sticker-src") === src) return;
+    if (!src) return;
+    var band = (window.__rwTitleAt && window.__rwTitleAt[src]) || titleBand(box.getAttribute("data-slug"));
+    var placed = box.getAttribute("data-sticker-src") === src;
+    if (placed && !(band && cornerHitsTitle(box.getAttribute("data-sticker"), band))) return;
+    var remote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("themoviedb.org") >= 0;
+    if (remote) {
+      if (img.getAttribute("data-rw-sticker-busy") === src) return;
+      img.setAttribute("data-rw-sticker-busy", src);
+      var loader = new Image();
+      loader.crossOrigin = "anonymous";
+      loader.onload = function () {
+        img.removeAttribute("data-rw-sticker-busy");
+        scoreSticker(box, loader, src);
+      };
+      loader.onerror = function () {
+        img.removeAttribute("data-rw-sticker-busy");
+        var node = box.querySelector(".vhs-sticker");
+        if (node) parkSticker(node, box, band && cornerHitsTitle("tl", band) ? "br" : "tl", src);
+      };
+      loader.src = scoreSrc(src);
+      return;
+    }
+    scoreSticker(box, img, src);
+  }
+  function scoreSticker(box, img, src) {
     var st = box.querySelector(".vhs-sticker");
-    if (!st) return;
+    if (!st || !img || !img.naturalWidth) return;
+    var band = (window.__rwTitleAt && (window.__rwTitleAt[src] || window.__rwTitleAt[src.split("?")[0]])) || titleBand(box.getAttribute("data-slug"));
+    if (!band) {
+      try { band = guessTitleBand(img); } catch (eGuess) { band = null; }
+      if (band) {
+        window.__rwTitleAt = window.__rwTitleAt || {};
+        window.__rwTitleAt[src] = band;
+      }
+    }
     var nw = img.naturalWidth, nh = img.naturalHeight;
-    var rect = img.getBoundingClientRect();
-    var rw = rect.width || nw, rh = rect.height || nh;
-    var scale = Math.max(rw / nw, rh / nh) || 1;
-    var vw = Math.min(nw, rw / scale), vh = Math.min(nh, rh / scale);
-    var sx = Math.max(0, (nw - vw) / 2), sy = Math.max(0, (nh - vh) / 2);
     var canvas = document.createElement("canvas");
-    var W = 90, H = Math.max(12, Math.round(W * (vh / vw)));
+    var W = 90, H = Math.max(12, Math.round(W * (nh / nw)));
     canvas.width = W;
     canvas.height = H;
     var ctx = canvas.getContext("2d", { willReadFrequently: true });
-    try { ctx.drawImage(img, sx, sy, vw, vh, 0, 0, W, H); } catch (e) { parkSticker(st, box, "tl", src); return; }
+    try { ctx.drawImage(img, 0, 0, nw, nh, 0, 0, W, H); } catch (e) { parkSticker(st, box, band && cornerHitsTitle("tl", band) ? "br" : "tl", src); return; }
     var cw = Math.max(12, Math.round(W * 0.22));
     var ch = Math.max(12, Math.round(H * 0.16));
     var corners = [["tl", 0, 0], ["tr", W - cw, 0], ["bl", 0, H - ch], ["br", W - cw, H - ch]];
     var open = [];
     for (var k = 0; k < corners.length; k++) {
       var spec = corners[k];
+      if (cornerHitsTitle(spec[0], band)) continue;
       var data;
       try { data = ctx.getImageData(spec[1], spec[2], cw, ch).data; }
-      catch (e2) { parkSticker(st, box, "tl", src); return; }
+      catch (e2) { parkSticker(st, box, band && cornerHitsTitle("tl", band) ? "br" : "tl", src); return; }
       var score = regionScore(data, cw, ch);
+      var edges = 0, samples = 0;
+      for (var yy = 0; yy < ch; yy += 2) {
+        for (var xx = 1; xx < cw; xx += 2) {
+          var ia = (yy * cw + xx) * 4, ib = (yy * cw + xx - 1) * 4;
+          var la = (data[ia] + data[ia + 1] + data[ia + 2]) / 3;
+          var lb = (data[ib] + data[ib + 1] + data[ib + 2]) / 3;
+          samples++;
+          if (Math.abs(la - lb) > 42) edges++;
+        }
+      }
+      if (samples) score += (edges / samples) * 220;
       if (!regionBusy(data, cw, ch)) open.push({ id: spec[0], score: score });
+      else open.push({ id: spec[0], score: score + 80 });
+    }
+    if (!open.length) {
+      for (var j = 0; j < corners.length; j++) {
+        var cell = corners[j];
+        var dd;
+        try { dd = ctx.getImageData(cell[1], cell[2], cw, ch).data; } catch (e3) { break; }
+        open.push({ id: cell[0], score: regionScore(dd, cw, ch) });
+      }
     }
     open.sort(function (a, b) { return a.score - b.score; });
-    var pick = open.length ? open[0].id : "";
-    if (pick) { parkSticker(st, box, pick, src); return; }
-    var least = 1e9, leastId = "tl";
-    for (var c = 0; c < corners.length; c++) {
-      var cell = corners[c];
-      var dd = ctx.getImageData(cell[1], cell[2], cw, ch).data;
-      var quiet = regionScore(dd, cw, ch);
-      if (quiet < least) { least = quiet; leastId = cell[0]; }
-    }
-    parkSticker(st, box, leastId, src);
+    parkSticker(st, box, open.length ? open[0].id : "br", src);
   }
   function parkSticker(st, box, pick, src) {
     var pos = pick === "tl" ? ["8px auto auto 8px", "8px", "auto", "auto", "8px"]
@@ -9492,6 +9629,9 @@
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var boxed = paintedBox(slug);
         var want = boxed && boxed.spine;
+        var coverNow = (cover && (cover.getAttribute("src") || "")) || "";
+        var coverRemote = coverNow.indexOf("image.tmdb.org") >= 0 || coverNow.indexOf("themoviedb.org") >= 0 || !!(window.__rwPosters && window.__rwPosters[slug]);
+        if (aisle && coverRemote && !keepSleeve) want = "";
         var cur = img.getAttribute("src") || "";
         img.removeAttribute("srcset");
         if (want && cur.split("?")[0] === String(want).split("?")[0]) {
@@ -17601,8 +17741,20 @@
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         if ((img.getAttribute("src") || "").indexOf("/sleeves/spines/match/") >= 0) bakedMatch = true;
       });
+      var remoteCover = coverUrl.indexOf("image.tmdb.org") >= 0 || coverUrl.indexOf("media.themoviedb.org") >= 0 || coverUrl.indexOf("themoviedb.org") >= 0;
+      var keepPaintedSpine = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
-      if (!bakedMatch && TITLE_BAND[slug] && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
+      if (!spineReady && coverUrl && window.__rwSpineReady) {
+        var bareCover = coverUrl.split("?")[0];
+        Object.keys(window.__rwSpineReady).some(function (key) {
+          if (key.split("?")[0] !== bareCover) return false;
+          spineReady = window.__rwSpineReady[key];
+          return true;
+        });
+      }
+      if (!bakedMatch && remoteCover && !keepPaintedSpine && coverForSpine && !waitingForPoster(coverForSpine)) {
+        if (!spineReady) queueSpineMatch(slug, coverUrl);
+      } else if (!bakedMatch && titleBand(slug) && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
         if (!spineReady) queueSpineMatch(slug, coverUrl);
       }
       var spineHit = !!(spineReady && spineReady.src);
@@ -17629,6 +17781,17 @@
           if ((img.getAttribute("src") || "") !== spineReady.src) img.src = spineReady.src;
           fitSpineLogo(img);
           hideSpineWord(img.closest(".vhs-spine-ink"));
+          return;
+        }
+        if (remoteCover && !keepPaintedSpine) {
+          if (cur && cur.indexOf("data:") !== 0) {
+            img.removeAttribute("src");
+          }
+          img.style.setProperty("display", "none", "important");
+          var inkWait = img.closest(".vhs-spine-ink");
+          if (spineReady && spineReady.skip) {
+            if (inkWait) showSpineWord(inkWait);
+          } else if (inkWait) hideSpineWord(inkWait);
           return;
         }
         var boxedSpine = paintedBox(slug);
