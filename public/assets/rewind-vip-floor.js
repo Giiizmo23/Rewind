@@ -888,6 +888,80 @@
     out.drawImage(flat, 0, 0);
     try { return spun.toDataURL("image/png"); } catch (eUrl) { return ""; }
   }
+  function bottomTitleBand(im) {
+    var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
+    if (!nw || !nh) return null;
+    var W = 90;
+    var H = Math.max(30, Math.round(W * nh / nw));
+    var canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    var ctx = canvas.getContext("2d", { willReadFrequently: true });
+    try { ctx.drawImage(im, 0, 0, W, H); } catch (eDraw) { return null; }
+    var data;
+    try { data = ctx.getImageData(0, 0, W, H).data; } catch (eRead) { return null; }
+    var yStart = Math.floor(H * 0.7);
+    var run0 = -1, run1 = -1, best = null;
+    var y, x;
+    for (y = yStart; y < H; y++) {
+      var light = 0, first = -1, last = -1;
+      for (x = 2; x < W - 2; x++) {
+        var i = (y * W + x) * 4;
+        var r = data[i], g = data[i + 1], b = data[i + 2];
+        var lum = (r + g + b) / 3;
+        if (lum > 165 && Math.max(r, g, b) - Math.min(r, g, b) < 70) {
+          light++;
+          if (first < 0) first = x;
+          last = x;
+        }
+      }
+      var span = first < 0 ? 0 : (last - first) / W;
+      var frac = light / W;
+      var row = span > 0.35 && frac > 0.04 && frac < 0.7;
+      if (row) {
+        if (run0 < 0) run0 = y;
+        run1 = y;
+      } else if (run0 >= 0) {
+        var h = run1 - run0 + 1;
+        if (h >= 1 && h <= Math.max(3, H * 0.08)) {
+          if (!best || run0 > best.y0) best = { y0: run0, y1: run1, score: h };
+        }
+        run0 = -1;
+      }
+    }
+    if (run0 >= 0) {
+      var hEnd = run1 - run0 + 1;
+      if (hEnd >= 1 && hEnd <= Math.max(3, H * 0.08) && (!best || run0 > best.y0)) best = { y0: run0, y1: run1, score: hEnd };
+    }
+    if (!best) return null;
+    return [0.02, Math.max(0, best.y0 / H - 0.02), 0.98, Math.min(1, (best.y1 + 1) / H + 0.02)];
+  }
+  function titleLooksLikeType(canvas) {
+    var w = canvas.width, h = canvas.height;
+    if (!w || !h || w < h * 1.6) return false;
+    var data;
+    try { data = canvas.getContext("2d").getImageData(0, 0, w, h).data; } catch (eRead) { return false; }
+    var ink = 0;
+    var col = new Uint16Array(w);
+    var x, y, i;
+    for (y = 0; y < h; y++) {
+      for (x = 0; x < w; x++) {
+        i = (y * w + x) * 4;
+        if (data[i + 3] < 40) continue;
+        ink++;
+        col[x]++;
+      }
+    }
+    var frac = ink / (w * h);
+    if (frac < 0.05 || frac > 0.5) return false;
+    var runs = 0, on = false;
+    for (x = 0; x < w; x++) {
+      var hit = col[x] > h * 0.18;
+      if (hit && !on) runs++;
+      on = hit;
+    }
+    return runs >= 3 && runs <= 24;
+  }
   function cropTitleSpine(im, band, slug) {
     var nw = im.naturalWidth, nh = im.naturalHeight;
     if (!nw || !nh) return { skip: 1 };
@@ -914,6 +988,7 @@
       try { letters = plainTitle(trimmed); } catch (ePlain) { letters = null; }
     }
     if (!letters) return { skip: 1 };
+    if (!titleLooksLikeType(letters)) return { skip: 1 };
     var cw = letters.width, ch = letters.height;
     var spun = document.createElement("canvas");
     spun.width = ch;
@@ -1570,13 +1645,18 @@
       window.__rwSpineReady[url] = rec || { skip: 1 };
       try { fixAllSpines(); } catch (eSpine) {}
       try { restick(url); } catch (eStick) {}
+      if (window.__rwSpineSlot) {
+        window.__rwSpineSlot = Math.max(0, window.__rwSpineSlot - 1);
+        try { pumpSpineJobs(); } catch (ePump) {}
+      }
     }
     function paintFrom(im) {
       var go = function () {
-        var use = band || window.__rwTitleAt[url] || null;
+        var use = band || null;
         if (!use) {
-          try { use = guessTitleBand(im); } catch (eGuess) { use = null; }
+          try { use = bottomTitleBand(im); } catch (eBottom) { use = null; }
         }
+        if (!use) use = window.__rwTitleAt[url] || null;
         if (use) window.__rwTitleAt[url] = use;
         if (slug === "the-thing-1982") {
           var thing = "";
@@ -1596,6 +1676,20 @@
         if (lifted && lifted.src) {
           finish({ letters: 1, ink: "#f4f1ea", src: lifted.src, bg: lifted.bg, logo: 1 });
           return;
+        }
+        var painted = null;
+        try { painted = paintedBox(slug); } catch (ePaint) { painted = null; }
+        if (painted && painted.spine) {
+          finish({ skip: 1 });
+          return;
+        }
+        if (use) {
+          var cropped = null;
+          try { cropped = cropTitleSpine(im, use, slug); } catch (eCrop) { cropped = null; }
+          if (cropped && cropped.src) {
+            finish({ letters: 1, ink: "#f4f1ea", src: cropped.src, bg: cropped.bg, logo: 1 });
+            return;
+          }
         }
         var ink = "#f4f1ea";
         try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
@@ -1626,7 +1720,24 @@
       }
       finish({ skip: 1 });
     };
-    loader.src = tmdb ? scoreSrc(fetchUrl) : fetchUrl;
+    function beginSpineLoad() {
+      loader.src = tmdb ? scoreSrc(fetchUrl) : fetchUrl;
+    }
+    if (document.documentElement.getAttribute("data-aisles") === "1") {
+      window.__rwSpineJobs = window.__rwSpineJobs || [];
+      window.__rwSpineJobs.push(beginSpineLoad);
+      pumpSpineJobs();
+    } else beginSpineLoad();
+  }
+  function pumpSpineJobs() {
+    window.__rwSpineJobs = window.__rwSpineJobs || [];
+    window.__rwSpineSlot = window.__rwSpineSlot || 0;
+    while (window.__rwSpineSlot < 2 && window.__rwSpineJobs.length) {
+      window.__rwSpineSlot += 1;
+      var job = window.__rwSpineJobs.shift();
+      try { job(); }
+      catch (eJob) { window.__rwSpineSlot = Math.max(0, window.__rwSpineSlot - 1); }
+    }
   }
   function restick(url) {
     var bare = String(url || "").split("?")[0];
@@ -18742,7 +18853,12 @@
       var aisleHome = onAisle && !/[?&]theme=/.test(location.search || "");
       var liftKey = String(slug).replace(/-(19|20)\d\d$/, "");
       var liftSlug = slug === "the-thing-1982" || slug === "first-blood" || !!(LIFT_TITLE[slug] || LIFT_TITLE[liftKey]);
-      var drawing = (!aisleHome || liftSlug) && !keepPaintedSpine && !bakedMatch && !!coverUrl;
+      var hasPainted = false;
+      try {
+        var paintedNow = paintedBox(slug);
+        hasPainted = !!(paintedNow && paintedNow.spine);
+      } catch (eHas) {}
+      var drawing = (onAisle ? (liftSlug || !hasPainted) : true) && !keepPaintedSpine && !bakedMatch && !!coverUrl;
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
       if (!spineReady && coverUrl && window.__rwSpineReady) {
         var bareCover = coverUrl.split("?")[0];
