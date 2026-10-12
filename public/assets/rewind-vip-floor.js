@@ -1560,7 +1560,7 @@
     window.__rwTitleAt = window.__rwTitleAt || {};
     if (window.__rwSpinePending[url] || window.__rwSpineReady[url]) return;
     if (slug === "first-blood") {
-      finish({ letters: 1, ink: "#f4f1ea", src: "/sleeves/spines/first-blood-title.png?v=3", bg: "#080808", logo: 1 });
+      finish({ letters: 1, ink: "#f4f1ea", src: "/sleeves/spines/first-blood-title.png?v=4", bg: "#080808", logo: 1 });
       return;
     }
     var band = titleBand(slug);
