@@ -18012,6 +18012,7 @@
       var remoteCover = coverUrl.indexOf("image.tmdb.org") >= 0 || coverUrl.indexOf("media.themoviedb.org") >= 0 || coverUrl.indexOf("themoviedb.org") >= 0;
       var keepPaintedSpine = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
       var onAisle = document.documentElement.getAttribute("data-aisles") === "1";
+      var drawing = !keepPaintedSpine && !bakedMatch && !!coverUrl;
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
       if (!spineReady && coverUrl && window.__rwSpineReady) {
         var bareCover = coverUrl.split("?")[0];
@@ -18021,12 +18022,16 @@
           return true;
         });
       }
-      if (onAisle && !bakedMatch && remoteCover && !keepPaintedSpine && coverForSpine && !waitingForPoster(coverForSpine)) {
+      if (drawing && coverForSpine && !coverForSpine.__rwSpineWait) {
+        coverForSpine.__rwSpineWait = 1;
+        coverForSpine.addEventListener("load", function () { fixOneSpine(box); });
+      }
+      if (drawing && coverForSpine && !waitingForPoster(coverForSpine)) {
         if (!spineReady) queueSpineMatch(slug, coverUrl);
-      } else if (onAisle && !bakedMatch && titleBand(slug) && coverUrl && coverForSpine && !waitingForPoster(coverForSpine)) {
+      } else if (drawing && coverForSpine && coverForSpine.naturalWidth) {
         if (!spineReady) queueSpineMatch(slug, coverUrl);
       }
-      var spineHit = onAisle && !!(spineReady && spineReady.src);
+      var spineHit = drawing && !!(spineReady && spineReady.src);
       if (spineHit) {
         if (spineReady.letters) box.setAttribute("data-spine-letters", "1");
         else box.removeAttribute("data-spine-letters");
@@ -18042,26 +18047,7 @@
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var cur = img.getAttribute("src") || "";
-        if (!onAisle) {
-          box.removeAttribute("data-spine-letters");
-          box.removeAttribute("data-spine-match");
-          var matchFile = "/sleeves/spines/match/" + slug + (slug === "carrie-1976" ? ".jpg?v=423" : ".png?v=423");
-          var knownMatch = slug === "carrie-1976" || slug === "coming-to-america" || slug === "first-blood" || slug === "goodfellas" || slug === "gremlins" || slug === "jaws" || slug === "jurassic-park" || slug === "point-break" || slug === "se7en" || slug === "star-wars" || slug === "the-exorcist" || slug === "the-fly-1986" || slug === "the-lion-king" || slug === "the-shawshank-redemption" || slug === "the-shining" || slug === "top-gun";
-          var lobbyFile = knownMatch ? matchFile : ((paintedBox(slug) || {}).spine || "");
-          if (lobbyFile && (cur.indexOf("data:") === 0 || (knownMatch && cur.indexOf("/sleeves/spines/match/") < 0) || (!knownMatch && cur.indexOf("/sleeves/spines/") < 0))) img.src = lobbyFile;
-          ["inset", "top", "right", "bottom", "left", "width", "height", "max-width", "max-height", "object-fit", "object-position", "transform"].forEach(function (prop) {
-            img.style.removeProperty(prop);
-          });
-          img.style.removeProperty("display");
-          hideSpineWord(img.closest(".vhs-spine-ink"));
-          if (!SPINE_GROUND[slug]) {
-            box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
-              sp.style.removeProperty("background-color");
-            });
-          }
-          return;
-        }
-        if (cur.indexOf("/sleeves/spines/match/") >= 0) {
+        if (cur.indexOf("/sleeves/spines/match/") >= 0 && !drawing) {
           box.setAttribute("data-spine-match", "1");
           fitSpineLogo(img);
           hideSpineWord(img.closest(".vhs-spine-ink"));
@@ -18071,6 +18057,13 @@
           if ((img.getAttribute("src") || "") !== spineReady.src) img.src = spineReady.src;
           fitSpineLogo(img);
           hideSpineWord(img.closest(".vhs-spine-ink"));
+          return;
+        }
+        if (drawing && !spineHit) {
+          if (cur && cur.indexOf("data:") !== 0) img.removeAttribute("src");
+          img.style.setProperty("display", "none", "important");
+          var inkHost = img.closest(".vhs-spine-ink");
+          if (inkHost) showSpineWord(inkHost, spineReady && spineReady.ink);
           return;
         }
         if (remoteCover && !keepPaintedSpine) {
