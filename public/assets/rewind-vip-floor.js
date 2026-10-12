@@ -928,7 +928,7 @@
   function liftThingLetters(im) {
     var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
     if (!nw || !nh) return "";
-    var W = Math.max(8, Math.min(220, nw));
+    var W = Math.max(8, Math.min(240, nw));
     var H = Math.max(8, Math.round(nh * (W / nw)));
     var canvas = document.createElement("canvas");
     canvas.width = W;
@@ -937,26 +937,17 @@
     try { ctx.drawImage(im, 0, 0, W, H); } catch (eDraw) { return ""; }
     var d;
     try { d = ctx.getImageData(0, 0, W, H).data; } catch (eRead) { return ""; }
-    var mask = new Uint8Array(W * H);
+    function lumAt(i) {
+      return 0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2];
+    }
     var row = new Float32Array(H);
-    var y, x, i, r, g, b, lum, mx, mn, sat;
+    var y, x, i;
     for (y = 0; y < H; y++) {
       var n = 0;
-      for (x = 0; x < W; x++) {
-        i = y * W + x;
-        r = d[i * 4]; g = d[i * 4 + 1]; b = d[i * 4 + 2];
-        lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-        mx = r > g ? r : g; if (b > mx) mx = b;
-        mn = r < g ? r : g; if (b < mn) mn = b;
-        sat = (mx - mn) / (mx || 1);
-        var skin = r > g + 10 && r > b + 8 && r > 70;
-        var whiteIce = lum > 148 && b + 6 >= r && sat < 0.45 && !skin;
-        var blueDrip = b > r + 4 && b >= g - 4 && lum > 96 && lum < 214 && sat > 0.06 && sat < 0.58 && !skin;
-        if (whiteIce || blueDrip) { mask[i] = 1; n++; }
-      }
+      for (x = 0; x < W; x++) if (lumAt(y * W + x) > 150) n++;
       row[y] = n / W;
     }
-    var bandH = Math.max(8, Math.round(H * 0.3));
+    var bandH = Math.max(10, Math.round(H * 0.28));
     var bestY = 0, bestS = -1, s, yy;
     for (y = 0; y + bandH <= H; y++) {
       s = 0;
@@ -964,29 +955,45 @@
       if (s > bestS) { bestS = s; bestY = y; }
     }
     var y1 = bestY + bandH;
-    for (i = 0; i < mask.length; i++) {
-      y = (i / W) | 0;
-      if (y < bestY || y >= y1) mask[i] = 0;
+    var light = [];
+    var darkMask = new Uint8Array(W * H);
+    for (y = bestY; y < y1; y++) {
+      for (x = 0; x < W; x++) {
+        i = y * W + x;
+        var lum = lumAt(i);
+        if (lum > 165) light.push(i);
+        else if (lum < 90) darkMask[i] = 1;
+      }
     }
+    if (light.length < 30) return "";
+    light.sort(function (a, b) { return lumAt(a) - lumAt(b); });
+    var mid = light[(light.length / 2) | 0];
+    function hex2(n) { var v = Math.max(0, Math.min(255, Math.round(n))); return (v < 16 ? "0" : "") + v.toString(16); }
+    window.__rwThingBg = "#" + hex2(d[mid * 4]) + hex2(d[mid * 4 + 1]) + hex2(d[mid * 4 + 2]);
     var seen = new Uint8Array(W * H);
-    var keep = new Uint8Array(W * H);
+    var comps = [];
     var stack = [];
     for (y = bestY; y < y1; y++) {
       for (x = 0; x < W; x++) {
         i = y * W + x;
-        if (!mask[i] || seen[i]) continue;
+        if (!darkMask[i] || seen[i]) continue;
         stack.length = 0;
         stack.push(i);
         seen[i] = 1;
         var pts = [];
+        var x0 = x, x2 = x, y0 = y, y2 = y;
         while (stack.length) {
           var p = stack.pop();
           pts.push(p);
           var py = (p / W) | 0, px = p - py * W;
+          if (px < x0) x0 = px;
+          if (px > x2) x2 = px;
+          if (py < y0) y0 = py;
+          if (py > y2) y2 = py;
           var dirs = [p - 1, p + 1, p - W, p + W];
           for (var di = 0; di < 4; di++) {
             var np = dirs[di];
-            if (np < 0 || np >= mask.length || seen[np] || !mask[np]) continue;
+            if (np < 0 || np >= darkMask.length || seen[np] || !darkMask[np]) continue;
             var ny = (np / W) | 0, nx = np - ny * W;
             if (di < 2 && ny !== py) continue;
             if ((di === 0 && nx !== px - 1) || (di === 1 && nx !== px + 1)) continue;
@@ -994,51 +1001,59 @@
             stack.push(np);
           }
         }
-        if (pts.length >= 36) {
-          for (var k = 0; k < pts.length; k++) keep[pts[k]] = 1;
-        }
+        if (pts.length >= 18) comps.push({ pts: pts, x0: x0, x1: x2, y0: y0, y1: y2, area: pts.length });
       }
     }
-    var grown = new Uint8Array(keep);
-    for (y = bestY + 1; y < y1 - 1; y++) {
-      for (x = 1; x < W - 1; x++) {
-        i = y * W + x;
-        if (keep[i]) continue;
-        var nbor = (keep[i - 1] ? 1 : 0) + (keep[i + 1] ? 1 : 0) + (keep[i - W] ? 1 : 0) + (keep[i + W] ? 1 : 0);
-        if (nbor < 2) continue;
-        r = d[i * 4]; g = d[i * 4 + 1]; b = d[i * 4 + 2];
-        lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-        if (lum > 100 && !(r > g + 14 && r > b + 10)) grown[i] = 1;
-      }
-    }
-    keep = grown;
+    if (!comps.length) return "";
+    var bigTop = y1, bigBot = bestY;
+    comps.forEach(function (c) {
+      if (c.area < W * 1.4) return;
+      if (c.y0 < bigTop) bigTop = c.y0;
+      if (c.y1 > bigBot) bigBot = c.y1;
+    });
+    if (bigBot <= bigTop) { bigTop = bestY; bigBot = y1; }
+    var allow = Math.max(4, Math.round((bigBot - bigTop) * 0.42));
+    var cutY = bigTop - allow;
+    var keep = new Uint8Array(W * H);
+    comps.forEach(function (c) {
+      if (c.y1 < cutY) return;
+      if (c.y0 < cutY && c.area < W * 1.2) return;
+      for (var k = 0; k < c.pts.length; k++) keep[c.pts[k]] = 1;
+    });
     var minX = W, minY = H, maxX = 0, maxY = 0, ink = 0;
-    for (y = bestY; y < y1; y++) {
-      for (x = 0; x < W; x++) {
-        if (!keep[y * W + x]) continue;
-        ink++;
-        if (x < minX) minX = x;
-        if (y < minY) minY = y;
-        if (x > maxX) maxX = x;
-        if (y > maxY) maxY = y;
-      }
+    for (i = 0; i < keep.length; i++) {
+      if (!keep[i]) continue;
+      ink++;
+      y = (i / W) | 0;
+      x = i - y * W;
+      if (x < minX) minX = x;
+      if (y < minY) minY = y;
+      if (x > maxX) maxX = x;
+      if (y > maxY) maxY = y;
     }
     if (ink < 40 || maxX <= minX || maxY <= minY) return "";
+    var pad = 2;
+    minX = Math.max(0, minX - pad);
+    minY = Math.max(0, minY - pad);
+    maxX = Math.min(W - 1, maxX + pad);
+    maxY = Math.min(H - 1, maxY + pad);
     var cw = maxX - minX + 1, ch = maxY - minY + 1;
     var cut = document.createElement("canvas");
     cut.width = cw;
     cut.height = ch;
     var o = cut.getContext("2d");
-    var copy = o.createImageData(cw, ch);
+    o.fillStyle = window.__rwThingBg;
+    o.fillRect(0, 0, cw, ch);
+    var copy = o.getImageData(0, 0, cw, ch);
     var cd = copy.data;
     for (y = 0; y < ch; y++) {
       for (x = 0; x < cw; x++) {
-        var sp = ((minY + y) * W + (minX + x)) * 4;
-        if (!keep[(minY + y) * W + (minX + x)]) continue;
+        var sp = (minY + y) * W + (minX + x);
+        if (!keep[sp]) continue;
         var di = (y * cw + x) * 4;
-        cd[di] = d[sp];
-        cd[di + 1] = d[sp + 1];
-        cd[di + 2] = d[sp + 2];
+        cd[di] = d[sp * 4];
+        cd[di + 1] = d[sp * 4 + 1];
+        cd[di + 2] = d[sp * 4 + 2];
         cd[di + 3] = 255;
       }
     }
@@ -1047,13 +1062,14 @@
     spun.width = ch;
     spun.height = cw;
     var out = spun.getContext("2d");
-    out.fillStyle = "#102033";
+    out.fillStyle = window.__rwThingBg;
     out.fillRect(0, 0, ch, cw);
     out.translate(ch, 0);
     out.rotate(Math.PI / 2);
     out.drawImage(cut, 0, 0);
     try { return spun.toDataURL("image/png"); } catch (eUrl) { return ""; }
   }
+
   function queueSpineMatch(slug, url) {
     window.__rwSpinePending = window.__rwSpinePending || {};
     window.__rwSpineReady = window.__rwSpineReady || {};
@@ -1077,7 +1093,7 @@
         if (slug === "the-thing-1982") {
           var thing = "";
           try { thing = liftThingLetters(im); } catch (eThing) { thing = ""; }
-          if (thing) { finish({ letters: 1, ink: "#d5e4f0", src: thing, bg: "#102033", logo: 1 }); return; }
+          if (thing) { finish({ letters: 1, ink: "#1a120c", src: thing, bg: window.__rwThingBg || "#d5e6f0", logo: 1 }); return; }
         }
         var ink = "#f4f1ea";
         try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
@@ -18063,7 +18079,7 @@
           img.style.setProperty("max-width", "none", "important");
           img.style.setProperty("max-height", "none", "important");
           img.style.setProperty("object-fit", "contain", "important");
-          img.style.setProperty("background-color", "#102033", "important");
+          img.style.setProperty("background-color", window.__rwThingBg || "#d5e6f0", "important");
         } else if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-letters") === "1") {
           img.style.setProperty("top", "11%", "important");
           img.style.setProperty("bottom", "13%", "important");
@@ -18310,7 +18326,7 @@
     }
     if (slug === "the-thing-1982") {
       box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
-        sp.style.setProperty("background-color", "#102033", "important");
+        sp.style.setProperty("background-color", window.__rwThingBg || "#d5e6f0", "important");
         sp.style.setProperty("background-image", "none", "important");
       });
       box.querySelectorAll(".vhs-spine-vhs, .vhs-spine-no, .vhs-spine-year, .vhs-spine-word").forEach(function (el) {
