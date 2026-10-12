@@ -18205,7 +18205,7 @@
             sp.style.setProperty("background-image", "none", "important");
           });
         }
-      } else if (box.getAttribute("data-spine-match") === "1") {
+      } else if (box.getAttribute("data-spine-match") === "1" && !bakedMatch) {
         box.removeAttribute("data-spine-match");
       }
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
