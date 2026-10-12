@@ -1317,6 +1317,60 @@
       }
     }
     if (keptN < 24 || keptN / area > 0.78) return null;
+    function logoColor(r0, g0, b0) {
+      var L = lumOf(r0, g0, b0);
+      var mx = r0 > g0 ? r0 : g0; if (b0 > mx) mx = b0;
+      var mn = r0 < g0 ? r0 : g0; if (b0 < mn) mn = b0;
+      if (L > 188 && mx - mn < 95) return true;
+      if (r0 > 160 && g0 > 85 && b0 < 150 && r0 > b0 + 24) return true;
+      if (r0 > 150 && r0 > g0 + 40 && b0 < 80 && r0 > b0 + 50) return true;
+      if (b0 > 85 && g0 > 60 && b0 >= r0 - 10 && L > 70 && L < 210 && r0 < 180) return true;
+      return false;
+    }
+    if (mode === "logo") {
+      var fringe = [];
+      for (i = 0; i < keep.length; i++) {
+        if (!keep[i]) continue;
+        if (!logoColor(d[i * 4], d[i * 4 + 1], d[i * 4 + 2])) fringe.push(i);
+      }
+      for (i = 0; i < fringe.length; i++) { keep[fringe[i]] = 0; keptN--; }
+      var lspeck = [];
+      for (i = 0; i < keep.length; i++) {
+        if (!keep[i]) continue;
+        var lt = (keep[i - 1] ? 1 : 0) + (keep[i + 1] ? 1 : 0) + (keep[i - W] ? 1 : 0) + (keep[i + W] ? 1 : 0);
+        if (lt < 2) lspeck.push(i);
+      }
+      for (i = 0; i < lspeck.length; i++) { keep[lspeck[i]] = 0; keptN--; }
+      var seenLogo = new Uint8Array(keep.length);
+      for (y = y0; y < y1; y++) {
+        for (x = x0; x < x1; x++) {
+          i = y * W + x;
+          if (!keep[i] || seenLogo[i]) continue;
+          var stack = [i];
+          seenLogo[i] = 1;
+          var pts = [];
+          while (stack.length) {
+            var p = stack.pop();
+            pts.push(p);
+            var dirs = [p - 1, p + 1, p - W, p + W];
+            for (var di = 0; di < 4; di++) {
+              var np = dirs[di];
+              if (np < 0 || np >= keep.length || seenLogo[np] || !keep[np]) continue;
+              var ny = (np / W) | 0, nx = np - ny * W;
+              var py = (p / W) | 0, px = p - py * W;
+              if (di < 2 && ny !== py) continue;
+              if ((di === 0 && nx !== px - 1) || (di === 1 && nx !== px + 1)) continue;
+              seenLogo[np] = 1;
+              stack.push(np);
+            }
+          }
+          if (pts.length < 64) {
+            for (var pi = 0; pi < pts.length; pi++) { keep[pts[pi]] = 0; keptN--; }
+          }
+        }
+      }
+      if (keptN < 24) return null;
+    }
     var minX = W, minY = H, maxX = 0, maxY = 0;
     for (i = 0; i < keep.length; i++) {
       if (!keep[i]) continue;
@@ -1351,9 +1405,11 @@
         if (!keep[sp]) continue;
         var di = (y * cw + x) * 4;
         if (mode === "cleanred") {
-          cd[di] = 198;
-          cd[di + 1] = 12;
-          cd[di + 2] = 16;
+          cd[di] = 255;
+          cd[di + 1] = 32;
+          cd[di + 2] = 24;
+        } else if (mode === "logo" && !logoColor(d[sp * 4], d[sp * 4 + 1], d[sp * 4 + 2])) {
+          continue;
         } else {
           cd[di] = d[sp * 4];
           cd[di + 1] = d[sp * 4 + 1];
@@ -1374,6 +1430,16 @@
       tctx.fillRect(0, 0, taller.width, taller.height);
       tctx.drawImage(cut, 0, 0, cw, taller.height);
       srcCut = taller;
+    }
+    if (mode === "logo") {
+      var big = document.createElement("canvas");
+      big.width = srcCut.width * 2;
+      big.height = srcCut.height * 2;
+      var bx = big.getContext("2d");
+      bx.imageSmoothingEnabled = true;
+      bx.imageSmoothingQuality = "high";
+      bx.drawImage(srcCut, 0, 0, big.width, big.height);
+      srcCut = big;
     }
     var spun = document.createElement("canvas");
     spun.width = srcCut.height;
