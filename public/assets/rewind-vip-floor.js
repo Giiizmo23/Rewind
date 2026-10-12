@@ -139,7 +139,9 @@
     spineMatchCss.textContent =
       "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-logo{display:block!important;position:absolute!important;inset:auto!important;top:16%!important;bottom:24%!important;left:22%!important;right:22%!important;width:56%!important;height:60%!important;max-width:56%!important;max-height:60%!important;margin:auto!important;object-fit:contain!important;object-position:center center!important;transform:none!important;filter:none!important;background:transparent!important;z-index:2!important;outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
       "html body .vhs-spine-logo{outline:none!important;outline-offset:0!important;border:0!important;box-shadow:none!important}" +
-      "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-word{display:none!important}";
+      "html body .vhs-box[data-slug][data-spine-match='1'] .vhs-spine-word{display:none!important}" +
+      "html body .vhs-box[data-spine-letters='1'] .vhs-spine-logo{top:11%!important;bottom:13%!important;left:7%!important;right:7%!important;width:86%!important;height:76%!important;max-width:86%!important;max-height:76%!important;object-fit:contain!important}" +
+      "html body .vhs-box[data-spine-letters='1'] .vhs-spine-word{display:none!important}";
     (document.head || document.documentElement).appendChild(spineMatchCss);
   }
   function spineHex(rgb) {
@@ -843,6 +845,45 @@
     var cut = dropPhotoColumns(mask, w, h);
     return flattenTitle(canvas, cut);
   }
+  function spineTitleFor(slug) {
+    var box = document.querySelector('.vhs-box[data-slug="' + slug + '"]');
+    var slot = box && box.closest && box.closest("article");
+    var heading = slot && slot.querySelector(".tape-slot-title");
+    if (heading && heading.textContent.trim()) return heading.textContent.trim();
+    var cat = window.__rwCatalog && window.__rwCatalog[slug];
+    if (cat && cat.title) return cat.title;
+    return String(slug || "").replace(/-(19|20)\d\d$/, "").replace(/-/g, " ");
+  }
+  function drawSpineLetters(title, ink) {
+    title = String(title || "").replace(/\s+/g, " ").trim().toUpperCase();
+    if (!title) return "";
+    var long = 640, thick = 78;
+    var flat = document.createElement("canvas");
+    flat.width = long;
+    flat.height = thick;
+    var ctx = flat.getContext("2d");
+    var size = 64;
+    function font(px) { return "700 " + px + "px Oswald, 'Arial Narrow', Impact, sans-serif"; }
+    ctx.font = font(size);
+    ctx.letterSpacing = "0.04em";
+    while (size > 12 && ctx.measureText(title).width > long * 0.9) {
+      size -= 1;
+      ctx.font = font(size);
+    }
+    ctx.clearRect(0, 0, long, thick);
+    ctx.fillStyle = ink || "#f4f1ea";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(title, long / 2, thick / 2 + size * 0.04);
+    var spun = document.createElement("canvas");
+    spun.width = thick;
+    spun.height = long;
+    var out = spun.getContext("2d");
+    out.translate(thick, 0);
+    out.rotate(Math.PI / 2);
+    out.drawImage(flat, 0, 0);
+    try { return spun.toDataURL("image/png"); } catch (eUrl) { return ""; }
+  }
   function cropTitleSpine(im, band, slug) {
     var nw = im.naturalWidth, nh = im.naturalHeight;
     if (!nw || !nh) return { skip: 1 };
@@ -898,14 +939,21 @@
       try { restick(url); } catch (eStick) {}
     }
     function paintFrom(im) {
-      var use = band || window.__rwTitleAt[url] || null;
-      if (!use) {
-        try { use = guessTitleBand(im); } catch (eGuess) { use = null; }
-      }
-      if (use) window.__rwTitleAt[url] = use;
-      var ink = "#f4f1ea";
-      try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
-      finish({ ink: ink, letters: 1 });
+      var go = function () {
+        var use = band || window.__rwTitleAt[url] || null;
+        if (!use) {
+          try { use = guessTitleBand(im); } catch (eGuess) { use = null; }
+        }
+        if (use) window.__rwTitleAt[url] = use;
+        var ink = "#f4f1ea";
+        try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
+        var src = "";
+        try { src = drawSpineLetters(spineTitleFor(slug), ink); } catch (eDraw) { src = ""; }
+        if (!src) { finish({ letters: 1, ink: ink }); return; }
+        finish({ letters: 1, ink: ink, src: src });
+      };
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+      else go();
     }
     var tmdb = url.indexOf("image.tmdb.org") >= 0 || url.indexOf("themoviedb.org") >= 0;
     var loader = new Image();
@@ -17871,7 +17919,16 @@
         img.style.setProperty("outline-offset", "0", "important");
         img.style.setProperty("border", "0", "important");
         img.style.setProperty("box-shadow", "none", "important");
-        if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-match") === "1") {
+        if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-letters") === "1") {
+          img.style.setProperty("top", "11%", "important");
+          img.style.setProperty("bottom", "13%", "important");
+          img.style.setProperty("left", "7%", "important");
+          img.style.setProperty("right", "7%", "important");
+          img.style.setProperty("width", "86%", "important");
+          img.style.setProperty("height", "76%", "important");
+          img.style.setProperty("max-width", "86%", "important");
+          img.style.setProperty("max-height", "76%", "important");
+        } else if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-match") === "1") {
           img.style.setProperty("top", "16%", "important");
           img.style.setProperty("bottom", "24%", "important");
           img.style.setProperty("left", "22%", "important");
@@ -17887,7 +17944,7 @@
             img.style.setProperty("max-height", "50%", "important");
           }
         }
-        if (img.closest("[data-slug='the-shining']")) {
+        if (img.closest("[data-slug='the-shining']") && img.closest(".vhs-box").getAttribute("data-spine-letters") !== "1") {
           img.style.setProperty("top", "9%", "important");
           img.style.setProperty("bottom", "12%", "important");
           img.style.setProperty("left", "16%", "important");
@@ -17897,7 +17954,7 @@
           img.style.setProperty("max-width", "68%", "important");
           img.style.setProperty("max-height", "79%", "important");
         }
-        if (img.closest("[data-slug='halloween-1978']")) {
+        if (img.closest("[data-slug='halloween-1978']") && img.closest(".vhs-box").getAttribute("data-spine-letters") !== "1") {
           img.style.setProperty("inset", "auto", "important");
           img.style.setProperty("top", "16%", "important");
           img.style.setProperty("right", "8%", "important");
@@ -17970,6 +18027,8 @@
       }
       var spineHit = !!(spineReady && spineReady.src);
       if (spineHit) {
+        if (spineReady.letters) box.setAttribute("data-spine-letters", "1");
+        else box.removeAttribute("data-spine-letters");
         box.setAttribute("data-spine-match", "1");
         if (spineReady.bg) {
           box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
