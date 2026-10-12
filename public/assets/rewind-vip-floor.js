@@ -1419,59 +1419,15 @@
     }
     o.putImageData(copy, 0, 0);
     var srcCut = cut;
-    if (mode === "cleanred" && chh > 4) {
+    if (mode === "cleanred" && chh > 4 && cw > 4) {
       var fat = document.createElement("canvas");
       fat.width = cw;
-      fat.height = Math.max(chh + 2, Math.round(chh * 3.6));
-      var fctx = fat.getContext("2d", { willReadFrequently: true });
-      fctx.imageSmoothingEnabled = true;
-      fctx.imageSmoothingQuality = "high";
-      fctx.fillStyle = "#080808";
+      fat.height = chh * 4;
+      var fctx = fat.getContext("2d");
+      fctx.imageSmoothingEnabled = false;
+      fctx.fillStyle = bg || "#080808";
       fctx.fillRect(0, 0, fat.width, fat.height);
       fctx.drawImage(cut, 0, 0, cw, fat.height);
-      var fd = fctx.getImageData(0, 0, fat.width, fat.height);
-      var px = fd.data;
-      var fw = fat.width;
-      var on = new Uint8Array(fw * fat.height);
-      var fi;
-      for (fi = 0; fi < px.length; fi += 4) {
-        var rr = px[fi], gg = px[fi + 1], bb = px[fi + 2];
-        if (rr > 90 && rr > gg + 20 && rr > bb + 20) on[fi >> 2] = 1;
-      }
-      var seenF = new Uint8Array(on.length);
-      for (var fy = 0; fy < fat.height; fy++) {
-        for (var fx = 0; fx < fw; fx++) {
-          var start = fy * fw + fx;
-          if (!on[start] || seenF[start]) continue;
-          var stack = [start];
-          seenF[start] = 1;
-          var pts = [];
-          while (stack.length) {
-            var p = stack.pop();
-            pts.push(p);
-            var dirs = [p - 1, p + 1, p - fw, p + fw];
-            for (var dj = 0; dj < 4; dj++) {
-              var np = dirs[dj];
-              if (np < 0 || np >= on.length || seenF[np] || !on[np]) continue;
-              var ny = (np / fw) | 0, nx = np - ny * fw;
-              var py = (p / fw) | 0, px0 = p - py * fw;
-              if (dj < 2 && ny !== py) continue;
-              if ((dj === 0 && nx !== px0 - 1) || (dj === 1 && nx !== px0 + 1)) continue;
-              seenF[np] = 1;
-              stack.push(np);
-            }
-          }
-          if (pts.length < 420) {
-            for (var pk = 0; pk < pts.length; pk++) on[pts[pk]] = 0;
-          }
-        }
-      }
-      for (fi = 0; fi < on.length; fi++) {
-        var o4 = fi * 4;
-        if (on[fi]) { px[o4] = 255; px[o4 + 1] = 16; px[o4 + 2] = 0; px[o4 + 3] = 255; }
-        else { px[o4] = 8; px[o4 + 1] = 8; px[o4 + 2] = 8; px[o4 + 3] = 255; }
-      }
-      fctx.putImageData(fd, 0, 0);
       srcCut = fat;
     }
     if (mode === "logo" && srcCut.width < 150) {
@@ -18567,6 +18523,25 @@
           img.style.setProperty("height", "79%", "important");
           img.style.setProperty("max-width", "80%", "important");
           img.style.setProperty("max-height", "79%", "important");
+        }
+        if (img.closest("[data-slug='first-blood']")) {
+          img.style.setProperty("display", "block", "important");
+          img.style.setProperty("opacity", "1", "important");
+          img.style.setProperty("visibility", "visible", "important");
+          img.style.setProperty("inset", "auto", "important");
+          img.style.setProperty("top", "14%", "important");
+          img.style.setProperty("bottom", "16%", "important");
+          img.style.setProperty("left", "6%", "important");
+          img.style.setProperty("right", "6%", "important");
+          img.style.setProperty("width", "88%", "important");
+          img.style.setProperty("height", "70%", "important");
+          img.style.setProperty("max-width", "88%", "important");
+          img.style.setProperty("max-height", "70%", "important");
+          img.style.setProperty("margin", "auto", "important");
+          img.style.setProperty("object-fit", "contain", "important");
+          img.style.setProperty("object-position", "center center", "important");
+          img.style.setProperty("filter", "none", "important");
+          img.style.setProperty("background", "transparent", "important");
         }
         if (img.closest("[data-slug='halloween-1978']") && img.closest(".vhs-box").getAttribute("data-spine-letters") !== "1") {
           img.style.setProperty("inset", "auto", "important");
