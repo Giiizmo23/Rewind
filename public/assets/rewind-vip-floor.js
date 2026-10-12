@@ -658,6 +658,191 @@
     }
     return out;
   }
+  function spineTypeStats(mask, w, h) {
+    var runs = 0, on = false, first = -1, last = -1, ink = 0, fullRun = 0, fullMax = 0;
+    var x, y, hit, col;
+    for (x = 0; x < w; x++) {
+      hit = 0;
+      for (y = 0; y < h; y++) if (mask[y * w + x]) hit++;
+      ink += hit;
+      col = hit > Math.max(2, h * 0.12);
+      if (col) {
+        if (first < 0) first = x;
+        last = x;
+        if (!on) { runs++; on = true; }
+      } else on = false;
+      if (hit > h * 0.62) fullRun++;
+      else { if (fullRun > fullMax) fullMax = fullRun; fullRun = 0; }
+    }
+    if (fullRun > fullMax) fullMax = fullRun;
+    return {
+      runs: runs,
+      span: first < 0 ? 0 : (last - first) / w,
+      frac: ink / (w * h),
+      photo: fullMax > w * 0.28
+    };
+  }
+  function spineMaskOk(mask, w, h) {
+    var t = spineTypeStats(mask, w, h);
+    return t.runs >= 2 && t.runs <= 40 && t.span >= 0.42 && t.frac >= 0.025 && t.frac <= 0.5 && !t.photo;
+  }
+  function dropPhotoColumns(mask, w, h) {
+    var drop = new Uint8Array(w);
+    var run = 0, start = 0, x, y;
+    function mark(a, b) { for (var i = a; i < b; i++) drop[i] = 1; }
+    for (x = 0; x <= w; x++) {
+      var full = false;
+      if (x < w) {
+        var hit = 0;
+        for (y = 0; y < h; y++) if (mask[y * w + x]) hit++;
+        full = hit > h * 0.62;
+      }
+      if (full) { if (!run) start = x; run++; }
+      else { if (run > w * 0.22) mark(start, x); run = 0; }
+    }
+    var out = new Uint8Array(mask);
+    var cut = 0;
+    for (x = 0; x < w; x++) if (drop[x]) {
+      cut++;
+      for (y = 0; y < h; y++) out[y * w + x] = 0;
+    }
+    return cut ? out : mask;
+  }
+  function flattenTitle(canvas, mask) {
+    var w = canvas.width, h = canvas.height;
+    if (!w || !h || !spineMaskOk(mask, w, h)) return null;
+    var ctx = canvas.getContext("2d", { willReadFrequently: true });
+    var d = ctx.getImageData(0, 0, w, h).data;
+    var rs = [], gs = [], bs = [], i, n = w * h;
+    for (i = 0; i < n; i++) if (mask[i]) {
+      rs.push(d[i * 4]);
+      gs.push(d[i * 4 + 1]);
+      bs.push(d[i * 4 + 2]);
+    }
+    if (rs.length < 16) return null;
+    function mid(a) { a.sort(function (x, y) { return x - y; }); return a[(a.length / 2) | 0]; }
+    var mr = mid(rs), mg = mid(gs), mb = mid(bs);
+    var out = ctx.createImageData(w, h);
+    var o = out.data;
+    for (i = 0; i < n; i++) {
+      if (!mask[i]) continue;
+      o[i * 4] = mr;
+      o[i * 4 + 1] = mg;
+      o[i * 4 + 2] = mb;
+      o[i * 4 + 3] = 255;
+    }
+    var cut = document.createElement("canvas");
+    cut.width = w;
+    cut.height = h;
+    cut.getContext("2d").putImageData(out, 0, 0);
+    return cut;
+  }
+  function sampleTitleInk(im, band) {
+    function region(box) {
+      var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
+      if (!nw || !nh) return { ink: "#f4f1ea", count: 0 };
+      var sx = Math.max(0, Math.round(box[0] * nw));
+      var sy = Math.max(0, Math.round(box[1] * nh));
+      var sw = Math.max(2, Math.round((box[2] - box[0]) * nw));
+      var sh = Math.max(2, Math.round((box[3] - box[1]) * nh));
+      if (sx + sw > nw) sw = nw - sx;
+      if (sy + sh > nh) sh = nh - sy;
+      var W = 96, H = Math.max(8, Math.round(W * sh / Math.max(1, sw)));
+      var canvas = document.createElement("canvas");
+      canvas.width = W;
+      canvas.height = H;
+      var ctx = canvas.getContext("2d", { willReadFrequently: true });
+      try { ctx.drawImage(im, sx, sy, sw, sh, 0, 0, W, H); } catch (eDraw) { return { ink: "#f4f1ea", count: 0 }; }
+      var d;
+      try { d = ctx.getImageData(0, 0, W, H).data; } catch (eRead) { return { ink: "#f4f1ea", count: 0 }; }
+      function lum(r, g, b) { return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255; }
+      function skin(r, g, b) { return r > 90 && g > 40 && b > 20 && r > g && r > b && (r - g) > 12 && g < 210; }
+      function mid(a) { a.sort(function (p, q) { return p - q; }); return a[(a.length / 2) | 0]; }
+      var fr = [], fg = [], fb = [];
+      var x, y;
+      for (x = 0; x < W; x++) {
+        var top = x * 4, bot = ((H - 1) * W + x) * 4;
+        fr.push(d[top], d[bot]);
+        fg.push(d[top + 1], d[bot + 1]);
+        fb.push(d[top + 2], d[bot + 2]);
+      }
+      var gr = mid(fr), gg = mid(fg), gb = mid(fb), gL = lum(gr, gg, gb);
+      var rs = [], gs = [], bs = [];
+      for (y = 0; y < W * H; y++) {
+        var r = d[y * 4], g = d[y * 4 + 1], b = d[y * 4 + 2];
+        if (skin(r, g, b)) continue;
+        var dist = Math.sqrt((r - gr) * (r - gr) + (g - gg) * (g - gg) + (b - gb) * (b - gb));
+        if (dist > 42 || Math.abs(lum(r, g, b) - gL) > 0.22) {
+          rs.push(r); gs.push(g); bs.push(b);
+        }
+      }
+      if (rs.length < 12) return { ink: gL > 0.62 ? spineHex([gr, gg, gb]) : "#f4f1ea", count: rs.length };
+      var ir = mid(rs), ig = mid(gs), ib = mid(bs), iL = lum(ir, ig, ib);
+      if (iL < 0.34) {
+        ir = gL > 0.55 ? gr : 243;
+        ig = gL > 0.55 ? gg : 230;
+        ib = gL > 0.55 ? gb : 200;
+      }
+      function rel(r, g, b) {
+        function f(c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+        return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+      }
+      var ratio = (rel(ir, ig, ib) + 0.05) / (rel(20, 18, 16) + 0.05);
+      if (ratio < 4.5) {
+        var t = Math.min(0.82, (4.5 - ratio) / 4.5);
+        ir = Math.round(ir + (244 - ir) * t);
+        ig = Math.round(ig + (241 - ig) * t);
+        ib = Math.round(ib + (234 - ib) * t);
+      }
+      return { ink: spineHex([ir, ig, ib]), count: rs.length };
+    }
+    if (!band) {
+      var top = region([0.04, 0.02, 0.96, 0.24]);
+      var bot = region([0.04, 0.74, 0.96, 0.98]);
+      return (top.count >= bot.count ? top : bot).ink;
+    }
+    return region(band).ink;
+  }
+  function maskOfTitle(canvas) {
+    var w = canvas.width, h = canvas.height;
+    if (w < 8 || h < 8) return null;
+    var ctx = canvas.getContext("2d", { willReadFrequently: true });
+    var d = ctx.getImageData(0, 0, w, h).data;
+    var n = w * h, i, a = 0;
+    for (i = 0; i < n; i++) if (d[i * 4 + 3] > 24) a++;
+    var mask = new Uint8Array(n);
+    if (a > n * 0.02 && a < n * 0.9) {
+      for (i = 0; i < n; i++) if (d[i * 4 + 3] > 24) mask[i] = 1;
+      return mask;
+    }
+    var pts = [], step = Math.max(1, (w / 18) | 0), x, y;
+    function at(px, py) {
+      var q = (py * w + px) * 4;
+      return [d[q], d[q + 1], d[q + 2]];
+    }
+    for (x = 0; x < w; x += step) { pts.push(at(x, 0)); pts.push(at(x, h - 1)); }
+    for (y = 0; y < h; y += step) { pts.push(at(0, y)); pts.push(at(w - 1, y)); }
+    function med(c) {
+      var col = pts.map(function (p) { return p[c]; }).sort(function (p, q) { return p - q; });
+      return col[(col.length / 2) | 0];
+    }
+    var gr = med(0), gg = med(1), gb = med(2);
+    canvas.__rwGround = [gr, gg, gb];
+    for (i = 0; i < n; i++) {
+      var dr = d[i * 4] - gr, dg = d[i * 4 + 1] - gg, db = d[i * 4 + 2] - gb;
+      if (Math.sqrt(dr * dr + dg * dg + db * db) > 40) mask[i] = 1;
+    }
+    return mask;
+  }
+  function plainTitle(canvas) {
+    var mask = maskOfTitle(canvas);
+    if (!mask) return null;
+    var w = canvas.width, h = canvas.height;
+    var flat = flattenTitle(canvas, mask);
+    if (flat) return flat;
+    var cut = dropPhotoColumns(mask, w, h);
+    return flattenTitle(canvas, cut);
+  }
   function cropTitleSpine(im, band, slug) {
     var nw = im.naturalWidth, nh = im.naturalHeight;
     if (!nw || !nh) return { skip: 1 };
@@ -674,18 +859,27 @@
     var trimmed = trimTitleCanvas(slice);
     var lifted = null;
     try { lifted = liftTitleLetters(trimmed, slug); } catch (eLift) { lifted = null; }
-    var spunSource = lifted ? lifted.canvas : trimmed;
-    var cw = spunSource.width, ch = spunSource.height;
+    var letters = null;
+    if (lifted && lifted.canvas) {
+      var kept = maskOfTitle(lifted.canvas);
+      letters = kept ? flattenTitle(lifted.canvas, kept) : null;
+      if (!letters && kept) letters = flattenTitle(lifted.canvas, dropPhotoColumns(kept, lifted.canvas.width, lifted.canvas.height));
+    }
+    if (!letters) {
+      try { letters = plainTitle(trimmed); } catch (ePlain) { letters = null; }
+    }
+    if (!letters) return { skip: 1 };
+    var cw = letters.width, ch = letters.height;
     var spun = document.createElement("canvas");
     spun.width = ch;
     spun.height = cw;
     var octx = spun.getContext("2d");
     octx.translate(ch, 0);
     octx.rotate(Math.PI / 2);
-    octx.drawImage(spunSource, 0, 0);
-    var bg = lifted ? lifted.bg : spineHex(trimmed.__rwGround || [8, 8, 8]);
+    octx.drawImage(letters, 0, 0);
+    var bg = lifted && lifted.bg ? lifted.bg : spineHex(trimmed.__rwGround || [12, 12, 12]);
     var dataUrl;
-    try { dataUrl = lifted ? spun.toDataURL("image/png") : spun.toDataURL("image/jpeg", 0.86); }
+    try { dataUrl = spun.toDataURL("image/png"); }
     catch (eCrop) { return { skip: 1 }; }
     if (!dataUrl || dataUrl.length < 32) return { skip: 1 };
     return { src: dataUrl, bg: bg };
@@ -709,9 +903,9 @@
         try { use = guessTitleBand(im); } catch (eGuess) { use = null; }
       }
       if (use) window.__rwTitleAt[url] = use;
-      if (!use) { finish({ skip: 1 }); return; }
-      try { finish(cropTitleSpine(im, use, slug)); }
-      catch (ePaint) { finish({ skip: 1 }); }
+      var ink = "#f4f1ea";
+      try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
+      finish({ ink: ink, letters: 1 });
     }
     var tmdb = url.indexOf("image.tmdb.org") >= 0 || url.indexOf("themoviedb.org") >= 0;
     var loader = new Image();
@@ -17625,7 +17819,7 @@
       }
       var spineFile = slug === "back-to-the-future" ? "back-to-the-future" : slug;
       var spineVer = "572";
-      function showSpineWord(ink) {
+      function showSpineWord(ink, color) {
         var word = ink.querySelector(".vhs-spine-word");
         if (!word) {
           word = document.createElement("span");
@@ -17633,7 +17827,24 @@
           ink.appendChild(word);
         }
         word.textContent = spineTitle;
+        var n = Math.max(1, String(spineTitle || "").replace(/\s+/g, "").length);
+        var boxH = 0;
+        try { boxH = ink.getBoundingClientRect().height || 0; } catch (eH) {}
+        var inner = (boxH || 168) * 0.66;
+        var size = Math.round(inner / (n * 0.62));
+        if (size < 7) size = 7;
+        if (size > 15) size = 15;
+        var track = n > 20 ? "0.01em" : n > 14 ? "0.05em" : "0.12em";
         word.style.setProperty("display", "flex", "important");
+        word.style.setProperty("color", color || "#f4f1ea", "important");
+        word.style.setProperty("font-family", "Oswald, 'Arial Narrow', Impact, sans-serif", "important");
+        word.style.setProperty("font-weight", "600", "important");
+        word.style.setProperty("font-size", size + "px", "important");
+        word.style.setProperty("letter-spacing", track, "important");
+        word.style.setProperty("line-height", "1", "important");
+        word.style.setProperty("text-transform", "uppercase", "important");
+        word.style.setProperty("white-space", "nowrap", "important");
+        word.style.setProperty("text-shadow", "0 1px 0 rgba(0,0,0,.55)", "important");
       }
       function hideSpineWord(ink) {
         var word = ink && ink.querySelector(".vhs-spine-word");
@@ -17784,14 +17995,16 @@
           return;
         }
         if (remoteCover && !keepPaintedSpine) {
-          if (cur && cur.indexOf("data:") !== 0) {
-            img.removeAttribute("src");
-          }
+          if (cur && cur.indexOf("/sleeves/spines/match/") < 0) img.removeAttribute("src");
           img.style.setProperty("display", "none", "important");
-          var inkWait = img.closest(".vhs-spine-ink");
-          if (spineReady && spineReady.skip) {
-            if (inkWait) showSpineWord(inkWait);
-          } else if (inkWait) hideSpineWord(inkWait);
+          var inkHost = img.closest(".vhs-spine-ink");
+          if (!SPINE_GROUND[slug]) {
+            box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
+              sp.style.setProperty("background-color", "#141210", "important");
+              sp.style.setProperty("background-image", "none", "important");
+            });
+          }
+          if (inkHost) showSpineWord(inkHost, spineReady && spineReady.ink);
           return;
         }
         var boxedSpine = paintedBox(slug);
