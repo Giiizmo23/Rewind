@@ -82,10 +82,15 @@
     p = String(p || pathNow()).replace(/\/$/, "") || "/";
     return /^\/films\/[^/]+$/.test(p);
   }
-  function rememberListPage() {
+  function rememberListPage(href) {
     try {
       if (isFilmDetail()) return;
       sessionStorage.setItem("rw-from", pathNow() + (location.search || ""));
+      sessionStorage.setItem("rw-from-y", String(window.scrollY || document.documentElement.scrollTop || 0));
+      var slug = "";
+      var m = String(href || "").match(/^\/films\/([^/?#]+)/);
+      if (m) slug = decodeURIComponent(m[1]);
+      if (slug) sessionStorage.setItem("rw-from-film", slug);
     } catch (e) {}
   }
   function fromListPage() {
@@ -108,21 +113,27 @@
       e.preventDefault();
       e.stopPropagation();
     }
+    var dest = fromListPage();
+    try { sessionStorage.setItem("rw-restore", "1"); } catch (err) {}
+    if (dest && dest !== "/") {
+      location.replace(dest);
+      return;
+    }
     try {
       if (document.referrer) {
         const u = new URL(document.referrer);
-        if (u.origin === location.origin && u.href.split("#")[0] !== location.href.split("#")[0]) {
+        if (u.origin === location.origin && u.pathname !== location.pathname) {
           history.back();
           return;
         }
       }
     } catch (err) {}
-    location.assign(fromListPage());
+    location.assign(dest || "/");
   }
   function goFilm(href) {
     if (!href) return;
     if (pathNow() === href.replace(/\/$/, "")) return;
-    rememberListPage();
+    rememberListPage(href);
     try {
       location.assign(href);
     } catch (e) {

@@ -9197,6 +9197,7 @@
   function installAisles() {
     const path = (location.pathname || "").replace(/\/$/, "") || "/";
     if (path !== "/films") return;
+    if (returnToSavedShelf()) return;
     if (window.__rwAislesOn) return;
     const sections = document.querySelectorAll("main .space-y-10 > section");
     if (!sections.length) {
@@ -11202,6 +11203,7 @@
       v.top.style.height = (startRow * g.row) + "px";
       v.bot.style.height = ((rows - endRow) * g.row) + "px";
       try { fixEveryBack(); } catch (eBack) {}
+      try { restoreListPlace(); } catch (ePlace) {}
     }
     function layoutAisles() {
       sections.forEach(layoutSection);
@@ -11497,12 +11499,26 @@
     window.addEventListener("popstate", function () {
       const here = (location.pathname || "").replace(/\/$/, "") || "/";
       if (here !== "/films") return;
-      applyAisle(themeOf(location.pathname + location.search) || "", true);
+      var saved = "";
+      try { saved = sessionStorage.getItem("rw-from") || ""; } catch (e) {}
+      var hereFull = here + (location.search || "");
+      var same = !!(saved && placeKey(hereFull) === placeKey(saved));
+      if (same) {
+        try { sessionStorage.setItem("rw-restore", "1"); } catch (e) {}
+      }
+      applyAisle(themeOf(location.pathname + location.search) || "", !same);
+      if (same) restoreListPlace();
     });
     window.addEventListener("scroll", scheduleAisles, { passive: true });
     window.addEventListener("resize", scheduleAisles);
     const initial = themeOf(location.pathname + location.search) || "";
     applied = initial;
+    if (initial) {
+      sections.forEach(function (section) {
+        var id = sectionTheme(section);
+        if (id) section.hidden = id !== initial;
+      });
+    }
     function aislesReady() {
       try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
       try { document.documentElement.setAttribute("data-aisles-counted", "1"); } catch (eCount) {}
@@ -11673,7 +11689,7 @@
         const q = (input.value || "").trim();
         const first = document.querySelector("[data-rw-hits] [data-film-href]");
         if (q && first) {
-          rememberListPage();
+          rememberListPage(first.getAttribute("data-film-href"));
           location.assign(first.getAttribute("data-film-href"));
         }
       });
@@ -11690,7 +11706,7 @@
           e.preventDefault();
           e.stopPropagation();
           if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-          rememberListPage();
+          rememberListPage(href);
           location.assign(href);
         },
         true,
@@ -11706,10 +11722,87 @@
     p = String(p || location.pathname || "").replace(/\/$/, "") || "/";
     return /^\/films\/[^/]+$/.test(p);
   }
-  function rememberListPage() {
+  function placeKey(href) {
+    try {
+      var x = new URL(href, location.origin);
+      x.searchParams.delete("rw");
+      var p = (x.pathname || "").replace(/\/$/, "") || "/";
+      var q = x.searchParams.toString();
+      return p + (q ? "?" + q : "");
+    } catch (e) {
+      return String(href || "");
+    }
+  }
+  function returnToSavedShelf() {
+    var saved = "";
+    try { saved = sessionStorage.getItem("rw-from") || ""; } catch (e) { return false; }
+    if (!saved || saved.indexOf("/films") !== 0 || isFilmDetail(saved.split("?")[0])) return false;
+    var here = ((location.pathname || "").replace(/\/$/, "") || "/") + (location.search || "");
+    if (placeKey(here) === placeKey(saved)) {
+      if (flag === "1" || back) {
+        try {
+          sessionStorage.setItem("rw-restore", "1");
+          history.scrollRestoration = "manual";
+        } catch (e) {}
+      }
+      return false;
+    }
+    var flag = "";
+    var back = false;
+    try { flag = sessionStorage.getItem("rw-restore") || ""; } catch (e) {}
+    try {
+      var nav = performance.getEntriesByType("navigation")[0];
+      back = !!(nav && nav.type === "back_forward");
+    } catch (e) {}
+    if (flag !== "1" && !back) return false;
+    try { sessionStorage.setItem("rw-restore", "1"); } catch (e) {}
+    location.replace(saved);
+    return true;
+  }
+  function restoreListPlace() {
+    var flag = "";
+    try { flag = sessionStorage.getItem("rw-restore") || ""; } catch (e) { return false; }
+    if (flag !== "1") return false;
+    if (((location.pathname || "").replace(/\/$/, "") || "/") !== "/films") return false;
+    var slug = "";
+    try { slug = sessionStorage.getItem("rw-from-film") || ""; } catch (e) {}
+    if (!/^[a-z0-9-]+$/.test(slug)) return false;
+    if (!window.__rwRestoreTimer) {
+      window.__rwRestoreTimer = setTimeout(function () {
+        try { sessionStorage.removeItem("rw-restore"); } catch (e) {}
+      }, 4000);
+    }
+    var nodes = document.querySelectorAll('.vhs-box[data-slug="' + slug + '"]');
+    var art = null;
+    for (var i = 0; i < nodes.length; i += 1) {
+      var candidate = nodes[i].closest("article.tape-slot");
+      var sec = candidate && candidate.closest("section");
+      if (!candidate || (sec && sec.hidden)) continue;
+      art = candidate;
+      break;
+    }
+    if (!art) {
+      if (!window.__rwRestoreY) {
+        window.__rwRestoreY = 1;
+        var y = 0;
+        try { y = Number(sessionStorage.getItem("rw-from-y") || "0") || 0; } catch (e) {}
+        if (y > 0) window.scrollTo(0, y);
+      }
+      return false;
+    }
+    try { sessionStorage.removeItem("rw-restore"); } catch (e) {}
+    art.scrollIntoView({ block: "center", inline: "nearest" });
+    return true;
+  }
+  function rememberListPage(href) {
     try {
       if (isFilmDetail()) return;
       sessionStorage.setItem("rw-from", (location.pathname.replace(/\/$/, "") || "/") + (location.search || ""));
+      sessionStorage.setItem("rw-from-y", String(window.scrollY || document.documentElement.scrollTop || 0));
+      var slug = "";
+      var m = String(href || "").match(/^\/films\/([^/?#]+)/);
+      if (m) slug = decodeURIComponent(m[1]);
+      if (slug) sessionStorage.setItem("rw-from-film", slug);
     } catch (e) {}
   }
   function fromListPage() {
@@ -11732,16 +11825,22 @@
       e.preventDefault();
       e.stopPropagation();
     }
+    var dest = fromListPage();
+    try { sessionStorage.setItem("rw-restore", "1"); } catch (err) {}
+    if (dest && dest !== "/") {
+      location.replace(dest);
+      return;
+    }
     try {
       if (document.referrer) {
         const u = new URL(document.referrer);
-        if (u.origin === location.origin && u.href.split("#")[0] !== location.href.split("#")[0]) {
+        if (u.origin === location.origin && u.pathname !== location.pathname) {
           history.back();
           return;
         }
       }
     } catch (err) {}
-    location.assign(fromListPage());
+    location.assign(dest || "/");
   }
   function paintTapePage() {
     if (window.__rwTapeBoot) return;
@@ -11881,7 +11980,7 @@
           e.preventDefault();
           e.stopPropagation();
           if (e.stopImmediatePropagation) e.stopImmediatePropagation();
-          rememberListPage();
+          rememberListPage(href);
           location.assign(href);
         },
         true,
@@ -11983,7 +12082,7 @@
         clearNav();
         navTimer = window.setTimeout(function () {
           navTimer = 0;
-          rememberListPage();
+          rememberListPage("/films/" + slug);
           location.assign("/films/" + slug);
         }, 280);
       }
