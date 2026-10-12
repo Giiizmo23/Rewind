@@ -9364,7 +9364,7 @@
         var existingRemote = existing.indexOf("image.tmdb.org") >= 0 || existing.indexOf("themoviedb.org") >= 0;
         var art = filmArt(slug);
         var remote = art.indexOf("image.tmdb.org") >= 0 || art.indexOf("themoviedb.org") >= 0;
-        var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007" || slug === "first-blood";
+        var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
         var aisle = document.documentElement.getAttribute("data-aisles") === "1";
         var poster = window.__rwPosters && window.__rwPosters[slug];
         if (keepSleeve) {
@@ -16729,16 +16729,13 @@
       });
       box.querySelectorAll(".vhs-window img").forEach(function (img) {
         var src = img.getAttribute("src") || "";
-        if (src.split("?")[0].indexOf("/sleeves/first-blood.jpg") < 0) {
-          img.removeAttribute("srcset");
-          var blood = paintedBox("first-blood");
-          if (blood && blood.cover) img.src = blood.cover;
+        if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) {
+          img.removeAttribute("data-painted");
+          img.setAttribute("data-tmdb-art", "1");
+          img.style.setProperty("opacity", "1", "important");
+          img.style.setProperty("display", "block", "important");
+          img.style.setProperty("object-fit", "cover", "important");
         }
-        img.setAttribute("data-painted", "1");
-        img.setAttribute("data-tmdb-art", "keep");
-        img.style.setProperty("opacity", "1", "important");
-        img.style.setProperty("display", "block", "important");
-        img.style.setProperty("visibility", "visible", "important");
       });
       box.querySelectorAll(".vhs-sticker").forEach(function (st) {
         st.style.setProperty("inset", "8px 8px auto auto", "important");
@@ -17197,6 +17194,8 @@
         var boxed = paintedBox(slug);
         var want = boxed && boxed.cover;
         var fit = (boxed && boxed.fit) || "contain";
+        var srcIsRemote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0;
+        if (srcIsRemote) fit = "cover";
         /* Night Drop tapes (data-size="drop") have a narrower face than 2:3, so "contain" letterboxed the poster; fill it like the aisles. */
         if (box.getAttribute("data-size") === "drop") fit = "cover";
         if (box.closest(".club-tour")) {
@@ -17224,8 +17223,8 @@
         }
         var srcIsRemote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0;
         var wantIsSleeve = !!(want && want.indexOf("/sleeves/") >= 0);
-        var onAisle = document.documentElement.getAttribute("data-aisles") === "1";
-        if (want && !(srcIsRemote && wantIsSleeve) && !(onAisle && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
+        var keepCover = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
+        if (want && keepCover && !(srcIsRemote && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
           if (img.crossOrigin) {
             img.crossOrigin = null;
             img.removeAttribute("crossorigin");

@@ -34,7 +34,6 @@
     "the-crow": "/sleeves/the-crow.jpg?v=painted",
     "there-will-be-blood": "/sleeves/there-will-be-blood.jpg?v=painted",
     "there-will-be-blood-2007": "/sleeves/there-will-be-blood.jpg?v=painted",
-    "first-blood": "/sleeves/first-blood.jpg?v=258",
   };
   var keepPainted = painted;
 

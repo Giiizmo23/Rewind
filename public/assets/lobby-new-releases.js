@@ -67,11 +67,30 @@
     });
     var boxed = window.boxAssets && window.boxAssets(slug);
     var cover = box.querySelector(".vhs-window img");
+    var keepPainted = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
     if (cover) {
       ["data-tmdb-art", "data-rw-cover", "data-tmdb-slug", "data-painted", "srcset", "sizes", "fetchpriority"].forEach(function (a) { cover.removeAttribute(a); });
       cover.setAttribute("alt", title);
       cover.setAttribute("loading", "lazy");
-      cover.src = (boxed && boxed.cover) || "/sleeves/" + slug + ".jpg?v=520";
+      if (keepPainted && boxed && boxed.cover) {
+        cover.src = boxed.cover;
+        cover.setAttribute("data-painted", "1");
+        cover.setAttribute("data-tmdb-art", "keep");
+      } else {
+        cover.removeAttribute("src");
+        cover.style.setProperty("display", "none");
+        fetch("/api/rewind/tmdb/poster?v=2&title=" + encodeURIComponent(title) + "&year=" + encodeURIComponent(film.year ? String(film.year) : ""))
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (data) {
+            if (!cover.isConnected || !data || !data.poster) return;
+            cover.src = data.poster;
+            cover.setAttribute("data-tmdb-art", "1");
+            cover.setAttribute("data-rw-cover", slug);
+            cover.style.setProperty("display", "block", "important");
+            cover.style.setProperty("opacity", "1", "important");
+            cover.style.setProperty("object-fit", "cover", "important");
+          });
+      }
     }
     box.querySelectorAll(".vhs-face .vhs-title, .vhs-back-title").forEach(function (el) { el.textContent = title; });
     var tag = box.querySelector(".vhs-back-tag"); if (tag) tag.textContent = film.tagline ? "\u201c" + film.tagline + "\u201d" : "";
