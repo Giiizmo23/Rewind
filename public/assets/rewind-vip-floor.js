@@ -2131,6 +2131,15 @@
     "national-lampoons-christmas-vacation": "christmas-vacation",
     "am-lie-2001": "amelie"
   };
+  var AISLE_NEW={"12-angry-men":"/sleeves/spines/12-angry-men.png?v=aisle1","1999-2027":"/sleeves/spines/1999-2027.png?v=aisle1","a-beautiful-mind":"/sleeves/spines/a-beautiful-mind.png?v=aisle1","a-minecraft-movie-squared-2027":"/sleeves/spines/a-minecraft-movie-squared-2027.png?v=aisle1","a-star-is-born":"/sleeves/spines/a-star-is-born.png?v=aisle1","am-lie-2001":"/sleeves/spines/am-lie-2001.png?v=aisle1","american-beauty":"/sleeves/spines/american-beauty.png?v=aisle1","american-history-x-1998":"/sleeves/spines/american-history-x-1998.png?v=aisle1","avatar":"/sleeves/spines/avatar.png?v=aisle1","avengers-endgame":"/sleeves/spines/avengers-endgame.png?v=aisle1","backrooms-2026":"/sleeves/spines/backrooms-2026.png?v=aisle1","batman-begins":"/sleeves/spines/batman-begins.png?v=aisle1","birdman-or-the-unexpected-virtue-of-ignorance-2014":"/sleeves/spines/birdman-or-the-unexpected-virtue-of-ignorance-2014.png?v=aisle1","black-swan":"/sleeves/spines/black-swan.png?v=aisle1","bohemian-rhapsody-2018":"/sleeves/spines/bohemian-rhapsody-2018.png?v=aisle1","braveheart":"/sleeves/spines/braveheart.png?v=aisle1","catch-me-if-you-can":"/sleeves/spines/catch-me-if-you-can.png?v=aisle1","day-drinker-2027":"/sleeves/spines/day-drinker-2027.png?v=aisle1","deadpool":"/sleeves/spines/deadpool.png?v=aisle1","fast-forever-2028":"/sleeves/spines/fast-forever-2028.png?v=aisle1","ford-v-ferrari-2019":"/sleeves/spines/ford-v-ferrari-2019.png?v=aisle1","ghost-rider-2028":"/sleeves/spines/ghost-rider-2028.png?v=aisle1","gladiator":"/sleeves/spines/gladiator.png?v=aisle1","harry-potter-and-the-deathly-hallows-part-2-2011":"/sleeves/spines/harry-potter-and-the-deathly-hallows-part-2-2011.png?v=aisle1","home-alone-2-lost-in-new-york":"/sleeves/spines/home-alone-2-lost-in-new-york.png?v=aisle1","how-the-grinch-stole-christmas":"/sleeves/spines/how-the-grinch-stole-christmas.png?v=aisle1","how-to-train-your-dragon":"/sleeves/spines/how-to-train-your-dragon.png?v=aisle1","inside-out":"/sleeves/spines/inside-out.png?v=aisle1","joker":"/sleeves/spines/joker.png?v=aisle1","juno":"/sleeves/spines/juno.png?v=aisle1","l-on-the-professional-1994":"/sleeves/spines/l-on-the-professional-1994.png?v=aisle1","little-miss-sunshine":"/sleeves/spines/little-miss-sunshine.png?v=aisle1","memento":"/sleeves/spines/memento.png?v=aisle1","michael-2026":"/sleeves/spines/michael-2026.png?v=aisle1","million-dollar-baby":"/sleeves/spines/million-dollar-baby.png?v=aisle1","moneyball":"/sleeves/spines/moneyball.png?v=aisle1","monsters-inc":"/sleeves/spines/monsters-inc.png?v=aisle1","national-lampoons-christmas-vacation":"/sleeves/spines/national-lampoons-christmas-vacation.png?v=aisle1","obsession-2026":"/sleeves/spines/obsession-2026.png?v=aisle1","ratatouille":"/sleeves/spines/ratatouille.png?v=aisle1","rush-2013":"/sleeves/spines/rush-2013.png?v=aisle1","schindlers-list":"/sleeves/spines/schindlers-list.png?v=aisle1","shutter-island":"/sleeves/spines/shutter-island.png?v=aisle1","soul":"/sleeves/spines/soul.png?v=aisle1","terminator-2-judgment-day":"/sleeves/spines/terminator-2-judgment-day.png?v=aisle1","the-avengers":"/sleeves/spines/the-avengers.png?v=aisle1","the-dark-knight-rises":"/sleeves/spines/the-dark-knight-rises.png?v=aisle1","the-good-the-bad-and-the-ugly-1966":"/sleeves/spines/the-good-the-bad-and-the-ugly-1966.png?v=aisle1","the-green-mile":"/sleeves/spines/the-green-mile.png?v=aisle1","the-hateful-eight-2015":"/sleeves/spines/the-hateful-eight-2015.png?v=aisle1","the-holiday":"/sleeves/spines/the-holiday.png?v=aisle1","the-imitation-game-2014":"/sleeves/spines/the-imitation-game-2014.png?v=aisle1","the-incredibles":"/sleeves/spines/the-incredibles.png?v=aisle1","the-lord-of-the-rings-the-two-towers":"/sleeves/spines/the-lord-of-the-rings-the-two-towers.png?v=aisle1","the-nightmare-before-christmas":"/sleeves/spines/the-nightmare-before-christmas.png?v=aisle1","the-pianist":"/sleeves/spines/the-pianist.png?v=aisle1","the-prestige":"/sleeves/spines/the-prestige.png?v=aisle1","the-revenant":"/sleeves/spines/the-revenant.png?v=aisle1","the-silence-of-the-lambs":"/sleeves/spines/the-silence-of-the-lambs.png?v=aisle1","the-truman-show":"/sleeves/spines/the-truman-show.png?v=aisle1","the-wolf-of-wall-street":"/sleeves/spines/the-wolf-of-wall-street.png?v=aisle1","toy-story-3":"/sleeves/spines/toy-story-3.png?v=aisle1","unforgiven":"/sleeves/spines/unforgiven.png?v=aisle1","up":"/sleeves/spines/up.png?v=aisle1","v-for-vendetta-2006":"/sleeves/spines/v-for-vendetta-2006.png?v=aisle1","warrior-2011":"/sleeves/spines/warrior-2011.png?v=aisle1","world-war-z-2013":"/sleeves/spines/world-war-z-2013.png?v=aisle1"};
+
+  function aisleSpineSrc(slug) {
+    if (!slug || !AISLE_NEW) return "";
+    if (AISLE_NEW[slug]) return AISLE_NEW[slug];
+    var base = String(slug).replace(/-(19|20)\d\d$/, "");
+    return AISLE_NEW[base] || "";
+  }
+
   function paintedBox(slug) {
     if (!slug || !window.boxAssets) return null;
     var direct = window.boxAssets(slug);
@@ -10655,10 +10664,9 @@
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
         var boxed = paintedBox(slug);
-        var want = boxed && boxed.spine;
+        var want = (boxed && boxed.spine) || aisleSpineSrc(slug);
         var coverNow = (cover && (cover.getAttribute("src") || "")) || "";
         var coverRemote = coverNow.indexOf("image.tmdb.org") >= 0 || coverNow.indexOf("themoviedb.org") >= 0 || !!(window.__rwPosters && window.__rwPosters[slug]);
-        if (aisle && coverRemote && !keepSleeve && !(boxed && boxed.spine)) want = "";
         var cur = img.getAttribute("src") || "";
         img.removeAttribute("srcset");
         if (want && cur.split("?")[0] === String(want).split("?")[0]) {
@@ -18858,7 +18866,7 @@
         var paintedNow = paintedBox(slug);
         hasPainted = !!(paintedNow && paintedNow.spine);
       } catch (eHas) {}
-      var drawing = (onAisle ? (liftSlug || !hasPainted) : true) && !keepPaintedSpine && !bakedMatch && !!coverUrl;
+      var drawing = (onAisle ? liftSlug : true) && !keepPaintedSpine && !bakedMatch && !!coverUrl;
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
       if (!spineReady && coverUrl && window.__rwSpineReady) {
         var bareCover = coverUrl.split("?")[0];
@@ -18932,8 +18940,9 @@
             return;
           }
           var paintedSpine = paintedBox(slug);
-          if (paintedSpine && paintedSpine.spine) {
-            img.src = paintedSpine.spine;
+          var paintedSrc = (paintedSpine && paintedSpine.spine) || aisleSpineSrc(slug);
+          if (paintedSrc) {
+            img.src = paintedSrc;
             box.setAttribute("data-spine-letters", "1");
             fitSpineLogo(img);
             hideSpineWord(img.closest(".vhs-spine-ink"));
