@@ -48,7 +48,19 @@
     box.removeAttribute("data-spine-match");
     box.removeAttribute("data-sticker-src");
     box.removeAttribute("data-sticker-set");
-    box.setAttribute("data-sticker", "br");
+    var corner = ({ "project-hail-mary": "bl", "the-odyssey-2026": "tr", "obsession-2026": "br" })[slug] || "br";
+    box.setAttribute("data-sticker", corner);
+    var pos = corner === "tl" ? ["8px auto auto 8px", "8px", "auto", "auto", "8px"]
+      : corner === "tr" ? ["8px 8px auto auto", "8px", "8px", "auto", "auto"]
+      : corner === "bl" ? ["auto auto 8px 8px", "auto", "auto", "8px", "8px"]
+      : ["auto 8px 8px auto", "auto", "8px", "8px", "auto"];
+    box.querySelectorAll(".vhs-sticker").forEach(function (st) {
+      st.style.setProperty("inset", pos[0], "important");
+      st.style.setProperty("top", pos[1], "important");
+      st.style.setProperty("right", pos[2], "important");
+      st.style.setProperty("bottom", pos[3], "important");
+      st.style.setProperty("left", pos[4], "important");
+    });
     box.classList.remove("is-back");
     box.setAttribute("aria-label", title + ". Tap to open, drag to turn, double-tap to flip.");
     /* Same case/spine settings the New Release aisle uses for these tapes (films.html slot). */

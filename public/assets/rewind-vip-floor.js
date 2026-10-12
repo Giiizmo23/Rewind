@@ -862,7 +862,12 @@
     "back-to-the-future": "br",
     "pulp-fiction": "bl",
     "alien": "bl",
-    "die-hard": "tr"
+    "die-hard": "tr",
+    "first-blood": "tl",
+    "blade-runner": "tl",
+    "obsession-2026": "br",
+    "project-hail-mary": "bl",
+    "the-odyssey-2026": "tr"
   };
   function pinnedCorner(box) {
     var slug = box && box.getAttribute && box.getAttribute("data-slug");
@@ -1967,6 +1972,11 @@
         "html body .vhs-box.is-flip[data-slug='pulp-fiction'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='pulp-fiction'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
         "html body .vhs-box.is-flip[data-slug='alien'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='alien'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
         "html body .vhs-box.is-flip[data-slug='die-hard'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='die-hard'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='first-blood'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='first-blood'] .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='blade-runner'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='blade-runner'] .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='project-hail-mary'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='project-hail-mary'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='the-odyssey-2026'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='the-odyssey-2026'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
+        "html body .vhs-box.is-flip[data-slug='obsession-2026'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='obsession-2026'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
         'html body .vhs-box:not([data-sticker-src]) .vhs-sticker{visibility:hidden!important}' +
         '.vhs-box[data-slug="the-thing-1982"] .vhs-sticker{inset:auto auto 10px 10px!important;top:auto!important;right:auto!important;left:10px!important;bottom:10px!important}' +
         'html body .vhs-box[data-slug="first-blood"] .vhs-window img{opacity:1!important;display:block!important;visibility:visible!important}' +
@@ -9445,6 +9455,19 @@
       box.removeAttribute("data-sticker-src");
       box.removeAttribute("data-sticker-set");
       box.removeAttribute("data-sticker");
+      var pinCorner = pinnedCorner(box);
+      box.querySelectorAll(".vhs-sticker").forEach(function (st) {
+        if (pinCorner) {
+          parkSticker(st, box, pinCorner, "pin");
+          return;
+        }
+        st.style.removeProperty("inset");
+        st.style.removeProperty("top");
+        st.style.removeProperty("right");
+        st.style.removeProperty("bottom");
+        st.style.removeProperty("left");
+        st.removeAttribute("data-placed");
+      });
       box.removeAttribute("data-spine-match");
       box.querySelectorAll(".vhs-spine-word").forEach(function (word) {
         word.textContent = film.title || "";
@@ -11755,7 +11778,7 @@
       const catalogNo = String(film.catalogNo || "").replace(/</g, "");
       const runtime = film.runtime ? film.runtime + " min" : "";
       const sid = String(slug).replace(/[^a-z0-9]+/g, "");
-      const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
+      const sticker = slug === "first-blood" ? "tl" : slug === "alien" ? "br" : "tr";
       const spineSrc = "/sleeves/spines/" + slug + ".png?v=572";
       const spineInk =
         '<div class="vhs-spine-ink"><span class="vhs-spine-vhs">VHS</span>' +
@@ -12437,7 +12460,9 @@
           ? "tl"
           : slug === "halloween-1978" || slug === "the-shining"
           ? "tr"
-          : slug === "first-blood" || slug === "alien"
+          : slug === "first-blood"
+            ? "tl"
+            : slug === "alien"
             ? "br"
             : "tr";
       const sid = String(slug).replace(/[^a-z0-9]+/g, "");
@@ -16582,11 +16607,11 @@
         el.style.setProperty("font-size", "4.8px", "important");
       });
       box.querySelectorAll(".vhs-sticker").forEach(function (st) {
-        st.style.setProperty("inset", "auto 8px 8px auto", "important");
-        st.style.setProperty("top", "auto", "important");
-        st.style.setProperty("left", "auto", "important");
-        st.style.setProperty("right", "8px", "important");
-        st.style.setProperty("bottom", "8px", "important");
+        st.style.setProperty("inset", "8px auto auto 8px", "important");
+        st.style.setProperty("top", "8px", "important");
+        st.style.setProperty("left", "8px", "important");
+        st.style.setProperty("right", "auto", "important");
+        st.style.setProperty("bottom", "auto", "important");
       });
     });
   }
@@ -16738,10 +16763,10 @@
         }
       });
       box.querySelectorAll(".vhs-sticker").forEach(function (st) {
-        st.style.setProperty("inset", "8px 8px auto auto", "important");
+        st.style.setProperty("inset", "8px auto auto 8px", "important");
         st.style.setProperty("top", "8px", "important");
-        st.style.setProperty("left", "auto", "important");
-        st.style.setProperty("right", "8px", "important");
+        st.style.setProperty("left", "8px", "important");
+        st.style.setProperty("right", "auto", "important");
         st.style.setProperty("bottom", "auto", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {

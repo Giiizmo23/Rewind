@@ -424,7 +424,7 @@
     const genres = esc(film.genres || "");
     const runtimeMins = film.runtime ? String(film.runtime) + " mins" : "";
     const sid = String(slug).replace(/[^a-z0-9]+/g, "");
-    const sticker = slug === "alien" || slug === "first-blood" ? "br" : "tr";
+    const sticker = slug === "first-blood" ? "tl" : slug === "alien" ? "br" : "tr";
     const row = window.boxAssets && window.boxAssets(slug);
     const spineSrc = (row && row.spine) || ("/sleeves/spines/" + slug + ".png");
     const spineInk =
