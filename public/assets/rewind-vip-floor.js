@@ -1092,7 +1092,7 @@
     if (!band) return null;
     var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
     if (!nw || !nh) return null;
-    var cap = mode === "cleanred" ? Math.min(nw, 900) : Math.min(340, nw);
+    var cap = (mode === "cleanred" || mode === "logo") ? Math.min(nw, 1000) : Math.min(340, nw);
     var W = Math.max(8, cap);
     var H = Math.max(8, Math.round(nh * (W / nw)));
     var canvas = document.createElement("canvas");
@@ -1419,7 +1419,62 @@
     }
     o.putImageData(copy, 0, 0);
     var srcCut = cut;
-    if (mode === "logo") {
+    if (mode === "cleanred" && chh > 4) {
+      var fat = document.createElement("canvas");
+      fat.width = cw;
+      fat.height = Math.max(chh + 2, Math.round(chh * 3.6));
+      var fctx = fat.getContext("2d", { willReadFrequently: true });
+      fctx.imageSmoothingEnabled = true;
+      fctx.imageSmoothingQuality = "high";
+      fctx.fillStyle = "#080808";
+      fctx.fillRect(0, 0, fat.width, fat.height);
+      fctx.drawImage(cut, 0, 0, cw, fat.height);
+      var fd = fctx.getImageData(0, 0, fat.width, fat.height);
+      var px = fd.data;
+      var fw = fat.width;
+      var on = new Uint8Array(fw * fat.height);
+      var fi;
+      for (fi = 0; fi < px.length; fi += 4) {
+        var rr = px[fi], gg = px[fi + 1], bb = px[fi + 2];
+        if (rr > 90 && rr > gg + 20 && rr > bb + 20) on[fi >> 2] = 1;
+      }
+      var seenF = new Uint8Array(on.length);
+      for (var fy = 0; fy < fat.height; fy++) {
+        for (var fx = 0; fx < fw; fx++) {
+          var start = fy * fw + fx;
+          if (!on[start] || seenF[start]) continue;
+          var stack = [start];
+          seenF[start] = 1;
+          var pts = [];
+          while (stack.length) {
+            var p = stack.pop();
+            pts.push(p);
+            var dirs = [p - 1, p + 1, p - fw, p + fw];
+            for (var dj = 0; dj < 4; dj++) {
+              var np = dirs[dj];
+              if (np < 0 || np >= on.length || seenF[np] || !on[np]) continue;
+              var ny = (np / fw) | 0, nx = np - ny * fw;
+              var py = (p / fw) | 0, px0 = p - py * fw;
+              if (dj < 2 && ny !== py) continue;
+              if ((dj === 0 && nx !== px0 - 1) || (dj === 1 && nx !== px0 + 1)) continue;
+              seenF[np] = 1;
+              stack.push(np);
+            }
+          }
+          if (pts.length < 420) {
+            for (var pk = 0; pk < pts.length; pk++) on[pts[pk]] = 0;
+          }
+        }
+      }
+      for (fi = 0; fi < on.length; fi++) {
+        var o4 = fi * 4;
+        if (on[fi]) { px[o4] = 255; px[o4 + 1] = 16; px[o4 + 2] = 0; px[o4 + 3] = 255; }
+        else { px[o4] = 8; px[o4 + 1] = 8; px[o4 + 2] = 8; px[o4 + 3] = 255; }
+      }
+      fctx.putImageData(fd, 0, 0);
+      srcCut = fat;
+    }
+    if (mode === "logo" && srcCut.width < 150) {
       var big = document.createElement("canvas");
       big.width = srcCut.width * 2;
       big.height = srcCut.height * 2;
@@ -1488,11 +1543,23 @@
       else go();
     }
     var tmdb = url.indexOf("image.tmdb.org") >= 0 || url.indexOf("themoviedb.org") >= 0;
+    var fetchUrl = url;
+    if ((slug === "first-blood" || slug === "back-to-the-future") && /\/t\/p\/w\d+\//.test(url)) {
+      fetchUrl = url.replace(/\/t\/p\/w\d+\//, "/t/p/w780/");
+    }
     var loader = new Image();
     if (tmdb) loader.crossOrigin = "anonymous";
+    var triedSmall = false;
     loader.onload = function () { paintFrom(loader); };
-    loader.onerror = function () { finish({ skip: 1 }); };
-    loader.src = tmdb ? scoreSrc(url) : url;
+    loader.onerror = function () {
+      if (!triedSmall && fetchUrl !== url) {
+        triedSmall = true;
+        loader.src = tmdb ? scoreSrc(url) : url;
+        return;
+      }
+      finish({ skip: 1 });
+    };
+    loader.src = tmdb ? scoreSrc(fetchUrl) : fetchUrl;
   }
   function restick(url) {
     var bare = String(url || "").split("?")[0];
