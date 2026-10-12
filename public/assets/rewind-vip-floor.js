@@ -994,7 +994,7 @@
             stack.push(np);
           }
         }
-        if (pts.length >= 28) {
+        if (pts.length >= 36) {
           for (var k = 0; k < pts.length; k++) keep[pts[k]] = 1;
         }
       }
@@ -1004,11 +1004,11 @@
       for (x = 1; x < W - 1; x++) {
         i = y * W + x;
         if (keep[i]) continue;
-        var near = keep[i - 1] || keep[i + 1] || keep[i - W] || keep[i + W];
-        if (!near) continue;
+        var nbor = (keep[i - 1] ? 1 : 0) + (keep[i + 1] ? 1 : 0) + (keep[i - W] ? 1 : 0) + (keep[i + W] ? 1 : 0);
+        if (nbor < 2) continue;
         r = d[i * 4]; g = d[i * 4 + 1]; b = d[i * 4 + 2];
         lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-        if (lum > 90 && !(r > g + 14 && r > b + 10)) grown[i] = 1;
+        if (lum > 100 && !(r > g + 14 && r > b + 10)) grown[i] = 1;
       }
     }
     keep = grown;
@@ -1047,6 +1047,8 @@
     spun.width = ch;
     spun.height = cw;
     var out = spun.getContext("2d");
+    out.fillStyle = "#102033";
+    out.fillRect(0, 0, ch, cw);
     out.translate(ch, 0);
     out.rotate(Math.PI / 2);
     out.drawImage(cut, 0, 0);
@@ -1075,7 +1077,7 @@
         if (slug === "the-thing-1982") {
           var thing = "";
           try { thing = liftThingLetters(im); } catch (eThing) { thing = ""; }
-          if (thing) { finish({ letters: 1, ink: "#d5e4f0", src: thing, bg: "#070b12", logo: 1 }); return; }
+          if (thing) { finish({ letters: 1, ink: "#d5e4f0", src: thing, bg: "#102033", logo: 1 }); return; }
         }
         var ink = "#f4f1ea";
         try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
@@ -18052,14 +18054,16 @@
         img.style.setProperty("border", "0", "important");
         img.style.setProperty("box-shadow", "none", "important");
         if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-logo-art") === "1") {
-          img.style.setProperty("top", "4%", "important");
-          img.style.setProperty("bottom", "6%", "important");
-          img.style.setProperty("left", "1%", "important");
-          img.style.setProperty("right", "1%", "important");
-          img.style.setProperty("width", "98%", "important");
-          img.style.setProperty("height", "90%", "important");
-          img.style.setProperty("max-width", "98%", "important");
-          img.style.setProperty("max-height", "90%", "important");
+          img.style.setProperty("top", "0", "important");
+          img.style.setProperty("bottom", "0", "important");
+          img.style.setProperty("left", "0", "important");
+          img.style.setProperty("right", "0", "important");
+          img.style.setProperty("width", "100%", "important");
+          img.style.setProperty("height", "100%", "important");
+          img.style.setProperty("max-width", "none", "important");
+          img.style.setProperty("max-height", "none", "important");
+          img.style.setProperty("object-fit", "contain", "important");
+          img.style.setProperty("background-color", "#102033", "important");
         } else if (img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-spine-letters") === "1") {
           img.style.setProperty("top", "11%", "important");
           img.style.setProperty("bottom", "13%", "important");
@@ -18304,6 +18308,15 @@
         still.style.setProperty("height", "100%", "important");
       }
     }
+    if (slug === "the-thing-1982") {
+      box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
+        sp.style.setProperty("background-color", "#102033", "important");
+        sp.style.setProperty("background-image", "none", "important");
+      });
+      box.querySelectorAll(".vhs-spine-vhs, .vhs-spine-no, .vhs-spine-year, .vhs-spine-word").forEach(function (el) {
+        el.style.setProperty("display", "none", "important");
+      });
+    }
     if (slug === "the-shining") {
       box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
         el.textContent = "RW-1980-05";
@@ -18316,6 +18329,10 @@
       el.style.setProperty("display", "none", "important");
     });
     box.querySelectorAll(".vhs-spine-vhs").forEach(function (el) {
+      if (slug === "the-thing-1982") {
+        el.style.setProperty("display", "none", "important");
+        return;
+      }
       var right = !!el.closest(".vhs-spine-right");
       el.textContent = "VHS";
       el.style.setProperty("display", "block", "important");
@@ -18341,6 +18358,10 @@
       el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
     });
     box.querySelectorAll(".vhs-spine-no").forEach(function (el) {
+      if (slug === "the-thing-1982") {
+        el.style.setProperty("display", "none", "important");
+        return;
+      }
       var t = String(el.textContent || "").replace(/\s+/g, "");
       var cat = (window.__rwCatalog || {})[slug];
       if (!t && cat && cat.catalogNo) t = String(cat.catalogNo).replace(/\s+/g, "");
