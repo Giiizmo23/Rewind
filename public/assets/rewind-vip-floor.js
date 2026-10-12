@@ -2151,7 +2151,15 @@
         '.pc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}.pc-grid.is-header{grid-template-columns:repeat(2,minmax(0,1fr))}' +
         '.pc-grid .rw-prize{position:relative}.pc-grid .rw-prize-body{padding:.4rem .45rem .5rem;gap:.15rem}.pc-grid .rw-prize-body b{font-size:1rem}' +
         '.pc-grid .rw-prize-buy{height:1.85rem;font-size:.7rem;margin-top:.2rem;border-radius:10px}' +
-        '.pc-more{display:block;width:100%;height:2.2rem;margin:.55rem 0 0;border:1.5px solid #f6e7c1;border-radius:12px;background:transparent;color:#f6e7c1;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}' +
+        '.rw-prize-pager{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:.75rem 0 .15rem}' +
+        '.rw-prize-pager button{height:2.25rem;min-width:4.6rem;padding:0 .85rem;border-radius:999px;border:1.5px solid rgba(22,18,14,.28);background:transparent;color:#16120e;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}' +
+        '.rw-prize-pager button:disabled{opacity:.28;cursor:default}' +
+        '.rw-prize-pager span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#9a7040}' +
+        '.pc-sec .rw-prize-pager button{border-color:rgba(246,231,193,.45);color:#f6e7c1}' +
+        '.pc-sec .rw-prize-pager span{color:#e0a63a}' +
+        '.pc-uses{display:flex;gap:.4rem;overflow:auto;margin:.2rem 0 .7rem}' +
+        '.pc-uses button{flex:0 0 auto;height:1.9rem;padding:0 .75rem;border:0;border-radius:999px;background:#2a241c;color:#f6e7c1;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}' +
+        '.pc-uses button.is-on{background:#c41230;color:#fff8f4}' +
         '.pc-art{position:relative;display:block;background:#0e0b09;overflow:hidden}.pc-art img{display:block;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;pointer-events:none}' +
         '.pc-art.is-avatar{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:.45rem}.pc-ring{display:block;width:100%;height:100%;border-radius:999px;overflow:hidden;box-shadow:0 0 0 2px #f6e7c1}' +
         '.pc-art.is-poster{aspect-ratio:2/3}.pc-art.is-header{aspect-ratio:3/1}' +
@@ -13756,7 +13764,10 @@
   const RETIRED_PRIZES = { "post-amelie": 1, "post-home": 1, "pin-home": 1, "post-akira": 1, "pin-akira": 1, "post-lost": 1, "post-full": 1, "post-indy": 1, "post-dune": 1, "post-leave": 1, "post-chal": 1, "post-past": 1, "post-days": 1, "post-opp": 1, "post-sinners": 1, "post-wicked": 1, "post-inside": 1, "post-wild": 1 };
   let paintBook = null;
   let paintLoading = null;
-  const paintShow = { avatar: 12, header: 8, poster: 12 };
+  const paintPage = { avatar: 1, header: 1, poster: 1 };
+  let paintShelf = "poster";
+  let prizePage = 1;
+  const PRIZE_PAGE = 8;
   function loadPaintBook() {
     if (paintBook) return Promise.resolve(paintBook);
     if (!paintLoading) {
@@ -14120,18 +14131,45 @@
       return '<article class="rw-prize' + (lock ? " pc-lock" : "") + '" data-rw-look="' + key + '">' + (owned ? '<span class="pc-tag">Owned</span>' : "") + paintImg(c, use) +
         '<div class="rw-prize-body"><span class="rw-prize-kind">Painted ' + PAINT_USE_NAME[use] + "</span><b>" + vipEsc(paintShort(c.title)) + "</b>" + btn + "</div></article>";
     }
-    function row(label, use) {
-      const list = pool(use);
-      const n = full ? paintShow[use] : use === "header" ? 4 : 6;
-      const shown = list.slice(0, n);
-      return '<div class="pc-row-h"><span><b>' + label + "</b> · " + PAINT_PRICE[use] + " pts each</span>" +
-        (full ? "<span>" + list.length + " covers</span>" : '<button type="button" data-rw-filter="paint">See all ' + list.length + "</button>") + "</div>" +
-        '<div class="pc-grid is-' + use + '">' + shown.map(function (c) { return tile(c, use); }).join("") + "</div>" +
-        (full && list.length > n ? '<button type="button" class="pc-more" data-pc-more="' + use + '">Show more ' + label.toLowerCase() + "</button>" : "");
+    function pager(page, pages, extra) {
+      if (pages <= 1) return "";
+      return '<div class="rw-prize-pager"><button type="button" data-pc-page="-1" data-pc-use="' + extra + '"' + (page <= 1 ? " disabled" : "") + ">Back</button>" +
+        "<span>" + page + " of " + pages + "</span>" +
+        '<button type="button" data-pc-page="1" data-pc-use="' + extra + '"' + (page >= pages ? " disabled" : "") + ">Next</button></div>";
     }
+    function row(label, use, n) {
+      const list = pool(use);
+      const shown = list.slice(0, n);
+      return '<div class="pc-row" data-pc-row="' + use + '"><div class="pc-row-h"><span><b>' + label + "</b> · " + PAINT_PRICE[use] + " pts each</span>" +
+        '<button type="button" data-rw-filter="paint" data-pc-open="' + use + '">See all ' + list.length + "</button></div>" +
+        '<div class="pc-grid is-' + use + '">' + shown.map(function (c) { return tile(c, use); }).join("") + "</div></div>";
+    }
+    if (!full) {
+      return '<section class="pc-sec" data-paint-desk="1"><span class="pc-kick">From the old wall</span><h3>Painted Covers</h3>' +
+        '<p class="pc-copy">The hand-painted sleeves from before the switch to TMDB covers. Spend points to wear one as your picture, hang it across your header, or put up to three on your wall. They live on your page only.</p>' +
+        row("Avatars", "avatar", 3) + row("Headers", "header", 2) + row("Posters", "poster", 3) +
+        '<p class="pc-fine">In-app only. Never sold, no downloads, no prints.</p></section>';
+    }
+    const uses = [["avatar", "Avatars"], ["header", "Headers"], ["poster", "Posters"]];
+    if (!paintPage[paintShelf]) paintShelf = "poster";
+    const use = paintShelf;
+    const label = (uses.filter(function (u) { return u[0] === use; })[0] || uses[2])[1];
+    const list = pool(use);
+    const pages = Math.max(1, Math.ceil(list.length / PRIZE_PAGE) || 1);
+    let page = paintPage[use] || 1;
+    if (page > pages) page = pages;
+    if (page < 1) page = 1;
+    paintPage[use] = page;
+    const shown = list.slice((page - 1) * PRIZE_PAGE, page * PRIZE_PAGE);
+    const chips = uses.map(function (u) {
+      return '<button type="button" data-pc-shelf="' + u[0] + '"' + (u[0] === use ? ' class="is-on"' : "") + ">" + u[1] + "</button>";
+    }).join("");
     return '<section class="pc-sec" data-paint-desk="1"><span class="pc-kick">From the old wall</span><h3>Painted Covers</h3>' +
-      '<p class="pc-copy">The hand-painted sleeves from before the switch to TMDB covers. Spend points to wear one as your picture, hang it across your header, or put up to three on your wall. They live on your page only.</p>' +
-      row("Avatars", "avatar") + row("Headers", "header") + row("Posters", "poster") +
+      '<p class="pc-copy">One shelf at a time. Eight sleeves, then the next page. They live on your page only.</p>' +
+      '<div class="pc-uses">' + chips + "</div>" +
+      '<div class="pc-row" data-pc-row="' + use + '"><div class="pc-row-h"><span><b>' + label + "</b> · " + PAINT_PRICE[use] + " pts each</span><span>" + list.length + " covers</span></div>" +
+      '<div class="pc-grid is-' + use + '">' + shown.map(function (c) { return tile(c, use); }).join("") + "</div>" +
+      pager(page, pages, use) + "</div>" +
       '<p class="pc-fine">In-app only. Never sold, no downloads, no prints.</p></section>';
   }
   function paintLookHtml(key, r, left) {
@@ -14227,19 +14265,27 @@
       const chips = filters.map(function (f) {
         return '<button type="button" data-rw-filter="' + f[0] + '"' + (f[0] === show ? ' class="is-on"' : "") + ">" + f[1] + "</button>";
       }).join("");
-      const cards = REWARD_LIST.filter(function (p) { return (show === "all" || p.kind === show) && (!RETIRED_PRIZES[p.id] || r.owned[p.id]); }).map(function (p) {
+      const list = REWARD_LIST.filter(function (p) { return (show === "all" || p.kind === show) && (!RETIRED_PRIZES[p.id] || r.owned[p.id]); });
+      const pages = Math.max(1, Math.ceil(list.length / PRIZE_PAGE) || 1);
+      if (prizePage > pages) prizePage = pages;
+      if (prizePage < 1) prizePage = 1;
+      const slice = list.slice((prizePage - 1) * PRIZE_PAGE, prizePage * PRIZE_PAGE);
+      const cards = slice.map(function (p) {
         const act = prizeAction(p);
         return '<article class="rw-prize" data-rw-look="' + p.id + '">' + rewardArt(p) +
           '<div class="rw-prize-body"><span class="rw-prize-kind">' + (kindName[p.kind] || p.kind) + "</span><b>" + p.title + "</b><p>" + p.blurb + "</p>" +
           '<button type="button" class="rw-prize-buy' + act.cls + '" data-rw-buy="' + p.id + '"' + act.dis + ">" + act.label + "</button></div></article>";
       }).join("");
+      const prizePager = pages > 1
+        ? '<div class="rw-prize-pager"><button type="button" data-prize-page="-1"' + (prizePage <= 1 ? " disabled" : "") + ">Back</button><span>" + prizePage + " of " + pages + '</span><button type="button" data-prize-page="1"' + (prizePage >= pages ? " disabled" : "") + ">Next</button></div>"
+        : "";
       body =
         '<p class="rw-return-kicker">Front counter</p><h2>Rewards</h2>' +
-        '<p class="rw-return-copy">Spend what you earned. Tap a prize to see it up close. Posters, pins, scenes, faces, and badges go on your VIP page. Popcorn and free rentals stay a slip in your pocket until you use them.</p>' +
+        '<p class="rw-return-copy">Spend what you earned. Eight prizes to a shelf, then the next page. Tap one to see it up close.</p>' +
         '<div class="rw-bal"><div><b>' + left + '</b><span> to spend</span></div><span>' + earned + " earned · " + (r.spent || 0) + " spent</span></div>" +
         '<div class="rw-prize-filters">' + chips + "</div>" +
         (show === "all" || show === "paint" ? paintDeskHtml(r, left, show === "paint") : "") +
-        (show === "paint" ? "" : '<div class="rw-prize-grid">' + cards + "</div>");
+        (show === "paint" ? "" : '<div class="rw-prize-grid" data-prize-shelf="1">' + cards + "</div>" + prizePager);
     }
     sheet.innerHTML =
       '<div class="rw-return-bar"><b>REWIND</b><button type="button" class="rw-return-x" data-rewards-close aria-label="Close">×</button></div>' +
@@ -14254,15 +14300,39 @@
       if (!t) return;
       if (t.closest("[data-rewards-close]")) { sheet.remove(); try { paintReturnBtn(); } catch (e1) {} return; }
       if (t.closest("[data-rw-back]")) { openRewardsDesk(show); return; }
-      const more = t.closest("[data-pc-more]");
-      if (more) {
-        const use = more.getAttribute("data-pc-more");
-        if (paintShow[use]) paintShow[use] += use === "header" ? 12 : 24;
-        openRewardsDesk(show, undefined, true);
+      const shelf = t.closest("[data-pc-shelf]");
+      if (shelf) {
+        paintShelf = shelf.getAttribute("data-pc-shelf") || "poster";
+        openRewardsDesk(show);
+        const row = document.querySelector("#rw-rewards [data-pc-row]");
+        if (row && row.scrollIntoView) row.scrollIntoView({ block: "start" });
+        return;
+      }
+      const turn = t.closest("[data-pc-page]");
+      if (turn && !turn.disabled) {
+        const use = turn.getAttribute("data-pc-use") || paintShelf;
+        paintPage[use] = (paintPage[use] || 1) + (Number(turn.getAttribute("data-pc-page")) || 0);
+        openRewardsDesk(show);
+        const row = document.querySelector("#rw-rewards [data-pc-row]");
+        if (row && row.scrollIntoView) row.scrollIntoView({ block: "start" });
+        return;
+      }
+      const prizeTurn = t.closest("[data-prize-page]");
+      if (prizeTurn && !prizeTurn.disabled) {
+        prizePage += Number(prizeTurn.getAttribute("data-prize-page")) || 0;
+        openRewardsDesk(show);
+        const grid = document.querySelector("#rw-rewards [data-prize-shelf]");
+        if (grid && grid.scrollIntoView) grid.scrollIntoView({ block: "start" });
         return;
       }
       const f = t.closest("[data-rw-filter]");
-      if (f) { openRewardsDesk(f.getAttribute("data-rw-filter")); return; }
+      if (f) {
+        const open = f.getAttribute("data-pc-open");
+        if (open) paintShelf = open;
+        prizePage = 1;
+        openRewardsDesk(f.getAttribute("data-rw-filter"));
+        return;
+      }
       const buy = t.closest("[data-rw-buy]");
       if (buy) {
         if (buy.disabled) return;
