@@ -1393,6 +1393,7 @@
     var o = cut.getContext("2d");
     if (mode === "yellow") { br = 212; bgc = 34; bb = 20; }
     if (mode === "white") { br = 0; bgc = 0; bb = 0; }
+    if (mode === "cleanred") { br = 8; bgc = 8; bb = 8; }
     var bg = "#" + hex2(br) + hex2(bgc) + hex2(bb);
     o.fillStyle = bg;
     o.fillRect(0, 0, cw, chh);
@@ -1418,18 +1419,44 @@
       }
     }
     o.putImageData(copy, 0, 0);
-    var srcCut = cut;
     if (mode === "cleanred" && chh > 4 && cw > 4) {
-      var fat = document.createElement("canvas");
-      fat.width = cw;
-      fat.height = chh * 4;
-      var fctx = fat.getContext("2d");
-      fctx.imageSmoothingEnabled = false;
-      fctx.fillStyle = bg || "#080808";
-      fctx.fillRect(0, 0, fat.width, fat.height);
-      fctx.drawImage(cut, 0, 0, cw, fat.height);
-      srcCut = fat;
+      var scaleX = cw > 700 ? 1 : 2;
+      var scaleY = chh > 80 ? 4 : 8;
+      var fatW = cw * scaleX;
+      var fatH = chh * scaleY;
+      var outW = fatH;
+      var outH = fatW;
+      var solid = document.createElement("canvas");
+      solid.width = outW;
+      solid.height = outH;
+      var sctx = solid.getContext("2d");
+      var simg = sctx.createImageData(outW, outH);
+      var sd = simg.data;
+      var cd = copy.data;
+      var oy, ox, fx, fy, sy, si, di;
+      for (oy = 0; oy < outH; oy++) {
+        fx = (oy * cw / outH) | 0;
+        if (fx >= cw) fx = cw - 1;
+        for (ox = 0; ox < outW; ox++) {
+          fy = fatH - 1 - ox;
+          sy = (fy * chh / fatH) | 0;
+          if (sy < 0) sy = 0;
+          if (sy >= chh) sy = chh - 1;
+          si = (sy * cw + fx) * 4;
+          di = (oy * outW + ox) * 4;
+          if (cd[si] > 180) {
+            sd[di] = 255; sd[di + 1] = 16; sd[di + 2] = 0; sd[di + 3] = 255;
+          } else {
+            sd[di] = br; sd[di + 1] = bgc; sd[di + 2] = bb; sd[di + 3] = 255;
+          }
+        }
+      }
+      sctx.putImageData(simg, 0, 0);
+      var solidSrc = "";
+      try { solidSrc = solid.toDataURL("image/png"); } catch (eSolid) { solidSrc = ""; }
+      if (solidSrc) return { src: solidSrc, bg: bg };
     }
+    var srcCut = cut;
     if (mode === "logo" && srcCut.width < 150) {
       var big = document.createElement("canvas");
       big.width = srcCut.width * 2;
