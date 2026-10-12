@@ -11289,6 +11289,7 @@
       grid.appendChild(donor.cloneNode(true));
       section.__rwSynth = 1;
     }
+    var SHELF_N = 8;
     function fileKey(title) {
       return String(title || "").replace(/^(the|a|an)\s+/i, "").trim().toLowerCase();
     }
@@ -11381,7 +11382,7 @@
       letters.innerHTML = html;
       letters.hidden = false;
       var total = file.letter ? (counts[file.letter] || 0) : 0;
-      var pages = Math.max(1, Math.ceil(total / 6));
+      var pages = Math.max(1, Math.ceil(total / SHELF_N));
       if (file.letter && pages > 1) {
         var shelf = Math.min(Math.max(1, file.shelf), pages);
         pager.hidden = false;
@@ -11426,13 +11427,13 @@
                   return fileKey(a && a.title).localeCompare(fileKey(b && b.title)) || String((a && a.slug) || "").localeCompare(String((b && b.slug) || ""));
                 });
               }
-              var pages = Math.max(1, Math.ceil(pool.length / 6) || 1);
+              var pages = Math.max(1, Math.ceil(pool.length / SHELF_N) || 1);
               var shelfN = file.letter ? Math.min(Math.max(1, file.shelf), pages) : 1;
-              var from = (shelfN - 1) * 6;
-              v.films = pool.slice(from, from + 6);
+              var from = (shelfN - 1) * SHELF_N;
+              v.films = pool.slice(from, from + SHELF_N);
               openList = listed;
             } else {
-              var preview = filmsFor(section, id, 6, claimed);
+              var preview = filmsFor(section, id, SHELF_N, claimed);
               for (var i = 0; i < preview.length; i += 1) {
                 var film = preview[i];
                 var slug = film && film.slug;
