@@ -25,18 +25,18 @@
     "jaws": [0.03, 0.02, 0.97, 0.225],
     "the-shawshank-redemption": [0.07, 0.795, 0.93, 0.965],
     "coming-to-america": [0.03, 0.015, 0.97, 0.215],
-    "alien": [0.04, 0.095, 0.96, 0.16],
-    "back-to-the-future": [0.015, 0.01, 0.70, 0.205],
-    "pulp-fiction": [0.01, 0.0, 0.99, 0.175],
-    "die-hard": [0.05, 0.84, 0.95, 0.97],
+    "alien": [0.03, 0.09, 0.97, 0.165],
+    "back-to-the-future": [0.015, 0.006, 0.63, 0.170],
+    "pulp-fiction": [0.05, 0.012, 0.95, 0.118],
+    "die-hard": [0.08, 0.86, 0.92, 0.96],
     "point-break": [0.03, 0.565, 0.97, 0.69],
     "goodfellas": [0.06, 0.48, 0.94, 0.625],
     "se7en": [0.02, 0.74, 0.98, 0.995],
     "the-shining": [0.06, 0.20, 0.96, 0.75],
-    "heat": [0.06, 0.845, 0.94, 0.98],
-    "heat-1995": [0.06, 0.845, 0.94, 0.98],
-    "first-blood": [0.05, 0.785, 0.95, 0.905],
-    "blade-runner": [0.02, 0.86, 0.98, 0.98],
+    "heat": [0.07, 0.862, 0.93, 0.962],
+    "heat-1995": [0.07, 0.862, 0.93, 0.962],
+    "first-blood": [0.06, 0.79, 0.94, 0.90],
+    "blade-runner": [0.05, 0.902, 0.95, 0.982],
     "the-thing-1982": [0.04, 0.72, 0.96, 0.96],
     "the-matrix": [0.06, 0.84, 0.94, 0.96],
     "the-matrix-1999": [0.06, 0.84, 0.94, 0.96],
@@ -52,7 +52,11 @@
     "star-wars": [0.02, 0.73, 0.98, 0.985],
     "top-gun": [0.02, 0.62, 0.98, 0.76],
     "the-exorcist": [0.08, 0.15, 0.92, 0.32],
-    "gremlins": [0.04, 0.82, 0.96, 0.97]
+    "gremlins": [0.04, 0.82, 0.96, 0.97],
+    "project-hail-mary": [0.16, 0.08, 0.84, 0.34],
+    "the-odyssey-2026": [0.08, 0.868, 0.92, 0.975],
+    "obsession-2026": [0.04, 0.012, 0.96, 0.16],
+    "spider-man-brand-new-day": [0.07, 0.80, 0.93, 0.975]
     /* halloween-1978 keeps its approved spine art (/sleeves/spines/halloween-1978.png on #000); a cover-sampled spine color made two blacks. */
   };
   function titleBand(slug) {
@@ -1070,6 +1074,255 @@
     try { return spun.toDataURL("image/png"); } catch (eUrl) { return ""; }
   }
 
+  var LIFT_TITLE = {
+    "alien": "ink",
+    "back-to-the-future": "ink",
+    "die-hard": "ink",
+    "pulp-fiction": "ink",
+    "heat": "ink",
+    "heat-1995": "ink",
+    "first-blood": "red",
+    "blade-runner": "ink",
+    "project-hail-mary": "ink",
+    "the-odyssey-2026": "ink",
+    "obsession-2026": "ink",
+    "spider-man-brand-new-day": "ink"
+  };
+  function liftCoverTitle(im, band, mode) {
+    if (!band) return null;
+    var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
+    if (!nw || !nh) return null;
+    var W = Math.max(8, Math.min(340, nw));
+    var H = Math.max(8, Math.round(nh * (W / nw)));
+    var canvas = document.createElement("canvas");
+    canvas.width = W;
+    canvas.height = H;
+    var ctx = canvas.getContext("2d", { willReadFrequently: true });
+    try { ctx.drawImage(im, 0, 0, W, H); } catch (eDraw) { return null; }
+    var d;
+    try { d = ctx.getImageData(0, 0, W, H).data; } catch (eRead) { return null; }
+    var x0 = Math.max(0, Math.round(band[0] * W));
+    var y0 = Math.max(0, Math.round(band[1] * H));
+    var x1 = Math.min(W, Math.round(band[2] * W));
+    var y1 = Math.min(H, Math.round(band[3] * H));
+    var cw0 = x1 - x0, ch0 = y1 - y0;
+    if (cw0 < 8 || ch0 < 6) return null;
+    function hex2(n) { var v = Math.max(0, Math.min(255, n | 0)); return (v < 16 ? "0" : "") + v.toString(16); }
+    function lumOf(r, g, b) { return 0.2126 * r + 0.7152 * g + 0.0722 * b; }
+    function satOf(r, g, b) {
+      var mx = r > g ? r : g; if (b > mx) mx = b;
+      var mn = r < g ? r : g; if (b < mn) mn = b;
+      return (mx - mn) / (mx || 1);
+    }
+    var bins = {};
+    var er = [], eg = [], eb = [];
+    var y, x, i, r, g, b, hi = 0, mid = 0;
+    var area = cw0 * ch0;
+    for (y = y0; y < y1; y++) {
+      for (x = x0; x < x1; x++) {
+        i = (y * W + x) * 4;
+        r = d[i]; g = d[i + 1]; b = d[i + 2];
+        var key = (r >> 4) * 256 + (g >> 4) * 16 + (b >> 4);
+        bins[key] = (bins[key] || 0) + 1;
+        if (y < y0 + 2 || y > y1 - 3 || x < x0 + 2 || x > x1 - 3) { er.push(r); eg.push(g); eb.push(b); }
+        var L = lumOf(r, g, b), S = satOf(r, g, b);
+        if (L > 220 && S < 0.4) hi++;
+        if (L > 148 && S < 0.55) mid++;
+      }
+    }
+    function midian(a) { a.sort(function (p, q) { return p - q; }); return a[(a.length / 2) | 0]; }
+    var br = midian(er), bgc = midian(eg), bb = midian(eb);
+    var bestK = 0, bestC = 0, bk;
+    for (bk in bins) if (bins[bk] > bestC) { bestC = bins[bk]; bestK = +bk; }
+    if (bestC / area > 0.34) {
+      br = ((bestK >> 8) & 15) * 16 + 8;
+      bgc = ((bestK >> 4) & 15) * 16 + 8;
+      bb = (bestK & 15) * 16 + 8;
+    }
+    var bLum = lumOf(br, bgc, bb);
+    var whiteTitle = bLum < 170 && hi > 70 && hi / area > 0.02;
+    var paleTitle = !whiteTitle && bLum < 55 && mid > 60 && mid / area < 0.22;
+    function isRed(r0, g0, b0) { return r0 > 80 && r0 > g0 + 30 && r0 > b0 + 30; }
+    function paintMask(useDim) {
+      var mask = new Uint8Array(W * H);
+      var n = 0;
+      for (y = y0; y < y1; y++) {
+        for (x = x0; x < x1; x++) {
+          i = y * W + x;
+          var q = i * 4;
+          r = d[q]; g = d[q + 1]; b = d[q + 2];
+          var L = lumOf(r, g, b), S = satOf(r, g, b);
+          var dist = Math.sqrt((r - br) * (r - br) + (g - bgc) * (g - bgc) + (b - bb) * (b - bb));
+          var on = false;
+          if (whiteTitle) on = S < 0.32 && L > Math.max(bLum + 80, 218);
+          else {
+            if (paleTitle && S < 0.55 && L > Math.max(bLum + 70, 146)) on = true;
+            if (!on && dist > 50 && S > 0.32 && L > 20 && L < 248) on = true;
+            if (!on && useDim && bLum < 42 && S < 0.4 && L > bLum + 34 && L < 145 && dist > 26) on = true;
+          }
+          if (mode === "red" && on && !isRed(r, g, b)) on = false;
+          if (on) { mask[i] = 1; n++; }
+        }
+      }
+      if (useDim && n) {
+        var add = [];
+        for (y = y0; y < y1; y++) {
+          for (x = x0; x < x1; x++) {
+            i = y * W + x;
+            if (mask[i]) continue;
+            if ((x > x0 && mask[i - 1]) || (x + 1 < x1 && mask[i + 1]) || (y > y0 && mask[i - W]) || (y + 1 < y1 && mask[i + W])) add.push(i);
+          }
+        }
+        for (var ai = 0; ai < add.length; ai++) mask[add[ai]] = 1;
+      }
+      return mask;
+    }
+    function compsOf(mask) {
+      var seen = new Uint8Array(W * H);
+      var comps = [];
+      var stack = [];
+      for (y = y0; y < y1; y++) {
+        for (x = x0; x < x1; x++) {
+          i = y * W + x;
+          if (!mask[i] || seen[i]) continue;
+          stack.length = 0;
+          stack.push(i);
+          seen[i] = 1;
+          var pts = [];
+          var cx0 = x, cx1 = x, cy0 = y, cy1 = y;
+          while (stack.length) {
+            var p = stack.pop();
+            pts.push(p);
+            var py = (p / W) | 0, px = p - py * W;
+            if (px < cx0) cx0 = px;
+            if (px > cx1) cx1 = px;
+            if (py < cy0) cy0 = py;
+            if (py > cy1) cy1 = py;
+            var dirs = [p - 1, p + 1, p - W, p + W];
+            for (var di = 0; di < 4; di++) {
+              var np = dirs[di];
+              if (np < 0 || np >= mask.length || seen[np] || !mask[np]) continue;
+              var ny = (np / W) | 0, nx = np - ny * W;
+              if (di < 2 && ny !== py) continue;
+              if ((di === 0 && nx !== px - 1) || (di === 1 && nx !== px + 1)) continue;
+              seen[np] = 1;
+              stack.push(np);
+            }
+          }
+          if (pts.length >= 8) comps.push({ pts: pts, x0: cx0, x1: cx1, y0: cy0, y1: cy1, area: pts.length });
+        }
+      }
+      return comps;
+    }
+    var comps = compsOf(paintMask(false));
+    var inkN = 0;
+    for (i = 0; i < comps.length; i++) inkN += comps[i].area;
+    if (inkN < 90) comps = compsOf(paintMask(true));
+    if (!comps.length) return null;
+    comps.sort(function (a, b2) { return ((a.y0 + a.y1) / 2) - ((b2.y0 + b2.y1) / 2); });
+    var lines = [];
+    for (i = 0; i < comps.length; i++) {
+      var c = comps[i];
+      var cy = (c.y0 + c.y1) / 2;
+      var ch = c.y1 - c.y0 + 1;
+      var placed = false;
+      for (var li = 0; li < lines.length; li++) {
+        var line = lines[li];
+        if (Math.abs(cy - line.cy) < Math.max(8, line.ch * 0.65)) {
+          line.comps.push(c);
+          var acc = 0, accH = 0;
+          for (var lj = 0; lj < line.comps.length; lj++) {
+            acc += (line.comps[lj].y0 + line.comps[lj].y1) / 2;
+            accH = Math.max(accH, line.comps[lj].y1 - line.comps[lj].y0 + 1);
+          }
+          line.cy = acc / line.comps.length;
+          line.ch = accH;
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) lines.push({ comps: [c], cy: cy, ch: ch });
+    }
+    var mainArea = 0;
+    for (i = 0; i < lines.length; i++) {
+      var sum = 0;
+      for (var k = 0; k < lines[i].comps.length; k++) sum += lines[i].comps[k].area;
+      lines[i].area = sum;
+      if (sum > mainArea) mainArea = sum;
+    }
+    var keep = new Uint8Array(W * H);
+    var keptN = 0;
+    for (i = 0; i < lines.length; i++) {
+      var ln = lines[i];
+      if (ln.ch <= 3 && ln.area < mainArea * 0.5) continue;
+      var realWord = ln.comps.length >= 3 || ln.area >= mainArea * 0.08;
+      if (!realWord) continue;
+      var sizes = ln.comps.map(function (cc) { return cc.area; }).sort(function (a, b2) { return a - b2; });
+      var med = sizes[(sizes.length / 2) | 0];
+      for (k = 0; k < ln.comps.length; k++) {
+        c = ln.comps[k];
+        if (c.area < 12) continue;
+        if (ln.comps.length >= 3 && c.area < med * 0.22) continue;
+        var bw = c.x1 - c.x0 + 1, bh = c.y1 - c.y0 + 1;
+        if (bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
+        if (bh <= 3 && bw > cw0 * 0.45) continue;
+        for (var pi = 0; pi < c.pts.length; pi++) keep[c.pts[pi]] = 1;
+        keptN += c.area;
+      }
+    }
+    if (keptN < 24 || keptN / area > 0.78) return null;
+    var minX = W, minY = H, maxX = 0, maxY = 0;
+    for (i = 0; i < keep.length; i++) {
+      if (!keep[i]) continue;
+      y = (i / W) | 0;
+      x = i - y * W;
+      if (x < minX) minX = x;
+      if (y < minY) minY = y;
+      if (x > maxX) maxX = x;
+      if (y > maxY) maxY = y;
+    }
+    if (maxX <= minX || maxY <= minY) return null;
+    var pad = 2;
+    minX = Math.max(0, minX - pad);
+    minY = Math.max(0, minY - pad);
+    maxX = Math.min(W - 1, maxX + pad);
+    maxY = Math.min(H - 1, maxY + pad);
+    var cw = maxX - minX + 1, chh = maxY - minY + 1;
+    var cut = document.createElement("canvas");
+    cut.width = cw;
+    cut.height = chh;
+    var o = cut.getContext("2d");
+    var bg = "#" + hex2(br) + hex2(bgc) + hex2(bb);
+    o.fillStyle = bg;
+    o.fillRect(0, 0, cw, chh);
+    var copy = o.getImageData(0, 0, cw, chh);
+    var cd = copy.data;
+    for (y = 0; y < chh; y++) {
+      for (x = 0; x < cw; x++) {
+        var sp = (minY + y) * W + (minX + x);
+        if (!keep[sp]) continue;
+        var di = (y * cw + x) * 4;
+        cd[di] = d[sp * 4];
+        cd[di + 1] = d[sp * 4 + 1];
+        cd[di + 2] = d[sp * 4 + 2];
+        cd[di + 3] = 255;
+      }
+    }
+    o.putImageData(copy, 0, 0);
+    var spun = document.createElement("canvas");
+    spun.width = chh;
+    spun.height = cw;
+    var out = spun.getContext("2d");
+    out.fillStyle = bg;
+    out.fillRect(0, 0, chh, cw);
+    out.translate(chh, 0);
+    out.rotate(Math.PI / 2);
+    out.drawImage(cut, 0, 0);
+    var src = "";
+    try { src = spun.toDataURL("image/png"); } catch (eUrl) { return null; }
+    if (!src) return null;
+    return { src: src, bg: bg };
+  }
   function queueSpineMatch(slug, url) {
     window.__rwSpinePending = window.__rwSpinePending || {};
     window.__rwSpineReady = window.__rwSpineReady || {};
@@ -1094,6 +1347,15 @@
           var thing = "";
           try { thing = liftThingLetters(im); } catch (eThing) { thing = ""; }
           if (thing) { finish({ letters: 1, ink: "#1a120c", src: thing, bg: window.__rwThingBg || "#d5e6f0", logo: 1 }); return; }
+        }
+        var lifted = null;
+        var liftMode = LIFT_TITLE[slug] || LIFT_TITLE[String(slug).replace(/-(19|20)\d\d$/, "")] || "";
+        if (liftMode && slug !== "the-thing-1982") {
+          try { lifted = liftCoverTitle(im, use, liftMode); } catch (eLift) { lifted = null; }
+        }
+        if (lifted && lifted.src) {
+          finish({ letters: 1, ink: "#f4f1ea", src: lifted.src, bg: lifted.bg, logo: 1 });
+          return;
         }
         var ink = "#f4f1ea";
         try { ink = sampleTitleInk(im, use); } catch (eInk) { ink = "#f4f1ea"; }
@@ -17300,7 +17562,9 @@
   function fixBladeRunner() {
     document.querySelectorAll('.vhs-box[data-slug="blade-runner"]').forEach(function (box) {
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        if (box.getAttribute("data-spine-logo-art") === "1") return;
         var src = img.getAttribute("src") || "";
+        if (src.indexOf("data:") === 0) return;
         if (src.indexOf("/sleeves/spines/blade-runner.png") < 0) img.src = "/sleeves/spines/blade-runner.png?v=572";
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
@@ -17483,7 +17747,9 @@
         st.style.setProperty("bottom", "auto", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        if (box.getAttribute("data-spine-logo-art") === "1") return;
         var src = img.getAttribute("src") || "";
+        if (src.indexOf("data:") === 0) return;
         if (src.indexOf("/sleeves/spines/match/") >= 0) return;
         if (src.indexOf("first-blood") >= 0 && src.indexOf("/sleeves/spines/first-blood.png") < 0) img.src = "/sleeves/spines/first-blood.png?v=572";
         img.style.removeProperty("max-width");
