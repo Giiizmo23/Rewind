@@ -9358,6 +9358,7 @@
         if (parts[1]) box.style.setProperty("--vhs-b", parts[1]);
         if (parts[2]) box.style.setProperty("--vhs-c", parts[2]);
       }
+      blackCase(box);
       const shell = box.querySelector(".vhs-shell-back");
       if (shell) shell.classList.remove("is-text-back");
       const open = article.querySelector("a.tape-slot-open");
@@ -17301,6 +17302,30 @@
     }
   }
 
+  function blackCase(box) {
+    if (!box) return;
+    var slug = box.getAttribute("data-slug") || "";
+    box.querySelectorAll(".vhs-spine, .vhs-spine-ink, .vhs-panel, .vhs-panel-top, .vhs-panel-bot, .vhs-liner, .vhs-shell").forEach(function (el) {
+      el.style.setProperty("background-image", "none", "important");
+      el.style.setProperty("background-blend-mode", "normal", "important");
+      var spine = el.classList.contains("vhs-spine") || el.classList.contains("vhs-spine-ink");
+      if (spine && (SPINE_GROUND[slug] || box.getAttribute("data-spine-match") === "1")) return;
+      var yellow = !spine;
+      if (spine) {
+        var bg = "";
+        try { bg = getComputedStyle(el).backgroundColor || ""; } catch (eBg) {}
+        var m = String(bg).match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+        if (m) {
+          var r = +m[1], g = +m[2], b = +m[3];
+          yellow = r > 150 && g > 110 && b < 190 && (r + g) > b * 2;
+        } else yellow = true;
+      }
+      if (!yellow) return;
+      el.style.setProperty("background-color", "#141210", "important");
+      el.style.setProperty("box-shadow", "none", "important");
+    });
+  }
+
   function fixOneSpine(box) {
     if (!box) return;
     var slug = box.getAttribute("data-slug") || "";
@@ -17692,6 +17717,7 @@
       el.style.setProperty("transform", right ? "rotate(180deg)" : "none", "important");
     });
     syncSpineField(box);
+    blackCase(box);
   }
 
   function syncSpineField(box) {
