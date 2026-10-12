@@ -9209,6 +9209,10 @@
       const style = document.createElement("style");
       style.id = "rw-aisle-floor";
       style.textContent =
+        "html[data-aisles='1'] .vhs-box .vhs-spine,html[data-aisles='1'] .vhs-box .vhs-panel,html[data-aisles='1'] .vhs-box .vhs-panel-top,html[data-aisles='1'] .vhs-box .vhs-panel-bot,html[data-aisles='1'] .vhs-box .vhs-liner{background-image:none!important;background-blend-mode:normal!important}" +
+        "html[data-aisles='1'] .vhs-box .vhs-shell{background-color:#141210!important;background-image:none!important}" +
+        "html[data-aisles='1'] .vhs-box .vhs-panel-top,html[data-aisles='1'] .vhs-box .vhs-panel-bot{box-shadow:none!important}" +
+        "html[data-aisles='1'] .vhs-box .vhs-spine:before{display:none!important;background:none!important}" +
         "main .space-y-10 > section{content-visibility:visible;contain-intrinsic-size:none;overflow:visible}" +
         "main .space-y-10 > section article.tape-slot{content-visibility:visible;contain-intrinsic-size:none}" +
         "main .space-y-10 > section[hidden]{display:none!important;content-visibility:visible}" +
