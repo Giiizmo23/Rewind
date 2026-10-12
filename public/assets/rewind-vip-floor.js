@@ -1284,9 +1284,11 @@
         if (mode === "yellow" && c.area < 36) continue;
         if (mode === "white" && c.area < 28) continue;
         if (mode === "cleanred" && c.area < 48) continue;
+        if (mode === "logo" && c.area < mainArea * 0.12) continue;
         if (ln.comps.length >= 3 && c.area < med * 0.22) continue;
         var bw = c.x1 - c.x0 + 1, bh = c.y1 - c.y0 + 1;
-        if (bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
+        // A logo that fills its band is the title, not a photo blob.
+        if (mode !== "logo" && bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
         if (bh <= 3 && bw > cw0 * 0.45) continue;
         for (var pi = 0; pi < c.pts.length; pi++) keep[c.pts[pi]] = 1;
         keptN += c.area;
@@ -1300,6 +1302,19 @@
         if (touch < 2) speck.push(i);
       }
       for (i = 0; i < speck.length; i++) { keep[speck[i]] = 0; keptN--; }
+      // Close the thin gaps where the gun crosses the letters. Letter spacing is wider than this.
+      for (y = 0; y < H; y++) {
+        var prev = -1;
+        for (x = 0; x < W; x++) {
+          if (!keep[y * W + x]) continue;
+          if (prev >= 0 && x - prev > 1 && x - prev <= 5) {
+            for (var fx = prev + 1; fx < x; fx++) {
+              if (!keep[y * W + fx]) { keep[y * W + fx] = 1; keptN++; }
+            }
+          }
+          prev = x;
+        }
+      }
     }
     if (keptN < 24 || keptN / area > 0.78) return null;
     var minX = W, minY = H, maxX = 0, maxY = 0;
@@ -1335,22 +1350,40 @@
         var sp = (minY + y) * W + (minX + x);
         if (!keep[sp]) continue;
         var di = (y * cw + x) * 4;
-        cd[di] = d[sp * 4];
-        cd[di + 1] = d[sp * 4 + 1];
-        cd[di + 2] = d[sp * 4 + 2];
+        if (mode === "cleanred") {
+          cd[di] = 198;
+          cd[di + 1] = 12;
+          cd[di + 2] = 16;
+        } else {
+          cd[di] = d[sp * 4];
+          cd[di + 1] = d[sp * 4 + 1];
+          cd[di + 2] = d[sp * 4 + 2];
+        }
         cd[di + 3] = 255;
       }
     }
     o.putImageData(copy, 0, 0);
+    var srcCut = cut;
+    if (mode === "cleanred") {
+      var taller = document.createElement("canvas");
+      taller.width = cw;
+      taller.height = Math.max(chh + 1, Math.round(chh * 2.4));
+      var tctx = taller.getContext("2d");
+      tctx.imageSmoothingEnabled = false;
+      tctx.fillStyle = bg;
+      tctx.fillRect(0, 0, taller.width, taller.height);
+      tctx.drawImage(cut, 0, 0, cw, taller.height);
+      srcCut = taller;
+    }
     var spun = document.createElement("canvas");
-    spun.width = chh;
-    spun.height = cw;
+    spun.width = srcCut.height;
+    spun.height = srcCut.width;
     var out = spun.getContext("2d");
     out.fillStyle = bg;
-    out.fillRect(0, 0, chh, cw);
-    out.translate(chh, 0);
+    out.fillRect(0, 0, spun.width, spun.height);
+    out.translate(srcCut.height, 0);
     out.rotate(Math.PI / 2);
-    out.drawImage(cut, 0, 0);
+    out.drawImage(srcCut, 0, 0);
     var src = "";
     try { src = spun.toDataURL("image/png"); } catch (eUrl) { return null; }
     if (!src) return null;
