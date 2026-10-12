@@ -26,9 +26,9 @@
     "the-shawshank-redemption": [0.07, 0.795, 0.93, 0.965],
     "coming-to-america": [0.03, 0.015, 0.97, 0.215],
     "alien": [0.03, 0.09, 0.97, 0.165],
-    "back-to-the-future": [0.015, 0.006, 0.63, 0.170],
-    "pulp-fiction": [0.05, 0.012, 0.95, 0.118],
-    "die-hard": [0.08, 0.86, 0.92, 0.96],
+    "back-to-the-future": [0.04, 0.042, 0.50, 0.176],
+    "pulp-fiction": [0.08, 0.052, 0.94, 0.182],
+    "die-hard": [0.06, 0.842, 0.94, 0.928],
     "point-break": [0.03, 0.565, 0.97, 0.69],
     "goodfellas": [0.06, 0.48, 0.94, 0.625],
     "se7en": [0.02, 0.74, 0.98, 0.995],
@@ -36,7 +36,7 @@
     "heat": [0.07, 0.862, 0.93, 0.962],
     "heat-1995": [0.07, 0.862, 0.93, 0.962],
     "first-blood": [0.06, 0.79, 0.94, 0.90],
-    "blade-runner": [0.05, 0.902, 0.95, 0.982],
+    "blade-runner": [0.04, 0.882, 0.97, 0.948],
     "the-thing-1982": [0.04, 0.72, 0.96, 0.96],
     "the-matrix": [0.06, 0.84, 0.94, 0.96],
     "the-matrix-1999": [0.06, 0.84, 0.94, 0.96],
@@ -55,8 +55,8 @@
     "gremlins": [0.04, 0.82, 0.96, 0.97],
     "project-hail-mary": [0.16, 0.08, 0.84, 0.34],
     "the-odyssey-2026": [0.08, 0.868, 0.92, 0.975],
-    "obsession-2026": [0.04, 0.012, 0.96, 0.16],
-    "spider-man-brand-new-day": [0.07, 0.80, 0.93, 0.975]
+    "obsession-2026": [0.12, 0.100, 0.90, 0.205],
+    "spider-man-brand-new-day": [0.12, 0.808, 0.88, 0.942]
     /* halloween-1978 keeps its approved spine art (/sleeves/spines/halloween-1978.png on #000); a cover-sampled spine color made two blacks. */
   };
   function titleBand(slug) {
@@ -1076,16 +1076,16 @@
 
   var LIFT_TITLE = {
     "alien": "ink",
-    "back-to-the-future": "ink",
-    "die-hard": "ink",
-    "pulp-fiction": "ink",
+    "back-to-the-future": "logo",
+    "die-hard": "red",
+    "pulp-fiction": "yellow",
     "heat": "ink",
     "heat-1995": "ink",
     "first-blood": "red",
-    "blade-runner": "ink",
+    "blade-runner": "red",
     "project-hail-mary": "ink",
     "the-odyssey-2026": "ink",
-    "obsession-2026": "ink",
+    "obsession-2026": "white",
     "spider-man-brand-new-day": "ink"
   };
   function liftCoverTitle(im, band, mode) {
@@ -1154,17 +1154,35 @@
           var L = lumOf(r, g, b), S = satOf(r, g, b);
           var dist = Math.sqrt((r - br) * (r - br) + (g - bgc) * (g - bgc) + (b - bb) * (b - bb));
           var on = false;
-          if (whiteTitle) on = S < 0.32 && L > Math.max(bLum + 80, 218);
+          if (mode === "white") on = L > 230 && S < 0.3;
+          else if (mode === "yellow") on = r > 160 && g > 115 && b < 120 && r > b + 45 && g > b + 25;
+          else if (mode === "red") on = r > 90 && r > g + 24 && r > b + 24 && dist > 24;
+          else if (mode === "logo") on = (S > 0.36 && dist > 34 && L > 28 && L < 252) || (L > 196 && S < 0.38 && dist > 36);
+          else if (whiteTitle) on = S < 0.32 && L > Math.max(bLum + 80, 218);
           else {
             if (paleTitle && S < 0.55 && L > Math.max(bLum + 70, 146)) on = true;
             if (!on && dist > 50 && S > 0.32 && L > 20 && L < 248) on = true;
             if (!on && useDim && bLum < 42 && S < 0.4 && L > bLum + 34 && L < 145 && dist > 26) on = true;
           }
-          if (mode === "red" && on && !isRed(r, g, b)) on = false;
           if (on) { mask[i] = 1; n++; }
         }
       }
-      if (useDim && n) {
+      if ((mode === "red" || mode === "yellow") && n) {
+        var add = [];
+        for (y = y0; y < y1; y++) {
+          for (x = x0; x < x1; x++) {
+            i = y * W + x;
+            if (mask[i]) continue;
+            var touch = (x > x0 && mask[i - 1]) || (x + 1 < x1 && mask[i + 1]) || (y > y0 && mask[i - W]) || (y + 1 < y1 && mask[i + W]);
+            if (!touch) continue;
+            var nr = d[i * 4], ng = d[i * 4 + 1], nb = d[i * 4 + 2];
+            if (mode === "red" && !(nr > ng + 8 && nr > nb + 8)) continue;
+            if (mode === "yellow" && !(nr > 140 && ng > 90 && nb < 140)) continue;
+            add.push(i);
+          }
+        }
+        for (var ai = 0; ai < add.length; ai++) mask[add[ai]] = 1;
+      } else if (useDim && n) {
         var add = [];
         for (y = y0; y < y1; y++) {
           for (x = x0; x < x1; x++) {
@@ -1262,6 +1280,8 @@
       for (k = 0; k < ln.comps.length; k++) {
         c = ln.comps[k];
         if (c.area < 12) continue;
+        if (mode === "yellow" && c.area < 36) continue;
+        if (mode === "white" && c.area < 28) continue;
         if (ln.comps.length >= 3 && c.area < med * 0.22) continue;
         var bw = c.x1 - c.x0 + 1, bh = c.y1 - c.y0 + 1;
         if (bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
@@ -18383,14 +18403,14 @@
         }
         if (img.closest("[data-slug='halloween-1978']") && img.closest(".vhs-box").getAttribute("data-spine-letters") !== "1") {
           img.style.setProperty("inset", "auto", "important");
-          img.style.setProperty("top", "16%", "important");
-          img.style.setProperty("right", "8%", "important");
-          img.style.setProperty("bottom", "18%", "important");
-          img.style.setProperty("left", "8%", "important");
-          img.style.setProperty("width", "84%", "important");
-          img.style.setProperty("height", "66%", "important");
-          img.style.setProperty("max-width", "84%", "important");
-          img.style.setProperty("max-height", "66%", "important");
+          img.style.setProperty("top", "11%", "important");
+          img.style.setProperty("right", "6%", "important");
+          img.style.setProperty("bottom", "13%", "important");
+          img.style.setProperty("left", "6%", "important");
+          img.style.setProperty("width", "88%", "important");
+          img.style.setProperty("height", "76%", "important");
+          img.style.setProperty("max-width", "88%", "important");
+          img.style.setProperty("max-height", "76%", "important");
           img.style.setProperty("margin", "auto", "important");
           img.style.setProperty("object-fit", "contain", "important");
           img.style.setProperty("object-position", "center center", "important");
