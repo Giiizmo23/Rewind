@@ -9372,6 +9372,8 @@
         cover.style.setProperty("visibility", "visible", "important");
         var existing = cover.getAttribute("src") || "";
         var existingRemote = existing.indexOf("image.tmdb.org") >= 0 || existing.indexOf("themoviedb.org") >= 0;
+        var marked = cover.getAttribute("data-rw-cover") || "";
+        var ownRemote = existingRemote && marked === slug;
         var art = filmArt(slug);
         var remote = art.indexOf("image.tmdb.org") >= 0 || art.indexOf("themoviedb.org") >= 0;
         var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
@@ -9383,8 +9385,8 @@
           cover.setAttribute("data-tmdb-art", "keep");
           cover.setAttribute("data-rw-cover", slug);
           cover.style.setProperty("opacity", "1", "important");
-        } else if (aisle && (poster || existingRemote)) {
-          var use = poster || existing;
+        } else if (aisle && (poster || ownRemote || remote)) {
+          var use = poster || (ownRemote ? existing : art);
           if ((cover.getAttribute("src") || "") !== use) cover.src = use;
           cover.setAttribute("data-tmdb-art", "1");
           cover.removeAttribute("data-painted");
