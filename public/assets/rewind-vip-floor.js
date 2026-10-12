@@ -35,7 +35,7 @@
     "the-shining": [0.06, 0.20, 0.96, 0.75],
     "heat": [0.07, 0.862, 0.93, 0.962],
     "heat-1995": [0.07, 0.862, 0.93, 0.962],
-    "first-blood": [0.06, 0.79, 0.94, 0.90],
+    "first-blood": [0.05, 0.786, 0.95, 0.824],
     "blade-runner": [0.04, 0.882, 0.97, 0.948],
     "the-thing-1982": [0.04, 0.72, 0.96, 0.96],
     "the-matrix": [0.06, 0.84, 0.94, 0.96],
@@ -1081,7 +1081,7 @@
     "pulp-fiction": "yellow",
     "heat": "ink",
     "heat-1995": "ink",
-    "first-blood": "red",
+    "first-blood": "cleanred",
     "blade-runner": "red",
     "project-hail-mary": "ink",
     "the-odyssey-2026": "ink",
@@ -1157,6 +1157,7 @@
           if (mode === "white") on = L > 230 && S < 0.3;
           else if (mode === "yellow") on = r > 160 && g > 115 && b < 120 && r > b + 45 && g > b + 25;
           else if (mode === "red") on = r > 90 && r > g + 24 && r > b + 24 && dist > 24;
+          else if (mode === "cleanred") on = r > 155 && r > g + 42 && r > b + 42;
           else if (mode === "logo") on = (S > 0.36 && dist > 34 && L > 28 && L < 252) || (L > 196 && S < 0.38 && dist > 36);
           else if (whiteTitle) on = S < 0.32 && L > Math.max(bLum + 80, 218);
           else {
@@ -1282,6 +1283,7 @@
         if (c.area < 12) continue;
         if (mode === "yellow" && c.area < 36) continue;
         if (mode === "white" && c.area < 28) continue;
+        if (mode === "cleanred" && c.area < 48) continue;
         if (ln.comps.length >= 3 && c.area < med * 0.22) continue;
         var bw = c.x1 - c.x0 + 1, bh = c.y1 - c.y0 + 1;
         if (bw > cw0 * 0.72 && bh > ch0 * 0.72 && c.area / (bw * bh) > 0.4) continue;
@@ -1289,6 +1291,15 @@
         for (var pi = 0; pi < c.pts.length; pi++) keep[c.pts[pi]] = 1;
         keptN += c.area;
       }
+    }
+    if (mode === "cleanred") {
+      var speck = [];
+      for (i = 0; i < keep.length; i++) {
+        if (!keep[i]) continue;
+        var touch = (keep[i - 1] ? 1 : 0) + (keep[i + 1] ? 1 : 0) + (keep[i - W] ? 1 : 0) + (keep[i + W] ? 1 : 0);
+        if (touch < 2) speck.push(i);
+      }
+      for (i = 0; i < speck.length; i++) { keep[speck[i]] = 0; keptN--; }
     }
     if (keptN < 24 || keptN / area > 0.78) return null;
     var minX = W, minY = H, maxX = 0, maxY = 0;
@@ -1312,6 +1323,8 @@
     cut.width = cw;
     cut.height = chh;
     var o = cut.getContext("2d");
+    if (mode === "yellow") { br = 212; bgc = 34; bb = 20; }
+    if (mode === "white") { br = 0; bgc = 0; bb = 0; }
     var bg = "#" + hex2(br) + hex2(bgc) + hex2(bb);
     o.fillStyle = bg;
     o.fillRect(0, 0, cw, chh);
@@ -18394,11 +18407,11 @@
         if (img.closest("[data-slug='the-shining']") && img.closest(".vhs-box").getAttribute("data-spine-letters") !== "1") {
           img.style.setProperty("top", "9%", "important");
           img.style.setProperty("bottom", "12%", "important");
-          img.style.setProperty("left", "16%", "important");
-          img.style.setProperty("right", "16%", "important");
-          img.style.setProperty("width", "68%", "important");
+          img.style.setProperty("left", "10%", "important");
+          img.style.setProperty("right", "10%", "important");
+          img.style.setProperty("width", "80%", "important");
           img.style.setProperty("height", "79%", "important");
-          img.style.setProperty("max-width", "68%", "important");
+          img.style.setProperty("max-width", "80%", "important");
           img.style.setProperty("max-height", "79%", "important");
         }
         if (img.closest("[data-slug='halloween-1978']") && img.closest(".vhs-box").getAttribute("data-spine-letters") !== "1") {
@@ -18454,7 +18467,11 @@
       if (coverAttr && coverShown && coverShown.indexOf(coverAttr.split("?")[0]) < 0) coverUrl = coverAttr;
       var bakedMatch = false;
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        if ((img.getAttribute("src") || "").indexOf("/sleeves/spines/match/") >= 0) bakedMatch = true;
+        var src = img.getAttribute("src") || "";
+        if (src.indexOf("/sleeves/spines/match/") < 0) return;
+        // First Blood's baked crop still has the gun streaks through the title.
+        if (slug === "first-blood") return;
+        bakedMatch = true;
       });
       var remoteCover = coverUrl.indexOf("image.tmdb.org") >= 0 || coverUrl.indexOf("media.themoviedb.org") >= 0 || coverUrl.indexOf("themoviedb.org") >= 0;
       var keepPaintedSpine = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
