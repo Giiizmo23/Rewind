@@ -26,8 +26,8 @@
     ".nd-promo.is-on{flex-direction:column;align-items:stretch}" +
     ".nd-promo.is-on .nd-pv{width:min(100%,320px);margin:0 auto}" +
     ".nd-promo.is-on .nd-play{display:none}" +
-    ".nd-pin{position:absolute;right:10px;top:10px;z-index:2;font:inherit;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;border-radius:var(--radius-sm,8px);padding:8px 12px;cursor:pointer;border:1px solid var(--rw-border);background:var(--rw-surface);color:var(--rw-fg);box-shadow:var(--rw-shadow)}" +
-    "@media (max-width:1023px){.nd-pin.is-fixed{position:fixed;top:auto;right:16px;bottom:calc(5.5rem + env(safe-area-inset-bottom));z-index:45}}";
+    ".nd-promo .nd-pv .nd-pin{inset:auto;display:block;width:auto;height:auto;position:absolute;right:10px;top:10px;z-index:2;font:inherit;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;border-radius:var(--radius-sm,8px);padding:8px 12px;cursor:pointer;border:1px solid var(--rw-border);background:var(--rw-surface);color:var(--rw-fg);box-shadow:var(--rw-shadow)}" +
+    "@media (max-width:1023px){.nd-promo .nd-pv .nd-pin.is-fixed{position:fixed;top:auto;right:16px;bottom:calc(5.5rem + env(safe-area-inset-bottom));z-index:45}}";
   function build() {
     if (document.getElementById("nd-promo")) return;
     var anchor = document.querySelector('main a.ticket-stub[href="/swipe"]');
