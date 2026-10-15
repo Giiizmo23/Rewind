@@ -45,3 +45,5 @@
 #win h1{font:900 clamp(60px,16vw,180px)/1 Impact,"Arial Narrow",sans-serif;color:#c8006e;text-shadow:0 6px 0 #4a3aa8;transform:skew(-4deg) rotate(-2deg);animation:wb .6s cubic-bezier(.3,1.6,.5,1);margin:0}
 @keyframes wb{0%{transform:scale(.2)}100%{transform:skew(-4deg) rotate(-2deg)}}
 @media (min-width:900px){#tv{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;grid-template-areas:"top top" "stage screen"}.tv-top{grid-area:top}.stage{grid-area:stage}#screen{grid-area:screen;margin-top:0}}
+.piece.seated{transform:translate(-50%,-100%)}.piece.seated img{height:auto;filter:none}
+.piece.seated.hop{animation:hops .6s ease}@keyframes hops{50%{transform:translate(-50%,-118%)}}
