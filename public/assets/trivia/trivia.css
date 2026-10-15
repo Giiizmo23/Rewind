@@ -47,3 +47,5 @@
 @media (min-width:900px){#tv{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;grid-template-areas:"top top" "stage screen"}.tv-top{grid-area:top}.stage{grid-area:stage}#screen{grid-area:screen;margin-top:0}}
 .piece.seated{transform:translate(-50%,-100%)}.piece.seated img{height:auto;filter:none}
 .piece.seated.hop{animation:hops .6s ease}@keyframes hops{50%{transform:translate(-50%,-118%)}}
+/* Julian: no borders/frames on any game piece */
+.piece img,.piece.cut img,.piece.seated img,.mini,.pc img,.pc.cut img{border:0;border-radius:0;box-shadow:none;filter:none;outline:0;background:none}
