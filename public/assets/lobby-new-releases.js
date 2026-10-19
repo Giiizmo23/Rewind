@@ -48,7 +48,7 @@
     box.removeAttribute("data-spine-match");
     box.removeAttribute("data-sticker-src");
     box.removeAttribute("data-sticker-set");
-    var corner = ({ "project-hail-mary": "bl", "the-odyssey-2026": "tr", "obsession-2026": "br" })[slug] || "br";
+    var corner = ({ "project-hail-mary": "bl", "the-odyssey-2026": "tr", "obsession-2026": "br", "backrooms-2026": "tl" })[slug] || "br";
     box.setAttribute("data-sticker", corner);
     var pos = corner === "tl" ? ["8px auto auto 8px", "8px", "auto", "auto", "8px"]
       : corner === "tr" ? ["8px 8px auto auto", "8px", "8px", "auto", "auto"]
@@ -83,8 +83,15 @@
     if (cover) {
       ["data-tmdb-art", "data-rw-cover", "data-tmdb-slug", "data-painted", "srcset", "sizes", "fetchpriority"].forEach(function (a) { cover.removeAttribute(a); });
       cover.setAttribute("alt", title);
-      cover.setAttribute("loading", "lazy");
-      if (keepPainted && boxed && boxed.cover) {
+      cover.setAttribute("loading", film.poster ? "eager" : "lazy");
+      if (film.poster) {
+        cover.src = film.poster;
+        cover.setAttribute("data-tmdb-art", "1");
+        cover.setAttribute("data-rw-cover", slug);
+        cover.style.setProperty("display", "block", "important");
+        cover.style.setProperty("opacity", "1", "important");
+        cover.style.setProperty("object-fit", "cover", "important");
+      } else if (keepPainted && boxed && boxed.cover) {
         cover.src = boxed.cover;
         cover.setAttribute("data-painted", "1");
         cover.setAttribute("data-tmdb-art", "keep");
@@ -132,7 +139,7 @@
   }
   function build(films) {
     var host = tonight();
-    if (!host || document.querySelector("section[data-lobby-shelf='new']")) return;
+    if (!host || document.querySelector("section[data-lobby-shelf='new']")) return false;
     var template = host.querySelector("article.tape-slot");
     var grid = host.querySelector(".grid.grid-cols-2");
     var sec = document.createElement("section");
@@ -150,32 +157,66 @@
       row.appendChild(a);
     });
     sec.appendChild(row);
-    host.insertAdjacentElement("afterend", sec);
+    /* Above Tonight's tapes. That shelf is long; waiting under it is why New Releases felt late. */
+    host.insertAdjacentElement("beforebegin", sec);
+    return true;
+  }
+  var BAKED = [
+    { slug: "project-hail-mary", title: "Project Hail Mary", year: 2026, director: "Phil Lord, Christopher Miller", runtime: 140, catalogNo: "RW-504", tagline: "Save Earth. Make A Friend.", overview: "A teacher wakes up on a spaceship with a mission he does not remember and a spider-rock alien who might be the friend.", palette: "#c47a28|#1a2a3a|#e8dcc8", poster: "https://image.tmdb.org/t/p/w500/iOb2fjXLbpJgyQXe46n1WtGCnaa.jpg" },
+    { slug: "the-odyssey-2026", title: "The Odyssey", year: 2026, director: "Christopher Nolan", runtime: 180, catalogNo: "RW-501", tagline: "Tell Me, Muse", overview: "Homer at IMAX scale. A soldier trying to get home, gods that do not make it easy, and a sea that is also a maze.", palette: "#1a3a4a|#c4aa80|#e8dcc8", poster: "https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg" },
+    { slug: "obsession-2026", title: "Obsession", year: 2026, director: "Curry Barker", runtime: 109, catalogNo: "RW-7167", tagline: "Be careful who you wish for…", overview: "He breaks the One Wish Willow to win his crush. He gets the wish, then finds out what it costs.", palette: "#1a1814|#d7c4a0|#1a6b6b", poster: "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg" },
+    { slug: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", year: 2026, director: "Destin Daniel Cretton", runtime: 130, catalogNo: "RW-502", tagline: "Brand New Day", overview: "Peter Parker after the spell. A new day that is not as clean as the title. The mask is back on. The city did not forget.", palette: "#c41230|#1a3a8a|#e8c07a", poster: "https://image.tmdb.org/t/p/w500/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg" },
+    { slug: "backrooms-2026", title: "Backrooms", year: 2026, director: "Kane Parsons", runtime: 111, catalogNo: "RW-7187", tagline: "See how far it goes.", overview: "A strange doorway appears in the basement of a furniture showroom.", palette: "#1c1418|#c45a3a|#f3e6c8", poster: "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg" }
+  ];
+  function slugsOf(films) {
+    return films.map(function (f) { return f.slug; }).join("|");
+  }
+  function shelfSlugs() {
+    var sec = document.querySelector("section[data-lobby-shelf='new']");
+    if (!sec) return "";
+    return Array.prototype.map.call(sec.querySelectorAll(".vhs-box"), function (b) { return b.getAttribute("data-slug") || ""; }).join("|");
+  }
+  function place(films) {
+    if (shelfSlugs() === slugsOf(films)) return true;
+    var old = document.querySelector("section[data-lobby-shelf='new']");
+    if (old) old.remove();
+    return !!build(films);
   }
   function run() {
-    fetch("/data/catalog.json")
-      .then(function (r) { return r.ok ? r.json() : []; })
-      .then(function (rows) {
-        var seen = {};
-        var picks = (Array.isArray(rows) ? rows : []).filter(function (f) {
-          if (!isNew(f) || seen[f.slug]) return false;
-          seen[f.slug] = 1; return true;
-        });
-        picks.sort(function (a, b) {
-          var pa = Number(a.pop) || 0, pb = Number(b.pop) || 0;
-          if (pa !== pb) return pb - pa;
-          var ya = year(a), yb = year(b);
-          if (ya !== yb) return yb - ya;
-          return String(a.title || "").localeCompare(String(b.title || ""));
-        });
-        var tries = 0;
-        (function wait() {
-          if (tonight()) return build(picks.slice(0, COUNT));
-          if (++tries < 40) setTimeout(wait, 150);
-        })();
-      })
-      .catch(function () {});
+    var cat = window.__rwCatData;
+    var ready = cat && typeof cat.then === "function" ? cat : fetch("/data/catalog.json").then(function (r) { return r.ok ? r.json() : []; });
+    ready.then(function (rows) {
+      var seen = {};
+      var picks = (Array.isArray(rows) ? rows : []).filter(function (f) {
+        if (!isNew(f) || seen[f.slug]) return false;
+        seen[f.slug] = 1; return true;
+      });
+      picks.sort(function (a, b) {
+        var pa = Number(a.pop) || 0, pb = Number(b.pop) || 0;
+        if (pa !== pb) return pb - pa;
+        var ya = year(a), yb = year(b);
+        if (ya !== yb) return yb - ya;
+        return String(a.title || "").localeCompare(String(b.title || ""));
+      });
+      var next = picks.slice(0, COUNT);
+      if (!next.length || slugsOf(next) === slugsOf(BAKED)) return;
+      var tries = 0;
+      (function wait() {
+        if (place(next)) return;
+        if (++tries < 40) setTimeout(wait, 50);
+      })();
+    }).catch(function () {});
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
+  function start() {
+    if (!place(BAKED)) {
+      var tries = 0;
+      (function wait() {
+        if (place(BAKED) || ++tries > 30) return;
+        setTimeout(wait, 16);
+      })();
+    }
+    run();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
 })();

@@ -8,6 +8,10 @@
     {
       "source": "/assets/FLOOR.json",
       "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    },
+    {
+      "source": "/trivia.html",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
     }
   ]
 }

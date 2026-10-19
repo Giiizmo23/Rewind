@@ -4001,7 +4001,7 @@ html[data-theme="dark"] .vhs-box[data-slug="pans-labyrinth"] .vhs-spine{
 .vhs-box[data-slug="the-lion-king"] .vhs-spine-year{bottom:24px!important;top:auto!important;}
 .vhs-box[data-slug="the-lion-king"] .vhs-spine-no{bottom:7px!important;top:auto!important;}
 .vhs-box[data-slug="the-lion-king"] .vhs-sticker{
-  inset:auto 8px 10px auto!important;top:auto!important;right:8px!important;bottom:10px!important;left:auto!important;
+  inset:8px auto auto 8px!important;top:8px!important;right:auto!important;bottom:auto!important;left:8px!important;
 }
 .vhs-box[data-slug="the-lion-king"] .vhs-shell-back,
 .vhs-box[data-slug="the-lion-king"] .vhs-back-still,

@@ -32,7 +32,7 @@ export function shellResponse(pathname: string): Response | null {
   if (!known) {
     return new Response(NOT_FOUND_HTML, {
       status: 404,
-      headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+      headers: { "content-type": "text/html; charset=utf-8", "cache-control": "private, max-age=180" },
     });
   }
   let html = page("index.html", home);
@@ -45,6 +45,6 @@ export function shellResponse(pathname: string): Response | null {
   else if (pathname === "/swipe" || pathname.startsWith("/swipe/")) html = page("swipe.html", swipe);
   return new Response(html, {
     status: 200,
-    headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+    headers: { "content-type": "text/html; charset=utf-8", "cache-control": "private, max-age=180" },
   });
 }

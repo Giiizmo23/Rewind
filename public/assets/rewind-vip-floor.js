@@ -2100,28 +2100,89 @@
     if (!n) return 999;
     var mean = sum / n;
     var sd = Math.sqrt(Math.max(0, sum2 / n - mean * mean));
-    return sd + (mean < 80 ? 40 : 0) + (skin / n) * 120;
+    return sd + (mean < 80 ? 40 : 0) + (skin / n) * 520;
   }
   var STICKER_PIN = {
     "the-shawshank-redemption": "tl",
     "coming-to-america": "bl",
-    "goodfellas": "bl",
+    "goodfellas": "tr",
     "point-break": "br",
     "heat": "tr",
     "heat-1995": "tr",
     "back-to-the-future": "br",
     "pulp-fiction": "bl",
-    "alien": "bl",
+    "alien": "tr",
     "die-hard": "tr",
     "first-blood": "tl",
     "blade-runner": "tl",
     "obsession-2026": "br",
     "project-hail-mary": "bl",
-    "the-odyssey-2026": "tr"
+    "the-odyssey-2026": "tr",
+    "wall-e": "br",
+    "the-lion-king": "tl",
+    "up": "tr",
+    "toy-story": "br",
+    "toy-story-1995": "br",
+    "monsters-inc": "bl",
+    "backrooms-2026": "tl",
+    "michael-2026": "tl",
+    "the-fellowship-of-the-ring": "br",
+    "the-lord-of-the-rings-the-two-towers": "br",
+    "the-lord-of-the-rings-the-return-of-the-king": "br",
+    "black-swan": "tr",
+    "psycho": "tr",
+    "inception": "tr",
+    "inception-2010": "tr",
+    "the-dark-knight": "tr",
+    "the-dark-knight-2008": "tr",
+    "avengers-endgame": "tl",
+    "avatar": "tl",
+    "the-wolf-of-wall-street": "br",
+    "the-truman-show": "tr",
+    "toy-story-3": "tr",
+    "ratatouille": "tr",
+    "inside-out": "tr",
+    "home-alone": "tr",
+    "how-the-grinch-stole-christmas": "tl",
+    "titanic": "tr",
+    "titanic-1997": "tr",
+    "the-silence-of-the-lambs": "tr",
+    "silence-of-the-lambs": "tr",
+    "shutter-island": "br",
+    "the-good-the-bad-and-the-ugly": "br",
+    "the-good-the-bad-and-the-ugly-1966": "br",
+    "rocky": "tr",
+    "rush": "tr",
+    "rush-2013": "tr",
+    "warrior": "tr",
+    "warrior-2011": "tr",
+    "moneyball": "tr",
+    "coco": "tl",
+    "coco-2017": "tl",
+    "bohemian-rhapsody": "br",
+    "bohemian-rhapsody-2018": "br",
+    "mad-max-fury-road": "br",
+    "drive": "bl",
+    "drive-2011": "bl",
+    "her": "br",
+    "her-2013": "br",
+    "a-star-is-born": "tl",
+    "the-godfather-part-ii": "tr",
+    "taxi-driver": "tr",
+    "taxi-driver-1976": "tr",
+    "12-angry-men": "tr",
+    "one-flew-over-the-cuckoos-nest": "br",
+    "one-flew-over-the-cuckoos-nest-1975": "br",
+    "american-beauty": "bl",
+    "good-will-hunting": "tl",
+    "good-will-hunting-1997": "tl"
   };
   function pinnedCorner(box) {
     var slug = box && box.getAttribute && box.getAttribute("data-slug");
-    return (slug && STICKER_PIN[slug]) || "";
+    if (!slug) return "";
+    if (STICKER_PIN[slug]) return STICKER_PIN[slug];
+    var base = String(slug).replace(/-(19|20)\d\d$/, "");
+    return STICKER_PIN[base] || "";
   }
   function placeBatchSticker(box, img) {
     if (!box) return;
@@ -2264,7 +2325,7 @@
     "national-lampoons-christmas-vacation": "christmas-vacation",
     "am-lie-2001": "amelie"
   };
-  var AISLE_NEW={"12-angry-men":"/sleeves/spines/12-angry-men.png?v=cls1","1999-2027":"/sleeves/spines/1999-2027.png?v=aisle1","a-beautiful-mind":"/sleeves/spines/a-beautiful-mind.png?v=rom1","a-minecraft-movie-squared-2027":"/sleeves/spines/a-minecraft-movie-squared-2027.png?v=aisle2","a-star-is-born":"/sleeves/spines/a-star-is-born.png?v=mus1","whiplash":"/sleeves/spines/whiplash.png?v=mus1","coco-2017":"/sleeves/spines/coco-2017.png?v=mus1","amadeus":"/sleeves/spines/amadeus.png?v=mus1","am-lie-2001":"/sleeves/spines/am-lie-2001.png?v=rom1","american-beauty":"/sleeves/spines/american-beauty.png?v=dra1","american-history-x-1998":"/sleeves/spines/american-history-x-1998.png?v=dra1","avatar":"/sleeves/spines/avatar.png?v=act1","avengers-endgame":"/sleeves/spines/avengers-endgame.png?v=act1","backrooms-2026":"/sleeves/spines/backrooms-2026.png?v=aisle2","batman-begins":"/sleeves/spines/batman-begins.png?v=act1","birdman-or-the-unexpected-virtue-of-ignorance-2014":"/sleeves/spines/birdman-or-the-unexpected-virtue-of-ignorance-2014.png?v=ind1","black-swan":"/sleeves/spines/black-swan.png?v=hor1","bohemian-rhapsody-2018":"/sleeves/spines/bohemian-rhapsody-2018.png?v=mus1","braveheart":"/sleeves/spines/braveheart.png?v=war1","catch-me-if-you-can":"/sleeves/spines/catch-me-if-you-can.png?v=dra1","day-drinker-2027":"/sleeves/spines/day-drinker-2027.png?v=aisle2","deadpool":"/sleeves/spines/deadpool.png?v=com1","fast-forever-2028":"/sleeves/spines/fast-forever-2028.png?v=aisle2","ford-v-ferrari-2019":"/sleeves/spines/ford-v-ferrari-2019.png?v=spo1","ghost-rider-2028":"/sleeves/spines/ghost-rider-2028.png?v=aisle2","gladiator":"/sleeves/spines/gladiator.png?v=act1","harry-potter-and-the-deathly-hallows-part-2-2011":"/sleeves/spines/harry-potter-and-the-deathly-hallows-part-2-2011.png?v=fan1","home-alone-2-lost-in-new-york":"/sleeves/spines/home-alone-2-lost-in-new-york.png?v=hol1","how-the-grinch-stole-christmas":"/sleeves/spines/how-the-grinch-stole-christmas.png?v=hol1","how-to-train-your-dragon":"/sleeves/spines/how-to-train-your-dragon.png?v=ani1","inside-out":"/sleeves/spines/inside-out.png?v=ani1","joker":"/sleeves/spines/joker.png?v=cri1","juno":"/sleeves/spines/juno.png?v=ind1","l-on-the-professional-1994":"/sleeves/spines/l-on-the-professional-1994.png?v=dra1","little-miss-sunshine":"/sleeves/spines/little-miss-sunshine.png?v=ind1","memento":"/sleeves/spines/memento.png?v=thr1","michael-2026":"/sleeves/spines/michael-2026.png?v=aisle2","million-dollar-baby":"/sleeves/spines/million-dollar-baby.png?v=spo1","rocky":"/sleeves/spines/rocky.png?v=spo1","moneyball":"/sleeves/spines/moneyball.png?v=spo1","monsters-inc":"/sleeves/spines/monsters-inc.png?v=fam3","national-lampoons-christmas-vacation":"/sleeves/spines/national-lampoons-christmas-vacation.png?v=hol1","obsession-2026":"/sleeves/spines/obsession-2026.png?v=aisle1","ratatouille":"/sleeves/spines/ratatouille.png?v=ani1","rush-2013":"/sleeves/spines/rush-2013.png?v=spo1","schindlers-list":"/sleeves/spines/schindlers-list.png?v=war1","shutter-island":"/sleeves/spines/shutter-island.png?v=thr1","soul":"/sleeves/spines/soul.png?v=mus1","terminator-2-judgment-day":"/sleeves/spines/terminator-2-judgment-day.png?v=thr1","the-avengers":"/sleeves/spines/the-avengers.png?v=sci1","the-dark-knight-rises":"/sleeves/spines/the-dark-knight-rises.png?v=act1","the-good-the-bad-and-the-ugly-1966":"/sleeves/spines/the-good-the-bad-and-the-ugly-1966.png?v=wes1","the-green-mile":"/sleeves/spines/the-green-mile.png?v=fan1","the-hateful-eight-2015":"/sleeves/spines/the-hateful-eight-2015.png?v=wes1","the-holiday":"/sleeves/spines/the-holiday.png?v=hol1","the-imitation-game-2014":"/sleeves/spines/the-imitation-game-2014.png?v=war1","the-incredibles":"/sleeves/spines/the-incredibles.png?v=ani1","the-lord-of-the-rings-the-two-towers":"/sleeves/spines/the-lord-of-the-rings-the-two-towers.png?v=fan1","the-nightmare-before-christmas":"/sleeves/spines/the-nightmare-before-christmas.png?v=hol1","the-pianist":"/sleeves/spines/the-pianist.png?v=war1","the-prestige":"/sleeves/spines/the-prestige.png?v=sci1","the-revenant":"/sleeves/spines/the-revenant.png?v=wes1","the-silence-of-the-lambs":"/sleeves/spines/the-silence-of-the-lambs.png?v=cri1","the-truman-show":"/sleeves/spines/the-truman-show.png?v=com1","the-wolf-of-wall-street":"/sleeves/spines/the-wolf-of-wall-street.png?v=com1","toy-story-3":"/sleeves/spines/toy-story-3.png?v=ani1","unforgiven":"/sleeves/spines/unforgiven.png?v=wes1","up":"/sleeves/spines/up.png?v=fam3","v-for-vendetta-2006":"/sleeves/spines/v-for-vendetta-2006.png?v=thr1","warrior-2011":"/sleeves/spines/warrior-2011.png?v=spo1","mad-max-fury-road":"/sleeves/spines/mad-max-fury-road.png?v=cult1","a-clockwork-orange":"/sleeves/spines/a-clockwork-orange.png?v=cult1","the-big-lebowski":"/sleeves/spines/the-big-lebowski.png?v=cult1","donnie-darko":"/sleeves/spines/donnie-darko.png?v=cult1","drive-2011":"/sleeves/spines/drive-2011.png?v=cult1","oldboy-2003":"/sleeves/spines/oldboy-2003.png?v=cult1","the-godfather-part-ii":"/sleeves/spines/the-godfather-part-ii.png?v=cls1","one-flew-over-the-cuckoos-nest":"/sleeves/spines/one-flew-over-the-cuckoos-nest.png?v=cls1","taxi-driver":"/sleeves/spines/taxi-driver.png?v=cls1","blade-runner":"/sleeves/spines/blade-runner.png?v=cls1","2001-a-space-odyssey":"/sleeves/spines/2001-a-space-odyssey.png?v=cls1","the-grand-budapest-hotel":"/sleeves/spines/the-grand-budapest-hotel.png?v=ind1","her":"/sleeves/spines/her.png?v=ind1","everything-everywhere-all-at-once":"/sleeves/spines/everything-everywhere-all-at-once.png?v=ind1","goodfellas":"/sleeves/spines/goodfellas.png?v=dra1","good-will-hunting":"/sleeves/spines/good-will-hunting.png?v=dra1","world-war-z-2013":"/sleeves/spines/world-war-z-2013.png?v=hor1"};
+  var AISLE_NEW={"12-angry-men":"/sleeves/spines/12-angry-men.png?v=cls2","1999-2027":"/sleeves/spines/1999-2027.png?v=aisle1","a-beautiful-mind":"/sleeves/spines/a-beautiful-mind.png?v=rom1","a-minecraft-movie-squared-2027":"/sleeves/spines/a-minecraft-movie-squared-2027.png?v=aisle2","a-star-is-born":"/sleeves/spines/a-star-is-born.png?v=mus1","whiplash":"/sleeves/spines/whiplash.png?v=mus1","coco-2017":"/sleeves/spines/coco-2017.png?v=mus1","amadeus":"/sleeves/spines/amadeus.png?v=mus1","am-lie-2001":"/sleeves/spines/am-lie-2001.png?v=rom1","american-beauty":"/sleeves/spines/american-beauty.png?v=dra1","american-history-x-1998":"/sleeves/spines/american-history-x-1998.png?v=dra1","avatar":"/sleeves/spines/avatar.png?v=act1","avengers-endgame":"/sleeves/spines/avengers-endgame.png?v=act1","backrooms-2026":"/sleeves/spines/backrooms-2026.png?v=aisle2","batman-begins":"/sleeves/spines/batman-begins.png?v=act1","birdman-or-the-unexpected-virtue-of-ignorance-2014":"/sleeves/spines/birdman-or-the-unexpected-virtue-of-ignorance-2014.png?v=ind1","black-swan":"/sleeves/spines/black-swan.png?v=hor1","bohemian-rhapsody-2018":"/sleeves/spines/bohemian-rhapsody-2018.png?v=mus1","braveheart":"/sleeves/spines/braveheart.png?v=war1","catch-me-if-you-can":"/sleeves/spines/catch-me-if-you-can.png?v=dra1","day-drinker-2027":"/sleeves/spines/day-drinker-2027.png?v=aisle2","deadpool":"/sleeves/spines/deadpool.png?v=com1","fast-forever-2028":"/sleeves/spines/fast-forever-2028.png?v=aisle2","ford-v-ferrari-2019":"/sleeves/spines/ford-v-ferrari-2019.png?v=spo1","ghost-rider-2028":"/sleeves/spines/ghost-rider-2028.png?v=aisle2","gladiator":"/sleeves/spines/gladiator.png?v=act1","harry-potter-and-the-deathly-hallows-part-2-2011":"/sleeves/spines/harry-potter-and-the-deathly-hallows-part-2-2011.png?v=fan1","home-alone-2-lost-in-new-york":"/sleeves/spines/home-alone-2-lost-in-new-york.png?v=hol1","how-the-grinch-stole-christmas":"/sleeves/spines/how-the-grinch-stole-christmas.png?v=hol1","how-to-train-your-dragon":"/sleeves/spines/how-to-train-your-dragon.png?v=ani1","inside-out":"/sleeves/spines/inside-out.png?v=ani1","joker":"/sleeves/spines/joker.png?v=cri1","juno":"/sleeves/spines/juno.png?v=ind1","l-on-the-professional-1994":"/sleeves/spines/l-on-the-professional-1994.png?v=dra1","little-miss-sunshine":"/sleeves/spines/little-miss-sunshine.png?v=ind1","memento":"/sleeves/spines/memento.png?v=thr1","michael-2026":"/sleeves/spines/michael-2026.png?v=aisle2","million-dollar-baby":"/sleeves/spines/million-dollar-baby.png?v=spo1","rocky":"/sleeves/spines/rocky.png?v=spo1","moneyball":"/sleeves/spines/moneyball.png?v=spo1","monsters-inc":"/sleeves/spines/monsters-inc.png?v=fam3","national-lampoons-christmas-vacation":"/sleeves/spines/national-lampoons-christmas-vacation.png?v=hol1","obsession-2026":"/sleeves/spines/obsession-2026.png?v=aisle1","ratatouille":"/sleeves/spines/ratatouille.png?v=ani1","rush-2013":"/sleeves/spines/rush-2013.png?v=spo1","schindlers-list":"/sleeves/spines/schindlers-list.png?v=war1","shutter-island":"/sleeves/spines/shutter-island.png?v=thr1","soul":"/sleeves/spines/soul.png?v=mus1","terminator-2-judgment-day":"/sleeves/spines/terminator-2-judgment-day.png?v=thr1","the-avengers":"/sleeves/spines/the-avengers.png?v=sci1","the-dark-knight-rises":"/sleeves/spines/the-dark-knight-rises.png?v=act1","the-good-the-bad-and-the-ugly-1966":"/sleeves/spines/the-good-the-bad-and-the-ugly-1966.png?v=wes1","the-green-mile":"/sleeves/spines/the-green-mile.png?v=fan1","the-hateful-eight-2015":"/sleeves/spines/the-hateful-eight-2015.png?v=wes1","the-holiday":"/sleeves/spines/the-holiday.png?v=hol1","the-imitation-game-2014":"/sleeves/spines/the-imitation-game-2014.png?v=war1","the-incredibles":"/sleeves/spines/the-incredibles.png?v=ani1","the-lord-of-the-rings-the-two-towers":"/sleeves/spines/the-lord-of-the-rings-the-two-towers.png?v=fan1","the-nightmare-before-christmas":"/sleeves/spines/the-nightmare-before-christmas.png?v=hol1","the-pianist":"/sleeves/spines/the-pianist.png?v=war1","the-prestige":"/sleeves/spines/the-prestige.png?v=sci1","the-revenant":"/sleeves/spines/the-revenant.png?v=wes1","the-silence-of-the-lambs":"/sleeves/spines/the-silence-of-the-lambs.png?v=cri1","the-truman-show":"/sleeves/spines/the-truman-show.png?v=com1","the-wolf-of-wall-street":"/sleeves/spines/the-wolf-of-wall-street.png?v=com1","toy-story-3":"/sleeves/spines/toy-story-3.png?v=ani1","unforgiven":"/sleeves/spines/unforgiven.png?v=wes1","up":"/sleeves/spines/up.png?v=fam3","v-for-vendetta-2006":"/sleeves/spines/v-for-vendetta-2006.png?v=thr1","warrior-2011":"/sleeves/spines/warrior-2011.png?v=spo1","mad-max-fury-road":"/sleeves/spines/mad-max-fury-road.png?v=cult1","a-clockwork-orange":"/sleeves/spines/a-clockwork-orange.png?v=cult1","the-big-lebowski":"/sleeves/spines/the-big-lebowski.png?v=cult1","donnie-darko":"/sleeves/spines/donnie-darko.png?v=cult1","drive-2011":"/sleeves/spines/drive-2011.png?v=cult1","oldboy-2003":"/sleeves/spines/oldboy-2003.png?v=cult1","the-godfather-part-ii":"/sleeves/spines/the-godfather-part-ii.png?v=cls1","one-flew-over-the-cuckoos-nest":"/sleeves/spines/one-flew-over-the-cuckoos-nest.png?v=cls2","taxi-driver":"/sleeves/spines/taxi-driver.png?v=cls2","blade-runner":"/sleeves/spines/blade-runner.png?v=cls1","2001-a-space-odyssey":"/sleeves/spines/2001-a-space-odyssey.png?v=cls1","the-grand-budapest-hotel":"/sleeves/spines/the-grand-budapest-hotel.png?v=ind1","her":"/sleeves/spines/her.png?v=ind1","everything-everywhere-all-at-once":"/sleeves/spines/everything-everywhere-all-at-once.png?v=ind1","goodfellas":"/sleeves/spines/goodfellas.png?v=dra1","good-will-hunting":"/sleeves/spines/good-will-hunting.png?v=dra1","world-war-z-2013":"/sleeves/spines/world-war-z-2013.png?v=hor1"};
 
   function aisleSpineSrc(slug) {
     if (!slug || !AISLE_NEW) return "";
@@ -2450,7 +2511,7 @@
     {
       kicker: "Night Drop",
       title: "After hours.",
-      body: "Members only. The curtains open and you swipe. Left if you've never seen it. Right if you have.",
+      body: "Members only. The curtains open and you swipe. Left if you've never seen it. Right if you have. Hold the power button for trivia night.",
       visual: "drop",
     },
   ];
@@ -3263,13 +3324,13 @@
         "html body .vhs-box[data-slug][data-sticker='br'].vhs-box .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
         "html body .vhs-box.is-flip[data-slug='the-shawshank-redemption'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='the-shawshank-redemption'] .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='coming-to-america'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='coming-to-america'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
-        "html body .vhs-box.is-flip[data-slug='goodfellas'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='goodfellas'] .vhs-sticker,html body .vhs-box[data-title='none'][data-slug='goodfellas'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='goodfellas'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='goodfellas'] .vhs-sticker,html body .vhs-box[data-title='none'][data-slug='goodfellas'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='point-break'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='point-break'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
         "html body .vhs-box.is-flip[data-slug='heat'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='heat'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='heat-1995'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='heat-1995'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='back-to-the-future'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='back-to-the-future'] .vhs-sticker{inset:auto 8px 8px auto!important;top:auto!important;right:8px!important;left:auto!important;bottom:8px!important}" +
         "html body .vhs-box.is-flip[data-slug='pulp-fiction'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='pulp-fiction'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
-        "html body .vhs-box.is-flip[data-slug='alien'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='alien'] .vhs-sticker{inset:auto auto 8px 8px!important;top:auto!important;left:8px!important;right:auto!important;bottom:8px!important}" +
+        "html body .vhs-box.is-flip[data-slug='alien'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='alien'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='die-hard'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='die-hard'] .vhs-sticker{inset:8px 8px auto auto!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='first-blood'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='first-blood'] .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
         "html body .vhs-box.is-flip[data-slug='blade-runner'][data-sticker].vhs-box .vhs-sticker,html body .vhs-box[data-slug='blade-runner'] .vhs-sticker{inset:8px auto auto 8px!important;top:8px!important;left:8px!important;right:auto!important;bottom:auto!important}" +
@@ -10629,12 +10690,20 @@
       }
       return null;
     }
+    var OUT_2026 = {"102-minutes-inside-the-towers-2026":1,"17-2026":1,"180-2026":1,"18th-rose-2026":1,"1999-2027":1,"28-years-later-the-bone-temple-2026":1,"40-dates-and-40-nights-2026":1,"500-miles-2026":1,"72-hours-2026":1,"a-gorilla-story-told-by-david-attenborough-2026":1,"a-great-awakening-2026":1,"a-toxic-love-story-2026":1,"abot-langit-2026":1,"above-below-2026":1,"aew-dynasty-2026":1,"after-impact-2026":1,"alfa-omega-2026":1,"all-you-need-is-kill-2026":1,"alpha-2026":1,"amped-2026":1,"andr-is-an-idiot-2026":1,"animal-farm-2026":1,"animals-2026":1,"apex-2026":1,"apoy-sa-ibabaw-apoy-sa-ilalim-2026":1,"avatar-aang-the-last-airbender-2026":1,"back-to-the-90s-2026":1,"backrooms-2026":1,"bad-apples-2026":1,"balls-up-2026":1,"band-of-brothers-legacy-2026":1,"barreda-2026":1,"basta-mam-2026":1,"batman-knightfall-part-1-knightfall-2026":1,"beast-2026":1,"best-of-the-best-2026":1,"better-boyfriend-2026":1,"beware-boi-na-2026":1,"billie-eilish-hit-me-hard-and-soft-the-tour-live-in-3d-2026":1,"black-box-2026":1,"blast-2026":1,"blood-covenant-2026":1,"blood-rust-2026":1,"blue-film-2026":1,"bodycam-2026":1,"borderline-2026":1,"boulevard-2026":1,"breeder-2026":1,"brothers-under-fire-2026":1,"buddy-2026":1,"bury-the-devil-2026":1,"buzzkill-2026":1,"by-any-means-2026":1,"camp-rock-3-2026":1,"carolina-caroline-2026":1,"carry-on-jatta-4-2026":1,"casa-grande-2026":1,"cerita-lila-2026":1,"charlie-harper-2026":1,"check-in-2026":1,"chum-2026":1,"citizen-vigilante-2026":1,"clash-of-the-thundermans-2026":1,"cold-storage-2026":1,"coyote-vs-acme-2026":1,"creampie-2026":1,"crime-101-2026":1,"daniel-and-the-fiery-furnace-2026":1,"dead-man-s-wire-2026":1,"deathwoods-2026":1,"deep-water-2026":1,"dehumanized-2026":1,"descendants-wicked-wonderland-2026":1,"desert-warrior-2026":1,"designing-the-dead-feared-by-the-living-2026":1,"desperada-2026":1,"diary-of-a-mad-old-man-2026":1,"digger-2026":1,"disclosure-day-2026":1,"do-not-enter-2026":1,"doing-life-2026":1,"dolly-2026":1,"don-t-move-2026":1,"don-t-say-good-luck-2026":1,"double-trouble-2026":1,"driver-s-ed-2026":1,"dust-2026":1,"echo-point-2026":1,"enola-holmes-3-2026":1,"entre-hilos-2026":1,"epic-elvis-presley-in-concert-2026":1,"ernie-emma-2026":1,"euphoria-a-look-back-2026":1,"evil-dead-burn-2026":1,"evolution-2026":1,"extreme-makeover-homer-edition-2026":1,"f-valentine-s-day-2026":1,"faces-of-death-2026":1,"fall-2-deadpoint-2026":1,"family-2026":1,"find-your-friends-2026":1,"finding-emily-2026":1,"finding-harry-the-craft-behind-the-magic-2026":1,"fjord-2026":1,"flou-2026":1,"forbidden-fruits-2026":1,"forgotten-island-2026":1,"frankenstein-s-bride-2026":1,"fuze-2026":1,"gail-daughtry-and-the-celebrity-sex-pass-2026":1,"gala-2026":1,"gary-2026":1,"ghost-elephants-2026":1,"ghost-in-the-cell-2026":1,"girls-like-girls-2026":1,"goat-2026":1,"good-boy-2026":1,"good-luck-have-fun-don-t-die-2026":1,"good-vibes-only-2026":1,"grand-theft-auto-vi-an-extended-look-2026":1,"greenland-2-migration-2026":1,"grizzly-night-2026":1,"ha-chan-shake-your-booty-2026":1,"hannah-montana-20th-anniversary-special-2026":1,"hayok-2026":1,"he-s-watching-you-2026":1,"heart-of-the-beast-2026":1,"heartstopper-forever-2026":1,"helena-2026":1,"hellfire-2026":1,"her-private-hell-2026":1,"hi-2026":1,"hokum-2026":1,"hollow-trees-2026":1,"hope-2026":1,"hoppers-2026":1,"hot-spot-2026":1,"how-to-make-a-killing-2026":1,"hugo-24-2026":1,"hungry-2026":1,"i-can-only-imagine-2-2026":1,"i-love-boosters-2026":1,"i-want-your-sex-2026":1,"ice-cream-man-2026":1,"ice-skater-2026":1,"idiots-2026":1,"if-i-go-will-they-miss-me-2026":1,"il-mio-nome-carlo-2026":1,"immortal-combat-2026":1,"in-the-blink-of-an-eye-2026":1,"in-the-grey-2026":1,"in-the-hand-of-dante-2026":1,"in-the-name-of-love-2026":1,"infiltrate-2026":1,"infirmary-2026":1,"insidious-out-of-the-further-2026":1,"insidious-possession-2026":1,"invention-13-2026":1,"iron-lung-2026":1,"iron-maiden-burning-ambition-2026":1,"is-god-is-2026":1,"it-ends-2026":1,"jackass-best-and-last-2026":1,"jackie-the-stripper-2026":1,"just-play-dead-2026":1,"kangaroo-kids-2026":1,"kill-code-2026":1,"killer-whale-2026":1,"kissing-is-the-easy-part-2026":1,"kraken-2026":1,"l-inconnue-2026":1,"la-jangada-2026":1,"la-v-nus-lectrique-2026":1,"ladies-first-2026":1,"last-call-2026":1,"lee-cronin-s-the-mummy-2026":1,"legend-of-the-white-dragon-2026":1,"lego-disney-princess-magical-mayhem-2026":1,"lego-star-wars-the-mandalorian-2026":1,"leviticus-2026":1,"lifehack-2026":1,"linkin-park-unshatter-2026":1,"lion-fist-2026":1,"little-brother-2026":1,"livestream-from-hell-2026":1,"love-lottery-2026":1,"love-me-love-me-2026":1,"lucky-strike-2026":1,"lunok-2026":1,"m-rama-2026":1,"marigold-dream-star-grand-prix-2026-day-6-2026":1,"marigold-dream-star-grand-prix-2026-day-8-2026":1,"marigold-dream-star-grand-prix-2026-finals-2026":1,"marsupilami-2026":1,"marty-life-is-short-2026":1,"masahe-2026":1,"master-of-the-universe-2026":1,"masters-of-the-universe-2026":1,"matchbox-the-movie-2026":1,"mayday-2026":1,"melania-2026":1,"mercy-2026":1,"mermaid-2026":1,"mexicali-2026":1,"michael-2026":1,"midnight-girls-2026":1,"mike-nick-nick-alice-2026":1,"minions-monsters-2026":1,"moana-2026":1,"monster-mia-2026":1,"mortal-kombat-ii-2026":1,"mother-mary-2026":1,"motor-city-2026":1,"mutiny-2026":1,"naza-2026":1,"neglected-2026":1,"ni-contigo-ni-sin-m-2026":1,"night-of-the-living-dead-2026":1,"night-patrol-2026":1,"nimrods-2026":1,"ninja-wars-blackfox-vs-shogun-s-ninja-2026":1,"nirvanna-the-band-the-show-the-movie-2026":1,"noah-kahan-out-of-body-2026":1,"normal-2026":1,"novak-djokovic-the-wolf-in-winter-2026":1,"oasis-don-t-look-back-in-anger-2026":1,"obsession-2026":1,"office-romance-2026":1,"on-the-road-2026":1,"one-last-shot-2026":1,"one-mile-chapter-one-2026":1,"one-mile-chapter-two-2026":1,"one-night-only-2026":1,"onslaught-2026":1,"opera-omnia-2026":1,"oradour-2026":1,"oscar-shaw-2026":1,"other-mommy-2026":1,"ouroboros-2026":1,"outcome-2026":1,"over-your-dead-body-2026":1,"passenger-2026":1,"paw-patrol-the-dino-movie-2026":1,"peaky-blinders-the-immortal-man-2026":1,"people-we-meet-on-vacation-2026":1,"pinocchio-unstrung-2026":1,"pizza-movie-2026":1,"power-ballad-2026":1,"practical-magic-2-2026":1,"pressure-2026":1,"pretty-lethal-2026":1,"primate-2026":1,"primetime-2026":1,"project-hail-mary":1,"propeller-one-way-night-coach-2026":1,"protector-2026":1,"psalm-2026":1,"psycho-killer-2026":1,"quantum-supremacy-2026":1,"rage-2026":1,"rage-of-stars-2026":1,"ready-or-not-here-i-come-2026":1,"relationship-goals-2026":1,"remain-2027":1,"remarkably-bright-creatures-2026":1,"reminders-of-him-2026":1,"resident-dead-2026":1,"resident-evil-2026":1,"resonance-2026":1,"return-to-silent-hill-2026":1,"rise-of-the-conqueror-2026":1,"rocky-s-cat-astrophe-2026":1,"rolling-loud-the-movie-2026":1,"roommates-2026":1,"rosebush-pruning-2026":1,"run-hide-fight-infidels-2026":1,"runner-2026":1,"saccharine-2026":1,"sagaran-2026":1,"savage-house-2026":1,"scary-movie-2026":1,"scream-7-2026":1,"send-help-2026":1,"septum-2026":1,"seven-snipers-2026":1,"sex-drive-2026":1,"shaun-the-sheep-the-beast-of-mossy-bottom-2026":1,"shelter-2026":1,"signal-one-2026":1,"silent-friend-2026":1,"sniper-no-nation-2026":1,"snoopy-presents-there-s-no-place-like-home-snoopy-2026":1,"solo-mio-2026":1,"soulm8te-2026":1,"spa-weekend-2026":1,"spider-island-2026":1,"spider-man-brand-new-day":1,"spidey-and-the-avengers-halloween-team-up-2026":1,"starbright-2026":1,"stolen-heart-2026":1,"stop-that-train-2026":1,"storm-on-sesame-street-2026":1,"stranglehold-2026":1,"strung-2026":1,"sugar-mommy-2026":1,"sultana-2026":1,"summerween-2026":1,"super-troopers-3-2026":1,"supergirl-2026":1,"swapped-2026":1,"tape-2026":1,"tarung-unforgiven-2026":1,"teenage-sex-and-death-at-camp-miasma-2026":1,"tenzing-2026":1,"termination-point-2026":1,"the-ai-doc-or-how-i-became-an-apocaloptimist-2026":1,"the-amazing-digital-circus-the-last-act-2026":1,"the-bay-2026":1,"the-birth-2026":1,"the-bluff-2026":1,"the-breadwinner-2026":1,"the-bride-2026":1,"the-brink-of-war-2026":1,"the-chair-2026":1,"the-cheating-wife-2026":1,"the-christophers-2026":1,"the-company-2026":1,"the-crash-2026":1,"the-cycle-2026":1,"the-dating-app-killer-the-monica-white-story-2026":1,"the-death-of-robin-hood-2026":1,"the-deputy-2026":1,"the-devil-s-mouth-2026":1,"the-devil-wears-prada-2-2026":1,"the-dink-2026":1,"the-dog-stars-2026":1,"the-drama-2026":1,"the-dreadful-2026":1,"the-end-of-oak-street-2026":1,"the-fix-2026":1,"the-furious-pertaruhan-maruah-2026":1,"the-gentleman-thief-2026":1,"the-get-out-2026":1,"the-girl-in-the-river-2026":1,"the-highest-stakes-2026":1,"the-incomer-2026":1,"the-internship-2026":1,"the-invite-2026":1,"the-isolate-thief-2026":1,"the-last-assassins-2026":1,"the-last-first-winter-k2-2026":1,"the-last-house-2026":1,"the-last-kiss-2026":1,"the-last-sunrise-2026":1,"the-love-hypothesis-2026":1,"the-magic-faraway-tree-2026":1,"the-mandalorian-and-grogu-2026":1,"the-moment-2026":1,"the-mortuary-assistant-2026":1,"the-muppet-show-2026":1,"the-musical-2026":1,"the-nice-ones-2026":1,"the-odyssey-2026":1,"the-passenger-2026":1,"the-penthouse-2026":1,"the-pout-pout-fish-2026":1,"the-president-s-cake-2026":1,"the-punisher-one-last-kill-2026":1,"the-rip-2026":1,"the-rivals-of-amziah-king-2026":1,"the-runner-2026":1,"the-sandbox-2026":1,"the-sheep-detectives-2026":1,"the-social-reckoning":1,"the-strangers-chapter-3-2026":1,"the-super-mario-galaxy-movie":1,"the-uprising-2026":1,"the-weight-2026":1,"the-whisper-man-2026":1,"the-widower-til-death-do-us-part-2026":1,"the-wrecking-crew-2026":1,"the-wrong-girls-2026":1,"they-will-kill-you-2026":1,"this-is-not-a-test-2026":1,"thrash-2026":1,"tom-clancy-s-jack-ryan-ghost-war-2026":1,"tony-2026":1,"tow-2026":1,"toxic-2026":1,"toy-story-5":1,"truly-naked-2026":1,"tuner-2026":1,"turning-point-generation-9-11-2026":1,"unabomber-2026":1,"unanswered-butterfly-2026":1,"undertone-2026":1,"union-county-2026":1,"untitled-home-invasion-romance-2026":1,"untold-mr-t-i-pity-the-fool-2026":1,"v-h-s-mixtape-2026":1,"vampire-carnival-2026":1,"verity-2026":1,"vigilante-2026":1,"virginia-woolf-s-night-day-2026":1,"voicemails-for-isabelle-2026":1,"volver-a-los-17-2026":1,"war-machine-2026":1,"wardriver-2026":1,"wasteman-2026":1,"we-bury-the-dead-2026":1,"whistle-2026":1,"why-did-i-get-married-again-2026":1,"wonderful-nightmare-2026":1,"wuthering-heights-2026":1,"wwe-aaa-worlds-collide-2026-chicago-2026":1,"yellow-eyes-2026":1,"yellow-mirror-2026":1,"you-me-tuscany-2026":1,"young-washington-2026":1,"your-fault-london-2026":1,"your-mother-your-mother-your-mother-2026":1,"zip-wire-2026":1};
+    function notOutYet(film) {
+      var y = filmYear(film);
+      if (y < 2026) return false;
+      var slug = film && film.slug;
+      if (slug && OUT_2026[slug]) return false;
+      return true;
+    }
     function inTheme(film, theme) {
       if (!theme || placeholderShelf(film)) return false;
       const themes = themesOf(film);
-      if (theme === "coming") return themes.indexOf("coming") >= 0;
-      if (themes.indexOf("coming") >= 0) return false;
-      if (theme === "new") return filmYear(film) >= 2026;
+      if (theme === "coming") return notOutYet(film) || (themes.indexOf("coming") >= 0 && filmYear(film) < 2026);
+      if (themes.indexOf("coming") >= 0 && notOutYet(film)) return false;
+      if (theme === "new") return filmYear(film) >= 2026 && !notOutYet(film);
       return themes.indexOf(theme) >= 0;
     }
     function runtimeLabel(min) {
@@ -12729,7 +12798,9 @@
         shelfSlugs(section);
         const show = !theme || id === theme;
         section.hidden = !show;
-        if (show) {
+        if (show && !theme && !section.__virt) {
+          /* Stamped wall. Leave the tapes in the DOM. */
+        } else if (show) {
           ensureShelf(section);
           const v = armSection(section);
           if (v) {
@@ -12750,7 +12821,7 @@
               var pages = Math.max(1, Math.ceil(pool.length / SHELF_N) || 1);
               var shelfN = file.letter ? Math.min(Math.max(1, file.shelf), pages) : 1;
               var from = (shelfN - 1) * SHELF_N;
-              v.films = pool.slice(from, from + SHELF_N);
+              v.films = file.letter ? pool.slice(from, from + SHELF_N) : pool;
               openList = listed;
             } else {
               var preview = filmsFor(section, id, SHELF_N, claimed);
@@ -12849,7 +12920,7 @@
       try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
       try { document.documentElement.setAttribute("data-aisles-counted", "1"); } catch (eCount) {}
     }
-    Promise.all([
+    var loadCatalog = function () { window.__rwCatNow = 1; Promise.all([
       fetch("/data/catalog.json?v=1107").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
@@ -12866,16 +12937,42 @@
         if (boxes[slug] && boxes[slug].back) stills[slug] = 1;
       });
       var finish = function () {
-        applyAisle(applied || "", false);
+        if (applied) applyAisle(applied, false);
+        else {
+          sections.forEach(function (section) {
+            var id = sectionTheme(section);
+            var link = section.querySelector("a[href]");
+            if (!link || themeOf(link.getAttribute("href")) == null) return;
+            var n = aisleSize(section, id);
+            link.textContent = n + (n === 1 ? " tape" : " tapes");
+          });
+          var floor = floorEl();
+          if (floor) floor.textContent = floorTotal() + " tapes on the floor";
+        }
         aislesReady();
       };
-      if (applied) finish();
-      else if (window.requestIdleCallback) window.requestIdleCallback(finish, { timeout: 250 });
-      else setTimeout(finish, 0);
+      finish();
     }).catch(function () {
-      try { applyAisle(applied || "", false); } catch (eApply) {}
+      try { if (applied) applyAisle(applied, false); } catch (eApply) {}
       aislesReady();
     });
+    };
+    function armCatalog() {
+      if (window.__rwAisleCatArm) return;
+      window.__rwAisleCatArm = 1;
+      loadCatalog();
+    }
+    if (initial) armCatalog();
+    else {
+      document.addEventListener("click", function (e) {
+        var t = e.target && e.target.closest && e.target.closest("a[href*='theme=']");
+        if (t) armCatalog();
+      }, true);
+      document.addEventListener("focusin", function (e) {
+        var el = e.target;
+        if (el && el.matches && el.matches("input[type='search'], input[name='q']")) armCatalog();
+      }, true);
+    }
   }
 
   function wireAisleSearch() {
@@ -13000,21 +13097,35 @@
       });
       paintHits(raw);
     }
-    fetch("/store-index.tsv", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (text) {
-      index = String(text || "").split(/\n+/).map(function (line) {
-        const p = line.split("\t");
-        if (!p[0] || !p[1]) return null;
-        return { slug: p[0], title: p[1], year: p[2] || "", director: p[3] || "" };
-      }).filter(Boolean);
-      apply(input.value);
-    }).catch(function () {});
+    var indexLoaded = false;
+    function loadIndex() {
+      if (indexLoaded) return;
+      indexLoaded = true;
+      fetch("/store-index.tsv", { cache: "force-cache" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (text) {
+        index = String(text || "").split(/\n+/).map(function (line) {
+          const p = line.split("\t");
+          if (!p[0] || !p[1]) return null;
+          return { slug: p[0], title: p[1], year: p[2] || "", director: p[3] || "" };
+        }).filter(Boolean);
+        apply(input.value);
+      }).catch(function () {});
+    }
+    var searchTick = 0;
+    function queueSearch() {
+      if (searchTick) return;
+      searchTick = 1;
+      setTimeout(function () { searchTick = 0; apply(input.value); }, 40);
+    }
     try {
-      const initial = new URLSearchParams(location.search).get("q") || "";
-      if (initial && !input.value) input.value = initial;
+      const initialQ = new URLSearchParams(location.search).get("q") || "";
+      if (initialQ && !input.value) input.value = initialQ;
     } catch (eQ) {}
-    apply(input.value);
-    input.addEventListener("input", function () { apply(input.value); });
-    input.addEventListener("keyup", function () { apply(input.value); });
+    if ((input.value || "").trim()) {
+      loadIndex();
+      apply(input.value);
+    }
+    input.addEventListener("focus", loadIndex);
+    input.addEventListener("input", function () { loadIndex(); queueSearch(); });
     const form = input.form || input.closest("form");
     if (form && !form.dataset.rwAisleSearch) {
       form.dataset.rwAisleSearch = "1";
@@ -14159,6 +14270,7 @@
       pair.style.setProperty("display", "flex", "important");
       pair.style.setProperty("flex-direction", "column", "important");
     }
+    try { fixFirstBloodCover(); } catch (eBlood) {}
   }
   function hideTapToOpenGrid() {
     document.querySelectorAll("main section.relative.z-20.grid").forEach((grid) => {
@@ -18257,15 +18369,32 @@
         img.style.setProperty("object-fit", "cover", "important");
         img.style.setProperty("object-position", "center center", "important");
       });
+      box.querySelectorAll(".vhs-window").forEach(function (win) {
+        win.style.setProperty("background-color", "#07080a", "important");
+        win.style.setProperty("background-image", "url('/sleeves/first-blood.jpg?v=a9bcd8be')", "important");
+        win.style.setProperty("background-size", "cover", "important");
+        win.style.setProperty("background-position", "center center", "important");
+        win.style.setProperty("background-repeat", "no-repeat", "important");
+      });
       box.querySelectorAll(".vhs-window img").forEach(function (img) {
-        var src = img.getAttribute("src") || "";
-        if (src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0) {
-          img.removeAttribute("data-painted");
-          img.setAttribute("data-tmdb-art", "1");
-          img.style.setProperty("opacity", "1", "important");
-          img.style.setProperty("display", "block", "important");
-          img.style.setProperty("object-fit", "cover", "important");
-        }
+        img.onerror = null;
+        img.removeAttribute("srcset");
+        img.removeAttribute("sizes");
+        img.removeAttribute("crossorigin");
+        try { img.crossOrigin = null; } catch (eC) {}
+        img.setAttribute("data-painted", "1");
+        img.setAttribute("data-tmdb-art", "keep");
+        img.setAttribute("data-rw-cover", "first-blood");
+        img.alt = img.alt || "First Blood";
+        var now = img.getAttribute("src") || "";
+        if (now.split("?")[0].indexOf("/sleeves/first-blood.jpg") < 0) img.src = "/sleeves/first-blood.jpg?v=a9bcd8be";
+        img.style.setProperty("opacity", "1", "important");
+        img.style.setProperty("display", "block", "important");
+        img.style.setProperty("visibility", "visible", "important");
+        img.style.setProperty("object-fit", "cover", "important");
+        img.style.setProperty("object-position", "center center", "important");
+        img.style.setProperty("background", "transparent", "important");
+        img.style.setProperty("z-index", "2", "important");
       });
       box.querySelectorAll(".vhs-sticker").forEach(function (st) {
         st.style.setProperty("inset", "8px auto auto 8px", "important");
@@ -18304,6 +18433,8 @@
 
   function fixEveryBack() {
     document.querySelectorAll(".vhs-box").forEach(function (box) {
+      if (box.getAttribute("data-rw-back") === "1") return;
+      box.setAttribute("data-rw-back", "1");
       const slug = String(box.getAttribute("data-slug") || box.getAttribute("data-film") || "").replace(/[^a-z0-9-]/g, "");
       if (!slug) return;
       if (slug === "dune-part-two") {
@@ -18725,6 +18856,10 @@
 
   function fixOneSpine(box) {
     if (!box) return;
+    var logoNow = box.querySelector(".vhs-spine-logo");
+    var logoSrc = logoNow && (logoNow.getAttribute("src") || "");
+    if (box.getAttribute("data-rw-fixed") === "1" && logoSrc) return;
+    box.setAttribute("data-rw-fixed", "1");
     var slug = box.getAttribute("data-slug") || "";
     if (slug) {
       box.setAttribute("data-paint", "1");
@@ -18773,14 +18908,27 @@
           img.addEventListener("error", function () {
             var bad = img.getAttribute("src") || "";
             if (bad.indexOf("image.tmdb.org") >= 0 || bad.indexOf("media.themoviedb.org") >= 0) return;
+            var coverBox = img.closest && img.closest(".vhs-box");
+            if (coverBox && coverBox.getAttribute("data-slug") === "first-blood") return;
             if (img.dataset && (img.dataset.painted === "1" || img.dataset.tmdbArt === "keep" || img.dataset.tmdbArt === "1")) return;
             img.style.setProperty("opacity", "0", "important");
           });
         }
         var srcIsRemote = src.indexOf("image.tmdb.org") >= 0 || src.indexOf("media.themoviedb.org") >= 0;
         var wantIsSleeve = !!(want && want.indexOf("/sleeves/") >= 0);
-        var keepCover = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
-        if (want && keepCover && !(srcIsRemote && wantIsSleeve) && src.split("?")[0] !== want.split("?")[0]) {
+      var keepCover = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007" || slug === "first-blood";
+        if (want && keepCover) {
+          img.setAttribute("data-painted", "1");
+          img.setAttribute("data-tmdb-art", "keep");
+          img.style.setProperty("opacity", "1", "important");
+          img.style.setProperty("display", "block", "important");
+          img.style.setProperty("visibility", "visible", "important");
+          if (slug === "first-blood") {
+            img.style.setProperty("object-fit", "cover", "important");
+            img.style.setProperty("background", "transparent", "important");
+          }
+        }
+        if (want && keepCover && !(srcIsRemote && wantIsSleeve && slug !== "first-blood") && src.split("?")[0] !== want.split("?")[0]) {
           if (img.crossOrigin) {
             img.crossOrigin = null;
             img.removeAttribute("crossorigin");
@@ -18789,7 +18937,15 @@
         }
       });
       box.querySelectorAll(".vhs-window").forEach(function (win) {
-        win.style.setProperty("background", "#07080a", "important");
+        if (slug === "first-blood") {
+          win.style.setProperty("background-color", "#07080a", "important");
+          win.style.setProperty("background-image", "url('/sleeves/first-blood.jpg?v=a9bcd8be')", "important");
+          win.style.setProperty("background-size", "cover", "important");
+          win.style.setProperty("background-position", "center center", "important");
+          win.style.setProperty("background-repeat", "no-repeat", "important");
+        } else {
+          win.style.setProperty("background", "#07080a", "important");
+        }
         win.style.setProperty("position", "absolute", "important");
         win.style.setProperty("inset", "0", "important");
         win.style.setProperty("width", "100%", "important");
@@ -19094,11 +19250,13 @@
           return;
         }
         var boxedSpine = paintedBox(slug);
-        var wantSpine = boxedSpine && boxedSpine.spine;
+        var wantSpine = (boxedSpine && boxedSpine.spine) || aisleSpineSrc(slug);
         var cur = img.getAttribute("src") || "";
-        if (wantSpine && cur.split("?")[0] !== String(wantSpine).split("?")[0]) {
-          img.src = wantSpine;
-        } else if (!wantSpine && cur && cur.indexOf("/spines/" + slug + ".") < 0) {
+        if (!wantSpine && cur.indexOf("/sleeves/spines/") >= 0) wantSpine = cur;
+        if (wantSpine) {
+          if (cur.split("?")[0] !== String(wantSpine).split("?")[0]) img.src = wantSpine;
+          box.setAttribute("data-spine-letters", "1");
+        } else if (cur && cur.indexOf("/sleeves/spines/") < 0) {
           img.style.setProperty("display", "none", "important");
           img.removeAttribute("src");
         }
@@ -19299,15 +19457,6 @@
 
   function fixAllSpines() {
     document.querySelectorAll(".vhs-box").forEach(fixOneSpine);
-    if (!window.__rwCatalog && !window.__rwCatArm) {
-      window.__rwCatArm = 1;
-      fetch("/data/catalog.json", { cache: "force-cache" }).then(function (r) { return r.ok ? r.json() : []; }).then(function (rows) {
-        var catalog = {};
-        (Array.isArray(rows) ? rows : []).forEach(function (f) { if (f && f.slug) catalog[f.slug] = f; });
-        window.__rwCatalog = catalog;
-        document.querySelectorAll(".vhs-box").forEach(fixOneSpine);
-      }).catch(function () {});
-    }
   }
 
   if (document.readyState === "loading") {
@@ -19490,7 +19639,7 @@
       setTimeout(() => {
         dressLiveUiQueued = 0;
         dressLiveUi();
-        fixAllSpines();
+        if (!window.__rwSpineSweep) { window.__rwSpineSweep = 1; fixAllSpines(); }
       }, 280);
     });
     mo.observe(document.documentElement, { childList: true, subtree: true });

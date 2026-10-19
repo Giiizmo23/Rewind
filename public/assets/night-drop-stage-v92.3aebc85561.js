@@ -1513,6 +1513,14 @@ html[data-drop="1"] .nd-pwr {
   color: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+html[data-drop="1"], html[data-drop="1"] body, html[data-drop="1"] body * {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
 }
 html[data-drop="1"] .nd-glass-off {
   position: absolute;
@@ -1541,11 +1549,30 @@ html[data-drop="1"] .nd-glass-off i {
   62% { opacity: 1; top: 49%; height: 3px; }
   100% { opacity: 0; top: 50%; height: 1px; }
 }
-html[data-drop="1"] .drop-tape.is-killing .vhs-box,
 html[data-drop="1"] .drop-tape.is-killing .nd-scan,
 html[data-drop="1"] .drop-tape.is-killing::before {
   opacity: 0 !important;
-  visibility: hidden !important;
+  transition: opacity .35s ease;
+}
+html[data-drop="1"] .drop-tape.is-killing .vhs-box,
+html[data-drop="1"] .drop-tape.is-killing .vhs-box.is-flip {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform-origin: 50% 46% !important;
+  animation: nd-crt-dot .8s cubic-bezier(.45,0,.75,1) forwards !important;
+}
+@keyframes nd-crt-dot {
+  0% { filter: brightness(1.5); opacity: 1; }
+  58% { filter: brightness(2.4); opacity: 1; transform: scale(.12); }
+  100% { filter: brightness(2); opacity: 0; transform: scale(0); }
+}
+html.nd-tv-off[data-drop="1"] .nd-lights i {
+  animation: none !important;
+  background: #2a241c !important;
+  box-shadow: inset 0 -2px 0 #000a !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transition: background .5s ease, box-shadow .5s ease;
 }
 @media (prefers-reduced-motion: reduce) {
   .nd-c, .nd-curtains, html[data-drop="1"] .drop-tape::before, html[data-drop="1"] .nd-scan i, html[data-drop="1"] .nd-lights i {
@@ -2465,7 +2492,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
   }
   function playCrtHum() {
     try {
-      if (leavingDrop) { stopCrtHum(); return; }
+      if (leavingDrop || window.__rwNdHush || window.__rwNdAdOn) { stopCrtHum(); return; }
       if (!onPage() || !isMember() || clerkOpen()) { stopCrtHum(); return; }
       if (!poweredThisVisit) return;
       if (idleHum) return;
@@ -2657,11 +2684,139 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
     } catch (eP) {}
   }
 
+  function dropDeadCtx() {
+    var dead = false;
+    try { dead = !!(audioCtx && audioCtx.state === "closed"); } catch (eD) { dead = true; }
+    try {
+      if (window.__rwNdCtx && window.__rwNdCtx.state === "closed") {
+        dead = true;
+        window.__rwNdCtx = null;
+      }
+    } catch (eW) {}
+    if (!dead) return;
+    audioCtx = null;
+    idleHum = null;
+    holdNode = null;
+    try { window.__rwNdCtx = null; } catch (eN) {}
+  }
+
+  function reviveDropAudio() {
+    if (!onPage() || leavingDrop) return;
+    var tape = document.querySelector(".drop-tape");
+    if (tape && tape.classList.contains("is-killing")) {
+      if (!window.__rwNdLeft) return;
+      tape.classList.remove("is-killing", "is-off");
+      var glass = tape.querySelector(".nd-glass-off");
+      if (glass) glass.remove();
+      document.documentElement.classList.remove("nd-tv-off");
+    }
+    window.__rwNdLeft = 0;
+    dropDeadCtx();
+    window.__rwNdHush = false;
+    if (!document.querySelector(".nd-ad-well")) window.__rwNdAdOn = 0;
+    unlockAudio();
+    var go = function () {
+      if (!onPage() || leavingDrop || shutting || !isMember() || clerkOpen()) return;
+      var liveTape = document.querySelector(".drop-tape");
+      if (liveTape && liveTape.classList.contains("is-killing")) return;
+      if (!poweredThisVisit && liveTape && liveTape.dataset.ndPower === "1" && !liveTape.classList.contains("is-off")) poweredThisVisit = true;
+      if (!poweredThisVisit) return;
+      if (!idleHum) startIdleHum();
+      else {
+        try {
+          if (idleHum.master) {
+            idleHum.rising = false;
+            idleHum.master.gain.value = idleHum.target || 0.07;
+          }
+        } catch (eG) {}
+        if (liveTape) liveTape.classList.add("is-hum");
+      }
+    };
+    if (!audioCtx || audioCtx.state === "running") { go(); return; }
+    try {
+      var p = audioCtx.resume();
+      if (p && p.then) p.then(go).catch(go);
+      else go();
+    } catch (eR) { go(); }
+  }
+
+  function triviaReturnFresh() {
+    try {
+      var raw = sessionStorage.getItem("rw-nd-return");
+      var n = raw ? parseInt(raw, 10) : 0;
+      if (!n || Date.now() - n > 30 * 60 * 1000 || Date.now() - n < 0) return false;
+      return true;
+    } catch (eT) { return false; }
+  }
+
+  function resumeAfterTrivia() {
+    if (!onPage() || leavingDrop || !triviaReturnFresh()) return false;
+    try { sessionStorage.removeItem("rw-nd-return"); } catch (eC) {}
+    poweredThisVisit = true;
+    humArmed = true;
+    leavingDrop = false;
+    shutting = false;
+    onDrop = true;
+    window.__rwNdHush = false;
+    window.__rwNdLeft = 0;
+    window.__rwNdAdOn = 0;
+    try { document.documentElement.removeAttribute("data-ndt-off"); } catch (eA) {}
+    openReturnCurtains();
+    var wake = function () {
+      if (!onPage() || leavingDrop) return;
+      window.__rwNdHush = false;
+      var live = document.querySelector(".drop-tape");
+      if (live) {
+        live.classList.remove("is-off", "is-killing");
+        live.dataset.ndPower = "1";
+        var glass = live.querySelector(".nd-glass-off");
+        if (glass) glass.remove();
+      }
+      dropDeadCtx();
+      unlockAudio();
+      try {
+        if (audioCtx && audioCtx.state !== "running" && audioCtx.resume) {
+          var p = audioCtx.resume();
+          if (p && p.then) p.then(function () { try { if (!idleHum) startIdleHum(); } catch (eS) {} }).catch(function () {});
+        }
+      } catch (eR) {}
+      try { if (!idleHum) startIdleHum(); } catch (eH) {}
+      try { if (window.__rwStrikeNeon) window.__rwStrikeNeon(); } catch (eN) {}
+    };
+    wake();
+    [60, 240, 700, 1500].forEach(function (ms) { setTimeout(wake, ms); });
+    return true;
+  }
+
+  function openReturnCurtains() {
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var nodes = Array.prototype.slice.call(document.querySelectorAll(".nd-curtains:not(.nd-locked)"));
+    nodes.forEach(function (el) {
+      if (reduced) {
+        el.remove();
+        return;
+      }
+      el.classList.remove("is-open");
+      var panels = el.querySelectorAll(".nd-c");
+      panels.forEach(function (p) { p.style.transition = "none"; });
+      void el.offsetWidth;
+      panels.forEach(function (p) { p.style.transition = ""; });
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { el.classList.add("is-open"); });
+      });
+      setTimeout(function () { if (el.parentNode) el.remove(); }, 1200);
+    });
+  }
+
   function unlockAudio() {
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
+    dropDeadCtx();
     if (!audioCtx) {
-      try { audioCtx = window.__rwNdCtx || new AC(); } catch (e) { return; }
+      try {
+        if (window.__rwNdCtx && window.__rwNdCtx.state !== "closed") audioCtx = window.__rwNdCtx;
+        else audioCtx = new AC();
+      } catch (e) { return; }
       try { window.__rwNdCtx = audioCtx; } catch (e2) {}
     }
     if (audioCtx.state === "suspended" || audioCtx.state === "interrupted") {
@@ -2745,6 +2900,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
   }
 
   function unmuteStageAudio() {
+    if (window.__rwNdAdOn) return;
     if (!poweredThisVisit) return;
     try {
       if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
@@ -2795,7 +2951,8 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
 
   function startIdleHum() {
     try { window.__rwNdStartHum = startIdleHum; window.__rwNdStopHum = stopIdleHum; window.__rwNdArmHum = buildHumGraph; } catch (eH) {}
-    if (leavingDrop) return;
+    if (leavingDrop || window.__rwNdHush) { stopIdleHum(); return; }
+    if (window.__rwNdAdOn) { muteStageAudio(); return; }
     if (!onPage() || !isMember()) {
       stopIdleHum();
       return;
@@ -2828,7 +2985,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
   }
   function buildHumGraph() {
     try { window.__rwNdArmHum = buildHumGraph; } catch (eB) {}
-    if (leavingDrop) return;
+    if (leavingDrop || window.__rwNdHush) return;
     unlockAudio();
     holdAudio();
     armCrtHum();
@@ -3226,29 +3383,59 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
     tape.appendChild(btn);
   }
 
+  function signDark() {
+    document.querySelectorAll(".nd-neon-sign").forEach((n) => n.classList.remove("is-lit", "is-steady"));
+  }
+  function signLit() {
+    const sign = document.querySelector("#nd-overlay .nd-neon-sign") || document.querySelector(".nd-neon-sign");
+    if (!sign) return;
+    sign.classList.remove("is-lit");
+    sign.classList.add("is-steady");
+  }
+
+  function tvBackOn(tape) {
+    shutting = false;
+    tape.classList.remove("is-off", "is-killing");
+    const glass = tape.querySelector(".nd-glass-off");
+    if (glass) glass.remove();
+    document.documentElement.classList.remove("nd-tv-off");
+    poweredThisVisit = true;
+    tape.dataset.ndPower = "1";
+    humArmed = true;
+    signLit();
+    try { crtOnSound(); } catch (eS) {}
+    startIdleHum();
+  }
+
   function powerOff() {
-    if (shutting || leavingDrop) return;
+    if (leavingDrop) return;
     if (clerkOpen()) return;
+    const tape = document.querySelector(".drop-tape");
+    if (!tape) return;
+    if (tape.classList.contains("is-off")) {
+      if (!shutting) tvBackOn(tape);
+      return;
+    }
+    if (shutting) return;
     shutting = true;
     poweredThisVisit = false;
     humArmed = false;
     humHeld = false;
-    const tape = document.querySelector(".drop-tape");
-    if (tape) {
-      try { delete tape.dataset.ndPower; } catch (eD) { tape.removeAttribute("data-nd-power"); }
-      tape.classList.add("is-off", "is-killing");
-      tape.classList.remove("is-hum", "is-ch");
-      if (!tape.querySelector(".nd-glass-off")) {
-        const glass = document.createElement("div");
-        glass.className = "nd-glass-off";
-        glass.setAttribute("aria-hidden", "true");
-        glass.innerHTML = "<i></i>";
-        tape.appendChild(glass);
-      }
+    try { delete tape.dataset.ndPower; } catch (eD) { tape.removeAttribute("data-nd-power"); }
+    tape.classList.add("is-off", "is-killing");
+    tape.classList.remove("is-hum", "is-ch");
+    document.documentElement.classList.add("nd-tv-off");
+    signDark();
+    if (!tape.querySelector(".nd-glass-off")) {
+      const glass = document.createElement("div");
+      glass.className = "nd-glass-off";
+      glass.setAttribute("aria-hidden", "true");
+      glass.innerHTML = "<i></i>";
+      tape.appendChild(glass);
     }
     stopIdleHum();
     try { crtOnSound(); } catch (eS) {}
-    window.setTimeout(() => { leaveDrop("/"); }, 1100);
+    window.setTimeout(() => { shutting = false; }, 900);
   }
 
   function armZap() {
@@ -3768,7 +3955,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
     if (dropCatalogReady && extraFilms.length) return Promise.resolve(extraFilms);
     if (loadDropCatalog.inflight) return loadDropCatalog.inflight;
     loadDropCatalog.inflight = Promise.all([
-      fetch("/data/catalog.json", { cache: "no-store" }).then((r) => (r && r.ok ? r.json() : [])).catch(function () { return []; }),
+      fetch("/data/catalog.json", { cache: "force-cache" }).then((r) => (r && r.ok ? r.json() : [])).catch(function () { return []; }),
     ]).then(function (pair) {
       loadDropCatalog.inflight = null;
       const rows = Array.isArray(pair[0]) ? pair[0] : [];
@@ -5224,6 +5411,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
 
   function syncHumToScreen() {
     if (leavingDrop || shutting) return;
+    if (window.__rwNdAdOn) { muteStageAudio(); return; }
     if (!onPage() || !isMember()) return;
     if (clerkOpen()) {
       if (idleHum) stopIdleHum();
@@ -5461,6 +5649,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
     const liveTape = document.querySelector(".drop-tape");
     if (liveTape) {
       try { delete liveTape.dataset.ndPower; } catch (eP) { liveTape.removeAttribute("data-nd-power"); }
+      liveTape.classList.remove("is-killing");
       liveTape.classList.add("is-off");
     }
     const darkSign = document.querySelector("#nd-overlay .nd-neon-sign");
@@ -5563,16 +5752,44 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
     });
     window.addEventListener("popstate", sync);
     window.addEventListener("pageshow", (ev) => {
-      if (!ev.persisted || !onPage()) return;
+      if (!onPage()) return;
+      window.__rwNdHush = false;
+      if (!document.querySelector(".nd-ad-well")) window.__rwNdAdOn = 0;
+      dropDeadCtx();
+      if (triviaReturnFresh()) {
+        leavingDrop = false;
+        shutting = false;
+        resumeAfterTrivia();
+        sync();
+        return;
+      }
+      if (!ev.persisted) return;
       leavingDrop = false;
       shutting = false;
       onDrop = false;
       poweredThisVisit = false;
       const tape = document.querySelector(".drop-tape");
       if (tape) {
+        tape.classList.remove("is-off", "is-killing");
         try { delete tape.dataset.ndPower; } catch (eP) { tape.removeAttribute("data-nd-power"); }
       }
       sync();
+    });
+    window.addEventListener("pagehide", () => {
+      window.__rwNdHush = true;
+      window.__rwNdLeft = 1;
+      window.__rwNdAdOn = 0;
+      try { stopIdleHum(); } catch (eH) {}
+      try { if (crtEl) { crtEl.pause(); crtEl.muted = true; crtEl.volume = 0; } } catch (eC) {}
+      try { if (audioCtx && audioCtx.state === "running") audioCtx.suspend(); } catch (eA) {}
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        try { stopIdleHum(); } catch (eH) {}
+        try { if (crtEl) { crtEl.pause(); crtEl.muted = true; crtEl.volume = 0; } } catch (eC) {}
+        return;
+      }
+      reviveDropAudio();
     });
   }
 
@@ -5587,7 +5804,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
     });
   });
   function boot() {
-    try { loadDropCatalog(); } catch (eCat) {}
+    try { if (onPage()) loadDropCatalog(); } catch (eCat) {}
     try { window.__rwNdStartHum = startIdleHum; window.__rwNdUnlock = primeDropAudio; window.__rwNdPrime = primeDropAudio; window.__rwNdStopHum = stopIdleHum; window.__rwNdTeardown = teardownDrop; window.__rwNdLeave = leaveDrop; window.__rwNdArmHum = buildHumGraph; } catch (eB) {}
     let ndLive = false;
     function paintDropNav() {
@@ -5617,14 +5834,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
         return;
       }
       if (leavingDrop) return;
-      if (isMember() && !clerkOpen()) {
-        if (poweredThisVisit) {
-          if (!idleHum) startIdleHum();
-          else {
-            try { if (audioCtx && audioCtx.state !== "running") audioCtx.resume(); } catch (eR) {}
-          }
-        }
-      }
+      reviveDropAudio();
     }
     function attachNdLive() {
       if (ndLive) return;
@@ -5677,6 +5887,7 @@ html body[data-drop="1"] .drop-clerk .vhs-window img{
         }
       }, 120);
       setTimeout(() => {
+        if (resumeAfterTrivia()) return;
         if (onPage() && isMember() && !poweredThisVisit) powerOn();
       }, 1400);
     }

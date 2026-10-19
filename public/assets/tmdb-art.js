@@ -34,6 +34,7 @@
     "the-crow": "/sleeves/the-crow.jpg?v=painted",
     "there-will-be-blood": "/sleeves/there-will-be-blood.jpg?v=painted",
     "there-will-be-blood-2007": "/sleeves/there-will-be-blood.jpg?v=painted",
+    "first-blood": "/sleeves/first-blood.jpg?v=a9bcd8be",
   };
   var keepPainted = painted;
 
@@ -50,7 +51,9 @@
     if (!path || path.indexOf("image.tmdb.org") >= 0 || path.indexOf("media.themoviedb.org") >= 0) return "";
     if (path.indexOf("/sleeves/spines/") >= 0 || path.indexOf("/sleeves/thumbs/") >= 0) return "";
     if (/-still\.jpg$/.test(path)) return "";
-    if (/-(shop|clock|blood|worm|beach|copa|desert|maze|roof|orca|rock)\.jpg$/.test(path)) return "";
+    if (/-(shop|clock|worm|beach|copa|desert|maze|roof|orca|rock)\.jpg$/.test(path)) return "";
+    /* first-blood.jpg is the cover. the-thing-1982-blood.jpg is a back still. */
+    if (/-(blood)\.jpg$/.test(path) && path.indexOf("/first-blood.jpg") < 0 && path.indexOf("/there-will-be-blood.jpg") < 0) return "";
     var match = path.match(/\/sleeves\/([a-z0-9-]+)\.jpg$/);
     return match ? match[1] : "";
   }
