@@ -3266,6 +3266,10 @@
         '[data-vip-wall] .vip-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6%;z-index:2;pointer-events:none;background:linear-gradient(to bottom,rgba(246,244,239,0) 0%,#f6f4ef 100%)}' +
         'html[data-theme="dark"] [data-vip-wall] .vip-banner::after,html[data-theme="night"] [data-vip-wall] .vip-banner::after{height:40%;background:linear-gradient(to bottom,rgba(10,11,14,0),#0a0b0e 100%)}' +
         '[data-vip-wall] .vip-avatar{position:absolute;z-index:6!important;overflow:hidden!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important}' +
+        /* No photo yet: show the empty avatar circle, and let the Edit photo pill sit whole under it instead of being clipped by the round photo mask. */
+        '[data-vip-wall] .vip-avatar:not(.has-pic){overflow:visible!important;background:#17181c!important;box-shadow:0 0 0 3px #0a0b0e,inset 0 0 0 1.5px rgba(255,255,255,.16)!important}' +
+        'html:not([data-theme="dark"]) [data-vip-wall] .vip-avatar:not(.has-pic){background:#ebe5d8!important;box-shadow:0 0 0 3px #f6f4ef,inset 0 0 0 1.5px rgba(36,24,12,.18)!important}' +
+        '[data-vip-wall] .vip-avatar:not(.has-pic) .vip-edit-avatar{left:50%!important;right:auto!important;top:auto!important;bottom:-.7rem!important;transform:translateX(-50%)!important;white-space:nowrap!important;z-index:2!important}' +
         'html.vip-page,body.vip-page{--rw-linoleum:transparent!important;--rw-grain:0!important}' +
         'html.vip-page .store-bg,body.vip-page .store-bg,html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{background-image:none!important}' +
         'html.vip-page .store-bg::before,html.vip-page .store-bg::after,body.vip-page .store-bg::before,body.vip-page .store-bg::after{content:none!important;display:none!important}' +
@@ -3737,6 +3741,9 @@
         'html.vip-page .store-bg,body.vip-page .store-bg{overflow:visible!important;height:auto!important;max-height:none!important}' +
         'html[data-member="1"] a[href="/messages"],html[data-member="1"] a.rw-notes,html[data-member="1"] button.rw-notes{display:inline-flex!important;position:relative}' +
         'a.rw-notes,button.rw-notes{position:relative}' +
+        /* The header nav's text Notes link also gets .rw-notes; keep it a normal nav item (icon + label), not the 2.4rem icon button. */
+        'header a.rw-notes.px-3{width:auto!important;height:2.5rem!important;flex:0 0 auto!important;white-space:nowrap}' +
+        'header a.rw-notes.px-3 svg{width:1rem!important;height:1rem!important;flex:0 0 auto!important}' +
         '.rw-notes-badge{position:absolute;top:.42rem;right:.32rem;width:.48rem;height:.48rem;padding:0;border-radius:999px;background:#c41230;color:transparent;font-size:0;line-height:0;pointer-events:none}' +
         '.rw-dm-row.is-unread .rw-dm-copy > b::after{content:"";display:inline-block;width:.42rem;height:.42rem;margin-left:.4rem;border-radius:99px;background:#c41230;vertical-align:.08rem}' +
         '#rw-msg-toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 4.4rem);transform:translateX(-50%);z-index:500;border:0;border-radius:999px;background:#c41230;color:#fff8f4;padding:.7rem 1rem;font-size:.85rem;letter-spacing:.02em;box-shadow:0 10px 24px rgba(0,0,0,.22);display:none;cursor:pointer}' +
@@ -10690,20 +10697,12 @@
       }
       return null;
     }
-    var OUT_2026 = {"102-minutes-inside-the-towers-2026":1,"17-2026":1,"180-2026":1,"18th-rose-2026":1,"1999-2027":1,"28-years-later-the-bone-temple-2026":1,"40-dates-and-40-nights-2026":1,"500-miles-2026":1,"72-hours-2026":1,"a-gorilla-story-told-by-david-attenborough-2026":1,"a-great-awakening-2026":1,"a-toxic-love-story-2026":1,"abot-langit-2026":1,"above-below-2026":1,"aew-dynasty-2026":1,"after-impact-2026":1,"alfa-omega-2026":1,"all-you-need-is-kill-2026":1,"alpha-2026":1,"amped-2026":1,"andr-is-an-idiot-2026":1,"animal-farm-2026":1,"animals-2026":1,"apex-2026":1,"apoy-sa-ibabaw-apoy-sa-ilalim-2026":1,"avatar-aang-the-last-airbender-2026":1,"back-to-the-90s-2026":1,"backrooms-2026":1,"bad-apples-2026":1,"balls-up-2026":1,"band-of-brothers-legacy-2026":1,"barreda-2026":1,"basta-mam-2026":1,"batman-knightfall-part-1-knightfall-2026":1,"beast-2026":1,"best-of-the-best-2026":1,"better-boyfriend-2026":1,"beware-boi-na-2026":1,"billie-eilish-hit-me-hard-and-soft-the-tour-live-in-3d-2026":1,"black-box-2026":1,"blast-2026":1,"blood-covenant-2026":1,"blood-rust-2026":1,"blue-film-2026":1,"bodycam-2026":1,"borderline-2026":1,"boulevard-2026":1,"breeder-2026":1,"brothers-under-fire-2026":1,"buddy-2026":1,"bury-the-devil-2026":1,"buzzkill-2026":1,"by-any-means-2026":1,"camp-rock-3-2026":1,"carolina-caroline-2026":1,"carry-on-jatta-4-2026":1,"casa-grande-2026":1,"cerita-lila-2026":1,"charlie-harper-2026":1,"check-in-2026":1,"chum-2026":1,"citizen-vigilante-2026":1,"clash-of-the-thundermans-2026":1,"cold-storage-2026":1,"coyote-vs-acme-2026":1,"creampie-2026":1,"crime-101-2026":1,"daniel-and-the-fiery-furnace-2026":1,"dead-man-s-wire-2026":1,"deathwoods-2026":1,"deep-water-2026":1,"dehumanized-2026":1,"descendants-wicked-wonderland-2026":1,"desert-warrior-2026":1,"designing-the-dead-feared-by-the-living-2026":1,"desperada-2026":1,"diary-of-a-mad-old-man-2026":1,"digger-2026":1,"disclosure-day-2026":1,"do-not-enter-2026":1,"doing-life-2026":1,"dolly-2026":1,"don-t-move-2026":1,"don-t-say-good-luck-2026":1,"double-trouble-2026":1,"driver-s-ed-2026":1,"dust-2026":1,"echo-point-2026":1,"enola-holmes-3-2026":1,"entre-hilos-2026":1,"epic-elvis-presley-in-concert-2026":1,"ernie-emma-2026":1,"euphoria-a-look-back-2026":1,"evil-dead-burn-2026":1,"evolution-2026":1,"extreme-makeover-homer-edition-2026":1,"f-valentine-s-day-2026":1,"faces-of-death-2026":1,"fall-2-deadpoint-2026":1,"family-2026":1,"find-your-friends-2026":1,"finding-emily-2026":1,"finding-harry-the-craft-behind-the-magic-2026":1,"fjord-2026":1,"flou-2026":1,"forbidden-fruits-2026":1,"forgotten-island-2026":1,"frankenstein-s-bride-2026":1,"fuze-2026":1,"gail-daughtry-and-the-celebrity-sex-pass-2026":1,"gala-2026":1,"gary-2026":1,"ghost-elephants-2026":1,"ghost-in-the-cell-2026":1,"girls-like-girls-2026":1,"goat-2026":1,"good-boy-2026":1,"good-luck-have-fun-don-t-die-2026":1,"good-vibes-only-2026":1,"grand-theft-auto-vi-an-extended-look-2026":1,"greenland-2-migration-2026":1,"grizzly-night-2026":1,"ha-chan-shake-your-booty-2026":1,"hannah-montana-20th-anniversary-special-2026":1,"hayok-2026":1,"he-s-watching-you-2026":1,"heart-of-the-beast-2026":1,"heartstopper-forever-2026":1,"helena-2026":1,"hellfire-2026":1,"her-private-hell-2026":1,"hi-2026":1,"hokum-2026":1,"hollow-trees-2026":1,"hope-2026":1,"hoppers-2026":1,"hot-spot-2026":1,"how-to-make-a-killing-2026":1,"hugo-24-2026":1,"hungry-2026":1,"i-can-only-imagine-2-2026":1,"i-love-boosters-2026":1,"i-want-your-sex-2026":1,"ice-cream-man-2026":1,"ice-skater-2026":1,"idiots-2026":1,"if-i-go-will-they-miss-me-2026":1,"il-mio-nome-carlo-2026":1,"immortal-combat-2026":1,"in-the-blink-of-an-eye-2026":1,"in-the-grey-2026":1,"in-the-hand-of-dante-2026":1,"in-the-name-of-love-2026":1,"infiltrate-2026":1,"infirmary-2026":1,"insidious-out-of-the-further-2026":1,"insidious-possession-2026":1,"invention-13-2026":1,"iron-lung-2026":1,"iron-maiden-burning-ambition-2026":1,"is-god-is-2026":1,"it-ends-2026":1,"jackass-best-and-last-2026":1,"jackie-the-stripper-2026":1,"just-play-dead-2026":1,"kangaroo-kids-2026":1,"kill-code-2026":1,"killer-whale-2026":1,"kissing-is-the-easy-part-2026":1,"kraken-2026":1,"l-inconnue-2026":1,"la-jangada-2026":1,"la-v-nus-lectrique-2026":1,"ladies-first-2026":1,"last-call-2026":1,"lee-cronin-s-the-mummy-2026":1,"legend-of-the-white-dragon-2026":1,"lego-disney-princess-magical-mayhem-2026":1,"lego-star-wars-the-mandalorian-2026":1,"leviticus-2026":1,"lifehack-2026":1,"linkin-park-unshatter-2026":1,"lion-fist-2026":1,"little-brother-2026":1,"livestream-from-hell-2026":1,"love-lottery-2026":1,"love-me-love-me-2026":1,"lucky-strike-2026":1,"lunok-2026":1,"m-rama-2026":1,"marigold-dream-star-grand-prix-2026-day-6-2026":1,"marigold-dream-star-grand-prix-2026-day-8-2026":1,"marigold-dream-star-grand-prix-2026-finals-2026":1,"marsupilami-2026":1,"marty-life-is-short-2026":1,"masahe-2026":1,"master-of-the-universe-2026":1,"masters-of-the-universe-2026":1,"matchbox-the-movie-2026":1,"mayday-2026":1,"melania-2026":1,"mercy-2026":1,"mermaid-2026":1,"mexicali-2026":1,"michael-2026":1,"midnight-girls-2026":1,"mike-nick-nick-alice-2026":1,"minions-monsters-2026":1,"moana-2026":1,"monster-mia-2026":1,"mortal-kombat-ii-2026":1,"mother-mary-2026":1,"motor-city-2026":1,"mutiny-2026":1,"naza-2026":1,"neglected-2026":1,"ni-contigo-ni-sin-m-2026":1,"night-of-the-living-dead-2026":1,"night-patrol-2026":1,"nimrods-2026":1,"ninja-wars-blackfox-vs-shogun-s-ninja-2026":1,"nirvanna-the-band-the-show-the-movie-2026":1,"noah-kahan-out-of-body-2026":1,"normal-2026":1,"novak-djokovic-the-wolf-in-winter-2026":1,"oasis-don-t-look-back-in-anger-2026":1,"obsession-2026":1,"office-romance-2026":1,"on-the-road-2026":1,"one-last-shot-2026":1,"one-mile-chapter-one-2026":1,"one-mile-chapter-two-2026":1,"one-night-only-2026":1,"onslaught-2026":1,"opera-omnia-2026":1,"oradour-2026":1,"oscar-shaw-2026":1,"other-mommy-2026":1,"ouroboros-2026":1,"outcome-2026":1,"over-your-dead-body-2026":1,"passenger-2026":1,"paw-patrol-the-dino-movie-2026":1,"peaky-blinders-the-immortal-man-2026":1,"people-we-meet-on-vacation-2026":1,"pinocchio-unstrung-2026":1,"pizza-movie-2026":1,"power-ballad-2026":1,"practical-magic-2-2026":1,"pressure-2026":1,"pretty-lethal-2026":1,"primate-2026":1,"primetime-2026":1,"project-hail-mary":1,"propeller-one-way-night-coach-2026":1,"protector-2026":1,"psalm-2026":1,"psycho-killer-2026":1,"quantum-supremacy-2026":1,"rage-2026":1,"rage-of-stars-2026":1,"ready-or-not-here-i-come-2026":1,"relationship-goals-2026":1,"remain-2027":1,"remarkably-bright-creatures-2026":1,"reminders-of-him-2026":1,"resident-dead-2026":1,"resident-evil-2026":1,"resonance-2026":1,"return-to-silent-hill-2026":1,"rise-of-the-conqueror-2026":1,"rocky-s-cat-astrophe-2026":1,"rolling-loud-the-movie-2026":1,"roommates-2026":1,"rosebush-pruning-2026":1,"run-hide-fight-infidels-2026":1,"runner-2026":1,"saccharine-2026":1,"sagaran-2026":1,"savage-house-2026":1,"scary-movie-2026":1,"scream-7-2026":1,"send-help-2026":1,"septum-2026":1,"seven-snipers-2026":1,"sex-drive-2026":1,"shaun-the-sheep-the-beast-of-mossy-bottom-2026":1,"shelter-2026":1,"signal-one-2026":1,"silent-friend-2026":1,"sniper-no-nation-2026":1,"snoopy-presents-there-s-no-place-like-home-snoopy-2026":1,"solo-mio-2026":1,"soulm8te-2026":1,"spa-weekend-2026":1,"spider-island-2026":1,"spider-man-brand-new-day":1,"spidey-and-the-avengers-halloween-team-up-2026":1,"starbright-2026":1,"stolen-heart-2026":1,"stop-that-train-2026":1,"storm-on-sesame-street-2026":1,"stranglehold-2026":1,"strung-2026":1,"sugar-mommy-2026":1,"sultana-2026":1,"summerween-2026":1,"super-troopers-3-2026":1,"supergirl-2026":1,"swapped-2026":1,"tape-2026":1,"tarung-unforgiven-2026":1,"teenage-sex-and-death-at-camp-miasma-2026":1,"tenzing-2026":1,"termination-point-2026":1,"the-ai-doc-or-how-i-became-an-apocaloptimist-2026":1,"the-amazing-digital-circus-the-last-act-2026":1,"the-bay-2026":1,"the-birth-2026":1,"the-bluff-2026":1,"the-breadwinner-2026":1,"the-bride-2026":1,"the-brink-of-war-2026":1,"the-chair-2026":1,"the-cheating-wife-2026":1,"the-christophers-2026":1,"the-company-2026":1,"the-crash-2026":1,"the-cycle-2026":1,"the-dating-app-killer-the-monica-white-story-2026":1,"the-death-of-robin-hood-2026":1,"the-deputy-2026":1,"the-devil-s-mouth-2026":1,"the-devil-wears-prada-2-2026":1,"the-dink-2026":1,"the-dog-stars-2026":1,"the-drama-2026":1,"the-dreadful-2026":1,"the-end-of-oak-street-2026":1,"the-fix-2026":1,"the-furious-pertaruhan-maruah-2026":1,"the-gentleman-thief-2026":1,"the-get-out-2026":1,"the-girl-in-the-river-2026":1,"the-highest-stakes-2026":1,"the-incomer-2026":1,"the-internship-2026":1,"the-invite-2026":1,"the-isolate-thief-2026":1,"the-last-assassins-2026":1,"the-last-first-winter-k2-2026":1,"the-last-house-2026":1,"the-last-kiss-2026":1,"the-last-sunrise-2026":1,"the-love-hypothesis-2026":1,"the-magic-faraway-tree-2026":1,"the-mandalorian-and-grogu-2026":1,"the-moment-2026":1,"the-mortuary-assistant-2026":1,"the-muppet-show-2026":1,"the-musical-2026":1,"the-nice-ones-2026":1,"the-odyssey-2026":1,"the-passenger-2026":1,"the-penthouse-2026":1,"the-pout-pout-fish-2026":1,"the-president-s-cake-2026":1,"the-punisher-one-last-kill-2026":1,"the-rip-2026":1,"the-rivals-of-amziah-king-2026":1,"the-runner-2026":1,"the-sandbox-2026":1,"the-sheep-detectives-2026":1,"the-social-reckoning":1,"the-strangers-chapter-3-2026":1,"the-super-mario-galaxy-movie":1,"the-uprising-2026":1,"the-weight-2026":1,"the-whisper-man-2026":1,"the-widower-til-death-do-us-part-2026":1,"the-wrecking-crew-2026":1,"the-wrong-girls-2026":1,"they-will-kill-you-2026":1,"this-is-not-a-test-2026":1,"thrash-2026":1,"tom-clancy-s-jack-ryan-ghost-war-2026":1,"tony-2026":1,"tow-2026":1,"toxic-2026":1,"toy-story-5":1,"truly-naked-2026":1,"tuner-2026":1,"turning-point-generation-9-11-2026":1,"unabomber-2026":1,"unanswered-butterfly-2026":1,"undertone-2026":1,"union-county-2026":1,"untitled-home-invasion-romance-2026":1,"untold-mr-t-i-pity-the-fool-2026":1,"v-h-s-mixtape-2026":1,"vampire-carnival-2026":1,"verity-2026":1,"vigilante-2026":1,"virginia-woolf-s-night-day-2026":1,"voicemails-for-isabelle-2026":1,"volver-a-los-17-2026":1,"war-machine-2026":1,"wardriver-2026":1,"wasteman-2026":1,"we-bury-the-dead-2026":1,"whistle-2026":1,"why-did-i-get-married-again-2026":1,"wonderful-nightmare-2026":1,"wuthering-heights-2026":1,"wwe-aaa-worlds-collide-2026-chicago-2026":1,"yellow-eyes-2026":1,"yellow-mirror-2026":1,"you-me-tuscany-2026":1,"young-washington-2026":1,"your-fault-london-2026":1,"your-mother-your-mother-your-mother-2026":1,"zip-wire-2026":1};
-    function notOutYet(film) {
-      var y = filmYear(film);
-      if (y < 2026) return false;
-      var slug = film && film.slug;
-      if (slug && OUT_2026[slug]) return false;
-      return true;
-    }
     function inTheme(film, theme) {
       if (!theme || placeholderShelf(film)) return false;
       const themes = themesOf(film);
-      if (theme === "coming") return notOutYet(film) || (themes.indexOf("coming") >= 0 && filmYear(film) < 2026);
-      if (themes.indexOf("coming") >= 0 && notOutYet(film)) return false;
-      if (theme === "new") return filmYear(film) >= 2026 && !notOutYet(film);
+      if (theme === "coming") return themes.indexOf("coming") >= 0;
+      if (themes.indexOf("coming") >= 0) return false;
+      if (theme === "new") return filmYear(film) >= 2026;
       return themes.indexOf(theme) >= 0;
     }
     function runtimeLabel(min) {
@@ -12798,9 +12797,7 @@
         shelfSlugs(section);
         const show = !theme || id === theme;
         section.hidden = !show;
-        if (show && !theme && !section.__virt) {
-          /* Stamped wall. Leave the tapes in the DOM. */
-        } else if (show) {
+        if (show) {
           ensureShelf(section);
           const v = armSection(section);
           if (v) {
@@ -12821,7 +12818,7 @@
               var pages = Math.max(1, Math.ceil(pool.length / SHELF_N) || 1);
               var shelfN = file.letter ? Math.min(Math.max(1, file.shelf), pages) : 1;
               var from = (shelfN - 1) * SHELF_N;
-              v.films = file.letter ? pool.slice(from, from + SHELF_N) : pool;
+              v.films = pool.slice(from, from + SHELF_N);
               openList = listed;
             } else {
               var preview = filmsFor(section, id, SHELF_N, claimed);
@@ -12920,7 +12917,8 @@
       try { document.documentElement.setAttribute("data-aisles-ready", "1"); } catch (eReady) {}
       try { document.documentElement.setAttribute("data-aisles-counted", "1"); } catch (eCount) {}
     }
-    var loadCatalog = function () { window.__rwCatNow = 1; Promise.all([
+    window.__rwCatNow = 1;
+    Promise.all([
       fetch("/data/catalog.json?v=1107").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
     ]).then(function (pair) {
       catalog = Array.isArray(pair[0]) ? pair[0] : [];
@@ -12937,42 +12935,16 @@
         if (boxes[slug] && boxes[slug].back) stills[slug] = 1;
       });
       var finish = function () {
-        if (applied) applyAisle(applied, false);
-        else {
-          sections.forEach(function (section) {
-            var id = sectionTheme(section);
-            var link = section.querySelector("a[href]");
-            if (!link || themeOf(link.getAttribute("href")) == null) return;
-            var n = aisleSize(section, id);
-            link.textContent = n + (n === 1 ? " tape" : " tapes");
-          });
-          var floor = floorEl();
-          if (floor) floor.textContent = floorTotal() + " tapes on the floor";
-        }
+        applyAisle(applied || "", false);
         aislesReady();
       };
-      finish();
+      if (applied) finish();
+      else if (window.requestIdleCallback) window.requestIdleCallback(finish, { timeout: 250 });
+      else setTimeout(finish, 0);
     }).catch(function () {
-      try { if (applied) applyAisle(applied, false); } catch (eApply) {}
+      try { applyAisle(applied || "", false); } catch (eApply) {}
       aislesReady();
     });
-    };
-    function armCatalog() {
-      if (window.__rwAisleCatArm) return;
-      window.__rwAisleCatArm = 1;
-      loadCatalog();
-    }
-    if (initial) armCatalog();
-    else {
-      document.addEventListener("click", function (e) {
-        var t = e.target && e.target.closest && e.target.closest("a[href*='theme=']");
-        if (t) armCatalog();
-      }, true);
-      document.addEventListener("focusin", function (e) {
-        var el = e.target;
-        if (el && el.matches && el.matches("input[type='search'], input[name='q']")) armCatalog();
-      }, true);
-    }
   }
 
   function wireAisleSearch() {
