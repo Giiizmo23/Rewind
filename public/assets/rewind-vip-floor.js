@@ -19306,11 +19306,33 @@
     }
     if (slug === "the-thing-1982") {
       box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
-        sp.style.setProperty("background-color", window.__rwThingBg || "#d5e6f0", "important");
+        sp.style.setProperty("background-color", "#d5e6f0", "important");
         sp.style.setProperty("background-image", "none", "important");
+      });
+      box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
+        img.style.setProperty("inset", "0", "important");
+        img.style.setProperty("top", "0", "important");
+        img.style.setProperty("right", "0", "important");
+        img.style.setProperty("bottom", "0", "important");
+        img.style.setProperty("left", "0", "important");
+        img.style.setProperty("width", "100%", "important");
+        img.style.setProperty("height", "100%", "important");
+        img.style.setProperty("max-width", "none", "important");
+        img.style.setProperty("max-height", "none", "important");
+        img.style.setProperty("margin", "0", "important");
+        img.style.setProperty("object-fit", "fill", "important");
+        img.style.setProperty("object-position", "center center", "important");
+        img.style.setProperty("filter", "none", "important");
+        img.style.setProperty("mix-blend-mode", "normal", "important");
+        img.style.setProperty("background", "transparent", "important");
+        img.style.setProperty("opacity", "1", "important");
       });
       box.querySelectorAll(".vhs-spine-year, .vhs-spine-word").forEach(function (el) {
         el.style.setProperty("display", "none", "important");
+        el.style.setProperty("color", "#111111", "important");
+      });
+      box.querySelectorAll(".vhs-spine-vhs, .vhs-spine-no").forEach(function (el) {
+        el.style.setProperty("color", "#111111", "important");
       });
     }
     if (slug === "the-shining") {
