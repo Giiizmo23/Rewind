@@ -1659,9 +1659,8 @@
         if (!use) use = window.__rwTitleAt[url] || null;
         if (use) window.__rwTitleAt[url] = use;
         if (slug === "the-thing-1982") {
-          var thing = "";
-          try { thing = liftThingLetters(im); } catch (eThing) { thing = ""; }
-          if (thing) { finish({ letters: 1, ink: "#1a120c", src: thing, bg: window.__rwThingBg || "#d5e6f0", logo: 1 }); return; }
+          finish({ skip: 1 });
+          return;
         }
         if (slug === "first-blood") {
           var blood = null;
