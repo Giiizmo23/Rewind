@@ -19164,23 +19164,32 @@
       }
     }
     if (slug === "the-thing-1982") {
+      if (!document.getElementById("thing-spine-lock")) {
+        var lock = document.createElement("style");
+        lock.id = "thing-spine-lock";
+        lock.textContent = ".vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine,.vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine-ink{background-color:#d7e8f4!important;background-image:none!important;background-blend-mode:normal!important}.vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine:before,.vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine:after{display:none!important;content:none!important;background:none!important}";
+        document.head.appendChild(lock);
+      }
       box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
-        sp.style.setProperty("background-color", "#d5e6f0", "important");
+        sp.style.setProperty("background-color", "#d7e8f4", "important");
         sp.style.setProperty("background-image", "none", "important");
+        sp.style.setProperty("background-blend-mode", "normal", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        var brush = "/sleeves/spines/the-thing-1982-brush.png?v=1";
-        if ((img.getAttribute("src") || "").indexOf("the-thing-1982-brush.png") < 0) img.src = brush;
-        img.style.setProperty("inset", "0", "important");
-        img.style.setProperty("top", "0", "important");
-        img.style.setProperty("right", "0", "important");
-        img.style.setProperty("bottom", "0", "important");
-        img.style.setProperty("left", "0", "important");
-        img.style.setProperty("width", "100%", "important");
-        img.style.setProperty("height", "100%", "important");
-        img.style.setProperty("max-width", "none", "important");
-        img.style.setProperty("max-height", "none", "important");
+        var brush = "/sleeves/spines/the-thing-1982-brush.png?v=2";
+        if ((img.getAttribute("src") || "").indexOf("v=2") < 0) img.src = brush;
+        img.style.setProperty("position", "absolute", "important");
+        img.style.setProperty("inset", "auto", "important");
+        img.style.setProperty("top", "12%", "important");
+        img.style.setProperty("bottom", "auto", "important");
+        img.style.setProperty("left", "50%", "important");
+        img.style.setProperty("right", "auto", "important");
+        img.style.setProperty("width", "auto", "important");
+        img.style.setProperty("height", "76%", "important");
+        img.style.setProperty("max-width", "100%", "important");
+        img.style.setProperty("max-height", "76%", "important");
         img.style.setProperty("margin", "0", "important");
+        img.style.setProperty("transform", "translateX(-50%)", "important");
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
         img.style.setProperty("filter", "none", "important");
@@ -19190,7 +19199,6 @@
       });
       box.querySelectorAll(".vhs-spine-year, .vhs-spine-word").forEach(function (el) {
         el.style.setProperty("display", "none", "important");
-        el.style.setProperty("color", "#111111", "important");
       });
       box.querySelectorAll(".vhs-spine-vhs, .vhs-spine-no").forEach(function (el) {
         el.style.setProperty("color", "#111111", "important");
