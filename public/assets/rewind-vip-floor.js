@@ -19178,8 +19178,8 @@
         sp.style.setProperty("background-blend-mode", "normal", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        var brush = "/sleeves/spines/the-thing-1982-brush.png?v=5";
-        if ((img.getAttribute("src") || "").indexOf("v=5") < 0) img.src = brush;
+        var brush = "/sleeves/spines/the-thing-1982-title.png?v=1";
+        if ((img.getAttribute("src") || "").indexOf("the-thing-1982-title.png") < 0) img.src = brush;
         img.style.setProperty("position", "absolute", "important");
         img.style.setProperty("inset", "auto", "important");
         img.style.setProperty("top", "5%", "important");
