@@ -19189,7 +19189,9 @@
         img.style.setProperty("max-width", "100%", "important");
         img.style.setProperty("max-height", "76%", "important");
         img.style.setProperty("margin", "0", "important");
-        img.style.setProperty("transform", "translateX(-50%)", "important");
+        var onLeft = !!img.closest(".vhs-spine-left");
+        img.style.setProperty("transform-origin", "center center", "important");
+        img.style.setProperty("transform", onLeft ? "translateX(-50%) rotate(180deg)" : "translateX(-50%)", "important");
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
         img.style.setProperty("filter", "none", "important");
