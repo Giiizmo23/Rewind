@@ -19176,8 +19176,8 @@
         sp.style.setProperty("background-blend-mode", "normal", "important");
       });
       box.querySelectorAll(".vhs-spine-logo").forEach(function (img) {
-        var brush = "/sleeves/spines/the-thing-1982-brush.png?v=2";
-        if ((img.getAttribute("src") || "").indexOf("v=2") < 0) img.src = brush;
+        var brush = "/sleeves/spines/the-thing-1982-brush.png?v=3";
+        if ((img.getAttribute("src") || "").indexOf("v=3") < 0) img.src = brush;
         img.style.setProperty("position", "absolute", "important");
         img.style.setProperty("inset", "auto", "important");
         img.style.setProperty("top", "12%", "important");
@@ -19189,9 +19189,9 @@
         img.style.setProperty("max-width", "100%", "important");
         img.style.setProperty("max-height", "76%", "important");
         img.style.setProperty("margin", "0", "important");
-        var onLeft = !!img.closest(".vhs-spine-left");
+        var onRight = !!img.closest(".vhs-spine-right");
         img.style.setProperty("transform-origin", "center center", "important");
-        img.style.setProperty("transform", onLeft ? "translateX(-50%) rotate(180deg)" : "translateX(-50%)", "important");
+        img.style.setProperty("transform", onRight ? "translateX(-50%) rotate(180deg)" : "translateX(-50%)", "important");
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
         img.style.setProperty("filter", "none", "important");
