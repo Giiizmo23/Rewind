@@ -7,6 +7,18 @@
 (function () {
   var path = (location.pathname || "").replace(/\/$/, "") || "/";
   if (path !== "/") return;
+  if (!document.getElementById("lobby-new-back-fit")) {
+    var fit = document.createElement("style");
+    fit.id = "lobby-new-back-fit";
+    fit.textContent =
+      "section[data-lobby-shelf='new'] > .grid > .tape-slot{padding-bottom:2.4rem!important}" +
+      "section[data-lobby-shelf='new'] > .grid > .tape-slot .vhs-box{height:calc(var(--shelf-row) - 6.2rem)!important;max-height:calc(var(--shelf-row) - 6.2rem)!important}" +
+      "section[data-lobby-shelf='new'] .vhs-back-still{flex:0 0 30%!important;height:30%!important;max-height:30%!important}" +
+      "section[data-lobby-shelf='new'] .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;object-position:center 30%!important}" +
+      "section[data-lobby-shelf='new'] .vhs-back-copy{padding-bottom:1.25rem!important}" +
+      "section[data-lobby-shelf='new'] .vhs-back-foot{bottom:0.18rem!important}";
+    document.head.appendChild(fit);
+  }
   var COUNT = 5;
   function themesOf(f) { return String((f && f.themes) || "").split(",").map(function (s) { return s.trim(); }).filter(Boolean); }
   function placeholder(f) {
