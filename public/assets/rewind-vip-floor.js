@@ -19164,12 +19164,14 @@
       }
     }
     if (slug === "the-thing-1982") {
-      if (!document.getElementById("thing-spine-lock")) {
-        var lock = document.createElement("style");
+      var lockCss = "html body .vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine,html body .vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine-ink{background-color:#d7e8f4!important;background-image:none!important;background-blend-mode:normal!important}html body .vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine:before,html body .vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine:after{display:none!important;content:none!important;background:none!important}";
+      var lock = document.getElementById("thing-spine-lock");
+      if (!lock) {
+        lock = document.createElement("style");
         lock.id = "thing-spine-lock";
-        lock.textContent = ".vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine,.vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine-ink{background-color:#d7e8f4!important;background-image:none!important;background-blend-mode:normal!important}.vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine:before,.vhs-box[data-slug=\"the-thing-1982\"] .vhs-spine:after{display:none!important;content:none!important;background:none!important}";
         document.head.appendChild(lock);
       }
+      lock.textContent = lockCss;
       box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
         sp.style.setProperty("background-color", "#d7e8f4", "important");
         sp.style.setProperty("background-image", "none", "important");
@@ -19189,9 +19191,8 @@
         img.style.setProperty("max-width", "100%", "important");
         img.style.setProperty("max-height", "76%", "important");
         img.style.setProperty("margin", "0", "important");
-        var onRight = !!img.closest(".vhs-spine-right");
         img.style.setProperty("transform-origin", "center center", "important");
-        img.style.setProperty("transform", onRight ? "translateX(-50%) rotate(180deg)" : "translateX(-50%)", "important");
+        img.style.setProperty("transform", "translateX(-50%)", "important");
         img.style.setProperty("object-fit", "contain", "important");
         img.style.setProperty("object-position", "center center", "important");
         img.style.setProperty("filter", "none", "important");
