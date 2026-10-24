@@ -23,7 +23,7 @@
     if (slug === "the-lion-king") return "/sleeves/the-lion-king-rock.jpg?v=2";
     if (slug === "the-shawshank-redemption") return "/sleeves/the-shawshank-redemption-beach.jpg?v=2";
     if (slug === "dune-part-two") return "/sleeves/dune-part-two-worm.jpg?v=1";
-    if (slug === "first-blood") return "/sleeves/first-blood-still.jpg?v=scene1";
+    if (slug === "first-blood") return "/sleeves/first-blood-still.jpg?v=scene2";
     if (slug === "goodfellas") return "/sleeves/goodfellas-copa.jpg?v=1";
     if (slug === "se7en") return "/sleeves/se7en-desert.jpg?v=1";
     if (slug === "jaws") return "/sleeves/jaws-orca.jpg?v=2";
