@@ -11,15 +11,14 @@
     var fit = document.createElement("style");
     fit.id = "lobby-new-back-fit";
     fit.textContent =
-      "section[data-lobby-shelf='new'] > .grid > .tape-slot{padding-bottom:2.4rem!important}" +
-      "section[data-lobby-shelf='new'] > .grid > .tape-slot .vhs-box{height:calc(var(--shelf-row) - 6.2rem)!important;max-height:calc(var(--shelf-row) - 6.2rem)!important}" +
-      "section[data-lobby-shelf='new'] .vhs-shell-back{overflow:visible!important}" +
-      "section[data-lobby-shelf='new'] .vhs-back-still{flex:0 0 18%!important;height:18%!important;max-height:18%!important}" +
-      "section[data-lobby-shelf='new'] .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;object-position:center center!important}" +
-      "section[data-lobby-shelf='new'] .vhs-back-copy{padding-bottom:0.2rem!important;overflow:visible!important}" +
-      "section[data-lobby-shelf='new'] .vhs-back-syn{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;overflow:visible!important;max-height:none!important;white-space:normal!important}" +
-      "section[data-lobby-shelf='new'] .vhs-back-foot{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;margin-top:0.22rem!important}" +
-      "section[data-lobby-shelf='new'] .vhs-back-stock{position:relative!important;z-index:1!important}";
+      "html body main section[data-lobby-shelf='new'] .tape-slot{padding-bottom:2.4rem!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box{height:calc(var(--shelf-row) - 5.6rem)!important;max-height:calc(var(--shelf-row) - 5.6rem)!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box .vhs-back-still{flex:0 0 2.15rem!important;height:2.15rem!important;max-height:2.15rem!important;min-height:0!important;overflow:hidden!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box .vhs-back-still img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;object-position:center center!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box .vhs-back-lede{flex:0 0 auto!important;overflow:visible!important;min-height:0!important;max-height:none!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box .vhs-back-syn{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;-webkit-box-orient:unset!important;overflow:visible!important;max-height:none!important;white-space:normal!important;font-size:.44rem!important;line-height:1.22!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box .vhs-back-copy{overflow:hidden!important;padding:.08rem .3rem .95rem!important}" +
+      "html body main section[data-lobby-shelf='new'] .tape-slot .vhs-box .vhs-back-foot{position:absolute!important;left:.26rem!important;right:.18rem!important;bottom:.08rem!important;margin:0!important}";
     document.head.appendChild(fit);
   }
   var COUNT = 5;
@@ -147,6 +146,30 @@
       still.onerror = function () { this.onerror = null; this.style.display = "none"; };
       still.src = backSrc;
       wrap.appendChild(still);
+      wrap.style.setProperty("flex", "0 0 2.15rem", "important");
+      wrap.style.setProperty("height", "2.15rem", "important");
+      wrap.style.setProperty("max-height", "2.15rem", "important");
+      wrap.style.setProperty("overflow", "hidden", "important");
+      still.style.setProperty("position", "absolute", "important");
+      still.style.setProperty("inset", "0", "important");
+      still.style.setProperty("width", "100%", "important");
+      still.style.setProperty("height", "100%", "important");
+      still.style.setProperty("object-fit", "cover", "important");
+    }
+    if (syn) {
+      syn.style.setProperty("display", "block", "important");
+      syn.style.setProperty("overflow", "visible", "important");
+      syn.style.setProperty("max-height", "none", "important");
+      syn.style.setProperty("-webkit-line-clamp", "unset", "important");
+      syn.style.setProperty("white-space", "normal", "important");
+      syn.style.setProperty("font-size", "0.44rem", "important");
+      syn.style.setProperty("line-height", "1.22", "important");
+    }
+    var lede = box.querySelector(".vhs-back-lede");
+    if (lede) {
+      lede.style.setProperty("flex", "0 0 auto", "important");
+      lede.style.setProperty("overflow", "visible", "important");
+      lede.style.setProperty("max-height", "none", "important");
     }
     var open = article.querySelector("a.tape-slot-open"); if (open) open.setAttribute("href", "/films/" + slug);
     var t = article.querySelector(".tape-slot-title"); if (t) t.textContent = title;
