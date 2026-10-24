@@ -18194,7 +18194,7 @@
         var src = img.getAttribute("src") || "";
         if (src.indexOf("v=495") < 0) {
           img.removeAttribute("srcset");
-          img.src = "/sleeves/first-blood-woods.jpg?v=1";
+          img.src = "/sleeves/first-blood-still.jpg?v=scene1";
         }
         img.style.setProperty("object-fit", "cover", "important");
         img.style.setProperty("object-position", "center center", "important");
