@@ -89,6 +89,7 @@
   function lockShelf() {
     document.querySelectorAll("section[data-lobby-shelf='new'] .vhs-box").forEach(lockShelfBack);
   }
+  function paint(article, film) {
     var slug = String(film.slug).replace(/[^a-z0-9-]/g, "");
     var title = String(film.title || slug);
     var box = article.querySelector(".vhs-box");
