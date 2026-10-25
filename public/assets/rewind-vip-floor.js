@@ -14704,6 +14704,7 @@
     { id: "post-wallace", kind: "poster", title: "Vengeance Most Fowl", pts: 60, art: "prizes/wallace-gromit.jpg", blurb: "The gnome one." },
     { id: "post-naked", kind: "poster", title: "The Naked Gun", pts: 55, art: "prizes/the-naked-gun.jpg", blurb: "The lollipop one." },
     { id: "post-elm", kind: "poster", title: "Elm Street", pts: 80, art: "prizes/nightmare-on-elm-street.jpg", blurb: "Don't fall asleep. A poster." },
+    { id: "post-bnd", kind: "poster", title: "Brand New Day", pts: 95, art: "prizes/spider-man-brand-new-day.jpg", blurb: "Upside down. On your wall." },
     { id: "scene-after", kind: "scene", title: "After Hours", pts: 50, art: "after-hours-still.jpg", blurb: "The city at 2am, across your header." },
     { id: "scene-amelie", kind: "scene", title: "Amélie", pts: 65, art: "amelie-still.jpg", blurb: "A still, not the poster. Top of the page." },
     { id: "scene-2001", kind: "scene", title: "2001", pts: 80, art: "2001-a-space-odyssey-still.jpg", blurb: "The hallway. Your header." },
