@@ -15038,7 +15038,7 @@
   const PAINT_WALL = 3;
   const PAINT_USE_NAME = { avatar: "avatar", header: "header", poster: "poster" };
   /* Prizes whose art is a tiny file, studio key art or an official one-sheet look-alike: off the counter, but anything already owned keeps working. */
-  const RETIRED_PRIZES = { "post-amelie": 1, "post-home": 1, "pin-home": 1, "post-akira": 1, "pin-akira": 1, "post-lost": 1, "post-full": 1, "post-indy": 1, "post-dune": 1, "post-leave": 1, "post-chal": 1, "post-past": 1, "post-days": 1, "post-opp": 1, "post-sinners": 1, "post-wicked": 1, "post-inside": 1, "post-wild": 1 };
+  const RETIRED_PRIZES = { "post-amelie": 1, "post-home": 1, "pin-home": 1, "post-akira": 1, "pin-akira": 1, "post-lost": 1, "post-full": 1, "post-indy": 1, "post-dune": 1, "post-leave": 1, "post-chal": 1, "post-days": 1, "post-opp": 1, "post-wicked": 1, "post-inside": 1, "post-wild": 1 };
   let paintBook = null;
   let paintLoading = null;
   const paintPage = { avatar: 1, header: 1, poster: 1 };
