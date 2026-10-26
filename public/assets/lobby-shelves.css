@@ -14,6 +14,16 @@ html[data-member="1"] main [data-lobby-cta]{display:none!important}
 /* New Releases row: phones (and the home-screen app) show 4, two rows of 2 on one shelf (Julian, Oct 10). */
 html body main section[data-lobby-shelf="new"] .grid.grid-cols-2 > .tape-slot:nth-child(n+5){display:none!important}
 
+/* Lobby posts sit inside the page padding. Aisles break the shelf out to the screen edge. Match that. */
+html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot){
+  width:100vw!important;
+  max-width:100vw!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  box-sizing:border-box!important;
+  padding:0 22px 0!important;
+}
+
 @media (min-width:640px) and (not (display-mode: standalone)){
   html:not([data-drop="1"]) body main section[data-lobby-shelf] .grid.grid-cols-2:has(> .tape-slot){
     --shelf-row:19rem!important;
