@@ -4294,8 +4294,8 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   background-color: #f6f4ef !important;
   background-image:
     linear-gradient(#f6f4ef, #f6f4ef),
-    url(/assets/shelf/post-left.jpg?v=16),
-    url(/assets/shelf/post-right.jpg?v=16),
+    url(/assets/shelf/post-left.jpg?v=19),
+    url(/assets/shelf/post-right.jpg?v=19),
     url(/assets/shelf/base.jpg?v=16),
     url(/assets/shelf/row.jpg?v=16) !important;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-y !important;

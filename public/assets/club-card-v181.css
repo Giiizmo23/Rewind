@@ -4538,7 +4538,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   padding: 0 22px 0 !important;
   border: 0 !important;
   background-color: #f6f4ef !important;
-  background-image: url(/assets/shelf/post-left.jpg?v=16), url(/assets/shelf/post-right.jpg?v=16), url(/assets/shelf/lip.png?v=17) !important;
+  background-image: url(/assets/shelf/post-left.jpg?v=19), url(/assets/shelf/post-right.jpg?v=19), url(/assets/shelf/lip.png?v=19) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
   background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left 6rem, right 6rem, left top !important;
