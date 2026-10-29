@@ -1,9 +1,7 @@
-/* Lobby "New Releases" row (approved by Julian, Oct 10 2026). Same eligibility as the floor's
-   New Release aisle (inTheme(film, "new") in rewind-vip-floor.js: year >= 2026, not
-   Coming Soon, not a placeholder stub), ranked by catalog "pop" (highest first, same
-   tiebreaks as the aisle: newer year, then A-Z). Shows 5 tapes; CSS shows 2 on phones,
-   4 at >=640px, 5 at >=1024px. Tapes are cloned from the lobby's own tape slot so the
-   case, sticker, spine and shelf look are the house ones. */
+/* Lobby "New Releases" row. Five tapes that are already out, newest open date first.
+   A film with a street date in the overview joins the wall the day that date arrives,
+   if it has a house sleeve. Popularity does not hold a tape on the shelf. The baked
+   five only show until the catalog answers. */
 (function () {
   var path = (location.pathname || "").replace(/\/$/, "") || "/";
   if (path !== "/") return;
@@ -28,8 +26,62 @@
     return /^on the shelf\.?$/i.test(String((f && f.overview) || "").trim()) && String((f && f.genres) || "").trim() === "Drama" && !String((f && f.director) || "").trim();
   }
   function year(f) { var m = String((f && f.year) || "").match(/\d{4}/); var n = m ? Number(m[0]) : 0; return n >= 1900 && n <= 2100 ? n : 0; }
-  function isNew(f) {
+  var MONTHS = { january: 1, february: 2, march: 3, april: 4, may: 5, june: 6, july: 7, august: 8, september: 9, october: 10, november: 11, december: 12 };
+  /* Opens that are not written as a street date in the overview. */
+  var OPENED = {
+    "primetime-2026": "2026-09-25",
+    "verity-2026": "2026-09-25",
+    "forgotten-island-2026": "2026-09-25",
+    "heart-of-the-beast-2026": "2026-09-25",
+    "by-any-means-2026": "2026-09-04",
+    "the-dog-stars-2026": "2026-08-28",
+    "coyote-vs-acme-2026": "2026-08-28",
+    "buddy-2026": "2026-08-28",
+    "spider-man-brand-new-day": "2026-07-31",
+    "evil-dead-burn-2026": "2026-07-24",
+    "the-odyssey-2026": "2026-07-17",
+    "moana-2026": "2026-07-10",
+    "minions-monsters-2026": "2026-07-01",
+    "supergirl-2026": "2026-06-26",
+    "toy-story-5": "2026-06-19",
+    "disclosure-day-2026": "2026-06-12",
+    "the-mandalorian-and-grogu-2026": "2026-05-22",
+    "obsession-2026": "2026-05-15",
+    "mortal-kombat-ii-2026": "2026-05-08",
+    "the-super-mario-galaxy-movie": "2026-04-01",
+    "project-hail-mary": "2026-03-20",
+    "hoppers-2026": "2026-03-06"
+  };
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function iso(y, m, d) { return y + "-" + pad(m) + "-" + pad(d); }
+  function todayKey() {
+    var d = new Date();
+    return iso(d.getFullYear(), d.getMonth() + 1, d.getDate());
+  }
+  function streetDate(f) {
+    var ov = String((f && f.overview) || "");
+    var m = ov.match(/street date(?:\s+of)?(?:\s+late)?\s+(january|february|march|april|may|june|july|august|september|october|november|december)(?:\s+(\d{1,2}))?/i)
+      || ov.match(/(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})\s+street date/i);
+    if (!m) return "";
+    var month = MONTHS[m[1].toLowerCase()];
+    var day = m[2] ? Number(m[2]) : 15;
+    var y = year(f) || new Date().getFullYear();
+    if (!month || day < 1 || day > 31) return "";
+    return iso(y, month, day);
+  }
+  function openedOn(f) {
+    var slug = f && f.slug;
+    if (slug && OPENED[slug]) return OPENED[slug];
+    return streetDate(f);
+  }
+  function hasSleeve(f) {
+    var boxed = window.boxAssets && f && f.slug && window.boxAssets(f.slug);
+    return !!(boxed && boxed.cover);
+  }
+  function isOut(f) {
     if (!f || !f.slug || placeholder(f)) return false;
+    var opened = openedOn(f);
+    if (opened) return opened <= todayKey();
     if (themesOf(f).indexOf("coming") >= 0) return false;
     return year(f) >= 2026;
   }
@@ -221,11 +273,11 @@
     return true;
   }
   var BAKED = [
-    { slug: "project-hail-mary", title: "Project Hail Mary", year: 2026, director: "Phil Lord, Christopher Miller", runtime: 140, catalogNo: "RW-504", tagline: "Save Earth. Make A Friend.", overview: "A teacher wakes up on a spaceship with a mission he does not remember and a spider-rock alien who might be the friend.", palette: "#c47a28|#1a2a3a|#e8dcc8", poster: "https://image.tmdb.org/t/p/w500/iOb2fjXLbpJgyQXe46n1WtGCnaa.jpg" },
-    { slug: "the-odyssey-2026", title: "The Odyssey", year: 2026, director: "Christopher Nolan", runtime: 180, catalogNo: "RW-501", tagline: "Tell Me, Muse", overview: "Homer at IMAX scale. A soldier trying to get home, gods that do not make it easy, and a sea that is also a maze.", palette: "#1a3a4a|#c4aa80|#e8dcc8", poster: "https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg" },
-    { slug: "obsession-2026", title: "Obsession", year: 2026, director: "Curry Barker", runtime: 109, catalogNo: "RW-7167", tagline: "Be careful who you wish for…", overview: "He breaks the One Wish Willow to win his crush. He gets the wish, then finds out what it costs.", palette: "#1a1814|#d7c4a0|#1a6b6b", poster: "https://image.tmdb.org/t/p/w500/bRwnj8WEKBCvmfeUNOukJPwB43K.jpg" },
-    { slug: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", year: 2026, director: "Destin Daniel Cretton", runtime: 130, catalogNo: "RW-502", tagline: "Brand New Day", overview: "Peter Parker after the spell. A new day that is not as clean as the title. The mask is back on. The city did not forget.", palette: "#c41230|#1a3a8a|#e8c07a", poster: "https://image.tmdb.org/t/p/w500/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg" },
-    { slug: "backrooms-2026", title: "Backrooms", year: 2026, director: "Kane Parsons", runtime: 111, catalogNo: "RW-7187", tagline: "See how far it goes.", overview: "A strange doorway appears in the basement of a furniture showroom.", palette: "#1c1418|#c45a3a|#f3e6c8", poster: "https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg" }
+    { slug: "clayface", title: "Clayface", year: 2026, director: "James Watkins", runtime: 0, catalogNo: "RW-510", tagline: "A Face That Will Not Hold", overview: "A Batman villain who is also a tragedy about a face that will not stay. Horror-lane DC. Street date October 23.", palette: "#c47a28|#1a1a1a|#6b3a1a" },
+    { slug: "the-social-reckoning", title: "The Social Reckoning", year: 2026, director: "Aaron Sorkin", runtime: 0, catalogNo: "RW-509", tagline: "The Sequel To The Social Network", overview: "Sorkin goes back to the deposition room. The company got bigger. The damage did too. Street date October 9.", palette: "#1a1a1a|#c4aa80|#4a5a6a" },
+    { slug: "spider-man-brand-new-day", title: "Spider-Man: Brand New Day", year: 2026, director: "Destin Daniel Cretton", runtime: 130, catalogNo: "RW-502", tagline: "Brand New Day", overview: "Peter Parker after the spell. A new day that is not as clean as the title. The mask is back on. The city did not forget.", palette: "#c41230|#1a3a8a|#e8c07a" },
+    { slug: "the-odyssey-2026", title: "The Odyssey", year: 2026, director: "Christopher Nolan", runtime: 180, catalogNo: "RW-501", tagline: "Tell Me, Muse", overview: "Homer at IMAX scale. A soldier trying to get home, gods that do not make it easy, and a sea that is also a maze.", palette: "#1a3a4a|#c4aa80|#e8dcc8" },
+    { slug: "moana-2026", title: "Moana", year: 2026, director: "Thomas Kail", runtime: 118, catalogNo: "RW-505", tagline: "I Am Moana Of Motunui", overview: "Live-action ocean, same song about how far she'll go. The water still knows her. The demigod still needs a push.", palette: "#1a6aaa|#c47a28|#e8dcc8" }
   ];
   function slugsOf(films) {
     return films.map(function (f) { return f.slug; }).join("|");
@@ -247,18 +299,20 @@
     ready.then(function (rows) {
       var seen = {};
       var picks = (Array.isArray(rows) ? rows : []).filter(function (f) {
-        if (!isNew(f) || seen[f.slug]) return false;
+        if (!isOut(f) || !hasSleeve(f) || seen[f.slug]) return false;
         seen[f.slug] = 1; return true;
       });
       picks.sort(function (a, b) {
+        var da = openedOn(a), db = openedOn(b);
+        if (da && db && da !== db) return da < db ? 1 : -1;
+        if (da && !db) return -1;
+        if (!da && db) return 1;
         var pa = Number(a.pop) || 0, pb = Number(b.pop) || 0;
         if (pa !== pb) return pb - pa;
-        var ya = year(a), yb = year(b);
-        if (ya !== yb) return yb - ya;
         return String(a.title || "").localeCompare(String(b.title || ""));
       });
       var next = picks.slice(0, COUNT);
-      if (!next.length || slugsOf(next) === slugsOf(BAKED)) return;
+      if (!next.length) return;
       var tries = 0;
       (function wait() {
         if (place(next)) return;
