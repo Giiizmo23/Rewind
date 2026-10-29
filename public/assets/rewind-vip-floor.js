@@ -54,12 +54,7 @@
     "the-exorcist": [0.08, 0.15, 0.92, 0.32],
     "gremlins": [0.04, 0.82, 0.96, 0.97],
     "project-hail-mary": [0.16, 0.08, 0.84, 0.34],
-    "the-odyssey-2026": [0.08, 0.868, 0.92, 0.975],
-    "obsession-2026": [0.12, 0.100, 0.90, 0.205],
-    "spider-man-brand-new-day": [0.12, 0.808, 0.88, 0.942],
-    "clayface": [0.10, 0.54, 0.90, 0.72],
-    "the-social-reckoning": [0.10, 0.885, 0.90, 0.975],
-    "moana-2026": [0.02, 0.02, 0.98, 0.32]
+    "obsession-2026": [0.12, 0.100, 0.90, 0.205]
     /* halloween-1978 keeps its approved spine art (/sleeves/spines/halloween-1978.png on #000); a cover-sampled spine color made two blacks. */
   };
   function titleBand(slug) {
@@ -1021,12 +1016,7 @@
     "first-blood": "cleanred",
     "blade-runner": "red",
     "project-hail-mary": "ink",
-    "the-odyssey-2026": "ink",
-    "obsession-2026": "white",
-    "spider-man-brand-new-day": "ink",
-    "clayface": "red",
-    "the-social-reckoning": "white",
-    "moana-2026": "logo"
+    "obsession-2026": "white"
   };
   function liftFirstBlood(im) {
     var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
@@ -18960,6 +18950,34 @@
           img.style.setProperty("box-shadow", "none", "important");
           img.style.setProperty("filter", "none", "important");
         }
+        var coverSlug = img.closest(".vhs-box") && img.closest(".vhs-box").getAttribute("data-slug");
+        if (coverSlug === "clayface" || coverSlug === "the-social-reckoning" || coverSlug === "spider-man-brand-new-day" || coverSlug === "the-odyssey-2026") {
+          img.style.setProperty("display", "block", "important");
+          img.style.setProperty("opacity", "1", "important");
+          img.style.setProperty("visibility", "visible", "important");
+          img.style.setProperty("position", "absolute", "important");
+          img.style.setProperty("top", "5%", "important");
+          img.style.setProperty("bottom", "7%", "important");
+          img.style.setProperty("left", "0", "important");
+          img.style.setProperty("right", "0", "important");
+          img.style.setProperty("width", "100%", "important");
+          img.style.setProperty("height", "88%", "important");
+          img.style.setProperty("max-width", "100%", "important");
+          img.style.setProperty("max-height", "88%", "important");
+          img.style.setProperty("margin", "auto", "important");
+          img.style.setProperty("object-fit", "contain", "important");
+          img.style.setProperty("object-position", "center center", "important");
+          img.style.setProperty("background", "transparent", "important");
+          img.style.setProperty("transform", "none", "important");
+          var host = img.closest(".vhs-box");
+          if (host) {
+            host.setAttribute("data-spine-letters", "1");
+            host.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
+              sp.style.setProperty("background-color", "#070707", "important");
+              sp.style.setProperty("background-image", "none", "important");
+            });
+          }
+        }
       }
       if (BATCH_STICKER[slug] && SPINE_GROUND[slug]) {
         box.querySelectorAll(".vhs-spine").forEach(function (sp) {
@@ -19012,7 +19030,8 @@
         var paintedNow = paintedBox(slug);
         hasPainted = !!(paintedNow && paintedNow.spine);
       } catch (eHas) {}
-      var drawing = (onAisle ? liftSlug : true) && !keepPaintedSpine && !bakedMatch && !!coverUrl;
+      var PIN_COVER_SPINE = { "clayface": 1, "the-social-reckoning": 1, "spider-man-brand-new-day": 1, "the-odyssey-2026": 1 };
+      var drawing = (onAisle ? liftSlug : true) && !keepPaintedSpine && !bakedMatch && !!coverUrl && !PIN_COVER_SPINE[slug];
       var spineReady = (window.__rwSpineReady && coverUrl && window.__rwSpineReady[coverUrl]) || null;
       if (!spineReady && coverUrl && window.__rwSpineReady) {
         var bareCover = coverUrl.split("?")[0];

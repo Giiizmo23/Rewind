@@ -204,6 +204,13 @@
         img.style.setProperty("display", "block", "important");
       }
     });
+    if (slug === "clayface" || slug === "the-social-reckoning" || slug === "spider-man-brand-new-day" || slug === "the-odyssey-2026") {
+      box.setAttribute("data-spine-letters", "1");
+      box.querySelectorAll(".vhs-spine, .vhs-spine-ink").forEach(function (sp) {
+        sp.style.setProperty("background-color", "#070707", "important");
+        sp.style.setProperty("background-image", "none", "important");
+      });
+    }
     var cover = box.querySelector(".vhs-window img");
     var keepPainted = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
     if (cover) {
