@@ -4538,7 +4538,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   padding: 0 22px 0 !important;
   border: 0 !important;
   background-color: #f6f4ef !important;
-  background-image: url(/assets/shelf/post-left.jpg?v=22), url(/assets/shelf/post-right.jpg?v=22), url(/assets/shelf/lip.png?v=22) !important;
+  background-image: url(/assets/shelf/post-left.jpg?v=23), url(/assets/shelf/post-right.jpg?v=23), url(/assets/shelf/lip.png?v=23) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
   background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left 6rem, right 6rem, left top !important;
@@ -4567,9 +4567,9 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   max-height: var(--shelf-row) !important;
   margin: 0 !important;
-  padding: 0.15rem 0.4rem 14px !important;
+  padding: 0.15rem 0.35rem 38px !important;
   background-color: transparent !important;
-  background-image: url(/assets/shelf/wall.jpg?v=22) !important;
+  background-image: url(/assets/shelf/wall.jpg?v=23) !important;
   background-repeat: no-repeat !important;
   background-size: 100% calc(100% - 56px) !important;
   background-position: left top !important;
@@ -4586,7 +4586,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(6rem + 8px), transparent calc(6rem + 8px)), url(/assets/shelf/wall.jpg?v=22) !important;
+  background-image: linear-gradient(to bottom, #f6f4ef 0, #f6f4ef calc(6rem + 8px), transparent calc(6rem + 8px)), url(/assets/shelf/wall.jpg?v=23) !important;
   background-size: 100% 100%, 100% calc(100% - 56px) !important;
   background-position: left top, left top !important;
   background-repeat: no-repeat, no-repeat !important;
@@ -4600,7 +4600,7 @@ html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .
 html[data-theme="night"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
 html[data-theme="dark"]:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"] {
   background-color: transparent !important;
-  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), transparent calc(6rem + 8px)), url(/assets/shelf/wall.jpg?v=22) !important;
+  background-image: linear-gradient(to bottom, #0a0b0e 0, #0a0b0e calc(6rem + 8px), transparent calc(6rem + 8px)), url(/assets/shelf/wall.jpg?v=23) !important;
   background-size: 100% 100%, 100% calc(100% - 56px) !important;
 }
 html[data-theme="night"] body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2) .tape-slot-title,
@@ -4656,14 +4656,14 @@ html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box {
   box-sizing: border-box !important;
   padding: 0.9rem 0.7rem 1.2rem 0.85rem !important;
-  width: calc((var(--shelf-row) - 6.9rem) * 2 / 3 + 1.55rem) !important;
+  width: calc((var(--shelf-row) - 6.9rem) * 2 / 3 + 0.85rem) !important;
   max-width: 100% !important;
-  height: calc(var(--shelf-row) - 4.8rem) !important;
-  max-height: calc(var(--shelf-row) - 4.8rem) !important;
+  height: calc(var(--shelf-row) - 6.3rem) !important;
+  max-height: calc(var(--shelf-row) - 6.3rem) !important;
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
-  filter: drop-shadow(0 5px 3px rgba(40, 32, 24, 0.35)) !important;
+  filter: drop-shadow(0 8px 2px rgba(28, 20, 14, 0.55)) drop-shadow(0 16px 8px rgba(28, 20, 14, 0.28)) !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
