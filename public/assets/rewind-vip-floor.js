@@ -56,7 +56,10 @@
     "project-hail-mary": [0.16, 0.08, 0.84, 0.34],
     "the-odyssey-2026": [0.08, 0.868, 0.92, 0.975],
     "obsession-2026": [0.12, 0.100, 0.90, 0.205],
-    "spider-man-brand-new-day": [0.12, 0.808, 0.88, 0.942]
+    "spider-man-brand-new-day": [0.12, 0.808, 0.88, 0.942],
+    "clayface": [0.10, 0.54, 0.90, 0.72],
+    "the-social-reckoning": [0.10, 0.885, 0.90, 0.975],
+    "moana-2026": [0.02, 0.02, 0.98, 0.32]
     /* halloween-1978 keeps its approved spine art (/sleeves/spines/halloween-1978.png on #000); a cover-sampled spine color made two blacks. */
   };
   function titleBand(slug) {
@@ -1020,7 +1023,10 @@
     "project-hail-mary": "ink",
     "the-odyssey-2026": "ink",
     "obsession-2026": "white",
-    "spider-man-brand-new-day": "ink"
+    "spider-man-brand-new-day": "ink",
+    "clayface": "red",
+    "the-social-reckoning": "white",
+    "moana-2026": "logo"
   };
   function liftFirstBlood(im) {
     var nw = im.naturalWidth || im.width, nh = im.naturalHeight || im.height;
@@ -19060,7 +19066,7 @@
           return;
         }
         if (drawing && !spineHit) {
-          if (cur.indexOf("/sleeves/spines/") >= 0) {
+          if (cur.indexOf("/sleeves/spines/") >= 0 || cur.indexOf("data:") === 0) {
             box.setAttribute("data-spine-letters", "1");
             fitSpineLogo(img);
             hideSpineWord(img.closest(".vhs-spine-ink"));
@@ -19344,6 +19350,7 @@
   function fixAllSpines() {
     document.querySelectorAll(".vhs-box").forEach(fixOneSpine);
   }
+  window.__rwFixSpines = fixAllSpines;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {

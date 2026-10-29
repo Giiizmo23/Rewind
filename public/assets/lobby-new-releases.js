@@ -180,14 +180,30 @@
     if (pal[1]) box.style.setProperty("--vhs-b", pal[1]);
     if (pal[2]) box.style.setProperty("--vhs-c", pal[2]);
     box.querySelectorAll(".vhs-spine-ink").forEach(function (ink) {
-      ink.querySelectorAll(".vhs-spine-logo").forEach(function (img) { img.remove(); });
       var word = ink.querySelector(".vhs-spine-word");
       if (!word) { word = document.createElement("span"); word.className = "vhs-spine-word"; ink.insertBefore(word, ink.querySelector(".vhs-spine-year")); }
       word.textContent = title;
+      word.style.setProperty("display", "none", "important");
       var y = ink.querySelector(".vhs-spine-year"); if (y) y.textContent = film.year ? String(film.year) : "";
       var no = ink.querySelector(".vhs-spine-no"); if (no) no.textContent = film.catalogNo || "";
     });
     var boxed = window.boxAssets && window.boxAssets(slug);
+    box.querySelectorAll(".vhs-spine-ink").forEach(function (ink) {
+      var word = ink.querySelector(".vhs-spine-word");
+      var img = ink.querySelector(".vhs-spine-logo");
+      if (!img) {
+        img = document.createElement("img");
+        img.className = "vhs-spine-logo";
+        img.alt = "";
+        img.draggable = false;
+        img.decoding = "async";
+        if (word) ink.insertBefore(img, word); else ink.appendChild(img);
+      }
+      if (boxed && boxed.spine) {
+        img.src = boxed.spine;
+        img.style.setProperty("display", "block", "important");
+      }
+    });
     var cover = box.querySelector(".vhs-window img");
     var keepPainted = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
     if (cover) {
@@ -218,6 +234,7 @@
             cover.style.setProperty("display", "block", "important");
             cover.style.setProperty("opacity", "1", "important");
             cover.style.setProperty("object-fit", "cover", "important");
+            cover.addEventListener("load", dressSpines);
           });
       }
     }
@@ -248,6 +265,9 @@
     var t = article.querySelector(".tape-slot-title"); if (t) t.textContent = title;
     var m = article.querySelector(".tape-slot-meta"); if (m) m.textContent = film.year ? String(film.year) : "";
   }
+  function dressSpines() {
+    try { if (window.__rwFixSpines) window.__rwFixSpines(); } catch (e) {}
+  }
   function build(films) {
     var host = tonight();
     if (!host || document.querySelector("section[data-lobby-shelf='new']")) return false;
@@ -270,6 +290,7 @@
     sec.appendChild(row);
     /* Above Tonight's tapes. That shelf is long; waiting under it is why New Releases felt late. */
     host.insertAdjacentElement("beforebegin", sec);
+    dressSpines();
     return true;
   }
   var BAKED = [
@@ -330,6 +351,7 @@
     }
     run();
     [40, 250, 800, 1800].forEach(function (ms) { setTimeout(lockShelf, ms); });
+    [120, 600, 1400, 2600].forEach(function (ms) { setTimeout(dressSpines, ms); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
