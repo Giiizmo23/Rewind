@@ -10621,7 +10621,13 @@
         var ownRemote = existingRemote && marked === slug;
         var art = filmArt(slug);
         var remote = art.indexOf("image.tmdb.org") >= 0 || art.indexOf("themoviedb.org") >= 0;
-        var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007" || slug === "clayface" || slug === "the-social-reckoning" || slug === "spider-man-brand-new-day" || slug === "the-odyssey-2026";
+        var tmdbFront = ({
+          "clayface": "https://image.tmdb.org/t/p/w500/9l1NuFjel2j89hiuiJbsxfblqjy.jpg",
+          "the-social-reckoning": "https://image.tmdb.org/t/p/w500/7jK6NuxVg1XuEV7UdNa6KO03IgZ.jpg",
+          "spider-man-brand-new-day": "https://image.tmdb.org/t/p/w500/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg",
+          "the-odyssey-2026": "https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg"
+        })[slug];
+        var keepSleeve = slug === "halloween-1978" || slug === "hereditary" || slug === "the-crow" || slug === "there-will-be-blood" || slug === "there-will-be-blood-2007";
         var aisle = document.documentElement.getAttribute("data-aisles") === "1";
         var poster = window.__rwPosters && window.__rwPosters[slug];
         if (keepSleeve) {
@@ -10677,6 +10683,14 @@
               })
               .catch(function () { cover.dataset.tmdbArt = "miss"; });
           }
+        } else if (tmdbFront) {
+          if ((cover.getAttribute("src") || "") !== tmdbFront) cover.src = tmdbFront;
+          cover.setAttribute("data-tmdb-art", "1");
+          cover.removeAttribute("data-painted");
+          cover.setAttribute("data-rw-cover", slug);
+          cover.style.setProperty("opacity", "1", "important");
+          cover.style.setProperty("display", "block", "important");
+          cover.style.setProperty("object-fit", "cover", "important");
         } else {
           var kept = paintedBox(slug);
           if (kept && kept.cover) {
@@ -10693,7 +10707,7 @@
           }
         }
         cover.removeAttribute("srcset");
-        var fit = (paintedBox(slug) && paintedBox(slug).fit) || "contain";
+        var fit = tmdbFront ? "cover" : ((paintedBox(slug) && paintedBox(slug).fit) || "contain");
         if (aisle && ((cover.getAttribute("src") || "").indexOf("image.tmdb.org") >= 0 || (cover.getAttribute("src") || "").indexOf("themoviedb.org") >= 0)) fit = "cover";
         cover.style.setProperty("object-fit", fit, "important");
         var win = cover.closest(".vhs-window");

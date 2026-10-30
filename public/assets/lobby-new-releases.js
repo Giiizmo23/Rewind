@@ -217,8 +217,14 @@
       ["data-tmdb-art", "data-rw-cover", "data-tmdb-slug", "data-painted", "srcset", "sizes", "fetchpriority"].forEach(function (a) { cover.removeAttribute(a); });
       cover.setAttribute("alt", title);
       cover.setAttribute("loading", film.poster ? "eager" : "lazy");
-      if (film.poster) {
-        cover.src = film.poster;
+      var tmdbFront = {
+        "clayface": "https://image.tmdb.org/t/p/w500/9l1NuFjel2j89hiuiJbsxfblqjy.jpg",
+        "the-social-reckoning": "https://image.tmdb.org/t/p/w500/7jK6NuxVg1XuEV7UdNa6KO03IgZ.jpg",
+        "spider-man-brand-new-day": "https://image.tmdb.org/t/p/w500/bjiS5ipwxb9JFy3XRRN4OAilSeX.jpg",
+        "the-odyssey-2026": "https://image.tmdb.org/t/p/w500/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg"
+      }[slug];
+      if (film.poster || tmdbFront) {
+        cover.src = film.poster || tmdbFront;
         cover.setAttribute("data-tmdb-art", "1");
         cover.setAttribute("data-rw-cover", slug);
         cover.style.setProperty("display", "block", "important");
