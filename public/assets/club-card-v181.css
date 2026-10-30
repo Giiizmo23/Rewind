@@ -4538,7 +4538,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   padding: 0 22px 0 !important;
   border: 0 !important;
   background-color: #f6f4ef !important;
-  background-image: url(/assets/shelf/post-left.jpg?v=22), url(/assets/shelf/post-right.jpg?v=22), url(/assets/shelf/lip.png?v=22) !important;
+  background-image: url(/assets/shelf/post-left.jpg?v=22), url(/assets/shelf/post-right.jpg?v=22), url(/assets/shelf/lip.png?v=24) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
   background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left 6rem, right 6rem, left top !important;
@@ -4567,7 +4567,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   max-height: var(--shelf-row) !important;
   margin: 0 !important;
-  padding: 0.15rem 0.4rem 14px !important;
+  padding: 0.15rem 0.4rem 36px !important;
   background-color: transparent !important;
   background-image: url(/assets/shelf/wall.jpg?v=22) !important;
   background-repeat: no-repeat !important;
@@ -4663,7 +4663,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
-  filter: drop-shadow(0 5px 3px rgba(40, 32, 24, 0.35)) !important;
+  filter: drop-shadow(0 7px 3px rgba(30, 22, 14, 0.5)) !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,

@@ -224,10 +224,15 @@
         cover.style.setProperty("display", "block", "important");
         cover.style.setProperty("opacity", "1", "important");
         cover.style.setProperty("object-fit", "cover", "important");
-      } else if (keepPainted && boxed && boxed.cover) {
+      } else if ((keepPainted || boxed) && boxed && boxed.cover) {
         cover.src = boxed.cover;
         cover.setAttribute("data-painted", "1");
         cover.setAttribute("data-tmdb-art", "keep");
+        cover.setAttribute("data-rw-cover", slug);
+        cover.style.setProperty("display", "block", "important");
+        cover.style.setProperty("opacity", "1", "important");
+        cover.style.setProperty("visibility", "visible", "important");
+        cover.style.setProperty("object-fit", "cover", "important");
       } else {
         cover.removeAttribute("src");
         cover.style.setProperty("display", "none");
