@@ -4674,7 +4674,21 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
-  filter: drop-shadow(1px 3px 2px rgba(10, 6, 4, 0.7)) drop-shadow(0 10px 7px rgba(10, 6, 4, 0.4)) !important;
+  filter: drop-shadow(0 1px 0 rgba(12, 8, 6, 0.35)) !important;
+}
+html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box::after,
+html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-box::after {
+  content: "" !important;
+  position: absolute !important;
+  left: -1% !important;
+  right: 1% !important;
+  bottom: -13px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse at center, rgba(14, 8, 4, 0.72) 0%, rgba(14, 8, 4, 0.34) 48%, rgba(14, 8, 4, 0) 76%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  display: block !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
