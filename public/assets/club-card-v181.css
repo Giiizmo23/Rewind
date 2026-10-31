@@ -4538,7 +4538,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   padding: 0 22px 0 !important;
   border: 0 !important;
   background-color: #f6f4ef !important;
-  background-image: url(/assets/shelf/post-left.jpg?v=22), url(/assets/shelf/post-right.jpg?v=22), url(/assets/shelf/lip.png?v=28) !important;
+  background-image: url(/assets/shelf/post-left.jpg?v=22), url(/assets/shelf/post-right.jpg?v=22), url(/assets/shelf/lip.png?v=24) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
   background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left 6rem, right 6rem, left top !important;
@@ -4601,7 +4601,7 @@ html[data-theme="dark"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-
     linear-gradient(#0a0b0e, #0a0b0e),
     url(/assets/shelf/post-left.jpg?v=22),
     url(/assets/shelf/post-right.jpg?v=22),
-    url(/assets/shelf/lip.png?v=28) !important;
+    url(/assets/shelf/lip.png?v=24) !important;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-y !important;
   background-size: 22px 6rem, 22px 6rem, 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left top, right top, left 6rem, right 6rem, left top !important;
@@ -4674,7 +4674,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   margin: 0 auto !important;
   flex: 0 1 auto !important;
-  filter: drop-shadow(0 3px 1px rgba(16, 10, 6, 0.72)) drop-shadow(0 11px 5px rgba(16, 10, 6, 0.42)) !important;
+  filter: drop-shadow(0 7px 3px rgba(30, 22, 14, 0.5)) !important;
 }
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip,
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot .vhs-flip-card,
