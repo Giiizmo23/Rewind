@@ -4538,7 +4538,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   padding: 0 22px 0 !important;
   border: 0 !important;
   background-color: #f6f4ef !important;
-  background-image: url(/assets/shelf/post-left.jpg?v=22), url(/assets/shelf/post-right.jpg?v=22), url(/assets/shelf/lip.png?v=24) !important;
+  background-image: url(/assets/shelf/post-left.jpg?v=31), url(/assets/shelf/post-right.jpg?v=31), url(/assets/shelf/lip.png?v=31) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
   background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left 6rem, right 6rem, left top !important;
@@ -4567,7 +4567,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   max-height: var(--shelf-row) !important;
   margin: 0 !important;
-  padding: 0.15rem 0.4rem 36px !important;
+  padding: 0.15rem 0.4rem 50px !important;
   background-color: transparent !important;
   background-image: url(/assets/shelf/wall.jpg?v=22) !important;
   background-repeat: no-repeat !important;
@@ -4599,9 +4599,9 @@ html[data-theme="dark"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-
   background-image:
     linear-gradient(#0a0b0e, #0a0b0e),
     linear-gradient(#0a0b0e, #0a0b0e),
-    url(/assets/shelf/post-left.jpg?v=22),
-    url(/assets/shelf/post-right.jpg?v=22),
-    url(/assets/shelf/lip.png?v=24) !important;
+    url(/assets/shelf/post-left.jpg?v=31),
+    url(/assets/shelf/post-right.jpg?v=31),
+    url(/assets/shelf/lip.png?v=31) !important;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-y !important;
   background-size: 22px 6rem, 22px 6rem, 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left top, right top, left 6rem, right 6rem, left top !important;
