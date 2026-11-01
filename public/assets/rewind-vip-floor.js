@@ -7599,8 +7599,13 @@
     fileStoreNotes();
     try { fileBirthdayNote(); } catch (eBday) {}
     try { fileStreakNudge(); } catch (eStreak) {}
-    loadClubBook();
     paintInboxBadge();
+    // loadClubBook used to run on every fillHello→wireInbox pass (~2.8s), which
+    // hammered Neon. Load once here; recurring polls go through pollDesk only.
+    if (!window.__rwClubBookBoot) {
+      window.__rwClubBookBoot = 1;
+      loadClubBook();
+    }
     if (!window.__rwDeskRemind) {
       window.__rwDeskRemind = 1;
       // Message inbox Neon poll: 30s while Messages is open, 2 min elsewhere.
