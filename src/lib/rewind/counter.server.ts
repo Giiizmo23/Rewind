@@ -1891,6 +1891,34 @@ async function people(sql: Sql, body: Record<string, unknown>): Promise<Response
   if (who instanceof Response) return who;
   const lite = body.lite === true;
   const since = Number(body.since) || 0;
+  // Cheap unchanged path for the desk poll: when the client last polled at pollAt
+  // and nothing newer exists (messages, pending message requests, one-way follows),
+  // skip the heavy people/box queries. Older clients omit pollAt and keep the full body.
+  const pollAt = Number(body.pollAt) || 0;
+  if (lite && pollAt > 0) {
+    const fresh = await sql.query<{ ok: number }>(
+      `select 1 as ok from (
+         select created_at from rewind_messages
+           where (sender = $1 or recipient = $1)
+             and created_at > to_timestamp($2 / 1000.0)
+         union all
+         select created_at from rewind_msg_gates
+           where askee = $1 and status = 'pending'
+             and created_at > to_timestamp($2 / 1000.0)
+         union all
+         select f.created_at from rewind_follows f
+           where f.followee = $1
+             and f.created_at > to_timestamp($2 / 1000.0)
+             and not exists (
+               select 1 from rewind_follows back
+               where back.follower = $1 and back.followee = f.follower
+             )
+       ) x
+       limit 1`,
+      [who.handle, pollAt],
+    );
+    if (!fresh.length) return json({ ok: true, unchanged: true });
+  }
   const avatarExpr = lite ? "''" : "coalesce(m.locker->>'avatar', '')";
   type Linked = {
     handle: string;

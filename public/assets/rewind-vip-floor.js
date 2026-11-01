@@ -5990,8 +5990,13 @@
   }
   function loadClubBook(lite) {
     if (clubPull) return clubPull;
-    clubPull = clubPost("/api/rewind/club/people", lite ? { lite: true, since: inboxSince() } : {}).then(function (data) {
+    clubPull = clubPost("/api/rewind/club/people", lite ? { lite: true, since: inboxSince(), pollAt: clubBook.at || 0 } : {}).then(function (data) {
       clubBook.tried = true;
+      if (data && data.ok && data.unchanged) {
+        clubBook.err = "";
+        clubBook.loaded = true;
+        return clubBook;
+      }
       if (!data || !data.ok || !Array.isArray(data.people)) {
         clubBook.err = (data && data.err) || "fail";
         return clubBook;
@@ -7320,6 +7325,10 @@
             if (data.msg) clubGate[who] = data.msg;
             clubFresh[who] = Date.now();
             paintInbox();
+            // Refresh the inbox poll right away after a send (Neon people/badge).
+            window.__rwDeskAt = 0;
+            if (typeof window.__rwPollDesk === "function") window.__rwPollDesk(true);
+            else loadClubBook(true).then(function () { paintInboxBadge(); });
           });
           return;
         }
@@ -7594,16 +7603,21 @@
     paintInboxBadge();
     if (!window.__rwDeskRemind) {
       window.__rwDeskRemind = 1;
-      const pollDesk = function () {
+      // Message inbox Neon poll: 30s while Messages is open, 2 min elsewhere.
+      // No polls while the tab is hidden; one poll on become-visible and on focus.
+      const pollDesk = function (force) {
         if (document.visibilityState === "hidden") return;
+        const box = document.getElementById("rw-inbox");
+        const inboxOpen = !!(box && box.getAttribute("data-open") === "1");
+        const gap = inboxOpen ? 30000 : 120000;
         const now = Date.now();
-        if (now - (window.__rwDeskAt || 0) < 60000) return;
+        if (!force && now - (window.__rwDeskAt || 0) < gap) return;
         window.__rwDeskAt = now;
         loadClubBook(true).then(function () {
           paintInboxBadge();
-          const box = document.getElementById("rw-inbox");
-          const typing = box && box.querySelector("input, textarea") === document.activeElement;
-          if (box && box.getAttribute("data-open") === "1" && !inboxThread && !typing) paintInbox();
+          const live = document.getElementById("rw-inbox");
+          const typing = live && live.querySelector("input, textarea") === document.activeElement;
+          if (live && live.getAttribute("data-open") === "1" && !inboxThread && !typing) paintInbox();
         });
         try { fileDueReminders(); } catch (eDue) {}
         try { fileStoreNotes(); } catch (eStore) {}
@@ -7611,10 +7625,12 @@
         try { fileStreakNudge(); } catch (eStreak) {}
         paintInboxBadge();
       };
-      window.setInterval(pollDesk, 60000);
+      window.__rwPollDesk = pollDesk;
+      window.setInterval(function () { pollDesk(false); }, 5000);
       document.addEventListener("visibilitychange", function () {
-        if (document.visibilityState === "visible") pollDesk();
+        if (document.visibilityState === "visible") pollDesk(true);
       });
+      window.addEventListener("focus", function () { pollDesk(true); });
     }
     if (!window.__rwInboxAuto && /^\/messages(\/|$)/.test(location.pathname || "")) {
       window.__rwInboxAuto = 1;
