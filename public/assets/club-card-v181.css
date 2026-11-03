@@ -4567,7 +4567,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   min-height: 0 !important;
   max-height: var(--shelf-row) !important;
   margin: 0 !important;
-  padding: 0.15rem 0.4rem 50px !important;
+  padding: 0.15rem 0.4rem 22px !important;
   background-color: transparent !important;
   background-image: url(/assets/shelf/wall.jpg?v=22) !important;
   background-repeat: no-repeat !important;
@@ -4682,8 +4682,8 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   position: absolute !important;
   left: -1% !important;
   right: 1% !important;
-  bottom: -13px !important;
-  height: 14px !important;
+  bottom: -4px !important;
+  height: 8px !important;
   border-radius: 50% !important;
   background: radial-gradient(ellipse at center, rgba(14, 8, 4, 0.72) 0%, rgba(14, 8, 4, 0.34) 48%, rgba(14, 8, 4, 0) 76%) !important;
   pointer-events: none !important;
