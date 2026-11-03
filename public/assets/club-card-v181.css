@@ -4538,7 +4538,7 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) {
   padding: 0 22px 0 !important;
   border: 0 !important;
   background-color: #f6f4ef !important;
-  background-image: url(/assets/shelf/post-left.jpg?v=31), url(/assets/shelf/post-right.jpg?v=31), url(/assets/shelf/lip.png?v=34) !important;
+  background-image: url(/assets/shelf/post-left.jpg?v=31), url(/assets/shelf/post-right.jpg?v=31), url(/assets/shelf/lip.png?v=35) !important;
   background-repeat: no-repeat, no-repeat, repeat-y !important;
   background-size: 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left 6rem, right 6rem, left top !important;
@@ -4581,6 +4581,11 @@ html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot 
   overflow: visible !important;
   position: relative !important;
 }
+html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(n+3):not([data-shelf-top="1"]) {
+  background-image: linear-gradient(to bottom, rgba(20, 12, 8, 0.5), rgba(20, 12, 8, 0) 18px), url(/assets/shelf/wall.jpg?v=22) !important;
+  background-size: 100% 18px, 100% calc(100% - 72px) !important;
+  background-repeat: no-repeat !important;
+}
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
 html:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot:nth-child(-n+2),
 html:not([data-drop="1"]) body main .grid.grid-cols-2:has(> .tape-slot) > .tape-slot[data-shelf-top="1"],
@@ -4601,7 +4606,7 @@ html[data-theme="dark"]:not([data-drop="1"]) main .grid.grid-cols-2:has(> .tape-
     linear-gradient(#0a0b0e, #0a0b0e),
     url(/assets/shelf/post-left.jpg?v=31),
     url(/assets/shelf/post-right.jpg?v=31),
-    url(/assets/shelf/lip.png?v=34) !important;
+    url(/assets/shelf/lip.png?v=35) !important;
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat-y !important;
   background-size: 22px 6rem, 22px 6rem, 22px calc(100% - 6rem), 22px calc(100% - 6rem), 100% var(--shelf-row) !important;
   background-position: left top, right top, left 6rem, right 6rem, left top !important;
